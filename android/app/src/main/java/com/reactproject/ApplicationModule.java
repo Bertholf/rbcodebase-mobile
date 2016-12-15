@@ -1,11 +1,15 @@
 package com.reactproject;
 
+import android.content.Context;
+
+import com.facebook.react.bridge.ReactContext;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.reactproject.interfaces.Exclude;
+import com.reactproject.receivers.DeviceStateReceiver;
 import com.reactproject.rest.providers.RestProvider;
 import com.reactproject.utils.Constants;
 import com.reactproject.utils.SharedPrefs;
@@ -42,6 +46,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
         }
 )
 public class ApplicationModule {
+    @Provides
+    ReactContext provideReactContext(Context context) {
+        return new ReactContext(context);
+    }
+
     @Provides
     Gson provideGson() {
         return new GsonBuilder()
@@ -101,7 +110,7 @@ public class ApplicationModule {
     }
 
     @Provides @Singleton
-    SharedPrefs provideUserData() {
+    SharedPrefs provideSharedPrefs() {
         return new SharedPrefs();
     }
 

@@ -4,8 +4,7 @@ import android.content.SharedPreferences;
 
 import com.reactproject.Injector;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -33,14 +32,8 @@ public class SharedPrefs {
             case Constants.DataTypeKey.BOOLEAN:
                 editor.putBoolean(key, (boolean) value);
                 break;
-            case Constants.DataTypeKey.SET:
-                editor.putStringSet(key, (Set<String>) value);
-                break;
             case Constants.DataTypeKey.FLOAT:
                 editor.putFloat(key, (Float) value);
-                break;
-            case Constants.DataTypeKey.LONG:
-                editor.putLong(key, (Long) value);
                 break;
         }
         editor.apply();
@@ -58,16 +51,18 @@ public class SharedPrefs {
             case Constants.DataTypeKey.BOOLEAN:
                 obj = sharedPreferences.getBoolean(key, false);
                 break;
-            case Constants.DataTypeKey.SET:
-                obj = sharedPreferences.getStringSet(key, new HashSet<String>());
-                break;
             case Constants.DataTypeKey.FLOAT:
                 obj = sharedPreferences.getFloat(key, 0);
                 break;
-            case Constants.DataTypeKey.LONG:
-                obj = sharedPreferences.getLong(key, 0);
-                break;
         }
         return obj;
+    }
+
+    public Map<String, ?> getAll() {
+        return sharedPreferences.getAll();
+    }
+
+    public void clear() {
+        sharedPreferences.edit().clear().apply();
     }
 }

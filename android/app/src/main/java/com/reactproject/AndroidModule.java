@@ -66,6 +66,8 @@ public class AndroidModule {
     }
 
     @Provides
+
+
     ClassLoader provideClassLoader(final Context context) {
         return context.getClassLoader();
     }

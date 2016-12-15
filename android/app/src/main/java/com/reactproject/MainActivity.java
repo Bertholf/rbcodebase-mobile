@@ -1,8 +1,6 @@
 package com.reactproject;
 
 import com.facebook.react.ReactActivity;
-import io.realm.react.RealmReactPackage;
-import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 
 public class MainActivity extends ReactActivity {
 

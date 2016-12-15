@@ -27,8 +27,8 @@ export default class Pin extends Component {
         </View>
         <View>
           <Button
-            onPress={this.onRegister.bind(this)}
-            title={strings.signup}
+            onPress={this.onLogin.bind(this)}
+            title={strings.login}
             color='green'
           />
         </View>
@@ -36,8 +36,10 @@ export default class Pin extends Component {
     );
   }
 
-  onRegister() {
-
+  onLogin() {
+    this.props.navigator.push({
+      name: 'bridge'
+    });
   }
 }
 

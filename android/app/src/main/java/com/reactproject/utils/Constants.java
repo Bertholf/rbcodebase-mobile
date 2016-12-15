@@ -53,4 +53,13 @@ public class Constants {
         public static final int LONG = 6;
     }
 
+    public static final class  DeviceState {
+        public static final String STATE = "state";
+        public static final String BATTERY = "battery";
+        public static final String POWER = "power";
+        public static final String AIRPLANE = "airplane";
+        public static final String STORAGE = "storage";
+
+    }
+
 }

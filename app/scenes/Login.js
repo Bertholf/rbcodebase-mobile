@@ -3,13 +3,15 @@ import { AppRegistry, View, Button, Text, StyleSheet, TextInput, AsyncStorage } 
 import { country, country_code, locale, timezone } from './../lib/Constants';
 import { RestAndroid, SharedPrefsAndroid, ToastAndroid } from './../lib/Modules';
 import { strings } from './../lib/Locale';
+import Loader from './../views/Loader';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       display_name: '',
-      phone: ''
+      phone: '',
+      loading: false
     };
   }
 
@@ -17,6 +19,14 @@ export default class Login extends Component {
     return {
       title: strings.signup
     };
+  }
+
+  componentWillMount() {
+    this.setState({loading: false})
+  }
+
+  componentWillUnmount() {
+    this.setState({loading: false})
   }
 
   render() {
@@ -40,6 +50,7 @@ export default class Login extends Component {
             color='green'
           />
         </View>
+        { this.state.loading && <Loader /> }
       </View>
     );
   }
@@ -48,12 +59,16 @@ export default class Login extends Component {
     var phone = this.state.phone;
     var display_name = this.state.display_name;
     var nav = this.props.navigator;
+    var that = this;
+    this.setState( { loading: true } )
     RestAndroid.register(this.state.phone, country_code, country, timezone, locale)
     .then(
       async function(resp) {
         nav.push({
           name: 'pin'
         });
+
+        that.setState({loading:false})
 
         try {
           await AsyncStorage.multiSet([
@@ -85,5 +100,5 @@ const styles = StyleSheet.create({
   },
   form: {
     padding: 50
-  }
+  },
 });

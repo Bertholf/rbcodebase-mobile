@@ -8,7 +8,10 @@ module.exports = {
       signup: "Sign up",
       fullname: "Full name",
       phone: "Phone",
-      enter_pin: "Enter pin"
+      enter_pin: "Enter pin",
+      login: "Login",
+      save: "Save",
+      clear: "Clear"
     },
     id: {
       success: "Berhasil",
@@ -16,7 +19,10 @@ module.exports = {
       signup: "Daftar",
       fullname: "Nama lengkap",
       phone: "Nomor telepon",
-      enter_pin: "Masukkan pin"
+      enter_pin: "Masukkan pin",
+      login: "Masuk",
+      save: "Simpan",
+      clear: "Bersihkan"
     }
   })
 }
