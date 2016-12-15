@@ -20,6 +20,7 @@ public class ReactPackageWrapper implements ReactPackage {
         modules.add(new RestModule(reactContext));
         modules.add(new SharedPrefsModule(reactContext));
         modules.add(new DeviceStateModule(reactContext));
+        modules.add(new ContactProviderModule(reactContext));
         return modules;
     }
 

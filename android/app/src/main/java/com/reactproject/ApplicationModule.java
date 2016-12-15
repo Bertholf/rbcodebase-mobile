@@ -9,11 +9,12 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.reactproject.interfaces.Exclude;
-import com.reactproject.receivers.DeviceStateReceiver;
 import com.reactproject.rest.providers.RestProvider;
 import com.reactproject.utils.Constants;
+import com.reactproject.utils.ContactProvider;
 import com.reactproject.utils.SharedPrefs;
 import com.reactproject.utils.UserAgentProvider;
+import com.reactproject.wrappers.ContactProviderModule;
 import com.reactproject.wrappers.RestModule;
 import com.reactproject.wrappers.SharedPrefsModule;
 
@@ -41,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
         injects = {
                 MainApplication.class,
                 RestModule.class,
-                UserAgentProvider.class,
+                UserAgentProvider.class, ContactProviderModule.class,
                 SharedPrefs.class, SharedPrefsModule.class,
         }
 )
@@ -112,6 +113,11 @@ public class ApplicationModule {
     @Provides @Singleton
     SharedPrefs provideSharedPrefs() {
         return new SharedPrefs();
+    }
+
+    @Provides @Singleton
+    ContactProvider provideContactProvider(Context context) {
+        return new ContactProvider(context);
     }
 
 }
