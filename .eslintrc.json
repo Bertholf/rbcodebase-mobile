@@ -1,0 +1,16 @@
+{
+    "extends": "airbnb",
+    "plugins": [
+        "react-native",
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "ecmaFeatures": {
+        "jsx": false
+    },
+    "rules": {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "arrow-body-style": ["error", "as-needed"]
+    }
+}
