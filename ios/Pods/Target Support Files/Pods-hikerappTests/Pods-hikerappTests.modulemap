@@ -1,0 +1,6 @@
+framework module Pods_hikerappTests {
+  umbrella header "Pods-hikerappTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
