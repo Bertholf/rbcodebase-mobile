@@ -61,7 +61,7 @@ export default class RegisterScreen extends Component{
             <Text style={styles.buttonText}>Register</Text>
           </TouchableHighlight>
           <TouchableHighlight onPress={this.pressed} underlayColor='#99d9f4'>
-            <Text style={{fontSize:20,color:"#48BBEC"}}>Agreement</Text>
+            <Text style={{fontSize:20,color:"#009688"}}>Agreement</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
  button: {
    height: 40,
    width:width*0.9,
-   backgroundColor: '#48BBEC',
-   borderColor: '#48BBEC',
+   backgroundColor: '#009688',
+   borderColor: '#009688',
    borderWidth: 1,
    borderRadius: 3,
    marginBottom: 10,
