@@ -30,13 +30,13 @@ export default class RegisterScreen extends Component{
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={this.pressed} >
-          <Image style={styles.backButton} source={require('../image/back.png')}/>
+          <Image style={styles.backButton} source={require('../images/RegisterScreen/back.png')}/>
         </TouchableOpacity>
         </View>
 
         <View style={styles.content}>
           <Image
-            source={require('../image/user.png')}
+            source={require('../images/RegisterScreen/user.png')}
             style={{
               height:100,
               width:100,
