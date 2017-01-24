@@ -19,5 +19,8 @@ const mapDispatchToProps = dispatch => ({
   submitLogin: () => {
     Actions.timelineList();
   },
+  forgotPassword: () => {
+    Actions.forgotPassword();
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
