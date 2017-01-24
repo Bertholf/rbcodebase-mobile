@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 
 const Welcome = () => (
-  <View>
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Text>Welcome Guys</Text>
   </View>
 );
