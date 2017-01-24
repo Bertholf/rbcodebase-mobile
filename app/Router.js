@@ -6,6 +6,7 @@ import NavBar from './layouts/NavBar';
 import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
+import TimelineDetail from './containers/Timeline/TimelineDetail';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -24,6 +25,9 @@ const Routing = () => (
       />
       <Route
         name="login" component={Login} title="Login Screen"
+      />
+      <Route
+        name="TimelineDetail" component={TimelineDetail} title="Timeline Detail"
       />
     </Router>
   </View>

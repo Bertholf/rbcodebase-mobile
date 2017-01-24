@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { MOVE_TO_AUTH_LOGIN, MOVE_TO_DASHBOARD } from '../actions/Splash';
 
-const splash = (state = {}, action) => {
+const timeline = (state = {}, action) => {
   switch (action.type) {
     case MOVE_TO_DASHBOARD:
       return { target: 'dashboard' };
@@ -11,5 +11,5 @@ const splash = (state = {}, action) => {
       return state;
   }
 };
-const reducer = combineReducers({ splash });
+const reducer = combineReducers({ timeline });
 export default reducer;
