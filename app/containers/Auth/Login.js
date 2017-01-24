@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
   loginWithGoogle: () => console.log('login with google'),
   loginWithFacebook: () => console.log('login with facebook'),
   submitLogin: () => {
-    dispatch(submitLogin());
+    Actions.timelineList();
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
