@@ -13,9 +13,10 @@ const logger = createLogger();
 const store = createStore(combineReducers({ routerReducer, todoApp }),
   applyMiddleware(logger, thunkMiddleware),
   autoRehydrate());
-persistStore(store, {
-  storage: AsyncStorage,
-});
+  // uncomment this when you build it
+// persistStore(store, {
+//   storage: AsyncStorage,
+// });
 
 const App = () => (<Provider store={store}>
   <Routing />
