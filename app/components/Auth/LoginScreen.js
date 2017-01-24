@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -43,8 +42,8 @@ export default class LoginScreen extends Component {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image source={{uri: 'http://icons.iconarchive.com/icons/thegirltyler/brand-camp/256/Hiking-Backpack-icon.png'}}
-       style={{width: 100, height: 100, resizeMode: 'cover'}} />
+          <Image
+          source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
         </View>
         <TextInput
             style={{height: 40}} onChangeText={(username) => this.setState({username})}
@@ -59,7 +58,7 @@ export default class LoginScreen extends Component {
         </TouchableHighlight>
         <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
                 onPress={() => Linking.openURL('http://google.com')}>
-            Forgot Password
+            Forgot Password?
           </Text>
         <TouchableHighlight style={styles.google} onPress={changeMe} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login with Google</Text>
@@ -75,7 +74,7 @@ export default class LoginScreen extends Component {
 var styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    marginTop: 50,
+    marginTop: 10,
     padding: 20,
     flex: 1,
     backgroundColor: '#ffffff',
@@ -92,8 +91,8 @@ var styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#E65100',
-    borderColor: '#EF6C00',
+    backgroundColor: '#009688',
+    borderColor: '#26A69A',
     borderWidth: 1,
     borderRadius: 3,
     marginTop: 5,
@@ -122,4 +121,3 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
-AppRegistry.registerComponent('TestDrive', () => TestDrive);
