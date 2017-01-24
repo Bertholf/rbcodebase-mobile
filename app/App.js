@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { routerReducer } from 'react-native-redux-router';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import {persistStore, autoRehydrate} from 'redux-persist'
+import { persistStore, autoRehydrate } from 'redux-persist';
 import todoApp from './reducers';
 import Routing from './containers/Router';
 
