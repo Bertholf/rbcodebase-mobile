@@ -4,37 +4,37 @@ import {
   View,
   StyleSheet,
   Image,
-  TextInput
+  TextInput,
    } from 'react-native';
 
-  export default class CardDetail extends Component {
-     constructor() {
-        super()
-
-     }
+export default class CardDetail extends Component {
+ constructor() {
+      super();
+}
      render() {
         return (
-         <View style={{marginLeft:8, marginRight:8, backgroundColor:'white'}}>
-             <Text style={styles.fntui}>Detail card</Text>
-             <View style = {{flexDirection: 'row', marginLeft:15 }}>
-                <Image style={{borderRadius:70, width:50, height:50}} source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}/>
+
+         <View style ={{marginLeft:8, marginRight:8, backgroundColor:'white', elevation: 12}}>
+             <Text style ={styles.fntui}>Detail card</Text>
+             <View style = {{flexDirection: 'row', marginLeft:15, marginTop:10 }}>
+              <Image style={{borderRadius:70, width:50, height:50}} source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}/>
              <View style = {{flexDirection: 'column', marginLeft:15 }}>
                 <Text style={styles.user}>User name</Text>
                 <Text style={styles.time}>Date/time</Text>
              </View>
              </View>
-        <View>
+          <View>
              <Image source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}} style ={styles.img}/>
-        </View>
-        <View>
+          </View>
+          <View>
               <Text style={styles.detail}>Detail:ini adalah detail ini adalah detail ini adalah detail ini adalah detail ini adalah detail</Text>
               <Text >{'\n'}</Text>
-        </View>
-               <View>
+          </View>
+          <View>
               <Text style={styles.comment}>Comment</Text>
               <TextInput style={styles.comment}
               onChangeText={(text) => this.setState({text})}/>
-            </View>
+          </View>
        </View>
         );
      }
@@ -46,7 +46,8 @@ import {
       fontSize: 18,
       padding: 10,
       justifyContent: 'center',
-      textAlign: 'center'
+      textAlign: 'center',
+      backgroundColor:'blue'
     },
     user:{
       fontSize: 15,
