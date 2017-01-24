@@ -27,7 +27,7 @@ export default class MapMain extends Component {
 
       <View style={styles.mainView}>
        <View style={styles.card}>
-         <Image source = {require('./1.jpeg')} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
+         <Image source = {{uri: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
          <Text style={styles.nameProfile}>{rowData}</Text>
        </View>
 
