@@ -8,9 +8,9 @@ import {
    Text
 } from 'react-native';
 
-import TouchableOpacityExample from './TouchableOpacityExample'
+import Profile from './Profile'
 
-export default class MyContainerComponent extends Component {
+export default class ListPosting extends Component {
   state = {
     dataSource: null
   }
@@ -20,7 +20,7 @@ export default class MyContainerComponent extends Component {
    render() {
       return (
          <View>
-            <TouchableOpacityExample data={[
+            <Profile data={[
               <View style = {styles.list}>
                   <Image source = {require('./images.jpeg')} style = {styles.card}  />
                   <View>
