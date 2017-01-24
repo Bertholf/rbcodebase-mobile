@@ -10,7 +10,9 @@ const mapStateToProps = () => ({
 const mapDispatchToProps = dispatch => ({
   goToAuth: () => dispatch(),
   dispatcher: command => dispatch(command),
-  moveToAuthLogin: () => dispatch(moveToAuthLogin()),
+  moveToAuthLogin: () => {
+    Actions.login();
+  },
   moveToDashboard: () => {
     Actions.welcome();
   },
@@ -19,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 export class Splash extends Component {
   componentDidMount() {
     setTimeout(() => {
-      this.props.moveToDashboard();
+      this.props.moveToAuthLogin();
     }, 5000);
   }
   render() {
