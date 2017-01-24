@@ -66,7 +66,7 @@ export default class CardDetail extends Component {
           <Text style={styles.comment}>Comment</Text>
           <TextInput
             style={styles.comment}
-            onChangeText={(text) => this.setState({ text })}
+            onChangeText={text => this.setState({ text })}
           />
         </View>
       </View>
