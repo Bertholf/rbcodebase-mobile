@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -79,7 +79,7 @@ const LoginScreen = ({ submitLogin, forgotPassword, updateUsername, updatePasswo
         <Text style={styles.buttonText}>Login</Text>
       </TouchableHighlight>
       <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-        <TouchableOpacity onPress={() => submitLogin()}>
+        <TouchableOpacity onPress={() => register()}>
           <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
             Register
           </Text>
@@ -103,6 +103,7 @@ LoginScreen.propTypes = {
   submitLogin: React.PropTypes.func.isRequired,
   forgotPassword: React.PropTypes.func.isRequired,
   loginWithGoogle: React.PropTypes.func.isRequired,
+  register: React.PropTypes.func.isRequired,
   loginWithFacebook: React.PropTypes.func.isRequired,
   updatePassword: React.PropTypes.func.isRequired,
   updateUsername: React.PropTypes.func.isRequired,

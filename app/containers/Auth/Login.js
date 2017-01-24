@@ -22,5 +22,8 @@ const mapDispatchToProps = dispatch => ({
   forgotPassword: () => {
     Actions.forgotPassword();
   },
+  register: () => {
+    Actions.register();
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
