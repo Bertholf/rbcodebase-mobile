@@ -7,6 +7,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import Register from './components/Auth/RegisterScreen';
+import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 
@@ -30,6 +31,9 @@ const Routing = () => (
       />
       <Route
         name="register" component={Register} hideNavBar={true} title="Register Screen"
+      />
+      <Route
+        name="forgotPassword" component={ForgotPassword} hideNavBar={true} title="forgotPassword"
       />
       <Route
         name="timelineDetail" component={TimelineDetail} title="Timeline Detail"
