@@ -9,7 +9,8 @@ import {
   TouchableHighlight,
   TextInput,
   Linking,
-  Alert
+  Alert,
+  TouchableOpacity
 
 } from 'react-native';
 
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#E65100',
-    borderColor: '#EF6C00',
+    backgroundColor: '#009688',
+    borderColor: '#26A69A',
     borderWidth: 1,
     borderRadius: 3,
     marginTop: 5,
@@ -80,7 +81,7 @@ const LoginScreen = ({ submitLogin, updateUsername, updatePassword, loginWithGoo
       <TextInput
         style={{height: 40}} onChangeText={(username) => updateUsername(username)}
         placeholder={"Username"}
-      />
+       />
       <TextInput
         secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword(password)}
         placeholder="Password"
@@ -88,10 +89,18 @@ const LoginScreen = ({ submitLogin, updateUsername, updatePassword, loginWithGoo
       <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableHighlight>
-      <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
-              onPress={() => Linking.openURL('http://google.com')}>
-          Forgot Password
-        </Text>
+      <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+            Register
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+            Forgot Password
+          </Text>
+        </TouchableOpacity>
+      </View>
       <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login with Google</Text>
       </TouchableHighlight>
