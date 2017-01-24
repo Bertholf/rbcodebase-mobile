@@ -7,6 +7,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import Register from './components/Auth/RegisterScreen';
+import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 
 const Routing = () => (
@@ -31,7 +32,10 @@ const Routing = () => (
         name="login" component={Register} hideNavBar={true} title="Register Screen"
       />
       <Route
-        name="TimelineDetail" component={TimelineDetail} title="Timeline Detail"
+        name="timelineDetail" component={TimelineDetail} title="Timeline Detail"
+      />
+      <Route
+        name="timelineList" initial={true} component={TimelineList} title="Timeline Detail"
       />
     </Router>
   </View>
