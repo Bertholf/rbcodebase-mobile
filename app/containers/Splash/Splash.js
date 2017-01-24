@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
 export class Splash extends Component {
   componentDidMount() {
     setTimeout(() => {
-      this.props.moveToDashboard();
+      this.props.moveToAuthLogin();
     }, 5000);
   }
   render() {
