@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { connect } from 'redux';
+import { Component } from 'react-native';
 import { Actions } from 'react-native-redux-router';
 import SplashScreen from '../../components/Splash/SplashScreen';
-import { moveToAuthLogin } from '../../actions/Splash';
 
 const mapStateToProps = () => ({
   loading: true,
@@ -10,7 +10,9 @@ const mapStateToProps = () => ({
 const mapDispatchToProps = dispatch => ({
   goToAuth: () => dispatch(),
   dispatcher: command => dispatch(command),
-  moveToAuthLogin: () => dispatch(moveToAuthLogin()),
+  moveToAuthLogin: () => {
+    Actions.login();
+  },
   moveToDashboard: () => {
     Actions.welcome();
   },
