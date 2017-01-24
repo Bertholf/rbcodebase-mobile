@@ -1,30 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, Navigator,StyleSheet, BackAndroid, TextInput, Button } from 'react-native';
-
-export default class TimelineComment extends Component {
-  state: {
-    text: ''
-  }
-  render() {
-    return(
-      <View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            Style={styles.comment}
-            placeholder="Your Comment..."
-            onChangeText={(text) => this.setState({text})}
-            multiline={true}
-          />
-          <Button
-            title='Post Comment'
-            color='#009688'
-            accessibilityLabel= 'Post Your Comment'
-          />
-        </View>
-      </View>
-    )
-  }
-}
+import { View, StyleSheet, TextInput, Button } from 'react-native';
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -40,8 +15,35 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 2,
-    height:32,
+    height: 32,
     margin: 16,
     fontSize: 13,
+  },
+});
+export default class TimelineComment extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+    };
   }
-})
+  render() {
+    return (
+      <View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            Style={styles.comment}
+            placeholder={'Your Comment...'}
+            onChangeText={(text) => this.setState({ text })}
+            multiline={true}
+          />
+          <Button
+            title={'Post Comment'}
+            color={'#009688'}
+            accessibilityLabel={'Post Your Comment'}
+          />
+        </View>
+      </View>
+    );
+  }
+}
