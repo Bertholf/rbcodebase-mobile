@@ -10,8 +10,12 @@ const mapStateToProps = ({ app }) => ({
 const mapDispatchToProps = dispatch => ({
   updateUsername: text => dispatch(updateUsername(text)),
   updatePassword: text => dispatch(updatePassword(text)),
-  loginWithGoogle: () => console.log('login with google'),
-  loginWithFacebook: () => console.log('login with facebook'),
+  loginWithGoogle: () => {
+    Actions.timelineList();
+  },
+  loginWithFacebook: () => {
+    Actions.timelineList();
+  },
   submitLogin: () => {
     Actions.timelineList();
   },
