@@ -8,9 +8,9 @@ import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import LoginScreen from './app/components/Auth/LoginScreen';
+import App from './app/App';
 
 const HikerApp = () => (
-  <LoginScreen />
+  <App />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
