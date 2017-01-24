@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { Router, routerReducer, Route, Container, Animations, Schema } from 'react-native-redux-router';
 // import your components below here
 import NavBar from './layouts/NavBar';
-import SplashScreen from './components/Splash/SplashScreen';
+import SplashScreen from './containers/Splash/Splash';
+import Welcome from './containers/Welcome/Welcome';
 
 const Routing = () => {
   return (
@@ -15,8 +16,12 @@ const Routing = () => {
         <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar} />
         <Schema name="tab" navBar={NavBar} />
 
-        <Route name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"/>
-        {/* <Route name="register" component={Register} title="Register"/> */}
+        <Route
+          name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
+        />
+        <Route
+          name="welcome" component={Welcome} title="Welcome"
+        />
       </Router>
     </View>
   );
