@@ -67,25 +67,12 @@ const styles = StyleSheet.create({
 const LoginScreen = ({ submitLogin, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Image
-          source={{ uri: 'http://icons.iconarchive.com/icons/thegirltyler/brand-camp/256/Hiking-Backpack-icon.png' }}
-          style={{ width: 100, height: 100, resizeMode: 'cover' }}
-        />
-      </View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
+        </View>
+        <TextInput style={{height: 40}} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
       <TextInput
-        style={{height: 40}} onChangeText={(username) => updateUsername(username)}
-        placeholder={"Username"}
-       />
-      <TextInput
-        secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword(password)}
-        placeholder="Password"
-      />
+        secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password" />
       <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableHighlight>
