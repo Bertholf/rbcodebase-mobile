@@ -8,7 +8,8 @@ import {
   TouchableHighlight,
   TextInput,
   Linking,
-  Alert
+  Alert,
+  TouchableOpacity
 
 } from 'react-native';
 
@@ -58,16 +59,17 @@ export default class LoginScreen extends Component {
         </TouchableHighlight>
 
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
-                onPress={() => Linking.openURL('http://google.com')}>
-            Register
-          </Text>
-          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
-                onPress={() => Linking.openURL('http://google.com')}>
-            Forgot Password?
-          </Text>
+          <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+              <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+                Register
+              </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+              <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+                Forgot Password?
+              </Text>
+          </TouchableOpacity>
       </View>
-
         <TouchableHighlight style={styles.google} onPress={changeMe} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login with Google</Text>
         </TouchableHighlight>
