@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 
 });
 
-class chatLayout extends component {
+class ChatView extends component {
   constructor(props) {
     super(props);
     this.state = {
@@ -307,4 +307,4 @@ class chatLayout extends component {
   }
 }
 
-AppRegistry.registerComponent('chatLayout', () => chatLayout);
+AppRegistry.registerComponent('ChatView', () => ChatView);
