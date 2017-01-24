@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     color: 'black',
     height: 40,
     fontSize: 18,
-    padding: 10,
+    padding: 8,
     justifyContent: 'center',
     textAlign: 'center',
     backgroundColor: '#009688',
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 export default class CardDetail extends Component {
   render() {
     return (
-      <View style={{ marginLeft: 8, marginRight: 8, backgroundColor: 'white', elevation: 12 }}>
+      <View style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: 'white', elevation: 12 }}>
         <Text style={styles.fntui}> Detail card </Text>
         <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 10 }}>
           <Image style={{ borderRadius: 70, width: 50, height: 50 }} source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />
