@@ -18,7 +18,7 @@ const Routing = () => (
       <Schema name="tab" navBar={NavBar} />
 
       <Route
-        name="launch" component={SplashScreen} hideNavBar={true} title="Launch"
+        name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
       />
       <Route
         name="welcome" component={Welcome} title="Welcome"
