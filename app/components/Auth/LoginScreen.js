@@ -56,10 +56,18 @@ export default class LoginScreen extends Component {
         <TouchableHighlight style={styles.button} onPress={changeMe} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableHighlight>
-        <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
+
+        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
+                onPress={() => Linking.openURL('http://google.com')}>
+            Register
+          </Text>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
                 onPress={() => Linking.openURL('http://google.com')}>
             Forgot Password?
           </Text>
+      </View>
+
         <TouchableHighlight style={styles.google} onPress={changeMe} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login with Google</Text>
         </TouchableHighlight>

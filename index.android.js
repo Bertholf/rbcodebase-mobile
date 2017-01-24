@@ -2,9 +2,9 @@ import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import ForgotPassword from './app/components/Auth/ForgotPassword';
+import LoginScreen from './app/components/Auth/LoginScreen';
 
 const HikerApp = () => (
-  <ForgotPassword />
+  <LoginScreen />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
