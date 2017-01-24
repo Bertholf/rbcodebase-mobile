@@ -1,6 +1,5 @@
-import React from 'react';
-import { connect } from 'redux';
-import { Component } from 'react-native';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-redux-router';
 import SplashScreen from '../../components/Splash/SplashScreen';
 
