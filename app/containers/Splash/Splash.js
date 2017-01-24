@@ -22,7 +22,7 @@ export class Splash extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.moveToAuthLogin();
-    }, 5000);
+    }, 1000);
   }
   render() {
     return (<SplashScreen />);
