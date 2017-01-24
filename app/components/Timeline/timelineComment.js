@@ -34,7 +34,7 @@ export default class TimelineComment extends Component {
           <TextInput
             Style={styles.comment}
             placeholder={'Your Comment...'}
-            onChangeText={(text) => this.setState({ text })}
+            onChangeText={text => this.setState({ text })}
             multiline={true}
           />
           <Button
