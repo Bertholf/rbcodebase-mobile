@@ -29,13 +29,13 @@ const Routing = () => (
         name="login" component={Login} hideNavBar={true} title="Login Screen"
       />
       <Route
-        name="login" component={Register} hideNavBar={true} title="Register Screen"
+        name="register" component={Register} hideNavBar={true} title="Register Screen"
       />
       <Route
         name="timelineDetail" component={TimelineDetail} title="Timeline Detail"
       />
       <Route
-        name="timelineList" initial={true} component={TimelineList} title="Timeline Detail"
+        name="timelineList" component={TimelineList} title="Timeline Detail"
       />
     </Router>
   </View>
