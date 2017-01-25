@@ -4,6 +4,7 @@ import { Router, routerReducer, Route, Container, Animations, Schema } from 'rea
 // import your components below here
 import NavBar from './layouts/NavBar';
 import SplashScreen from './components/Splash/SplashScreen';
+import Chat from './components/Chat/ChatView';
 
 const Routing = () => {
   return (
@@ -15,7 +16,8 @@ const Routing = () => {
         <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar} />
         <Schema name="tab" navBar={NavBar} />
 
-        <Route name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"/>
+        <Route name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch" />
+        <Route name="chat" component={Chat} title="Chat" />
         {/* <Route name="register" component={Register} title="Register"/> */}
       </Router>
     </View>

@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
 
 });
 
-class ChatView extends component {
+export default class ChatView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -132,7 +132,7 @@ class ChatView extends component {
           <View style={styles.containerImgMenu}>
             <Image
               style={styles.imgMenu}
-              source={require('./app/images/ic_menu_white_24dp.png')}
+              source={require('./../../images/ic_menu_white_24dp.png')}
             />
             <TextInput
               style={styles.inputSearch}
@@ -153,7 +153,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.attachFile}
-                source={require('./app/images/ic_attach_file_white_24dp.png')}
+                source={require('./../../images/ic_attach_file_white_24dp.png')}
               />
             </TouchableHighlight>
 
@@ -171,7 +171,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -186,7 +186,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -201,7 +201,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -216,7 +216,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -231,7 +231,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -246,7 +246,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -261,7 +261,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -276,7 +276,7 @@ class ChatView extends component {
             >
               <Image
                 style={styles.avatarImg}
-                source={require('./app/images/64x64.png')}
+                source={require('./../../images/64x64.png')}
               />
             </TouchableHighlight>
           </View>
@@ -308,5 +308,3 @@ class ChatView extends component {
     );
   }
 }
-
-AppRegistry.registerComponent('ChatView', () => ChatView);
