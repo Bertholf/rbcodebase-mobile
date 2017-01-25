@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -13,7 +13,7 @@ import {
 
 } from 'react-native';
 
-export default class LoginScreen extends Component {
+export default class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {username: '',
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-    
+
 const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
@@ -160,4 +160,3 @@ LoginScreen.propTypes = {
   updatePassword: React.PropTypes.func.isRequired,
   updateUsername: React.PropTypes.func.isRequired,
 };
-export default LoginScreen;
