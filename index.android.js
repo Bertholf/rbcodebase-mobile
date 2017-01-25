@@ -9,9 +9,9 @@ import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import App from './app/App';
+import ListTrails from './app/components/ListTrail/ListTrails';
 
 const HikerApp = () => (
-  <App />
+  <ListTrails />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);

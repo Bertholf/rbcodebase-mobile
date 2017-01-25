@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -80,12 +79,12 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
       </TouchableHighlight>
       <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
         <TouchableOpacity onPress={() => register()}>
-          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+          <Text style={{ color : 'blue', margin : 10, textAlign :'right' }}>
             Register
           </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => forgotPassword()}>
-          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+          <Text style={{ color: 'blue', margin : 10, textAlign :'right' }}>
             Forgot Password
           </Text>
         </TouchableOpacity>
