@@ -11,6 +11,7 @@ import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
+import Profile from './components/Profile/ProfileView';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -44,6 +45,9 @@ const Routing = () => (
       />
       <Route
         name="listInbox" component={Inbox} title="Timeline Detail"
+      />
+      <Route
+        name="profile" component={Profile} title="Profile"
       />
     </Router>
   </View>
