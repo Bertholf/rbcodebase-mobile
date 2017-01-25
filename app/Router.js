@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Router, Route, Animations, Schema } from 'react-native-redux-router';
 // import your components below here
 import NavBar from './layouts/NavBar';
+import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
