@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from 'react';
 import {
   AppRegistry,
@@ -8,3 +9,11 @@ const HikerApp = () => (
   <App />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
+=======
+
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+>>>>>>> Stashed changes
