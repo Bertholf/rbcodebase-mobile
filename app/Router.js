@@ -7,6 +7,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import Register from './components/Auth/RegisterScreen';
+import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
@@ -40,6 +41,9 @@ const Routing = () => (
       />
       <Route
         name="timelineList" component={TimelineList} title="Timeline Detail"
+      />
+      <Route
+        name="listInbox" component={Inbox} title="Timeline Detail"
       />
     </Router>
   </View>
