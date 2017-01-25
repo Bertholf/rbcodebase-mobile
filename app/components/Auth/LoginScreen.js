@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -20,21 +20,6 @@ export default class LoginScreen extends Component {
                   password: '',
                     }
   }
-
-  static propTypes = {
-    url: React.PropTypes.string,
-  };
-
-  handleClick = () => {
-    Linking.canOpenURL(this.props.url).then(supported => {
-      if (supported) {
-        Linking.openURL(this.props.url);
-      } else {
-        console.log('Don\'t know how to open URI: ' + this.props.url);
-      }
-    });
-  };
-
   render() {
     const changeMe = () => {Alert.alert('Tombol Button di Tekan!')}
     return (
@@ -81,7 +66,7 @@ export default class LoginScreen extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     padding: 20,
@@ -91,12 +76,12 @@ var styles = StyleSheet.create({
   title: {
     fontSize: 30,
     alignSelf: 'center',
-    marginBottom: 30
+    marginBottom: 30,
   },
   buttonText: {
     fontSize: 18,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   button: {
     height: 36,
@@ -107,7 +92,7 @@ var styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   facebook: {
     height: 36,
@@ -117,7 +102,7 @@ var styles = StyleSheet.create({
     borderRadius: 3,
     marginBottom: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   google: {
     height: 36,
@@ -127,6 +112,52 @@ var styles = StyleSheet.create({
     borderRadius: 3,
     marginBottom: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 });
+    
+const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+  return (
+    <View style={styles.container}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
+        </View>
+        <TextInput style={{height: 40}} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
+      <TextInput
+        secureTextEntry={true}
+        style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"
+      />
+      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableHighlight>
+      <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={() => register()}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+            Register
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => forgotPassword()}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+            Forgot Password
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
+        <Text style={styles.buttonText}>Login with Google</Text>
+      </TouchableHighlight>
+      <TouchableHighlight style={styles.facebook} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+        <Text style={styles.buttonText}>Login with Facebook</Text>
+      </TouchableHighlight>
+    </View>
+  );
+};
+LoginScreen.propTypes = {
+  submitLogin: React.PropTypes.func.isRequired,
+  forgotPassword: React.PropTypes.func.isRequired,
+  loginWithGoogle: React.PropTypes.func.isRequired,
+  register: React.PropTypes.func.isRequired,
+  loginWithFacebook: React.PropTypes.func.isRequired,
+  updatePassword: React.PropTypes.func.isRequired,
+  updateUsername: React.PropTypes.func.isRequired,
+};
+export default LoginScreen;

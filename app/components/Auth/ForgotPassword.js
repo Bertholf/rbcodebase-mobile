@@ -43,7 +43,7 @@ export default class ForgotPassword extends Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     padding: 20,
