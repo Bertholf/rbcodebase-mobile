@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -14,12 +13,65 @@ import {
 
 } from 'react-native';
 
+export default class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {username: '',
+                  password: '',
+                    }
+  }
+  render() {
+    const changeMe = () => {Alert.alert('Tombol Button di Tekan!')}
+    return (
+      <View style={styles.container}>
+        <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image
+          source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
+        </View>
+        <TextInput
+            style={{height: 40}} onChangeText={(username) => this.setState({username})}
+            placeholder="Username"
+          />
+          <TextInput
+            secureTextEntry={true} style={{height: 40}} onChangeText={(password) => this.setState({password})}
+            placeholder="Password"
+            />
+        <TouchableHighlight style={styles.button} onPress={changeMe} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableHighlight>
+
+        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+          <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+              <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+                Register
+              </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+              <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+                Forgot Password?
+              </Text>
+          </TouchableOpacity>
+      </View>
+        <TouchableHighlight style={styles.google} onPress={changeMe} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Login with Google</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.facebook} onPress={changeMe} underlayColor='#99d9f4'>
+          <Text style={styles.buttonText}>Login with Facebook</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     padding: 20,
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#dddddd',
   },
   title: {
     fontSize: 30,
@@ -108,4 +160,3 @@ LoginScreen.propTypes = {
   updatePassword: React.PropTypes.func.isRequired,
   updateUsername: React.PropTypes.func.isRequired,
 };
-export default LoginScreen;
