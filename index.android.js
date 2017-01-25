@@ -4,7 +4,11 @@ import {
 } from 'react-native';
 import MainDrawer from './app/layouts/MainDrawer'
 
+
+import App1 from './app/components/Trail/TrailDetailScreen';
+
+
 const HikerApp = () => (
-  <MainDrawer />
+  <App1 />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
