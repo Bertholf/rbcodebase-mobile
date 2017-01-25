@@ -20,7 +20,7 @@ const Routing = () => (
       <Schema name="tab" navBar={NavBar} />
 
       <Route
-        name="launch" component={SplashScreen} hideNavBar={true} title="Launch"
+        name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
       />
       <Route
         name="welcome" component={Welcome} title="Welcome"
@@ -35,7 +35,7 @@ const Routing = () => (
         name="TimelineDetail" component={TimelineDetail} title="Timeline Detail"
       />
       <Route
-        name="listInbox" initial={true} component={Inbox} title="Timeline Detail"
+        name="listInbox" component={Inbox} title="Timeline Detail"
       />
     </Router>
   </View>
