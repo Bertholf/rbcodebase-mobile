@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
   },
   header: {
     borderBottomWidth: 1,
-    borderColor: 'blue',
+    borderColor: '#26A69A',
   },
   containerImgMenu: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#009688',
     flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: 'blue',
+    borderBottomWidth: 2,
+    borderColor: '#26A69A',
   },
   imgMenu: {
     width: 30,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    backgroundColor: '#2196F3',
+    backgroundColor: '#009688',
     marginBottom: 5,
     height: 45,
   },
@@ -137,6 +137,7 @@ class ChatView extends component {
             <TextInput
               style={styles.inputSearch}
               placeholder="Find Friends"
+              placeholderTextColor="white"
               // value={this.state.message}
               // onChangeText={(text) => this.setState({message: text})}
             />
@@ -152,7 +153,8 @@ class ChatView extends component {
             >
               <Image
                 style={styles.attachFile}
-                source={require('./app/images/ic_attach_file_white_24dp.png')} />
+                source={require('./app/images/ic_attach_file_white_24dp.png')}
+              />
             </TouchableHighlight>
 
           </View>
