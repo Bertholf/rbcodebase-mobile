@@ -9,16 +9,24 @@ import {
    ScrollView
 } from 'react-native'
 
-export default Profile = (props) => {
-
+export default class Profile extends Component {
+  constructor (props){
+  super(props);
    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-   const dataSource = ds.cloneWithRows(props.data)
+   this.state = { dataSource: ds.cloneWithRows([
+
+        'Mahameru', 'Rinjani', 'Merbabu', 'Krinci', 'Evrest', 'Putri', 'Ciremai', 'Jaya Wijaya'
+
+      ])
+    };
+  }
+  render(){
    return (
    <ScrollView>
       <View style = {styles.container}>
         <View style={{backgroundColor: '#26a69a', paddingBottom: 20}} >
           <View style = {styles.profile}>
-          <Image source = {require('./app/images/images.jpeg')} style = {styles.images}  />
+          <Image source = {require('./images.jpeg')} style = {styles.images}  />
            <View>
               <Text style={styles.nama}>Abu Dzar Al Ghifari</Text>
               <Text style={styles.jarak}>Tracker : 125 Km</Text>
@@ -39,116 +47,51 @@ export default Profile = (props) => {
        </View>
      </View>
 
+{/* list view */}
+<ListView
+  dataSource={this.state.dataSource}
+  renderRow={(rowData) =>
+     <View>
 
-        <View style = {styles.list}>
-            <Image source = {require('./app/images/images.jpeg')} style = {styles.card}  />
-            <View>
-               <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
-                <Text style={styles.nama2}>1 minute ago</Text>
-            </View>
-
-       </View>
-
-       <View>
-           <Image source = {require('./app/images/map.png')} style = {styles.map} />
-         </View>
-           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-             <Text style={styles.jarak}> Location: Mahameru</Text>
-             <Text style={styles.jarak}> Jarak :190 KM</Text>
+       <View style = {styles.list}>
+           <Image source = {require('./images.jpeg')} style = {styles.card}  />
+           <View>
+              <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
+               <Text style={styles.nama2}>1 minute ago</Text>
            </View>
-         <View>
-             <View>
-              <View style={{flexDirection: 'row'}}>
-              <Image source = {require('./app/images/like.jpg')} style = {styles.likes}  />
-              <Image source = {require('./app/images/komen.png')} style = {styles.komen}  />
-               </View>
 
-                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                   <Text style={styles.jarak1}> 12 Likes</Text>
-                   <Text style={styles.jarak1}> 10 Comment</Text>
-                 </View>
-               <View>
-                 <Text style={styles.nama2}>1 minute ago</Text>
-               </View>
-            </View>
-        </View>
-
-        <View style = {styles.list}>
-            <Image source = {require('./app/images/images.jpeg')} style = {styles.card}  />
-
-              <View>
-                 <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
-                <Text style={styles.nama2}>3 days ago</Text>
-             </View>
-        </View>
-
+      </View>
+      <View>
+          <Image source = {require('./map.png')} style = {styles.map} />
+      </View>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Text style={styles.jarak1}>{rowData}</Text>
+        <Text style={styles.jarak1}> Jarak :190 KM</Text>
+      </View>
+      <View>
           <View>
-             <Image source = {require('./app/images/maps.jpg')} style = {styles.map}  />
-           </View>
-             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={styles.jarak}> Location : Merbabu</Text>
-               <Text style={styles.jarak}> Jarak :190 KM</Text>
-             </View>
-           <View>
-             <View>
-              <View style={{flexDirection: 'row'}}>
-              <Image source = {require('./app/images/like.jpg')} style = {styles.likes}  />
-              <Image source = {require('./app/images/komen.png')} style = {styles.komen}  />
-               </View>
-                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-
-                   <Text style={styles.jarak1}> 10 Likes</Text>
-                   <Text style={styles.jarak1}> 7 Comment</Text>
-                 </View>
-               <View>
-
-               </View>
+           <View style={{flexDirection: 'row'}}>
+           <Image source = {require('./like.jpg')} style = {styles.likes}  />
+           <Image source = {require('./komen.png')} style = {styles.komen}  />
             </View>
-          </View>
 
-          <View style = {styles.list}>
-              <Image source = {require('./app/images/images.jpeg')} style = {styles.card}  />
-              <View>
-                 <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
-                      <Text style={styles.nama2}>16 Januari</Text>
-             </View>
-           </View>
-
-           <View>
-               <Image source = {require('./app/images/map.png')} style = {styles.map}  />
-               <View>
-                <View style={{flexDirection: 'row'}}>
-                <Image source = {require('./app/images/like.jpg')} style = {styles.likes}  />
-                <Image source = {require('./app/images/komen.png')} style = {styles.komen}  />
-                 </View>
-                   <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                     <Text style={styles.jarak}> Location : Rinjani</Text>
-                     <Text style={styles.jarak1}> 6 Likes</Text>
-                     <Text style={styles.jarak1}> 7 Comment</Text>
-                   </View>
-                 <View>
-
-                 </View>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={styles.jarak2}> 12 Likes</Text>
+                <Text style={styles.jarak2}> 10 Comment</Text>
               </View>
-            </View>
+         </View>
+     </View>
 
-       {/* <View>
-       <ListView
-             style = {styles.listContainer}
-             dataSource={dataSource}
-             renderRow={(rowData) => (
-                   <Text style = {styles.listItem}>
-                      {rowData}
-                   </Text>
-                )
-             }
-          />
-        </View> */}
+         {/* <TimelineComment></TimelineComment> */}
+
+   </View>
+}
+/>
       </View>
     </ScrollView>
    )
 }
-
+}
 
 
 const styles = StyleSheet.create ({
@@ -172,7 +115,7 @@ const styles = StyleSheet.create ({
       //justifyContent:'space-between',
       color: 'white',
       alignItems:'center',
-      borderRadius: 20,
+      borderRadius: 10,
    },
    follow: {
       padding: 8,
@@ -180,7 +123,7 @@ const styles = StyleSheet.create ({
       backgroundColor: '#004d40',
       color: 'white',
       fontSize:15,
-       borderRadius: 20,
+       borderRadius: 10,
    },
    images: {
     height:100,
@@ -196,7 +139,7 @@ const styles = StyleSheet.create ({
  },
   profile: {
   flex: 1,
-  flexDirection:'row',
+  flexDirection:'column',
   //  justifyContent: '',
    alignItems: 'center',
    //backgroundColor: '#c5cae9',
@@ -256,6 +199,11 @@ const styles = StyleSheet.create ({
   },
 
   jarak1: {
+  color: 'black',
+  margin: 12,
+  marginBottom:0
+  },
+  jarak2: {
   color: 'grey',
   margin: 12,
   marginBottom:0
