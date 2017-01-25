@@ -7,6 +7,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
+import Profile from './components/Profile/ProfileView';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -28,6 +29,9 @@ const Routing = () => (
       />
       <Route
         name="TimelineDetail" component={TimelineDetail} title="Timeline Detail"
+      />
+      <Route
+        name="profile" component={Profile} title="Profile"
       />
     </Router>
   </View>
