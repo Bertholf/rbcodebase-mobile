@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   drawerMenu: {
     flex: 3,
     backgroundColor: 'white',
+    padding: 10,
   },
   image: {
     width: 80,
@@ -33,11 +34,16 @@ const styles = StyleSheet.create({
   },
   menu: {
     fontSize: 20,
-    margin: 10,
+    marginLeft: 5,
+    marginBottom: 10,
   },
   submenu: {
     fontSize: 15,
     margin: 10,
+  },
+  icon: {
+    width: 25,
+    height: 25,
   },
   name: {
     fontSize: 20,
@@ -80,26 +86,74 @@ export default class MainDrawer extends Component {
         <View style={styles.drawerMenu}>
           <View>
             <ScrollView>
-              <TouchableOpacity>
-                <Text style={styles.menu}>
-                Map
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.menu}>
-                  List
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.menu}>
-                Elevation Profile
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.menu}>
-                What's New
-                </Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: 'row' }}>
+                <View>
+                  <TouchableOpacity>
+                    <Image
+                      style={styles.icon}
+                      source={require('./../images/ic_list_black_24dp.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity>
+                    <Text style={styles.menu}>
+                      Map
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <View>
+                  <TouchableOpacity>
+                    <Image
+                      style={styles.icon}
+                      source={require('./../images/ic_place_black_24dp.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity>
+                    <Text style={styles.menu}>
+                      List
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <View>
+                  <TouchableOpacity>
+                    <Image
+                      style={styles.icon}
+                      source={require('./../images/ic_perm_identity_black_24dp.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity>
+                    <Text style={styles.menu}>
+                      Elevation Profile
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <View>
+                  <TouchableOpacity>
+                    <Image
+                      style={styles.icon}
+                      source={require('./../images/ic_new_releases_black_24dp.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity>
+                    <Text style={styles.menu}>
+                      What's New
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
               <View style={{ margin: 10, height: 2, backgroundColor: 'black', opacity: 0.2 }} />
               <TouchableOpacity>
                 <Text style={styles.submenu}>
