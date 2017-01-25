@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { SwipeListView } from 'react-native-swipe-list-view';
 const width = Dimensions.get('window').width
 const rows =
@@ -19,6 +21,11 @@ const rows =
     {id: 'alamat', name:'address'},
     {id: 'pnddk', name:'occupation'},
     {id: 'RI', name:'indonesia'},
+    {id: 'amr', name:'amir'},
+    {id: 'mmh', name:'mamah'},
+    {id: 'bpk', name:'bapak'},
+    {id: 'telkmsl', name:'telkomsel'},
+    {id: 'jkw', name:'jokowi'},
 ];
 
 
@@ -64,17 +71,32 @@ export default class ListSearch extends Component {
         renderRow={this.renderRow}
         renderHiddenRow={ data => (
         <View style={styles.conteiner}>
-            <View style={{position:'absolute', width: width * .5, backgroundColor: 'yellow',top: 0, bottom: 0, left: 0}}>
+            <View style={{position:'absolute', width: width * .5,top: 0, bottom: 0, left: 0}}>
               <Text style={{fontSize: 20}}>Archieve</Text>
             </View>
-            <View style={{top: 0, bottom: 0, right: 0, padding: 5,backgroundColor: '#f00', position: 'absolute', width: width * .5}}>
+            <View style={{top: 0, bottom: 0, right: 0, padding: 5, position: 'absolute', width: width * .5}}>
               <Text style= {{textAlign: 'right', fontSize: 23}}>Delete</Text>
             </View>
+
         </View>
         )}
         leftOpenValue={77}
         rightOpenValue={-70}
       />
+      <View style={{
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      alignItems: 'flex-start',
+    }}>
+
+      <ActionButton buttonColor="rgba(231,76,60,1)">
+        <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+          <Icon name="md-create" style={styles.actionButtonIcon} />
+      </ActionButton.Item>
+
+      </ActionButton>
+      </View>
     </View>
     )
   }
@@ -92,14 +114,18 @@ export default class ListSearch extends Component {
     },
     conteiner:{
       flex: 1,
-      fontSize: 50,
-      fontWeight: 'bold',
-      color: '#8BC34A',
+      flexDirection: 'column',
+
     },
     row:{
       padding: 7,
       marginBottom: 0,
-      fontSize: 100,
       backgroundColor: 'skyblue',
-    }
+    },
+    actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+    alignItems: 'center'
+    },
   });
