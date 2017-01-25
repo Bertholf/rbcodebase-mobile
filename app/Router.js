@@ -8,6 +8,8 @@ import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import Register from './components/Auth/RegisterScreen';
 import Inbox from './components/Profile/Inbox';
+import ForgotPassword from './components/Auth/ForgotPassword';
+import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 
 const Routing = () => (
@@ -29,10 +31,16 @@ const Routing = () => (
         name="login" component={Login} hideNavBar={true} title="Login Screen"
       />
       <Route
-        name="login" component={Register} hideNavBar={true} title="Register Screen"
+        name="register" component={Register} hideNavBar={true} title="Register Screen"
       />
       <Route
-        name="TimelineDetail" component={TimelineDetail} title="Timeline Detail"
+        name="forgotPassword" component={ForgotPassword} hideNavBar={true} title="forgotPassword"
+      />
+      <Route
+        name="timelineDetail" component={TimelineDetail} title="Timeline Detail"
+      />
+      <Route
+        name="timelineList" component={TimelineList} title="Timeline Detail"
       />
       <Route
         name="listInbox" component={Inbox} title="Timeline Detail"

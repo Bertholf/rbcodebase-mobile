@@ -9,7 +9,8 @@ import {
   TouchableHighlight,
   TextInput,
   Linking,
-  Alert
+  Alert,
+  TouchableOpacity
 
 } from 'react-native';
 
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#E65100',
-    borderColor: '#EF6C00',
+    backgroundColor: '#009688',
+    borderColor: '#26A69A',
     borderWidth: 1,
     borderRadius: 3,
     marginTop: 5,
@@ -63,35 +64,32 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Image
-          source={{ uri: 'http://icons.iconarchive.com/icons/thegirltyler/brand-camp/256/Hiking-Backpack-icon.png' }}
-          style={{ width: 100, height: 100, resizeMode: 'cover' }}
-        />
-      </View>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
+        </View>
+        <TextInput style={{height: 40}} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
       <TextInput
-        style={{height: 40}} onChangeText={(username) => updateUsername(username)}
-        placeholder={"Username"}
-      />
-      <TextInput
-        secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword(password)}
-        placeholder="Password"
+        secureTextEntry={true}
+        style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"
       />
       <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableHighlight>
-      <Text style={{color : 'blue', margin : 10, textAlign :'right' }}
-              onPress={() => Linking.openURL('http://google.com')}>
-          Forgot Password
-        </Text>
+      <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+        <TouchableOpacity onPress={() => register()}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+            Register
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => forgotPassword()}>
+          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
+            Forgot Password
+          </Text>
+        </TouchableOpacity>
+      </View>
       <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login with Google</Text>
       </TouchableHighlight>
@@ -100,5 +98,14 @@ const LoginScreen = ({ submitLogin, updateUsername, updatePassword, loginWithGoo
       </TouchableHighlight>
     </View>
   );
+};
+LoginScreen.propTypes = {
+  submitLogin: React.PropTypes.func.isRequired,
+  forgotPassword: React.PropTypes.func.isRequired,
+  loginWithGoogle: React.PropTypes.func.isRequired,
+  register: React.PropTypes.func.isRequired,
+  loginWithFacebook: React.PropTypes.func.isRequired,
+  updatePassword: React.PropTypes.func.isRequired,
+  updateUsername: React.PropTypes.func.isRequired,
 };
 export default LoginScreen;
