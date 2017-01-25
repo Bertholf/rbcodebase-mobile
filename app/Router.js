@@ -7,6 +7,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import Register from './components/Auth/RegisterScreen';
+import Inbox from './components/Profile/Inbox';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 
 const Routing = () => (
@@ -19,7 +20,7 @@ const Routing = () => (
       <Schema name="tab" navBar={NavBar} />
 
       <Route
-        name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
+        name="launch" component={SplashScreen} hideNavBar={true} title="Launch"
       />
       <Route
         name="welcome" component={Welcome} title="Welcome"
@@ -32,6 +33,9 @@ const Routing = () => (
       />
       <Route
         name="TimelineDetail" component={TimelineDetail} title="Timeline Detail"
+      />
+      <Route
+        name="listInbox" initial={true} component={Inbox} title="Timeline Detail"
       />
     </Router>
   </View>

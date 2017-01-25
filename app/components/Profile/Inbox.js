@@ -29,11 +29,10 @@ const rows =
 ];
 
 
-export default class ListSearch extends Component {
+export default class Inbox extends Component {
   constructor(props){
     super(props);
     this.state = {text: 'Search'};
-    this.state ={}
     const datasource = new ListView.DataSource(
       { rowHasChanged: (r1, r2) => r1 !== r2}
     );
@@ -45,7 +44,7 @@ export default class ListSearch extends Component {
     this.props.navigator.push({
     })
   }
-  renderRow = (rowData, sectionId) => {
+  renderRow (rowData, sectionId) {
     return(
       <View style={styles.row}>
         <TouchableOpacity onPress={() => this._onPressItem(rowData.id)}>
@@ -59,12 +58,12 @@ export default class ListSearch extends Component {
 
   render(){
     return(
-        <View style={{flex: 1,}}>
+        <View style={{flex: 1}}>
         <TextInput
-        style={{borderColor: 'gray', borderWidth: 1}}
-        placeholder="Plese Input Keyword For Searching Anything"
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
+          style={{borderColor: 'gray', borderWidth: 1, height: 40}}
+          placeholder="Plese Input Keyword For Searching Anything"
+          onChangeText={text => this.setState({text})}
+          value={this.state.text}
         />
       <SwipeListView style= {{flex: 1}}
         dataSource={this.state.dataSource}
