@@ -22,7 +22,7 @@ export default class ListPosting extends Component {
          <View>
             <Profile data={[
               <View style = {styles.list}>
-                  <Image source = {require('./images.jpeg')} style = {styles.card}  />
+                  <Image source = {require('./../../images/images.jpeg')} style = {styles.card}  />
                   <View>
                      <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
                  </View>

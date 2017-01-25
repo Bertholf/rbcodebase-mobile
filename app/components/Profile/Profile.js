@@ -26,7 +26,7 @@ export default class Profile extends Component {
       <View style = {styles.container}>
         <View style={{backgroundColor: '#26a69a', paddingBottom: 20}} >
           <View style = {styles.profile}>
-          <Image source = {require('./images.jpeg')} style = {styles.images}  />
+          <Image source = {require('./../../images/images.jpeg')} style = {styles.images}  />
            <View>
               <Text style={styles.nama}>Abu Dzar Al Ghifari</Text>
               <Text style={styles.jarak}>Tracker : 125 Km</Text>
@@ -54,7 +54,7 @@ export default class Profile extends Component {
      <View>
 
        <View style = {styles.list}>
-           <Image source = {require('./images.jpeg')} style = {styles.card}  />
+           <Image source = {require('./../../images/images.jpeg')} style = {styles.card}  />
            <View>
               <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
                <Text style={styles.nama2}>1 minute ago</Text>
@@ -62,7 +62,7 @@ export default class Profile extends Component {
 
       </View>
       <View>
-          <Image source = {require('./map.png')} style = {styles.map} />
+          <Image source = {require('./../../images/map.png')} style = {styles.map} />
       </View>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <Text style={styles.jarak1}>{rowData}</Text>
@@ -71,8 +71,8 @@ export default class Profile extends Component {
       <View>
           <View>
            <View style={{flexDirection: 'row'}}>
-           <Image source = {require('./like.jpg')} style = {styles.likes}  />
-           <Image source = {require('./komen.png')} style = {styles.komen}  />
+           <Image source = {require('./../../images/like.jpg')} style = {styles.likes}  />
+           <Image source = {require('./../../images/komen.png')} style = {styles.komen}  />
             </View>
 
               <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
