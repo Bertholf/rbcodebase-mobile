@@ -6,8 +6,8 @@ import {
   StyleSheet,
   Image,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
+import MapView from 'react-native-maps';
 
 const styles = StyleSheet.create({
   fntui: {
@@ -63,11 +63,6 @@ export default class CardDetail extends Component {
           </View>
           <View>
             <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.img} />
-          </View>
-          <View style={{ flexDirection: 'column', justifyContent: 'center',height: 100 }}>
-             <TouchableOpacity <Image source={require('../../images/reset.png')} style={{width: 30, height: 30 }} /> />
-            <TouchableOpacity <Image source={require('../../images/zoom in.png')} style={{width: 30, height: 30 }} /> />
-            <TouchableOpacity <Image source={require('../../images/zoom out.png')} style={{width: 30, height: 30 }} /> />
           </View>
           <View>
             <Text style={styles.detail}>Detail:ini  adalah detail ini adalah detail</Text>
