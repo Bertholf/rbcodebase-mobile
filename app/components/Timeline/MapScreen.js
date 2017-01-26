@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View,  Navigator, BackAndroid, StyleSheet } from 'react-native';
-import MapView from 'react-native-maps';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import MapView, { Marker, MapOption } from 'react-native-maps';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,28 +9,90 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  map:{
-    flex : 1,
+  map: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
   },
-})
-export default class Maps extends Component {
+  marker: {
+    backgroundColor: '#550bbc',
+    padding: 5,
+    borderRadius: 5,
+  },
+  text: {
+    color: '#FFF',
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginVertical: 20,
+    backgroundColor: 'transparent',
+},
+  bubble: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    borderRadius: 20,
+},
+});
 
-render() {
-  return (
-    <View style = {styles.container}><MapView style ={styles.map}
-    initialRegion={{
-      latitude: 45.5209087,
-      longitude: -122.6705107,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-  />
-</View>
-  );
-}
-}
+
+export default class Maps extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { markers: [] };
+    this.handlePress = this.handlePress.bind(this);
+  }
+  handlePress(e) {
+    this.setState({
+      markers: [
+        ...this.state.markers,
+        {
+          coordinate: e.nativeEvent.coordinate,
+        },
+      ],
+    });
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: -6.90389,
+            longitude: 107.61861,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+
+          onPress={this.handlePress}
+        >
+          {this.state.markers.map((marker) => {
+            return (
+            <Marker {...marker} >
+            </Marker>
+            );
+          })}
+        </MapView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => this.setState({ markers: [] })}
+            style={styles.bubble}
+          >
+            <Text>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.setState({ markers: [] })}
+            style={styles.bubble}
+          >
+            <Text>-</Text>
+          </TouchableOpacity>
+        </View>
+
+        <MapView/>
+      </View>
+      );
+    }
+  }
