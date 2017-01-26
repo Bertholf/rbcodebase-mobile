@@ -9,6 +9,7 @@ import {
   Text,
   Alert,
   ListView,
+  Picker,
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: width * 0.9,
     height: 50,
+    bottom: 10,
   },
   btnReg: {
     width: width * 0.9,
@@ -58,22 +60,26 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   separatorText: {
-    fontSize: 20,
-  }
+    fontSize: 18,
+  },
+  picker: {
+    height: 50,
+    width: width * 0.9,
+    borderBottomWidth: 1,
+    borderColor: '#f0f0f0',
+  },
 
 });
 
 export default class Register extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       name: '',
       email: '',
       username: '',
       gender: '',
       password: '',
-      dataSource: ds.cloneWithRows(['Male', 'Female']),
     };
   }
   register(){
@@ -98,11 +104,15 @@ export default class Register extends Component {
           style={styles.textInput}
           onChangeText={username => this.setState({ username })}
         />
-        <TextInput
-          placeholder={'Gender'}
-          style={styles.textInput}
-          onChangeText={gender => this.setState({ gender })}
-        />
+        <Picker
+          style={styles.picker}
+          selectedValue={this.state.gender}
+          onValueChange={gendr => this.setState({ gender: gendr })}
+        >
+          <Picker.Item label={'Gender'} value={''} />
+          <Picker.Item label={'Male'} value={'male'} />
+          <Picker.Item label={'Female'} value={'female'} />
+        </Picker>
         <TextInput
           placeholder={'Password'}
           style={styles.textInput}
@@ -114,7 +124,7 @@ export default class Register extends Component {
         >
           <Text style={styles.textReg}>Register</Text>
         </TouchableOpacity>
-        <Text style={styles.separatorText}>or</Text>
+        <Text style={styles.separatorText}>Register with:</Text>
         <View style={styles.buttonGroup}>
           <TouchableOpacity onPress={this.register} >
             <Image source={google} style={styles.icon} />
