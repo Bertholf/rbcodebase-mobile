@@ -3,20 +3,26 @@ import {
   View,
   Text,
   Button,
+  TextInput,
 } from 'react-native';
+import styles from './../../../components/Settings/EditName/style';
 
 const UpdateName = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <View>
         <Text>First Name</Text>
       </View>
       <View>
-        <Text>Text First Name</Text>
+        <TextInput
+          placeholder={'First Name'}
+        />
       </View>
       <View>
         <Text>Last Name</Text>
-        <Text>Text Last Name</Text>
+        <TextInput
+          placeholder={'Last Name'}
+        />
       </View>
       <View>
         <Button
