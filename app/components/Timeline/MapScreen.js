@@ -1,6 +1,7 @@
+
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
-import MapView, { Marker, MapOption } from 'react-native-maps';
+import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,13 +30,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 20,
     backgroundColor: 'transparent',
-},
-  bubble: {
+  },
+  square: {
     backgroundColor: 'rgba(255,255,255,0.7)',
-    paddingHorizontal: 18,
+    paddingHorizontal: 13,
     paddingVertical: 12,
-    borderRadius: 20,
-},
+  },
 });
 
 
@@ -76,21 +76,22 @@ export default class Maps extends Component {
             );
           })}
         </MapView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => this.setState({ markers: [] })}
-            style={styles.bubble}
-          >
-            <Text>+</Text>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }} >--Indicator of zoom scale(10:10)--</Text>
+        <View style={{ flex: 1, flexDirection: 'column', marginTop: 330, marginLeft: 250 }}>
+          <TouchableOpacity style={styles.square}>
+            <Image style={{ borderRadius: 50, width: 20, height: 20 }} source={require('./../../images/reset.png')} />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => this.setState({ markers: [] })}
-            style={styles.bubble}
-          >
-            <Text>-</Text>
+          <Text>{'\n'}</Text>
+          <TouchableOpacity style={styles.square}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold'}}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.square}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold'}}>-</Text>
           </TouchableOpacity>
         </View>
-
+        <TouchableOpacity>
+          <Image style={{ borderRadius: 30, width: 170, height: 40, marginBottom: 20, marginRight:150 }} source={require('./../../images/add location.png')} />
+        </TouchableOpacity>
         <MapView/>
       </View>
       );
