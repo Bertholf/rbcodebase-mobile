@@ -13,7 +13,7 @@ import DrawerLayout from 'react-native-drawer-layout';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#009688',
+    backgroundColor: '#2196F3',
   },
   drawerProfile: {
     flex: 1,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   drawerMenu: {
     flex: 6,
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
   },
   image: {
     width: 80,
@@ -95,7 +95,7 @@ export default class MainDrawer extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.viewIcon}>
                   <TouchableOpacity>
@@ -113,7 +113,7 @@ export default class MainDrawer extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.viewIcon}>
                   <TouchableOpacity>
@@ -131,7 +131,7 @@ export default class MainDrawer extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.viewIcon}>
                   <TouchableOpacity>
@@ -149,7 +149,7 @@ export default class MainDrawer extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.viewIcon}>
                   <TouchableOpacity>
@@ -167,7 +167,7 @@ export default class MainDrawer extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
             </ScrollView>
           </View>
         </View>
@@ -179,7 +179,7 @@ export default class MainDrawer extends Component {
         drawerWidth={300}
         renderNavigationView={() => navigationView}
       >
-        <View style={styles.container}>
+        <View>
           <Text style={styles.welcome}>MAIN PAGE</Text>
         </View>
       </DrawerLayout>
