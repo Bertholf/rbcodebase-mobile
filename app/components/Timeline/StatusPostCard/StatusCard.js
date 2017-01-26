@@ -8,10 +8,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
+import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
 
 const PostCard = () => {
   return (
-    <View style={{ backgroundColor: '#BDBDBD' }}>
+    <View>
       <View style={styles.containerCard}>
         <Text style={styles.titleText}>What's Going On</Text>
         <View>
@@ -24,38 +25,7 @@ const PostCard = () => {
           />
         </View>
         <View style={{ flexDirection: 'row' }}>
-          <View style={styles.containerBottom}>
-              <TouchableOpacity>
-                <Image
-                  source={require('./../../../images/ic_perm_identity_black_24dp.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  source={require('./../../../images/ic_place_black_24dp.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  source={require('./../../../images/ic_videocam_black_24dp.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  source={require('./../../../images/camera.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  source={require('./../../../images/ic_insert_emoticon_black_24dp.png')}
-                  style={styles.image}
-                />
-              </TouchableOpacity>
-          </View>
+          <PostMenu />
           <View style={{ flex: 1 }}>
             <Button title={'Post'} />
           </View>

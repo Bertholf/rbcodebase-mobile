@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   image: {
-    paddingTop: 10,
+    paddingTop: 14,
     paddingBottom: 14,
     height: 24,
     width: 24,
     flexDirection: 'row',
-    marginRight: 4,
+    marginRight: 7,
   },
 });
 
