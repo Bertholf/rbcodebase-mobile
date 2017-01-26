@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     flexDirection: 'row',
+    marginRight: 4,
   },
 });
 

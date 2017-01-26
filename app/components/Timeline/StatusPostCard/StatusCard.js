@@ -28,6 +28,10 @@ const PostCard = () => {
                 style={styles.image}
               />
               <Image
+                source={require('./../../../images/ic_videocam_black_24dp.png')}
+                style={styles.image}
+              />
+              <Image
                 source={require('./../../../images/camera.png')}
                 style={styles.image}
               />
