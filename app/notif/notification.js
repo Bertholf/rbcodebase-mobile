@@ -1,45 +1,43 @@
-import React, { Component } from 'react';
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ListView,
-} from 'react-native';
+import React from 'react';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
+    flex: 1,
+    padding: 12,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
     backgroundColor: '#42a5f5',
     borderColor: '#ffffff',
     borderWidth: 2,
   },
-  nameProfile: {
+  user: {
+    marginLeft: 3,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'left',
     color: '#ffffff',
-    padding: 8,
-    fontSize: 20,
-    backgroundColor: '#42a5f5',
   },
-  mainView: {
-    backgroundColor: '#ffffff',
-  },
-  square: {
+  photo: {
     width: 60,
     height: 60,
-    marginLeft: 10,
-    marginTop: 10,
+    marginLeft: 6,
+    marginTop: 6,
+    marginBottom: 10,
+  },
+  detail: {
+    fontSize: 10,
+  },
+  time: {
+    fontSize: 5,
   },
 });
 
-export default class Notification extends Component {
-  // Initialize the hardcoded data
+export default class Notification extends React.Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
         'John',
@@ -56,14 +54,14 @@ export default class Notification extends Component {
   renderRow(rowData) {
     return (
       <TouchableOpacity style={styles.mainView}>
-        <View style={styles.card}>
-          <Image style={styles.square} source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />
+        <View style={styles.container}>
+          <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.photo} />
           <View style={{ flexDirection: 'column', marginLeft: 12 }}>
-            <Text style={styles.nameProfile}>{rowData}</Text>
-            <Text style={styles.time}>this is a detail detail detail</Text>
+            <Text style={styles.user}>{rowData}</Text>
+            <Text style={styles.detail}>this is a detail detail detail</Text>
             <Text style={styles.time}>Date/time</Text>
-          </View>
         </View>
+      </View>
       </TouchableOpacity>
     );
   }
