@@ -8,7 +8,6 @@ import {
   Image,
   Text,
   Alert,
-  ListView,
   Picker,
 } from 'react-native';
 
@@ -104,12 +103,14 @@ export default class Register extends Component {
           style={styles.textInput}
           onChangeText={username => this.setState({ username })}
         />
+        <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
+          <Text>Gender</Text>
+        </View>
         <Picker
           style={styles.picker}
           selectedValue={this.state.gender}
           onValueChange={gendr => this.setState({ gender: gendr })}
         >
-          <Picker.Item label={'Gender'} value={''} />
           <Picker.Item label={'Male'} value={'male'} />
           <Picker.Item label={'Female'} value={'female'} />
         </Picker>
