@@ -10,7 +10,6 @@ const search = require('./../../images/search.png');
 const morepert = require('./../../images/morepert.png');
 const arrow = require('./../../images/arrow.png');
 const image = require('./../../images/mountain.jpg');
-const kelimutu = require('./../../images/kelimutu.jpg');
 const rinjani = require('./../../images/rinjani.jpg');
 
 const { height, width } = Dimensions.get('window');
@@ -56,6 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     top: 5,
     marginLeft: 5,
+    alignItems: 'center'
   },
   menupert: {
     width: 25,
@@ -84,11 +84,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#00BFA5',
     paddingLeft: 3,
     paddingRight: 3,
-    marginRight: 5,
+    // marginRight: 5,
   },
   chart: {
     width: 200,
     height: 200,
+  },
+  border: {
+    flexDirection: 'row',
+    // borderWidth: 1,
+    borderColor: '#00BFA5',
+    elevation: 4,
   },
 });
 
@@ -110,150 +116,57 @@ export default class ListTrails extends Component {
         <ScrollView style={styles.scroll}>
           <View style={styles.listTrail} >
             <Image style={styles.arrow} source={arrow} />
-            <Image style={styles.imageSide} source={image} />
-            <View style={styles.label}>
-              <View style={styles.row}>
-                <Text style={styles.title}>Longmire</Text>
-                <Text style={styles.title}>S8511.02mi</Text>
-                <Image style={styles.menupert} source={morepert} />
+            <View style={styles.border}>
+              <Image style={styles.imageSide} source={image} />
+              <View style={styles.label}>
+                <View style={styles.row}>
+                  <Text style={styles.title}>Longmire</Text>
+                  <Text style={styles.title}>S8511.02mi</Text>
+                  <Image style={styles.menupert} source={morepert} />
+                </View>
+                <Text style={styles.sub}>On Trail</Text>
+                <Text style={styles.sub}>WT mi-89</Text>
               </View>
-              <Text style={styles.sub}>On Trail</Text>
-              <Text style={styles.sub}>WT mi-89</Text>
             </View>
           </View>
-          <View style={{ height: 5 }} />
+          <View style={{ height: 10 }} />
           <View style={styles.listTrail} >
             <Image style={styles.arrow} source={arrow} />
-            <BarChart
+            <View style={styles.border}>
+              <BarChart
               dataSets={[
                 {
                   fillColor: '#46b3f7',
                   data: [
-                      { value: 15 },
+                      { value: 5 },
                       { value: 10 },
-                      { value: 12 },
-                      { value: 11 },
+                      { value: 2 },
+                      { value: 1 },
                   ],
                 },
                 {
                   fillColor: '#3386b9',
                   data: [
-                        { value: 14 },
-                        { value: 11 },
-                        { value: 14 },
-                        { value: 13 },
-                  ],
-                },
-              ]}
-              graduation={1}
-              horizontal={false}
-              howGrid={true}
-              barSpacing={5}
-              style={{
-                height: 100,
-                margin: 15,
-                width: 300,
-              }}
-              />
-          </View>
-          <View style={{ height: 5 }} />
-          <View style={styles.listTrail} >
-            <Image style={styles.arrow} source={arrow} />
-            <Image style={styles.imageSide} source={kelimutu} />
-            <View style={styles.label}>
-              <View style={styles.row}>
-                <Text style={styles.title}>Mowich</Text>
-                <Text style={styles.title}>N839.60mi</Text>
-                <Image style={styles.menupert} source={morepert} />
-              </View>
-              <Text style={styles.sub}>On Trail</Text>
-              <Text style={styles.sub}>WT mi-33</Text>
-            </View>
-          </View>
-          <View style={{ height: 5 }} />
-          <View style={styles.listTrail} >
-            <Image style={styles.arrow} source={arrow} />
-            <BarChart
-              dataSets={[
-                {
-                  fillColor: '#F44336',
-                  data: [
-                      { value: 7 },
-                      { value: 5 },
-                      { value: 9 },
-                      { value: 6 },
-                  ],
-                },
-                {
-                  fillColor: '#1A237E',
-                  data: [
-                        { value: 10 },
-                        { value: 9 },
-                        { value: 7 },
-                        { value: 8 },
-                  ],
-                },
-              ]}
-              graduation={1}
-              horizontal={false}
-              howGrid={true}
-              barSpacing={5}
-              style={{
-                height: 100,
-                margin: 15,
-                width: 300,
-              }}
-              />
-          </View>
-          <View style={{ height: 5 }} />
-          <View style={styles.listTrail} >
-            <Image style={styles.arrow} source={arrow} />
-            <Image style={styles.imageSide} source={rinjani} />
-            <View style={styles.label}>
-              <View style={styles.row}>
-                <Text style={styles.title}>Sunrise</Text>
-                <Text style={styles.title}>8460.17mi</Text>
-                <Image style={styles.menupert} source={morepert} />
-              </View>
-              <Text style={styles.sub}>On Trail</Text>
-              <Text style={styles.sub}>WT mi 54</Text>
-            </View>
-          </View>
-          <View style={{ height: 5 }} />
-          <View style={styles.listTrail} >
-            <Image style={styles.arrow} source={arrow} />
-            <BarChart
-              dataSets={[
-                {
-                  fillColor: '#C51162',
-                  data: [
-                      { value: 3 },
-                      { value: 7 },
-                      { value: 2 },
-                      { value: 11 },
-                  ],
-                },
-                {
-                  fillColor: '#6A1B9A',
-                  data: [
-                        { value: 4 },
                         { value: 6 },
-                        { value: 10 },
-                        { value: 5 },
+                        { value: 3 },
+                        { value: 7 },
+                        { value: 9 },
                   ],
                 },
               ]}
-              graduation={1}
-              horizontal={false}
-              howGrid={true}
-              barSpacing={5}
-              style={{
-                height: 100,
-                margin: 15,
-                width: 300,
-              }}
+                graduation={1}
+                horizontal={false}
+                howGrid={true}
+                barSpacing={5}
+                style={{
+                  height: 100,
+                  margin: 15,
+                  width: 290,
+                }}
               />
+            </View>
           </View>
+          <View style={{ height: 10 }} />
         </ScrollView>
       </View>
     );
