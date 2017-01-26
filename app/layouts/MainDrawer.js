@@ -17,33 +17,32 @@ const styles = StyleSheet.create({
   },
   drawerProfile: {
     flex: 1,
+    flexDirection: 'row',
     marginBottom: 40,
     padding: 10,
   },
   drawerMenu: {
-    flex: 3,
+    flex: 6,
     backgroundColor: 'white',
-    padding: 10,
   },
   image: {
     width: 80,
     height: 80,
-    marginBottom: 5,
-    borderRadius: 40,
+    marginRight: 20,
     borderWidth: 1,
   },
   menu: {
     fontSize: 20,
-    marginLeft: 5,
-    marginBottom: 10,
-  },
-  submenu: {
-    fontSize: 15,
-    margin: 10,
+    padding: 10,
   },
   icon: {
-    width: 25,
-    height: 25,
+    width: 20,
+    height: 20,
+  },
+  viewIcon: {
+    paddingLeft: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
   name: {
     fontSize: 20,
@@ -52,10 +51,6 @@ const styles = StyleSheet.create({
   },
   location: {
     fontSize: 15,
-    marginBottom: 5,
-  },
-  time: {
-    fontSize: 10,
     marginBottom: 5,
   },
 });
@@ -78,50 +73,31 @@ export default class MainDrawer extends Component {
             <Text style={styles.location}>
               Location
             </Text>
-            <Text style={styles.time}>
-              Time
-            </Text>
           </View>
         </View>
         <View style={styles.drawerMenu}>
           <View>
             <ScrollView>
               <View style={{ flexDirection: 'row' }}>
-                <View>
+                <View style={styles.viewIcon}>
                   <TouchableOpacity>
                     <Image
                       style={styles.icon}
-                      source={require('./../images/ic_place_black_24dp.png')}
+                      source={require('./../images/ic_dashboard_black_24dp.png')}
                     />
                   </TouchableOpacity>
                 </View>
                 <View>
                   <TouchableOpacity>
                     <Text style={styles.menu}>
-                      Map
+                      Dashboard
                     </Text>
                   </TouchableOpacity>
                 </View>
               </View>
+              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
               <View style={{ flexDirection: 'row' }}>
-                <View>
-                  <TouchableOpacity>
-                    <Image
-                      style={styles.icon}
-                      source={require('./../images/ic_list_black_24dp.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity>
-                    <Text style={styles.menu}>
-                      List
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <View>
+                <View style={styles.viewIcon}>
                   <TouchableOpacity>
                     <Image
                       style={styles.icon}
@@ -132,64 +108,66 @@ export default class MainDrawer extends Component {
                 <View>
                   <TouchableOpacity>
                     <Text style={styles.menu}>
-                      Elevation Profile
+                      My Profile
                     </Text>
                   </TouchableOpacity>
                 </View>
               </View>
+              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
               <View style={{ flexDirection: 'row' }}>
-                <View>
+                <View style={styles.viewIcon}>
                   <TouchableOpacity>
                     <Image
                       style={styles.icon}
-                      source={require('./../images/ic_new_releases_black_24dp.png')}
+                      source={require('./../images/ic_notifications_black_24dp.png')}
                     />
                   </TouchableOpacity>
                 </View>
                 <View>
                   <TouchableOpacity>
                     <Text style={styles.menu}>
-                      What's New
+                      Notifications
                     </Text>
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={{ margin: 10, height: 2, backgroundColor: 'black', opacity: 0.2 }} />
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                Office Map
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                Trail Wiki
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                Settings
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                Compass
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                Help
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                About/feedback
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.submenu}>
-                Logout
-                </Text>
-              </TouchableOpacity>
+              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
+                  <TouchableOpacity>
+                    <Image
+                      style={styles.icon}
+                      source={require('./../images/ic_settings_black_24dp.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity>
+                    <Text style={styles.menu}>
+                      Setting
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
+                  <TouchableOpacity>
+                    <Image
+                      style={styles.icon}
+                      source={require('./../images/ic_directions_run_black_24dp.png')}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity>
+                    <Text style={styles.menu}>
+                      Logout
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={{ height: 1, backgroundColor: 'black', opacity: 0.2 }} />
             </ScrollView>
           </View>
         </View>
@@ -202,8 +180,7 @@ export default class MainDrawer extends Component {
         renderNavigationView={() => navigationView}
       >
         <View style={styles.container}>
-          <Text style={styles.welcome}>Content!</Text>
-          <Text>Open drawer</Text>
+          <Text style={styles.welcome}>MAIN PAGE</Text>
         </View>
       </DrawerLayout>
     );
