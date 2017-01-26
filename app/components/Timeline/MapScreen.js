@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
@@ -83,17 +82,17 @@ export default class Maps extends Component {
           </TouchableOpacity>
           <Text>{'\n'}</Text>
           <TouchableOpacity style={styles.square}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold'}}>+</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>+</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.square}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold'}}>-</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>-</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity>
-          <Image style={{ borderRadius: 30, width: 170, height: 40, marginBottom: 20, marginRight:150 }} source={require('./../../images/add location.png')} />
+          <Image style={{ borderRadius: 30, width: 170, height: 40, marginBottom: 20, marginRight: 150 }} source={require('./../../images/add location.png')} />
         </TouchableOpacity>
-        <MapView/>
+        <MapView />
       </View>
-      );
-    }
+    );
+  }
   }
