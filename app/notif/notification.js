@@ -30,18 +30,17 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#ffffff',
     padding: 8,
-    fontSize:30,
-
-    backgroundColor: '#42a5f5'
+    fontSize:20,
+    backgroundColor: '#42a5f5',
   },
   mainView:{
     backgroundColor:'#ffffff',
   },
   square : {
-    borderRadius: 70,
     width: 50,
     height: 50 ,
-    margin : 10,
+    marginLeft : 10,
+    marginTop : 10,
   }
 });
 
@@ -70,8 +69,8 @@ export default class Notification extends Component {
           <Image style={styles.square} source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />
           <View style={{ flexDirection: 'column', marginLeft: 15 }}>
           <Text style={styles.nameProfile}>{rowData}</Text>
+            <Text style={styles.time}>this is a detail detail detail</Text>
             <Text style={styles.time}>Date/time</Text>
-            <Text style={styles.mainView}></Text>
        </View>
 
         </View>
