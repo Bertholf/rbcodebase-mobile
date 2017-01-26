@@ -2,13 +2,10 @@ import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import MainDrawer from './app/layouts/MainDrawer'
-
-
-import App1 from './app/components/Trail/TrailDetailScreen';
+import EmailNotif from './app/components/Setting/EmailNotif';
 
 
 const HikerApp = () => (
-  <App1 />
+  <EmailNotif />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
