@@ -14,7 +14,7 @@ const PostCard = () => {
   return (
     <View>
       <View style={styles.containerCard}>
-        <Text style={styles.titleText}>What's Going On</Text>
+        <Text style={styles.titleText}>Your Stories?</Text>
         <View>
           <TextInput
             multiline={true}
