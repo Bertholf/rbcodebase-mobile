@@ -26,36 +26,36 @@ const PostCard = () => {
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.containerBottom}>
             <View style={styles.image}>
-              <TouchableHighlight>
+              <TouchableOpacity>
                 <Image
                   source={require('./../../../images/ic_perm_identity_black_24dp.png')}
                   style={styles.image}
                 />
-              </TouchableHighlight>
-              <TouchableHighlight>
+              </TouchableOpacity>
+              <TouchableOpacity>
                 <Image
                   source={require('./../../../images/ic_place_black_24dp.png')}
                   style={styles.image}
                 />
-              </TouchableHighlight>
-              <TouchableHighlight>
+              </TouchableOpacity>
+              <TouchableOpacity>
                 <Image
                   source={require('./../../../images/ic_videocam_black_24dp.png')}
                   style={styles.image}
                 />
-              </TouchableHighlight>
-              <TouchableHighlight>
+              </TouchableOpacity>
+              <TouchableOpacity>
                 <Image
                   source={require('./../../../images/camera.png')}
                   style={styles.image}
                 />
-              </TouchableHighlight>
-              <TouchableHighlight>
+              </TouchableOpacity>
+              <TouchableOpacity>
                 <Image
                   source={require('./../../../images/ic_insert_emoticon_black_24dp.png')}
                   style={styles.image}
                 />
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={{ flex: 1 }}>
