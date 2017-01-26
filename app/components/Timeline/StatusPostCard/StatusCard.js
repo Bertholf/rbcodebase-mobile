@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, Image, Button } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Image,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 
 const PostCard = () => {
@@ -19,26 +26,36 @@ const PostCard = () => {
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.containerBottom}>
             <View style={styles.image}>
-              <Image
-                source={require('./../../../images/ic_perm_identity_black_24dp.png')}
-                style={styles.image}
-              />
-              <Image
-                source={require('./../../../images/ic_place_black_24dp.png')}
-                style={styles.image}
-              />
-              <Image
-                source={require('./../../../images/ic_videocam_black_24dp.png')}
-                style={styles.image}
-              />
-              <Image
-                source={require('./../../../images/camera.png')}
-                style={styles.image}
-              />
-              <Image
-                source={require('./../../../images/ic_insert_emoticon_black_24dp.png')}
-                style={styles.image}
-              />
+              <TouchableHighlight>
+                <Image
+                  source={require('./../../../images/ic_perm_identity_black_24dp.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+              <TouchableHighlight>
+                <Image
+                  source={require('./../../../images/ic_place_black_24dp.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+              <TouchableHighlight>
+                <Image
+                  source={require('./../../../images/ic_videocam_black_24dp.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+              <TouchableHighlight>
+                <Image
+                  source={require('./../../../images/camera.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
+              <TouchableHighlight>
+                <Image
+                  source={require('./../../../images/ic_insert_emoticon_black_24dp.png')}
+                  style={styles.image}
+                />
+              </TouchableHighlight>
             </View>
           </View>
           <View style={{ flex: 1 }}>
