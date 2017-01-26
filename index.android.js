@@ -1,17 +1,10 @@
-
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import ListTrails from './app/components/ListTrail/ListTrails';
+import MainDrawer from './app/layouts/MainDrawer'
 
 const HikerApp = () => (
-  <ListTrails />
+  <MainDrawer />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);

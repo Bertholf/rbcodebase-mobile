@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-redux-router';
+import { Actions } from 'react-native-router-flux';
 import TimelineDetail from '../../components/Timeline/TimelineDetail';
 
 const mapStateToProps = ({timeline}) => ({

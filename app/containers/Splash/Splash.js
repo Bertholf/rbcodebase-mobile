@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-redux-router';
+import { Actions } from 'react-native-router-flux';
 import SplashScreen from '../../components/Splash/SplashScreen';
 import { moveToAuthLogin } from '../../actions/Splash';
 

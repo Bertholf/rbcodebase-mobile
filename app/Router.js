@@ -1,8 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Router, Route, Animations, Schema } from 'react-native-redux-router';
+import { Router, Scene } from 'react-native-router-flux';
 // import your components below here
 import NavBar from './layouts/NavBar';
+import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
@@ -11,40 +12,46 @@ import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
+import Profile from './components/Profile/ProfileView';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
-    <View style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: '#F5FCFF' }} />
     <Router>
+      <Scene key={"root"}>
       {/* <Schema
-        name="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
-      <Schema name="default" sceneConfig={Animations.FlatFloatFromRight} navBar={NavBar} />
-      <Schema name="tab" navBar={NavBar} />
+        key="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
 
-      <Route
-        name="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
-      />
-      <Route
-        name="welcome" component={Welcome} title="Welcome"
-      />
-      <Route
-        name="login" component={Login} hideNavBar={true} title="Login Screen"
-      />
-      <Route
-        name="register" component={Register} hideNavBar={true} title="Register Screen"
-      />
-      <Route
-        name="forgotPassword" component={ForgotPassword} hideNavBar={true} title="forgotPassword"
-      />
-      <Route
-        name="timelineDetail" component={TimelineDetail} title="Timeline Detail"
-      />
-      <Route
-        name="timelineList" component={TimelineList} title="Timeline Detail"
-      />
-      <Route
-        name="listInbox" component={Inbox} title="Timeline Detail"
-      />
+        <Scene
+          key="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
+        />
+        <Scene
+          key="welcome" component={Welcome} title="Welcome"
+        />
+        <Scene
+          key="login" component={Login} hideNavBar={true} title="Login Screen"
+        />
+        <Scene
+          key="register" component={Register} hideNavBar={true} title="Register Screen"
+        />
+        <Scene
+          key="forgotPassword" component={ForgotPassword} hideNavBar={true} title="forgotPassword"
+        />
+        <Scene
+          key="timelineDetail" component={TimelineDetail} title="Timeline Detail"
+        />
+        <Scene
+          key="timelineList" component={TimelineList} title="Timeline Detail"
+        />
+        <Scene
+          key="listInbox" component={Inbox} title="Timeline Detail"
+        />
+        <Scene
+          key="profile" component={Profile} title="Profile"
+        />
+        <Scene
+          key="chat" component={Chat} title="Profile"
+        />
+      </Scene>
     </Router>
   </View>
 );
