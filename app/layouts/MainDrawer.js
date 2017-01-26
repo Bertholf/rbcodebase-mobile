@@ -91,7 +91,7 @@ export default class MainDrawer extends Component {
                   <TouchableOpacity>
                     <Image
                       style={styles.icon}
-                      source={require('./../images/ic_list_black_24dp.png')}
+                      source={require('./../images/ic_place_black_24dp.png')}
                     />
                   </TouchableOpacity>
                 </View>
@@ -108,7 +108,7 @@ export default class MainDrawer extends Component {
                   <TouchableOpacity>
                     <Image
                       style={styles.icon}
-                      source={require('./../images/ic_place_black_24dp.png')}
+                      source={require('./../images/ic_list_black_24dp.png')}
                     />
                   </TouchableOpacity>
                 </View>
