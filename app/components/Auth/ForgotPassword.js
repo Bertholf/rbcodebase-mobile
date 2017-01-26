@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TouchableHighlight,
-  TextInput,
-  Linking,
-  Alert
-
-} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert } from 'react-native';
+const logo = require('./../../images/logo.png');
 
 export default class ForgotPassword extends Component {
   constructor(props) {
@@ -29,7 +19,7 @@ export default class ForgotPassword extends Component {
             alignItems: 'center',
           }}>
           <Image
-          source={require('./../../images/logo.png')} style={styles.image} />
+          source={logo} style={styles.image} />
         </View>
         <TextInput
             style={{height: 40}} onChangeText={(email) => this.setState({email})}
@@ -68,8 +58,8 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#009688',
-    borderColor: '#26A69A',
+    backgroundColor: '#1565C0',
+    borderColor: '#1976D2',
     borderWidth: 1,
     borderRadius: 3,
     marginTop: 15,
