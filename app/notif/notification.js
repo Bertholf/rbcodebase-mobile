@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'flex-start',
     backgroundColor: '#42a5f5',
-    borderColor: '#ffffff'
+    borderColor: '#ffffff',
+    borderWidth: 1,
+    borderColor: 'white',
   },
   text: {
     fontSize: 1,
