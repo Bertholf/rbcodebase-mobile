@@ -25,7 +25,6 @@ const PostCard = () => {
         </View>
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.containerBottom}>
-            <View style={styles.image}>
               <TouchableOpacity>
                 <Image
                   source={require('./../../../images/ic_perm_identity_black_24dp.png')}
@@ -56,7 +55,6 @@ const PostCard = () => {
                   style={styles.image}
                 />
               </TouchableOpacity>
-            </View>
           </View>
           <View style={{ flex: 1 }}>
             <Button title={'Post'} />
