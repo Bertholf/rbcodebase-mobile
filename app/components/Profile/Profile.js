@@ -15,7 +15,6 @@ export default class Profile extends Component {
   state = {
     clicked : true
   }
-
 render (){
   return (
     <ScrollView>
@@ -35,12 +34,38 @@ render (){
         </View>
       </View>
       <View>
+<<<<<<< HEAD
 
         <Image style = {styles.logo} source = {require('./../../images/tauhid.png')} />
+=======
+          <Image source = {require('./../../images/map.png')} style = {styles.map} />
+>>>>>>> 57538c24b56579ea6af3f61ce86f2819a87e817f
       </View>
       <View style={styles.biodata}>
       <Text style={styles.followers}>Biodata</Text>
       </View>
+<<<<<<< HEAD
+=======
+      <View>
+          <View>
+           <View style={{flexDirection: 'row'}}>
+           <Image source = {require('./../../images/like.jpg')} style = {styles.likes}  />
+           <Image source = {require('./../../images/komen.png')} style = {styles.komen}  />
+            </View>
+
+              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Text style={styles.jarak2}> 12 Likes</Text>
+                <Text style={styles.jarak2}> 10 Comment</Text>
+              </View>
+         </View>
+     </View>
+
+         {/* <TimelineComment></TimelineComment> */}
+
+   </View>
+}
+/>
+>>>>>>> 57538c24b56579ea6af3f61ce86f2819a87e817f
       </View>
 </ScrollView>
 
