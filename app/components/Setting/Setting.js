@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class Setting extends Component {
-  render() {
+const Setting = () => {
     return (
       <View style={styles.container}>
         <TouchableOpacity>
@@ -65,6 +64,6 @@ export default class Setting extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    )
-  }
-}
+    );
+};
+export default Setting;
