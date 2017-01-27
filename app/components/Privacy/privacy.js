@@ -13,11 +13,8 @@ const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
 };
 
-export default class privacy extends Component {
-  static defaultProps = {
-  }
-  render() {
-    return (
+const privacy = () => {
+  return (
     <View style= {styles.styleBackground}>
       <View>
       <TouchableOpacity>
@@ -56,6 +53,6 @@ export default class privacy extends Component {
         />
       </View>
     </View>
-    )
-  }
-}
+  );
+};
+export default privacy;
