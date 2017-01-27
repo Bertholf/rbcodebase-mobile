@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
           width: 2,
           height: 2,
         },
+        shadowColor: '#212121',
+        shadowOpacity: 75,
+        shadowRadius: 12,
       },
       android: {
         margin: 20,

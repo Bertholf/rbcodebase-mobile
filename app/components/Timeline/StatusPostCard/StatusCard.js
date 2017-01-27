@@ -3,9 +3,7 @@ import {
   View,
   Text,
   TextInput,
-  Image,
   Button,
-  TouchableOpacity,
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
@@ -17,6 +15,7 @@ const PostCard = () => {
         <Text style={styles.titleText}>Your Stories?</Text>
         <View>
           <TextInput
+            style={{ height: 70 }}
             multiline={true}
             blurOnSubmit={true}
             placeholder="Your Status"
