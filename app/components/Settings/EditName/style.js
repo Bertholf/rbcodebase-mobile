@@ -39,10 +39,11 @@ const styles = StyleSheet.create({
       ios: {
         borderColor: '#E0E0E0',
         borderWidth: 0.5,
-        height: 35,
+        height: 55,
         borderRadius: 2,
       },
       android: {
+        height: 55,
       },
     }),
   },
