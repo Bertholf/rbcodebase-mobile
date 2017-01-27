@@ -5,12 +5,11 @@ import {
   TextInput,
   TouchableOpacity,
   Dimensions,
-  StyleSheet,
   Image,
   Text,
   Alert,
-  Picker,
 } from 'react-native';
+import styles from './styles';
 
 const { width } = Dimensions.get('window');
 const logo = require('./../../images/RegisterScreen/user.png');
@@ -19,86 +18,6 @@ const facebook = require('./../../images/facebook.png');
 const twitter = require('./../../images/twitter.png');
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-  },
-  logo: {
-    margin: 20,
-    height: 100,
-    width: 100,
-  },
-  textInput: {
-    width: width * 0.9,
-    height: 50,
-    bottom: 10,
-  },
-  btnReg: {
-    width: width * 0.9,
-    height: 50,
-    backgroundColor: '#1565c0',
-    padding: 8,
-    borderRadius: 3,
-    elevation: 3,
-  },
-  textReg: {
-    color: '#fff',
-    fontSize: 25,
-    textAlign: 'center',
-  },
-  buttonGroup: {
-    top: 10,
-    width: width * 0.6,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  icon: {
-    height: 50,
-    width: 50,
-    alignSelf: 'stretch',
-  },
-  separator: {
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
-  },
-  separatorText: {
-    fontSize: 15,
-  },
-  picker: {
-    height: 50,
-    width: width * 0.9,
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
-  },
-  genderRow: {
-    width: width * 0.9,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 7,
-  },
-  btnGender: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 3,
-    height: 55,
-    width: (width * 0.85) / 2,
-    borderWidth: 1,
-    borderColor: 'gray',
-  },
-  imgGender: {
-    height: 40,
-    width: 40,
-    marginRight: 10,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#1565c0',
-  },
-});
 
 export default class Register extends Component {
   constructor(props) {
@@ -148,21 +67,21 @@ export default class Register extends Component {
             <TouchableOpacity
               activeOpacity={0.7}
               style={[styles.btnGender, this.state.male && styles.active]}
-              onPress={() => this.setState({ male: true, female: false})}
+              onPress={() => this.setState({ male: true, female: false })}
             >
-              <Image source={imgmale} style={[styles.imgGender, {tintColor: '#1565c0'}]} />
+              <Image source={imgmale} style={[styles.imgGender, { tintColor: '#1565c0' }]} />
               <Text>Male</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
               style={[styles.btnGender, this.state.female && styles.active]}
-              onPress={() => this.setState({ female: true, male: false})}
+              onPress={() => this.setState({ female: true, male: false })}
             >
-              <Image source={imgfemale} style={[styles.imgGender, {tintColor: '#DF2668'}]} />
+              <Image source={imgfemale} style={[styles.imgGender, { tintColor: '#DF2668' }]} />
               <Text>Female</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity  activeOpacity={0.7} style={styles.btnReg} onPress={() => this.register()} >
+          <TouchableOpacity activeOpacity={0.7} style={styles.btnReg} onPress={() => this.register()} >
             <Text style={styles.textReg}>Register</Text>
           </TouchableOpacity>
 
@@ -174,13 +93,13 @@ export default class Register extends Component {
 
           <Text style={styles.separatorText}>Register with:</Text>
           <View style={styles.buttonGroup}>
-            <TouchableOpacity  activeOpacity={0.7} onPress={() => this.register()} >
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
               <Image source={google} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7}  onPress={() => this.register()} >
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
               <Image source={facebook} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7}  onPress={() => this.register()}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
               <Image source={twitter} style={styles.icon} />
             </TouchableOpacity>
           </View>
@@ -188,4 +107,4 @@ export default class Register extends Component {
       </ScrollView>
     );
   }
-};
+}
