@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   TextInput,
@@ -70,74 +70,65 @@ const styles = StyleSheet.create({
 
 });
 
-export default class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-      username: '',
-      gender: '',
-      password: '',
-    };
-  }
-  register(){
+const Register = () => {
+  // dummy button action
+  const register = () => {
     Alert.alert('Button pressed');
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Image style={styles.logo} source={logo} />
-        <TextInput
-          placeholder={'Name'}
-          style={styles.textInput}
-          onChangeText={name => this.setState({ name })}
-        />
-        <TextInput
-          placeholder={'Email'}
-          style={styles.textInput}
-          onChangeText={email => this.setState({ email })}
-        />
-        <TextInput
-          placeholder={'Username'}
-          style={styles.textInput}
-          onChangeText={username => this.setState({ username })}
-        />
-        <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
-          <Text>Gender</Text>
-        </View>
-        <Picker
-          style={styles.picker}
-          selectedValue={this.state.gender}
-          onValueChange={gendr => this.setState({ gender: gendr })}
-        >
-          <Picker.Item label={'Male'} value={'male'} />
-          <Picker.Item label={'Female'} value={'female'} />
-        </Picker>
-        <TextInput
-          placeholder={'Password'}
-          style={styles.textInput}
-          onChangeText={password => this.setState({ password })}
-        />
-        <TouchableOpacity
-          style={styles.btnReg}
-          onPress={this.register}
-        >
-          <Text style={styles.textReg}>Register</Text>
-        </TouchableOpacity>
-        <Text style={styles.separatorText}>Register with:</Text>
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity onPress={this.register} >
-            <Image source={google} style={styles.icon} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.register} >
-            <Image source={facebook} style={styles.icon} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.register}>
-            <Image source={twitter} style={styles.icon} />
-          </TouchableOpacity>
-        </View>
+  };
+  return (
+    <View style={styles.container}>
+      <Image style={styles.logo} source={logo} />
+      <TextInput
+        placeholder={'Name'}
+        style={styles.textInput}
+        onChangeText={name => console.log({ name })}
+      />
+      <TextInput
+        placeholder={'Email'}
+        style={styles.textInput}
+        onChangeText={email => console.log({ email })}
+      />
+      <TextInput
+        placeholder={'Username'}
+        style={styles.textInput}
+        onChangeText={username => console.log({ username })}
+      />
+      <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
+        <Text>Gender</Text>
       </View>
-    );
-  }
-}
+      <Picker
+        style={styles.picker}
+        selectedValue={''}
+        onValueChange={gender => console.log({ gender })}
+      >
+        <Picker.Item label={'Male'} value={'male'} />
+        <Picker.Item label={'Female'} value={'female'} />
+      </Picker>
+      <TextInput
+        placeholder={'Password'}
+        style={styles.textInput}
+        onChangeText={password => console.log({ password })}
+      />
+      <TouchableOpacity
+        style={styles.btnReg}
+        onPress={register}
+      >
+        <Text style={styles.textReg}>Register</Text>
+      </TouchableOpacity>
+      <Text style={styles.separatorText}>Register with:</Text>
+      <View style={styles.buttonGroup}>
+        <TouchableOpacity onPress={register} >
+          <Image source={google} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={register} >
+          <Image source={facebook} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={register}>
+          <Image source={twitter} style={styles.icon} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default Register;
