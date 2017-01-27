@@ -22,9 +22,9 @@ const PostCard = () => {
             placeholderTextColor="#BDBDBD"
           />
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={styles.border}>
           <PostMenu />
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, paddingTop: 12 }}>
             <Button title={'Post'} />
           </View>
         </View>

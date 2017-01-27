@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         },
         shadowColor: '#212121',
         shadowOpacity: 75,
-        shadowRadius: 12,
+        shadowRadius: 2,
       },
       android: {
         margin: 20,
@@ -22,15 +22,30 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderRadius: 2,
         elevation: 2,
+        marginBottom: 25,
       },
     }),
   },
   titleText: {
-    color: '#757575',
-    fontWeight: 'bold',
-    fontSize: 17,
+    ...Platform.select({
+      ios: {
+        color: '#757575',
+        fontWeight: 'bold',
+        fontSize: 17,
+        paddingBottom: 7,
+        borderBottomWidth: 0.2,
+        borderColor: '#9E9E9E',
+      },
+      android: {
+        color: '#757575',
+        fontWeight: 'bold',
+        fontSize: 17,
+        paddingBottom: 17,
+      },
+    }),
   },
   containerBottom: {
+    paddingTop: 10,
     flexDirection: 'row',
     flex: 3,
   },
@@ -41,6 +56,18 @@ const styles = StyleSheet.create({
     width: 24,
     flexDirection: 'row',
     marginRight: 7,
+  },
+  border: {
+    ...Platform.select({
+      ios: {
+        flexDirection: 'row',
+        borderTopWidth: 0.2,
+        borderColor: '#9E9E9E',
+      },
+      android: {
+        flexDirection: 'row',
+      },
+    }),
   },
 });
 
