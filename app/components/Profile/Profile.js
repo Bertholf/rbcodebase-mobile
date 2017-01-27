@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
    View,
    TouchableOpacity,
+   TouchableHighlight,
    Text,
    StyleSheet,
    Image,
@@ -10,37 +11,65 @@ import {
 } from 'react-native'
 
 export default class Profile extends Component {
+
+  state = {
+    clicked : true
+  }
+
 render (){
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style = {styles.backgroundContainer}>
         <Image source = {require('./../../images/gunung.jpg')} resizeMode = 'cover' style = {styles.backdrop} />
+        <View style ={styles.backgroundname}>
+        <Text style = {styles.headline} colors={['#F00', 'transparent']}>Abu Dzar Alghifari</Text>
+       </View>
         <View style={styles.textInform}>
         <Text style={styles.pos}>10 Post</Text>
         <Text style={styles.followers}>10K Followers</Text>
-        <TouchableOpacity>
+      <TouchableOpacity onPress={()=>this.toggleSwitch()}>
            <Text style = {styles.button}>
-              Follow
-           </Text>
+              {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
         </TouchableOpacity>
         </View>
       </View>
       <View>
 
-        <Image style = {styles.logo} source = {require('./../../images/images.jpeg')} />
-          <Text style = {styles.headline}>Abu Dzar Alghifari</Text>
+        <Image style = {styles.logo} source = {require('./../../images/tauhid.png')} />
       </View>
       <View style={styles.biodata}>
       <Text style={styles.followers}>Biodata</Text>
       </View>
       </View>
-
+</ScrollView>
 
   )
+}
+toggleSwitch() {
+  this.setState({
+    clicked: !this.state.clicked
+  })
 }
 }
 
 var styles = StyleSheet.create({
+  welcome: {
+   fontSize: 20,
+   textAlign: 'center',
+   margin: 10,
+   color: '#FFFFFF'
+ },
+ touchable: {
+   borderRadius: 100
+ },
+ button: {
+   backgroundColor: '#FF0000',
+   borderRadius: 100,
+   height: 200,
+   width: 200,
+   justifyContent: 'center'
+ },
   backgroundContainer: {
     position: 'absolute',
     height:180,
@@ -56,39 +85,39 @@ var styles = StyleSheet.create({
   },
   logo: {
     backgroundColor: 'rgba(0,0,0,0)',
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius:10,
     marginTop:80,
-    marginLeft:10,
+    marginLeft:20,
     flexDirection:'row',
+    elevation:2,
     },
   backdrop: {
     flex:1,
     flexDirection: 'row',
     height:200,
-    width:500
-
+    width:500,
   },
   headline: {
     fontSize: 18,
     fontWeight:'bold',
-    textAlign: 'left',
-    //backgroundColor: 'transparant',
-    color: 'black',
-    alignSelf:'stretch',
-    marginLeft:5
+    textAlign: 'center',
+    color: 'white',
+    marginTop: -25,
+    backgroundColor: 'hsla(20,100%,100%,0.3)',
+    marginRight:124
   },
   button: {
      flexDirection: 'row',
      padding: 8,
-     backgroundColor: '#004d40',
+     backgroundColor: '#2196F3',
      //justifyContent:'space-between',
      color: 'white',
      marginLeft:10,
      alignItems:'center',
      marginTop: 5,
-     borderRadius: 10,
+     borderRadius: 2,
   },
   follow: {
      padding: 8,
@@ -156,22 +185,22 @@ var styles = StyleSheet.create({
 
 
  textInform: {
-   marginLeft: 120,
+   marginLeft: 100,
    flexDirection:'row',
-   marginTop:3,
    backgroundColor: 'rgba(0,0,0,0)',
    flexDirection:'row',
-   marginTop: 2,
+
  },
 
  biodata: {
    flexDirection:'column',
-   marginTop:3,
    backgroundColor: 'rgba(0,0,0,0)',
    flexDirection:'row',
-   marginTop: 2,
+   marginTop: 20,
    borderBottomWidth:1,
-   borderColor:'grey'
+   borderColor:'grey',
+   marginLeft:20,
+   marginRight:20
  },
  imgCameraContainer: {
    position: 'absolute',
