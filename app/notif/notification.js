@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 12,
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#42a5f5',
+    backgroundColor: '#2196f3',
     borderColor: '#ffffff',
     borderWidth: 2,
   },
@@ -15,21 +14,25 @@ const styles = StyleSheet.create({
     marginLeft: 3,
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'left',
     color: '#ffffff',
   },
   photo: {
-    width: 60,
-    height: 60,
-    marginLeft: 6,
+    width: 80,
+    height: 80,
+    marginLeft: 2,
     marginTop: 6,
-    marginBottom: 10,
+    marginBottom: 6,
   },
   detail: {
-    fontSize: 10,
+    fontSize: 14,
+    color: '#fff',
+    marginRight: 5,
+
   },
   time: {
-    fontSize: 5,
+    fontSize: 12,
+    color: '#f5f5f5',
+    fontWeight: 'bold',
   },
 });
 
@@ -37,7 +40,7 @@ export default class Notification extends React.Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       dataSource: ds.cloneWithRows([
         'John',
@@ -53,16 +56,18 @@ export default class Notification extends React.Component {
   }
   renderRow(rowData) {
     return (
-      <TouchableOpacity style={styles.mainView}>
-        <View style={styles.container}>
-          <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.photo} />
-          <View style={{ flexDirection: 'column', marginLeft: 12 }}>
-            <Text style={styles.user}>{rowData}</Text>
-            <Text style={styles.detail}>this is a detail detail detail</Text>
-            <Text style={styles.time}>Date/time</Text>
-        </View>
-      </View>
-      </TouchableOpacity>
+      <ScrollView>
+        <TouchableOpacity style={styles.mainView}>
+          <View style={styles.container}>
+            <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.photo} />
+            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight:50 }}>
+              <Text style={styles.user}>{rowData}</Text>
+              <Text style={styles.detail}>Lorem Ipsum is simply dumy text ever. Since 1500 detail detail deatail </Text>
+              <Text style={styles.time}>Date/time</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     );
   }
   render() {
