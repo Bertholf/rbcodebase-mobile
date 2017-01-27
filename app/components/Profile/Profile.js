@@ -29,12 +29,12 @@
           <Text style={styles.followers}>10K Followers</Text>
         <TouchableOpacity onPress={()=>this.toggleSwitch()}>
              <Text style = {styles.button}>
-                {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
+                {this.state.clicked ? 'Follow' : 'Message' }</Text>
           </TouchableOpacity>
           </View>
         </View>
         <View>
-          <Image style = {styles.logo} source = {require('./../../images/tauhid.png')} />
+          <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
         </View>
         <View style={styles.biodata}>
         <Text style={styles.bio}>Bio</Text>
