@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -55,134 +55,140 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class MainDrawer extends Component {
-  render() {
-    const navigationView = (
-      <View style={styles.container}>
-        <View style={styles.drawerProfile}>
-          <View>
-            <Image
-              style={styles.image}
-              source={{ uri: 'https://s-media-cache-ak0.pinimg.com/736x/db/b7/4a/dbb74aa018b267e7e6e6bd251723881b.jpg' }}
-            />
-          </View>
-          <View>
-            <Text style={styles.name}>
-              Name
-            </Text>
-            <Text style={styles.location}>
-              Location
-            </Text>
-          </View>
+const dashboard = require('./../images/ic_dashboard_black_24dp.png');
+const profile = require('./../images/ic_perm_identity_black_24dp.png');
+const notifications = require('./../images/ic_notifications_black_24dp.png');
+const setting = require('./../images/ic_settings_black_24dp.png');
+const logout = require('./../images/ic_directions_run_black_24dp.png');
+
+const MainDrawer = () => {
+  const navigationView = (
+    <View style={styles.container}>
+      <View style={styles.drawerProfile}>
+        <View>
+          <Image
+            style={styles.image}
+            source={{ uri: 'https://s-media-cache-ak0.pinimg.com/736x/db/b7/4a/dbb74aa018b267e7e6e6bd251723881b.jpg' }}
+          />
         </View>
-        <View style={styles.drawerMenu}>
-          <View>
-            <ScrollView>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <TouchableOpacity>
-                    <Image
-                      style={styles.icon}
-                      source={require('./../images/ic_dashboard_black_24dp.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity>
-                    <Text style={styles.menu}>
-                      Dashboard
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <TouchableOpacity>
-                    <Image
-                      style={styles.icon}
-                      source={require('./../images/ic_perm_identity_black_24dp.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity>
-                    <Text style={styles.menu}>
-                      My Profile
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <TouchableOpacity>
-                    <Image
-                      style={styles.icon}
-                      source={require('./../images/ic_notifications_black_24dp.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity>
-                    <Text style={styles.menu}>
-                      Notifications
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <TouchableOpacity>
-                    <Image
-                      style={styles.icon}
-                      source={require('./../images/ic_settings_black_24dp.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity>
-                    <Text style={styles.menu}>
-                      Setting
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <TouchableOpacity>
-                    <Image
-                      style={styles.icon}
-                      source={require('./../images/ic_directions_run_black_24dp.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity>
-                    <Text style={styles.menu}>
-                      Logout
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            </ScrollView>
-          </View>
+        <View>
+          <Text style={styles.name}>
+            Name
+          </Text>
+          <Text style={styles.location}>
+            Location
+          </Text>
         </View>
       </View>
-    );
-
-    return (
-      <DrawerLayout
-        drawerWidth={300}
-        renderNavigationView={() => navigationView}
-      >
+      <View style={styles.drawerMenu}>
         <View>
-          <Text style={styles.welcome}>MAIN PAGE</Text>
+          <ScrollView>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
+                    source={dashboard}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.menu}>
+                    Dashboard
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
+                    source={profile}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.menu}>
+                    My Profile
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
+                    source={notifications}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.menu}>
+                    Notifications
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
+                    source={setting}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.menu}>
+                    Setting
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
+                    source={logout}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity>
+                  <Text style={styles.menu}>
+                    Logout
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+          </ScrollView>
         </View>
-      </DrawerLayout>
-    );
-  }
-}
+      </View>
+    </View>
+  );
+
+  return (
+    <DrawerLayout
+      drawerWidth={300}
+      renderNavigationView={() => navigationView}
+    >
+      <View>
+        <Text style={styles.welcome}>MAIN PAGE</Text>
+      </View>
+    </DrawerLayout>
+  );
+};
+
+export default MainDrawer;
