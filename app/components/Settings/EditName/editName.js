@@ -47,10 +47,10 @@ const UpdateName = () => {
           style={styles.inputStyle}
         />
       </View>
-      <View style={styles.button}>
-        <Button
-          title={'Save'}
-        />
+      <View style={{ marginTop:35 }}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.titleButton}>Save</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

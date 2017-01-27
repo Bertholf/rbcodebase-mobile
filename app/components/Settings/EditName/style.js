@@ -8,15 +8,26 @@ const styles = StyleSheet.create({
     marginRight: 16,
     paddingLeft: 14,
     paddingRight: 14,
-    justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
+  },
+  titleButton: {
+    fontSize: 15,
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    borderRadius: 2,
+    elevation: 2,
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingTop: 14,
+    paddingBottom: 14,
+    alignItems: 'center',
   },
   title: {
     fontSize: 14,
     color: '#212121',
-    marginBottom: 5,
-  },
-  button: {
-    marginTop: 34,
   },
   inputMargin: {
     marginBottom: 20,
