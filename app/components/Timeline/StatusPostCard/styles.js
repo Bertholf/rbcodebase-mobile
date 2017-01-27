@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 2,
     elevation: 2,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
   },
   titleText: {
     color: '#757575',

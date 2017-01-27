@@ -21,7 +21,6 @@ const PostCard = () => {
             blurOnSubmit={true}
             placeholder="Your Status"
             placeholderTextColor="#BDBDBD"
-            underlineColorAndroid="#64B5F6"
           />
         </View>
         <View style={{ flexDirection: 'row' }}>
