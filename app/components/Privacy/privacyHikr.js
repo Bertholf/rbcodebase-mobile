@@ -20,37 +20,42 @@ export default class privacyHikr extends Component {
 
   render() {
     return (
-    <View style={{flex: 1,Direction: 'column', justifyContent: 'space-between', marginTop: 50,}}>
-      <View style={{borderWidth: 1, borderColor: 'red'}}>
-      <TouchableOpacity onPress={this.onButtonPress}>
-        <Text>
+    <View style= {styles.styleBackground}>
+      <View>
+      <TouchableOpacity>
+        <Text style={styles.styleText}>
           Who can follow you
         </Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style= {{color: '#08bcde',fontSize: 25,borderWidth:1,borderColor:'blue'}}>
+        <Text style={styles.styleText}>
           Who can see your posts
         </Text>
       </TouchableOpacity>
       </View>
+      <View style= {styles.borderTextT}>
       <TouchableOpacity>
-        <Text>
+        <Text style={styles.textCenter}>
           Who can contact me?
         </Text>
       </TouchableOpacity>
-
       <TouchableOpacity>
-        <Text>
+        <Text style={styles.textCenter}>
           How do i stop someone from bothering me?
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.textCenter}>
+          who can see my stuff ?
+        </Text>
+      </TouchableOpacity>
+    </View>
       <View>
         <Button
           title="SAVE"
           onPress={onButtonPress}
           color="#08bcde"
         />
-
       </View>
     </View>
     )
@@ -61,9 +66,25 @@ const styles = StyleSheet.create({
   image2: {
     height: 100,
   },
-  title: {
-    fontSize:25,
-    padding: 5
+  borderTextT: {
+    borderWidth: 8,
+    borderColor: 'white',
+    marginTop : 20,
+  },
+  styleBackground: {
+    flex: 1,
+    marginTop: 20,
+    backgroundColor: 'aliceblue',
+    padding: 30,
+  },
+  styleText: {
+    color: '#08bcde',
+    fontSize: 20,
+    borderWidth: 4,
+    borderColor: 'white',
+    marginTop: 20,
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   sinopsis: {
     paddingLeft: 5
@@ -71,5 +92,12 @@ const styles = StyleSheet.create({
   conteiner:{
     flex: 1,
     flexDirection: 'column',
+  },
+  textCenter: {
+    color: '#08bcde',
+    fontSize: 20,
+    marginTop: 20,
+    justifyContent : 'center',
+    textAlign: 'center',
   },
 });
