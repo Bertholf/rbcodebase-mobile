@@ -13,6 +13,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
+import Setting from './components/Setting/Setting'
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -50,6 +51,9 @@ const Routing = () => (
         />
         <Scene
           key="chat" component={Chat} title="Profile"
+        />
+        <Scene
+          key="setting" component={Setting} title="Setting"
         />
       </Scene>
     </Router>
