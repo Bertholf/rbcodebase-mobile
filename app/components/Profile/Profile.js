@@ -34,38 +34,11 @@ render (){
         </View>
       </View>
       <View>
-<<<<<<< HEAD
-
         <Image style = {styles.logo} source = {require('./../../images/tauhid.png')} />
-=======
-          <Image source = {require('./../../images/map.png')} style = {styles.map} />
->>>>>>> 57538c24b56579ea6af3f61ce86f2819a87e817f
       </View>
       <View style={styles.biodata}>
       <Text style={styles.followers}>Biodata</Text>
       </View>
-<<<<<<< HEAD
-=======
-      <View>
-          <View>
-           <View style={{flexDirection: 'row'}}>
-           <Image source = {require('./../../images/like.jpg')} style = {styles.likes}  />
-           <Image source = {require('./../../images/komen.png')} style = {styles.komen}  />
-            </View>
-
-              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={styles.jarak2}> 12 Likes</Text>
-                <Text style={styles.jarak2}> 10 Comment</Text>
-              </View>
-         </View>
-     </View>
-
-         {/* <TimelineComment></TimelineComment> */}
-
-   </View>
-}
-/>
->>>>>>> 57538c24b56579ea6af3f61ce86f2819a87e817f
       </View>
 </ScrollView>
 
@@ -236,73 +209,4 @@ var styles = StyleSheet.create({
    height: 100,
    backgroundColor: '#004D40',
  },
- nama1: {
- color: 'black',
- marginBottom: 0,
- margin: 11,
- fontWeight: 'bold',
- fontSize:12,
- marginTop: 25
- },
- nama2: {
-   color: 'grey',
-   fontSize:11,
-   marginTop:0,
-   marginLeft:12
- },
- jarak: {
-   color: 'white',
-   fontSize:14,
-   marginTop:0,
-   marginLeft:12
-
- },
- likes: {
-   height:25,
-   width: 25,
-   borderRadius: 50,
-   marginTop: 25,
-   marginLeft:12
- },
- komen: {
-   height:25,
-   width: 25,
-   borderRadius: 50,
-   marginTop: 25,
-   margin: 10,
-
- },
-
- jarak1: {
- color: 'black',
- margin: 12,
- marginBottom:0
- },
- jarak2: {
- color: 'grey',
- margin: 12,
- marginBottom:0
- },
- posting: {
-   color: 'white',
-   fontSize:14,
-   marginTop:0,
-   marginLeft:12
-
- },
-
- list: {
- flexDirection:'row',
- //  justifyContent: '',
-  alignItems: 'center',
-  //backgroundColor: '#c5cae9',
-  marginBottom: 20,
-  margin:20
- },
- map: {
-  height:200,
-  width: 335,
-  marginLeft:10,
-  marginRight:10
-}
-});
+ 
