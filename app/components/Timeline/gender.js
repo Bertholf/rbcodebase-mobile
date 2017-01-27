@@ -4,8 +4,8 @@ import {
   Text,
   View,
   Button,
-  Picker,
-  Alert,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -27,33 +27,23 @@ const styles = StyleSheet.create({
     marginRight: 50,
     height: 30,
   },
-  picker: {
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    marginTop: 100,
-    marginLeft: 20,
-    marginRight: 20,
-  },
 });
- const onButtonPress = () =>{
-   Alert.alert('Please choosee gender');
- }
-export default Gender = (props) => {
+
+const Gender = () => {
     return (
-      <View style={{elevation: 12}}>
-        <Text style={styles.container}>Gender</Text>
-        <Text style={styles.text}>{'\n'}</Text>
-        <View >
-        <Picker selectedValue ={props.language} onValueChange = {props.updateLanguage} style={styles.picker}>
-         <Picker.Item label = "Male" value = "Male" />
-         <Picker.Item label = "Female" value = "Female" />
-      </Picker>
+      <View style={{ marginTop: 30 }}>
+      <View style={{justifyContent: 'flex-start', flexDirection: 'row', marginTop: 40}}>
+      <TouchableOpacity style ={{width: 100, height:100, marginLeft: 70 }}>
+        <Image  source ={require('./../../images/male.png')} />
+        <Text style={{ fontSize: 20 }}>Male</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style ={{width: 100, height:100, marginLeft: 50 }}>
+        <Image source ={require('./../../images/female.png')} />
+        <Text style={{ fontSize: 20 }}>Female</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-    <View style={{marginLeft:100, marginRight: 100 }}>
-      <Text>{'\n'}</Text>
-      <Button onPress={onButtonPress}
-        title="   OK    "  />
-    </View>
-  </View>
    );
  }
+
+ module.exports = Gender;
