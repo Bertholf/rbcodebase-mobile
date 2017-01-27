@@ -17,8 +17,8 @@ const logo = require('./../../images/RegisterScreen/user.png');
 const google = require('./../../images/google-plus.png');
 const facebook = require('./../../images/facebook.png');
 const twitter = require('./../../images/twitter.png');
-const male = require('./../../images/male.png');
-const female = require('./../../images/female.png');
+const imgmale = require('./../../images/male.png');
+const imgfemale = require('./../../images/female.png');
 
 const styles = StyleSheet.create({
   container: {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 3,
     height: 55,
     width: (width * 0.85) / 2,
   },
@@ -102,25 +102,28 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectMale: true,
-      selectFemale: false,
+      male: true,
+      female: false,
     };
   }
   // dummy button action
   register() {
     Alert.alert('Button pressed');
   }
-  render(){
+
+  render() {
     return (
       <ScrollView>
         <View style={styles.container}>
           <Image style={styles.logo} source={logo} />
           <TextInput
+            maxLength={32}
             placeholder={'Name'}
             style={styles.textInput}
             onChangeText={name => console.log({ name })}
           />
           <TextInput
+            keyboardType={'email-address'}
             placeholder={'Email'}
             style={styles.textInput}
             onChangeText={email => console.log({ email })}
@@ -141,21 +144,23 @@ export default class Register extends Component {
           </View>
           <View style={styles.genderRow} >
             <TouchableOpacity
-              style={[styles.btnGender, this.state.selectMale && styles.active]}
-              onPress={() => this.setState({selectMale: !this.state.selectMale, selectFemale: !this.state.selectFemale})}
+              activeOpacity={0.7}
+              style={[styles.btnGender, this.state.male && styles.active]}
+              onPress={() => this.setState({ male: true, female: false})}
             >
-              <Image source={male} style={styles.imgGender} />
+              <Image source={imgmale} style={[styles.imgGender, {tintColor: '#1565c0'}]} />
               <Text>Male</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.btnGender, this.state.selectFemale && styles.active]}
-              onPress={() => this.setState({selectMale: !this.state.selectMale, selectFemale: !this.state.selectFemale})}
+              activeOpacity={0.7}
+              style={[styles.btnGender, this.state.female && styles.active]}
+              onPress={() => this.setState({ female: true, male: false})}
             >
-              <Image source={female} style={styles.imgGender} />
+              <Image source={imgfemale} style={[styles.imgGender, {tintColor: '#DF2668'}]} />
               <Text>Female</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.btnReg} onPress={() => this.register()} >
+          <TouchableOpacity  activeOpacity={0.7} style={styles.btnReg} onPress={() => this.register()} >
             <Text style={styles.textReg}>Register</Text>
           </TouchableOpacity>
 
@@ -167,13 +172,13 @@ export default class Register extends Component {
 
           <Text style={styles.separatorText}>Register with:</Text>
           <View style={styles.buttonGroup}>
-            <TouchableOpacity onPress={() => this.register()} >
+            <TouchableOpacity  activeOpacity={0.7} onPress={() => this.register()} >
               <Image source={google} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.register()} >
+            <TouchableOpacity activeOpacity={0.7}  onPress={() => this.register()} >
               <Image source={facebook} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.register()}>
+            <TouchableOpacity activeOpacity={0.7}  onPress={() => this.register()}>
               <Image source={twitter} style={styles.icon} />
             </TouchableOpacity>
           </View>
