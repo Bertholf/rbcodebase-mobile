@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   ScrollView,
@@ -22,7 +22,6 @@ const female = require('./../../images/female.png');
 
 const styles = StyleSheet.create({
   container: {
-    width,
     alignItems: 'center',
   },
   logo: {
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: 60,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     marginBottom: 7,
   },
   btnGender: {
@@ -86,8 +85,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     height: 55,
-    width: (width * 0.8)/2,
-    marginRight: 10,
+    width: (width * 0.85) / 2,
   },
   imgGender: {
     height: 40,
@@ -95,85 +93,92 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   active: {
-    // borderWidth: 1,
-    // borderColor: '#1565c0',
-    elevation: 3,
+    borderWidth: 2,
+    borderColor: '#1565c0',
   },
 });
 
-const Register = () => {
+export default class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectMale: true,
+      selectFemale: false,
+    };
+  }
   // dummy button action
-  const register = () => {
+  register() {
     Alert.alert('Button pressed');
-  };
-  let selected = true;
-  return (
-    <ScrollView>
-      <View style={styles.container}>
+  }
+  render(){
+    return (
+      <ScrollView>
+        <View style={styles.container}>
           <Image style={styles.logo} source={logo} />
-        <TextInput
-          placeholder={'Name'}
-          style={styles.textInput}
-          onChangeText={name => console.log({ name })}
-        />
-        <TextInput
-          placeholder={'Email'}
-          style={styles.textInput}
-          onChangeText={email => console.log({ email })}
-        />
-        <TextInput
-          placeholder={'Username'}
-          style={styles.textInput}
-          onChangeText={username => console.log({ username })}
-        />
-        <TextInput
-          placeholder={'Password'}
-          style={styles.textInput}
-          onChangeText={password => console.log({ password })}
-        />
-        <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
-          <Text>Gender</Text>
-        </View>
-        <View style={styles.genderRow} >
-          <TouchableOpacity
-            style={[styles.btnGender, selected && styles.active]}
-          >
-            <Image source={male} style={styles.imgGender} />
-            <Text>Male</Text>
+          <TextInput
+            placeholder={'Name'}
+            style={styles.textInput}
+            onChangeText={name => console.log({ name })}
+          />
+          <TextInput
+            placeholder={'Email'}
+            style={styles.textInput}
+            onChangeText={email => console.log({ email })}
+          />
+          <TextInput
+            placeholder={'Username'}
+            style={styles.textInput}
+            onChangeText={username => console.log({ username })}
+          />
+          <TextInput
+            placeholder={'Password'}
+            style={styles.textInput}
+            secureTextEntry={true}
+            onChangeText={password => console.log({ password })}
+          />
+          <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
+            <Text>Gender</Text>
+          </View>
+          <View style={styles.genderRow} >
+            <TouchableOpacity
+              style={[styles.btnGender, this.state.selectMale && styles.active]}
+              onPress={() => this.setState({selectMale: !this.state.selectMale, selectFemale: !this.state.selectFemale})}
+            >
+              <Image source={male} style={styles.imgGender} />
+              <Text>Male</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.btnGender, this.state.selectFemale && styles.active]}
+              onPress={() => this.setState({selectMale: !this.state.selectMale, selectFemale: !this.state.selectFemale})}
+            >
+              <Image source={female} style={styles.imgGender} />
+              <Text>Female</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={styles.btnReg} onPress={() => this.register()} >
+            <Text style={styles.textReg}>Register</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.btnGender, selected && styles.active]}
-            onPress={() => selected = !selected}
-          >
-            <Image source={female} style={styles.imgGender} />
-            <Text>Female</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={styles.btnReg} onPress={register} >
-          <Text style={styles.textReg}>Register</Text>
-        </TouchableOpacity>
 
-        <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
-          <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
-          <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7 }}> OR </Text>
-          <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
-        </View>
+          <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+            <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
+            <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7 }}> OR </Text>
+            <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+          </View>
 
-        <Text style={styles.separatorText}>Register with:</Text>
-        <View style={styles.buttonGroup}>
-          <TouchableOpacity onPress={register} >
-            <Image source={google} style={styles.icon} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={register} >
-            <Image source={facebook} style={styles.icon} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={register}>
-            <Image source={twitter} style={styles.icon} />
-          </TouchableOpacity>
+          <Text style={styles.separatorText}>Register with:</Text>
+          <View style={styles.buttonGroup}>
+            <TouchableOpacity onPress={() => this.register()} >
+              <Image source={google} style={styles.icon} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.register()} >
+              <Image source={facebook} style={styles.icon} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.register()}>
+              <Image source={twitter} style={styles.icon} />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </ScrollView>
-  );
+      </ScrollView>
+    );
+  }
 };
-
-export default Register;
