@@ -4,31 +4,47 @@ import {
   Text,
   Button,
   TextInput,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import styles from './../../../components/Settings/EditName/style';
 
 const UpdateName = () => {
   return (
     <View style={styles.container}>
-      <View style={{ alignItems: 'center', marginBottom: 50 }}>
-        <Text style={{ fontSize: 32, color: '#757575' }}>Change Name</Text>
+      <View style={{ alignItems: 'center', marginBottom: 24 }}>
+        <TouchableOpacity>
+          <View style={styles.imageContainer}>
+            <Image
+              source={require('./../../../images/profile-pic.jpg')}
+              style={styles.image}
+            />
+            <Image
+              source={require('./../../../images/ic_add_a_photo_black_18dp.png')}
+              style={{ width: 18, height: 18, marginTop: -17, left: 70 }}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
+
       <View style={styles.inputMargin}>
         <View>
           <Text style={styles.title}>First Name</Text>
         </View>
         <View>
           <TextInput
-            placeholder={'First Name'}
+            placeholder={'Your First Name'}
             placeholderTextColor="#BDBDBD"
+            style={styles.inputStyle}
           />
         </View>
       </View>
       <View>
         <Text style={styles.title}>Last Name</Text>
         <TextInput
-          placeholder={'Last Name'}
+          placeholder={'Your Last Name'}
           placeholderTextColor="#BDBDBD"
+          style={styles.inputStyle}
         />
       </View>
       <View style={styles.button}>
