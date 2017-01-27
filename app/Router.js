@@ -13,7 +13,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
-import Privacy from './components/Privacy/privacyHikr'
+import Privacy from './components/Privacy/privacy.js';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>

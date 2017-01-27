@@ -6,18 +6,16 @@ import {
   View,
   Button,
   Alert,
-  s
 } from 'react-native';
+import styles from './../../components/Privacy/style.js';
 
 const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
 };
 
-export default class privacyHikr extends Component {
-  constructor(props) {
-    super(props);
+export default class privacy extends Component {
+  static defaultProps = {
   }
-
   render() {
     return (
     <View style= {styles.styleBackground}>
@@ -61,43 +59,3 @@ export default class privacyHikr extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  image2: {
-    height: 100,
-  },
-  borderTextT: {
-    borderWidth: 8,
-    borderColor: 'white',
-    marginTop : 20,
-  },
-  styleBackground: {
-    flex: 1,
-    marginTop: 20,
-    backgroundColor: 'aliceblue',
-    padding: 30,
-  },
-  styleText: {
-    color: '#08bcde',
-    fontSize: 20,
-    borderWidth: 4,
-    borderColor: 'white',
-    marginTop: 20,
-    justifyContent: 'center',
-    textAlign: 'center',
-  },
-  sinopsis: {
-    paddingLeft: 5
-  },
-  conteiner:{
-    flex: 1,
-    flexDirection: 'column',
-  },
-  textCenter: {
-    color: '#08bcde',
-    fontSize: 20,
-    marginTop: 20,
-    justifyContent : 'center',
-    textAlign: 'center',
-  },
-});
