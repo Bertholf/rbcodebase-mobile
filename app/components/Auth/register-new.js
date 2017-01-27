@@ -38,11 +38,9 @@ const styles = StyleSheet.create({
   btnReg: {
     width: width * 0.9,
     height: 50,
-    backgroundColor: '#2196f3',
+    backgroundColor: '#1565c0',
     padding: 8,
     borderRadius: 3,
-    shadowOffset: { width: 15, height: 15 },
-    shadowColor: '#000',
   },
   textReg: {
     color: '#fff',
@@ -78,21 +76,26 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: 60,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     marginBottom: 7,
   },
   btnGender: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     height: 55,
-    width: 55,
+    width: (width * 0.8)/2,
     marginRight: 10,
-    borderWidth: 1,
   },
   imgGender: {
     height: 40,
     width: 40,
+    marginRight: 10,
+  },
+  active: {
+    borderWidth: 1,
+    borderColor: '#1565c0',
   },
 });
 
@@ -105,7 +108,7 @@ const Register = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Image style={styles.logo} source={logo} />
+          <Image style={styles.logo} source={logo} />
         <TextInput
           placeholder={'Name'}
           style={styles.textInput}
@@ -130,19 +133,30 @@ const Register = () => {
           <Text>Gender</Text>
         </View>
         <View style={styles.genderRow} >
-          <TouchableOpacity style={styles.btnGender} >
+          <TouchableOpacity
+            style={[styles.btnGender, selected && styles.active]}
+          >
             <Image source={male} style={styles.imgGender} />
+            <Text>Male</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnGender}>
+          <TouchableOpacity
+            style={[styles.btnGender, selected && styles.active]}
+            onPress={() => selected = !selected}
+          >
             <Image source={female} style={styles.imgGender} />
+            <Text>Female</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={styles.btnReg}
-          onPress={register}
-        >
+        <TouchableOpacity style={styles.btnReg} onPress={register} >
           <Text style={styles.textReg}>Register</Text>
         </TouchableOpacity>
+
+        <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+          <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
+          <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7 }}> OR </Text>
+          <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+        </View>
+
         <Text style={styles.separatorText}>Register with:</Text>
         <View style={styles.buttonGroup}>
           <TouchableOpacity onPress={register} >
