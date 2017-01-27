@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         shadowColor: '#212121',
         shadowOpacity: 75,
         shadowRadius: 2,
+        paddingBottom: 23,
       },
       android: {
         margin: 20,
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         elevation: 2,
         marginBottom: 25,
+        paddingBottom: 23,
       },
     }),
   },
@@ -52,12 +54,13 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   image: {
+    marginTop: 5,
     paddingTop: 14,
     paddingBottom: 14,
     height: 24,
     width: 24,
     flexDirection: 'row',
-    marginRight: 7,
+    marginRight: 17,
   },
   border: {
     ...Platform.select({
