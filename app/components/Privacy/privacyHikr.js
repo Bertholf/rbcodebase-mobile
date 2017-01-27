@@ -6,10 +6,11 @@ import {
   View,
   Button,
   Alert,
+  s
 } from 'react-native';
 
 const onButtonPress = () => {
-  console.log('Button has been pressed!');
+  Alert.alert('Button has been pressed!');
 };
 
 export default class privacyHikr extends Component {
@@ -19,33 +20,37 @@ export default class privacyHikr extends Component {
 
   render() {
     return (
-    <View style= {{margin: 10, backgroundColor: 'white'}}>
+    <View style={{flex: 1,Direction: 'column', justifyContent: 'space-between', marginTop: 50,}}>
+      <View style={{borderWidth: 1, borderColor: 'red'}}>
       <TouchableOpacity onPress={this.onButtonPress}>
         <Text>
           Who can follow you
         </Text>
       </TouchableOpacity>
       <TouchableOpacity>
-        <Text style= {{backgroundColor: 'white'}}>
+        <Text style= {{color: '#08bcde',fontSize: 25,borderWidth:1,borderColor:'blue'}}>
           Who can see your posts
         </Text>
       </TouchableOpacity>
+      </View>
       <TouchableOpacity>
-        <Text style={{textShadowOffset:{width: 5, height:5,textShadowRadius:10}}}>
+        <Text>
           Who can contact me?
         </Text>
       </TouchableOpacity>
+
       <TouchableOpacity>
         <Text>
           How do i stop someone from bothering me?
         </Text>
       </TouchableOpacity>
       <View>
-        <TouchableOpacity>
-        <Text style= {{backgroundColor: 'skyblue',flexDirection: 'column',justifyContent: 'center',alignItems: 'center',paddingLeft: 150, fontSize: 20}}>
-          SAVE
-        </Text>
-        </TouchableOpacity>
+        <Button
+          title="SAVE"
+          onPress={onButtonPress}
+          color="#08bcde"
+        />
+
       </View>
     </View>
     )

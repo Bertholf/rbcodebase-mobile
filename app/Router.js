@@ -13,6 +13,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
+import Privacy from './components/Privacy/privacyHikr'
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -23,6 +24,9 @@ const Routing = () => (
 
         <Scene
           key="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
+        />
+        <Scene
+          key="Privacy" component={Privacy} initial={true} title="Privacy"
         />
         <Scene
           key="welcome" component={Welcome} title="Welcome"
