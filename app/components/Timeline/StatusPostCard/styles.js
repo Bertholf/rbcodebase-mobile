@@ -1,16 +1,26 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   containerCard: {
-    margin: 20,
-    padding: 14,
-    backgroundColor: '#ffffff',
-    borderRadius: 2,
-    elevation: 2,
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
+    ...Platform.select({
+      ios: {
+        margin: 20,
+        padding: 14,
+        backgroundColor: '#ffffff',
+        borderRadius: 2,
+        shadowOffset: {
+          width: 2,
+          height: 2,
+        },
+      },
+      android: {
+        margin: 20,
+        padding: 14,
+        backgroundColor: '#ffffff',
+        borderRadius: 2,
+        elevation: 2,
+      },
+    }),
   },
   titleText: {
     color: '#757575',
