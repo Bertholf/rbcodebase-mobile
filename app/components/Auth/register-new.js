@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1565c0',
     padding: 8,
     borderRadius: 3,
+    elevation: 3,
   },
   textReg: {
     color: '#fff',
@@ -94,8 +95,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   active: {
-    borderWidth: 1,
-    borderColor: '#1565c0',
+    // borderWidth: 1,
+    // borderColor: '#1565c0',
+    elevation: 3,
   },
 });
 
@@ -104,7 +106,7 @@ const Register = () => {
   const register = () => {
     Alert.alert('Button pressed');
   };
-  let selected = false;
+  let selected = true;
   return (
     <ScrollView>
       <View style={styles.container}>
