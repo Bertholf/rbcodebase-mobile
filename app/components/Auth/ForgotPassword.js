@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     marginTop: 15,
     marginBottom: 5,
+    elevation: 2,
     alignSelf: 'stretch',
     justifyContent: 'center'
   }

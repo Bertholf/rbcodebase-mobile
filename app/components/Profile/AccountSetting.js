@@ -6,15 +6,18 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Alert,
+  alertMessage,
 } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
-const backrow = require('./../../images/arrowback.png');
+const backrow = require('./../../images/arrow.png');
 const nxtrow = require('./../../images/ic_keyboard_arrow_right_black_24dp.png');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 5,
   },
   textHeader: {
     paddingTop: 10,
@@ -33,7 +36,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     paddingLeft: 10,
     paddingRight: 10,
-    color: '#000',
   },
   content: {
     flexDirection: 'row',
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
 const AccountSetting = () => {
   return(
     <View style={styles.container}>
-      <View style={{ top: 5 }}>
+      <View>
         <Text style={styles.title}>
           Name
         </Text>
@@ -99,7 +101,15 @@ const AccountSetting = () => {
         <Text style={styles.title}>
           Change password
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => Alert.alert(
+            'Change Password',
+             alertMessage,
+             [
+               { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
+               { text: 'OK', onPress: () => console.log('OK Pressed!') },
+             ]
+           )}>
           <View style={styles.content}>
             <Text style={styles.name}>
               Change password
@@ -142,6 +152,7 @@ const AccountSetting = () => {
           </View>
         </TouchableOpacity>
       </View>
+      <View style={styles.setlist} />
     </View>
   );
 };
