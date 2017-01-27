@@ -39,26 +39,26 @@ export default class LoginPage extends Component {
             secureTextEntry={true} style={{height: 40}} onChangeText={(password) => this.setState({password})}
             placeholder="Password"
             />
-        <TouchableHighlight style={styles.button} onPress={changeMe} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.button} onPress={()=>this.props.submitLogin()} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableHighlight>
 
         <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-          <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+          <TouchableOpacity onPress={() => this.props.register()}>
               <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
                 Register
               </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Linking.openURL('http://google.com')}>
+          <TouchableOpacity onPress={() => this.props.forgotPassword()}>
               <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
                 Forgot Password?
               </Text>
           </TouchableOpacity>
       </View>
-        <TouchableHighlight style={styles.google} onPress={changeMe} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.google} onPress={()=>this.props.loginWithGoogle()} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login with Google</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.facebook} onPress={changeMe} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.facebook} onPress={()=>this.props.loginWithFacebook()} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Login with Facebook</Text>
         </TouchableHighlight>
       </View>
@@ -125,7 +125,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         <TextInput style={{height: 40}} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
       <TextInput
         secureTextEntry={true}
-        style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"
+        style={{height: 40}} onChangeText={(password) => updatePassword(password)} placeholder="Password"
       />
       <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
