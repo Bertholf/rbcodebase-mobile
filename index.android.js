@@ -2,9 +2,9 @@ import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import MainDrawer from './app/layouts/MainDrawer'
+import App from './app/App'
 
 const HikerApp = () => (
-  <MainDrawer />
+  <App />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
