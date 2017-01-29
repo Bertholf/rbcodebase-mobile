@@ -1,0 +1,4 @@
+export default {
+  FACEBOOK_APP_ID: '1878361662396690',
+  FACEBOOK_APP_SECRET: '25e8d587bf8e702fc8f8b3c25bafe339',
+};
