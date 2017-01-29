@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import styles from './../../../components/Setting/EditName/editNameStyles';
 
-const UpdateName = () => {
+const EditName = () => {
   return (
     <View style={styles.container}>
       <View style={{ alignItems: 'center', marginBottom: 24 }}>
@@ -56,4 +56,4 @@ const UpdateName = () => {
   );
 };
 
-module.exports = UpdateName;
+module.exports = EditName;
