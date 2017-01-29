@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
+console.log("helli", ListView);
 export default class Notification extends React.Component {
   constructor(props) {
     super(props);
