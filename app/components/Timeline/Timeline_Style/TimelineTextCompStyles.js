@@ -1,5 +1,7 @@
+'use strict';
+import React from 'react';
 import {
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
   },
   OuterLayer3: {
     flexDirection: 'column',
-    paddingTop: 8,
+    paddingTop:8,
   },
   OuterLayer4: {
     flexDirection: 'row',
@@ -43,19 +45,33 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   LikeText: {
-    color: '#000000',
-    paddingRight: 10,
+    color: '#1565c0',
+    paddingRight: 20,
     paddingLeft: 5,
   },
   CommentText: {
-    color: '#000000',
+    color: '#1565c0',
+    paddingLeft: 5,
+    paddingRight:10,
+  },
+  Comment1: {
+    color: '#1565c0',
     paddingLeft: 5,
     paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  Comment2: {
+    color: '#1565c0',
+  },
+  CommentText2: {
+    paddingRight:6,
+
   },
   Text1: {
     fontSize: 24,
     paddingLeft: 8,
-    color: '#435172',
+    color:'#1565c0'
   },
   Text2: {
     fontSize: 12,
@@ -67,7 +83,6 @@ const styles = StyleSheet.create({
   },
   Text4: {
     fontSize: 16,
-    color: '#435172',
   },
   Text5: {
     fontSize: 12,
@@ -83,6 +98,14 @@ const styles = StyleSheet.create({
     width: 24,
     paddingRight: 6,
   },
+  Card: {
+    flexDirection: 'row',
+    marginRight: 6,
+    paddingBottom: 8,
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#1565c0',
+  },
+
 });
 
 module.exports = styles;
