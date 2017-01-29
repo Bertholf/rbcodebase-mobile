@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import styles from './../../../components/Setting/EditName/editNameStyles';
+import styles from './EditNameStyles';
 
 const EditName = () => {
   return (
