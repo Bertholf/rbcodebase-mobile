@@ -10,6 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import styles from './styles';
+import FacebookLogin from './../../services/FacebookLogin';
 
 const { width } = Dimensions.get('window');
 const logo = require('./../../images/logo.jpg');
@@ -96,7 +97,7 @@ export default class Register extends Component {
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
               <Image source={google} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
+            <TouchableOpacity activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()} >
               <Image source={facebook} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
