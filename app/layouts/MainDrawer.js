@@ -92,8 +92,8 @@ const MainDrawer = () => {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
-                  <Text onPress={Actions.timelineList} style={styles.menu}>
+                <TouchableOpacity onPress={Actions.timelineList}>
+                  <Text style={styles.menu}>
                     Dashboard
                   </Text>
                 </TouchableOpacity>
@@ -128,8 +128,8 @@ const MainDrawer = () => {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
-                  <Text onPress={Actions.notifications} style={styles.menu}>
+                <TouchableOpacity onPress={Actions.notifications} >
+                  <Text style={styles.menu}>
                     Notifications
                   </Text>
                 </TouchableOpacity>
@@ -146,8 +146,8 @@ const MainDrawer = () => {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
-                  <Text onPress={Actions.setting} style={styles.menu}>
+                <TouchableOpacity onPress={Actions.setting} >
+                  <Text style={styles.menu}>
                     Setting
                   </Text>
                 </TouchableOpacity>
@@ -164,8 +164,8 @@ const MainDrawer = () => {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
-                  <Text onPress={Actions.login} style={styles.menu}>
+                <TouchableOpacity onPress={Actions.login}>
+                  <Text style={styles.menu}>
                     Logout
                   </Text>
                 </TouchableOpacity>
