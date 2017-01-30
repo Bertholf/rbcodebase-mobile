@@ -11,6 +11,7 @@ const mapDispatchToProps = dispatch => ({
   goToAuth: () => dispatch(),
   dispatcher: command => dispatch(command),
   moveToAuthLogin: () => {
+    console.log("triggered");
     Actions.login();
   },
   moveToDashboard: () => {

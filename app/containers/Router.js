@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import Routing from './../Router';
 
-const mapStateToProps = state => ({ hello: false });
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = () => ({ hello: false });
+const mapDispatchToProps = () => ({
   doSomething: () => {},
 });
 const Router = connect(mapStateToProps, mapDispatchToProps)(Routing);
