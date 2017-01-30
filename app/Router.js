@@ -13,8 +13,11 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
+import Privacy from './components/Privacy/privacy.js';
+
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
+
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
@@ -24,39 +27,42 @@ const Routing = () => (
           {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
 
-            <Scene
-              key="setting" component={Setting} title="Setting"
-            />
-            <Scene
-              key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
-            />
-            <Scene
-              key={'welcome'} component={Welcome} title={'Welcome'}
-            />
-            <Scene
-              key={'login'} component={Login} hideNavBar title={'Login Screen'}
-            />
-            <Scene
-              key={'register'} component={Register} hideNavBar title={'Register Screen'}
-            />
-            <Scene
-              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'forgotPassword'}
-            />
-            <Scene
-              key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
-            />
-            <Scene
-              key={'timelineList'} component={TimelineList} title={'Timeline List'}
-            />
-            <Scene
-              key={'listInbox'} component={Inbox} title={'Timeline Detial'}
-            />
-            <Scene
-              key={'profile'} component={Profile} title={'Profile'}
-            />
-            <Scene
-              key={'chat'} component={Chat} title={'Profile'}
-            />
+        <Scene
+          key="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
+        />
+        <Scene
+          key="Privacy" component={Privacy} initial={true} title="Privacy"
+        />
+        <Scene
+          key="welcome" component={Welcome} title="Welcome"
+        />
+        <Scene
+          key="login" component={Login} hideNavBar={true} title="Login Screen"
+        />
+        <Scene
+          key="register" component={Register} hideNavBar={true} title="Register Screen"
+        />
+        <Scene
+          key="forgotPassword" component={ForgotPassword} hideNavBar={true} title="forgotPassword"
+        />
+        <Scene
+          key="timelineDetail" component={TimelineDetail} title="Timeline Detail"
+        />
+        <Scene
+          key="timelineList" component={TimelineList} title="Timeline Detail"
+        />
+        <Scene
+          key="listInbox" component={Inbox} title="Timeline Detail"
+        />
+        <Scene
+          key="profile" component={Profile} title="Profile"
+        />
+        <Scene
+          key="chat" component={Chat} title="Profile"
+        />
+        <Scene
+          key="setting" component={Setting} title="Setting"
+        />
           </Scene>
         </Scene>
       </Scene>
