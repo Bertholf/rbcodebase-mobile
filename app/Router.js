@@ -13,13 +13,8 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
-<<<<<<< HEAD
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
-=======
-import NavigationDrawer from './layouts/NavigationDrawer';
-
->>>>>>> origin/43-navbar-drawer-router
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
