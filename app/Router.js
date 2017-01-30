@@ -15,13 +15,12 @@ import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
-
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
         <Scene key={'drawer'} component={NavigationDrawer}>
-          <Scene key={'root'} navBar={NavBar}>
+          <Scene key={'root'}>
           {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene

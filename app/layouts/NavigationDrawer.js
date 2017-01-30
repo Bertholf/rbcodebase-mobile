@@ -1,12 +1,23 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Drawer from 'react-native-drawer';
-import { Actions, DefaultRenderer} from 'react-native-router-flux';
+import { Actions, DefaultRenderer } from 'react-native-router-flux';
+import NavigationBar from 'react-native-navbar';
 import MainDrawer from './MainDrawer';
-console.log(MainDrawer);
+
 const NavigationDrawer = (props) => {
   const state = props.navigationState;
-  const children = state.children;
+  const rightButtonConfig = {
+    title: 'Next',
+    handler: () => console.log('hello!'),
+  };
+  const leftButtonConfig = {
+    title: 'Drawer',
+    handler: () => Actions.refresh({ key: state.key, open: true }),
+  };
+  const { navigationState, onNavigate } = props;
+  const { children, key } = navigationState;
+  const activeChildren = children[0].children;
   return (
     <Drawer
       open={state.open}
@@ -22,7 +33,12 @@ const NavigationDrawer = (props) => {
         main: { opacity: Math.max(0.54, 1 - ratio) },
       })}
     >
-      <DefaultRenderer navigationState={children[0]} onNavigate={props.onNavigate} />
+      {activeChildren[activeChildren.length - 1].hideNavBar ? <View /> : <NavigationBar
+        title={{ title: activeChildren[activeChildren.length - 1].title }}
+        leftButton={leftButtonConfig}
+        rightButton={rightButtonConfig}
+      /> }
+      <DefaultRenderer navigationState={children[0]} onNavigate={onNavigate} />
     </Drawer>);
 };
 export default NavigationDrawer;
