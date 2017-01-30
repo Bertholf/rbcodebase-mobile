@@ -1,70 +1,10 @@
-import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TouchableHighlight,
-  TextInput,
-  Linking,
-  Alert,
-  TouchableOpacity
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
 
-} from 'react-native';
-
-export default class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {username: '',
-                  password: '',
-                    }
-  }
-  render() {
-    const changeMe = () => {Alert.alert('Tombol Button di Tekan!')}
-    return (
-      <View style={styles.container}>
-        <View style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Image
-          source={require('./../../images/logo.jpg')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
-        </View>
-        <TextInput
-            style={{height: 40}} onChangeText={(username) => this.setState({username})}
-            placeholder="Username"
-          />
-          <TextInput
-            secureTextEntry={true} style={{height: 40}} onChangeText={(password) => this.setState({password})}
-            placeholder="Password"
-            />
-        <TouchableHighlight style={styles.button} onPress={()=>this.props.submitLogin()} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableHighlight>
-
-        <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-          <TouchableOpacity onPress={() => this.props.register()}>
-              <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
-                Register
-              </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.forgotPassword()}>
-              <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
-                Forgot Password?
-              </Text>
-          </TouchableOpacity>
-      </View>
-        <TouchableHighlight style={styles.google} onPress={()=>this.props.loginWithGoogle()} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Login with Google</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.facebook} onPress={()=>this.props.loginWithFacebook()} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Login with Facebook</Text>
-        </TouchableHighlight>
-      </View>
-    );
-  }
-}
+const google = require('./../../images/login/google.png');
+const facebook = require('./../../images/login/facebook.png');
+const twitter = require('./../../images/login/twitter.png');
+const logo = require('./../../images/logo.jpg');
 
 const styles = StyleSheet.create({
   container: {
@@ -82,81 +22,102 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     alignSelf: 'center',
+    marginBottom: 5,
   },
   button: {
     height: 36,
-    backgroundColor: '#009688',
-    borderColor: '#26A69A',
+    backgroundColor: '#1565C0',
+    borderColor: '#1976D2',
     borderWidth: 1,
     borderRadius: 3,
-    marginTop: 5,
+    marginTop: 10,
     marginBottom: 5,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    elevation: 2,
   },
   facebook: {
-    height: 36,
-    backgroundColor: '#0D47A1',
-    borderColor: '#1565C0',
-    borderWidth: 1,
-    borderRadius: 3,
-    marginBottom: 10,
+    height: 48,
+    width: 48,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  twitter: {
+    height: 48,
+    width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
   },
   google: {
-    height: 36,
-    backgroundColor: '#E53935',
-    borderColor: '#F44336',
-    borderWidth: 1,
-    borderRadius: 3,
-    marginBottom: 10,
+    height: 48,
+    width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+  },
+  otherlog: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    resizeMode: 'cover',
   },
 });
 
 const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image source={require('./../../images/logo.jpg')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
-        </View>
-        <TextInput style={{height: 40}} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
-      <TextInput
-        secureTextEntry={true}
-        style={{height: 40}} onChangeText={(password) => updatePassword(password)} placeholder="Password"
-      />
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Image source={logo} style={styles.logo} />
+      </View>
+      <View style={{ alignItems: 'center', top: 10, marginBottom: 10 }} ><Text>Login With</Text></View>
+      <View style={styles.otherlog}>
+        <TouchableHighlight style={styles.facebook} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+          <Image source={facebook} style={styles.facebook} />
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
+          <Image source={google} style={styles.google} />
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+          <Image source={twitter} style={styles.twitter} />
+        </TouchableHighlight>
+      </View>
+      <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row'}}>
+        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
+        <Text style={{ width: 20, margin: 5 }}> Or </Text>
+        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+      </View>
+      <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
+      <TextInput secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
       <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableHighlight>
-      <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={() => register()}>
-          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
-            Register
-          </Text>
+          <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
+              Register
+            </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => forgotPassword()}>
-          <Text style={{color : 'blue', margin : 10, textAlign :'right' }}>
-            Forgot Password
-          </Text>
+          <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
+              Forgot Password
+            </Text>
         </TouchableOpacity>
       </View>
-      <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
-        <Text style={styles.buttonText}>Login with Google</Text>
-      </TouchableHighlight>
-      <TouchableHighlight style={styles.facebook} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
-        <Text style={styles.buttonText}>Login with Facebook</Text>
-      </TouchableHighlight>
     </View>
   );
 };
 LoginScreen.propTypes = {
-  submitLogin: React.PropTypes.func.isRequired,
-  forgotPassword: React.PropTypes.func.isRequired,
-  loginWithGoogle: React.PropTypes.func.isRequired,
-  register: React.PropTypes.func.isRequired,
-  loginWithFacebook: React.PropTypes.func.isRequired,
-  updatePassword: React.PropTypes.func.isRequired,
-  updateUsername: React.PropTypes.func.isRequired,
+  // submitLogin: React.PropTypes.func.isRequired,
+  // forgotPassword: React.PropTypes.func.isRequired,
+  // loginWithGoogle: React.PropTypes.func.isRequired,
+  // register: React.PropTypes.func.isRequired,
+  // loginWithFacebook: React.PropTypes.func.isRequired,
+  // loginWithTwitter: React.PropTypes.func.isRequired,
+  // updatePassword: React.PropTypes.func.isRequired,
+  // updateUsername: React.PropTypes.func.isRequired,
 };
+
+module.exports = LoginScreen;
