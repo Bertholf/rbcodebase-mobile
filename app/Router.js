@@ -13,7 +13,8 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
-import Setting from './components/Setting/Setting'
+import Setting from './components/Setting/Setting';
+import ChatListFriendView from './components/Chat/ChatListFriendView';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
