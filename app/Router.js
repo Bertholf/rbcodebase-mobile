@@ -13,6 +13,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
+import Privacy from './components/Privacy/privacy.js';
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
@@ -24,7 +25,6 @@ const Routing = () => (
           <Scene key={'root'} navBar={NavBar}>
           {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
-
             <Scene
               key="setting" component={Setting} title="Setting"
             />
