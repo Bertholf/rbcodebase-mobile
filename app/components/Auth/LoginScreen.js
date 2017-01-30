@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
 
-const google = require('./../../images/google.png');
-const facebook = require('./../../images/facebook.png');
-const twitter = require('./../../images/twitter.png');
+const google = require('./../../images/login/google.png');
+const facebook = require('./../../images/login/facebook.png');
+const twitter = require('./../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 
 const styles = StyleSheet.create({
@@ -85,9 +85,9 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         </TouchableHighlight>
       </View>
       <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row'}}>
-        <View style={{ borderWidth: 1, borderColor: 'grey', width: 150, height: 1, marginLeft: 5 }} />
+        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
         <Text style={{ width: 20, margin: 5 }}> Or </Text>
-        <View style={{ borderWidth: 1, borderColor: 'grey', width: 150, height: 1, marginRight: 5 }} />
+        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
       </View>
       <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
       <TextInput secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
