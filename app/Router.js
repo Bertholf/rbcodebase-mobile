@@ -7,7 +7,7 @@ import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
-import Register from './components/Auth/RegisterScreen';
+import Register from './components/Auth/register-new';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';

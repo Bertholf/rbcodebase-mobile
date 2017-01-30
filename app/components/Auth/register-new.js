@@ -12,7 +12,7 @@ import {
 import styles from './styles';
 
 const { width } = Dimensions.get('window');
-const logo = require('./../../images/RegisterScreen/user.png');
+const logo = require('./../../images/logo.jpg');
 const google = require('./../../images/google-plus.png');
 const facebook = require('./../../images/facebook.png');
 const twitter = require('./../../images/twitter.png');
