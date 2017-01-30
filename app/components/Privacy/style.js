@@ -2,38 +2,42 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   borderTextT: {
-    borderWidth: 8,
-    borderColor: 'white',
-    marginTop : 20,
+    marginTop : 25,
+    borderBottomWidth: 1,
+    borderColor: 'black',
   },
   styleBackground: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 50,
     backgroundColor: 'aliceblue',
-    padding: 30,
   },
   styleText: {
     color: '#08bcde',
-    fontSize: 20,
-    borderWidth: 4,
-    borderColor: 'white',
-    marginTop: 20,
-    justifyContent: 'center',
-    textAlign: 'center',
+    fontSize: 14,
+    alignSelf: 'center',
+    borderColor: 'black'
   },
-  sinopsis: {
-    paddingLeft: 5
-  },
-  conteiner:{
-    flex: 1,
-    flexDirection: 'column',
-  },
-  textCenter: {
+  styleText2: {
     color: '#08bcde',
-    fontSize: 20,
-    marginTop: 20,
-    justifyContent : 'center',
-    textAlign: 'center',
+    fontSize: 14,
+    marginTop: 35,
   },
+  icon: {
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+    marginTop: 20,
+  },
+  viewBaru:{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+  },
+  pickerStyle:{
+    width: 80,
+    height: 20,
+    margin: 5,
+  }
 });
 module.exports = styles;

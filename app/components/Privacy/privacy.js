@@ -6,45 +6,61 @@ import {
   View,
   Button,
   Alert,
+  Image,
+  Picker,
 } from 'react-native';
 import styles from './../../components/Privacy/style.js';
-
 const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
 };
-
 const privacy = () => {
   return (
     <View style= {styles.styleBackground}>
-      <View>
-      <TouchableOpacity>
+      <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
+        <Text style={styles.styleText}>
+          Comfirm request when someone follow
+        </Text>
+        <Picker style= {{width: 70}}>
+          <Picker.Item label = "Yes" value="ys"/>
+          <Picker.Item label = "No" value= "no"/>
+        </Picker>
+      </View>
+      <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
         <Text style={styles.styleText}>
           Who can follow you
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.styleText}>
-          Who can see your posts
-        </Text>
-      </TouchableOpacity>
+        <Picker style = {{width: 70}}>
+          <Picker.Item label = "Yes" value="ys"/>
+          <Picker.Item label = "No" value= "no"/>
+        </Picker>
       </View>
-      <View style= {styles.borderTextT}>
-      <TouchableOpacity>
-        <Text style={styles.textCenter}>
-          Who can contact me?
+      <View style ={{flexDirection: 'row',justifyContent: 'space-between'}}>
+        <Text style={styles.styleText}>
+          Who can comment on your posts
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.textCenter}>
-          How do i stop someone from bothering me?
+        <Picker style = {{width: 70}}>
+          <Picker.Item label = "Yes" value="ys"/>
+          <Picker.Item label = "No" value= "no"/>
+        </Picker>
+      </View>
+      <View style= {{flexDirection: 'row',justifyContent: 'space-between'}}>
+        <Text style={styles.styleText}>
+          Who can post on your timeline
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.textCenter}>
-          who can see my stuff ?
+        <Picker style = {{width: 70}}>
+          <Picker.Item label = "Yes" value="ys"/>
+          <Picker.Item label = "No" value= "no"/>
+        </Picker>
+      </View>
+      <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
+        <Text style={styles.styleText}>
+          Comfirm request when someone follow
         </Text>
-      </TouchableOpacity>
-    </View>
+        <Picker style= {{width: 70}}>
+          <Picker.Item label = "Yes" value="ys"/>
+          <Picker.Item label = "No" value= "no"/>
+        </Picker>
+      </View>
       <View>
         <Button
           title="SAVE"
@@ -55,4 +71,4 @@ const privacy = () => {
     </View>
   );
 };
-export default privacy;
+export default privacy ;
