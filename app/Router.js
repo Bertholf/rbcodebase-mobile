@@ -13,16 +13,22 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
+<<<<<<< HEAD
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
+=======
+import NavigationDrawer from './layouts/NavigationDrawer';
+
+>>>>>>> origin/43-navbar-drawer-router
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
         <Scene key={'drawer'} component={NavigationDrawer}>
-          <Scene key={'root'}>
+          <Scene key={'root'} navBar={NavBar}>
           {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
+
             <Scene
               key="setting" component={Setting} title="Setting"
             />
