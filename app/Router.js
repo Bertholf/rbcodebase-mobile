@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, Modal } from 'react-native-router-flux';
 // import your components below here
 import NavBar from './layouts/NavBar';
 import Chat from './components/Chat/ChatView';
@@ -15,12 +15,17 @@ import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Privacy from './components/Privacy/privacy.js';
 
+import Setting from './components/Setting/Setting'
+import NavigationDrawer from './layouts/NavigationDrawer';
+
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
-      <Scene key={"root"}>
-      {/* <Schema
-        key="modal" sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
+      <Scene key={'modal'} component={Modal}>
+        <Scene key={'drawer'} component={NavigationDrawer}>
+          <Scene key={'root'} navBar={NavBar}>
+          {/* <Schema
+            key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
 
         <Scene
           key="launch" component={SplashScreen} initial={true} hideNavBar={true} title="Launch"
@@ -55,6 +60,11 @@ const Routing = () => (
         <Scene
           key="chat" component={Chat} title="Profile"
         />
+        <Scene
+          key="setting" component={Setting} title="Setting"
+        />
+          </Scene>
+        </Scene>
       </Scene>
     </Router>
   </View>
