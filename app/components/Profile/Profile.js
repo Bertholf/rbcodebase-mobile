@@ -1,233 +1,272 @@
-import React, { Component } from 'react'
-import {
-   View,
-   TouchableOpacity,
-   Text,
-   StyleSheet,
-   Image,
-   ListView,
-   ScrollView
-} from 'react-native'
+  import React, { Component } from 'react'
+  import {
+     View,
+     TouchableOpacity,
+     TouchableHighlight,
+     Text,
+     StyleSheet,
+     Image,
+     ListView,
+     ScrollView
+  } from 'react-native'
 
-export default class Profile extends Component {
-  constructor (props){
-  super(props);
-   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-   this.state = { dataSource: ds.cloneWithRows([
+  export default class Profile extends Component {
 
-        'Mahameru', 'Rinjani', 'Merbabu', 'Krinci', 'Evrest', 'Putri', 'Ciremai', 'Jaya Wijaya'
-
-      ])
-    };
-  }
-  render(){
-   return (
-   <ScrollView>
-      <View style = {styles.container}>
-        <View style={{backgroundColor: '#26a69a', paddingBottom: 20}} >
-          <View style = {styles.profile}>
-          <Image source = {require('./../../images/images.jpeg')} style = {styles.images}  />
-           <View>
-              <Text style={styles.nama}>Abu Dzar Al Ghifari</Text>
-              <Text style={styles.jarak}>Tracker : 125 Km</Text>
-              <Text style={styles.posting}>Jumlah Posting : 12</Text>
-           </View>
-        </View>
-        <View style={styles.gambar}>
-         <TouchableOpacity>
-            <Text style = {styles.button}>
-               Message
-            </Text>
-         </TouchableOpacity>
-         <TouchableOpacity>
-            <Text style = {styles.follow}>
-               Follow
-            </Text>
-         </TouchableOpacity>
-       </View>
-     </View>
-
-{/* list view */}
-<ListView
-  dataSource={this.state.dataSource}
-  renderRow={(rowData) =>
-     <View>
-
-       <View style = {styles.list}>
-           <Image source = {require('./../../images/images.jpeg')} style = {styles.card}  />
-           <View>
-              <Text style={styles.nama1}>Abu Dzar Al Ghifari</Text>
-               <Text style={styles.nama2}>1 minute ago</Text>
-           </View>
-
-      </View>
-      <View>
-          <Image source = {require('./../../images/map.png')} style = {styles.map} />
-      </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text style={styles.jarak1}>{rowData}</Text>
-        <Text style={styles.jarak1}> Jarak :190 KM</Text>
-      </View>
-      <View>
-          <View>
-           <View style={{flexDirection: 'row'}}>
-           <Image source = {require('./../../images/like.jpg')} style = {styles.likes}  />
-           <Image source = {require('./../../images/komen.png')} style = {styles.komen}  />
-            </View>
-
-              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={styles.jarak2}> 12 Likes</Text>
-                <Text style={styles.jarak2}> 10 Comment</Text>
-              </View>
+    state = {
+      clicked : true
+    }
+  render (){
+    return (
+      <ScrollView>
+      <View style={styles.container}>
+        <View style = {styles.backgroundContainer}>
+          <Image source = {require('./../../images/gunung.jpg')} resizeMode = 'cover' style = {styles.backdrop} />
+          <View style ={styles.backgroundname}>
+          <Text style = {styles.headline} colors={['#F00', 'transparent']}>Abu Dzar Alghifari</Text>
          </View>
-     </View>
+          <View style={styles.textInform}>
+          <Text style={styles.pos}>10 Post</Text>
+          <Text style={styles.followers}>10K Followers</Text>
+        <TouchableOpacity onPress={()=>this.toggleSwitch()}>
+             <Text style = {styles.button}>
+                {this.state.clicked ? 'Follow' : 'Message' }</Text>
+          </TouchableOpacity>
+          </View>
+        </View>
+        <View>
+          <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
+        </View>
+        <View style={styles.biodata}>
+        <Text style={styles.bio}>Bio</Text>
+        <Text style={styles.isi}>There are a lot of stories out there, waiting for you to live them</Text>
+        <Text style={styles.bio}>Last Hiking</Text>
+        <View style={styles.posisi}>
+        <Image style = {styles.icon} source = {require('./../../images/jarak.png')} />
+        <Text style={styles.isi}>1200 Km</Text>
+        </View>
+        <View style={styles.posisi}>
+        <Image style = {styles.icon} source = {require('./../../images/mountain.png')}/>
+        <Text style={styles.isi}>Everest Mountain</Text>
+        </View>
+        <View style={styles.posisi}>
+        <Image style = {styles.location} source = {require('./../../images/live.png')} />
+        <Text style={styles.isi}>Indonesia</Text>
+        </View>
+        <View style={styles.posisi}>
+        <TouchableOpacity>
+             <Text style={styles.isi2}>View More</Text>
+          </TouchableOpacity>
 
-         {/* <TimelineComment></TimelineComment> */}
-
-   </View>
-}
-/>
+        </View>
       </View>
-    </ScrollView>
-   )
-}
-}
 
+        </View>
+  </ScrollView>
 
-const styles = StyleSheet.create ({
-   container: {
-    flex: 1,
-    backgroundColor: 'white',
+    )
+  }
+  toggleSwitch() {
+    this.setState({
+      clicked: !this.state.clicked
+    })
+  }
+  }
+
+  var styles = StyleSheet.create({
+    welcome: {
+     fontSize: 20,
+     textAlign: 'center',
+     margin: 10,
+     color: '#FFFFFF'
    },
-   listContainer: {
-     flex:2,
-      paddingTop: 22
-   },
-   listItem: {
-      fontSize: 30,
-      fontWeight: 'bold',
-      textAlign: 'center',
+   touchable: {
+     borderRadius: 100
    },
    button: {
-      flexDirection: 'row',
-      padding: 8,
-      backgroundColor: '#004d40',
-      //justifyContent:'space-between',
-      color: 'white',
-      alignItems:'center',
-      borderRadius: 10,
+     backgroundColor: '#FF0000',
+     borderRadius: 100,
+     height: 200,
+     width: 200,
+     justifyContent: 'center'
    },
-   follow: {
-      padding: 8,
-      alignItems:'center',
-      backgroundColor: '#004d40',
-      color: 'white',
-      fontSize:15,
-       borderRadius: 10,
-   },
-   images: {
-    height:100,
-    width: 100,
-    borderRadius: 50,
-  },
+    backgroundContainer: {
+      position: 'absolute',
+      height:180,
+      width:500,
 
-  card: {
-   height:35,
-   width: 35,
-   borderRadius: 50,
-   marginTop: 25
- },
-  profile: {
-  flex: 1,
-  flexDirection:'column',
-  //  justifyContent: '',
-   alignItems: 'center',
-   //backgroundColor: '#c5cae9',
-  //  marginBottom: 20,
-   padding:40
-
-  },
-  gambar: {
-  flexDirection:'row',
-  justifyContent: 'space-around',
-  //borderBottomWidth:1
-  //backgroundColor: '#c5cae9',
-  },
-  nama: {
-    color: 'white',
-    marginBottom: 0,
-    margin: 11,
-    fontWeight: 'bold',
-    fontSize:16,
-    marginTop: 0
     },
-  nama1: {
-  color: 'black',
-  marginBottom: 0,
-  margin: 11,
-  fontWeight: 'bold',
-  fontSize:12,
-  marginTop: 25
-  },
-  nama2: {
-    color: 'grey',
-    fontSize:11,
-    marginTop:0,
-    marginLeft:12
-  },
-  jarak: {
-    color: 'white',
-    fontSize:14,
-    marginTop:0,
-    marginLeft:12
-
-  },
-  likes: {
-    height:25,
-    width: 25,
+    container: {
+      flex: 1,
+    },
+    overlay: {
+      opacity: 0.5,
+      backgroundColor: '#000000'
+    },
+    logo: {
+      backgroundColor: 'rgba(0,0,0,0)',
+      width: 90,
+      height: 90,
+      borderRadius:50,
+      marginTop:80,
+      marginLeft:20,
+      flexDirection:'row',
+      borderWidth: 1,
+      borderColor:'grey'
+      },
+    backdrop: {
+      flex:1,
+      flexDirection: 'row',
+      height:200,
+      width:500,
+    },
+    headline: {
+      fontSize: 20,
+      fontWeight:'bold',
+      textAlign: 'center',
+      color: 'white',
+      marginTop: -28,
+      backgroundColor: 'hsla(20,100%,100%,0.3)',
+      marginRight:110
+    },
+    button: {
+       flexDirection: 'row',
+       padding: 8,
+       backgroundColor: '#2196F3',
+       //justifyContent:'space-between',
+       color: 'white',
+       marginLeft:10,
+       alignItems:'center',
+       marginTop: 5,
+       borderRadius: 2,
+    },
+    follow: {
+       padding: 8,
+       alignItems:'center',
+       backgroundColor: '#2196F3',
+       color: 'white',
+       fontSize:15,
+        borderRadius: 10,
+    },
+    images: {
+     height:100,
+     width: 100,
+     borderRadius: 50,
+   },
+   icon: {
+    height:20,
+    width: 20,
     borderRadius: 50,
-    marginTop: 25,
-    marginLeft:12
+
   },
-  komen: {
-    height:25,
-    width: 25,
+  location: {
+    height:20,
+    width: 20,
     borderRadius: 50,
-    marginTop: 25,
-    margin: 10,
-
+    marginBottom:12
   },
 
-  jarak1: {
-  color: 'black',
-  margin: 12,
-  marginBottom:0
-  },
-  jarak2: {
-  color: 'grey',
-  margin: 12,
-  marginBottom:0
-  },
-  posting: {
-    color: 'white',
-    fontSize:14,
-    marginTop:0,
-    marginLeft:12
+   profile: {
+   flex: 1,
+   flexDirection:'column',
+   //  justifyContent: '',
+    alignItems: 'center',
+    //backgroundColor: '#c5cae9',
+   //  marginBottom: 20,
+    padding:40
 
+   },
+   foto: {
+   flex: 1,
+   flexDirection:'row',
+   //  justifyContent: '',
+    alignItems: 'center',
+    //backgroundColor: '#c5cae9',
+   //  marginBottom: 20,
+    padding:2
+   },
+   gambar: {
+   flexDirection:'row',
+   justifyContent: 'space-around',
+   padding:6
+   },
+   pos: {
+   flexDirection:'row',
+   justifyContent: 'space-around',
+   marginTop: 6,
+   padding:6,
+   color:'#2196F3'
+   },
+   followers: {
+   flexDirection:'row',
+   marginTop: 6,
+   justifyContent: 'space-around',
+   padding:6,
+   color:'#2196F3'
   },
-
-  list: {
+  bio: {
   flexDirection:'row',
-  //  justifyContent: '',
-   alignItems: 'center',
-   //backgroundColor: '#c5cae9',
-   marginBottom: 20,
-   margin:20
+  fontWeight:'bold',
+  padding:6,
+  color:'black',
+  marginLeft:2.5
   },
-  map: {
-   height:200,
-   width: 335,
-   marginLeft:10,
-   marginRight:10
- }
-})
+  isi: {
+    flexDirection:'row',
+    color:'grey',
+    marginLeft:10,
+  },
+  isi2: {
+    flexDirection:'row',
+    color:'#FF5722',
+    marginLeft:240,
+    marginBottom:12,
+    borderRadius: 2,
+
+  },
+  daki: {
+    textAlign:'right',
+    color:'blue',
+    marginLeft:100,
+  },
+   nama: {
+     alignSelf: 'center',
+     color: 'white',
+     fontWeight: 'bold',
+     fontSize:16,
+     marginLeft:10
+     },
+   textInform: {
+     marginLeft: 100,
+     flexDirection:'row',
+     backgroundColor: 'rgba(0,0,0,0)',
+     flexDirection:'row',
+   },
+
+   posisi: {
+     marginLeft: 8,
+     flexDirection:'row',
+     backgroundColor: 'rgba(0,0,0,0)',
+     marginTop:5,
+     flexDirection:'row',
+
+   },
+
+   biodata: {
+     flexDirection:'column',
+     backgroundColor: 'rgba(0,0,0,0)',
+     marginTop: 20,
+     borderBottomWidth:1,
+     borderColor:'grey',
+     marginLeft:20,
+     marginRight:20
+   },
+   imgCameraContainer: {
+     position: 'absolute',
+     bottom: 60,
+     right: 10,
+     borderRadius: 80,
+     width: 100,
+     height: 100,
+     backgroundColor: '#004D40',
+   },
+   })
