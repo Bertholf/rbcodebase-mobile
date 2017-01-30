@@ -129,7 +129,7 @@ const MainDrawer = () => {
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.menu}>
+                  <Text onPress={Actions.notifications} style={styles.menu}>
                     Notifications
                   </Text>
                 </TouchableOpacity>

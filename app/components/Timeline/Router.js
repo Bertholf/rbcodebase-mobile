@@ -15,7 +15,7 @@ import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
-import Notifications from './components/Timeline/notification';
+import Notifications from './components/Timeline/notifications';
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
@@ -32,7 +32,7 @@ const Routing = () => (
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
             />
             <Scene
-              key={'notifications'} component={Notifications} title={'notifications'}
+              key={'notifications'} component={notifications} initial hideNavBar title={'notifications'}
             />
             <Scene
               key={'welcome'} component={Welcome} title={'Welcome'}
