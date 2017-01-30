@@ -13,10 +13,9 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
-import Privacy from './components/Privacy/privacy.js';
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
-import Notifications from './components/Timeline/notification';
+import Notifications from './components/Timeline/notifications';
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
@@ -25,6 +24,7 @@ const Routing = () => (
           <Scene key={'root'} navBar={NavBar}>
           {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
+
             <Scene
               key="setting" component={Setting} title="Setting"
             />
@@ -32,7 +32,7 @@ const Routing = () => (
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
             />
             <Scene
-              key={'notifications'} component={Notifications} title={'notifications'}
+              key={'notifications'} component={notifications} initial hideNavBar title={'notifications'}
             />
             <Scene
               key={'welcome'} component={Welcome} title={'Welcome'}
