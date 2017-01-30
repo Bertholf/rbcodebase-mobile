@@ -5,9 +5,27 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  },
+  header: {
+    borderBottomWidth: 1,
+    borderColor: '#26A69A',
+  },
+  containerImgMenu: {
+    backgroundColor: '#009688',
+    flexDirection: 'row',
+    borderBottomWidth: 2,
+    borderColor: '#26A69A',
+  },
+  imgMenu: {
+    width: 30,
+    height: 30,
+    marginTop: 1,
+  },
+  inputSearch: {
+    width: 300,
+    height: 35,
+    color: 'white',
+    borderRadius: 3,
   },
   attachFile: {
     width: 25,
@@ -25,8 +43,8 @@ const styles = StyleSheet.create({
     marginLeft: 3,
   },
   content: {
-    flex: 1,
-    backgroundColor: '#1565c0',
+    marginBottom: 450,
+
   },
   contentLeft: {
     marginLeft: 10,
@@ -42,20 +60,11 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     backgroundColor: 'skyblue',
     marginBottom: 5,
     height: 45,
   },
   inputChat: {
-    width: 295,
-    height: 35,
-    backgroundColor: 'white',
-    marginBottom: 5,
-    marginLeft: 5,
-    borderRadius: 3,
-  },
-  inputSeac: {
     width: 295,
     height: 35,
     backgroundColor: 'white',
@@ -74,19 +83,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginLeft: 5,
     paddingLeft: 7,
-    paddingTop: 5,
-  },
-  searchBtn: {
-    fontSize: 15,
-    fontWeight: '100',
-    backgroundColor: '#fff',
-    color: '#2979FF',
-    height: 30,
-    width: 50,
-    borderRadius: 3,
-    marginBottom: 5,
-    marginLeft: 5,
-    paddingLeft: 3,
     paddingTop: 5,
   },
 
