@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -92,7 +93,7 @@ const MainDrawer = () => {
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.menu}>
+                  <Text onPress={Actions.timelineList} style={styles.menu}>
                     Dashboard
                   </Text>
                 </TouchableOpacity>
@@ -110,7 +111,7 @@ const MainDrawer = () => {
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.menu}>
+                  <Text onPress={Actions.profile} style={styles.menu}>
                     My Profile
                   </Text>
                 </TouchableOpacity>
@@ -146,7 +147,7 @@ const MainDrawer = () => {
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.menu}>
+                  <Text onPress={Actions.setting} style={styles.menu}>
                     Setting
                   </Text>
                 </TouchableOpacity>
@@ -164,7 +165,7 @@ const MainDrawer = () => {
               </View>
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.menu}>
+                  <Text onPress={Actions.login} style={styles.menu}>
                     Logout
                   </Text>
                 </TouchableOpacity>
