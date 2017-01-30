@@ -1,11 +1,17 @@
+
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
 import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import EmailNotif from './app/components/Setting/EmailNotif';
-
+import App from './app/App';
 
 const HikerApp = () => (
-  <EmailNotif />
+  <App />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
