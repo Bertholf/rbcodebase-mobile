@@ -8,8 +8,6 @@ import {
   ScrollView,
 } from 'react-native';
 
-import DrawerLayout from 'react-native-drawer-layout';
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -179,16 +177,7 @@ const MainDrawer = () => {
     </View>
   );
 
-  return (
-    <DrawerLayout
-      drawerWidth={300}
-      renderNavigationView={() => navigationView}
-    >
-      <View>
-        <Text style={styles.welcome}>MAIN PAGE</Text>
-      </View>
-    </DrawerLayout>
-  );
+  return (navigationView);
 };
 
 export default MainDrawer;

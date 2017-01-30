@@ -104,10 +104,19 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+      release2 {
+        storeFile file("../keystores/baseapp.keystore")
+        storePassword getProperty("storePasswordProp")
+        keyAlias getProperty("keyAliasProp")
+        keyPassword getProperty("keyPasswordProp")
+      }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -126,6 +135,10 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-material-kit')
+    compile project(':react-native-maps')
+    compile project(':react-native-mapbox-gl')
+    compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
