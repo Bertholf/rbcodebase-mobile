@@ -29,7 +29,7 @@ export default class ForgotPassword extends Component {
             alignItems: 'center',
           }}>
           <Image
-          source={require('./../../images/logo.png')} style={styles.image} />
+          source={require('./../../images/logo.jpg')} style={styles.image} />
         </View>
         <TextInput
             style={{height: 40}} onChangeText={(email) => this.setState({email})}

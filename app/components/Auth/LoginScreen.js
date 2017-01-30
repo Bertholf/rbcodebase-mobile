@@ -29,7 +29,7 @@ export default class LoginPage extends Component {
             alignItems: 'center',
           }}>
           <Image
-          source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
+          source={require('./../../images/logo.jpg')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
         </View>
         <TextInput
             style={{height: 40}} onChangeText={(username) => this.setState({username})}
@@ -120,7 +120,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
   return (
     <View style={styles.container}>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image source={require('./../../images/logo.png')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
+          <Image source={require('./../../images/logo.jpg')} style={{width: 120, height: 120, resizeMode: 'cover'}} />
         </View>
         <TextInput style={{height: 40}} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
       <TextInput
