@@ -48,15 +48,15 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   name: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
   },
   date: {
-
+    fontSize: 14,
   },
   text: {
-
+    fontSize: 16,
   },
 });
 module.exports = styles;

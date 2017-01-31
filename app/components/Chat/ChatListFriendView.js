@@ -1,5 +1,5 @@
 import React, { Component }  from  'react';
-import { View, StyleSheet, TouchableOpacity, Image, Text, } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, Text, ScrollView } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 const menu = require('./../../images/ic_menu_white_24dp.png');
 const user = require('./../../images/64x64.png');
@@ -28,15 +28,16 @@ export default class ChatListFriendView extends Component {
     switch (route.key) {
     case '1':
       return <View style={[ styles.page, { backgroundColor: '#fff' } ]} >
+        <ScrollView>
           <TouchableOpacity>
             <View style={styles.listFriend}>
               <Image style={styles.contactImg} source={user} />
               <View style={{justifyContent: 'space-around'}}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                   <Text style={styles.name}>Budi</Text>
-                  <Text>2017-01-28</Text>
+                  <Text style={styles.date}>2017-01-28</Text>
                 </View>
-                <Text>Lorem ipsum dolor sit amet...</Text>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -47,9 +48,9 @@ export default class ChatListFriendView extends Component {
               <View style={{justifyContent: 'space-around'}}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                   <Text style={styles.name}>Lina</Text>
-                  <Text>2017-01-23</Text>
+                  <Text style={styles.date}>2017-01-23</Text>
                 </View>
-                <Text>Lorem ipsum dolor sit amet...</Text>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
               </View>
             </View>
           </TouchableOpacity>
@@ -60,13 +61,66 @@ export default class ChatListFriendView extends Component {
               <View style={{justifyContent: 'space-around'}}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                   <Text style={styles.name}>Basuki</Text>
-                  <Text>2017-01-22</Text>
+                  <Text style={styles.date}>2017-01-22</Text>
                 </View>
-                <Text>Lorem ipsum dolor sit amet...</Text>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
               </View>
             </View>
           </TouchableOpacity>
           <View style={styles.setlist} />
+          <TouchableOpacity>
+            <View style={styles.listFriend}>
+              <Image style={styles.contactImg} source={user} />
+              <View style={{justifyContent: 'space-around'}}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+                  <Text style={styles.name}>Budi</Text>
+                  <Text style={styles.date}>2017-01-28</Text>
+                </View>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <View style={styles.setlist} />
+          <TouchableOpacity>
+            <View style={styles.listFriend}>
+              <Image style={styles.contactImg} source={user2} />
+              <View style={{justifyContent: 'space-around'}}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+                  <Text style={styles.name}>Lina</Text>
+                  <Text style={styles.date}>2017-01-23</Text>
+                </View>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <View style={styles.setlist} />
+          <TouchableOpacity>
+            <View style={styles.listFriend}>
+              <Image style={styles.contactImg} source={user3} />
+              <View style={{justifyContent: 'space-around'}}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+                  <Text style={styles.name}>Basuki</Text>
+                  <Text style={styles.date}>2017-01-22</Text>
+                </View>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <View style={styles.setlist} />
+          <TouchableOpacity>
+            <View style={styles.listFriend}>
+              <Image style={styles.contactImg} source={user2} />
+              <View style={{justifyContent: 'space-around'}}>
+                <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
+                  <Text style={styles.name}>Basuki</Text>
+                  <Text style={styles.date}>2017-01-22</Text>
+                </View>
+                <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <View style={styles.setlist} />
+        </ScrollView>
       </View>
     case '2':
       return <View style={[ styles.page, { backgroundColor: '#fff' } ]} >
@@ -76,9 +130,9 @@ export default class ChatListFriendView extends Component {
             <View style={{justifyContent: 'space-around'}}>
               <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                 <Text style={styles.name}>Budi</Text>
-                <Text>2017-01-28</Text>
+                <Text style={styles.date}>2017-01-28</Text>
               </View>
-              <Text>Lorem ipsum dolor sit amet...</Text>
+              <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -92,9 +146,9 @@ export default class ChatListFriendView extends Component {
             <View style={{justifyContent: 'space-around'}}>
               <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
                 <Text style={styles.name}>Basuki</Text>
-                <Text>2017-01-22</Text>
+                <Text style={styles.date}>2017-01-22</Text>
               </View>
-              <Text>Lorem ipsum dolor sit amet...</Text>
+              <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
             </View>
           </View>
         </TouchableOpacity>
