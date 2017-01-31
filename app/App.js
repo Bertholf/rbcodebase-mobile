@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import codePush from 'react-native-code-push';
 import { AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -8,6 +9,8 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import reducers from './reducers';
 import Routing from './containers/Router';
 
+const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
+
 const logger = createLogger();
 const store = createStore(combineReducers({ app: reducers }),
   applyMiddleware(logger, thunkMiddleware),
@@ -16,8 +19,16 @@ const store = createStore(combineReducers({ app: reducers }),
 // persistStore(store, {
 //   storage: AsyncStorage,
 // });
-
-const App = () => (<Provider store={store}>
-  <Routing />
-</Provider>);
-export default App;
+export default class App extends Component {
+  componentDidMount() {
+    codePush(codePushOptions)(App);
+    console.log('1234');
+  }
+  render() {
+    return (
+      <Provider store={store}>
+        <Routing />
+      </Provider>
+    );
+  }
+}
