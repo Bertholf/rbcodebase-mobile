@@ -15,9 +15,10 @@ import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Privacy from './components/Privacy/privacy.js';
 import Setting from './components/Setting/Setting'
+import Email from './components/Setting/EmailNotif'
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
-const Routing = () => (
+import Account from './components/Profile/AccountSetting';
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
@@ -33,6 +34,15 @@ const Routing = () => (
             />
             <Scene
               key={'notifications'} component={Notifications} title={'notifications'}
+            />
+            <Scene
+              key={'account'} component={Account} title={'account'}
+            />
+            <Scene
+              key={'privacy'} component={Privacy} title={'privacy'}
+            />
+            <Scene
+              key={'email'} component={Email} title={'email'}
             />
             <Scene
               key={'welcome'} component={Welcome} title={'Welcome'}
