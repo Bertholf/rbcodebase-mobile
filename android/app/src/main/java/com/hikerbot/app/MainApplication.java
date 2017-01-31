@@ -3,8 +3,8 @@ package com.hikerbot.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.facebook.react.ReactNativeHost;
@@ -14,7 +14,7 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
-
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -27,10 +27,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
             new ReactMaterialKitPackage(),
-            new MapsPackage(),
             new ReactNativeMapboxGLPackage(),
-            new ReactNativeLocalizationPackage()
+            new ReactNativeLocalizationPackage(),
+            new RNGoogleSigninPackage() // <-- add this
       );
     }
   };

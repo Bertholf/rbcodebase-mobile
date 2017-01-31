@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "683284662633",
+    "project_id": "hiker-156710"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683284662633:android:dee7e5d8b4196ca5",
+        "android_client_info": {
+          "package_name": "com.hikerbot.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683284662633-o3f5jgjjcpv5rb06vprskontnjqaf7rc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hikerbot.app",
+            "certificate_hash": "DB3AD69C4F8ED8793287BEFB067A1F2AB0840A9B"
+          }
+        },
+        {
+          "client_id": "683284662633-dh2igs0bnbgs04ikalct7vhk5hvnfi6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpviC2GwBS5IijF-TGqlONbmzl-CulHwc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
