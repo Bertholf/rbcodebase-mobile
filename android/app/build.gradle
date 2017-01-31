@@ -8,8 +8,8 @@ import com.android.build.OutputFile
  * These basically call `react-native bundle` with the correct arguments during the Android build
  * cycle. By default, bundleDebugJsAndAssets is skipped, as in debug/dev mode we prefer to load the
  * bundle directly from the development server. Below you can see all the possible configurations
- * and their defaults. If you decide to add a configuration block, make sure to add it before the
  * `apply from: "../../node_modules/react-native/react.gradle"` line.
+ * and their defaults. If you decide to add a configuration block, make sure to add it before the
  *
  * project.ext.react = [
  *   // the name of the generated asset file containing your JS bundle
@@ -84,12 +84,12 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "com.hikerbot.app"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0.0"
         ndk {
@@ -103,6 +103,14 @@ android {
             universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86"
         }
+    }
+    signingConfigs {
+      release2 {
+        storeFile file("../keystores/baseapp.keystore")
+        storePassword getProperty("storePasswordProp")
+        keyAlias getProperty("keyAliasProp")
+        keyPassword getProperty("keyPasswordProp")
+      }
     }
     buildTypes {
         release {
@@ -131,7 +139,7 @@ dependencies {
     compile project(':react-native-mapbox-gl')
     compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:25.1.0"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 
