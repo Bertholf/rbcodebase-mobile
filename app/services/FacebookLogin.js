@@ -1,4 +1,5 @@
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { Actions } from 'react-native-router-flux';
 
 const url = 'https://graph.facebook.com/v2.5/me?fields=email,name,friends&access_token=';
 
@@ -12,18 +13,22 @@ function initUser(token) {
   .catch(() => console.log('ERROR GETTING DATA FROM FACEBOOK'));
 }
 
-export default class FacebookLogin {
-  static getFacebookLogin() {
+class FacebookLogin {
+  getFacebookLogin() {
+    Actions.loader({ hide: false });
     LoginManager.logInWithReadPermissions(['public_profile']).then(
       (result) => {
         if (result.isCancelled) {
           console.log('Login cancelled');
+          Actions.pop();
         } else {
           AccessToken.getCurrentAccessToken().then((data) => {
             const { accessToken } = data;
             console.log('Token is : ' + accessToken);
             initUser(accessToken);
           });
+          Actions.timelineList();
+          Actions.scene({ type: 'reset' });
         }
       },
       (error) => {
@@ -33,4 +38,5 @@ export default class FacebookLogin {
   }
 }
 
-// export default FacebookLogin;
+const facebookLogin = new FacebookLogin();
+export default facebookLogin;

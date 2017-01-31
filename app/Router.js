@@ -17,6 +17,8 @@ import Privacy from './components/Privacy/privacy.js';
 import Setting from './components/Setting/Setting'
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
+import Loader from './layouts/Loader';
+
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
@@ -60,6 +62,9 @@ const Routing = () => (
             />
             <Scene
               key={'chat'} component={Chat} title={'Profile'}
+            />
+            <Scene
+              key={'loader'} component={Loader} hideNavBar
             />
           </Scene>
         </Scene>
