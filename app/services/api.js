@@ -1,36 +1,38 @@
-import request from 'superagent';
+import axios from 'axios';
+import querystring from 'qs';
 
 class Api {
   constructor(baseUrl) {
     this.baseUrl = baseUrl;
+    this.client = axios.create();
+    this.client.interceptors.response.use(response => response);
   }
-  put(url, form, qs = {}) {
-    return this.sendRequest('PUT', url, { qs, form });
+  put(url, json, qs = {}, config) {
+    return this.sendRequest('PUT', url, { qs, json, config });
   }
-  get(url, qs) {
-    return this.sendRequest('GET', url, { qs });
+  get(url, qs, config = {}) {
+    return this.sendRequest('GET', url, { qs, config });
   }
-  post(url, form, qs = {}) {
-    return this.sendRequest('POST', url, { qs, form });
+  post(url, form, qs = {}, config = {}) {
+    return this.sendRequest('POST', url, { qs, form, config });
+  }
+  delete(url, qs = {}, config = {}) {
+    return this.sendRequest('DELETE', url, { qs, config });
   }
   sendRequest(url, requestMethod, data = {}) {
-    let req = request[requestMethod](url);
-    if (Object.prototype.hasOwnProperty.call(data, 'qs')) {
-      req = req.query(data.qs);
-    }
-    if ({}.hasOwnProperty.call(data, 'form') || {}.hasOwnProperty.call(data, 'json') || {}.hasOwnProperty.call(data, 'multipart')) {
-      const currentData = data.form || data.json || data.multipart;
-      req = req.send(currentData);
-    }
-    return new Promise((resolve, reject) => {
-      req.end((err, res) => {
-        if (err || !res.ok) {
-          reject(err);
-        } else {
-          resolve(res.body);
-        }
-      });
-    });
+    const request = this.client.request({
+      method: requestMethod,
+      url,
+      baseURL: this.baseURL,
+      params: data.qs,
+      data: data.json || querystring.stringify(data.form) || data.formData,
+      headers: data.headers,
+      timeout: 60 * 1000,
+      paramsSerializer: params => querystring.stringify(params),
+    }, data.config);
+    return request
+    .then(json => Promise.resolve(json.data))
+    .catch(error => Promise.reject(error));
   }
 }
 

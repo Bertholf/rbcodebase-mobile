@@ -258,7 +258,7 @@
 			remoteGlobalIDString = C5DBB34B1AF2EF2B00E611A9;
 			remoteInfo = RCTMapboxGLTests;
 		};
-		9C6972A41E40B92700D843FA /* PBXContainerItemProxy */ = {
+		9C6971721E40B17F00D843FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */;
 			proxyType = 2;
@@ -964,11 +964,19 @@
 			remoteRef = 9C6970AA1E3EF32200D843FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< HEAD
+		9C6971731E40B17F00D843FA /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = 9C6971721E40B17F00D843FA /* PBXContainerItemProxy */;
+=======
 		9C6972A51E40B92700D843FA /* libCodePush.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCodePush.a;
 			remoteRef = 9C6972A41E40B92700D843FA /* PBXContainerItemProxy */;
+>>>>>>> master
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
