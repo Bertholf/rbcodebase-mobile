@@ -2,8 +2,10 @@ package com.hikerbot.app;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.microsoft.codepush.react.CodePush;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
@@ -13,6 +15,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +30,12 @@ public class MainApplication extends Application implements ReactApplication {
   }
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
+    @Override
+    protected String getJSBundleFile() {
+      return CodePush.getJSBundleFile();
+    }
+
     @Override
     protected boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -37,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new FBSDKPackage(mCallbackManager),
+            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new ReactMaterialKitPackage(),
             new MapsPackage(),
             new ReactNativeMapboxGLPackage(),
@@ -53,6 +63,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Fabric.with(this, new Crashlytics());
     SoLoader.init(this, /* native exopackage */ false);
     FacebookSdk.sdkInitialize(getApplicationContext());
   }

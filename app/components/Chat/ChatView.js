@@ -12,93 +12,7 @@ import {
 
 const alertMessage = 'Choose Image/Video';
 const alertMessage1 = 'You will chat with Mr/Ms';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    borderBottomWidth: 1,
-    borderColor: '#26A69A',
-  },
-  containerImgMenu: {
-    backgroundColor: '#009688',
-    flexDirection: 'row',
-    borderBottomWidth: 2,
-    borderColor: '#26A69A',
-  },
-  imgMenu: {
-    width: 30,
-    height: 30,
-    marginTop: 3,
-  },
-  inputSearch: {
-    width: 300,
-    height: 35,
-    color: 'white',
-    borderRadius: 3,
-  },
-  attachFile: {
-    width: 25,
-    height: 25,
-    marginTop: 5,
-  },
-  avatarFriend: {
-    flexDirection: 'row',
-  },
-  avatarImg: {
-    width: 40,
-    height: 40,
-    marginTop: 3,
-    marginBottom: 3,
-    marginLeft: 3,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: '#E8EAF6',
-  },
-  contentLeft: {
-    marginLeft: 10,
-  },
-  contentRight: {
-    alignItems: 'flex-end',
-    marginRight: 10,
-  },
-  chatText: {
-    fontSize: 15,
-    color: '#263238',
-  },
-  footer: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-    backgroundColor: '#009688',
-    marginBottom: 5,
-    height: 45,
-  },
-  inputChat: {
-    width: 295,
-    height: 35,
-    backgroundColor: 'white',
-    marginBottom: 5,
-    marginLeft: 5,
-    borderRadius: 3,
-  },
-  sendBtn: {
-    fontSize: 15,
-    fontWeight: '100',
-    backgroundColor: '#fff',
-    color: '#2979FF',
-    height: 35,
-    width: 50,
-    borderRadius: 3,
-    marginBottom: 5,
-    marginLeft: 5,
-    paddingLeft: 7,
-    paddingTop: 5,
-  },
-
-});
-
+import styles from './styles';
 export default class ChatView extends Component {
   constructor(props) {
     super(props);
@@ -114,10 +28,6 @@ export default class ChatView extends Component {
     this.setState({ message: '' });
   }
 
-  onViewMsg() {
-    // var msg = {msgText[] => this.state.message};
-    this.state.msgText;
-  }
 
   onReceiveMsg() {
     this.state.msgReceive;
@@ -127,6 +37,7 @@ export default class ChatView extends Component {
 
   render() {
     return (
+    <View>
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.containerImgMenu}>
@@ -290,21 +201,23 @@ export default class ChatView extends Component {
             <Text style={styles.chatText}>Send Message</Text>
           </View>
         </View>
-
-        <View style={styles.footer}>
-          <TextInput
-            style={styles.inputChat}
-            placeholder="Type a message..."
-            value={this.state.message}
-            onChangeText={(text) => this.setState({ message: text })}
-          />
-          <TouchableHighlight
-            onPress={() => this.onSendMessage()}
-          >
-            <Text style={styles.sendBtn}>Send</Text>
-          </TouchableHighlight>
-        </View>
       </View>
+    <View style = {{ flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
+      <View style={styles.footer}>
+        <TextInput
+          style={styles.inputChat}
+          placeholder="Type a message..."
+          value={this.state.message}
+          onChangeText={(text) => this.setState({ message: text })}
+        />
+        <TouchableHighlight
+          onPress={() => this.onSendMessage()}
+        >
+          <Text style={styles.sendBtn}>Send</Text>
+        </TouchableHighlight>
+      </View>
+    </View>
+    </View>
     );
   }
 }

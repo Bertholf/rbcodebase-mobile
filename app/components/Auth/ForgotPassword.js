@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert } from 'react-native';
-const logo = require('./../../images/logo.jpg');
+const logo = require('./../../images/logo.png');
 
 export default class ForgotPassword extends Component {
   constructor(props) {

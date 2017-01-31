@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, L
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
-const logo = require('./../../images/logo.jpg');
+const logo = require('./../../images/logo.png');
 
 const styles = StyleSheet.create({
   container: {

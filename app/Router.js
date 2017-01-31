@@ -13,11 +13,14 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
+import Setting from './components/Setting/Setting';
+import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy.js';
-import Setting from './components/Setting/Setting'
+import Email from './components/Setting/EmailNotif'
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';
+import Account from './components/Profile/AccountSetting';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -35,6 +38,15 @@ const Routing = () => (
             />
             <Scene
               key={'notifications'} component={Notifications} title={'notifications'}
+            />
+            <Scene
+              key={'account'} component={Account} title={'account'}
+            />
+            <Scene
+              key={'privacy'} component={Privacy} title={'privacy'}
+            />
+            <Scene
+              key={'email'} component={Email} title={'email'}
             />
             <Scene
               key={'welcome'} component={Welcome} title={'Welcome'}
