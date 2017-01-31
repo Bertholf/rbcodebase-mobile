@@ -8,28 +8,29 @@ const styles = StyleSheet.create({
   },
   header: {
     borderBottomWidth: 1,
-    borderColor: '#26A69A',
+    borderColor: '#2962ff',
   },
   containerImgMenu: {
-    backgroundColor: '#009688',
+    backgroundColor: '#2962ff',
     flexDirection: 'row',
     borderBottomWidth: 2,
     borderColor: '#26A69A',
   },
   imgMenu: {
     width: 30,
-    height: 30,
+    height: 55,
     marginTop: 1,
   },
   inputSearch: {
     width: 300,
-    height: 35,
+    height: 55,
     color: 'white',
     borderRadius: 3,
+    fontSize: 20,
   },
   attachFile: {
     width: 25,
-    height: 25,
+    height: 35,
     marginTop: 5,
   },
   avatarFriend: {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     marginLeft: 3,
   },
   content: {
-    marginBottom: 450,
+    marginBottom: 429,
 
   },
   contentLeft: {
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    backgroundColor: 'skyblue',
+    backgroundColor: '#2962FF',
     marginBottom: 5,
     height: 45,
   },
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '100',
     backgroundColor: '#fff',
-    color: '#2979FF',
+    color: '#2962FF',
     height: 35,
     width: 50,
     borderRadius: 3,

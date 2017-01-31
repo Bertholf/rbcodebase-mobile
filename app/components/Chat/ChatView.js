@@ -37,7 +37,7 @@ export default class ChatView extends Component {
 
   render() {
     return (
-    <View style ={{flexDirection: 'column', justifyContent: 'space-between'}}>
+    <View>
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.containerImgMenu}>
