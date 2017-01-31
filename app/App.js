@@ -9,8 +9,6 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import reducers from './reducers';
 import Routing from './containers/Router';
 
-const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
-
 const logger = createLogger();
 const store = createStore(combineReducers({ app: reducers }),
   applyMiddleware(logger, thunkMiddleware),
@@ -21,7 +19,6 @@ const store = createStore(combineReducers({ app: reducers }),
 // });
 export default class App extends Component {
   componentDidMount() {
-    codePush(codePushOptions)(App);
     console.log('1234');
   }
   render() {
