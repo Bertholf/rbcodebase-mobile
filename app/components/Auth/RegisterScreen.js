@@ -94,11 +94,11 @@ export default class Register extends Component {
 
           <Text style={styles.separatorText}>Register with:</Text>
           <View style={styles.buttonGroup}>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
-              <Image source={google} style={styles.icon} />
-            </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()} >
               <Image source={facebook} style={styles.icon} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
+              <Image source={google} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
               <Image source={twitter} style={styles.icon} />
