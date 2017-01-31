@@ -589,10 +589,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9C69716E1E40B17F00D843FA /* Products */ = {
+		9C6972A01E40B92700D843FA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C6971731E40B17F00D843FA /* libCodePush.a */,
+				9C6972A51E40B92700D843FA /* libCodePush.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 					ProjectRef = 4F088166BC4F42838FC0B448 /* AirMaps.xcodeproj */;
 				},
 				{
-					ProductGroup = 9C69716E1E40B17F00D843FA /* Products */;
+					ProductGroup = 9C6972A01E40B92700D843FA /* Products */;
 					ProjectRef = 4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */;
 				},
 				{
@@ -964,11 +964,19 @@
 			remoteRef = 9C6970AA1E3EF32200D843FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< HEAD
 		9C6971731E40B17F00D843FA /* libCodePush.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCodePush.a;
 			remoteRef = 9C6971721E40B17F00D843FA /* PBXContainerItemProxy */;
+=======
+		9C6972A51E40B92700D843FA /* libCodePush.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCodePush.a;
+			remoteRef = 9C6972A41E40B92700D843FA /* PBXContainerItemProxy */;
+>>>>>>> master
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
