@@ -14,9 +14,9 @@ import FacebookLogin from './../../services/FacebookLogin';
 
 const { width } = Dimensions.get('window');
 const logo = require('./../../images/logo.png');
-const google = require('./../../images/google-plus.png');
-const facebook = require('./../../images/facebook.png');
-const twitter = require('./../../images/twitter.png');
+const google = require('./../../images/login/google.png');
+const facebook = require('./../../images/login/facebook.png');
+const twitter = require('./../../images/login/twitter.png');
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
 

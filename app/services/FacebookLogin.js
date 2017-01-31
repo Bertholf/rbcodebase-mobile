@@ -14,6 +14,17 @@ function initUser(token) {
 }
 
 class FacebookLogin {
+  constructor(){
+    this.state = {
+      fbLoggedIn: false,
+      accessToken: '',
+    };
+  }
+
+  setState(value) {
+    this.state = value;
+  }
+
   getFacebookLogin() {
     Actions.loader({ hide: false });
     LoginManager.logInWithReadPermissions(['public_profile']).then(
@@ -24,11 +35,12 @@ class FacebookLogin {
         } else {
           AccessToken.getCurrentAccessToken().then((data) => {
             const { accessToken } = data;
-            console.log('Token is : ' + accessToken);
+            this.setState({ fbLoggedIn: true, accessToken: accessToken });
             initUser(accessToken);
+            console.log('Token is : ' + this.state.accessToken);
+            console.log('state loggedIn : '+ this.state.fbLoggedIn);
           });
           Actions.timelineList();
-          Actions.scene({ type: 'reset' });
         }
       },
       (error) => {

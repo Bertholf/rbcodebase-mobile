@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import FacebookLogout from './../services/FacebookLogout';
 
 const styles = StyleSheet.create({
   container: {
@@ -164,7 +165,7 @@ const MainDrawer = () => {
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity onPress={Actions.login}>
+                <TouchableOpacity onPress={() => FacebookLogout.getFacebookLogout()}>
                   <Text style={styles.menu}>
                     Logout
                   </Text>
