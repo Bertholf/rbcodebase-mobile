@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { Actions } from 'react-native-router-flux';
 
@@ -44,7 +45,8 @@ class FacebookLogin {
         }
       },
       (error) => {
-        console.log('Login fail with error: ' + error);
+        Actions.pop();
+        Alert.alert('Unable to connect with facebook');
       },
     );
   }
