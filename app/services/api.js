@@ -1,11 +1,18 @@
 import axios from 'axios';
 import querystring from 'qs';
+import MockAdapter from 'axios-mock-adapter';
+import userFactory from '../factories/user';
+import timelineFactory from '../factories/timeline';
 
 class Api {
-  constructor(baseUrl) {
+  constructor(baseUrl, middleware = () => {}) {
     this.baseUrl = baseUrl;
     this.client = axios.create();
-    this.client.interceptors.response.use(response => response);
+    middleware(this.client);
+    this.client.interceptors.request.use(config => {
+      console.log(config);
+      return config;
+    });
   }
   put(url, json, qs = {}, config) {
     return this.sendRequest('PUT', url, { qs, json, config });
@@ -19,11 +26,11 @@ class Api {
   delete(url, qs = {}, config = {}) {
     return this.sendRequest('DELETE', url, { qs, config });
   }
-  sendRequest(url, requestMethod, data = {}) {
+  sendRequest(requestMethod, url, data = {}) {
     const request = this.client.request({
       method: requestMethod,
       url,
-      baseURL: this.baseURL,
+      baseURL: this.baseUrl,
       params: data.qs,
       data: data.json || querystring.stringify(data.form) || data.formData,
       headers: data.headers,
@@ -36,5 +43,11 @@ class Api {
   }
 }
 
-const api = new Api('https://jsonplaceholder.typicode.com');
+const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
+  const mockery = new MockAdapter(instance, { delayResponse: 2000 });
+  mockery.onGet('/me').reply(200, userFactory());
+  mockery.onGet('/timeline').reply(200, {
+    data: timelineFactory(),
+  });
+});
 export default api;
