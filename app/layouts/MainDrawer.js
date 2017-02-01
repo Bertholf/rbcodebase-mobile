@@ -6,38 +6,44 @@ import {
   View,
   Image,
   ScrollView,
+  Dimensions,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FacebookLogout from './../services/FacebookLogout';
 
+const { width,height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2196F3',
+    backgroundColor: '#E1F5FE',
   },
   drawerProfile: {
-    flex: 1,
+    paddingTop: 14,
+    paddingLeft: 16,
     flexDirection: 'row',
-    marginBottom: 40,
-    padding: 10,
+    width: width * 0.4,
+    height: height * 0.2,
   },
   drawerMenu: {
     flex: 6,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'white',
   },
   image: {
     width: 80,
     height: 80,
     marginRight: 20,
     borderWidth: 1,
+    borderRadius: 40,
   },
   menu: {
     fontSize: 20,
-    padding: 10,
+    padding: 20,
+    color: '#2196F3',
   },
   icon: {
     width: 20,
     height: 20,
+    padding: 20,
   },
   viewIcon: {
     paddingLeft: 15,
@@ -47,11 +53,15 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 10,
+    color: '#2196F3',
+    paddingLeft: 10,
   },
   location: {
     fontSize: 15,
-    marginBottom: 5,
+    marginBottom: 10,
+    color: '#9091ac',
+    paddingLeft: 10,
   },
 });
 
