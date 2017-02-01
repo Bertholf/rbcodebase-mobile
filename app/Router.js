@@ -14,7 +14,7 @@ import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Setting from './components/Setting/Setting';
-import ChatListFriendView from './components/Chat/ChatListFriendView';
+//import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy.js';
 import Notifications from './components/Timeline/notification';
 import NavigationDrawer from './layouts/NavigationDrawer';

@@ -10,6 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import styles from './styles';
+import {GoogleSigninButton} from 'react-native-google-signin';
+import GoogleSignIn from './../../services/signingoogle';
 
 const { width } = Dimensions.get('window');
 const logo = require('./../../images/logo.jpg');
@@ -93,7 +95,7 @@ export default class Register extends Component {
 
           <Text style={styles.separatorText}>Register with:</Text>
           <View style={styles.buttonGroup}>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
+            <TouchableOpacity activeOpacity={0.7} onPress={() => GoogleSignIn.getGoogleSignIn()} >
               <Image source={google} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
