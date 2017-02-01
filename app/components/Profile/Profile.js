@@ -32,21 +32,23 @@ export default class Profile extends Component {
         <ScrollView>
           <View style={ styles.container }>
             <View style = {styles.backgroundContainer}>
-              <Image source = {require('./../../images/gunung.jpg')} resizeMode = 'cover' style = {styles.backdrop} />
+              <Image source = {{uri: this.state.profile.imgBackground}} resizeMode = 'cover' style = {styles.backdrop} />
               <View style ={styles.backgroundname}>
                 <Text style = {styles.headline} colors={['#F00', 'transparent']}>{this.state.profile.firstName} {this.state.profile.lastName}</Text>
               </View>
               <View style={styles.textInform}>
               <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
-              <Text style={styles.followers}>{this.state.follower}} Followers</Text>
+              <TouchableOpacity>
+              <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
+            </TouchableOpacity>
             <TouchableOpacity onPress={()=>this.toggleSwitch()}>
                  <Text style = {styles.button}>
-                    {this.state.clicked ? 'Follow' : 'Message' }</Text>
+                    {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
               </TouchableOpacity>
               </View>
             </View>
             <View>
-              <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
+              <Image style = {styles.logo} source = {{uri: this.state.profile.imgProfile}} />
             </View>
             <View style={styles.biodata}>
             <Text style={styles.bio}>Bio</Text>
@@ -62,7 +64,7 @@ export default class Profile extends Component {
             </View>
             <View style={styles.posisi}>
             <Image style = {styles.location} source = {require('./../../images/live.png')} />
-            <Text style={styles.isi}>Indonesia</Text>
+            <Text style={styles.isi}>{this.state.profile.live}</Text>
             </View>
             <View style={styles.posisi}>
             <TouchableOpacity>
