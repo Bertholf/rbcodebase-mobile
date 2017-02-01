@@ -19,6 +19,7 @@ import Privacy from './components/Privacy/privacy.js';
 import Email from './components/Setting/EmailNotif'
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
+import Loader from './layouts/Loader';
 import Account from './components/Profile/AccountSetting';
 
 const Routing = () => (
@@ -73,6 +74,9 @@ const Routing = () => (
             />
             <Scene
               key={'chat'} component={Chat} title={'Profile'}
+            />
+            <Scene
+              key={'loader'} component={Loader} hideNavBar
             />
           </Scene>
         </Scene>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
+import FacebookLogin from './../../services/FacebookLogin';
 
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
@@ -74,7 +75,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
       </View>
       <View style={{ alignItems: 'center', top: 10, marginBottom: 10 }} ><Text>Login With</Text></View>
       <View style={styles.otherlog}>
-        <TouchableHighlight style={styles.facebook} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+        <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
         <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>

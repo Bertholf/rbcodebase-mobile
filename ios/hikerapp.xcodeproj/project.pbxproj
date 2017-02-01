@@ -29,8 +29,12 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		AC46E23EF2794B6CA90B3A07 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6217FA602DE64A61B55531D7 /* libc++.tbd */; };
 		BD6AD16F1DAC479FAD8F9F50 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A46604312D4C5F83DF9ADA /* libAirMaps.a */; };
+
 		DA0D1286B8344D5B958C7B39 /* libRCTMapboxGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8777E91CB494C509CBC11FC /* libRCTMapboxGL.a */; };
 		E5C674DDF34123125A20AE4A /* Pods_hikerapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DC62C1838DB897A1630672 /* Pods_hikerapp.framework */; };
+
+		7C3A800A223A4A4098DF46A6 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87742B2DBF06444997C532D0 /* libRCTFBSDK.a */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,7 +310,16 @@
 		B6513DBFB0BDB0AEBBBA0F6E /* Pods-hikerapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hikerapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hikerapp/Pods-hikerapp.debug.xcconfig"; sourceTree = "<group>"; };
 		C5FB2CA1ABAE40E0B7BF49FF /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		CCEF18F22F9D407AAE9313CB /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
+
 		F8777E91CB494C509CBC11FC /* libRCTMapboxGL.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTMapboxGL.a; sourceTree = "<group>"; };
+
+		83858F01B6DE44ED8DEBE2C5 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; name = "RCTMapboxGL.xcodeproj"; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F8777E91CB494C509CBC11FC /* libRCTMapboxGL.a */ = {isa = PBXFileReference; name = "libRCTMapboxGL.a"; path = "libRCTMapboxGL.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		4F088166BC4F42838FC0B448 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		09A46604312D4C5F83DF9ADA /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		04EB77DAC1974A9B9247DEA3 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; name = "RCTFBSDK.xcodeproj"; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		87742B2DBF06444997C532D0 /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +352,7 @@
 				36F746B44DD546ABA573EB82 /* libz.tbd in Frameworks */,
 				DA0D1286B8344D5B958C7B39 /* libRCTMapboxGL.a in Frameworks */,
 				BD6AD16F1DAC479FAD8F9F50 /* libAirMaps.a in Frameworks */,
+				7C3A800A223A4A4098DF46A6 /* libRCTFBSDK.a in Frameworks */,
 				1E9D08B00E3F48CA9DD949F8 /* libCodePush.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +514,7 @@
 				CCEF18F22F9D407AAE9313CB /* RealmReact.xcodeproj */,
 				83858F01B6DE44ED8DEBE2C5 /* RCTMapboxGL.xcodeproj */,
 				4F088166BC4F42838FC0B448 /* AirMaps.xcodeproj */,
+				04EB77DAC1974A9B9247DEA3 /* RCTFBSDK.xcodeproj */,
 				4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */,
 			);
 			name = Libraries;
@@ -964,19 +979,12 @@
 			remoteRef = 9C6970AA1E3EF32200D843FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-<<<<<<< HEAD
-		9C6971731E40B17F00D843FA /* libCodePush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCodePush.a;
-			remoteRef = 9C6971721E40B17F00D843FA /* PBXContainerItemProxy */;
-=======
+
 		9C6972A51E40B92700D843FA /* libCodePush.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCodePush.a;
 			remoteRef = 9C6972A41E40B92700D843FA /* PBXContainerItemProxy */;
->>>>>>> master
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
