@@ -21,16 +21,16 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
+    fontWeight: '400',
     color: 'white',
     alignSelf: 'center',
-    marginBottom: 5,
   },
   button: {
     height: 36,
-    backgroundColor: '#1565C0',
-    borderColor: '#1976D2',
+    backgroundColor: '#2196F3',
+    borderColor: '#2196F3',
     borderWidth: 1,
-    borderRadius: 3,
+    borderRadius: 2,
     marginTop: 10,
     marginBottom: 5,
     alignSelf: 'stretch',
@@ -42,18 +42,21 @@ const styles = StyleSheet.create({
     width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    borderRadius: 48,
   },
   twitter: {
     height: 48,
     width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    borderRadius: 48,
   },
   google: {
     height: 48,
     width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    borderRadius: 48,
   },
   otherlog: {
     marginTop: 10,
@@ -73,7 +76,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Image source={logo} style={styles.logo} />
       </View>
-      <View style={{ alignItems: 'center', top: 10, marginBottom: 10 }} ><Text>Login With</Text></View>
+      <View style={{ alignItems: 'center', top: 10, marginBottom: 10 }} ><Text style={{ fontSize: 16, color: 'rgba(0,0,0,0.8)' }}>Login With</Text></View>
       <View style={styles.otherlog}>
         <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
@@ -85,24 +88,24 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
           <Image source={twitter} style={styles.twitter} />
         </TouchableHighlight>
       </View>
-      <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row'}}>
-        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
-        <Text style={{ width: 20, margin: 5 }}> Or </Text>
-        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+      <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+        <View style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.5)', width: 140, height: 1, marginLeft: 5 }} />
+        <Text style={{ width: 20, margin: 5, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
+        <View style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.5)', width: 140, height: 1, marginRight: 5 }} />
       </View>
-      <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
-      <TextInput secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
-      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
-        <Text style={styles.buttonText}>Login</Text>
+      <TextInput style={{ paddingBottom: 8 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} placeholderTextColor={'rgba(0,0,0,0.5)'}/>
+      <TextInput secureTextEntry={true} style={{paddingBottom: 8 }} onChangeText={(password) => updatePassword (password)} placeholder="Password" placeholderTextColor={'rgba(0,0,0,0.5)'}/>
+      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#1E88E5'}>
+        <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableHighlight>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={() => register()}>
-          <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
+          <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
               Register
             </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => forgotPassword()}>
-          <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
+          <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
               Forgot Password
             </Text>
         </TouchableOpacity>
@@ -110,6 +113,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
     </View>
   );
 };
+
 LoginScreen.propTypes = {
   // submitLogin: React.PropTypes.func.isRequired,
   // forgotPassword: React.PropTypes.func.isRequired,
