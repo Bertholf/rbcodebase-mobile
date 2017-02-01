@@ -12,7 +12,7 @@ import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
-import Profile from './components/Profile/ProfileView';
+import Profile from './components/Profile/Profile';
 import Setting from './components/Setting/Setting';
 import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy.js';

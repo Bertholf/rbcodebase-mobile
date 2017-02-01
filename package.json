@@ -44,6 +44,7 @@
     "superagent": "^3.0.0"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.7.1",
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
     "eslint": "^3.13.1",
