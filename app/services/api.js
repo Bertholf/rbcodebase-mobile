@@ -50,6 +50,8 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
-  mockery.onGet('/notification').reply(200, notifFactory());
+  mockery.onGet('/notification').reply(200, {
+    data: notifFactory(),
+  });
 });
 export default api;
