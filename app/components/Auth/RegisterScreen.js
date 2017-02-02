@@ -10,6 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import styles from './styles';
+import {GoogleSigninButton} from 'react-native-google-signin';
+import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 
 const { width } = Dimensions.get('window');
