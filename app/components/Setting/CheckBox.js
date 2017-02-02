@@ -19,7 +19,7 @@ class CheckBox extends Component {
     super(props);
 
     this.state = {
-      internalChecked: props.checked,
+      internalChecked: false,
     };
 
     this.onChange = this.onChange.bind(this);
