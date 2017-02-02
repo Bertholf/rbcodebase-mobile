@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
 import notifService from '../../services/notif';
 
 const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   time: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#f5f5f5',
     fontWeight: 'bold',
   },
@@ -62,8 +62,10 @@ export default class Notification extends React.Component {
   }
 
   componentDidMount() {
-    notifService.getNotif().then(data => this.setState({ notif: data }));
-    console.log('hello message', this.state.notif.message);
+    notifService.getNotif().then((data) => {
+      this.setState({ notif: data, loading: false });
+      console.log('hello message', this.state.notif);
+    });
   }
 
   renderRow(rowData) {
@@ -74,7 +76,7 @@ export default class Notification extends React.Component {
             <Image source={{ uri: this.state.notif.image }} style={styles.photo} />
             <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
               <Text style={styles.user}>{rowData}</Text>
-              <Text style={styles.detail}> {this.state.notif.message} </Text>
+              <Text style={styles.detail} maxLength={40}> {this.state.notif.notification_total} </Text>
               <Text style={styles.time}> {this.state.notifdate_time} </Text>
             </View>
           </View>
@@ -83,11 +85,17 @@ export default class Notification extends React.Component {
     );
   }
   render() {
+      if (this.state.loading === false){
     return (
       <ListView
         dataSource={this.state.dataSource}
         renderRow={rowData => this.renderRow(rowData)}
       />
     );
+  }else{
+    return (
+      <ActivityIndicator />
+    );
   }
+}
 }
