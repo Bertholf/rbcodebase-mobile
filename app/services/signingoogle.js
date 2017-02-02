@@ -2,7 +2,7 @@ import { GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import { ActivityIndicator } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-//const url ='https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=XYZ123=';
+const url ='https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=XYZ123=';
 
 class GoogleSignIn {
   constructor() {
@@ -35,27 +35,21 @@ class GoogleSignIn {
 }
 
   getGoogleSignIn() {
+    Actions.loader();
     GoogleSignin.signIn()
     .then((user) => {
       console.log('aku dasfasf', user);
       this.setState({ user : user });
+
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
     })
-    .done();
+    .done()
     Actions.timelineList();
   }
 
-//   GoogleSignin.getAccessToken(){
-//   .then((token) => {
-//     console.log(token);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-//   .done();
-// }
+
   signOut() {
     GoogleSignin.revokeAccess().then(() => GoogleSignin.signOut()).then(() => {
       this.setState({ user: null });
