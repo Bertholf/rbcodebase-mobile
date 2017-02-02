@@ -8,7 +8,7 @@ import {
      ScrollView,
      ActivityIndicator,
 } from 'react-native';
-import profileService from '../../services/profile';
+import me from '../../services/me';
 
 const styles = StyleSheet.create({
   welcome: {
@@ -202,7 +202,7 @@ export default class Profile extends Component {
     };
   }
   componentDidMount() {
-    profileService.getProfile()
+    me.getMe()
     .then(data => this.setState({ profile: data, loading: false }));
   }
 
@@ -223,7 +223,7 @@ export default class Profile extends Component {
               />
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.user.first_name} {this.state.profile.user.last_name}
+                  {this.state.profile.firstName} {this.state.profile.lastName}
                 </Text>
               </View>
               <View style={styles.textInform} >
