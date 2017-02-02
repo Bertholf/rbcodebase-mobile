@@ -43,7 +43,7 @@ export default class Setting extends Component {
             </View>
           </TouchableOpacity>
           <View style={styles.list1}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.deactive()}>
               <Text style={styles.deactive}>Deactive</Text>
             </TouchableOpacity>
           </View>

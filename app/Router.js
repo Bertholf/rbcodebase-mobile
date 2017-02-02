@@ -21,6 +21,7 @@ import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';
 import Account from './components/Profile/AccountSetting';
+import Deactivate from './components/Deactivate/Deactivate';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -77,6 +78,9 @@ const Routing = () => (
             />
             <Scene
               key={'loader'} component={Loader} hideNavBar
+            />
+            <Scene
+              key={'deactive'} component={Deactivate} title={'Deactivate'}
             />
           </Scene>
         </Scene>
