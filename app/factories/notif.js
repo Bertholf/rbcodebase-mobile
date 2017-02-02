@@ -8,7 +8,7 @@ const notif = () => ({
   image: faker.image.avatar(),
   from: faker.name.firstName(),
   message: faker.lorem.text(),
-  date_time: faker.date.past(),
+  date_time: faker.date.weekday(),
   notification_total: faker.lorem.sentences(),
 });
 export default notif;
