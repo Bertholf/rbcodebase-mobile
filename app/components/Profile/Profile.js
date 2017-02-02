@@ -21,20 +21,28 @@
       <View style={styles.container}>
         <View style = {styles.backgroundContainer}>
           <Image source = {require('./../../images/gunung.jpg')} resizeMode = 'cover' style = {styles.backdrop} />
+
+            <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
           <View style ={styles.backgroundname}>
-          <Text style = {styles.headline} colors={['#F00', 'transparent']}>Abu Dzar Alghifari</Text>
-         </View>
-          <View style={styles.textInform}>
-          <Text style={styles.pos}>10 Post</Text>
-          <Text style={styles.followers}>10K Followers</Text>
-        <TouchableOpacity onPress={()=>this.toggleSwitch()}>
-             <Text style = {styles.button}>
-                {this.state.clicked ? 'Follow' : 'Message' }</Text>
-          </TouchableOpacity>
+            <Text style = {styles.headline} >Abu Dzar Alghifari</Text>
           </View>
         </View>
-        <View>
-          <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
+        <View style={styles.textInform} colors={['#F00', 'transparent']}>
+          <View style={{marginLeft: 10, marginRight: 10, width: 70}}>
+            <Text style={styles.pos}>Post</Text>
+            <Text style={styles.pos}>10000</Text>
+          </View>
+          <View style={{width: 70}}>
+            <Text style={styles.followers}>Followers</Text>
+            <Text style={styles.followers}>10000K</Text>
+          </View>
+          <TouchableOpacity onPress={()=>this.toggleSwitch()}>
+             <Text style = {styles.button}>
+                {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+             <Text style = {styles.button}>Message</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.biodata}>
         <Text style={styles.bio}>Bio</Text>
@@ -73,6 +81,23 @@
   }
 
   var styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+    backdrop: {
+      flex:1,
+      height:200,
+    },
+    backgroundname: {
+    },
+    headline: {
+      fontSize: 20,
+      fontWeight:'bold',
+      textAlign: 'center',
+      color: 'rgba(255,255,255,0.9)',
+      bottom: 50,
+    },
     welcome: {
      fontSize: 20,
      textAlign: 'center',
@@ -82,61 +107,28 @@
    touchable: {
      borderRadius: 100
    },
-   button: {
-     backgroundColor: '#FF0000',
-     borderRadius: 100,
-     height: 200,
-     width: 200,
-     justifyContent: 'center'
-   },
-    backgroundContainer: {
-      position: 'absolute',
-      height:180,
-      width:500,
-
-    },
-    container: {
-      flex: 1,
-    },
     overlay: {
       opacity: 0.5,
       backgroundColor: '#000000'
     },
     logo: {
-      backgroundColor: 'rgba(0,0,0,0)',
+      position: 'absolute',
+      left: 3,
+      bottom: 30,
       width: 90,
       height: 90,
       borderRadius:50,
-      marginTop:80,
-      marginLeft:20,
       flexDirection:'row',
       borderWidth: 1,
       borderColor:'grey'
       },
-    backdrop: {
-      flex:1,
-      flexDirection: 'row',
-      height:200,
-      width:500,
-    },
-    headline: {
-      fontSize: 20,
-      fontWeight:'bold',
-      textAlign: 'center',
-      color: 'white',
-      marginTop: -28,
-      backgroundColor: 'hsla(20,100%,100%,0.3)',
-      marginRight:110
-    },
     button: {
        flexDirection: 'row',
        padding: 8,
        backgroundColor: '#2196F3',
-       //justifyContent:'space-between',
        color: 'white',
        marginLeft:10,
-       alignItems:'center',
-       marginTop: 5,
+       marginTop: 2,
        borderRadius: 2,
     },
     follow: {
@@ -145,7 +137,7 @@
        backgroundColor: '#2196F3',
        color: 'white',
        fontSize:15,
-        borderRadius: 10,
+       borderRadius: 10,
     },
     images: {
      height:100,
@@ -190,18 +182,12 @@
    padding:6
    },
    pos: {
-   flexDirection:'row',
-   justifyContent: 'space-around',
-   marginTop: 6,
-   padding:6,
-   color:'#2196F3'
+   color:'rgba(0,0,0,0.9)',
+   textAlign: 'center',
    },
    followers: {
-   flexDirection:'row',
-   marginTop: 6,
-   justifyContent: 'space-around',
-   padding:6,
-   color:'#2196F3'
+   color:'#000',
+   textAlign: 'center',
   },
   bio: {
   flexDirection:'row',
@@ -217,7 +203,7 @@
   },
   isi2: {
     flexDirection:'row',
-    color:'#FF5722',
+    color:'#2196F3',
     marginLeft:240,
     marginBottom:12,
     borderRadius: 2,
@@ -236,10 +222,12 @@
      marginLeft:10
      },
    textInform: {
-     marginLeft: 100,
      flexDirection:'row',
-     backgroundColor: 'rgba(0,0,0,0)',
-     flexDirection:'row',
+     backgroundColor: 'hsla(20,100%,100%,0.3)',
+     top: -25,
+     paddingBottom: 2,
+     borderBottomWidth: 1,
+     borderColor: 'grey',
    },
 
    posisi: {
@@ -253,12 +241,11 @@
 
    biodata: {
      flexDirection:'column',
-     backgroundColor: 'rgba(0,0,0,0)',
-     marginTop: 20,
      borderBottomWidth:1,
      borderColor:'grey',
      marginLeft:20,
-     marginRight:20
+     marginRight:20,
+     top: -25,
    },
    imgCameraContainer: {
      position: 'absolute',
