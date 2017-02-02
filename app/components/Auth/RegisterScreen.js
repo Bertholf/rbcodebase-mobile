@@ -10,6 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import styles from './styles';
+import {GoogleSigninButton} from 'react-native-google-signin';
+import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 
 const { width } = Dimensions.get('window');
@@ -97,7 +99,7 @@ export default class Register extends Component {
             <TouchableOpacity activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()} >
               <Image source={facebook} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
+            <TouchableOpacity activeOpacity={0.7} onPress={() => GoogleSignIn.getGoogleSignIn()} >
               <Image source={google} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>

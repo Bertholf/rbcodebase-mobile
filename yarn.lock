@@ -3417,8 +3417,8 @@ node-notifier@^4.6.1:
     which "^1.0.5"
 
 node-pre-gyp@^0.6.29:
-  version "0.6.32"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.32.tgz#fc452b376e7319b3d255f5f34853ef6fd8fe1fd5"
+  version "0.6.33"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.33.tgz#640ac55198f6a925972e0c16c4ac26a034d5ecc9"
   dependencies:
     mkdirp "~0.5.1"
     nopt "~3.0.6"
@@ -3865,6 +3865,10 @@ react-native-experimental-navigation@0.26.x:
 react-native-fbsdk@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-0.5.0.tgz#3ccd67d189755df11d366b8de9acb91ea2300e6e"
+
+react-native-google-signin@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-0.8.1.tgz#7b3c6898aadb2ceb964ebe725a2e85be223ef636"
 
 react-native-localization@^0.1.26:
   version "0.1.26"
