@@ -84,10 +84,10 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.hikerbot.app"
+        applicationId "com.rbcodebase.app"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -114,6 +114,10 @@ android {
       }
     }
     buildTypes {
+        debug{
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release2
+        }
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -143,10 +147,10 @@ dependencies {
     compile project(':react-native-mapbox-gl')
     compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:25.1.1"
     compile "com.android.support:multidex:1.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile 'com.google.android.gms:play-services-auth:10.0.0'
+    compile 'com.google.android.gms:play-services-auth:10.0.1'
     compile(project(":react-native-google-signin")){
         exclude group: "com.google.android.gms" // very important
     }

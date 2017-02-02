@@ -1,52 +1,35 @@
 import { GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
-const url ='https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=XYZ123=';
 
 class GoogleSignIn {
   constructor() {
     this.state = {
       user: null,
     };
-    this.setupGoogleSignin();
+    GoogleSignin.configure({
+      scopes: ['email', 'profile'],
+      webClientId: '855412335195-5f869c8610qr44dbl3tcpi2a477mu657.apps.googleusercontent.com',
+      offlineAccess: true
+    });
   }
-  componentDidMount() {
-    this.setupGoogleSignin();
+
+
+  setupGoogleSignin() {
+    return GoogleSignin.hasPlayServices({ autoResolve: true });
   }
-
-
-  async setupGoogleSignin() {
-    try {
-      await GoogleSignin.hasPlayServices({ autoResolve: true });
-      await GoogleSignin.configure({
-        scopes: ['https://www.googleapis.com/auth/calendar'],
-        webClientId: '867788377702-gmfcntqtkrmdh3bh1dat6dac9nfiiku1.apps.googleusercontent.com',
-        offlineAccess: true
-      });
-
-      const user = await GoogleSignin.currentUserAsync();
-      console.log(user);
-      this.setState({user});
-       }
-  catch (err) {
-     console.log("Play services error", err.code, err.message);
-   }
-}
 
   getGoogleSignIn() {
-    Actions.loader();
-    GoogleSignin.signIn()
-    .then((user) => {
-      console.log('aku dasfasf', user);
-      this.setState({ user : user });
-
+    // Actions.loader();
+    this.setupGoogleSignin().then(() => GoogleSignin.signIn())
+    .then((received) => {
+      const user = GoogleSignin.currentUser();
+      Actions.timelineList();
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);
     })
-    .done()
-    Actions.timelineList();
+    .done();
   }
 
 

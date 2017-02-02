@@ -18,7 +18,6 @@ import Setting from './components/Setting/Setting';
 import Privacy from './components/Privacy/privacy.js';
 import Notifications from './components/Timeline/notification';
 import NavigationDrawer from './layouts/NavigationDrawer';
-import loader from './layouts/loader';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -63,9 +62,6 @@ const Routing = () => (
             />
             <Scene
               key={'chat'} component={Chat} title={'Profile'}
-            />
-            <Scene
-              key={'loader'} component={loader} title={''}
             />
           </Scene>
         </Scene>
