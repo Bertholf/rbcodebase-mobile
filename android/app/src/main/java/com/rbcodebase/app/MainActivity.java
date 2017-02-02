@@ -1,4 +1,4 @@
-package com.hikerbot.app;
+package com.rbcodebase.app;
 
 import com.facebook.react.ReactActivity;
 

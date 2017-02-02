@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "axios-mock-adapter": "^1.7.1",
+    "faker": "^3.1.0",
     "qs": "^6.3.0",
     "react": "~15.4.0-rc.4",
     "react-native": "0.40.0",
@@ -20,6 +22,7 @@
     "react-native-code-push": "^1.17.0-beta",
     "react-native-drawer": "^2.3.0",
     "react-native-drawer-layout": "^1.1.0",
+    "react-native-google-signin": "^0.8.1",
     "react-native-fbsdk": "^0.5.0",
     "react-native-localization": "^0.1.26",
     "react-native-mapbox-gl": "^5.1.0",
@@ -41,6 +44,7 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.7.1",
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
     "eslint": "^3.13.1",

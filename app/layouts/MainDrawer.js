@@ -11,7 +11,11 @@ import {
 import { Actions } from 'react-native-router-flux';
 import FacebookLogout from './../services/FacebookLogout';
 
+<<<<<<< HEAD
 const { width, height } = Dimensions.get('window');
+=======
+const { width,height } = Dimensions.get('window');
+>>>>>>> master
 const styles = StyleSheet.create({
   container: {
     flex: 1,
