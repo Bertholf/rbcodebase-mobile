@@ -102,7 +102,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         </TouchableOpacity>
         <TouchableOpacity onPress={() => forgotPassword()}>
           <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
-              Forgot Password
+              Forgot Password?
             </Text>
         </TouchableOpacity>
       </View>
