@@ -24,19 +24,19 @@ export default class Setting extends Component {
     if (!this.state.loading){
       return (
         <View style={styles.container}>
-          <TouchableOpacity onPress={Actions.account(this.state.setting.account)} >
+          <TouchableOpacity onPress={() => Actions.account(this.state.setting.account)} >
             <View style={styles.list}>
               <Image style={styles.imagesLeft} source={require('../../images/ic_account_box_black_24dp.png')} />
               <Text style={styles.text}>Account</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.privacy(this.state.setting.privacy)}>
+          <TouchableOpacity onPress={() => Actions.privacy(this.state.setting.privacy)}>
             <View style={styles.list}>
               <Image style={styles.imagesLeft} source={require('../../images/ic_build_black_24dp.png')} />
               <Text style={styles.text}>Privacy</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.email(this.state.setting.emailNotification)}>
+          <TouchableOpacity onPress={() => Actions.email(this.state.setting.emailNotification)}>
             <View style={styles.list}>
               <Image style={styles.imagesLeft} source={require('../../images/ic_contact_mail_black_24dp.png')} />
               <Text style={styles.text}>Email</Text>
