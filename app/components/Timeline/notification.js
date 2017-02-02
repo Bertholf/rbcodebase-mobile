@@ -36,9 +36,10 @@ const styles = StyleSheet.create({
 });
 
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loading: true,
       notif: {},
@@ -46,7 +47,8 @@ export default class Notification extends React.Component {
   }
 
   componentDidMount() {
-    notifService.getNotif().then((data) => {
+    notifService.getNotif()
+    .then((data) => {
       this.setState({ notif: data, loading: false });
       console.log('hello message', this.state.notif);
     });
@@ -55,20 +57,20 @@ export default class Notification extends React.Component {
   render() {
     if (this.state.loading === false){
       return (
-        <ScrollView>
-          {this.state.notif.data.map((data) => (
+        <ListView
+          dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
             <TouchableOpacity>
               <View style={styles.container}>
-                <Image source={{ uri: data.image }} style={styles.photo} />
+                <Image source={{ uri: rowData.image }} style={styles.photo} />
                 <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
-                  <Text style={styles.user}>{data.first_name} {data.last_name}</Text>
-                  <Text style={styles.detail}>{data.message}</Text>
-                  <Text style={styles.time}> {data.date_time} </Text>
+                  <Text style={styles.user}>{rowData.first_name} {rowData.last_name}</Text>
+                  <Text style={styles.detail}>{rowData.message}</Text>
+                  <Text style={styles.time}>{rowData.date_time}</Text>
                 </View>
               </View>
             </TouchableOpacity>
-        ))}
-        </ScrollView>
+          }
+        />
       );
     } else {
       return (
