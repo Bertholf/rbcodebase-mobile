@@ -253,11 +253,11 @@ export default class Profile extends Component {
               </View>
               <View style={styles.posisi}>
                 <Image style = {styles.icon} source = {require('./../../images/mountain.png')}/>
-                <Text style={styles.isi}>Everest Mountain</Text>
+                <Text style={styles.isi}>from: {this.state.profile.from}</Text>
               </View>
               <View style={styles.posisi}>
                 <Image style={styles.location} source = {require('./../../images/live.png')} />
-                <Text style={styles.isi}>{this.state.profile.live}</Text>
+                <Text style={styles.isi}>live : {this.state.profile.live}</Text>
               </View>
               <View style={styles.posisi}>
                 <TouchableOpacity>
