@@ -11,7 +11,7 @@ import styles from './styles';
 
 const alertMessage = 'Saved';
 
-const EmailNotif = () => (
+const EmailNotif = ( props ) => (
   <View style={styles.container1}>
     <View style={{ height: 50, backgroundColor: '#2196F3', borderBottomWidth: 1, borderColor: 'white', justifyContent: 'center' }}>
       <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Email Notifications</Text>
@@ -19,35 +19,35 @@ const EmailNotif = () => (
     <View style={styles.listNotifContainer}>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone follows me</Text>
-        <CheckBox />
+        <CheckBox value={props.followMe} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone likes my post</Text>
-        <CheckBox />
+        <CheckBox value={props.likeMyPost} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone share my post</Text>
-        <CheckBox />
+        <CheckBox value={props.shareMyPost} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone comments my post</Text>
-        <CheckBox />
+        <CheckBox value={props.commentMyPost} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone likes my comment</Text>
-        <CheckBox />
+        <CheckBox value={props.likeMyComment} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone replies to my comment</Text>
-        <CheckBox />
+        <CheckBox value={props.repliesMyComment} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone joins my group</Text>
-        <CheckBox />
+        <CheckBox value={props.joinMyGroup} />
       </View>
       <View style={styles.textListContainer}>
         <Text style={styles.textListNotif}>When someone likes my page</Text>
-        <CheckBox />
+        <CheckBox value={props.likeMyPage} />
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-end', margin: 20 }}>
         <TouchableOpacity
