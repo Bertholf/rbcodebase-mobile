@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
+import notifService from '../../services/notif';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,6 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196f3',
     borderColor: '#ffffff',
     borderWidth: 2,
+    marginRight: 5,
   },
   user: {
     marginLeft: 3,
@@ -17,65 +19,63 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   photo: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
     marginLeft: 2,
     marginTop: 6,
-    marginBottom: 6,
+    marginBottom: 4,
   },
   detail: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#fff',
-    marginRight: 5,
-
   },
   time: {
-    fontSize: 12,
-    color: '#f5f5f5',
-    fontWeight: 'bold',
+    fontSize: 10,
+    color: '#fff',
   },
 });
-console.log("helli", ListView);
+
+
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {
-    super(props);
-
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    super(props)
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John',
-        'Joel',
-        'James',
-        'Jimmy',
-        'Jabkbkbckson',
-        'Jillian',
-        'Julie',
-        'Devin',
-      ]),
+      loading: true,
+      notif: {},
     };
   }
-  renderRow(rowData) {
-    return (
-      <ScrollView>
-        <TouchableOpacity>
-          <View style={styles.container}>
-            <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.photo} />
-            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight:50 }}>
-              <Text style={styles.user}>{rowData}</Text>
-              <Text style={styles.detail}>Lorem Ipsum is simply dumy text ever. Since 1500 detail detail deatail </Text>
-              <Text style={styles.time}>Date/time</Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </ScrollView>
-    );
+
+  componentDidMount() {
+    notifService.getNotifications()
+    .then((data) => {
+      this.setState({ notif: data, loading: false });
+      console.log('hello message', this.state.notif);
+    });
   }
+
   render() {
-    return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={rowData => this.renderRow(rowData)}
-      />
-    );
+    if (this.state.loading === false){
+      return (
+        <ListView
+          dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
+            <TouchableOpacity>
+              <View style={styles.container}>
+                <Image source={{ uri: rowData.image }} style={styles.photo} />
+                <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
+                  <Text style={styles.user}>{rowData.first_name} {rowData.last_name}</Text>
+                  <Text style={styles.detail}>{rowData.message}</Text>
+                  <Text style={styles.time}>{rowData.date_time}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          }
+        />
+      );
+    } else {
+      return (
+        <ActivityIndicator />
+      );
+    }
   }
 }

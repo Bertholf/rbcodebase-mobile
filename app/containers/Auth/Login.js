@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
 import { updateUsername, updatePassword, submitLogin } from '../../actions/Auth';
 import me from '../../services/me';
+import notif from '../../services/notif';
 import userFactory from '../../factories/user';
 
 const mapStateToProps = ({ app }) => ({
