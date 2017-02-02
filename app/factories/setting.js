@@ -6,7 +6,7 @@ const setting = () => ({
   privacy: {
     confirmFollow: faker.random.boolean(),
     whoCanFollow: faker.random.boolean(),
-    whoCanCommnet: faker.random.boolean(),
+    whoCanComment: faker.random.boolean(),
     whoCanPost: faker.random.boolean(),
   },
   emailNotification: {

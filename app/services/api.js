@@ -52,5 +52,6 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
     data: timelineFactory(),
   });
   mockery.onGet('/setting').reply(200, settingfactory());
+  mockery.onPut('/setting').reply(200);
 });
 export default api;
