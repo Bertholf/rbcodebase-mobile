@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import notifService from '../../services/notif';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,8 +27,7 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 14,
     color: '#fff',
-    marginRight: 5,
-
+    marginRight: 10,
   },
   time: {
     fontSize: 12,
@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-console.log("helli", ListView);
+
+
 export default class Notification extends React.Component {
   constructor(props) {
     super(props);
@@ -52,18 +53,29 @@ export default class Notification extends React.Component {
         'Julie',
         'Devin',
       ]),
+      notif: {},
     };
+
+    // notifService.getNotif()
+    // .then(data => this.setState({ notif: data }));
+    // console.log('hello message', this.state.notif.message);
   }
+
+  componentDidMount() {
+    notifService.getNotif().then(data => this.setState({ notif: data }));
+    console.log('hello message', this.state.notif.message);
+  }
+
   renderRow(rowData) {
     return (
       <ScrollView>
         <TouchableOpacity>
           <View style={styles.container}>
-            <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.photo} />
-            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight:50 }}>
+            <Image source={{ uri: this.state.notif.image }} style={styles.photo} />
+            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
               <Text style={styles.user}>{rowData}</Text>
-              <Text style={styles.detail}>Lorem Ipsum is simply dumy text ever. Since 1500 detail detail deatail </Text>
-              <Text style={styles.time}>Date/time</Text>
+              <Text style={styles.detail}> {this.state.notif.message} </Text>
+              <Text style={styles.time}> {this.state.notifdate_time} </Text>
             </View>
           </View>
         </TouchableOpacity>

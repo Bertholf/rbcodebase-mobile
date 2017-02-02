@@ -3,6 +3,7 @@ import user from './user';
 
 const notif = () => ({
   id: faker.random.number(),
+  user: faker.name.firstName(),
   read: faker.random.boolean(),
   image: faker.image.avatar(),
   from: faker.name.firstName(),

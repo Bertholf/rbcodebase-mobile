@@ -3,6 +3,7 @@ import querystring from 'qs';
 import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
+import notifFactory from '../factories/notif';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -45,9 +46,10 @@ class Api {
 
 const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   const mockery = new MockAdapter(instance, { delayResponse: 2000 });
-  mockery.onGet('/me').reply(200, userFactory());
-  mockery.onGet('/timeline').reply(200, {
-    data: timelineFactory(),
-  });
+  // mockery.onGet('/me').reply(200, userFactory());
+  // mockery.onGet('/timeline').reply(200, {
+  //   data: timelineFactory(),
+  // });
+  mockery.onGet('/notification').reply(200, notifFactory());
 });
 export default api;
