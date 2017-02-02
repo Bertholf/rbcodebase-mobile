@@ -4,6 +4,7 @@ const user = () => ({
   id: faker.random.number(),
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
+  username: faker.internet.userName(),
   email: faker.internet.email(),
   password: faker.internet.password(),
   gender: faker.random.arrayElement(['male', 'female']),
