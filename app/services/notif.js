@@ -1,5 +1,5 @@
 import api from './api';
 
 export default{
-  getNotif: () => api.get('/notification'),
+  getNotifications: () => api.get('/notifications'),
 };
