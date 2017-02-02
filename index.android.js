@@ -11,10 +11,10 @@ import {
 import App from './app/App';
 
 
-import App1 from './app/components/Profile/Profile';
+import App1 from './app/components/Privacy/privacy';
 
 
 const HikerApp = () => (
-  <App1 />
+  <App />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp)

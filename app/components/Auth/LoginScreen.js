@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
 import FacebookLogin from './../../services/FacebookLogin';
 
 const google = require('./../../images/login/google.png');
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
 const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
+      <ScrollView>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Image source={logo} style={styles.logo} />
       </View>
@@ -104,6 +105,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
             </Text>
         </TouchableOpacity>
       </View>
+    </ScrollView>
     </View>
   );
 };
