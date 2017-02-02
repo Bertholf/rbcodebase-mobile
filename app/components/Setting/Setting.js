@@ -5,11 +5,12 @@ import { Actions } from 'react-native-router-flux';
 
 const { width } = Dimensions.get('window');
 const Setting = () => {
-    return (
-      <View style={styles.container}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.kotakView}>
         <TouchableOpacity onPress={Actions.account} >
           <View style={styles.list}>
-          <Image style={styles.imagesLeft} source={require('../../images/ic_account_box_black_24dp.png')} />
+            <Image style={styles.imagesLeft} source={require('../../images/ic_account_box_black_24dp.png')} />
             <Text style={styles.text}>Account</Text>
           </View>
         </TouchableOpacity>
@@ -25,12 +26,13 @@ const Setting = () => {
             <Text style={styles.text}>Email</Text>
           </View>
         </TouchableOpacity>
+      </View>
         <TouchableOpacity>
           <View style={styles.list1}>
             <Text style={styles.deactive}>Deactive</Text>
           </View>
         </TouchableOpacity>
-      </View>
-    );
+    </View>
+  );
 };
 export default Setting;

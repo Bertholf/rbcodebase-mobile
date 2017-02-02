@@ -11,7 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import FacebookLogout from './../services/FacebookLogout';
 
-const { width,height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     borderWidth: 1,
     borderRadius: 40,
+    borderColor: '#2196F3',
   },
   menu: {
     fontSize: 20,
@@ -66,6 +67,8 @@ const styles = StyleSheet.create({
 });
 
 const dashboard = require('./../images/ic_dashboard_black_24dp.png');
+const inbox2 = require('./../images/ic_question_answer_black_24dp.png');
+const listfriend = require('./../images/plainicon.com-39373-79e6-24px.png');
 const profile = require('./../images/ic_perm_identity_black_24dp.png');
 const notifications = require('./../images/ic_notifications_black_24dp.png');
 const setting = require('./../images/ic_settings_black_24dp.png');
@@ -116,13 +119,49 @@ const MainDrawer = () => {
                 <TouchableOpacity>
                   <Image
                     style={styles.icon}
+                    source={inbox2}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity onPress={Actions.inbox}>
+                  <Text style={styles.menu}>
+                    Inbox
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
+                    source={listfriend}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity onPress={Actions.chatfriend}>
+                  <Text style={styles.menu}>
+                    List Friend
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={styles.viewIcon}>
+                <TouchableOpacity>
+                  <Image
+                    style={styles.icon}
                     source={profile}
                   />
                 </TouchableOpacity>
               </View>
               <View>
-                <TouchableOpacity>
-                  <Text onPress={Actions.profile} style={styles.menu}>
+                <TouchableOpacity onPress={Actions.profile}>
+                  <Text style={styles.menu}>
                     My Profile
                   </Text>
                 </TouchableOpacity>

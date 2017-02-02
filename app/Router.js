@@ -34,6 +34,12 @@ const Routing = () => (
               key="setting" component={Setting} title="Setting"
             />
             <Scene
+              key="chatfriend" component={ChatListFriendView} title="ChatListFriendView"
+            />
+            <Scene
+              key="inbox" component={Inbox} tittle="Inbox"
+            />
+            <Scene
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
             />
             <Scene

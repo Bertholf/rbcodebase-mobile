@@ -4,7 +4,7 @@ const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#dddddd',
+    backgroundColor: 'white',
     padding: 10,
     elevation: 20,
   },
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 15,
-    borderColor: 'white',
+    borderColor: 'black',
     borderWidth: 1,
   },
   list: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
-    borderBottomWidth: 0,
+    borderBottomWidth: 4,
   },
   list1: {
     backgroundColor: '#2196F3',
@@ -41,6 +41,11 @@ const styles = StyleSheet.create({
   deactive: {
     fontSize: 25,
     color: 'white',
+  },
+  kotakView: {
+    flex : 5,
+    borderWidth: 4,
+    borderColor: 'white',
   },
 })
 
