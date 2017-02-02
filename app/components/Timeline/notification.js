@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196f3',
     borderColor: '#ffffff',
     borderWidth: 2,
+    marginRight:5,
   },
   user: {
     marginLeft: 3,
@@ -18,21 +19,19 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   photo: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
     marginLeft: 2,
     marginTop: 6,
-    marginBottom: 6,
+    marginBottom: 4,
   },
   detail: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#fff',
-    marginRight: 10,
   },
   time: {
-    fontSize: 14,
-    color: '#f5f5f5',
-    fontWeight: 'bold',
+    fontSize: 10,
+    color: '#fff',
   },
 });
 
@@ -44,14 +43,12 @@ export default class Notification extends React.Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       dataSource: ds.cloneWithRows([
-        'John',
-        'Joel',
-        'James',
-        'Jimmy',
-        'Jabkbkbckson',
-        'Jillian',
-        'Julie',
-        'Devin',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
       ]),
       notif: {},
     };
@@ -76,8 +73,8 @@ export default class Notification extends React.Component {
             <Image source={{ uri: this.state.notif.image }} style={styles.photo} />
             <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
               <Text style={styles.user}>{rowData}</Text>
-              <Text style={styles.detail} maxLength={40}> {this.state.notif.notification_total} </Text>
-              <Text style={styles.time}> {this.state.notifdate_time} </Text>
+              <Text style={styles.detail}>{this.state.notif.message}</Text>
+              <Text style={styles.time}> {this.state.notif.date_time} </Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -89,7 +86,7 @@ export default class Notification extends React.Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={rowData => this.renderRow(rowData)}
+        renderRow={rowData => this.renderRow(this.state.notif.from)}
       />
     );
   }else{
