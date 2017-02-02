@@ -46,11 +46,10 @@ class Api {
 
 const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   const mockery = new MockAdapter(instance, { delayResponse: 2000 });
-  mockery.onGet('/me').reply(200, userFactory());
+  mockery.onGet('/me').reply(200, profilefactory());
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
-  mockery.onGet('/profile').reply(200, profilefactory());
-  mockery.onPut('/profile').reply(200);
+  mockery.onPut('/me').reply(200);
 });
 export default api;

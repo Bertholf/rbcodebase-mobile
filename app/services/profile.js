@@ -1,6 +1,6 @@
 import api from './api';
 
 export default {
-  getProfile: () => api.get('/profile'),
-  setProfile: json => api.put('/profile', json),
+  getProfile: () => api.get('/me'),
+  setProfile: json => api.put('/me', json),
 };
