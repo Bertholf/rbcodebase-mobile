@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView, ActivityIndicator } from 'react-native';
 import friend from '../../services/friend';
+import {Actions} from 'react-native-router-flux';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -39,12 +40,12 @@ const styles = StyleSheet.create({
   },
   button: {
      flexDirection: 'row',
-     padding: 8,
+     padding: 6,
      backgroundColor: '#2196F3',
      justifyContent:'space-between',
      color: 'white',
      alignItems:'center',
-     marginTop: 5,
+     marginTop: 7,
      borderRadius: 2,
   },
   time: {
@@ -53,12 +54,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-console.log("helli", ListView);
+
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Friendlist extends React.Component {
+  state = {
+    clicked : true
+  }
   constructor(props) {
       super(props);
       this.state = {
-        clicked: false,
+        clicked: true,
         loading: true,
         friendlist: {},
       };
@@ -67,35 +72,34 @@ export default class Friendlist extends React.Component {
       friend.getFriend()
       .then((data) => {
         this.setState({ friendlist: data, loading: false });
-        console.log('hAYYYY ',this.state);
+        console.log('hAYYYY ',this.state.friendlist);
       }).catch(err => console.log('ERROR LOH', err));
     }
 
-    toggleSwitch() {
-      this.setState({ clicked: !this.state.clicked });
-    }
   render() {
      if (this.state.loading === false) {
     return (
-      <ScrollView>
-        {this.state.friendlist.data.map((data) => (
+      <ListView
+        dataSource={ds.cloneWithRows(this.state.friendlist.data)}  renderRow={(rowData) =>
           <TouchableOpacity>
             <View style={styles.container}>
               <View style={{flexDirection: 'row'}}>
-              <Image source={{ uri: data.image }} style={styles.photo} />
+              <Image source={{ uri: rowData.image }} style={styles.photo} />
               <View style={styles.account}>
-                <Text style={styles.user}>{data.first_name}</Text>
-                <Text style={styles.detail}>{data.user_name}</Text>
+                <TouchableOpacity onPress ={()=>Actions.profile({user: rowData})}>
+                <Text style={styles.user}>{rowData.first_name}</Text>
+              </TouchableOpacity>
+                <Text style={styles.detail}>{rowData.user_name}</Text>
               </View>
             </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>this.toggleSwitch()}>
                 <Text style = {styles.button}>
                    {this.state.clicked ? 'Follow' : 'unfollow' }</Text>
                 </TouchableOpacity>
             </View>
           </TouchableOpacity>
-        ))}
-      </ScrollView>
+        }
+      />
     );
   }else{
    return (
@@ -103,4 +107,9 @@ export default class Friendlist extends React.Component {
    );
  }
  }
-  }
+ toggleSwitch() {
+   this.setState({
+     clicked: !this.state.clicked
+   })
+ }
+ }
