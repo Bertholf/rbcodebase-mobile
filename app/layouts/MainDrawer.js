@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     marginRight: 20,
     borderWidth: 1,
     borderRadius: 40,
-    borderColor: '#2196F3',
   },
   menu: {
     fontSize: 20,
@@ -73,6 +72,7 @@ const profile = require('./../images/ic_perm_identity_black_24dp.png');
 const notifications = require('./../images/ic_notifications_black_24dp.png');
 const setting = require('./../images/ic_settings_black_24dp.png');
 const logout = require('./../images/ic_directions_run_black_24dp.png');
+
 
 const MainDrawer = () => {
   const navigationView = (
