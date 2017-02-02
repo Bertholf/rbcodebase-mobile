@@ -9,10 +9,16 @@ import {
   Alert,
   Image,
   Picker,
+  Switch,
 } from 'react-native';
 import styles from './../../components/Privacy/style.js';
 const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
+};
+
+state = {
+  trueSwitchIsOn: true,
+  falseSwitchIsOn: false,
 };
 
 const privacy = () => {
@@ -22,61 +28,82 @@ const privacy = () => {
         <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Privacy</Text>
       </View>
       <ScrollView>
-        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa' }}>
+        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Comfirm request when someone follow
           </Text>
-          <Picker style= {{width: 70}}>
-            <Picker.Item label = "Yes" value="ys"/>
-            <Picker.Item label = "No" value= "no"/>
-          </Picker>
+          <Switch
+            onValueChange={(value) => this.setState({ trueSwitchIsOn: value })}
+            value={this.state.trueSwitchIsOn}
+            style={{ marginRight: 7 }}
+            onTintColor="#2196F3"
+            thumbTintColor="#2196F3"
+            tintColor="#2196F3"
+          />
         </View>
-        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa' }}>
+        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Who can follow you
           </Text>
-          <Picker style = {{width: 70}}>
-            <Picker.Item label = "Yes" value="ys"/>
-            <Picker.Item label = "No" value= "no"/>
-          </Picker>
+          <Switch
+            onValueChange={(value) => this.setState({ trueSwitchIsOn: value })}
+            value={this.state.trueSwitchIsOn}
+            style={{ marginRight: 7 }}
+            onTintColor="#2196F3"
+            thumbTintColor="#2196F3"
+            tintColor="#2196F3"
+          />
         </View>
-        <View style ={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa'}}>
+        <View style ={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Who can comment on your posts
           </Text>
-          <Picker style = {{width: 70}}>
-            <Picker.Item label = "Yes" value="ys"/>
-            <Picker.Item label = "No" value= "no"/>
-          </Picker>
+          <Switch
+            onValueChange={(value) => this.setState({ trueSwitchIsOn: value })}
+            value={this.state.trueSwitchIsOn}
+            style={{ marginRight: 7 }}
+            onTintColor="#2196F3"
+            thumbTintColor="#2196F3"
+            tintColor="#2196F3"
+          />
         </View>
-        <View style= {{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa' }}>
+        <View style= {{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Who can post on your timeline
           </Text>
-          <Picker style = {{width: 70}}>
-            <Picker.Item label = "Yes" value="ys"/>
-            <Picker.Item label = "No" value= "no"/>
-          </Picker>
+          <Switch
+            onValueChange={(value) => this.setState({ trueSwitchIsOn: value })}
+            value={this.state.trueSwitchIsOn}
+            style={{ marginRight: 7 }}
+            onTintColor="#2196F3"
+            thumbTintColor="#2196F3"
+            tintColor="#2196F3"
+          />
         </View>
-        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa' }}>
+        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Comfirm request when someone follow
           </Text>
-          <Picker style= {{width: 70}}>
-            <Picker.Item label = "Yes" value="ys"/>
-            <Picker.Item label = "No" value= "no"/>
-          </Picker>
+          <Switch
+            onValueChange={(value) => this.setState({ trueSwitchIsOn: value })}
+            value={this.state.trueSwitchIsOn}
+            style={{ marginRight: 7 }}
+            onTintColor="#2196F3"
+            thumbTintColor="#2196F3"
+            tintColor="#2196F3"
+          />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.saveButton}
+            activeOpacity={0.8}
+            onPress={onButtonPress}
+          >
+            <Text style={styles.txtButton}>SAVE</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.saveButton}
-          activeOpacity={0.8}
-          onPress={onButtonPress}
-        >
-          <Text style={styles.txtButton}>SAVE</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };

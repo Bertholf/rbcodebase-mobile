@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   styleBackground: {
     flex: 1,
-    backgroundColor: 'aliceblue',
+    backgroundColor: '#FFF',
   },
   styleText: {
     color: '#2196F3',

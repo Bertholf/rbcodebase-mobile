@@ -15,6 +15,6 @@ import App1 from './app/components/Privacy/privacy';
 
 
 const HikerApp = () => (
-  <App />
+  <App1 />
 );
 AppRegistry.registerComponent('hikerapp', () => HikerApp)
