@@ -1,13 +1,14 @@
 import {
-  AppRegistry,
   StyleSheet,
 } from 'react-native';
 
 module.exports = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginTop: 6,
     marginBottom: 5,
+    flex: 1,
   },
   checkbox: {
     width: 26,
@@ -34,6 +35,7 @@ module.exports = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#aaa',
     height: 40,
+    paddingRight: 16,
   },
   textListNotif: {
     fontSize: 15,
@@ -45,13 +47,16 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#2196F3',
-    height: 35,
-    width: 100,
-    borderRadius: 3,
+    borderRadius: 2,
+    elevation: 2,
+    marginLeft: 16,
+    paddingRight: 16,
   },
   txtBtn: {
+    color: '#fff',
     fontSize: 20,
-    fontWeight: '100',
-    color: 'white',
+    textAlign: 'center',
+    paddingBottom: 8,
+    paddingTop: 8,
   },
 });
