@@ -2,7 +2,7 @@ import { GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import { ActivityIndicator } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-const url ='https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=XYZ123=';
+//const url ='https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=XYZ123=';
 
 class GoogleSignIn {
   constructor() {
