@@ -3,8 +3,7 @@ import user from './user';
 
 const profile = () => ({
   id: faker.random.number(),
-  firstName: user().first_name,
-  lastName: user().last_name,
+  user: user(),
   imgBackground: faker.image.image(),
   imgProfile: faker.image.people(),
   about: faker.lorem.paragraph(),

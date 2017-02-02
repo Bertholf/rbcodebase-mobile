@@ -1,18 +1,16 @@
-  import React, { Component } from 'react'
-  import {
+import React, { Component } from 'react';
+import {
      View,
      TouchableOpacity,
-     TouchableHighlight,
      Text,
      StyleSheet,
      Image,
-     ListView,
      ScrollView,
      ActivityIndicator,
-  } from 'react-native'
+} from 'react-native';
 import profileService from '../../services/profile';
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -225,7 +223,7 @@ export default class Profile extends Component {
               />
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.firstName} {this.state.profile.lastName}
+                  {this.state.profile.user.first_name} {this.state.profile.user.last_name}
                 </Text>
               </View>
               <View style={styles.textInform} >
