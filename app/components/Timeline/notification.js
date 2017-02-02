@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196f3',
     borderColor: '#ffffff',
     borderWidth: 2,
-    marginRight:5,
+    marginRight: 5,
   },
   user: {
     marginLeft: 3,
@@ -52,29 +52,28 @@ export default class Notification extends React.Component {
     });
   }
 
-  render(){
-  if (this.state.loading === false){
-    return (
-      <ScrollView>
-        {this.state.notif.data.map((data)=> (
-        <TouchableOpacity>
-          <View style={styles.container}>
-            <Image source={{ uri: data.image }} style={styles.photo} />
-            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
-              <Text style={styles.user}>{data.first_name}</Text>
-              <Text style={styles.detail}>{data.message}</Text>
-              <Text style={styles.time}> {data.date_time} </Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      ))}
-      </ScrollView>
-
-    );
-  }else{
-    return (
-      <ActivityIndicator />
-    );
+  render() {
+    if (this.state.loading === false){
+      return (
+        <ScrollView>
+          {this.state.notif.data.map((data) => (
+            <TouchableOpacity>
+              <View style={styles.container}>
+                <Image source={{ uri: data.image }} style={styles.photo} />
+                <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
+                  <Text style={styles.user}>{data.first_name} {data.last_name}</Text>
+                  <Text style={styles.detail}>{data.message}</Text>
+                  <Text style={styles.time}> {data.date_time} </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+        ))}
+        </ScrollView>
+      );
+    } else {
+      return (
+        <ActivityIndicator />
+      );
+    }
   }
-}
 }
