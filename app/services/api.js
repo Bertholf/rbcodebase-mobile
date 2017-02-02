@@ -1,38 +1,54 @@
-import request from 'superagent';
+import axios from 'axios';
+import querystring from 'qs';
+import MockAdapter from 'axios-mock-adapter';
+import userFactory from '../factories/user';
+import timelineFactory from '../factories/timeline';
 
 class Api {
-  constructor(baseUrl) {
+  constructor(baseUrl, middleware = () => {}) {
     this.baseUrl = baseUrl;
-  }
-  put(url, form, qs = {}) {
-    return this.sendRequest('PUT', url, { qs, form });
-  }
-  get(url, qs) {
-    return this.sendRequest('GET', url, { qs });
-  }
-  post(url, form, qs = {}) {
-    return this.sendRequest('POST', url, { qs, form });
-  }
-  sendRequest(url, requestMethod, data = {}) {
-    let req = request[requestMethod](url);
-    if (Object.prototype.hasOwnProperty.call(data, 'qs')) {
-      req = req.query(data.qs);
-    }
-    if ({}.hasOwnProperty.call(data, 'form') || {}.hasOwnProperty.call(data, 'json') || {}.hasOwnProperty.call(data, 'multipart')) {
-      const currentData = data.form || data.json || data.multipart;
-      req = req.send(currentData);
-    }
-    return new Promise((resolve, reject) => {
-      req.end((err, res) => {
-        if (err || !res.ok) {
-          reject(err);
-        } else {
-          resolve(res.body);
-        }
-      });
+    this.client = axios.create();
+    middleware(this.client);
+    this.client.interceptors.request.use(config => {
+      console.log(config);
+      return config;
     });
+  }
+  put(url, json, qs = {}, config) {
+    return this.sendRequest('PUT', url, { qs, json, config });
+  }
+  get(url, qs, config = {}) {
+    return this.sendRequest('GET', url, { qs, config });
+  }
+  post(url, form, qs = {}, config = {}) {
+    return this.sendRequest('POST', url, { qs, form, config });
+  }
+  delete(url, qs = {}, config = {}) {
+    return this.sendRequest('DELETE', url, { qs, config });
+  }
+  sendRequest(requestMethod, url, data = {}) {
+    const request = this.client.request({
+      method: requestMethod,
+      url,
+      baseURL: this.baseUrl,
+      params: data.qs,
+      data: data.json || querystring.stringify(data.form) || data.formData,
+      headers: data.headers,
+      timeout: 60 * 1000,
+      paramsSerializer: params => querystring.stringify(params),
+    }, data.config);
+    return request
+    .then(json => Promise.resolve(json.data))
+    .catch(error => Promise.reject(error));
   }
 }
 
-const api = new Api('https://jsonplaceholder.typicode.com');
+const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
+  const mockery = new MockAdapter(instance, { delayResponse: 2000 });
+  mockery.onGet('/me').reply(200, userFactory());
+  mockery.onPut('/me').reply(200);
+  mockery.onGet('/timeline').reply(200, {
+    data: timelineFactory(),
+  });
+});
 export default api;

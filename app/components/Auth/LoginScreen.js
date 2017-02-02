@@ -4,11 +4,12 @@ import {GoogleSigninButton} from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
 
 import GoogleSignIn from './../../services/signingoogle';
+import FacebookLogin from './../../services/FacebookLogin';
 
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
-const logo = require('./../../images/logo.jpg');
+const logo = require('./../../images/logo.png');
 
 const styles = StyleSheet.create({
   container: {
@@ -78,7 +79,7 @@ const LoginScreen = ({ submitLogin, register, signingoogle, forgotPassword, upda
       </View>
       <View style={{ alignItems: 'center', top: 10, marginBottom: 10 }} ><Text>Login With</Text></View>
       <View style={styles.otherlog}>
-        <TouchableHighlight style={styles.facebook} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+        <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
         <TouchableHighlight style={styles.google} onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>

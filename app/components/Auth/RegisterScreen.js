@@ -12,12 +12,13 @@ import {
 import styles from './styles';
 import {GoogleSigninButton} from 'react-native-google-signin';
 import GoogleSignIn from './../../services/signingoogle';
+import FacebookLogin from './../../services/FacebookLogin';
 
 const { width } = Dimensions.get('window');
-const logo = require('./../../images/logo.jpg');
-const google = require('./../../images/google-plus.png');
-const facebook = require('./../../images/facebook.png');
-const twitter = require('./../../images/twitter.png');
+const logo = require('./../../images/logo.png');
+const google = require('./../../images/login/google.png');
+const facebook = require('./../../images/login/facebook.png');
+const twitter = require('./../../images/login/twitter.png');
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
 
@@ -95,11 +96,11 @@ export default class Register extends Component {
 
           <Text style={styles.separatorText}>Register with:</Text>
           <View style={styles.buttonGroup}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()} >
+              <Image source={facebook} style={styles.icon} />
+            </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => GoogleSignIn.getGoogleSignIn()} >
               <Image source={google} style={styles.icon} />
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
-              <Image source={facebook} style={styles.icon} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
               <Image source={twitter} style={styles.icon} />

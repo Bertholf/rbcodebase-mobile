@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import codePush from 'react-native-code-push';
 import { AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
@@ -16,8 +17,15 @@ const store = createStore(combineReducers({ app: reducers }),
 // persistStore(store, {
 //   storage: AsyncStorage,
 // });
-
-const App = () => (<Provider store={store}>
-  <Routing />
-</Provider>);
-export default App;
+export default class App extends Component {
+  componentDidMount() {
+    console.log('1234');
+  }
+  render() {
+    return (
+      <Provider store={store}>
+        <Routing />
+      </Provider>
+    );
+  }
+}

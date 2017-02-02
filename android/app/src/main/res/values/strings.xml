@@ -1,4 +1,6 @@
 <resources>
 
     <string name="app_name">RBCodebase Mobile</string>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">tifpz9VaXWthvsGDRf9p1h22OsN3EkqZNr78G</string>
+    <string name="facebook_app_id">186157198528695</string>
 </resources>
