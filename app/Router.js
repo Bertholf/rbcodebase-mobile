@@ -21,6 +21,7 @@ import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';
 import Account from './components/Profile/AccountSetting';
+import Friendlist from './components/Profile/friendlist';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -38,6 +39,9 @@ const Routing = () => (
             />
             <Scene
               key={'notifications'} component={Notifications} title={'notifications'}
+            />
+            <Scene
+              key={'friendlist'} component={Friendlist} title={'friendlist'}
             />
             <Scene
               key={'account'} component={Account} title={'account'}

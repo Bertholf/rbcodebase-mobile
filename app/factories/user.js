@@ -1,9 +1,10 @@
 import faker from 'faker';
 
 const user = () => ({
-  id : faker.random.number(),
+  id: faker.random.number(),
+  image: faker.image.avatar(),
   first_name: faker.name.firstName(),
-  last_name: faker.name.lastName(),
-  follow: faker.name.follow(),
+  user_name: faker.internet.userName(),
+  follow: faker.random.boolean(),
 });
 export default user;

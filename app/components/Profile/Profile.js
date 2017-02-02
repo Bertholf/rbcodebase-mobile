@@ -9,6 +9,7 @@
      ListView,
      ScrollView
   } from 'react-native'
+  import { Actions } from 'react-native-router-flux';
 
   export default class Profile extends Component {
 
@@ -25,11 +26,13 @@
           <Text style = {styles.headline} colors={['#F00', 'transparent']}>Abu Dzar Alghifari</Text>
          </View>
           <View style={styles.textInform}>
-          <Text style={styles.pos}>10 Post</Text>
-          <Text style={styles.followers}>10K Followers</Text>
+          <Text style={styles.followers}>10 Post</Text>
+          <TouchableOpacity onPress={Actions.friendlist}>
+          <Text style={styles.pos}>10K Followers</Text>
+          </TouchableOpacity>
         <TouchableOpacity onPress={()=>this.toggleSwitch()}>
-             <Text style = {styles.button}>
-                {this.state.clicked ? 'Follow' : 'Message' }</Text>
+          <Text style = {styles.button}>
+             {this.state.clicked ? 'Follow' : 'unfollow' }</Text>
           </TouchableOpacity>
           </View>
         </View>

@@ -11,7 +11,7 @@ class Api {
     this.client = axios.create();
     middleware(this.client);
     this.client.interceptors.request.use(config => {
-      console.log(config);
+      //console.log(config);
       return config;
     });
   }
