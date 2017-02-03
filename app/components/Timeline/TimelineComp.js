@@ -8,7 +8,7 @@ import {
   Navigator,
   ListView
 } from 'react-native';
-import TimelineComment from './timelineComment';
+import timeline from '../../factories/timeline';
 
 const styles = StyleSheet.create({
   card: {
@@ -22,43 +22,51 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 10,
     textAlign: 'right',
-    paddingTop:6,
-    color:'#f8f8ff',
+    paddingTop: 6,
+    color: '#f8f8ff',
     backgroundColor: '#009688',
-    padding:8,
-    marginTop:2
+    padding: 8,
+    marginTop: 2
 
   },
   nameProfile: {
-    fontWeight:'bold',
+    fontWeight: 'bold',
     textAlign: 'left',
     color: '#ffffff',
     padding: 8,
-    fontSize:30,
+    fontSize: 30,
 
     backgroundColor: '#009688'
   },
-  mainView:{
+  mainView: {
 
-    backgroundColor:'#ffffff',
+    backgroundColor: '#ffffff',
 
   }
 });
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
-    };
+      loading: true,
+      clicked: true,
+      post:{}
+    }
   }
+  componentDidMount() {
+    timeline.getPost()
+    .then((data) => {
+      this.setState({ post: data, loading: false });
+      console.log('testing ', this.state.post);
+    }).catch((err) => console.error('SORY ERROR!!!!!!'));
+  }
+
+
   renderRow(rowData) {
     return (
-      <TouchableOpacity style={styles.mainView} onPress={()=>props.moveToDetail()}>
+      <TouchableOpacity style={styles.mainView} onPress={() => props.moveToDetail()}>
         <View style={styles.card}>
-         <Image source = {{uri: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'}} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
+         <Image source={{ uri: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' }} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
          <Text style={styles.nameProfile}>{rowData}</Text>
        </View>
         <Image source = {{uri:'http://ke5ter.com/img/route.png'}} style = {{width: 325, height: 183, justifyContent: 'center', marginLeft: 9 }}/>
