@@ -1,16 +1,16 @@
-  import React, { Component } from 'react'
-  import {
+import React, { Component } from 'react';
+import {
      View,
      TouchableOpacity,
-     TouchableHighlight,
      Text,
      StyleSheet,
      Image,
-     ListView,
-     ScrollView
-  } from 'react-native'
+     ScrollView,
+     ActivityIndicator,
+} from 'react-native';
+import me from '../../services/me';
 
-  export default class Profile extends Component {
+export default class Profile extends Component {
 
     state = {
       clicked : true
@@ -148,29 +148,22 @@
     height:20,
     width: 20,
     borderRadius: 50,
-
   },
   location: {
-    height:20,
+    height: 20,
     width: 20,
     borderRadius: 50,
-    marginBottom:12
+    marginBottom: 12,
   },
-
-   profile: {
-   flex: 1,
-   flexDirection:'column',
-   //  justifyContent: '',
+  profile: {
+    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
-    //backgroundColor: '#c5cae9',
-   //  marginBottom: 20,
-    padding:40
-
-   },
-   foto: {
-   flex: 1,
-   flexDirection:'row',
-   //  justifyContent: '',
+    padding: 40,
+  },
+  foto: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
     //backgroundColor: '#c5cae9',
    //  marginBottom: 20,
@@ -190,16 +183,16 @@
    textAlign: 'center',
   },
   bio: {
-  flexDirection:'row',
-  fontWeight:'bold',
-  padding:6,
-  color:'black',
-  marginLeft:2.5
+    flexDirection: 'row',
+    fontWeight: 'bold',
+    padding: 6,
+    color: 'black',
+    marginLeft: 2.5,
   },
   isi: {
-    flexDirection:'row',
-    color:'grey',
-    marginLeft:10,
+    flexDirection: 'row',
+    color: 'grey',
+    marginLeft: 10,
   },
   isi2: {
     flexDirection:'row',
@@ -207,12 +200,11 @@
     marginLeft:240,
     marginBottom:12,
     borderRadius: 2,
-
   },
   daki: {
-    textAlign:'right',
-    color:'blue',
-    marginLeft:100,
+    textAlign: 'right',
+    color: 'blue',
+    marginLeft: 100,
   },
    nama: {
      alignSelf: 'center',
@@ -229,16 +221,13 @@
      borderBottomWidth: 1,
      borderColor: 'grey',
    },
-
-   posisi: {
-     marginLeft: 8,
-     flexDirection:'row',
-     backgroundColor: 'rgba(0,0,0,0)',
-     marginTop:5,
-     flexDirection:'row',
-
-   },
-
+ 
+  posisi: {
+    marginLeft: 8,
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: 5,
+  },
    biodata: {
      flexDirection:'column',
      borderBottomWidth:1,
@@ -257,3 +246,4 @@
      backgroundColor: '#004D40',
    },
    })
+
