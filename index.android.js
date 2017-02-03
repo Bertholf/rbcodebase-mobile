@@ -8,10 +8,10 @@ import React from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import App from './app/App';
+import CommentView from './app/components/Comment/CommentView';
 
 const HikerApp = () => (
-  <App />
+  <CommentView />
 );
 
 AppRegistry.registerComponent('hikerapp', () => HikerApp);

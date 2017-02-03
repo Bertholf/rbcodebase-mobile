@@ -4,6 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
 import notifFactory from '../factories/notif';
+import commentFactory from '../factories/listcomment';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -53,5 +54,6 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/notifications').reply(200, {
     data: notifFactory(),
   });
+  mockery.onGet('/comment').reply(200, commentFactory());
 });
 export default api;
