@@ -8,7 +8,8 @@ import {
   Navigator,
   ListView
 } from 'react-native';
-import timeline from '../../factories/timeline';
+import TimelineComment from '../../components/Timeline/timelineComment'
+import posts from '../../services/post'
 
 const styles = StyleSheet.create({
   card: {
@@ -44,6 +45,8 @@ const styles = StyleSheet.create({
 
   }
 });
+
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
@@ -54,34 +57,38 @@ export default class MapMain extends Component {
     }
   }
   componentDidMount() {
-    timeline.getPost()
+    posts.getPosts()
     .then((data) => {
-      this.setState({ post: data, loading: false });
-      console.log('testing ', this.state.post);
-    }).catch((err) => console.error('SORY ERROR!!!!!!'));
+      this.setState({
+        post: data,
+        loading: false ,
+      });
+      console.log('WOW',this.state.posts);
+    }).catch((err) => console.log(err))
   }
 
-
-  renderRow(rowData) {
-    return (
-      <TouchableOpacity style={styles.mainView} onPress={() => props.moveToDetail()}>
-        <View style={styles.card}>
-         <Image source={{ uri: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' }} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
-         <Text style={styles.nameProfile}>{rowData}</Text>
-       </View>
-        <Image source = {{uri:'http://ke5ter.com/img/route.png'}} style = {{width: 325, height: 183, justifyContent: 'center', marginLeft: 9 }}/>
-        <Text style={styles.text}>Tangkuban Perahu</Text>
-        <Text style={styles.text}>KM</Text>
-        <TimelineComment></TimelineComment>
-      </TouchableOpacity>
-    );
+    render() {
+      if (this.state.loading === false) {
+        return (
+          <ListView
+          dataSource={ds.cloneWithRows(this.state.post.data)}  renderRow={(timeList) =>
+          <TouchableOpacity style={styles.mainView} onPress={() => props.moveToDetail()}>
+            <View style={styles.card}>
+             <Image source={{ uri: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' }} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
+             <Text style={styles.nameProfile}>{timeList.text}</Text>
+           </View>
+            <Image source={{uri:'http://ke5ter.com/img/route.png'}} style = {{width: 325, height: 183, justifyContent: 'center', marginLeft: 9 }}/>
+            <Text style={styles.text}>Tangkuban Perahu</Text>
+            <Text style={styles.text}>KM</Text>
+            <TimelineComment></TimelineComment>
+          </TouchableOpacity>
+        }
+          />
+        );
+      } else {
+        return (
+          <Text>Oke</Text>
+        );
+      }
+    }
   }
-  render() {
-    return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={rowData => this.renderRow(rowData)}
-      />
-    );
-  }
-}
