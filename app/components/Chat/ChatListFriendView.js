@@ -1,6 +1,9 @@
 import React, { Component }  from  'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text, ScrollView } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Actions } from 'react-native-router-flux';
 const menu = require('./../../images/ic_menu_white_24dp.png');
 const user = require('./../../images/64x64.png');
 const user2 = require('./../../images/user2.png');
@@ -119,6 +122,11 @@ export default class ChatListFriendView extends Component {
               </View>
             </View>
           </TouchableOpacity>
+          <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#2196F3' title="Write a Message" onPress={Actions.chat}>
+            <Icon name="md-create"/>
+          </ActionButton.Item>
+        </ActionButton>
           <View style={styles.setlist} />
         </ScrollView>
       </View>
@@ -162,12 +170,6 @@ export default class ChatListFriendView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity>
-            <Image style={styles.menu} source={menu} />
-          </TouchableOpacity>
-          <Text style={styles.title}>Contacts</Text>
-        </View>
         <TabViewAnimated
           style={styles.container}
           navigationState={this.state}

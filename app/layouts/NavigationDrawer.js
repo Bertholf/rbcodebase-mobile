@@ -26,7 +26,7 @@ const NavigationDrawer = (props) => {
       type="overlay"
       content={<MainDrawer />}
       tapToClose
-      openDrawerOffset={0.2}
+      openDrawerOffset={0.1}
       panCloseMask={0.2}
       negotiatePan
       tweenHandler={ratio => ({
