@@ -51,7 +51,7 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
-  mockery.onGet('/login').reply(200, {
+  mockery.onPost('/login').reply(200, {
     data: loginFactory(),
   });
 });
