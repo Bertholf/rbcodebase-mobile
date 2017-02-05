@@ -20,13 +20,6 @@ const styles = StyleSheet.create({
   touchable: {
     borderRadius: 100,
   },
-  button: {
-    backgroundColor: '#FF0000',
-    borderRadius: 100,
-    height: 200,
-    width: 200,
-    justifyContent: 'center',
-  },
   backgroundContainer: {
     position: 'absolute',
     height: 180,
@@ -143,11 +136,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   isi2: {
-    flexDirection: 'row',
     color: '#FF5722',
-    marginLeft: 240,
-    marginBottom: 12,
-    borderRadius: 2,
+    margin: 12,
   },
   daki: {
     textAlign: 'right',
@@ -246,18 +236,24 @@ export default class Profile extends Component {
               <Text style={styles.isi}>{this.state.profile.about}</Text>
               <Text style={styles.bio}>Last Hiking</Text>
               <View style={styles.posisi}>
-                <Image style={styles.icon} source={ require('./../../images/jarak.png')} />
+                <Image
+                  style={styles.icon} source={require('./../../images/jarak.png')}
+                />
                 <Text style={styles.isi}>1200 Km</Text>
               </View>
               <View style={styles.posisi}>
-                <Image style = {styles.icon} source = {require('./../../images/mountain.png')}/>
+                <Image
+                  style = {styles.icon} source ={require('./../../images/mountain.png')}
+                />
                 <Text style={styles.isi}>from: {this.state.profile.from}</Text>
               </View>
               <View style={styles.posisi}>
-                <Image style={styles.location} source = {require('./../../images/live.png')} />
+                <Image
+                  style={styles.location} source ={require('./../../images/live.png')}
+                />
                 <Text style={styles.isi}>live : {this.state.profile.live}</Text>
               </View>
-              <View style={styles.posisi}>
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                 <TouchableOpacity>
                   <Text style={styles.isi2}>View More</Text>
                 </TouchableOpacity>
@@ -266,7 +262,7 @@ export default class Profile extends Component {
           </View>
         </ScrollView>
       );
-    }else{
+    } else {
       return (
         <ActivityIndicator />
       );
