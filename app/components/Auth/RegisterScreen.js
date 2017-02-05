@@ -10,8 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import styles from './styles';
-import {GoogleSigninButton} from 'react-native-google-signin';
-import GoogleSignIn from './../../services/signingoogle';
+// import {GoogleSigninButton} from 'react-native-google-signin';
+// import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 
 const { width } = Dimensions.get('window');
@@ -82,7 +82,7 @@ export default class Register extends Component {
             <TextInput
               placeholder={'Password'}
               style={styles.textInput}
-              secureTextEntry={true}
+              secureTextEntry
               onChangeText={password => console.log({ password })}
             />
             <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
@@ -107,12 +107,29 @@ export default class Register extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{ paddingBottom: 16, marginRight: 16 }}>
-            <TouchableOpacity
-              activeOpacity={0.7} style={styles.btnReg}
-              onPress={() => this.register()}
-            >
-              <Text style={styles.textReg}>Register</Text>
+          <TouchableOpacity
+            activeOpacity={0.7} style={styles.btnReg} onPress={() => this.register()}
+          >
+            <Text style={styles.textReg}>Register</Text>
+          </TouchableOpacity>
+
+          <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+            <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
+            <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7 }}> OR </Text>
+            <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+          </View>
+
+          <Text style={styles.separatorText}>Register with:</Text>
+          <View style={styles.buttonGroup}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()} >
+              <Image source={facebook} style={styles.icon} />
+            </TouchableOpacity>
+            {/* <TouchableOpacity
+              activeOpacity={0.7} onPress={() => GoogleSignIn.getGoogleSignIn()} >
+              <Image source={google} style={styles.icon} />
+            </TouchableOpacity> */}
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
+              <Image source={twitter} style={styles.icon} />
             </TouchableOpacity>
           </View>
         </ScrollView>
