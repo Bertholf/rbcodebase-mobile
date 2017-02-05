@@ -7,6 +7,7 @@ import {
      Image,
      ScrollView,
      ActivityIndicator,
+     Alert,
 } from 'react-native';
 import me from '../../services/me';
 
@@ -197,7 +198,15 @@ export default class Profile extends Component {
   }
 
   toggleSwitch() {
-    this.setState({ clicked: !this.state.clicked });
+    if (!this.state.clicked) {
+      Alert.alert('Confirmation',
+               'Are you sure to unfollow this user?', [
+                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+               ]);
+    } else {
+      this.setState({ clicked: !this.state.clicked });
+    }
   }
 
   render() {
