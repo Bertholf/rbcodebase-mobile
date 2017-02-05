@@ -10,7 +10,12 @@ import {
 } from 'react-native';
 import comment from '../../services/comment';
 
-const thumb = require('./../../images/thumb.png');
+const jempol = require('./../../images/thumb.png');
+const heart = require('./../../images/hearts.png');
+const bheart = require('./../../images/blackheart.png');
+const share = require('./../../images/share.png');
+const message = require('./../../images/message.png');
+
 
 const styles = StyleSheet.create({
   container: {
@@ -56,7 +61,9 @@ const styles = StyleSheet.create({
     marginLeft: 3,
   },
   content: {
-    padding: 10,
+    paddingRight: 10,
+    paddingLeft: 5,
+    paddingBottom: 10,
     backgroundColor: '#fff',
     elevation: 5,
   },
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     height: 20,
     borderColor: '#ddd',
-    width: 83,
+    width: 75,
   },
   headerContent: {
     marginLeft: -5,
@@ -83,7 +90,11 @@ const styles = StyleSheet.create({
   headerText: {
     padding: 3,
     margin: 5,
-  }
+  },
+  heart: {
+    width: 20,
+    height: 20,
+  },
 });
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -125,21 +136,24 @@ export default class CommentView extends Component {
                 <View style={styles.action}>
                   <TouchableOpacity style={styles.button}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                      <Image style={styles.thumb} source={{ uri: 'http://downloadicons.net/sites/default/files/thumbs-up-icon-65138.png' }} />
+                      <Image style={styles.thumb} source={jempol} />
                       <Text style={styles.number} >{dataComment.numberComment}</Text>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                      <Image style={styles.thumb} source={{ uri: 'https://cdn2.iconfinder.com/data/icons/bitsies/128/Message-512.png' }} />
+                      <Image style={styles.thumb} source={message} />
                       <Text style={styles.number} >{dataComment.numberComment}</Text>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.button}>
-                    <Image style={styles.thumb} source={{ uri: 'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-9/512/Clockwise-arrow-icon.png' }} />
+                    <Image style={styles.thumb} source={share} />
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.button}>
-                    <Image style={styles.thumb} source={{ uri: 'http://icons.iconarchive.com/icons/designbolts/free-valentine-heart/128/Heart-icon.png' }} />
+                  <TouchableOpacity style={styles.button} onPress={() => this.toggleSwitch()} >
+                    <Text>
+                      {this.state.clicked ? <Image style={styles.heart} source={heart} /> :
+                      <Image style={styles.heart} source={bheart} /> }
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -152,5 +166,10 @@ export default class CommentView extends Component {
         <ActivityIndicator />
       );
     }
+  }
+  toggleSwitch() {
+    this.setState({
+      clicked: !this.state.clicked,
+    });
   }
   }
