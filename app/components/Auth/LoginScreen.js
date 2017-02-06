@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ username, password, submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -92,10 +92,12 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
         <View style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.5)', width: 140, height: 1, marginRight: 5 }} />
       </View>
-      <TextInput style={{ paddingBottom: 2 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} placeholderTextColor={'rgba(0,0,0,0.5)'}/>
-      <TextInput secureTextEntry={true} style={{paddingBottom: 2 }} onChangeText={(password) => updatePassword (password)} placeholder="Password" placeholderTextColor={'rgba(0,0,0,0.5)'}/>
-      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#1E88E5'}>
-        <Text style={styles.buttonText}>LOGIN</Text>
+
+      <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
+      <TextInput secureTextEntry={true} style={{ height: 40 }} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
+      <TouchableHighlight style={styles.button} onPress={() => submitLogin(username, password)} underlayColor={'#99d9f4'}>
+        <Text style={styles.buttonText}>Login</Text>
+
       </TouchableHighlight>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={() => register()}>
