@@ -26,7 +26,7 @@ const Deactivate = () => (
                                   {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                                   {text: 'Yes', onPress: () => console.log('OK Pressed')},
         ])}>
-        <Text style={{color: 'white'}}>Deactivate</Text>
+        <Text style={{color: 'white', fontWeight: 'bold'}}>Deactivate</Text>
       </TouchableOpacity>
     </View>
   </View>
