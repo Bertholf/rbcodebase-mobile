@@ -3,6 +3,7 @@ import querystring from 'qs';
 import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
+import friendlistFactory from '../factories/friendlist';
 import settingfactory from '../factories/setting';
 
 class Api {
@@ -11,7 +12,7 @@ class Api {
     this.client = axios.create();
     middleware(this.client);
     this.client.interceptors.request.use(config => {
-      console.log(config);
+      //console.log(config);
       return config;
     });
   }
@@ -50,6 +51,9 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onPut('/me').reply(200);
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
+  });
+  mockery.onGet('/friendlist').reply(200, {
+    data: friendlistFactory(),
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
