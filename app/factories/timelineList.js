@@ -7,7 +7,7 @@ const timelineList = () => ({
   imageTimeline: faker.image.image(),
   numberTimeline: faker.random.number(),
   textTimeline: faker.lorem.words(),
-  dateTImeline: faker.date.recent().toString(),
+  dateTimeline: faker.date.recent().toString(),
   tfTimeline: faker.image.transport(),
 });
 export default timelineList;

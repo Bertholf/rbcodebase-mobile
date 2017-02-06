@@ -74,6 +74,7 @@ export default class MapMain extends Component {
             <Image source = {{uri: dataPost.imageTimeline}} style = {{width: 325, height: 183, justifyContent: 'center', marginLeft: 9 }}/>
             <Text style={styles.text}>Like: {dataPost.numberTimeline}</Text>
             <Text style={styles.text}>{dataPost.numberTimeline} Comments</Text>
+            <Text style={styles.text}>{dataPost.dateTimeline}</Text>
           </TouchableOpacity>
         }
       />
