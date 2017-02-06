@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
 import { updateUsername, updatePassword, submitLogin } from '../../actions/Auth';
+//import me from '../../services/me';
+//import userFactory from '../../factories/user';
 import userFactory from '../../factories/user';
-
 const mapStateToProps = ({ app }) => ({
   username: app.auth.username,
   password: app.auth.password,
