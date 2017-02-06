@@ -5,15 +5,16 @@ import auth from './auth';
 
 const saveToken = (token) => {
   const accesToken = querystring.stringify(token)
-  AsyncStorage.setItem('loginToken', accesToken);
+    AsyncStorage.setItem('loginToken', accesToken);
 };
 
-const submitLogin = (username, password) => {
+const submitLogin = ({ username, password }) => {
+  console.log(username, password);
   auth.login(username, password)
   .then((token) => {
     console.log('TOKEN : ', token.data.accessToken);
     saveToken(token);
-    Actions.timelineList();
+  //  Actions.timelineList();
   })
   .catch(err => console.log(err));
 }

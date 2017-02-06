@@ -18,8 +18,7 @@ const mapDispatchToProps = dispatch => ({
     Actions.timelineList();
   },
   submitLogin: () => {
-    // Actions.timelineList();
-    AuthLoginService(mapStateToProps.username, mapStateToProps.password);
+    AuthLoginService();
   },
   forgotPassword: () => {
     Actions.forgotPassword();
