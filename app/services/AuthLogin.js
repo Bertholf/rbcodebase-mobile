@@ -4,17 +4,17 @@ import { Actions } from 'react-native-router-flux';
 import auth from './auth';
 
 const saveToken = (token) => {
-  const accesToken = querystring.stringify(token)
-    AsyncStorage.setItem('loginToken', accesToken);
+  AsyncStorage.setItem('loginToken', token)
+  .then(() => console.log('save token to file success'))
+  .catch(err => console.log(err));
 };
 
-const submitLogin = ({ username, password }) => {
-  console.log(username, password);
+const submitLogin = (username, password) => {
   auth.login(username, password)
   .then((token) => {
     console.log('TOKEN : ', token.data.accessToken);
-    saveToken(token);
-  //  Actions.timelineList();
+    saveToken(token.data.accessToken);
+    Actions.timelineList();
   })
   .catch(err => console.log(err));
 }

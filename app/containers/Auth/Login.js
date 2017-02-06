@@ -17,8 +17,9 @@ const mapDispatchToProps = dispatch => ({
   loginWithFacebook: () => {
     Actions.timelineList();
   },
-  submitLogin: () => {
-    AuthLoginService();
+  submitLogin: (username, password) => {
+    dispatch(submitLogin());
+    // AuthLoginService(username, password);
   },
   forgotPassword: () => {
     Actions.forgotPassword();

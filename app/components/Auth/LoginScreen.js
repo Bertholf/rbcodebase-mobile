@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ username, password, submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -95,8 +95,8 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
       </View>
       <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
-      <TextInput secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
-      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
+      <TextInput secureTextEntry={true} style={{ height: 40 }} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
+      <TouchableHighlight style={styles.button} onPress={() => submitLogin(username, password)} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableHighlight>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
