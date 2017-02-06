@@ -4,6 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
 import friendlistFactory from '../factories/friendlist';
+import settingfactory from '../factories/setting';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -54,5 +55,7 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/friendlist').reply(200, {
     data: friendlistFactory(),
   });
+  mockery.onGet('/setting').reply(200, settingfactory());
+  mockery.onPut('/setting').reply(200);
 });
 export default api;
