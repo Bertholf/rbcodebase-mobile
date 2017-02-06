@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
-import {GoogleSigninButton} from 'react-native-google-signin';
+// import { GoogleSigninButton } from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
 
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 
-const google = require('./../../images/login/google.png');
+// const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithFacebook }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
