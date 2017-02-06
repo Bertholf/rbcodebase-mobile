@@ -2,36 +2,39 @@ import React from 'react';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
 import notifService from '../../services/notif';
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 12,
     flexDirection: 'row',
-    backgroundColor: '#2196f3',
-    borderColor: '#ffffff',
-    borderWidth: 2,
-    marginRight: 5,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderBottomWidth: 0.5,
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginTop: 8,
+    paddingBottom: 16,
   },
   user: {
-    marginLeft: 3,
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#00008b',
   },
   photo: {
-    width: 90,
-    height: 90,
-    marginLeft: 2,
-    marginTop: 6,
-    marginBottom: 4,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
   },
   detail: {
-    fontSize: 12,
-    color: '#fff',
+    fontSize: 14,
+    color: '#2196F3',
+    flex: 1,
+    flexWrap: 'wrap',
   },
   time: {
-    fontSize: 10,
-    color: '#fff',
+    fontSize: 12,
+    color: '#9091AC',
+    fontWeight: 'bold',
   },
 });
 
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       loading: true,
       notif: {},
@@ -55,22 +58,26 @@ export default class Notification extends React.Component {
   }
 
   render() {
-    if (this.state.loading === false){
+    if (this.state.loading === false) {
       return (
-        <ListView
+        <ListView>
           dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
             <TouchableOpacity>
               <View style={styles.container}>
-                <Image source={{ uri: rowData.image }} style={styles.photo} />
-                <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
+                <View style={{ paddingTop: 8, paddingBottom: 8, paddingRight: 16 }}>
+                  <Image source={{ uri: rowData.image }} style={styles.photo} />
+                </View>
+                <View style={{ flexDirection: 'column', flex: 3 }}>
                   <Text style={styles.user}>{rowData.first_name} {rowData.last_name}</Text>
-                  <Text style={styles.detail}>{rowData.message}</Text>
+                  <Text style={styles.detail} numberOfLines={3}>
+                    {rowData.message}
+                  </Text>
                   <Text style={styles.time}>{rowData.date_time}</Text>
                 </View>
               </View>
             </TouchableOpacity>
           }
-        />
+        </ListView>
       );
     } else {
       return (

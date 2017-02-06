@@ -14,8 +14,7 @@ const mapDispatchToProps = dispatch => ({
   updateUsername: text => dispatch(updateUsername(text)),
   updatePassword: text => dispatch(updatePassword(text)),
   loginWithGoogle: () => {
-    console.log(userFactory());
-    me.getMe().then(user=>console.log(user)).catch(err=>console.log(err));
+    Actions.timelineList();
   },
   loginWithFacebook: () => {
     Actions.timelineList();

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
+
+// import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 
 const google = require('./../../images/login/google.png');
@@ -78,9 +82,9 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
+        {/* <TouchableHighlight style={styles.google} onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
           <Image source={google} style={styles.google} />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
           <Image source={twitter} style={styles.twitter} />
         </TouchableHighlight>

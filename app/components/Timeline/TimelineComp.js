@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
     flexDirection:'row',
     justifyContent:'flex-start',
-    backgroundColor: '#009688',
+    backgroundColor: '#2196F3',
 
   },
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingTop:6,
     color:'#f8f8ff',
-    backgroundColor: '#009688',
+    backgroundColor: '#2196F3',
     padding:8,
     marginTop:2
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 8,
     fontSize:30,
 
-    backgroundColor: '#009688'
+    backgroundColor: '#2196F3'
   },
   mainView:{
 

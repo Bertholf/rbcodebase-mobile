@@ -1,5 +1,6 @@
 import api from './api';
 
 export default {
-  getMe: () => api.get('/timeline'),
+  getMe: () => api.get('/me'),
+  updateMe: json => api.put('/me', { json }),
 };
