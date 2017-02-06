@@ -15,8 +15,8 @@ import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Setting from './components/Setting/Setting';
 import ChatListFriendView from './components/Chat/ChatListFriendView';
-import Privacy from './components/Privacy/privacy.js';
-import Email from './components/Setting/EmailNotif'
+import Privacy from './components/Privacy/privacy';
+import Email from './components/Setting/EmailNotif';
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';

@@ -12,7 +12,7 @@ import comment from '../../services/comment';
 
 const jempol = require('./../../images/thumb.png');
 const heart = require('./../../images/hearts.png');
-const bheart = require('./../../images/blackheart.png');
+const bheart = require('./../../images/heart.png');
 const share = require('./../../images/share.png');
 const message = require('./../../images/message.png');
 
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   img: {
     width: 100,
     height: 50,
+    bottom: 5,
   },
   body: {
     flexDirection: 'row',
@@ -91,6 +92,9 @@ const styles = StyleSheet.create({
     padding: 3,
     margin: 5,
   },
+  comment: {
+    bottom: 5,
+  },
   heart: {
     width: 20,
     height: 20,
@@ -132,7 +136,7 @@ export default class CommentView extends Component {
                   </View>
                 </View>
                 <Image style={styles.img} source={{ uri: dataComment.imageComment }} />
-                <Text style={styles.comment} >{dataComment.textComment}</Text>
+                <Text style={styles.comment} >{dataComment.textComments}</Text>
                 <View style={styles.action}>
                   <TouchableOpacity style={styles.button}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
