@@ -5,6 +5,7 @@ import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
 import notifFactory from '../factories/notif';
 import settingfactory from '../factories/setting';
+import listTimeline from '../factories/listTimeline';
 
 
 class Api {
@@ -56,6 +57,7 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/notifications').reply(200, {
     data: notifFactory(),
   });
+  mockery.onGet('/posts').reply(200, listTimeline());
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
 });

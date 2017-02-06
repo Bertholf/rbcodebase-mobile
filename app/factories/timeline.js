@@ -1,5 +1,6 @@
 import faker from 'faker';
 import post from './post';
+import user from './user';
 
 const timeline = (total = 10) => {
   let posts = [];
