@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
   },
   submitLogin: (username, password) => {
     dispatch(submitLogin());
-    // AuthLoginService(username, password);
+    AuthLoginService(username, password);
   },
   forgotPassword: () => {
     Actions.forgotPassword();
