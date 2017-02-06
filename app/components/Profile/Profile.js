@@ -10,76 +10,6 @@ import {
 } from 'react-native';
 import me from '../../services/me';
 
-export default class Profile extends Component {
-
-    state = {
-      clicked : true
-    }
-  render (){
-    return (
-      <ScrollView>
-      <View style={styles.container}>
-        <View style = {styles.backgroundContainer}>
-          <Image source = {require('./../../images/gunung.jpg')} resizeMode = 'cover' style = {styles.backdrop} />
-
-            <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
-          <View style ={styles.backgroundname}>
-            <Text style = {styles.headline} >Abu Dzar Alghifari</Text>
-          </View>
-        </View>
-        <View style={styles.textInform} colors={['#F00', 'transparent']}>
-          <View style={{marginLeft: 10, marginRight: 10, width: 70}}>
-            <Text style={styles.pos}>Post</Text>
-            <Text style={styles.pos}>10000</Text>
-          </View>
-          <View style={{width: 70}}>
-            <Text style={styles.followers}>Followers</Text>
-            <Text style={styles.followers}>10000K</Text>
-          </View>
-          <TouchableOpacity onPress={()=>this.toggleSwitch()}>
-             <Text style = {styles.button}>
-                {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-             <Text style = {styles.button}>Message</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.biodata}>
-        <Text style={styles.bio}>Bio</Text>
-        <Text style={styles.isi}>There are a lot of stories out there, waiting for you to live them</Text>
-        <Text style={styles.bio}>Last Hiking</Text>
-        <View style={styles.posisi}>
-        <Image style = {styles.icon} source = {require('./../../images/jarak.png')} />
-        <Text style={styles.isi}>1200 Km</Text>
-        </View>
-        <View style={styles.posisi}>
-        <Image style = {styles.icon} source = {require('./../../images/mountain.png')}/>
-        <Text style={styles.isi}>Everest Mountain</Text>
-        </View>
-        <View style={styles.posisi}>
-        <Image style = {styles.location} source = {require('./../../images/live.png')} />
-        <Text style={styles.isi}>Indonesia</Text>
-        </View>
-        <View style={styles.posisi}>
-        <TouchableOpacity>
-             <Text style={styles.isi2}>View More</Text>
-          </TouchableOpacity>
-
-        </View>
-      </View>
-
-        </View>
-  </ScrollView>
-
-    )
-  }
-  toggleSwitch() {
-    this.setState({
-      clicked: !this.state.clicked
-    })
-  }
-  }
-
   var styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -165,14 +95,12 @@ export default class Profile extends Component {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    //backgroundColor: '#c5cae9',
-   //  marginBottom: 20,
-    padding:2
+    padding:2,
    },
    gambar: {
    flexDirection:'row',
    justifyContent: 'space-around',
-   padding:6
+   padding:6,
    },
    pos: {
    color:'rgba(0,0,0,0.9)',
@@ -221,7 +149,7 @@ export default class Profile extends Component {
      borderBottomWidth: 1,
      borderColor: 'grey',
    },
- 
+
   posisi: {
     marginLeft: 8,
     flexDirection: 'row',
@@ -247,3 +175,68 @@ export default class Profile extends Component {
    },
    })
 
+export default class Profile extends Component {
+    state = {
+      clicked : true
+    }
+
+    toggleSwitch() {
+      this.setState({ clicked: !this.state.clicked });
+    }
+
+  render (){
+    return (
+      <ScrollView>
+      <View style={styles.container}>
+        <View style = {styles.backgroundContainer}>
+          <Image source = {require('./../../images/gunung.jpg')} resizeMode = 'cover' style = {styles.backdrop} />
+          <Image style = {styles.logo} source = {require('./../../images/tauhid.jpg')} />
+          <View style ={styles.backgroundname}>
+            <Text style = {styles.headline} >Abu Dzar Alghifari</Text>
+          </View>
+        </View>
+        <View style={styles.textInform} colors={['#F00', 'transparent']}>
+          <View style={{marginLeft: 10, marginRight: 10, width: 70}}>
+            <Text style={styles.pos}>Post</Text>
+            <Text style={styles.pos}>10000</Text>
+          </View>
+          <View style={{width: 70}}>
+            <Text style={styles.followers}>Followers</Text>
+            <Text style={styles.followers}>10000K</Text>
+          </View>
+          <TouchableOpacity onPress={()=>this.toggleSwitch()}>
+             <Text style = {styles.button}>
+                {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+             <Text style = {styles.button}>Message</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.biodata}>
+          <Text style={styles.bio}>Bio</Text>
+          <Text style={styles.isi}>There are a lot of stories out there, waiting for you to live them</Text>
+          <Text style={styles.bio}>Last Hiking</Text>
+          <View style={styles.posisi}>
+            <Image style = {styles.icon} source = {require('./../../images/jarak.png')} />
+            <Text style={styles.isi}>1200 Km</Text>
+          </View>
+          <View style={styles.posisi}>
+            <Image style = {styles.icon} source = {require('./../../images/mountain.png')}/>
+            <Text style={styles.isi}>Everest Mountain</Text>
+          </View>
+          <View style={styles.posisi}>
+            <Image style = {styles.location} source = {require('./../../images/live.png')} />
+            <Text style={styles.isi}>Indonesia</Text>
+          </View>
+          <View style={styles.posisi}>
+            <TouchableOpacity>
+               <Text style={styles.isi2}>View More</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+      </View>
+  </ScrollView>
+    )
+  }
+}
