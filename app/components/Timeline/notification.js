@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
+import notifService from '../../services/notif';
 
 const styles = StyleSheet.create({
   container: {
@@ -66,7 +67,7 @@ export default class Notification extends React.Component {
                     Since 1500 detail detail deatail. Lorem Ipsum is simply dumy text ever.
                     Since 1500 detail detail deatail
                   </Text>
-                  <Text style={styles.time}>08:34 PM, Yesterday</Text>
+                  <Text style={styles.time}>08:35 PM, Yesterday</Text>
                 </View>
               </View>
             </TouchableOpacity>}

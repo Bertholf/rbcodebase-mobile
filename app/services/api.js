@@ -5,6 +5,8 @@ import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
 import loginFactory from '../factories/AuthLogin';
 import settingfactory from '../factories/setting';
+import notifFactory from '../factories/notif';
+import commentFactory from '../factories/listcomment';
 import registerFactory from '../factories/AuthRegister';
 import friendlistFactory from '../factories/friendlist';
 import listTimeline from '../factories/listTimeline';
@@ -15,7 +17,7 @@ class Api {
     this.client = axios.create();
     middleware(this.client);
     this.client.interceptors.request.use(config => {
-      //console.log(config);
+      // console.log(config);
       return config;
     });
   }
@@ -68,6 +70,10 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
+  mockery.onGet('/notifications').reply(200, {
+    data: notifFactory(),
+  });
+  mockery.onGet('/comment').reply(200, commentFactory());
   mockery.onPost('/register').reply(200, registerFactory());
 });
 export default api;
