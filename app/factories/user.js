@@ -6,7 +6,7 @@ const user = () => ({
   last_name: faker.name.lastName(),
   message: faker.lorem.sentence(),
   date_time: faker.date.weekday(),
-  date: faker.date.recent(),
+  date: faker.date.recent().toString(),
   image: faker.image.avatar(),
 });
 export default user;

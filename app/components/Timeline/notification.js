@@ -2,7 +2,6 @@ import React from 'react';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
 import notifService from '../../services/notif';
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -28,7 +27,6 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 14,
     color: '#2196F3',
-    flex: 1,
     flexWrap: 'wrap',
   },
   time: {
@@ -37,8 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-
+ console.log("helli", ListView);
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {
@@ -56,11 +53,10 @@ export default class Notification extends React.Component {
       console.log('hello message', this.state.notif);
     });
   }
-
   render() {
     if (this.state.loading === false) {
       return (
-        <ListView>
+        <ListView
           dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
             <TouchableOpacity>
               <View style={styles.container}>
@@ -68,16 +64,16 @@ export default class Notification extends React.Component {
                   <Image source={{ uri: rowData.image }} style={styles.photo} />
                 </View>
                 <View style={{ flexDirection: 'column', flex: 3 }}>
-                  <Text style={styles.user}>{rowData.first_name} {rowData.last_name}</Text>
+                  <Text style={styles.user}>{rowData.first_name}</Text>
                   <Text style={styles.detail} numberOfLines={3}>
-                    {rowData.message}
-                  </Text>
-                  <Text style={styles.time}>{rowData.date_time}</Text>
+                     {rowData.message}
+                    </Text>
+                  <Text style={styles.time} numberOfLines={2}>{rowData.date}</Text>
                 </View>
               </View>
             </TouchableOpacity>
-          }
-        </ListView>
+            }
+            />
       );
     } else {
       return (
