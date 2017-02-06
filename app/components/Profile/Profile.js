@@ -176,8 +176,11 @@ import me from '../../services/me';
    })
 
 export default class Profile extends Component {
-    state = {
-      clicked : true
+    constructor(props){
+      super(props);
+      this.state = {
+        clicked: false,
+      }
     }
 
     toggleSwitch() {
@@ -240,4 +243,5 @@ export default class Profile extends Component {
   </ScrollView>
     )
   }
+}
 }
