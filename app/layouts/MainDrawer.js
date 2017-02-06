@@ -83,95 +83,85 @@ const MainDrawer = () => {
       <View style={styles.drawerMenu}>
         <View>
           <ScrollView>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.timelineList}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={dashboard}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={Actions.timelineList}>
+                </View>
+                <View>
                   <Text style={styles.menu}>
                     Dashboard
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.profile}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={profile}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <Text onPress={Actions.profile} style={styles.menu}>
+                </View>
+                <View>
+                  <Text style={styles.menu}>
                     My Profile
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.notifications}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={notifications}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={Actions.notifications} >
+                </View>
+                <View>
                   <Text style={styles.menu}>
                     Notifications
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.setting}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={setting}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={Actions.setting} >
+                </View>
+                <View>
                   <Text style={styles.menu}>
                     Setting
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={() => FacebookLogout.getFacebookLogout()}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={logout}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={() => FacebookLogout.getFacebookLogout()}>
+                </View>
+                <View>
                   <Text style={styles.menu}>
                     Logout
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
           </ScrollView>
         </View>
