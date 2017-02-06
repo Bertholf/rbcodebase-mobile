@@ -58,6 +58,10 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
     data: notifFactory(),
   });
   mockery.onGet('/posts').reply(200, listTimeline());
+  // mockery.onGet('/posts').reply(200, {
+  //   data: timelineFactory(),
+  // });
+  mockery.onPost('/posts').reply(200);
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
 });

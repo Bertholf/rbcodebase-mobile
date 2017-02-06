@@ -8,6 +8,7 @@ import {
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
 
+
 const PostCard = () => {
   return (
     <View>
@@ -25,7 +26,8 @@ const PostCard = () => {
         <View style={styles.border}>
           <PostMenu />
           <View style={{ flex: 1, paddingTop: 12 }}>
-            <Button title={'Post'} />
+            <Button title={'Post'}
+            />
           </View>
         </View>
       </View>
