@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 5,
     justifyContent: 'flex-end',
-    // marginRight: 10,
   },
 });
 
