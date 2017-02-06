@@ -8,6 +8,7 @@ const menu = require('./../../images/ic_menu_white_24dp.png');
 const user = require('./../../images/64x64.png');
 const user2 = require('./../../images/user2.png');
 const user3 = require('./../../images/user3.png');
+
 import styles from './ChatListFriendStyles';
 export default class ChatListFriendView extends Component {
   state = {
@@ -76,8 +77,8 @@ export default class ChatListFriendView extends Component {
               <Image style={styles.contactImg} source={user} />
               <View style={{justifyContent: 'space-around'}}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
-                  <Text style={styles.name}>Budi</Text>
                   <Text style={styles.date}>2017-01-28</Text>
+                  <Text style={styles.name}>Budi</Text>
                 </View>
                 <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
               </View>
@@ -122,11 +123,6 @@ export default class ChatListFriendView extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#2196F3' title="Write a Message" onPress={Actions.chat}>
-            <Icon name="md-create"/>
-          </ActionButton.Item>
-        </ActionButton>
           <View style={styles.setlist} />
         </ScrollView>
       </View>
