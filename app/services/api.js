@@ -6,7 +6,8 @@ import timelineFactory from '../factories/timeline';
 import loginFactory from '../factories/AuthLogin';
 import settingfactory from '../factories/setting';
 import registerFactory from '../factories/AuthRegister';
-
+import friendlistFactory from '../factories/friendlist';
+import listTimeline from '../factories/listTimeline';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -14,7 +15,7 @@ class Api {
     this.client = axios.create();
     middleware(this.client);
     this.client.interceptors.request.use(config => {
-      console.log(config);
+      //console.log(config);
       return config;
     });
   }
@@ -52,11 +53,18 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   const mockery = new MockAdapter(instance, { delayResponse: 2000 });
   mockery.onGet('/me').reply(200, userFactory());
   mockery.onPut('/me').reply(200);
+  mockery.onGet('/timeline').reply(200, listTimeline());
+  // mockery.onGet('/posts').reply(200, {
+  //   data: timelineFactory(),
+  // });
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
   mockery.onPost('/login').reply(200, {
     data: loginFactory(),
+  });
+  mockery.onGet('/friendlist').reply(200, {
+    data: friendlistFactory(),
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);

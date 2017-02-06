@@ -2,6 +2,8 @@ import faker from 'faker';
 
 const user = () => ({
   id: faker.random.number(),
+  image: faker.image.avatar(),
+  follow: faker.random.boolean(),
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
   username: faker.internet.userName(),
