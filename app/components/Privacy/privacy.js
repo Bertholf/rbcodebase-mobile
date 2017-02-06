@@ -49,7 +49,7 @@ export default class privacy extends Component {
             value={this.state.confirmFollow}
           />
         </View>
-        <<View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Who can follow you
           </Text>
@@ -108,4 +108,3 @@ export default class privacy extends Component {
   );
   }
 }
-

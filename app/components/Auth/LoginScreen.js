@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
-import {GoogleSigninButton} from 'react-native-google-signin';
+// import {GoogleSigninButton} from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
 
 // import GoogleSignIn from './../../services/signingoogle';

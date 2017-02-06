@@ -3,7 +3,9 @@ import querystring from 'qs';
 import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
+import notifFactory from '../factories/notif';
 import settingfactory from '../factories/setting';
+
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -50,6 +52,9 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onPut('/me').reply(200);
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
+  });
+  mockery.onGet('/notifications').reply(200, {
+    data: notifFactory(),
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
