@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableHighlight, 
 import {GoogleSigninButton} from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
 
-import GoogleSignIn from './../../services/signingoogle';
+// import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, register, signingoogle, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
   <ScrollView style={{ backgroundColor: '#dddddd' }}>
     <View style={styles.container}>
@@ -81,9 +81,9 @@ const LoginScreen = ({ submitLogin, register, signingoogle, forgotPassword, upda
         <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.google} onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
+        {/* <TouchableHighlight style={styles.google} onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
           <Image source={google} style={styles.google} />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
           <Image source={twitter} style={styles.twitter} />
         </TouchableHighlight>

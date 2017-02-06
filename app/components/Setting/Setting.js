@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet,ScrollView, Image, TouchableOpacity, Dimensions, Button } from 'react-native';
 import styles from './../../components/Setting/Style';
 import { Actions } from 'react-native-router-flux';
+import setting from '../../services/setting';
+const { width } = Dimensions.get('window');
 
 const nxtrow = require('./../../images/ic_keyboard_arrow_right_black_24dp.png');
 const { width } = Dimensions.get('window');
@@ -54,4 +56,4 @@ const Setting = () => {
     </View>
   );
 };
-export default Setting;
+export default setting;

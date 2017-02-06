@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AccountSetting = () => {
+const AccountSetting = (props) => {
   return(
     <View style={styles.container}>
       <View>
@@ -70,7 +70,7 @@ const AccountSetting = () => {
         <TouchableOpacity>
           <View style={styles.content}>
             <Text style={styles.name}>
-              Name
+              { props.firstName } { props.lastName }
             </Text>
             <Image
               style={styles.icon}
@@ -87,7 +87,7 @@ const AccountSetting = () => {
         <TouchableOpacity>
           <View style={styles.content}>
             <Text style={styles.name}>
-              Email
+              {props.email}
             </Text>
             <Image
               style={styles.icon}
@@ -129,7 +129,7 @@ const AccountSetting = () => {
         <TouchableOpacity>
           <View style={styles.content}>
             <Text style={styles.name}>
-              Gender
+              {props.gender}
             </Text>
             <Image
               style={styles.icon}
