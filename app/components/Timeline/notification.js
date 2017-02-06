@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
+import notifService from '../../services/notif';
 
 const styles = StyleSheet.create({
   container: {
