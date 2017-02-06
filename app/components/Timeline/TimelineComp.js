@@ -9,7 +9,6 @@ import {
   ListView,
   ActivityIndicator,
 } from 'react-native';
-
 import timelineList from '../../services/timelineList';
 
 const styles = StyleSheet.create({
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     color: '#f8f8ff',
     backgroundColor: '#009688',
     padding: 8,
-    marginTop: 2,
+    marginTop: 2
   },
   nameProfile: {
     fontWeight: 'bold',
@@ -43,8 +42,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
