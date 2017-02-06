@@ -5,6 +5,7 @@ import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
 import loginFactory from '../factories/AuthLogin';
 import settingfactory from '../factories/setting';
+import registerFactory from '../factories/AuthRegister';
 
 
 class Api {
@@ -59,5 +60,6 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
+  mockery.onPost('/register').reply(200, registerFactory());
 });
 export default api;
