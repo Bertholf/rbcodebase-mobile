@@ -3,6 +3,11 @@ import querystring from 'qs';
 import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
+<<<<<<< HEAD
+import notifFactory from '../factories/notif';
+import settingfactory from '../factories/setting';
+
+=======
 import loginFactory from '../factories/AuthLogin';
 import settingfactory from '../factories/setting';
 import notifFactory from '../factories/notif';
@@ -10,6 +15,7 @@ import commentFactory from '../factories/listcomment';
 import registerFactory from '../factories/AuthRegister';
 import friendlistFactory from '../factories/friendlist';
 import listTimeline from '../factories/listTimeline';
+
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -62,6 +68,11 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
+  mockery.onGet('/notifications').reply(200, {
+    data: notifFactory(),
+  });
+  mockery.onGet('/setting').reply(200, settingfactory());
+  mockery.onPut('/setting').reply(200);
   mockery.onPost('/login').reply(200, {
     data: loginFactory(),
   });
