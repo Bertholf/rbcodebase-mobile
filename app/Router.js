@@ -7,6 +7,7 @@ import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
+import TOSContainer from './containers/TOS/TOSContainer';
 import Register from './components/Auth/RegisterScreen';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
@@ -123,6 +124,7 @@ const Routing = () => (
             />
           </Scene>
         </Scene>
+        <Scene key={'tos'} component={TOSContainer} />
       </Scene>
     </Router>
   </View>
