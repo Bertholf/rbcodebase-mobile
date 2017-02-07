@@ -2,7 +2,7 @@ import faker from 'faker';
 import user from './user';
 
 const timelineList = () => ({
-  user: user().firstName.concat(' ', user().lastName),
+  user: user().first_name.concat(' ', user().last_name),
   avatarTimeline: faker.image.avatar(),
   imageTimeline: faker.image.image(),
   numberTimeline: faker.random.number(),
