@@ -21,6 +21,11 @@ import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';
 import Account from './components/Profile/AccountSetting';
+import EmailEdit from './components/Setting/EmailEdit';
+import NameEdit from './components/Setting/ChangeName';
+import PassEdit from './components/Setting/PasswordEdit';
+import Gender from './components/Setting/GenderEdit';
+import About from './components/Setting/About';
 
 const Routing = () => (
   <View style={{ flex: 1 }}>
@@ -53,6 +58,21 @@ const Routing = () => (
             />
             <Scene
               key={'email'} component={Email} title={'email'}
+            />
+            <Scene
+              key={'emailEdit'} component={EmailEdit} title={'Edit Email'}
+            />
+            <Scene
+              key={'genderEdit'} component={Gender} title={'Edit Gender'}
+            />
+            <Scene
+              key={'passEdit'} component={PassEdit} title={'Edit Password'}
+            />
+            <Scene
+              key={'about'} component={About} title={'Edit Bio'}
+            />
+            <Scene
+              key={'nameEdit'} component={NameEdit} title={'Edit Name'}
             />
             <Scene
               key={'welcome'} component={Welcome} title={'Welcome'}

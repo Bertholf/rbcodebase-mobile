@@ -9,6 +9,7 @@ import {
   Alert,
   alertMessage,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 const { height, width } = Dimensions.get('window');
 const backrow = require('./../../images/arrow.png');
@@ -67,7 +68,7 @@ const AccountSetting = () => {
         <Text style={styles.title}>
           Name
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={Actions.nameEdit}>
           <View style={styles.content}>
             <Text style={styles.name}>
               Name
@@ -84,7 +85,7 @@ const AccountSetting = () => {
         <Text style={styles.title}>
           Email
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={Actions.emailEdit}>
           <View style={styles.content}>
             <Text style={styles.name}>
               Email
@@ -101,15 +102,7 @@ const AccountSetting = () => {
         <Text style={styles.title}>
           Change password
         </Text>
-        <TouchableOpacity
-          onPress={() => Alert.alert(
-            'Change Password',
-             alertMessage,
-             [
-               { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-               { text: 'OK', onPress: () => console.log('OK Pressed!') },
-             ]
-           )}>
+        <TouchableOpacity onPress={Actions.passEdit}>
           <View style={styles.content}>
             <Text style={styles.name}>
               Change password
@@ -126,7 +119,7 @@ const AccountSetting = () => {
         <Text style={styles.title}>
           Gender
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={Actions.genderEdit}>
           <View style={styles.content}>
             <Text style={styles.name}>
               Gender
@@ -140,7 +133,7 @@ const AccountSetting = () => {
       </View>
       <View style={styles.setlist} />
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={Actions.about}>
           <View style={styles.content}>
             <Text style={styles.name}>
               About
