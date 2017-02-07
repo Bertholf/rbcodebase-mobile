@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity } from 'react-native';
-import FacebookLogin from './../../services/FacebookLogin';
+import {
+   StyleSheet,
+   Text,
+   View,
+   Image,
+   TextInput,
+   Linking,
+   Alert,
+   TouchableOpacity,
+   TouchableHighlight,
+   ActivityIndicator,
+   ScrollView,
+ } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
+// import GoogleSignIn from './../../services/signingoogle';
+import FacebookLogin from './../../services/FacebookLogin';
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
@@ -11,7 +26,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     padding: 20,
-    flex: 1,
     backgroundColor: '#dddddd',
   },
   title: {
@@ -19,97 +33,107 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 30,
   },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    alignSelf: 'center',
+  logo: {
+    width: 120,
+    height: 120,
     marginBottom: 5,
   },
-  button: {
-    height: 36,
-    backgroundColor: '#1565C0',
-    borderColor: '#1976D2',
-    borderWidth: 1,
-    borderRadius: 3,
-    marginTop: 10,
+  otherlog: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 5,
     marginBottom: 5,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    elevation: 2,
   },
   facebook: {
     height: 48,
     width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    borderRadius: 48,
   },
   twitter: {
     height: 48,
     width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    borderRadius: 48,
   },
   google: {
     height: 48,
     width: 48,
     alignSelf: 'stretch',
     justifyContent: 'center',
+    borderRadius: 48,
   },
-  otherlog: {
-    marginTop: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  buttonText: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'white',
+    alignSelf: 'center',
   },
-  logo: {
-    width: 120,
-    height: 120,
-    resizeMode: 'cover',
+  button: {
+    height: 36,
+    backgroundColor: '#2196F3',
+    borderColor: '#2196F3',
+    borderWidth: 1,
+    borderRadius: 2,
+    marginTop: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
   },
 });
 
-const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
+const LoginScreen = ({ username, password, submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
+  <ScrollView style={{ backgroundColor: '#dddddd' }}>
     <View style={styles.container}>
+      <ScrollView>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Image source={logo} style={styles.logo} />
       </View>
-      <View style={{ alignItems: 'center', top: 10, marginBottom: 10 }} ><Text>Login With</Text></View>
+      <View style={{ alignItems: 'center' }} ><Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text></View>
       <View style={styles.otherlog}>
         <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
-        <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()} underlayColor={'#99d9f4'}>
+        {/* <TouchableHighlight style={styles.google} onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
           <Image source={google} style={styles.google} />
-        </TouchableHighlight>
+        </TouchableHighlight> */}
         <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
           <Image source={twitter} style={styles.twitter} />
         </TouchableHighlight>
       </View>
-      <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row'}}>
-        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
-        <Text style={{ width: 20, margin: 5 }}> Or </Text>
-        <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+      <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
+        <View style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.5)', width: 140, height: 1, marginLeft: 5 }} />
+        <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
+        <View style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.5)', width: 140, height: 1, marginRight: 5 }} />
       </View>
+
       <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
-      <TextInput secureTextEntry={true} style={{height: 40}} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
-      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#99d9f4'}>
+      <TextInput secureTextEntry={true} style={{ height: 40 }} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
+      <TouchableHighlight style={styles.button} onPress={() => submitLogin(username, password)} underlayColor={'#99d9f4'}>
         <Text style={styles.buttonText}>Login</Text>
+
       </TouchableHighlight>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={() => register()}>
-          <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
+          <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
               Register
             </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => forgotPassword()}>
-          <Text style={{ color: 'blue', margin: 10, textAlign: 'right' }}>
+          <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
               Forgot Password
             </Text>
         </TouchableOpacity>
       </View>
+    </ScrollView>
     </View>
+  </ScrollView>
   );
 };
+
 LoginScreen.propTypes = {
   // submitLogin: React.PropTypes.func.isRequired,
   // forgotPassword: React.PropTypes.func.isRequired,

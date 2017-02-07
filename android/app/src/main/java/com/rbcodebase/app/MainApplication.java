@@ -1,13 +1,14 @@
-package com.hikerbot.app;
+package com.rbcodebase.app;
 
 import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+// import com.reactnativenavigation.RnnPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.facebook.react.ReactNativeHost;
@@ -18,6 +19,7 @@ import com.facebook.soloader.SoLoader;
 import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
+// import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -44,13 +46,15 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new FBSDKPackage(mCallbackManager),
-            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
-            new ReactMaterialKitPackage(),
-            new MapsPackage(),
-            new ReactNativeMapboxGLPackage(),
-            new ReactNativeLocalizationPackage()
+              new MainReactPackage(),
+            // new RnnPackage(),
+              // new RNGoogleSigninPackage(),
+              new VectorIconsPackage(),
+              new ReactMaterialKitPackage(),
+              new ReactNativeMapboxGLPackage(),
+              new ReactNativeLocalizationPackage(),
+              new FBSDKPackage(mCallbackManager),
+              new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
       );
     }
   };

@@ -44,19 +44,14 @@ module.exports = StyleSheet.create({
     marginLeft: 15,
   },
   saveBtn: {
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#2196F3',
     borderRadius: 2,
     elevation: 2,
     marginLeft: 16,
-    paddingRight: 16,
+    padding: 10,
   },
   txtBtn: {
     color: '#fff',
     fontSize: 20,
-    textAlign: 'center',
-    paddingBottom: 8,
-    paddingTop: 8,
   },
 });

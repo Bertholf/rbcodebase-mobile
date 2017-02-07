@@ -7,6 +7,7 @@ const menu = require('./../../images/ic_menu_white_24dp.png');
 const user = require('./../../images/64x64.png');
 const user2 = require('./../../images/user2.png');
 const user3 = require('./../../images/user3.png');
+
 import styles from './ChatListFriendStyles';
 export default class ChatListFriendView extends Component {
   constructor(props){
@@ -42,8 +43,6 @@ export default class ChatListFriendView extends Component {
           key: '6',
           Name: 'Tony',
         },
-
-
       ],
     };
   }

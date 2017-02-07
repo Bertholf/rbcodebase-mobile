@@ -1,5 +1,8 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
+import notifService from '../../services/notif';
+import Profile from './../../components/Profile/Profile';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,7 +29,6 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 14,
     color: '#2196F3',
-    flex: 1,
     flexWrap: 'wrap',
   },
   time: {
@@ -36,42 +38,50 @@ const styles = StyleSheet.create({
   },
 });
 
-console.log('hello', ListView);
-
+ console.log("helli", ListView);
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin',
-      ]),
+      loading: true,
+      notif: {},
     };
   }
+
+  componentDidMount() {
+    notifService.getNotifications()
+    .then((data) => {
+      this.setState({ notif: data, loading: false });
+      console.log('hello message', this.state.notif);
+    });
+  }
   render() {
-    return (
-      <View style={{ backgroundColor: '#fff' }}>
+    if (this.state.loading === false) {
+      return (
         <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) =>
-            <TouchableOpacity>
+          dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
+            <TouchableOpacity onPress={Actions.profile}>
               <View style={styles.container}>
                 <View style={{ paddingTop: 8, paddingBottom: 8, paddingRight: 16 }}>
-                  <Image source={require('../../images/imagepp.jpg')} style={styles.photo} />
+                  <Image source={{ uri: rowData.image }} style={styles.photo} />
                 </View>
                 <View style={{ flexDirection: 'column', flex: 3 }}>
-                  <Text style={styles.user}>{rowData}</Text>
+                  <Text style={styles.user}>{rowData.first_name}</Text>
                   <Text style={styles.detail} numberOfLines={3}>
-                    Lorem Ipsum is simply dumy text ever.
-                    Since 1500 detail detail deatail. Lorem Ipsum is simply dumy text ever.
-                    Since 1500 detail detail deatail
+                    {rowData.message}
                   </Text>
-                  <Text style={styles.time}>08:34 PM, Yesterday</Text>
+                  <Text style={styles.time} numberOfLines={2}>{rowData.date}</Text>
                 </View>
               </View>
-            </TouchableOpacity>}
+            </TouchableOpacity>
+            }
         />
-      </View>
-    );
+      );
+    } else {
+      return (
+        <ActivityIndicator />
+      );
+    }
   }
 }

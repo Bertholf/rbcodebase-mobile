@@ -7,10 +7,13 @@ const auth = (state = { username: '', password: '', is_loading: false }, action)
       return { ...state, is_loading: false, response: action.response };
     case SUBMIT_LOGIN:
       return { ...state, is_loading: true };
+      // return Object.assign({}, state, { is_loading: !state.is_loading });
     case UPDATE_USERNAME_TEXT:
-      return { ...state, password: action.password };
+      // return { ...state, password: action.password };
+      return Object.assign({}, state, { username: action.username });
     case UPDATE_PASSWORD_TEXT:
-      return { ...state, username: action.username };
+      // return { ...state, username: action.username };
+      return Object.assign({}, state, { password: action.password });
     default:
       return state;
   }

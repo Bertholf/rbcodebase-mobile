@@ -16,7 +16,7 @@ export default class TimelineComment extends Component {
         />
         <Button
           title='Post Comment'
-          color='#009688'
+          color='#2196F3'
           accessibilityLabel= 'Post Your Comment'
           onPress={() => console.log('OK Pressed!')}
         />

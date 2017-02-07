@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "855412335195",
+    "project_id": "beranda-pribadi"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:855412335195:android:3a944f0bb2d12128",
+        "android_client_info": {
+          "package_name": "com.rbcodebase.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "855412335195-5f869c8610qr44dbl3tcpi2a477mu657.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhmZIIIJYly8H0Y4q9gtLqUf1L1hFntGw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

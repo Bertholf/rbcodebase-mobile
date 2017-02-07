@@ -10,7 +10,10 @@ import {
   Alert,
 } from 'react-native';
 import styles from './styles';
+// import {GoogleSigninButton} from 'react-native-google-signin';
+// import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
+import registerService from '../../services/AuthRegister';
 
 const { width } = Dimensions.get('window');
 const logo = require('./../../images/logo.png');
@@ -26,11 +29,16 @@ export default class Register extends Component {
     this.state = {
       male: true,
       female: false,
+      name: '',
+      email: '',
+      username: '',
+      password: '',
     };
+    this.register = this.register.bind(this);
   }
   // dummy button action
   register() {
-    Alert.alert('Button pressed');
+    registerService.register(this.state);
   }
 
   render() {
@@ -64,24 +72,24 @@ export default class Register extends Component {
               maxLength={32}
               placeholder={'Name'}
               style={styles.textInput}
-              onChangeText={name => console.log({ name })}
+              onChangeText={name => this.setState({ name })}
             />
             <TextInput
               keyboardType={'email-address'}
               placeholder={'Email'}
               style={styles.textInput}
-              onChangeText={email => console.log({ email })}
+              onChangeText={email => this.setState({ email })}
             />
             <TextInput
               placeholder={'Username'}
               style={styles.textInput}
-              onChangeText={username => console.log({ username })}
+              onChangeText={username => this.setState({ username })}
             />
             <TextInput
               placeholder={'Password'}
               style={styles.textInput}
-              secureTextEntry={true}
-              onChangeText={password => console.log({ password })}
+              secureTextEntry
+              onChangeText={password => this.setState({ password })}
             />
             <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
               <Text style={{ color: 'white' }}>Gender</Text>
@@ -105,12 +113,29 @@ export default class Register extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{ paddingBottom: 16, marginRight: 16 }}>
-            <TouchableOpacity
-              activeOpacity={0.7} style={styles.btnReg}
-              onPress={() => this.register()}
-            >
-              <Text style={styles.textReg}>Register</Text>
+          <TouchableOpacity
+            activeOpacity={0.7} style={styles.btnReg} onPress={() => this.register()}
+          >
+            <Text style={styles.textReg}>Register</Text>
+          </TouchableOpacity>
+
+          <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+            <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginLeft: 5 }} />
+            <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7 }}> OR </Text>
+            <View style={{ borderWidth: 1, borderColor: 'grey', width: 140, height: 1, marginRight: 5 }} />
+          </View>
+
+          <Text style={styles.separatorText}>Register with:</Text>
+          <View style={styles.buttonGroup}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()} >
+              <Image source={facebook} style={styles.icon} />
+            </TouchableOpacity>
+            {/* <TouchableOpacity
+              activeOpacity={0.7} onPress={() => GoogleSignIn.getGoogleSignIn()} >
+              <Image source={google} style={styles.icon} />
+            </TouchableOpacity> */}
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
+              <Image source={twitter} style={styles.icon} />
             </TouchableOpacity>
           </View>
         </ScrollView>
