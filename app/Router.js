@@ -15,8 +15,8 @@ import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/ProfileView';
 import Setting from './components/Setting/Setting';
 import ChatListFriendView from './components/Chat/ChatListFriendView';
-import Privacy from './components/Privacy/privacy.js';
-import Email from './components/Setting/EmailNotif'
+import Privacy from './components/Privacy/privacy';
+import Email from './components/Setting/EmailNotif';
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';
@@ -28,7 +28,7 @@ const Routing = () => (
       <Scene key={'modal'} component={Modal}>
         <Scene key={'drawer'} component={NavigationDrawer}>
           <Scene key={'root'} navBar={NavBar}>
-          {/* <Schema
+            {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene
               key="setting" component={Setting} title="Setting"
@@ -38,6 +38,12 @@ const Routing = () => (
             />
             <Scene
               key={'notifications'} component={Notifications} title={'notifications'}
+            />
+            <Scene
+              key={'chat'} component={Chat} title={'Chat'}
+            />
+            <Scene
+              key={'chatlist'} component={ChatListFriendView} title={'Chat List'}
             />
             <Scene
               key={'account'} component={Account} title={'account'}
