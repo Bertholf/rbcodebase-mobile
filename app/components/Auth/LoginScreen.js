@@ -8,6 +8,7 @@ import {
    Linking,
    Alert,
    TouchableOpacity,
+   TouchableHighlight,
    ActivityIndicator,
    ScrollView,
  } from 'react-native';
