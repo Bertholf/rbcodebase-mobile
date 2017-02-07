@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   LayoutInputText: {
-    flex: 1,
     flexDirection: 'row',
     backgroundColor: 'white',
     paddingLeft: 12,
@@ -32,6 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     borderRadius: 3,
     color: '#2196f3',
+    height: 80,
   },
   TextSend: {
     fontSize: 20,
