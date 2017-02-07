@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import timelineList from '../../services/timelineList';
+import PostCard from './../Timeline/StatusPostCard/StatusCard';
 
 const styles = StyleSheet.create({
   card: {
@@ -60,6 +61,8 @@ export default class MapMain extends Component {
   render() {
     if (this.state.loading === false) {
     return (
+        <View>
+      <PostCard/>
       <ListView
         dataSource={ds.cloneWithRows(this.state.list)}
         renderRow={ (dataPost) =>
@@ -75,6 +78,7 @@ export default class MapMain extends Component {
           </TouchableOpacity>
         }
       />
+    </View>
     );
   } else {
     return(

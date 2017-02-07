@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView, ActivityIndicator } from 'react-native';
+import { View,Alert, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView, ActivityIndicator } from 'react-native';
 import friend from '../../services/friend';
 import {Actions} from 'react-native-router-flux';
 const styles = StyleSheet.create({
@@ -108,8 +108,15 @@ export default class Friendlist extends React.Component {
  }
  }
  toggleSwitch() {
-   this.setState({
-     clicked: !this.state.clicked
-   })
+   if (!this.state.clicked) {
+     Alert.alert('Confirmation',
+              'Are you sure to unfollow this user?', [
+               { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+              ]);
+   } else {
+     this.setState({ clicked: !this.state.clicked });
+   }
  }
+
  }

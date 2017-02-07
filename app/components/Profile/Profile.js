@@ -7,6 +7,7 @@ import {
      StyleSheet,
      ScrollView,
      ActivityIndicator,
+     Alert,
 } from 'react-native';
 import me from '../../services/me';
 import styles from './ProfileStyle';
@@ -28,7 +29,15 @@ export default class Profile extends Component {
   }
 
   toggleSwitch() {
-    this.setState({ clicked: !this.state.clicked });
+    if (!this.state.clicked) {
+      Alert.alert('Confirmation',
+               'Are you sure to unfollow this user?', [
+                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+               ]);
+    } else {
+      this.setState({ clicked: !this.state.clicked });
+    }
   }
   profileMe() {
     
@@ -46,12 +55,12 @@ export default class Profile extends Component {
               />
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.firstName} {this.state.profile.lastName}
+                  {this.state.profile.first_name} {this.state.profile.last_name}
                 </Text>
               </View>
               <View style={styles.textInform} >
                 <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
-                <TouchableOpacity onPress={Actions.friendlist} >
+                <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.toggleSwitch()}>

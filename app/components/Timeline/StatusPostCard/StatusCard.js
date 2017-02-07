@@ -7,8 +7,22 @@ import {
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
+import TimelineService from './../../../services/timelineList';
 
 const PostCard = () => {
+
+
+//   this.state = {
+//     button:{}
+//
+// }
+
+
+  addText = () => {
+    this.setState({button : 'status card' })
+    console.log(this.state.button);
+  }
+
   return (
     <View>
       <View style={styles.containerCard}>
@@ -25,7 +39,9 @@ const PostCard = () => {
         <View style={styles.border}>
           <PostMenu />
           <View style={{ flex: 1, paddingTop: 12 }}>
-            <Button title={'Post'} />
+            <Button title={'Post'}
+              onPress={() => console.log(this.state.TimelineService,'ggugu')}
+            />
           </View>
         </View>
       </View>

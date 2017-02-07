@@ -56,15 +56,14 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onGet('/me').reply(200, userFactory());
   mockery.onPut('/me').reply(200);
   mockery.onGet('/timeline').reply(200, listTimeline());
-  // mockery.onGet('/posts').reply(200, {
-  //   data: timelineFactory(),
-  // });
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
   mockery.onGet('/notifications').reply(200, {
     data: notifFactory(),
   });
+  mockery.onGet('/posts').reply(200, listTimeline());
+  mockery.onPost('/posts').reply(200);
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
   mockery.onPost('/login').reply(200, {
@@ -75,9 +74,6 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
-  mockery.onGet('/notifications').reply(200, {
-    data: notifFactory(),
-  });
   mockery.onGet('/comment').reply(200, commentFactory());
   mockery.onPost('/register').reply(200, registerFactory());
 });
