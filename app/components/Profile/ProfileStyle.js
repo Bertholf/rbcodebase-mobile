@@ -1,33 +1,35 @@
+import { StyleSheet } from 'react-native';
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-    },
-    backdrop: {
-      flex:1,
-      height:200,
-    },
-    backgroundname: {
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  backdrop: {
+    flex: 1,
+    height: 200,
+  },
+  backgroundname: {
+  },
   headline: {
     fontSize: 20,
-    fontWeight:'bold',
+    fontWeight: 'bold',
     textAlign: 'center',
     color: 'rgba(255,255,255,0.9)',
     bottom: 50,
   },
   welcome: {
-   fontSize: 20,
-   textAlign: 'center',
-   margin: 10,
-   color: '#FFFFFF'
- },
- touchable: {
-   borderRadius: 100
- },
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#FFFFFF',
+  },
+  touchable: {
+    borderRadius: 100,
+  },
   overlay: {
     opacity: 0.5,
-    backgroundColor: '#000000'
+    backgroundColor: '#000000',
   },
   logo: {
     position: 'absolute',
