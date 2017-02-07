@@ -27,7 +27,7 @@ const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
-        <Scene key={'drawer'} component={NavigationDrawer} open={false} >
+        <Scene key={'drawerLayout'} component={NavigationDrawer} open={false} >
           <Scene key={'root'} navBar={NavBar}>
             {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}

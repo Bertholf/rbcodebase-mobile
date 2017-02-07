@@ -1,175 +1,129 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
-  StyleSheet,
+  View,
+  ScrollView,
   Text,
   TouchableOpacity,
-  View,
+  StyleSheet,
   Image,
-  ScrollView,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
-import FacebookLogout from './../services/FacebookLogout';
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
+  },
+  header: {
+    // flex: 1,
+    padding: 20,
     backgroundColor: '#2196F3',
   },
-  drawerProfile: {
-    flex: 1,
-    flexDirection: 'row',
-    marginBottom: 40,
+  content: {
+    flex: 5,
     padding: 10,
+    backgroundColor: '#fff',
   },
-  drawerMenu: {
-    flex: 6,
-    backgroundColor: '#FFFFFF',
-  },
-  image: {
-    width: 80,
-    height: 80,
-    marginRight: 20,
-    borderWidth: 1,
-  },
-  menu: {
-    fontSize: 20,
-    padding: 10,
-  },
-  icon: {
-    width: 20,
-    height: 20,
-  },
-  viewIcon: {
-    paddingLeft: 15,
-    paddingTop: 15,
-    paddingBottom: 15,
+  profilePicture: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   name: {
+    color: '#fff',
     fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 5,
   },
-  location: {
+  status: {
+    color: '#E0E0E0',
     fontSize: 15,
-    marginBottom: 5,
+  },
+  menu: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    marginBottom: 10,
+  },
+  icon: {
+    marginRight: 5,
+    padding: 5,
+  },
+  menuItem: {
+    flexShrink: 1,
+    padding: 5,
+    color: '#080808',
+    fontSize: 15,
   },
 });
 
-const dashboard = require('./../images/ic_dashboard_black_24dp.png');
-const profile = require('./../images/ic_perm_identity_black_24dp.png');
-const notifications = require('./../images/ic_notifications_black_24dp.png');
-const setting = require('./../images/ic_settings_black_24dp.png');
-const logout = require('./../images/ic_directions_run_black_24dp.png');
+export default class MainDrawer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: '' };
+  }
 
-const MainDrawer = () => {
-  const navigationView = (
-    <View style={styles.container}>
-      <View style={styles.drawerProfile}>
-        <View>
-          <Image
-            style={styles.image}
-            source={{ uri: 'https://s-media-cache-ak0.pinimg.com/736x/db/b7/4a/dbb74aa018b267e7e6e6bd251723881b.jpg' }}
-          />
-        </View>
-        <View>
-          <Text style={styles.name}>
-            Name
-          </Text>
-          <Text style={styles.location}>
-            Location
-          </Text>
-        </View>
-      </View>
-      <View style={styles.drawerMenu}>
-        <View>
-          <ScrollView>
-            <TouchableOpacity onPress={Actions.timelineList}>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <Image
-                    style={styles.icon}
-                    source={dashboard}
-                  />
-                </View>
-                <View>
-                  <Text style={styles.menu}>
-                    Dashboard
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <TouchableOpacity onPress={Actions.profile}>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <Image
-                    style={styles.icon}
-                    source={profile}
-                  />
-                </View>
-                <View>
-                  <Text style={styles.menu}>
-                    My Profile
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <TouchableOpacity onPress={Actions.notifications}>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <Image
-                    style={styles.icon}
-                    source={notifications}
-                  />
-                </View>
-                <View>
-                  <Text style={styles.menu}>
-                    Notifications
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <TouchableOpacity onPress={Actions.setting}>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <Image
-                    style={styles.icon}
-                    source={setting}
-                  />
-                </View>
-                <View>
-                  <Text style={styles.menu}>
-                    Setting
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <TouchableOpacity onPress={() => FacebookLogout.getFacebookLogout()}>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={styles.viewIcon}>
-                  <Image
-                    style={styles.icon}
-                    source={logout}
-                  />
-                </View>
-                <View>
-                  <Text style={styles.menu}>
-                    Logout
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-          </ScrollView>
-        </View>
-      </View>
-    </View>
-  );
+  navigateTo(item) {
+    this.setState({
+      name: item.name,
+    });
 
-  return (navigationView);
+    if (item.action) {
+      Actions[item.action]({ ...item.props });
+      this.props.navigate();
+    }
+  }
+
+  render() {
+    const menuList = [
+      { index: 1, name: 'Timeline', action: 'timelineList', iconName: 'list' },
+      { index: 2, name: 'Profile', action: 'profile', iconName: 'person' },
+      { index: 3, name: 'Notification', action: 'notifications', iconName: 'notifications' },
+      { index: 4, name: 'Inbox', action: 'listInbox', iconName: 'message' },
+      { index: 5, name: 'Friend list', action: 'friendList', iconName: 'group' },
+      { index: 6, name: 'Setting', action: 'setting', iconName: 'settings' },
+      { index: 7, name: 'Logout', action: 'logout', iconName: 'directions-run' },
+    ];
+    return (
+      <ScrollView>
+        <View style={styles.wrapper}>
+          <View style={styles.header}>
+            <View>
+              <Image
+                // Please fix this source image, thanks!
+                source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }}
+                style={styles.profilePicture}
+              />
+            </View>
+            <View style={styles.userProfile}>
+              <Text style={styles.name}>
+                Hiker user
+              </Text>
+              <Text style={styles.status}>
+                Status
+              </Text>
+            </View>
+          </View>
+          <View style={styles.content}>
+            {menuList.map((item) =>
+              <TouchableOpacity
+                key={item.index}
+                style={styles.menu}
+                onPress={() => this.navigateTo(item)}
+              >
+                <Icon
+                  name={item.iconName} size={20} style={styles.icon}
+                />
+                <Text style={styles.menuItem}>{item.name}</Text>
+              </TouchableOpacity>)}
+          </View>
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+MainDrawer.PropTypes = {
+  navigate: PropTypes.func.isRequired,
 };
-
-export default MainDrawer;

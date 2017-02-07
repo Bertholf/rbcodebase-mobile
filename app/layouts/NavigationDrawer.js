@@ -1,44 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
-import Drawer from 'react-native-drawer';
-import { Actions, DefaultRenderer } from 'react-native-router-flux';
+
+import { DefaultRenderer } from 'react-native-router-flux';
+import DrawerLayout from 'react-native-drawer-layout';
 import NavigationBar from 'react-native-navbar';
 import MainDrawer from './MainDrawer';
 
-const NavigationDrawer = (props) => {
-  const state = props.navigationState;
-  const rightButtonConfig = {
-    title: 'Next',
-    handler: () => console.log('hello!'),
-  };
-  const leftButtonConfig = {
-    title: 'Drawer',
-    handler: () => Actions.refresh({ key: state.key, open: true }),
-  };
-  const { navigationState, onNavigate } = props;
-  const { children, key } = navigationState;
-  const activeChildren = children[0].children;
-  return (
-    <Drawer
-      open={state.open}
-      onOpen={() => Actions.refresh({ key: state.key, open: true })}
-      onClose={() => Actions.refresh({ key: state.key, open: false })}
-      type="overlay"
-      tapToClose
-      content={<MainDrawer />}
-      openDrawerOffset={0.2}
-      panCloseMask={0.2}
-      negotiatePan
-      tweenHandler={ratio => ({
-        main: { opacity: Math.max(0.54, 1 - ratio) },
-      })}
-    >
-      {activeChildren[activeChildren.length - 1].hideNavBar ? <View /> : <NavigationBar
-        title={{ title: activeChildren[activeChildren.length - 1].title }}
-        leftButton={leftButtonConfig}
-        rightButton={rightButtonConfig}
-      /> }
-      <DefaultRenderer navigationState={children[0]} onNavigate={onNavigate} />
-    </Drawer>);
-};
-export default NavigationDrawer;
+export default class NavigationDrawer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      drawerClosed: true,
+    };
+    this.toggleDrawer = this.toggleDrawer.bind(this);
+
+    this.setDrawerState = this.setDrawerState.bind(this);
+  }
+
+  setDrawerState() {
+    this.setState(prevState => ({
+      drawerClosed: !this.state.drawerClosed,
+    }));
+  }
+  toggleDrawer() {
+    if (this.state.drawerClosed) {
+      this.DRAWER.openDrawer();
+    } else {
+      this.DRAWER.closeDrawer();
+    }
+  }
+  render() {
+    const children = this.props.navigationState.children;
+    const activeChildren = children[0].children;
+    const rightButtonConfig = {
+      title: 'Next',
+      handler: () => console.log('hello!'),
+    };
+    const leftButtonConfig = {
+      title: 'Drawer',
+      handler: () => this.DRAWER.openDrawer(),
+    };
+    return (
+      <DrawerLayout
+        drawerWidth={300}
+        ref={(drawerElement) => { this.DRAWER = drawerElement }}
+        drawerPosition={DrawerLayout.positions.left}
+        onDrawerOpen={this.setDrawerState}
+        onDrawerClose={this.setDrawerState}
+        renderNavigationView={() => <MainDrawer navigate={this.toggleDrawer} />}
+      >
+
+        {activeChildren[activeChildren.length - 1].hideNavBar ? <View /> : <NavigationBar
+          title={{ title: activeChildren[activeChildren.length - 1].title }}
+          leftButton={leftButtonConfig}
+          rightButton={rightButtonConfig}
+        /> }
+        <DefaultRenderer
+          navigationState={children[children.length - 1]}
+          onNavigate={this.props.onNavigate}
+        />
+      </DrawerLayout>
+
+    );
+  }
+}
