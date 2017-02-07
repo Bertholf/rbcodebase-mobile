@@ -223,7 +223,7 @@ export default class Profile extends Component {
               />
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.firstName} {this.state.profile.lastName}
+                  {this.state.profile.first_name} {this.state.profile.last_name}
                 </Text>
               </View>
               <View style={styles.textInform} >
