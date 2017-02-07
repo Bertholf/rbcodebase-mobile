@@ -2,7 +2,6 @@ import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
 import notifService from '../../services/notif';
-import Profile from './../../components/Profile/Profile';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,7 +36,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
  console.log("helli", ListView);
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
@@ -67,7 +65,7 @@ export default class Notification extends React.Component {
                   <Image source={{ uri: rowData.image }} style={styles.photo} />
                 </View>
                 <View style={{ flexDirection: 'column', flex: 3 }}>
-                  <Text style={styles.user}>{rowData.first_name}</Text>
+                  <Text style={styles.user}>{rowData.user}</Text>
                   <Text style={styles.detail} numberOfLines={3}>
                     {rowData.message}
                   </Text>

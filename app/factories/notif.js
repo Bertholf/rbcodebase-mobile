@@ -1,13 +1,11 @@
 import faker from 'faker';
 import user from './user';
 
-const notif = () => ({
-  id: faker.random.number(),
-  read: faker.random.boolean(),
-  image: faker.image.avatar(),
-  from: faker.name.firstName(),
-  message: faker.lorem.text(),
-  date_time: faker.date.recent(),
-  notification_total: faker.lorem.sentences(),
-});
+const notif = (total = 6) => {
+  let users = [];
+  for(let i=0; i<total; i+=1){
+    users.push(user());
+  }
+  return users;
+};
 export default notif;
