@@ -24,7 +24,6 @@ import Account from './components/Profile/AccountSetting';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 
-
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
@@ -35,6 +34,12 @@ const Routing = () => (
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene
               key="setting" component={Setting} title="Setting"
+            />
+            <Scene
+              key="chatfriend" component={ChatListFriendView} title="ChatListFriendView"
+            />
+            <Scene
+              key="inbox" component={Inbox} tittle="Inbox"
             />
             <Scene
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}

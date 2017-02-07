@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   View,
-  StyleSheet,
   Image,
   Text,
   TextInput,
   TouchableHighlight,
   Alert,
 } from 'react-native';
+import styles from './styles';
 
 const alertMessage = 'Choose Image/Video';
 const alertMessage1 = 'You will chat with Mr/Ms';
-import styles from './styles';
 export default class ChatView extends Component {
   constructor(props) {
     super(props);

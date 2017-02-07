@@ -11,7 +11,6 @@ import registerFactory from '../factories/AuthRegister';
 import friendlistFactory from '../factories/friendlist';
 import listTimeline from '../factories/listTimeline';
 
-
 class Api {
   constructor(baseUrl, middleware = () => {}) {
     this.baseUrl = baseUrl;

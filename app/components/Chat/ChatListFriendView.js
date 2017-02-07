@@ -1,10 +1,14 @@
 import React, { Component }  from  'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text, ScrollView } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Actions } from 'react-native-router-flux';
 const menu = require('./../../images/ic_menu_white_24dp.png');
 const user = require('./../../images/64x64.png');
 const user2 = require('./../../images/user2.png');
 const user3 = require('./../../images/user3.png');
+
 import styles from './ChatListFriendStyles';
 export default class ChatListFriendView extends Component {
   state = {
@@ -73,8 +77,8 @@ export default class ChatListFriendView extends Component {
               <Image style={styles.contactImg} source={user} />
               <View style={{justifyContent: 'space-around'}}>
                 <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
-                  <Text style={styles.name}>Budi</Text>
                   <Text style={styles.date}>2017-01-28</Text>
+                  <Text style={styles.name}>Budi</Text>
                 </View>
                 <Text style={styles.text}>Lorem ipsum dolor sit amet...</Text>
               </View>
@@ -162,12 +166,6 @@ export default class ChatListFriendView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity>
-            <Image style={styles.menu} source={menu} />
-          </TouchableOpacity>
-          <Text style={styles.title}>Contacts</Text>
-        </View>
         <TabViewAnimated
           style={styles.container}
           navigationState={this.state}
