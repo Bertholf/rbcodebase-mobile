@@ -75,7 +75,6 @@ export default class MainDrawer extends Component {
     me.getMe()
     .then((person) => {
       this.setState({ user: person });
-      console.log('USER DRAWER', this.state.user);
     });
   }
 
