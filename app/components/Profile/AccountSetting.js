@@ -1,24 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   Text,
+  ScrollView,
   TouchableOpacity,
   Image,
   Dimensions,
-  Alert,
-  alertMessage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 const { height, width } = Dimensions.get('window');
-const backrow = require('./../../images/arrow.png');
-const nxtrow = require('./../../images/ic_keyboard_arrow_right_black_24dp.png');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 5,
   },
   textHeader: {
     paddingTop: 10,
@@ -34,7 +30,7 @@ const styles = StyleSheet.create({
     left: 10,
   },
   title: {
-    fontSize: 10,
+    fontSize: 13,
     paddingLeft: 10,
     paddingRight: 10,
   },
@@ -43,11 +39,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 10,
     paddingRight: 10,
+    borderBottomWidth: 0.5,
+    borderColor: '#2196f3',
+    paddingBottom: 10,
   },
   name: {
-    fontSize: 20,
+    fontSize: 22,
     marginBottom: 3,
-    color: '#000',
+    color: '#2196f3',
   },
   icon: {
     width: 25,
@@ -59,93 +58,101 @@ const styles = StyleSheet.create({
     opacity: 0.3,
     margin: 5,
   },
+  Text1: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    alignItems: 'flex-start',
+    paddingTop: 16,
+    paddingBottom: 10,
+  },
 });
 
-const AccountSetting = (props) => {
-  return(
+const AccountSetting = () => {
+  return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>
-          Name
-        </Text>
-        <TouchableOpacity onPress={Actions.nameEdit}>
-          <View style={styles.content}>
-            <Text style={styles.name}>
-              { props.firstName } { props.lastName }
+      <ScrollView>
+        <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity onPress={Actions.nameEdit}>
+            <Text style={styles.title}>
+              Name
             </Text>
-            <Image
-              style={styles.icon}
-              source={nxtrow}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.setlist} />
-      <View>
-        <Text style={styles.title}>
-          Email
-        </Text>
-        <TouchableOpacity onPress={Actions.emailEdit}>
-          <View style={styles.content}>
-            <Text style={styles.name}>
-              {props.email}
+            <View style={styles.content}>
+              <Text style={styles.name}>
+                Edit Name
+              </Text>
+              <Image
+                style={styles.icon}
+                source={require('./../../images/backbuttonblue.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity onPress={Actions.emailEdit}>
+            <Text style={styles.title}>
+              Email
             </Text>
-            <Image
-              style={styles.icon}
-              source={nxtrow}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.setlist} />
-      <View>
-        <Text style={styles.title}>
-          Change password
-        </Text>
-        <TouchableOpacity onPress={Actions.passEdit}>
-          <View style={styles.content}>
-            <Text style={styles.name}>
-              Change password
+            <View style={styles.content}>
+              <Text style={styles.name}>
+                Edit Email
+              </Text>
+              <Image
+                style={styles.icon}
+                source={require('./../../images/backbuttonblue.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity onPress={Actions.passEdit}>
+            <Text style={styles.title}>
+              Password
             </Text>
-            <Image
-              style={styles.icon}
-              source={nxtrow}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.setlist} />
-      <View>
-        <Text style={styles.title}>
-          Gender
-        </Text>
-        <TouchableOpacity onPress={Actions.genderEdit}>
-          <View style={styles.content}>
-            <Text style={styles.name}>
-              {props.gender}
+            <View style={styles.content}>
+              <Text style={styles.name}>
+                Edit Password
+              </Text>
+              <Image
+                style={styles.icon}
+                source={require('./../../images/backbuttonblue.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity onPress={Actions.genderEdit}>
+            <Text style={styles.title}>
+              Gender
             </Text>
-            <Image
-              style={styles.icon}
-              source={nxtrow}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.setlist} />
-      <View>
-        <TouchableOpacity onPress={Actions.about}>
-          <View style={styles.content}>
-            <Text style={styles.name}>
+            <View style={styles.content}>
+              <Text style={styles.name}>
+                Edit Gender
+              </Text>
+              <Image
+                style={styles.icon}
+                source={require('./../../images/backbuttonblue.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity onPress={Actions.about}>
+            <Text style={styles.title}>
               About
             </Text>
-            <Image
-              style={styles.icon}
-              source={nxtrow}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.setlist} />
+            <View style={styles.content}>
+              <Text style={styles.name}>
+                Edit your bio
+              </Text>
+              <Image
+                style={styles.icon}
+                source={require('./../../images/backbuttonblue.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };
