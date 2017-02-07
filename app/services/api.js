@@ -3,11 +3,6 @@ import querystring from 'qs';
 import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
-<<<<<<< HEAD
-import notifFactory from '../factories/notif';
-import settingfactory from '../factories/setting';
-
-=======
 import loginFactory from '../factories/AuthLogin';
 import settingfactory from '../factories/setting';
 import notifFactory from '../factories/notif';
