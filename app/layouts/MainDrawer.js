@@ -66,10 +66,12 @@ const MainDrawer = () => {
     <View style={styles.container}>
       <View style={styles.drawerProfile}>
         <View>
+          <TouchableOpacity onPress={Actions.profile}>
           <Image
             style={styles.image}
             source={{ uri: 'https://s-media-cache-ak0.pinimg.com/736x/db/b7/4a/dbb74aa018b267e7e6e6bd251723881b.jpg' }}
           />
+        </TouchableOpacity>
         </View>
         <View>
           <Text style={styles.name}>
