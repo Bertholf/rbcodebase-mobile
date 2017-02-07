@@ -13,6 +13,7 @@ import styles from './styles';
 // import {GoogleSigninButton} from 'react-native-google-signin';
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
+import registerService from '../../services/AuthRegister';
 
 const { width } = Dimensions.get('window');
 const logo = require('./../../images/logo.png');
@@ -28,11 +29,16 @@ export default class Register extends Component {
     this.state = {
       male: true,
       female: false,
+      name: '',
+      email: '',
+      username: '',
+      password: '',
     };
+    this.register = this.register.bind(this);
   }
   // dummy button action
   register() {
-    Alert.alert('Button pressed');
+    registerService.register(this.state);
   }
 
   render() {
@@ -66,24 +72,24 @@ export default class Register extends Component {
               maxLength={32}
               placeholder={'Name'}
               style={styles.textInput}
-              onChangeText={name => console.log({ name })}
+              onChangeText={name => this.setState({ name })}
             />
             <TextInput
               keyboardType={'email-address'}
               placeholder={'Email'}
               style={styles.textInput}
-              onChangeText={email => console.log({ email })}
+              onChangeText={email => this.setState({ email })}
             />
             <TextInput
               placeholder={'Username'}
               style={styles.textInput}
-              onChangeText={username => console.log({ username })}
+              onChangeText={username => this.setState({ username })}
             />
             <TextInput
               placeholder={'Password'}
               style={styles.textInput}
               secureTextEntry
-              onChangeText={password => console.log({ password })}
+              onChangeText={password => this.setState({ password })}
             />
             <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
               <Text style={{ color: 'white' }}>Gender</Text>

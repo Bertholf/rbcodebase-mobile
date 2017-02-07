@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
  console.log("helli", ListView);
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
