@@ -5,12 +5,13 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   Alert,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import styles from './styles';
 
 const alertMessage = 'Choose Image/Video';
-const alertMessage1 = 'You will chat with Mr/Ms';
 export default class ChatView extends Component {
   constructor(props) {
     super(props);
@@ -20,38 +21,39 @@ export default class ChatView extends Component {
       msgReceive: 'message Receive',
     };
   }
-
   onSendMessage() {
     console.log(this.state.message);
     this.setState({ message: '' });
   }
-
-
   onReceiveMsg() {
     this.state.msgReceive;
     console.log(this.state.msgReceive);
   }
-
-
   render() {
     return (
-    <View>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.containerImgMenu}>
-            <Image
-              style={styles.imgMenu}
-              source={require('./../../images/ic_menu_white_24dp.png')}
-            />
-            <TextInput
-              style={styles.inputSearch}
-              placeholder="Find Friends"
-              placeholderTextColor="white"
-              // value={this.state.message}
-              // onChangeText={(text) => this.setState({message: text})}
-            />
+      <View style={{ flex: 1 }}>
+        <View
+          style={styles.OuterLayer}
+        >
+          <View style={{ marginLeft: 16 }}>
+            <TouchableOpacity onPress={Actions.timelineList}>
+              <Image
+                style={{
+                  width: 55,
+                  height: 55,
+                }}
+                source={require('./../../images/backbutton.png')
+              }
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 6 }}>
+            <Text style={{ fontSize: 24, color: 'white' }}>
+              Chat View
+            </Text>
+          </View>
+          <View style={{ marginRight: 16 }}>
             <TouchableHighlight
-              style={styles.wrapper}
               onPress={() => Alert.alert(
                   'Alert Title',
                   alertMessage,
@@ -61,161 +63,46 @@ export default class ChatView extends Component {
                 )}
             >
               <Image
-                style={styles.attachFile}
-                source={require('./../../images/ic_attach_file_white_24dp.png')}
-              />
-            </TouchableHighlight>
-
-          </View>
-          <View style={styles.avatarFriend}>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              style={styles.wrapper}
-              onPress={() => Alert.alert(
-                'Alert Title',
-                alertMessage1,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-              )}
-            >
-              <Image
-                style={styles.avatarImg}
-                source={require('./../../images/64x64.png')}
+                style={{
+                  width: 35,
+                  height: 35,
+                  marginTop: 6,
+                }}
+                source={require ('./../../images/ic_attach_file_white_24dp.png')}
               />
             </TouchableHighlight>
           </View>
         </View>
-
-        <View style={styles.content}>
-          <View style={styles.contentLeft}>
-            <Text style={styles.chatText}>Receive Message</Text>
-          </View>
-          <View style={styles.contentRight}>
-            <Text style={styles.chatText}>Send Message</Text>
+        <View style={{ flex: 6 }} />
+        <View style={styles.LayoutTextChat}>
+          <View
+            style={styles.LayoutInputText}
+          >
+            <TextInput
+              style={styles.TextInput}
+              multiline={true}
+              numberOfLines={5}
+              placeholder="Type a message..."
+              underlineColorAndroid="#2196f3"
+              placeholderTextColor="#2196f3"
+              value={this.state.message}
+              onChangeText={({ text }) => this.setState({ message: text })}
+            />
+            <View style={{ backgroundColor: '#2196f3', borderRadius: 2, paddingLeft: 4, paddingRight: 4, justifyContent: 'center' }}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => this.onSendMessage()}
+              >
+                <Text
+                  style={styles.TextSend}
+                >
+                  Send
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
-    <View style = {{ flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
-      <View style={styles.footer}>
-        <TextInput
-          style={styles.inputChat}
-          placeholder="Type a message..."
-          value={this.state.message}
-          onChangeText={(text) => this.setState({ message: text })}
-        />
-        <TouchableHighlight
-          onPress={() => this.onSendMessage()}
-        >
-          <Text style={styles.sendBtn}>Send</Text>
-        </TouchableHighlight>
-      </View>
-    </View>
-    </View>
     );
   }
 }

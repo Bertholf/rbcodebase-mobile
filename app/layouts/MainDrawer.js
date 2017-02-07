@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
+import me from '../services/me';
 
-const { width,height } = Dimensions.get('window');
+
+const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -63,7 +65,17 @@ const styles = StyleSheet.create({
 export default class MainDrawer extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: '' };
+    this.state = {
+      name: '',
+      user: {},
+    };
+    this.user();
+  }
+  user() {
+    me.getMe()
+    .then((person) => {
+      this.setState({ user: person });
+    });
   }
 
   navigateTo(item) {
@@ -91,19 +103,18 @@ export default class MainDrawer extends Component {
       <ScrollView>
         <View style={styles.wrapper}>
           <View style={styles.header}>
-            <View>
+            <TouchableOpacity onPress={() => Actions.profile()}>
               <Image
-                // Please fix this source image, thanks!
-                source={{ uri: 'https://facebook.github.io/react/img/logo_og.png' }}
+                source={{ uri: this.state.user.imgProfile }}
                 style={styles.profilePicture}
               />
-            </View>
+            </TouchableOpacity>
             <View style={styles.userProfile}>
               <Text style={styles.name}>
-                Hiker user
+                {this.state.user.first_name} {this.state.user.last_name}
               </Text>
               <Text style={styles.status}>
-                Status
+                {this.state.user.message}
               </Text>
             </View>
           </View>

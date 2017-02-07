@@ -18,6 +18,7 @@ export default class TimelineComment extends Component {
           title='Post Comment'
           color='#2196F3'
           accessibilityLabel= 'Post Your Comment'
+          onPress={() => console.log('OK Pressed!')}
         />
       </View>
     )

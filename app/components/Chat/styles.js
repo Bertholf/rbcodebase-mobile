@@ -1,92 +1,44 @@
 import {
-  AppRegistry,
   StyleSheet,
 } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-  },
-  header: {
-    borderBottomWidth: 1,
-    borderColor: '#2962ff',
-  },
-  containerImgMenu: {
-    backgroundColor: '#2962ff',
+  OuterLayer: {
+    backgroundColor: '#2196f3',
     flexDirection: 'row',
-    borderBottomWidth: 2,
-    borderColor: '#26A69A',
+    elevation: 4,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
   },
-  imgMenu: {
-    width: 30,
-    height: 55,
-    marginTop: 1,
-  },
-  inputSearch: {
-    width: 300,
-    height: 55,
-    color: 'white',
-    borderRadius: 3,
-    fontSize: 20,
-  },
-  attachFile: {
-    width: 25,
-    height: 35,
-    marginTop: 5,
-  },
-  avatarFriend: {
+  LayoutTextChat: {
+    flex: 1,
     flexDirection: 'row',
-  },
-  avatarImg: {
-    width: 40,
-    height: 40,
-    marginTop: 3,
-    marginBottom: 3,
-    marginLeft: 3,
-  },
-  content: {
-    marginBottom: 429,
-
-  },
-  contentLeft: {
-    marginLeft: 10,
-  },
-  contentRight: {
+    justifyContent: 'center',
     alignItems: 'flex-end',
-    marginRight: 10,
+    borderColor: '#2196f3',
+    borderWidth: 0.7,
+    marginLeft: 4,
+    marginRight: 4,
   },
-  chatText: {
-    fontSize: 15,
-    color: '#263238',
-  },
-  footer: {
-    alignItems: 'flex-end',
+  LayoutInputText: {
     flexDirection: 'row',
-    backgroundColor: '#2962FF',
-    marginBottom: 5,
-    height: 45,
-  },
-  inputChat: {
-    width: 295,
-    height: 35,
     backgroundColor: 'white',
-    marginBottom: 5,
-    marginLeft: 5,
-    borderRadius: 3,
+    paddingLeft: 12,
+    // marginLeft: 12,
   },
-  sendBtn: {
-    fontSize: 15,
-    fontWeight: '100',
-    backgroundColor: '#fff',
-    color: '#2962FF',
-    height: 35,
-    width: 50,
+  TextInput: {
+    flex: 1,
+    fontSize: 20,
     borderRadius: 3,
-    marginBottom: 5,
-    marginLeft: 5,
-    paddingLeft: 7,
-    paddingTop: 5,
+    color: '#2196f3',
+    height: 80,
   },
-
+  TextSend: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+    paddingLeft: 8,
+    paddingRight: 8,
+  },
 });
-
 export default styles;

@@ -7,6 +7,7 @@ import {
   Image,
   Navigator,
   ListView,
+  ScrollView,
   ActivityIndicator,
 } from 'react-native';
 import timelineList from '../../services/timelineList';
@@ -64,7 +65,8 @@ export default class MapMain extends Component {
   render() {
     if (this.state.loading === false) {
     return (
-        <View>
+      <ScrollView>
+    <View>
       <PostCard/>
       <ListView
         dataSource={ds.cloneWithRows(this.state.list)}
@@ -82,6 +84,7 @@ export default class MapMain extends Component {
         }
       />
     </View>
+    </ScrollView>
     );
   } else {
     return(

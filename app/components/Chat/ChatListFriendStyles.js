@@ -5,7 +5,11 @@ const styles = StyleSheet.create({
     flex: 1,
     right: 0,
     left: 0,
-    height: 270,
+  },
+  container1: {
+    flex: 8,
+    backgroundColor: '#fff',
+    color: '#2196F3',
   },
   title: {
     paddingTop: 15,
@@ -17,29 +21,36 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     height: 55,
-    backgroundColor: '#2962FF',
-    shadowColor: '#2979FF',
-    shadowOpacity: 5,
-    shadowRadius: 1,
-    paddingLeft: 10,
+    backgroundColor: '#2196f3',
+    paddingLeft: 16,
+    borderBottomWidth: 2,
+    borderColor: '#fff',
+
   },
   menu: {
-    width: 35,
-    height: 35,
-    marginTop: 10,
+    width: 55,
+    height: 55,
   },
   page: {
+    alignItems: 'flex-start',
     margin: 10,
     justifyContent: 'center',
+    backgroundColor: '#fff',
+    elevation: 4,
+    borderRadius: 4,
   },
   contactImg: {
     width: 60,
     height: 60,
   },
   listFriend: {
-    marginLeft: 5,
+    marginLeft: 6,
+    marginRight: 6,
     justifyContent: 'space-around',
     flexDirection: 'row',
+    padding: 5,
+    borderBottomWidth: 0.5,
+    borderColor: '#2196f3',
   },
   setlist: {
     height: 1,
