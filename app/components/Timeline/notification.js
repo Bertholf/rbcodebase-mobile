@@ -65,7 +65,7 @@ export default class Notification extends React.Component {
                   <Image source={{ uri: rowData.image }} style={styles.photo} />
                 </View>
                 <View style={{ flexDirection: 'column', flex: 3 }}>
-                  <Text style={styles.user}>{rowData.user}</Text>
+                  <Text style={styles.user}>{rowData.first_name} {rowData.first_name}</Text>
                   <Text style={styles.detail} numberOfLines={3}>
                     {rowData.message}
                   </Text>
