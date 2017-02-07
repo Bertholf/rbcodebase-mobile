@@ -11,6 +11,7 @@ import {
 import me from '../../services/me';
 import styles from './ProfileStyle';
 import { Actions } from 'react-native-router-flux';
+import MapMain from '../Timeline/TimelineComp';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -89,6 +90,9 @@ export default class Profile extends Component {
                 </TouchableOpacity>
               </View>
             </View>
+          </View>
+          <View>
+            <MapMain />
           </View>
         </ScrollView>
       );

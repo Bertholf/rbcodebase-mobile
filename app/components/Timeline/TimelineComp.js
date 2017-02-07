@@ -13,13 +13,10 @@ import timelineList from '../../services/timelineList';
 
 const styles = StyleSheet.create({
   card: {
-
     flexDirection: 'row',
     justifyContent: 'flex-start',
     backgroundColor: '#2196F3',
-
   },
-
   text: {
     fontSize: 10,
     textAlign: 'right',
