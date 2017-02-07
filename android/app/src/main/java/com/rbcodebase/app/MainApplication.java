@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
-// import com.reactnativenavigation.RnnPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -19,7 +18,6 @@ import com.facebook.soloader.SoLoader;
 import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
-// import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -47,8 +45,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
-            // new RnnPackage(),
-              // new RNGoogleSigninPackage(),
               new VectorIconsPackage(),
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),
