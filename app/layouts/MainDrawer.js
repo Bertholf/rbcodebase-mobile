@@ -105,7 +105,6 @@ export default class MainDrawer extends Component {
           <View style={styles.header}>
             <TouchableOpacity onPress={() => Actions.profile()}>
               <Image
-                // Please fix this source image, thanks!
                 source={{ uri: this.state.user.imgProfile }}
                 style={styles.profilePicture}
               />
