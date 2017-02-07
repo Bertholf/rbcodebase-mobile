@@ -1,5 +1,5 @@
 import api from './api';
 
 export default {
-  getComment: () => api.get('/comment'),
+  getTimeline: () => api.get('/timeline'),
 };

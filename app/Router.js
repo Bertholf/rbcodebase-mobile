@@ -14,13 +14,14 @@ import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/Profile';
 import Setting from './components/Setting/Setting';
-import ChatListFriendView from './components/Chat/ChatListFriendView';
-import Privacy from './components/Privacy/privacy.js';
-import Email from './components/Setting/EmailNotif'
+//  import ChatListFriendView from './components/Chat/ChatListFriendView';
+import Privacy from './components/Privacy/privacy';
+import Email from './components/Setting/EmailNotif';
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './layouts/Loader';
 import Account from './components/Profile/AccountSetting';
+import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 
 const Routing = () => (
@@ -47,8 +48,11 @@ const Routing = () => (
               key={'notifications'} component={Notifications} title={'Notifications'}
             />
             <Scene
-              key={'account'} component={Account} title={'Account'}
+              key={'friendlist'} component={Friendlist} title={'friendlist'}
             />
+            <Scene
+              key={'account'} component={Account} title={'account'}
+              />
             <Scene
               key={'privacy'} component={Privacy} title={'Privacy'}
             />

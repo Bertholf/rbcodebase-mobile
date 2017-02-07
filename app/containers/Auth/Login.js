@@ -2,7 +2,11 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
 import { updateUsername, updatePassword, submitLogin } from '../../actions/Auth';
+import me from '../../services/me';
+import notif from '../../services/notif';
 import userFactory from '../../factories/user';
+import AuthLoginService from '../../services/AuthLogin';
+
 
 const mapStateToProps = ({ app }) => ({
   username: app.auth.username,
@@ -17,8 +21,9 @@ const mapDispatchToProps = dispatch => ({
   loginWithFacebook: () => {
     Actions.timelineList();
   },
-  submitLogin: () => {
-    Actions.timelineList();
+  submitLogin: (username, password) => {
+    dispatch(submitLogin());
+    AuthLoginService(username, password);
   },
   forgotPassword: () => {
     Actions.forgotPassword();
