@@ -3,30 +3,13 @@ import {
   Text,
   View,
   TextInput,
-  Image,
   TouchableOpacity,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import styles from './ChangeSetting/ChangeStyles';
 
 const NameEdit = () => {
   return (
     <View style={styles.OuterView}>
-      <View style={{ flexDirection: 'row', backgroundColor: '#2196f3' }}>
-        <TouchableOpacity onPress={Actions.account}>
-          <Image
-            style={{
-              width: 40,
-              height: 40,
-              marginTop: 14,
-            }}
-            source={require('./../../images/backbutton.png')}
-          />
-        </TouchableOpacity>
-        <Text style={styles.Text1}>
-          CHANGE NAME
-        </Text>
-      </View>
       <View style={styles.View1}>
         <Text style={styles.Text2}>
           Enter your new name

@@ -3,11 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   Image,
+  TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
@@ -72,21 +71,6 @@ export default class Gender extends Component {
   render() {
     return (
       <View style={styles.OuterView}>
-        <View style={{ flexDirection: 'row', backgroundColor: '#2196f3' }}>
-          <TouchableOpacity onPress={Actions.account}>
-            <Image
-              style={{
-                width: 40,
-                height: 40,
-                marginTop: 14,
-              }}
-              source={require('./../../images/backbutton.png')}
-            />
-          </TouchableOpacity>
-          <Text style={styles.Text1}>
-            CHANGE GENDER
-          </Text>
-        </View>
         <View style={styles.genderRow} >
           <TouchableOpacity
             activeOpacity={0.7}
