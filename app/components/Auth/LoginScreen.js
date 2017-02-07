@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
-// import {GoogleSigninButton} from 'react-native-google-signin';
+import {
+   StyleSheet,
+   Text,
+   View,
+   Image,
+   TextInput,
+   Linking,
+   Alert,
+   TouchableOpacity,
+   TouchableHighlight,
+   ActivityIndicator,
+   ScrollView,
+ } from 'react-native';
+
 import { Actions } from 'react-native-router-flux';
 
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
-
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
@@ -13,9 +24,14 @@ const logo = require('./../../images/logo.png');
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#dddddd',
+  },
+  title: {
+    fontSize: 30,
+    alignSelf: 'center',
+    marginBottom: 30,
   },
   logo: {
     width: 120,
@@ -70,6 +86,7 @@ const styles = StyleSheet.create({
 
 const LoginScreen = ({ username, password, submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
+  <ScrollView style={{ backgroundColor: '#dddddd' }}>
     <View style={styles.container}>
       <ScrollView>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -113,6 +130,7 @@ const LoginScreen = ({ username, password, submitLogin, register, forgotPassword
       </View>
     </ScrollView>
     </View>
+  </ScrollView>
   );
 };
 

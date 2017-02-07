@@ -35,9 +35,9 @@ export default class privacy extends Component {
     return (
       <View style={styles.styleBackground}>
         <View style={{ height: 50, backgroundColor: '#2196F3', borderBottomWidth: 1, borderColor: 'white', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Privacy</Text>
-      </View>
-      <ScrollView>
+          <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Privacy</Text>
+        </View>
+        <ScrollView>
         <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Comfirm request when someone follow
@@ -49,7 +49,7 @@ export default class privacy extends Component {
             value={this.state.confirmFollow}
           />
         </View>
-        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
           <Text style={styles.styleText}>
             Who can follow you
           </Text>
@@ -71,7 +71,9 @@ export default class privacy extends Component {
             value={this.state.whoCanComment}
           />
         </View>
+
         <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
+
           <Text style={styles.styleText}>
             Who can post on your timeline
           </Text>
@@ -93,7 +95,6 @@ export default class privacy extends Component {
             value={this.state.confirmFollow}
           />
         </View>
-
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.saveButton}

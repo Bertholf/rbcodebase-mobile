@@ -1,6 +1,8 @@
 import React from 'react';
+import { Actions } from 'react-native-router-flux';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
 import notifService from '../../services/notif';
+import Profile from './../../components/Profile/Profile';
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +61,7 @@ export default class Notification extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.profile}>
               <View style={styles.container}>
                 <View style={{ paddingTop: 8, paddingBottom: 8, paddingRight: 16 }}>
                   <Image source={{ uri: rowData.image }} style={styles.photo} />

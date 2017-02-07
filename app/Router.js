@@ -14,7 +14,7 @@ import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/Profile';
 import Setting from './components/Setting/Setting';
-//  import ChatListFriendView from './components/Chat/ChatListFriendView';
+import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy';
 import Email from './components/Setting/EmailNotif';
 import NavigationDrawer from './layouts/NavigationDrawer';
@@ -24,17 +24,22 @@ import Account from './components/Profile/AccountSetting';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 
-
 const Routing = () => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
-        <Scene key={'drawer'} component={NavigationDrawer} open={false} >
+        <Scene key={'drawerLayout'} component={NavigationDrawer} open={false} >
           <Scene key={'root'} navBar={NavBar}>
             {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene
               key="setting" component={Setting} title="Setting"
+            />
+            <Scene
+              key="chatfriend" component={ChatListFriendView} title="ChatListFriendView"
+            />
+            <Scene
+              key="inbox" component={Inbox} tittle="Inbox"
             />
             <Scene
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
