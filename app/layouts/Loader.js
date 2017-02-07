@@ -31,6 +31,6 @@ const Loader = () => {
       </TouchableHighlight>
     </View>
   );
-}
+};
 
 export default Loader;

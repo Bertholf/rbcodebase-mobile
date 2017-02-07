@@ -7,8 +7,8 @@ import {
   Dimensions,
   Image,
   Text,
-  Alert,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import styles from './styles';
 // import {GoogleSigninButton} from 'react-native-google-signin';
 // import GoogleSignIn from './../../services/signingoogle';
@@ -148,6 +148,11 @@ export default class Register extends Component {
                 <Text style={{ color: '#DF2668' }}>Female</Text>
               </TouchableOpacity>
             </View>
+          </View>
+          <View style={{ padding: 20 }}>
+            <Text>By clicking Register, I agree with
+              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> Terms of Service</Text>
+            </Text>
           </View>
           <TouchableOpacity
             activeOpacity={0.7} style={styles.btnReg} onPress={() => this.validate()}
