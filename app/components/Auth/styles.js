@@ -4,10 +4,9 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     backgroundColor: '#ffffff',
     justifyContent: 'center',
-    paddingBottom: 16,
+    padding: 20,
     flex: 1,
   },
   logo: {
@@ -21,15 +20,13 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
   },
   textInput: {
-    width: width * 0.8,
-    height: 50,
+    // // width: width * 0.8,
+    // height: 50,
     bottom: 10,
     color: '#2196F3',
   },
   btnReg: {
     backgroundColor: '#2196F3',
-    marginLeft: 16,
-    paddingRight: 16,
     borderRadius: 2,
     elevation: 2,
   },
@@ -95,6 +92,10 @@ const styles = StyleSheet.create({
   active2: {
     borderWidth: 2,
     borderColor: '#f2003d',
+  },
+  wrong: {
+    color: '#ff0000',
+    alignSelf: 'flex-start',
   },
 });
 export default styles;
