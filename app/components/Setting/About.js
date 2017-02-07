@@ -24,8 +24,8 @@ export default class ChatView extends Component {
         <ScrollView>
           <View
             style={{
-              alignItems: 'flex-start',
-              paddingTop: 50,
+              alignItems: 'center',
+              paddingTop: 40,
               marginLeft: 19,
               marginRight: 19,
             }}
@@ -60,14 +60,14 @@ export default class ChatView extends Component {
               value={this.state.text}
             />
           </View>
-          <TouchableOpacity onPress={() => console.log('dummy')}>
-            <View style={styles.View2}>
-              <Text style={styles.Button}>
-                SAVE
-              </Text>
-            </View>
-          </TouchableOpacity>
         </ScrollView>
+        <TouchableOpacity onPress={() => console.log('dummy')}>
+          <View style={styles.View2}>
+            <Text style={styles.Button}>
+              SAVE
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
