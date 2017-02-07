@@ -197,6 +197,7 @@ export default class Profile extends Component {
     me.getMe()
     .then(data => this.setState({ profile: data, loading: false }));
   }
+<<<<<<< 03c81f48d5fd145fe811ea97f38ebbc8aa45fd04
 
   toggleSwitch() {
     if (!this.state.clicked) {
@@ -210,6 +211,13 @@ export default class Profile extends Component {
     }
   }
 
+=======
+
+  toggleSwitch() {
+    this.setState({ clicked: !this.state.clicked });
+  }
+
+>>>>>>> add linked
   render() {
     if (this.state.loading === false) {
       return (
@@ -228,7 +236,7 @@ export default class Profile extends Component {
               </View>
               <View style={styles.textInform} >
                 <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
-                <TouchableOpacity onPress={Actions.friendlist}>
+                <TouchableOpacity onPress={Actions.friendlist} >
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.toggleSwitch()}>
