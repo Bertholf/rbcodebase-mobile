@@ -66,10 +66,13 @@ const styles = StyleSheet.create({
 });
 
 const dashboard = require('./../images/ic_dashboard_black_24dp.png');
+const inbox2 = require('./../images/ic_question_answer_black_24dp.png');
+const listfriend = require('./../images/plainicon.com-39373-79e6-24px.png');
 const profile = require('./../images/ic_perm_identity_black_24dp.png');
 const notifications = require('./../images/ic_notifications_black_24dp.png');
 const setting = require('./../images/ic_settings_black_24dp.png');
 const logout = require('./../images/ic_directions_run_black_24dp.png');
+
 
 const MainDrawer = () => {
   const navigationView = (
@@ -104,6 +107,38 @@ const MainDrawer = () => {
                 <View>
                   <Text style={styles.menu}>
                     Dashboard
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <TouchableOpacity onPress={Actions.inbox}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
+                  <Image
+                    style={styles.icon}
+                    source={inbox2}
+                  />
+                </View>
+                <View>
+                  <Text style={styles.menu}>
+                    Inbox
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
+            <TouchableOpacity onPress={Actions.chatfriend}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
+                  <Image
+                    style={styles.icon}
+                    source={listfriend}
+                  />
+                </View>
+                <View>
+                  <Text style={styles.menu}>
+                    My FriendList
                   </Text>
                 </View>
               </View>

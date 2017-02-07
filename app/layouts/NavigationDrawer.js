@@ -24,9 +24,10 @@ const NavigationDrawer = (props) => {
       onOpen={() => Actions.refresh({ key: state.key, open: true })}
       onClose={() => Actions.refresh({ key: state.key, open: false })}
       type="overlay"
-      tapToClose
+      tapToClose={false}
       content={<MainDrawer />}
-      openDrawerOffset={0.2}
+      tapToClose
+      openDrawerOffset={0.1}
       panCloseMask={0.2}
       negotiatePan
       tweenHandler={ratio => ({

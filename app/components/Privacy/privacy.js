@@ -71,7 +71,9 @@ export default class privacy extends Component {
             value={this.state.whoCanComment}
           />
         </View>
+
         <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
+
           <Text style={styles.styleText}>
             Who can post on your timeline
           </Text>
@@ -93,7 +95,6 @@ export default class privacy extends Component {
             value={this.state.confirmFollow}
           />
         </View>
-
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.saveButton}
