@@ -33,12 +33,21 @@ export default class Register extends Component {
       email: '',
       username: '',
       password: '',
+      validName: true,
+      validEmail: true,
+      validUsername: true,
     };
     this.register = this.register.bind(this);
   }
   // dummy button action
   register() {
     registerService.register(this.state);
+  }
+  validate(){
+      
+    if (!this.state.name.match(/^[zA-Z]+$/)) {
+      this.setState({ validName: false });
+    }else if()
   }
 
   render() {
