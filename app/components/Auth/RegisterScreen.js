@@ -33,21 +33,42 @@ export default class Register extends Component {
       email: '',
       username: '',
       password: '',
+      gender: '',
       validName: true,
       validEmail: true,
       validUsername: true,
     };
-    this.register = this.register.bind(this);
+    this.validate = this.validate.bind(this);
   }
   // dummy button action
   register() {
     registerService.register(this.state);
   }
-  validate(){
-      
-    if (!this.state.name.match(/^[zA-Z]+$/)) {
+  validate() {
+    if (this.state.male) {
+      this.setState({ gender: 'male' });
+    } else {
+      this.setState({ gender: 'female' });
+    }
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+    const emailRegex = /^[a-zA-Z0-9\._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
+    const nameRegex = /^[a-zA-Z ]+$/;
+    let message = '';
+    if (!this.state.name.match(nameRegex)) {
       this.setState({ validName: false });
-    }else if()
+      message = 'Please enter a valid name';
+    } else if (!emailRegex.test(this.state.email)) {
+      this.setState({ validEmail: false });
+      message = 'Please enter a valid email';
+    } else if (!this.state.username.match(usernameRegex)) {
+      this.setState({ validEmail: false });
+      message = 'Username just contain letter and number';
+    } else {
+      registerService.register(this.state);
+    }
+    if (message !== '') {
+      Alert.alert(message.toString());
+    }
   }
 
   render() {
@@ -78,24 +99,30 @@ export default class Register extends Component {
               <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
             </View>
             <TextInput
+              multiline={false}
               maxLength={32}
               placeholder={'Name'}
               style={styles.textInput}
               onChangeText={name => this.setState({ name })}
             />
             <TextInput
+              multiline={false}
               keyboardType={'email-address'}
               placeholder={'Email'}
               style={styles.textInput}
               onChangeText={email => this.setState({ email })}
             />
             <TextInput
+              multiline={false}
               placeholder={'Username'}
+              maxLength={32}
               style={styles.textInput}
               onChangeText={username => this.setState({ username })}
             />
             <TextInput
+              multiline={false}
               placeholder={'Password'}
+              maxLength={32}
               style={styles.textInput}
               secureTextEntry
               onChangeText={password => this.setState({ password })}
@@ -123,7 +150,7 @@ export default class Register extends Component {
             </View>
           </View>
           <TouchableOpacity
-            activeOpacity={0.7} style={styles.btnReg} onPress={() => this.register()}
+            activeOpacity={0.7} style={styles.btnReg} onPress={() => this.validate()}
           >
             <Text style={styles.textReg}>Register</Text>
           </TouchableOpacity>
