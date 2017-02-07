@@ -19,7 +19,6 @@ import com.facebook.soloader.SoLoader;
 import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
-// import co.apptailor.googlesignin.RNGoogleSigninPackage;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -48,7 +47,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
             // new RnnPackage(),
-              // new RNGoogleSigninPackage(),
               new VectorIconsPackage(),
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),

@@ -143,7 +143,6 @@ android {
 dependencies {
     compile project(':react-native-navigation')
     compile project(':react-native-vector-icons')
-    compile project(':react-native-google-signin')
     compile project(':react-native-fbsdk')
     compile project(':react-native-code-push')
     compile project(':react-native-material-kit')
