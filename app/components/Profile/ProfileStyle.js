@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     top: -25,
-   },
+  },
   imgCameraContainer: {
     position: 'absolute',
     bottom: 60,

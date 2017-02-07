@@ -9,17 +9,26 @@ import {
 } from 'react-native';
 import me from '../../services/me';
 import styles from './ProfileStyle';
+import { Actions } from 'react-native-router-flux';
 
 export default class Profile extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       clicked: false,
+      profile: {},
+      loading:true,
     }
   }
 
   toggleSwitch() {
     this.setState({ clicked: !this.state.clicked });
+  }
+  componentDidMount() {
+    me.getMe()
+    .then((data) => {
+      this.setState({ profile: data, loading: false })
+    }).catch(err => console.log(err));
   }
   render() {
     if (this.state.loading === false) {
@@ -57,15 +66,15 @@ export default class Profile extends Component {
               <Text style={styles.isi}>{this.state.profile.about}</Text>
               <Text style={styles.bio}>Last Hiking</Text>
               <View style={styles.posisi}>
-                <Image style={styles.icon} source={ require('./../../images/jarak.png')} />
+                <Image style={styles.icon} source={require('./../../images/jarak.png')} />
                 <Text style={styles.isi}>1200 Km</Text>
               </View>
               <View style={styles.posisi}>
-                <Image style = {styles.icon} source = {require('./../../images/mountain.png')}/>
+                <Image style={styles.icon} source={require('./../../images/mountain.png')}/>
                 <Text style={styles.isi}>from: {this.state.profile.from}</Text>
               </View>
               <View style={styles.posisi}>
-                <Image style={styles.location} source = {require('./../../images/live.png')} />
+                <Image style={styles.location} source={require('./../../images/live.png')} />
                 <Text style={styles.isi}>live : {this.state.profile.live}</Text>
               </View>
               <View style={styles.posisi}>
@@ -74,9 +83,13 @@ export default class Profile extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-        </View>
-  </ScrollView>
-    )
+          </View>
+        </ScrollView>
+      );
+    } else {
+      return(
+        <ActivityIndicator />
+      );
+    }
   }
-}
 }
