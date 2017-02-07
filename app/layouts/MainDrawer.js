@@ -112,7 +112,7 @@ const MainDrawer = () => {
               </View>
             </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <TouchableOpacity onPress={Actions.profile}>
+            <TouchableOpacity onPress={Actions.inbox}>
               <View style={{ flexDirection: 'row' }}>
                 <View style={styles.viewIcon}>
                   <Image
@@ -120,50 +120,45 @@ const MainDrawer = () => {
                     source={inbox2}
                   />
                 </View>
-              </View>
-                </TouchableOpacity>
-              <View>
-                <TouchableOpacity onPress={Actions.inbox}>
+                <View>
                   <Text style={styles.menu}>
                     Inbox
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.chatfriend}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={listfriend}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={Actions.chatfriend}>
+                </View>
+                <View>
                   <Text style={styles.menu}>
-                    List Friend
+                    My FriendList
                   </Text>
-                </TouchableOpacity>
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
-            <View style={{ flexDirection: 'row' }}>
-              <View style={styles.viewIcon}>
-                <TouchableOpacity>
+            <TouchableOpacity onPress={Actions.profile}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={styles.viewIcon}>
                   <Image
                     style={styles.icon}
                     source={profile}
                   />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={Actions.profile}>
+                </View>
+                <View>
                   <Text style={styles.menu}>
                     My Profile
                   </Text>
-              </TouchableOpacity>
+                </View>
               </View>
+            </TouchableOpacity>
             <View style={{ height: 1, backgroundColor: '#000000', opacity: 0.3 }} />
             <TouchableOpacity onPress={Actions.notifications}>
               <View style={{ flexDirection: 'row' }}>

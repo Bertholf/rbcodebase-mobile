@@ -6,7 +6,6 @@ import setting from '../../services/setting';
 const { width } = Dimensions.get('window');
 
 const nxtrow = require('./../../images/ic_keyboard_arrow_right_black_24dp.png');
-const { width } = Dimensions.get('window');
 const Setting = () => {
   return (
     <View style={styles.container}>
