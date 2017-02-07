@@ -24,7 +24,7 @@ const NavigationDrawer = (props) => {
       onOpen={() => Actions.refresh({ key: state.key, open: true })}
       onClose={() => Actions.refresh({ key: state.key, open: false })}
       type="overlay"
-      tapToClose={false}
+      tapToClose
       content={<MainDrawer />}
       tapToClose
       openDrawerOffset={0.1}
