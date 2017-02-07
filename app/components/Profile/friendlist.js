@@ -89,7 +89,7 @@ export default class Friendlist extends React.Component {
                 <TouchableOpacity onPress ={()=>Actions.profile({user: rowData})}>
                 <Text style={styles.user}>{rowData.first_name}</Text>
               </TouchableOpacity>
-                <Text style={styles.detail}>{rowData.user_name}</Text>
+                <Text style={styles.detail}>{rowData.username}</Text>
               </View>
             </View>
               <TouchableOpacity onPress={()=>this.toggleSwitch()}>
