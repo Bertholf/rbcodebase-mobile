@@ -2,20 +2,20 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   borderTextT: {
-    marginTop : 25,
+    marginTop: 25,
     borderBottomWidth: 1,
     borderColor: 'black',
   },
   styleBackground: {
     flex: 1,
-    marginTop: 10,
-    backgroundColor: 'aliceblue',
+    backgroundColor: '#FFF',
   },
   styleText: {
-    color: '#08bcde',
+    color: '#2196F3',
     fontSize: 14,
     alignSelf: 'center',
-    borderColor: 'black'
+    borderColor: 'black',
+    marginLeft: 15,
   },
   styleText2: {
     color: '#08bcde',
@@ -28,16 +28,34 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginTop: 20,
   },
-  viewBaru:{
+  viewBaru: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     padding: 10,
   },
-  pickerStyle:{
+  pickerStyle: {
     width: 80,
     height: 20,
     margin: 5,
-  }
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    margin: 20,
+  },
+  saveButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2196F3',
+    height: 36,
+    width: 100,
+    borderRadius: 2,
+  },
+  txtButton: {
+    fontSize: 20,
+    fontWeight: '100',
+    color: 'white',
+  },
 });
 module.exports = styles;

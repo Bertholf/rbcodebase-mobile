@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 
+const { width,height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,

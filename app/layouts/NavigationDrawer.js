@@ -60,7 +60,6 @@ export default class NavigationDrawer extends Component {
           onNavigate={this.props.onNavigate}
         />
       </DrawerLayout>
-
     );
   }
 }

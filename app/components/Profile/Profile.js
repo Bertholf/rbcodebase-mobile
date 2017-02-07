@@ -10,6 +10,7 @@ import {
      Alert,
 } from 'react-native';
 import me from '../../services/me';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   welcome: {
@@ -227,7 +228,7 @@ export default class Profile extends Component {
               </View>
               <View style={styles.textInform} >
                 <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.toggleSwitch()}>
