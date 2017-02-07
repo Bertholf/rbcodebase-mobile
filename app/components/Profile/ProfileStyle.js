@@ -1,23 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  backdrop: {
-    flex: 1,
-    height: 200,
-  },
-  backgroundname: {
-  },
-  headline: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'rgba(255,255,255,0.9)',
-    bottom: 50,
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -27,20 +10,43 @@ const styles = StyleSheet.create({
   touchable: {
     borderRadius: 100,
   },
+  backgroundContainer: {
+    position: 'absolute',
+    height: 180,
+    width: 500,
+  },
+  container: {
+    flex: 1,
+  },
   overlay: {
     opacity: 0.5,
     backgroundColor: '#000000',
   },
   logo: {
-    position: 'absolute',
-    left: 3,
-    bottom: 30,
+    backgroundColor: 'rgba(0,0,0,0)',
     width: 90,
     height: 90,
     borderRadius: 50,
+    marginTop: 80,
+    marginLeft: 20,
     flexDirection: 'row',
     borderWidth: 1,
     borderColor: 'grey',
+  },
+  backdrop: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 200,
+    width: 500,
+  },
+  headline: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
+    marginTop: -28,
+    backgroundColor: 'hsla(20,100%,100%,0.3)',
+    marginRight: 110,
   },
   button: {
     flexDirection: 'row',
@@ -48,7 +54,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     color: 'white',
     marginLeft: 10,
-    marginTop: 2,
+    alignItems: 'center',
+    marginTop: 5,
     borderRadius: 2,
   },
   follow: {
@@ -93,12 +100,18 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   pos: {
-    color: 'rgba(0,0,0,0.9)',
-    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 6,
+    padding: 6,
+    color: '#2196F3',
   },
   followers: {
-    color: '#000',
-    textAlign: 'center',
+    flexDirection: 'row',
+    marginTop: 6,
+    justifyContent: 'space-around',
+    padding: 6,
+    color: '#2196F3',
   },
   bio: {
     flexDirection: 'row',
@@ -113,11 +126,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   isi2: {
-    flexDirection: 'row',
-    color: '#2196F3',
-    marginLeft: 240,
-    marginBottom: 12,
-    borderRadius: 2,
+    color: '#FF5722',
+    margin: 12,
   },
   daki: {
     textAlign: 'right',
@@ -132,12 +142,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   textInform: {
+    marginLeft: 100,
     flexDirection: 'row',
-    backgroundColor: 'hsla(20,100%,100%,0.3)',
-    top: -25,
-    paddingBottom: 2,
-    borderBottomWidth: 1,
-    borderColor: 'grey',
+    backgroundColor: 'rgba(0,0,0,0)',
   },
   posisi: {
     marginLeft: 8,
@@ -147,11 +154,12 @@ const styles = StyleSheet.create({
   },
   biodata: {
     flexDirection: 'column',
+    backgroundColor: 'rgba(0,0,0,0)',
+    marginTop: 20,
     borderBottomWidth: 1,
     borderColor: 'grey',
     marginLeft: 20,
     marginRight: 20,
-    top: -25,
   },
   imgCameraContainer: {
     position: 'absolute',

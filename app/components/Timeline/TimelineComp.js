@@ -14,8 +14,8 @@ import timelineList from '../../services/timelineList';
 const styles = StyleSheet.create({
   card: {
 
-    flexDirection:'row',
-    justifyContent:'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
     backgroundColor: '#2196F3',
 
   },
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     color: '#f8f8ff',
     backgroundColor: '#009688',
     padding: 8,
-    marginTop: 2
+    marginTop: 2,
   },
   nameProfile: {
     fontWeight: 'bold',

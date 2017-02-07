@@ -4,6 +4,7 @@ import {
      TouchableOpacity,
      Text,
      Image,
+     StyleSheet,
      ScrollView,
      ActivityIndicator,
 } from 'react-native';
@@ -16,20 +17,19 @@ export default class Profile extends Component {
     super(props);
     this.state = {
       clicked: false,
+      loading: true,
       profile: {},
-      loading:true,
-    }
+    };
+  }
+  componentDidMount() {
+    me.getMe()
+    .then(data => this.setState({ profile: data, loading: false }));
   }
 
   toggleSwitch() {
     this.setState({ clicked: !this.state.clicked });
   }
-  componentDidMount() {
-    me.getMe()
-    .then((data) => {
-      this.setState({ profile: data, loading: false })
-    }).catch(err => console.log(err));
-  }
+
   render() {
     if (this.state.loading === false) {
       return (
@@ -48,7 +48,7 @@ export default class Profile extends Component {
               </View>
               <View style={styles.textInform} >
                 <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
-                <TouchableOpacity onPress={Actions.friendlist}>
+                <TouchableOpacity onPress={Actions.friendlist} >
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.toggleSwitch()}>
@@ -66,18 +66,24 @@ export default class Profile extends Component {
               <Text style={styles.isi}>{this.state.profile.about}</Text>
               <Text style={styles.bio}>Last Hiking</Text>
               <View style={styles.posisi}>
-                <Image style={styles.icon} source={require('./../../images/jarak.png')} />
+                <Image
+                  style={styles.icon} source={require('./../../images/jarak.png')}
+                />
                 <Text style={styles.isi}>1200 Km</Text>
               </View>
               <View style={styles.posisi}>
-                <Image style={styles.icon} source={require('./../../images/mountain.png')}/>
+                <Image
+                  style = {styles.icon} source ={require('./../../images/mountain.png')}
+                />
                 <Text style={styles.isi}>from: {this.state.profile.from}</Text>
               </View>
               <View style={styles.posisi}>
-                <Image style={styles.location} source={require('./../../images/live.png')} />
+                <Image
+                  style={styles.location} source ={require('./../../images/live.png')}
+                />
                 <Text style={styles.isi}>live : {this.state.profile.live}</Text>
               </View>
-              <View style={styles.posisi}>
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                 <TouchableOpacity>
                   <Text style={styles.isi2}>View More</Text>
                 </TouchableOpacity>
@@ -87,7 +93,7 @@ export default class Profile extends Component {
         </ScrollView>
       );
     } else {
-      return(
+      return (
         <ActivityIndicator />
       );
     }
