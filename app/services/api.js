@@ -74,9 +74,6 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   });
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
-  mockery.onGet('/notifications').reply(200, {
-    data: notifFactory(),
-  });
   mockery.onGet('/comment').reply(200, commentFactory());
   mockery.onPost('/register').reply(200, registerFactory());
 });
