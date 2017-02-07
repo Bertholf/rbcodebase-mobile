@@ -30,7 +30,9 @@ export default class Profile extends Component {
   toggleSwitch() {
     this.setState({ clicked: !this.state.clicked });
   }
-
+  profileMe() {
+    
+  }
   render() {
     if (this.state.loading === false) {
       return (
@@ -92,7 +94,7 @@ export default class Profile extends Component {
             </View>
           </View>
           <View>
-            <MapMain />
+            <MapMain profileMe={this.profileMe} />
           </View>
         </ScrollView>
       );
