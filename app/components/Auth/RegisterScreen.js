@@ -7,6 +7,7 @@ import {
   Dimensions,
   Image,
   Text,
+  Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
