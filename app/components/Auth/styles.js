@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
   errBox: {
     height: 40,
-    backgroundColor: '#f2003d',
+    backgroundColor: '#2196F3',
     alignItems: 'center',
     justifyContent: 'center',
   },

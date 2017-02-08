@@ -39,7 +39,8 @@ export default class Register extends Component {
       validName: true,
       validEmail: true,
       validUsername: true,
-      errMsg: undefined,
+      validPass: true,
+      errMsg: '',
       loading: false,
     };
   }
@@ -66,6 +67,9 @@ export default class Register extends Component {
     }
     if (!this.state.username.match(usernameRegex)) {
       this.setState({ validUsername: false, loading: false });
+    }
+    if (this.state.password === '') {
+      this.setState({ validPass: false, loading: false }, ()=> console.log('state saat ini', this.state));
     }
     this.setState({}, () => {
       if ((this.state.validEmail && this.state.validUsername) &&
@@ -106,7 +110,7 @@ export default class Register extends Component {
             <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7, color: 'silver' }}> OR </Text>
             <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
           </View>
-          {this.state.errMsg === undefined ? <Text /> : (
+          {this.state.errMsg === '' ? <Text /> : (
             <View style={styles.errBox}>
               <Text style={{ color: '#fff' }}>{this.state.errMsg}</Text>
             </View>
@@ -116,7 +120,7 @@ export default class Register extends Component {
             maxLength={32}
             placeholder={'Name'}
             style={styles.textInput}
-            onChangeText={name => this.setState({ name, validName: true })}
+            onChangeText={name => this.setState({ name, validName: true, errMsg: '' })}
           />
           {this.state.validName ? (<Text />)
             : (<Text style={styles.wrong}>Name cannot contain numbers and simbols</Text>)
@@ -126,7 +130,7 @@ export default class Register extends Component {
             keyboardType={'email-address'}
             placeholder={'Email'}
             style={styles.textInput}
-            onChangeText={email => this.setState({ email, validEmail: true })}
+            onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
           />
           {this.state.validEmail ? (<Text />)
             : (<Text style={styles.wrong}>Please input valid email</Text>)
@@ -136,7 +140,7 @@ export default class Register extends Component {
             placeholder={'Username'}
             maxLength={32}
             style={styles.textInput}
-            onChangeText={username => this.setState({ username, validUsername: true })}
+            onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
           />
           {this.state.validUsername ? (<Text />)
             : (<Text style={styles.wrong}>Username just contain letter and number</Text>)
@@ -147,8 +151,11 @@ export default class Register extends Component {
             maxLength={32}
             style={styles.textInput}
             secureTextEntry
-            onChangeText={password => this.setState({ password })}
+            onChangeText={password => this.setState({ password, validPass: true })}
           />
+          {this.state.validPass ? (<Text />)
+            : (<Text style={styles.wrong}>Password cannot be blank</Text>)
+          }
           <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
             <Text style={{ color: 'white' }}>Gender</Text>
           </View>
