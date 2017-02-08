@@ -11,12 +11,11 @@ import {
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
-
-// import GoogleSignIn from './../../services/signingoogle';
-import FacebookLogin from './../../services/FacebookLogin';
 import loginService from '../../services/AuthLogin';
+import FacebookLogin from './../../services/FacebookLogin';
+// import GoogleSignIn from './../../services/signingoogle';
 
-// const google = require('./../../images/login/google.png');
+const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');

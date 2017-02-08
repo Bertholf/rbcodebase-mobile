@@ -30,7 +30,7 @@ export default class Profile extends Component {
   //   if (!this.state.clicked) {
   //     Alert.alert('Confirmation',
   //              'Are you sure to unfollow this user?', [
-  //               { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+  //             { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
   //               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
   //              ]);
   //   } else {
