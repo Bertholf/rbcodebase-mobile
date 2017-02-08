@@ -32,15 +32,13 @@ export default class ChatView extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View
-          style={styles.OuterLayer}
-        >
+        <View style={styles.OuterLayer}>
           <View style={{ marginLeft: 16 }}>
-            <TouchableOpacity onPress={Actions.timelineList}>
+            <TouchableOpacity onPress={Actions.chatlist}>
               <Image
                 style={{
-                  width: 55,
-                  height: 55,
+                  width: 40,
+                  height: 40,
                 }}
                 source={require('./../../images/backbutton.png')
               }
@@ -48,7 +46,7 @@ export default class ChatView extends Component {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 6 }}>
-            <Text style={{ fontSize: 24, color: 'white' }}>
+            <Text style={{ fontSize: 18, color: 'white' }}>
               Chat View
             </Text>
           </View>

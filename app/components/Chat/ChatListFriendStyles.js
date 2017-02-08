@@ -5,11 +5,13 @@ const styles = StyleSheet.create({
     flex: 1,
     right: 0,
     left: 0,
+    flexDirection: 'column',
+
   },
   container1: {
     flex: 8,
     backgroundColor: '#fff',
-    color: '#2196F3',
+    elevation: 2,
   },
   title: {
     paddingTop: 15,
@@ -23,13 +25,14 @@ const styles = StyleSheet.create({
     height: 55,
     backgroundColor: '#2196f3',
     paddingLeft: 16,
-    borderBottomWidth: 2,
+    elevation: 2,
+    borderBottomWidth: 0.5,
     borderColor: '#fff',
-
   },
   menu: {
-    width: 55,
-    height: 55,
+    marginTop: 6,
+    width: 40,
+    height: 40,
   },
   page: {
     alignItems: 'flex-start',
