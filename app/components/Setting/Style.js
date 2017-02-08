@@ -3,7 +3,6 @@ const { width } = Dimensions.get('window');
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'white',
     padding: 10,
     elevation: 20,
@@ -12,6 +11,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 10,
+    paddingRight: 8,
   },
   list: {
     marginTop: 10,
@@ -19,34 +19,28 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
-    borderBottomWidth: 4,
-    justifyContent: 'space-between',
+    borderWidth: 0.8,
+    borderRadius: 4,
+    justifyContent: 'flex-start',
+    marginBottom: 8,
   },
   list1: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#D50000',
     padding: 5,
     borderRadius: 3,
-    elevation: 1,
     height: 50,
+    elevation: 2,
     marginTop: 40,
     alignItems: 'center',
   },
   text: {
     color: '#000000',
     fontSize: 20,
+    paddingLeft: 16,
   },
   deactive: {
     fontSize: 25,
     color: 'white',
-  },
-  kotakView: {
-    flex: 5,
-    borderWidth: 4,
-    borderColor: 'white',
-  },
-  icon: {
-    height: 40,
-    width: 40,
   },
 });
 
