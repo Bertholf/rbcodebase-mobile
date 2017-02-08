@@ -42,9 +42,7 @@ export default class LoginScreen extends Component {
         this.setState({ validPassword: false, loading: false });
       }
       if (this.state.username !== '' && this.state.password !== '') {
-        loginService(this.state.username, this.state.password, () => {
-          this.setState({ isFail: true, loading: false });
-        });
+        this.props.submitLogin(this.state.username, this.state.password);
       }
     });
   }
@@ -57,13 +55,13 @@ export default class LoginScreen extends Component {
           </View>
           <View style={{ alignItems: 'center' }} ><Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text></View>
           <View style={styles.otherlog}>
-            <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
+            <TouchableHighlight style={styles.facebook} onPress={() => this.props.loginWithFacebook()} underlayColor={'#99d9f4'}>
               <Image source={facebook} style={styles.facebook} />
             </TouchableHighlight>
-            {/* <TouchableHighlight style={styles.google}
-            onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
+            <TouchableHighlight style={styles.google}
+            onPress={() => this.props.loginWithGoogle()}  underlayColor={'#99d9f4'}>
             <Image source={google} style={styles.google} />
-          </TouchableHighlight> */}
+          </TouchableHighlight>
             <TouchableHighlight style={styles.twitter} onPress={() => Actions.timelineList()} underlayColor={'#99d9f4'}>
               <Image source={twitter} style={styles.twitter} />
             </TouchableHighlight>
