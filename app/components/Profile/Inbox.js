@@ -9,6 +9,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -118,7 +119,7 @@ export default class Inbox extends Component {
             rightOpenValue={-80}
           />
           <ActionButton buttonColor="#2196F3">
-            <ActionButton.Item buttonColor="#2196F3" title="Add Chatting" >
+            <ActionButton.Item buttonColor="#2196F3" title="Add Chatting" onPress= { Actions.chatlist} >
               <Icon name="md-create" />
             </ActionButton.Item>
           </ActionButton>

@@ -14,11 +14,10 @@ import {
 import styles from './LoginStyles';
 
 import { Actions } from 'react-native-router-flux';
-// import GoogleSignIn from './../../services/signingoogle';
+import GoogleSignIn from './../../modules/google';
 import FacebookLogin from './../../services/FacebookLogin';
-import loginService from '../../services/AuthLogin';
 
-// const google = require('./../../images/login/google.png');
+const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
@@ -65,14 +64,14 @@ export default class LoginScreen extends Component {
             </View>
             <View style={{ alignItems: 'center' }} ><Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text></View>
             <View style={styles.otherlog}>
-              <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
+              <TouchableHighlight style={styles.facebook} onPress={() => this.props.loginWithFacebook()} underlayColor={'#99d9f4'}>
                 <Image source={facebook} style={styles.facebook} />
               </TouchableHighlight>
-              {/* <TouchableHighlight style={styles.google}
-              onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
-              <Image source={google} style={styles.google} />
-            </TouchableHighlight> */}
-              <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+              <TouchableHighlight style={styles.google}
+                onPress={() => this.props.loginWithGoogle()}  underlayColor={'#99d9f4'}>
+                <Image source={google} style={styles.google} />
+              </TouchableHighlight>
+              <TouchableHighlight style={styles.twitter} onPress={() => this.props.loginWithFacebook()} underlayColor={'#99d9f4'}>
                 <Image source={twitter} style={styles.twitter} />
               </TouchableHighlight>
             </View>
@@ -89,7 +88,6 @@ export default class LoginScreen extends Component {
             />
             <TouchableHighlight style={styles.button} onPress={() => this.validate()} underlayColor={'#99d9f4'}>
               <Text style={styles.buttonText}>Login</Text>
-
             </TouchableHighlight>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => Actions.register()}>
