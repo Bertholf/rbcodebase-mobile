@@ -9,11 +9,11 @@ import {
    TouchableHighlight,
    Alert,
    ScrollView,
+   Button,
  } from 'react-native';
 import styles from './LoginStyles';
 
 import { Actions } from 'react-native-router-flux';
-
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 import loginService from '../../services/AuthLogin';
