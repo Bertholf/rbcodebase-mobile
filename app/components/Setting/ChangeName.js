@@ -32,7 +32,7 @@ export default class NameEdit extends Component{
     const currentName = this.state.profile.first_name;
     const validateName = () => {
       if (nameInput && nameValidator) {
-        if (nameValidator === currentName) {
+        if (nameInput === currentName) {
           Alert.alert('Your Name is same as Current Name!');
         } else {
           Alert.alert('Success Change Name');
@@ -57,8 +57,12 @@ export default class NameEdit extends Component{
             Enter your new name
           </Text>
           <TextInput
-            style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-            placeholderTextColor={'#2196f3'} placeholder="Enter your new name" onChangeText={() => console.log('dummy')} multiline={true}
+            style={styles.TextInput1}
+            underlineColorAndroid={'#2196f3'}
+            placeholderTextColor={'#2196f3'}
+            placeholder="Enter your new name"
+            onChangeText={firstName => this.setState({ firstName })}
+            multiline={true}
             numberOfLines={4} editable={true}
           />
           <Text style={styles.Text2}>
