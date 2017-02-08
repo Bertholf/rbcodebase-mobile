@@ -4,7 +4,6 @@ import {
      TouchableOpacity,
      Text,
      Image,
-     StyleSheet,
      ScrollView,
      ActivityIndicator,
      Alert,
@@ -39,14 +38,14 @@ export default class Profile extends Component {
     }
   }
   pressScroll() {
-    this.scrollView.scrollTo(0);
+    this.scrollView.scrollTo(x:0, y: 400, animated: true);
   }
 
 
   render() {
     if (this.state.loading === false) {
       return (
-        <ScrollView >
+        <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
@@ -60,7 +59,7 @@ export default class Profile extends Component {
                 </Text>
               </View>
               <View style={styles.textInform} >
-                <TouchableOpacity onPress={() => this.pressScroll.scrollTo}>
+                <TouchableOpacity onPress={() => this.pressScroll()}>
                   <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
@@ -106,7 +105,7 @@ export default class Profile extends Component {
             </View>
           </View>
           <View>
-            <MapMain ref={(scroll) => { this.scrollView = scroll }} />
+            <MapMain />
           </View>
         </ScrollView>
       );
