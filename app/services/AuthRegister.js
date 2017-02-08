@@ -17,14 +17,26 @@ const secondRequest = (token) => {
 };
 
 class Register {
-   register({ name, email, username, password }) {
-     auth.register(name, email, username, password)
+  errorMsg() {
+    return this.msg;
+  }
+  setMsg(message = '') {
+    this.msg = message;
+    console.log('SET MESSAGE', this.msg);
+  }
+  register({ name, email, username, password }, callback) {
+    auth.register(name, email, username, password)
      .then((response) => {
        saveToken(response.accessToken);
        secondRequest(response.accessToken);
        Actions.timelineList();
+     })
+     .catch(() => {
+       this.setMsg('Register failed');
+       callback();
      });
-   }
+
+  }
 }
 
 const register = new Register();
