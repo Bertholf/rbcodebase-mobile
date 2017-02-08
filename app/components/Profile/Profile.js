@@ -38,7 +38,7 @@ export default class Profile extends Component {
     }
   }
   pressScroll() {
-    this.scrollView.scrollTo(x:0, y: 400, animated: true);
+    this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
 
 
