@@ -15,7 +15,7 @@ export default class ForgotPassword extends Component {
     const emailValidator = value.test(this.state.email);
     const emptyEmail = this.state.email;
     const validateEmail = () => {
-      if (emailValidator || !emptyEmail) {
+      if (emailValidator && emptyEmail) {
         // Need action here, please fix it later, thanks!!!
         Alert.alert('Email valid!')
       } else {
