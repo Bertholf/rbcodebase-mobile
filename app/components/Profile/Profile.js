@@ -27,7 +27,6 @@ export default class Profile extends Component {
     me.getMe()
     .then(data => this.setState({ profile: data, loading: false }));
   }
-
   toggleSwitch() {
     if (!this.state.clicked) {
       Alert.alert('Confirmation',
@@ -39,13 +38,15 @@ export default class Profile extends Component {
       this.setState({ clicked: !this.state.clicked });
     }
   }
-  profileMe() {
-    
+  pressScroll() {
+    this.scrollView.scrollTo(0);
   }
+
+
   render() {
     if (this.state.loading === false) {
       return (
-        <ScrollView>
+        <ScrollView >
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
@@ -59,7 +60,9 @@ export default class Profile extends Component {
                 </Text>
               </View>
               <View style={styles.textInform} >
-                <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
+                <TouchableOpacity onPress={() => this.pressScroll.scrollTo}>
+                  <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
                 </TouchableOpacity>
@@ -103,7 +106,7 @@ export default class Profile extends Component {
             </View>
           </View>
           <View>
-            <MapMain profileMe={this.profileMe} />
+            <MapMain ref={(scroll) => { this.scrollView = scroll }} />
           </View>
         </ScrollView>
       );
