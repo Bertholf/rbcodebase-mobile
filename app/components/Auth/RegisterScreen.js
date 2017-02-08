@@ -69,7 +69,7 @@ export default class Register extends Component {
       this.setState({ validUsername: false, loading: false });
     }
     if (this.state.password === '') {
-      this.setState({ validPass: false, loading: false }, ()=> console.log('state saat ini', this.state));
+      this.setState({ validPass: false, loading: false });
     }
     this.setState({}, () => {
       if ((this.state.validEmail && this.state.validUsername) &&

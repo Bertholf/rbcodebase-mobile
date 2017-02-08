@@ -22,7 +22,6 @@ class Register {
   }
   setMsg(message = '') {
     this.msg = message;
-    console.log('SET MESSAGE', this.msg);
   }
   register({ name, email, username, password }, callback) {
     auth.register(name, email, username, password)
@@ -35,7 +34,6 @@ class Register {
        this.setMsg('Register failed');
        callback();
      });
-
   }
 }
 
