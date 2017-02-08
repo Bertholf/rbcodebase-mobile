@@ -35,7 +35,7 @@ export default class NameEdit extends Component{
         if (nameInput === currentName) {
           Alert.alert('Your Name is same as Current Name!');
         } else {
-          Alert.alert('Success Change Name');
+          Alert.alert('Success, Verification Code Has been Sent!');
         }
       } else {
         Alert.alert('Enter your Name!');
