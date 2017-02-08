@@ -1,6 +1,8 @@
 import { Actions } from 'react-native-router-flux';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
+import auth from '../services/auth';
+import {AsyncStorage} from 'react-native';
 
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
 export const UPDATE_PASSWORD_TEXT = 'UPDATE_PASSWORD_TEXT';
@@ -15,8 +17,20 @@ export function updateUsername(username) {
 export function updatePassword(password) {
   return { type: UPDATE_PASSWORD_TEXT, password };
 }
-export function submitLogin() {
-  return { type: SUBMIT_LOGIN };
+export function submitLogin(username, password) {
+  return dispatch => {
+    dispatch (requestLogin())
+    return auth.login(username, password).then(({data})=> {
+     return AsyncStorage.setItem('accessToken', data.accessToken);
+   }).then(() =>{
+     return AsyncStorage.getItem('accessToken');
+   })
+   .then((token)=>{
+     dispatch(doneLogin());
+     Actions.timelineList();
+   })
+   .catch(err => console.log(err));
+  }
 }
 export function doneLogin(response) {
   Actions.pop();
