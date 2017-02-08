@@ -3,7 +3,13 @@ import querystring from 'qs';
 import MockAdapter from 'axios-mock-adapter';
 import userFactory from '../factories/user';
 import timelineFactory from '../factories/timeline';
+import loginFactory from '../factories/AuthLogin';
 import settingfactory from '../factories/setting';
+import notifFactory from '../factories/notif';
+import commentFactory from '../factories/listcomment';
+import registerFactory from '../factories/AuthRegister';
+import friendlistFactory from '../factories/friendlist';
+import listTimeline from '../factories/listTimeline';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -11,14 +17,14 @@ class Api {
     this.client = axios.create();
     middleware(this.client);
     this.client.interceptors.request.use(config => {
-      console.log(config);
+      // console.log(config);
       return config;
     });
   }
   put(url, json, qs = {}, config) {
     return this.sendRequest('PUT', url, { qs, json, config });
   }
-  get(url, qs, config = {}) {
+  get(url, config = {}, qs) {
     return this.sendRequest('GET', url, { qs, config });
   }
   post(url, form, qs = {}, config = {}) {
@@ -28,13 +34,14 @@ class Api {
     return this.sendRequest('DELETE', url, { qs, config });
   }
   sendRequest(requestMethod, url, data = {}) {
+    this.client.defaults.headers.common['Auth-Token'] = data.config.headers;
     const request = this.client.request({
       method: requestMethod,
       url,
       baseURL: this.baseUrl,
       params: data.qs,
       data: data.json || querystring.stringify(data.form) || data.formData,
-      headers: data.headers,
+      headers: data.config.headers,
       timeout: 60 * 1000,
       paramsSerializer: params => querystring.stringify(params),
     }, data.config);
@@ -48,10 +55,26 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   const mockery = new MockAdapter(instance, { delayResponse: 2000 });
   mockery.onGet('/me').reply(200, userFactory());
   mockery.onPut('/me').reply(200);
+  mockery.onGet('/timeline').reply(200, listTimeline());
   mockery.onGet('/timeline').reply(200, {
     data: timelineFactory(),
   });
+  mockery.onGet('/notifications').reply(200, {
+    data: notifFactory(),
+  });
+  mockery.onGet('/posts').reply(200, listTimeline());
+  mockery.onPost('/posts').reply(200);
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
+  mockery.onPost('/login').reply(200, {
+    data: loginFactory(),
+  });
+  mockery.onGet('/friendlist').reply(200, {
+    data: friendlistFactory(),
+  });
+  mockery.onGet('/setting').reply(200, settingfactory());
+  mockery.onPut('/setting').reply(200);
+  mockery.onGet('/comment').reply(200, commentFactory());
+  mockery.onPost('/register').reply(200, registerFactory());
 });
 export default api;

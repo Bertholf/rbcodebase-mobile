@@ -6,12 +6,18 @@ import {
   View,
   Image,
   Navigator,
-  ListView
+  ListView,
+  ScrollView,
+  ActivityIndicator,
 } from 'react-native';
+
+import timelineList from '../../services/timelineList';
+import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineComment from './timelineComment';
 import TimelineRightNav from './TimelineRightNav';
 import Accordion from 'react-native-accordion';
 
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
 
@@ -88,17 +94,20 @@ const styles = StyleSheet.create({
 
 });
 
-
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
+      loading: true,
+      list: {},
       onPress: true,
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin',
-      ]),
     };
+  }
+  componentDidMount() {
+    timelineList.getTimeline()
+    .then((data) => {
+      this.setState({ list: data, loading: false });
+    }).catch(({ err }) => console.error('SORY ERROR!!!!!!', err));
   }
 
   onChangeImg() {
@@ -107,25 +116,25 @@ export default class MapMain extends Component {
     });
   }
 
-  renderRow(rowData) {
+  renderRow(dataPost) {
     return (
   <View style={styles.container}>
     <View style={styles.timelineContainer}>
       <View style={styles.about}>
         <TouchableOpacity activeOpacity={0.7}>
           <Image
-            source={{ uri: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png' }}
+            source={{ uri: dataPost.avatarTimeline }}
             style={styles.avatarImg}
           />
         </TouchableOpacity>
         <View style={styles.textAboutContainer}>
-          <Text style={styles.textNameProfile}>{rowData}</Text>
+          <Text style={styles.textNameProfile}>{dataPost.user}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
               source={require('./../../images/ic_watch_later_black_18dp.png')}
               style={{ marginRight: 5, height: 10, width: 10 }}
             />
-            <Text style={styles.textDay}>3 days ago</Text>
+            <Text style={styles.textDay}>10 days ago</Text>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
@@ -143,7 +152,7 @@ export default class MapMain extends Component {
         </Text>
       </View>
       <View style={styles.mapContainer}>
-        <Image source={{ uri: 'http://ke5ter.com/img/route.png' }} style={{ height: 183, justifyContent: 'center'}} />
+        <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center'}} />
         <View style={styles.commentsCountContainer}>
           <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
             activeOpacity={0.7}
@@ -152,7 +161,7 @@ export default class MapMain extends Component {
               source={require('./../../images/ic_thumb_up_black_18dp.png')}
               style={{ marginRight: 5, height: 14, width: 14 }}
             />
-            <Text style={styles.textLike}>100 Likes</Text>
+            <Text style={styles.textLike}>{dataPost.numberTimeline} Likes</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
             activeOpacity={0.7}
@@ -161,7 +170,7 @@ export default class MapMain extends Component {
               source={require('./../../images/insert_comment_black.png')}
               style={{ marginRight: 5, height: 14, width: 14 }}
             />
-          <Text>200 Comments</Text>
+          <Text>{dataPost.numberTimeline} Comments</Text>
         </TouchableOpacity>
         </View>
         <View style={styles.commentContainer}>
@@ -207,12 +216,24 @@ export default class MapMain extends Component {
   </View>
      );
    }
+
   render() {
+    if (this.state.loading === false) {
     return (
-        <ListView
-         dataSource={this.state.dataSource}
-         renderRow={rowData => this.renderRow(rowData)}
-       />
+      <ScrollView>
+    <View>
+      <PostCard/>
+      <ListView
+       dataSource={ds.cloneWithRows(this.state.list)}
+       renderRow={dataPost => this.renderRow(dataPost)}
+     />
+    </View>
+    </ScrollView>
     );
+  } else {
+    return(
+      <ActivityIndicator />
+    );
+  }
   }
 }

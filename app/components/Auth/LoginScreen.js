@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert, TouchableOpacity, ActivityIndicator } from 'react-native';
-// import { GoogleSigninButton } from 'react-native-google-signin';
-import { Actions } from 'react-native-router-flux';
+import {
+   StyleSheet,
+   Text,
+   View,
+   Image,
+   TextInput,
+   Linking,
+   Alert,
+   TouchableOpacity,
+   TouchableHighlight,
+   ActivityIndicator,
+   ScrollView,
+   Button,
+ } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
-
-// const google = require('./../../images/login/google.png');
+const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#dddddd',
+  },
+  title: {
+    fontSize: 30,
+    alignSelf: 'center',
+    marginBottom: 30,
   },
   logo: {
     width: 120,
@@ -68,8 +84,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithFacebook }) => {
+const LoginScreen = ({ username, password, submitLogin, register, forgotPassword, updateUsername, updatePassword, loginWithGoogle, loginWithFacebook }) => {
   return (
+  <ScrollView style={{ backgroundColor: '#dddddd' }}>
     <View style={styles.container}>
       <ScrollView>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -92,10 +109,12 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
         <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
         <View style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.5)', width: 140, height: 1, marginRight: 5 }} />
       </View>
-      <TextInput style={{ paddingBottom: 2 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} placeholderTextColor={'rgba(0,0,0,0.5)'}/>
-      <TextInput secureTextEntry={true} style={{paddingBottom: 2 }} onChangeText={(password) => updatePassword (password)} placeholder="Password" placeholderTextColor={'rgba(0,0,0,0.5)'}/>
-      <TouchableHighlight style={styles.button} onPress={() => submitLogin()} underlayColor={'#1E88E5'}>
-        <Text style={styles.buttonText}>LOGIN</Text>
+
+      <TextInput style={{ height: 40 }} onChangeText={(username) => updateUsername(username)} placeholder={"Username"} />
+      <TextInput secureTextEntry={true} style={{ height: 40 }} onChangeText={(password) => updatePassword (password)} placeholder="Password"/>
+      <TouchableHighlight style={styles.button} onPress={() => submitLogin(username, password)} underlayColor={'#99d9f4'}>
+        <Text style={styles.buttonText}>Login</Text>
+
       </TouchableHighlight>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <TouchableOpacity onPress={() => register()}>
@@ -111,6 +130,7 @@ const LoginScreen = ({ submitLogin, register, forgotPassword, updateUsername, up
       </View>
     </ScrollView>
     </View>
+  </ScrollView>
   );
 };
 
