@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    // flex: 1,
+    flex: 1 ,
     padding: 20,
     backgroundColor: '#2196F3',
   },
   content: {
-    flex: 5,
+    flex: 3,
     padding: 10,
     backgroundColor: '#fff',
   },
@@ -100,39 +100,37 @@ export default class MainDrawer extends Component {
       { index: 7, name: 'Logout', action: 'logout', iconName: 'directions-run' },
     ];
     return (
-      <ScrollView>
-        <View style={styles.wrapper}>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => Actions.profile()}>
-              <Image
-                source={{ uri: this.state.user.imgProfile }}
-                style={styles.profilePicture}
-              />
-            </TouchableOpacity>
-            <View style={styles.userProfile}>
-              <Text style={styles.name}>
-                {this.state.user.first_name} {this.state.user.last_name}
-              </Text>
-              <Text style={styles.status}>
-                {this.state.user.message}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.content}>
-            {menuList.map((item) =>
-              <TouchableOpacity
-                key={item.index}
-                style={styles.menu}
-                onPress={() => this.navigateTo(item)}
-              >
-                <Icon
-                  name={item.iconName} size={20} style={styles.icon}
-                />
-                <Text style={styles.menuItem}>{item.name}</Text>
-              </TouchableOpacity>)}
+      <View style={styles.wrapper}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => Actions.profile()}>
+            <Image
+              source={{ uri: this.state.user.imgProfile }}
+              style={styles.profilePicture}
+            />
+          </TouchableOpacity>
+          <View style={styles.userProfile}>
+            <Text style={styles.name}>
+              {this.state.user.first_name} {this.state.user.last_name}
+            </Text>
+            <Text style={styles.status}>
+              {this.state.user.message}
+            </Text>
           </View>
         </View>
-      </ScrollView>
+        <View style={styles.content}>
+          {menuList.map((item) =>
+            <TouchableOpacity
+              key={item.index}
+              style={styles.menu}
+              onPress={() => this.navigateTo(item)}
+            >
+              <Icon
+                name={item.iconName} size={20} style={styles.icon}
+              />
+              <Text style={styles.menuItem}>{item.name}</Text>
+            </TouchableOpacity>)}
+        </View>
+      </View>
     );
   }
 }
