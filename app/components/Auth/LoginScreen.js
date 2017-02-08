@@ -11,9 +11,9 @@ import {
    ScrollView,
    Button,
  } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
 
-import { Actions } from 'react-native-router-flux';
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
 import loginService from '../../services/AuthLogin';
@@ -42,9 +42,11 @@ export default class LoginScreen extends Component {
   validate() {
     if (this.state.username === '') {
       this.setState({ validUsername: false });
-    } else if (this.state.password === '') {
+    }
+    if (this.state.password === '') {
       this.setState({ validPassword: false });
-    } else {
+    }
+    if (this.state.username !== '' && this.state.password !== '') {
       loginService(this.state.username, this.state.password, () => {
         this.setState({ isFail: true });
       });
@@ -76,12 +78,28 @@ export default class LoginScreen extends Component {
               <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
               <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
             </View>
-            <TextInput style={{ height: 40 }} onChangeText={username => this.setState({ username })} placeholder={"Username"} required={true} />
+            {!this.state.isFail ? <Text /> : (
+              <View style={styles.errBox}>
+                <Text style={{ color: '#fff' }} >Username or Password not match</Text>
+              </View>
+            )}
+            <TextInput
+              style={{ height: 40 }}
+              onChangeText={username => this.setState({ username })}
+              placeholder={"Username"}
+              required={true}
+            />
+            {this.state.validUsername ? <Text /> : (
+              <Text style={styles.wrong}>Usename cannot blank</Text>
+            )}
             <TextInput
               secureTextEntry style={{ height: 40 }}
               onChangeText={password => this.setState({ password })}
               placeholder="Password"
             />
+            {this.state.validPassword ? <Text /> : (
+              <Text style={styles.wrong}>Password cannot blank</Text>
+            )}
             <TouchableHighlight style={styles.button} onPress={() => this.validate()} underlayColor={'#99d9f4'}>
               <Text style={styles.buttonText}>Login</Text>
 
