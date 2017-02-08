@@ -35,24 +35,19 @@ export default class LoginScreen extends Component {
       password: '',
       validUsername: true,
       validPassword: true,
+      isFail: false,
     };
     this.validate = this.validate.bind(this);
   }
   validate() {
-    const usernameRegex = /^[a-zA-Z0-9]+$/;
-    const passValidate = /^[a-zA-Z0-9]+$/;
-    let message = '';
-    if (!this.state.username.match(usernameRegex)) {
+    if (this.state.username === '') {
       this.setState({ validUsername: false });
-      message = 'Please enter a valid username';
-    } else if (!this.state.password.match(passValidate)) {
+    } else if (this.state.password === '') {
       this.setState({ validPassword: false });
-      message = 'Please enter the correct password';
     } else {
-      loginService(this.state.username, this.state.password);
-    }
-    if (message !== '') {
-      Alert.alert(message.toString());
+      loginService(this.state.username, this.state.password, () => {
+        this.setState({ isFail: true });
+      });
     }
   }
   render() {
@@ -72,7 +67,7 @@ export default class LoginScreen extends Component {
               onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
               <Image source={google} style={styles.google} />
             </TouchableHighlight> */}
-              <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
+              <TouchableHighlight style={styles.twitter} onPress={() => Actions.timelineList()} underlayColor={'#99d9f4'}>
                 <Image source={twitter} style={styles.twitter} />
               </TouchableHighlight>
             </View>

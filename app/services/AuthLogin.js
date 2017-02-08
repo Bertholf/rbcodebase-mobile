@@ -16,7 +16,7 @@ const secondRequest = (token) => {
   });
 };
 
-const submitLogin = (username, password) => {
+const submitLogin = (username, password, callback) => {
   auth.login(username, password)
   .then((token) => {
     console.log('TOKEN : ', token.data.accessToken);
@@ -24,7 +24,10 @@ const submitLogin = (username, password) => {
     secondRequest(token.data.accessToken);
     Actions.timelineList();
   })
-  .catch(err => console.log(err));
+  .catch((err) => {
+    console.log(err);
+    callback();
+  });
 };
 
 export default submitLogin;
