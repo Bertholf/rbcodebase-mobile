@@ -47,7 +47,7 @@ public class GoogleSignInModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "GoogleSignInAuth";
+        return "GoogleSignInModule";
     }
 
     @ReactMethod

@@ -94,7 +94,7 @@ const LoginScreen = ({ username, password, submitLogin, register, forgotPassword
       </View>
       <View style={{ alignItems: 'center' }} ><Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text></View>
       <View style={styles.otherlog}>
-        <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
+        <TouchableHighlight style={styles.facebook} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
         <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()}  underlayColor={'#99d9f4'}>
