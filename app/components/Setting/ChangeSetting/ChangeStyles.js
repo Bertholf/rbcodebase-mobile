@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
     color: '#2196f3',
     fontSize: 20,
   },
+  invalid: {
+    color: 'red',
+    fontSize: 15,
+    alignSelf: 'center',
+  },
 });
 
 module.exports = styles;
