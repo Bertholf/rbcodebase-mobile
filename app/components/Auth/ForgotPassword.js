@@ -11,7 +11,18 @@ export default class ForgotPassword extends Component {
   static propTypes = { url: React.PropTypes.string };
 
   render() {
-    const changeMe = () => {Alert.alert('Tombol Button di Tekan!')}
+    const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailValidator = value.test(this.state.email);
+    const emptyEmail = this.state.email;
+    const validateEmail = () => {
+      if (emailValidator || !emptyEmail) {
+        // Need action here, please fix it later, thanks!!!
+        Alert.alert('Email valid!')
+      } else {
+        return;
+      }
+    }
+
     return (
       <View style={styles.container}>
         <View style={{
@@ -25,7 +36,8 @@ export default class ForgotPassword extends Component {
             style={{height: 40}} onChangeText={(email) => this.setState({email})}
             placeholder="Email or Phone"
           />
-        <TouchableHighlight style={styles.button} onPress={changeMe} underlayColor='#99d9f4'>
+        {!emptyEmail || emailValidator ? <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
+        <TouchableHighlight style={styles.button} onPress={validateEmail} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Send</Text>
         </TouchableHighlight>
       </View>
@@ -67,5 +79,9 @@ const styles = StyleSheet.create({
     elevation: 2,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  invalid: {
+    color: 'red',
+    fontSize: 15,
   }
 });
