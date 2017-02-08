@@ -20,7 +20,7 @@ import Privacy from './components/Privacy/privacy';
 import Email from './components/Setting/EmailNotif';
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
-import Loader from './layouts/Loader';
+import Loader from './containers/Loader';
 import Account from './components/Profile/AccountSetting';
 import EmailEdit from './components/Setting/EmailEdit';
 import NameEdit from './components/Setting/ChangeName';
@@ -117,14 +117,14 @@ const Routing = () => (
               key={'chat'} component={Chat} title={'Profile'}
             />
             <Scene
-              key={'loader'} component={Loader} hideNavBar
-            />
-            <Scene
               key={'deactive'} component={Deactivate} title={'Deactivate'}
             />
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
+        <Scene
+          key={'loader'} component={Loader}
+        />
       </Scene>
     </Router>
   </View>

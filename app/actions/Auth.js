@@ -20,20 +20,21 @@ export function submitLogin() {
 }
 export function doneLogin(response) {
   Actions.pop();
+  Actions.timelineList();
   return { type: DONE_LOGIN, response };
 }
 export function errorLogin(error) {
   Actions.pop();
   return { type: ERROR_LOGIN, error };
 }
-export function requestLogin() {
-  Actions.loader({ hide: false });
+export function requestLogin(message) {
+  Actions.loader({ message });
   return { type: REQUEST_LOGIN };
 }
 
 export function loginWithGoogle() {
   return (dispatch) => {
-    dispatch(requestLogin());
+    dispatch(requestLogin('Login With Google'));
     return google.signIn()
     .then(user => dispatch(doneLogin({ accessToken: user.idToken, provider: 'google' })))
     .catch(err => dispatch(errorLogin(err)));
@@ -41,7 +42,7 @@ export function loginWithGoogle() {
 }
 export function loginWithFacebook() {
   return (dispatch) => {
-    dispatch(requestLogin());
+    dispatch(requestLogin('Login with Facebook'));
     return LoginManager.logInWithReadPermissions(['public_profile'])
     .then((result) => {
       if (result.isCancelled) {
