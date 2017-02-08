@@ -14,9 +14,9 @@ import {
  } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
-
-// import GoogleSignIn from './../../services/signingoogle';
+import GoogleSignIn from './../../modules/google';
 import FacebookLogin from './../../services/FacebookLogin';
+
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
@@ -97,9 +97,9 @@ const LoginScreen = ({ username, password, submitLogin, register, forgotPassword
         <TouchableHighlight style={styles.facebook} onPress={() => FacebookLogin.getFacebookLogin()} underlayColor={'#99d9f4'}>
           <Image source={facebook} style={styles.facebook} />
         </TouchableHighlight>
-        {/* <TouchableHighlight style={styles.google} onPress={() => GoogleSignIn.getGoogleSignIn()}  underlayColor={'#99d9f4'}>
+        <TouchableHighlight style={styles.google} onPress={() => loginWithGoogle()}  underlayColor={'#99d9f4'}>
           <Image source={google} style={styles.google} />
-        </TouchableHighlight> */}
+        </TouchableHighlight>
         <TouchableHighlight style={styles.twitter} onPress={() => loginWithFacebook()} underlayColor={'#99d9f4'}>
           <Image source={twitter} style={styles.twitter} />
         </TouchableHighlight>

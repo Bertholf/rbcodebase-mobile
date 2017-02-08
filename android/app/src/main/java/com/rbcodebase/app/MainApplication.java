@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
+import com.rbcodebase.app.modules.google.GoogleSignInPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -46,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
               new VectorIconsPackage(),
+              new GoogleSignInPackage(),
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),
               new ReactNativeLocalizationPackage(),

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
-import { updateUsername, updatePassword, submitLogin } from '../../actions/Auth';
+import { updateUsername, updatePassword, submitLogin, loginWithGoogle } from '../../actions/Auth';
 import me from '../../services/me';
 import notif from '../../services/notif';
 import userFactory from '../../factories/user';
@@ -15,9 +15,7 @@ const mapStateToProps = ({ app }) => ({
 const mapDispatchToProps = dispatch => ({
   updateUsername: text => dispatch(updateUsername(text)),
   updatePassword: text => dispatch(updatePassword(text)),
-  loginWithGoogle: () => {
-    Actions.timelineList();
-  },
+  loginWithGoogle: () => dispatch(loginWithGoogle()),
   loginWithFacebook: () => {
     Actions.timelineList();
   },

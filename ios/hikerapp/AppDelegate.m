@@ -12,6 +12,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+@import Firebase;
 
 @implementation AppDelegate
 
@@ -37,7 +38,29 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  NSError* configureError;
+  [[GGLContext sharedInstance] configureWithError: &configureError];
+  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+  [GIDSignIn sharedInstance].delegate = self;
+  [FIRApp configure];
   return YES;
+}
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary *)options {
+  return [[GIDSignIn sharedInstance] handleURL:url
+                             sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                    annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error{
+  NSLog(@"%@", user.profile.email);
+//  [[NSNotificationCenter defaultCenter] postNotificationName:@"signIn" object:user];
+}
+
+- (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error{
+  NSLog(@"%@", error);
+//  [[NSNotificationCenter defaultCenter] postNotificationName:@"signInError" object:error];
 }
 
 @end
