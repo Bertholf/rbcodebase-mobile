@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    height: 55,
   },
   LayoutTextChat: {
     flex: 1,
