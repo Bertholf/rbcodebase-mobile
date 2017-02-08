@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     borderRadius: 2,
     elevation: 2,
+    height: 40,
   },
   textReg: {
     color: '#fff',
@@ -96,6 +97,12 @@ const styles = StyleSheet.create({
   wrong: {
     color: '#ff0000',
     alignSelf: 'flex-start',
+  },
+  errBox: {
+    height: 40,
+    backgroundColor: '#2196F3',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 export default styles;

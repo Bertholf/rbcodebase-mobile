@@ -8,6 +8,7 @@ import {
   Image,
   Text,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
@@ -38,6 +39,9 @@ export default class Register extends Component {
       validName: true,
       validEmail: true,
       validUsername: true,
+      validPass: true,
+      errMsg: '',
+      loading: false,
     };
   }
   // dummy button action
@@ -46,6 +50,7 @@ export default class Register extends Component {
   }
 
   validate() {
+    this.setState({ loading: true });
     if (this.state.male) {
       this.setState({ gender: 'male' });
     } else {
@@ -55,18 +60,26 @@ export default class Register extends Component {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const nameRegex = /^[a-zA-Z ]+$/;
     if (!this.state.name.match(nameRegex)) {
-      this.setState({ validName: !this.state.validName });
+      this.setState({ validName: false, loading: false });
     }
     if (!emailRegex.test(this.state.email)) {
-      this.setState({ validEmail: false });
+      this.setState({ validEmail: false, loading: false });
     }
     if (!this.state.username.match(usernameRegex)) {
-      this.setState({ validUsername: false });
+      this.setState({ validUsername: false, loading: false });
+    }
+    if (this.state.password === '') {
+      this.setState({ validPass: false, loading: false });
     }
     this.setState({}, () => {
       if ((this.state.validEmail && this.state.validUsername) &&
       (this.state.validName)) {
-        registerService.register(this.state);
+        registerService.register(this.state, () => {
+          const Message = registerService.errorMsg();
+          if (Message !== undefined) {
+            this.setState({ errMsg: Message, loading: false });
+          }
+        });
       }
     });
   }
@@ -97,22 +110,27 @@ export default class Register extends Component {
             <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7, color: 'silver' }}> OR </Text>
             <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
           </View>
+          {this.state.errMsg === '' ? <Text /> : (
+            <View style={styles.errBox}>
+              <Text style={{ color: '#fff' }}>{this.state.errMsg}</Text>
+            </View>
+          )}
           <TextInput
             multiline={false}
             maxLength={32}
             placeholder={'Name'}
             style={styles.textInput}
-            onChangeText={name => this.setState({ name, validName: true })}
+            onChangeText={name => this.setState({ name, validName: true, errMsg: '' })}
           />
           {this.state.validName ? (<Text />)
-            : (<Text style={styles.wrong}>Name can not contain numbers and simbols</Text>)
+            : (<Text style={styles.wrong}>Name cannot contain numbers and simbols</Text>)
           }
           <TextInput
             multiline={false}
             keyboardType={'email-address'}
             placeholder={'Email'}
             style={styles.textInput}
-            onChangeText={email => this.setState({ email, validEmail: true })}
+            onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
           />
           {this.state.validEmail ? (<Text />)
             : (<Text style={styles.wrong}>Please input valid email</Text>)
@@ -122,7 +140,7 @@ export default class Register extends Component {
             placeholder={'Username'}
             maxLength={32}
             style={styles.textInput}
-            onChangeText={username => this.setState({ username, validUsername: true })}
+            onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
           />
           {this.state.validUsername ? (<Text />)
             : (<Text style={styles.wrong}>Username just contain letter and number</Text>)
@@ -133,8 +151,11 @@ export default class Register extends Component {
             maxLength={32}
             style={styles.textInput}
             secureTextEntry
-            onChangeText={password => this.setState({ password })}
+            onChangeText={password => this.setState({ password, validPass: true })}
           />
+          {this.state.validPass ? (<Text />)
+            : (<Text style={styles.wrong}>Password cannot be blank</Text>)
+          }
           <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
             <Text style={{ color: 'white' }}>Gender</Text>
           </View>
@@ -161,12 +182,18 @@ export default class Register extends Component {
               <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> Terms of Service</Text>
             </Text>
           </View>
-          <TouchableOpacity
-            activeOpacity={0.7} style={styles.btnReg}
-            onPress={() => this.validate()}
-          >
-            <Text style={styles.textReg}>Register</Text>
-          </TouchableOpacity>
+          {this.state.loading ? (
+            <View style={styles.btnReg}>
+              <ActivityIndicator size={'large'}/>
+            </View>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.7} style={styles.btnReg}
+              onPress={() => this.validate()}
+            >
+              <Text style={styles.textReg}>Register</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </ScrollView>
     );
