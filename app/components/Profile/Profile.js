@@ -8,9 +8,9 @@ import {
      ActivityIndicator,
      Alert,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import me from '../../services/me';
 import styles from './ProfileStyle';
-import { Actions } from 'react-native-router-flux';
 import MapMain from '../Timeline/TimelineComp';
 
 export default class Profile extends Component {
@@ -26,17 +26,17 @@ export default class Profile extends Component {
     me.getMe()
     .then(data => this.setState({ profile: data, loading: false }));
   }
-  toggleSwitch() {
-    if (!this.state.clicked) {
-      Alert.alert('Confirmation',
-               'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
-               ]);
-    } else {
-      this.setState({ clicked: !this.state.clicked });
-    }
-  }
+  // toggleSwitch() {
+  //   if (!this.state.clicked) {
+  //     Alert.alert('Confirmation',
+  //              'Are you sure to unfollow this user?', [
+  //             { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+  //               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+  //              ]);
+  //   } else {
+  //     this.setState({ clicked: !this.state.clicked });
+  //   }
+  // }
   pressScroll() {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
@@ -65,15 +65,15 @@ export default class Profile extends Component {
                 <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.toggleSwitch()}>
+                <TouchableOpacity onPress={Actions.setting} >
                   <Text style={styles.button}>
-                    {this.state.clicked ? 'Follow' : 'Unfollow' }
+                    Edit
                   </Text>
                 </TouchableOpacity>
               </View>
             </View>
             <View>
-              <Image style={styles.logo} source={{ uri: this.state.profile.imgProfile }} />
+              <Image style={styles.logo} source={{ uri: this.state.profile.image }} />
             </View>
             <View style={styles.biodata}>
               <Text style={styles.bio}>Bio</Text>
@@ -83,7 +83,7 @@ export default class Profile extends Component {
                 <Image
                   style={styles.icon} source={require('./../../images/jarak.png')}
                 />
-                <Text style={styles.isi}>1200 Km</Text>
+                <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
               </View>
               <View style={styles.posisi}>
                 <Image

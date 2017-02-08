@@ -20,5 +20,6 @@ const user = () => ({
   live: faker.address.city(),
   follower: faker.random.number(),
   postTotal: faker.random.number(),
+  distance: faker.random.number(),
 });
 export default user;

@@ -4,90 +4,76 @@ import {
   Image,
   Text,
   TextInput,
-  TouchableHighlight,
+  StyleSheet,
+  ActivityIndicator,
   TouchableOpacity,
-  Alert,
+  ScrollView,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import chatServices from '../../services/Chat';
 import styles from './styles';
 
-const alertMessage = 'Choose Image/Video';
 export default class ChatView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: '',
-      msgText: [],
-      msgReceive: 'message Receive',
+      clicked: false,
+      loading: true,
+      chat: [],
     };
   }
-  onSendMessage() {
-    console.log(this.state.message);
-    this.setState({ message: '' });
-  }
-  onReceiveMsg() {
-    this.state.msgReceive;
-    console.log(this.state.msgReceive);
+  componentDidMount() {
+    chatServices.getChat()
+    .then((data) => {
+      this.setState({ chat: data, loading: false });
+      console.log(this.state);
+    })
+    .catch(err => console.log(err));
   }
   render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <View
-          style={styles.OuterLayer}
-        >
-          <View style={{ marginLeft: 16 }}>
-            <TouchableOpacity onPress={Actions.timelineList}>
-              <Image
-                style={{
-                  width: 55,
-                  height: 55,
-                }}
-                source={require('./../../images/backbutton.png')
-              }
+    if (this.state.loading === false) {
+      return (
+        <View style={{ flex: 1 }}>
+          <ScrollView style={styles.list}>
+            <View style={styles.container}>
+              {
+              this.state.chat.map((chat, i) => {
+                return (<View style={(i % 2 === 0 ? { alignItems: 'flex-end' } : {})}>
+                  <View style={styles.body}>
+                    {i % 2 === 0 ? (
+                      <View style={styles.body}><View style={styles.bodyChat}>
+                        <Text style={styles.username}>{chat.user}</Text>
+                        <Text style={styles.txtChat}>{chat.textChat}</Text>
+                        <Text style={styles.date}>{chat.dateChat}</Text>
+                      </View>
+                        <Image style={styles.imgUser} source={{ uri: chat.avatarChat }} />
+                      </View>
+                      ) : (
+                        <View style={styles.body}>
+                          <Image style={styles.imgUser} source={{ uri: chat.avatarChat }} />
+                          <View style={styles.bodyChat}>
+                            <Text style={styles.username}>{chat.user}</Text>
+                            <Text style={styles.txtChat}>{chat.textChat}</Text>
+                            <Text style={styles.date}>{chat.dateChat}</Text>
+                          </View></View>
+                  ) }
+                  </View>
+                  <View style={styles.view} />
+                </View>);
+              })
+            }
+            </View>
+          </ScrollView>
+          <View style={{ backgroundColor: '#fff', borderColor: '#2196f3', borderWidth: 0.5, margin:5, flexDirection: 'row' }}>
+            <View style={{ flex: 4 }}>
+              <TextInput
+                style={styles.TextInput}
+                multiline={true}
+                numberOfLines={2}
+                placeholder="Type a message..."
+                underlineColorAndroid="#2196f3"
+                placeholderTextColor="#2196f3"
               />
-            </TouchableOpacity>
-          </View>
-          <View style={{ flex: 6 }}>
-            <Text style={{ fontSize: 24, color: 'white' }}>
-              Chat View
-            </Text>
-          </View>
-          <View style={{ marginRight: 16 }}>
-            <TouchableHighlight
-              onPress={() => Alert.alert(
-                  'Alert Title',
-                  alertMessage,
-                [
-                  { text: 'OK', onPress: () => console.log('OK Pressed!') },
-                ],
-                )}
-            >
-              <Image
-                style={{
-                  width: 35,
-                  height: 35,
-                  marginTop: 6,
-                }}
-                source={require ('./../../images/ic_attach_file_white_24dp.png')}
-              />
-            </TouchableHighlight>
-          </View>
-        </View>
-        <View style={{ flex: 6 }} />
-        <View style={styles.LayoutTextChat}>
-          <View
-            style={styles.LayoutInputText}
-          >
-            <TextInput
-              style={styles.TextInput}
-              multiline={true}
-              numberOfLines={5}
-              placeholder="Type a message..."
-              underlineColorAndroid="#2196f3"
-              placeholderTextColor="#2196f3"
-              value={this.state.message}
-              onChangeText={({ text }) => this.setState({ message: text })}
-            />
+            </View>
             <View style={{ backgroundColor: '#2196f3', borderRadius: 2, paddingLeft: 4, paddingRight: 4, justifyContent: 'center' }}>
               <TouchableOpacity
                 activeOpacity={0.7}
@@ -102,7 +88,11 @@ export default class ChatView extends Component {
             </View>
           </View>
         </View>
-      </View>
-    );
+      );
+    } else {
+      return (
+        <ActivityIndicator />
+      );
+    }
   }
-}
+  }
