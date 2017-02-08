@@ -48,7 +48,7 @@ export default class LoginScreen extends Component {
       this.setState({ validPassword: false });
       message = 'Please enter the correct password';
     } else {
-      loginService(this.state.username, this.state.password);
+      this.props.submitLogin(this.state.username, this.state.password);
     }
     if (message !== '') {
       Alert.alert(message.toString());
