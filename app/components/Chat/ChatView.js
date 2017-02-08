@@ -33,7 +33,7 @@ export default class ChatView extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.OuterLayer}>
-          <View style={{ marginLeft: 16 }}>
+          <View style={{ marginLeft: 16, paddingTop: 8, paddingBottom: 8 }}>
             <TouchableOpacity onPress={Actions.chatlist}>
               <Image
                 style={{

@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+  TextInput,
+  Alert,
+} from 'react-native';
+
 import  me from '../../services/me';
 const logo = require('./../../images/logo.png');
 
@@ -35,24 +44,33 @@ export default class ForgotPassword extends Component {
       } else {
         return;
       }
-    }
+    };
 
     return (
       <View style={styles.container}>
-        <View style={{
+        <View
+          style={{
             justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+            alignItems: 'center' }}
+        >
           <Image
-          source={logo} style={styles.image} />
+            source={logo} style={styles.image}
+          />
         </View>
         <Text>{this.state.profile.email}</Text>
         <TextInput
-            style={{height: 40}} onChangeText={(email) => this.setState({email})}
-            placeholder="Email or Phone"
-          />
-        {!emailInput || emailValidator ? <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
-        <TouchableHighlight style={styles.button} onPress={validateEmail} underlayColor='#99d9f4'>
+          style={{ height: 40, color: '#2196f3' }}
+          placeholderTextColor={'#2196f3'}
+          onChangeText={email => this.setState({ email })}
+          placeholder="Email or Phone"
+        />
+        {!emailInput || emailValidator ?
+          <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
+        <TouchableHighlight
+          style={styles.button}
+          onPress={validateEmail}
+          underlayColor="#99d9f4"
+        >
           <Text style={styles.buttonText}>Send</Text>
         </TouchableHighlight>
       </View>
@@ -70,18 +88,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     alignSelf: 'center',
-    marginBottom: 30
+    marginBottom: 30,
   },
   buttonText: {
     fontSize: 18,
     color: 'white',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   image: {
-    marginBottom : 100,
+    marginBottom: 100,
     alignSelf: 'center',
     width: 150,
-    height: 150
+    height: 150,
   },
   button: {
     height: 36,
@@ -93,10 +111,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     elevation: 2,
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   invalid: {
     color: 'red',
     fontSize: 15,
-  }
+    alignSelf: 'center',
+  },
 });
