@@ -26,19 +26,19 @@ export default class NameEdit extends Component{
   }
 
   render() {
-    const value = /^[a-zA-Z]*$/;
+    const value = /^[a-zA-Z]+$/
     const nameValidator = value.test(this.state.firstName);
     const nameInput = this.state.firstName;
     const currentName = this.state.profile.first_name;
     const validateName = () => {
-      if (nameInput && nameValidator) {
+      if (nameInput || nameValidator) {
         if (nameInput === currentName) {
           Alert.alert('Your Name is same as Current Name!');
         } else {
           Alert.alert('Success Change Name');
         }
       } else {
-        Alert.alert('NO!!');
+        Alert.alert('Enter your Name!');
       }
     };
   return (
@@ -65,6 +65,8 @@ export default class NameEdit extends Component{
             multiline={true}
             numberOfLines={4} editable={true}
           />
+          {nameInput && nameValidator ?
+            <Text /> : <Text style={styles.invalid}>Enter Valid Character (A-Z/a-z)</Text>}
           <Text style={styles.Text2}>
             Confirm change
           </Text>
@@ -73,6 +75,7 @@ export default class NameEdit extends Component{
             placeholderTextColor={'#2196f3'} placeholder="Enter received code" onChangeText={() => console.log('dummy')} multiline={true}
             numberOfLines={4} editable={true}
           />
+
         </View>
       </ScrollView>
       <TouchableOpacity onPress={validateName}>
