@@ -10,6 +10,7 @@ import commentFactory from '../factories/listcomment';
 import registerFactory from '../factories/AuthRegister';
 import friendlistFactory from '../factories/friendlist';
 import listTimeline from '../factories/listTimeline';
+import chatFactory from '../factories/listChat';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -57,8 +58,8 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onPut('/me').reply(200);
   mockery.onGet('/timeline').reply(200, listTimeline());
   mockery.onGet('/timeline').reply(200, {
-    data: timelineFactory(),
   });
+    data: timelineFactory(),
   mockery.onGet('/notifications').reply(200, {
     data: notifFactory(),
   });
@@ -76,5 +77,8 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onPut('/setting').reply(200);
   mockery.onGet('/comment').reply(200, commentFactory());
   mockery.onPost('/register').reply(200, registerFactory());
+  mockery.onGet('/chat').reply(200, chatFactory());
+  mockery.onPost('/chat').reply(200, chatFactory());
+
 });
 export default api;
