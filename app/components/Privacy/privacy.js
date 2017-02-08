@@ -9,6 +9,7 @@ import {
   Image,
   Picker,
   Switch,
+  TouchableOpacity,
 } from 'react-native';
 import styles from './../../components/Privacy/style';
 import settingService from '../../services/setting';

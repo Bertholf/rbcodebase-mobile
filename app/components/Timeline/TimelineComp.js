@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   card: {
@@ -68,7 +69,7 @@ export default class MapMain extends Component {
       <PostCard/>
       <ListView
         dataSource={ds.cloneWithRows(this.state.list)}
-        renderRow={ (dataPost) =>
+        renderRow={(dataPost) =>
           <TouchableOpacity style={styles.mainView} onPress={() => props.moveToDetail()}>
             <View style={styles.card}>
              <Image source={{ uri: dataPost.avatarTimeline }} style = {{width: 75, height: 75, borderRadius:70, margin:6}}/>
