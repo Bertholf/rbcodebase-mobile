@@ -7,7 +7,9 @@ import {
      ScrollView,
      ActivityIndicator,
      Alert,
+     PixelRatio,
 } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import me from '../../services/me';
 import styles from './ProfileStyle';
@@ -16,12 +18,16 @@ import MapMain from '../Timeline/TimelineComp';
 export default class Profile extends Component {
   constructor(props) {
     super(props);
+    state ={
+      avatarSource: null,
+    };
     this.state = {
       clicked: false,
       loading: true,
       profile: {},
     };
   }
+
   componentDidMount() {
     me.getMe()
     .then(data => this.setState({ profile: data, loading: false }));
@@ -41,6 +47,40 @@ export default class Profile extends Component {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
 
+  selectPhotoTapped() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+
+      // You can also display the image using data:
+      // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
+  }
 
   render() {
     if (this.state.loading === false) {
@@ -73,7 +113,11 @@ export default class Profile extends Component {
               </View>
             </View>
             <View>
-              <Image style={styles.logo} source={{ uri: this.state.profile.image }} />
+              <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                { this.state.avatarSource === null ? <Text>change Photo</Text> :
+                <Image style={styles.logo} source={{ uri: this.state.profile.imgProfile }} />
+                }
+              </TouchableOpacity>
             </View>
             <View style={styles.biodata}>
               <Text style={styles.bio}>Bio</Text>
