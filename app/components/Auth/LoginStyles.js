@@ -64,10 +64,12 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   errBox: {
+    marginTop: 20,
     height: 40,
-    backgroundColor: '#2196F3',
+    backgroundColor: 'rgba(255, 0, 0, 0.7)',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 5,
   },
   wrong: {
     color: '#ff0000',

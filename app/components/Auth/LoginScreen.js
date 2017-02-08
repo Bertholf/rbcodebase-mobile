@@ -7,9 +7,7 @@ import {
    TextInput,
    TouchableOpacity,
    TouchableHighlight,
-   Alert,
    ScrollView,
-   Button,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
@@ -36,25 +34,27 @@ export default class LoginScreen extends Component {
       validUsername: true,
       validPassword: true,
       isFail: false,
+      loading: false,
     };
     this.validate = this.validate.bind(this);
   }
   validate() {
-    if (this.state.username === '') {
-      this.setState({ validUsername: false });
-    }
-    if (this.state.password === '') {
-      this.setState({ validPassword: false });
-    }
-    if (this.state.username !== '' && this.state.password !== '') {
-      loginService(this.state.username, this.state.password, () => {
-        this.setState({ isFail: true });
-      });
-    }
+    this.setState({ loading: true }, () => {
+      if (this.state.username === '') {
+        this.setState({ validUsername: false, loading: false });
+      }
+      if (this.state.password === '') {
+        this.setState({ validPassword: false, loading: false });
+      }
+      if (this.state.username !== '' && this.state.password !== '') {
+        loginService(this.state.username, this.state.password, () => {
+          this.setState({ isFail: true, loading: false });
+        });
+      }
+    });
   }
   render() {
     return (
-      <ScrollView style={{ backgroundColor: '#ddd' }}>
         <View style={styles.container}>
           <ScrollView>
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -78,37 +78,46 @@ export default class LoginScreen extends Component {
               <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
               <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
             </View>
-            {!this.state.isFail ? <Text /> : (
-              <View style={styles.errBox}>
-                <Text style={{ color: '#fff' }} >Username or Password not match</Text>
-              </View>
-            )}
             <TextInput
               style={{ height: 40 }}
-              onChangeText={username => this.setState({ username })}
-              placeholder={"Username"}
-              required={true}
+              onChangeText={username => this.setState({ username, validUsername: true, isFail: false })}
+              placeholder={'Username'}
+              required
             />
             {this.state.validUsername ? <Text /> : (
               <Text style={styles.wrong}>Usename cannot blank</Text>
             )}
             <TextInput
               secureTextEntry style={{ height: 40 }}
-              onChangeText={password => this.setState({ password })}
+              onChangeText={password =>
+                this.setState({ password, validPassword: true, isFail: false })
+              }
               placeholder="Password"
             />
             {this.state.validPassword ? <Text /> : (
               <Text style={styles.wrong}>Password cannot blank</Text>
             )}
-            <TouchableHighlight style={styles.button} onPress={() => this.validate()} underlayColor={'#99d9f4'}>
-              <Text style={styles.buttonText}>Login</Text>
-
-            </TouchableHighlight>
+            {!this.state.loading ? (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.button}
+                onPress={() => this.validate()}
+              >
+                <Text style={styles.buttonText}>Login</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.button}
+              >
+                <ActivityIndicator size={'large'} />
+              </TouchableOpacity>
+            )}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => Actions.register()}>
                 <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
                     Register
-                  </Text>
+                </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => Actions.forgotPassword()}>
                 <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
@@ -116,9 +125,13 @@ export default class LoginScreen extends Component {
                   </Text>
               </TouchableOpacity>
             </View>
-          </ScrollView>
+            {!this.state.isFail ? <Text /> : (
+              <View style={styles.errBox}>
+                <Text style={{ color: '#fff' }} >Username or Password not match</Text>
+              </View>
+            )}
+        </ScrollView>
         </View>
-      </ScrollView>
     );
   }
 }

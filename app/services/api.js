@@ -66,7 +66,7 @@ const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
   mockery.onPost('/posts').reply(200);
   mockery.onGet('/setting').reply(200, settingfactory());
   mockery.onPut('/setting').reply(200);
-  mockery.onPost('/login').reply(200, {
+  mockery.onPost('/login').reply(400, {
     data: loginFactory(),
   });
   mockery.onGet('/friendlist').reply(200, {
