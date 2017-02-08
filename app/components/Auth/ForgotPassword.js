@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableHighlight, TextInput, Linking, Alert } from 'react-native';
+import  me from '../../services/me';
 const logo = require('./../../images/logo.png');
 
 export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: ''}
+    this.state = {
+      email: '',
+      profile: {},
+    }
   }
+  ComponentDidMount() {
+    me.getMe(1234)
+    .then(data => this.setState({ profile: data }));
+    console.log(this.state.profile.first_name);
+  };
 
   static propTypes = { url: React.PropTypes.string };
 
@@ -14,10 +23,18 @@ export default class ForgotPassword extends Component {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emptyEmail = this.state.email;
+    const currentEmail = this.state.profile.email;
     const validateEmail = () => {
-      if (emailValidator || !emptyEmail) {
+      if (emailValidator && emptyEmail) {
         // Need action here, please fix it later, thanks!!!
         Alert.alert('Email valid!')
+        console.log(currentEmail);
+        if (currentEmail && emailValidator) {
+          console.log('success');
+        } else {
+          console.log('failed login');
+          Alert.alert(currentEmail)
+        }
       } else {
         return;
       }
@@ -32,6 +49,7 @@ export default class ForgotPassword extends Component {
           <Image
           source={logo} style={styles.image} />
         </View>
+        <Text>{this.state.profile.email}</Text>
         <TextInput
             style={{height: 40}} onChangeText={(email) => this.setState({email})}
             placeholder="Email or Phone"
