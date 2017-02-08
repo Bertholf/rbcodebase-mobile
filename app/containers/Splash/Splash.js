@@ -17,13 +17,12 @@ const mapDispatchToProps = dispatch => ({
 export class Splash extends Component {
   componentDidMount() {
       AsyncStorage.getItem('accessToken')
-      .then((token)=>{
+      .then((token) => {
         if (token !== null && typeof token !== 'undefined') {
           this.props.moveToDashboard();
         } else {
           this.props.moveToAuthLogin();
         }
-
       })
   }
   render() {
