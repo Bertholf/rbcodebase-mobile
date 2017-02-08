@@ -7,10 +7,10 @@ import React from 'react';
 import {
    AppRegistry,
  } from 'react-native';
-import App from './app/App';
+import Profile from './app/components/Profile/Profile';
 
 const HikerApp = () => (
-  <App />
+  <Profile />
 );
 
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
