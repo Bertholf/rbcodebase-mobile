@@ -30,7 +30,7 @@ import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 
-const Routing = () => (
+const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
