@@ -11,10 +11,10 @@ export default class ForgotPassword extends Component {
       profile: {},
     }
   }
-  ComponentDidMount() {
+  componentDidMount() {
     me.getMe(1234)
-    .then(data => this.setState({ profile: data }));
-    console.log(this.state.profile.first_name);
+    .then(data => this.setState({ profile: data }))
+    .then(() => console.log(this.state.profile))
   };
 
   static propTypes = { url: React.PropTypes.string };
@@ -22,18 +22,15 @@ export default class ForgotPassword extends Component {
   render() {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
-    const emptyEmail = this.state.email;
+    const emailInput = this.state.email;
     const currentEmail = this.state.profile.email;
     const validateEmail = () => {
-      if (emailValidator && emptyEmail) {
+      if (emailValidator && emailInput) {
         // Need action here, please fix it later, thanks!!!
-        Alert.alert('Email valid!')
-        console.log(currentEmail);
-        if (currentEmail && emailValidator) {
-          console.log('success');
+        if (currentEmail == emailInput) {
+        Alert.alert('Success, Your Password Has Sent to Email')
         } else {
-          console.log('failed login');
-          Alert.alert(currentEmail)
+          Alert.alert('Wrong Email Address!')
         }
       } else {
         return;
@@ -54,7 +51,7 @@ export default class ForgotPassword extends Component {
             style={{height: 40}} onChangeText={(email) => this.setState({email})}
             placeholder="Email or Phone"
           />
-        {!emptyEmail || emailValidator ? <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
+        {!emailInput || emailValidator ? <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
         <TouchableHighlight style={styles.button} onPress={validateEmail} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Send</Text>
         </TouchableHighlight>
