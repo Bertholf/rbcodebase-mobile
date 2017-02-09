@@ -6,6 +6,7 @@ android:
     - add-on
     - extra
   before_script:
+    - cd android
     - gem install fastlane
   script:
     - fastlane android beta
