@@ -8,7 +8,7 @@ android:
   before_script:
     - gem install fastlane
   script:
-    - cd android && fastlane android beta
+    - fastlane android beta
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
