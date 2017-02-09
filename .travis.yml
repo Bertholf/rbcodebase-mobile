@@ -10,6 +10,7 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 before_install: #1.1
+  - rvm install 2.3.1
   - rvm use 2.3.1
   - nvm install 7
   - node --version
