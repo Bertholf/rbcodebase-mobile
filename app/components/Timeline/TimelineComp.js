@@ -181,6 +181,7 @@ export default class MapMain extends Component {
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center' }}
                 activeOpacity={0.7}
+                onPress={() => this.gotoDetail(dataPost)}
               >
                 <Image
                   source={require('./../../images/insert_comment_black.png')}
@@ -205,7 +206,6 @@ export default class MapMain extends Component {
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center' }}
                 activeOpacity={0.7}
-                onPress={() => this.gotoDetail(dataPost)}
               >
                 <Image
                   source={require('./../../images/insert_comment_black.png')}

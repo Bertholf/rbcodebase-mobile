@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import MapView from 'react-native-maps';
 import CommentView from '../Comment/CommentListFriendView';
@@ -48,6 +49,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  buttonPost: {
+    borderRadius: 3,
+    flex: 1,
+    backgroundColor: '#2196F3',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default class CardDetail extends Component {
@@ -74,10 +82,15 @@ export default class CardDetail extends Component {
           </View>
           <View>
             <Text style={styles.comment}>Comment</Text>
-            <TextInput
-              style={styles.comment}
-              onChangeText={text => this.setState({ text })}
-            />
+            <View style={{ flexDirection: 'row', flex: 1, height:40, paddingRight: 10, paddingLeft: 10 }}>
+                <TextInput
+                  style={{flex:3}}
+                  onChangeText={text => this.setState({ text })}
+                />
+                <TouchableOpacity style={styles.buttonPost}>
+                  <Text style={{color: '#fff'}}>Post</Text>
+                </TouchableOpacity>
+          </View>
           </View>
           <CommentView />
         </View>
