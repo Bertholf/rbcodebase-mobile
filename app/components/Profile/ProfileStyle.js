@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   welcome: {
@@ -11,33 +13,37 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   backgroundContainer: {
-    position: 'absolute',
-    height: 180,
-    width: 500,
+    // position: 'absolute',
+    height: height * 0.28,
+  },
+  backgroundname: {
+    width,
   },
   container: {
     flex: 1,
   },
-  overlay: {
-    opacity: 0.5,
-    backgroundColor: '#000000',
+  backdrop: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  mapmain: {
+    paddingTop: height * 0.47,
+  },
+  viewImgpp: {
+    paddingTop: height * 0.13,
+    width: width * 0.35,
+    position: 'relative',
   },
   logo: {
     backgroundColor: 'rgba(0,0,0,0)',
     width: 90,
     height: 90,
     borderRadius: 50,
-    marginTop: 80,
-    marginLeft: 20,
+    paddingTop: height * 0.15,
+    marginLeft: 16,
     flexDirection: 'row',
     borderWidth: 1,
     borderColor: 'grey',
-  },
-  backdrop: {
-    flex: 1,
-    flexDirection: 'row',
-    height: 200,
-    width: 500,
   },
   headline: {
     fontSize: 20,
@@ -45,15 +51,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     marginTop: -28,
+    width,
     backgroundColor: 'hsla(20,100%,100%,0.3)',
-    marginRight: 110,
   },
+  overlay: {
+    opacity: 0.5,
+    backgroundColor: '#000000',
+  },
+
   button: {
     flexDirection: 'row',
     padding: 8,
     backgroundColor: '#2196F3',
     color: 'white',
-    marginLeft: 10,
     alignItems: 'center',
     marginTop: 5,
     borderRadius: 2,
@@ -160,6 +170,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     marginLeft: 20,
     marginRight: 20,
+    paddingTop: height * 0.01,
   },
   imgCameraContainer: {
     position: 'absolute',
