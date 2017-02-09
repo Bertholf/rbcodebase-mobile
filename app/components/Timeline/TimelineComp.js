@@ -16,18 +16,15 @@ import Menu, {
   MenuOption,
   MenuTrigger,
 } from 'react-native-menu';
-
 import Display from 'react-native-display';
-import { Actions } from 'react-native-router-flux';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineComment from './timelineComment';
 import Accordion from 'react-native-accordion';
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
-
+import { Actions } from 'react-native-router-flux';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -102,9 +99,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
   },
-
 });
-
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
@@ -121,24 +116,21 @@ export default class MapMain extends Component {
       this.setState({ list: data, loading: false });
     }).catch(({ err }) => console.error('SORY ERROR!!!!!!', err));
   }
-
   onChangeImg() {
     this.setState({
       onPress: !this.state.onPress,
     });
   }
-
   toggleDisplay() {
     let toggle = !this.state.enable;
     this.setState({ enable: toggle });
   }
-
   renderRow(dataPost) {
     return (
         <View style={styles.container}>
           <View style={styles.timelineContainer}>
             <View style={styles.about}>
-              <TouchableOpacity activeOpacity={0.7}>
+              <TouchableOpacity onPress= { Actions.profile }  activeOpacity={0.7}>
                 <Image
                   source={{ uri: dataPost.avatarTimeline }}
                   style={styles.avatarImg}
@@ -263,7 +255,6 @@ export default class MapMain extends Component {
         </View>
     );
   }
-
   render() {
     if (this.state.loading === false) {
       return (
@@ -276,7 +267,6 @@ export default class MapMain extends Component {
                 renderRow={dataPost => this.renderRow(dataPost)}
               />
             </View>
-
           </ScrollView>
         </MenuContext>
       );
