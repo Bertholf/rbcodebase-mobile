@@ -122,6 +122,7 @@ export default class Register extends Component {
             borderColor: '#2196f3',
             borderWidth: 0.5,
             borderRadius: 4,
+            height: 50,
           }}
         >
           <TextInput
@@ -129,8 +130,8 @@ export default class Register extends Component {
             maxLength={32}
             placeholder={'First Name'}
             selectionColor={'silver'}
-            underlineColorAndroid={'silver'}
-            style={{ marginLeft: 10, marginRight: 10 }}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
+            style={{ marginLeft: 10, marginRight: 10, height: 50 }}
             onChangeText={firstName => this.setState({ firstName, validFName: true, errMsg: '' })}
           />
         </View>
@@ -144,6 +145,7 @@ export default class Register extends Component {
             borderColor: '#2196f3',
             borderWidth: 0.5,
             borderRadius: 4,
+            height: 50,
           }}
         >
           <TextInput
@@ -151,8 +153,8 @@ export default class Register extends Component {
             maxLength={32}
             placeholder={'Last Name'}
             selectionColor={'silver'}
-            underlineColorAndroid={'silver'}
-            style={{ marginLeft: 10, marginRight: 10 }}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
+            style={{ marginLeft: 10, marginRight: 10, height: 50 }}
             onChangeText={lastName => this.setState({ lastName, validLName: true, errMsg: '' })}
           />
         </View>
@@ -166,6 +168,7 @@ export default class Register extends Component {
               borderColor: '#2196f3',
               borderWidth: 0.5,
               borderRadius: 4,
+              height: 50,
             }}
           >
             <TextInput
@@ -173,8 +176,8 @@ export default class Register extends Component {
               keyboardType={'email-address'}
               placeholder={'Email'}
               selectionColor={'silver'}
-              underlineColorAndroid={'silver'}
-              style={{ marginLeft: 10, marginRight: 10 }}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
               onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
             />
           </View>
@@ -188,6 +191,7 @@ export default class Register extends Component {
               borderColor: '#2196f3',
               borderWidth: 0.5,
               borderRadius: 4,
+              height: 50,
             }}
           >
             <TextInput
@@ -195,8 +199,8 @@ export default class Register extends Component {
               placeholder={'Username'}
               maxLength={32}
               selectionColor={'silver'}
-              underlineColorAndroid={'silver'}
-              style={{ marginLeft: 10, marginRight: 10 }}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
               onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
             />
           </View>
@@ -210,6 +214,7 @@ export default class Register extends Component {
               borderColor: '#2196f3',
               borderWidth: 0.5,
               borderRadius: 4,
+              height: 50,
             }}
           >
             <TextInput
@@ -217,8 +222,8 @@ export default class Register extends Component {
               placeholder={'Password'}
               maxLength={32}
               selectionColor={'silver'}
-              underlineColorAndroid={'silver'}
-              style={{ marginLeft: 10, marginRight: 10 }}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
               secureTextEntry
               onChangeText={password => this.setState({ password, validPass: true })}
             />
