@@ -10,18 +10,15 @@ import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon
 import TimelineService from './../../../services/timelineList';
 
 const PostCard = () => {
-
-
 //   this.state = {
 //     button:{}
 //
 // }
 
-
   addText = () => {
-    this.setState({button : 'status card' })
+    this.setState({ button: 'status card' })
     console.log(this.state.button);
-  }
+  };
 
   return (
     <View>
