@@ -4,21 +4,20 @@ import { LoginManager } from 'react-native-fbsdk';
 
 const google = NativeModules.GoogleSignInModule;
 const Logout = async () => {
-  try{
+  try {
     const accessToken = await AsyncStorage.getItem('accessToken');
     const provider = await AsyncStorage.getItem('provider');
-    console.log('==PROVIDER==', provider, '==TOKEN==', accessToken);
-    if (provider === 'facebook' && typeof accessToken !== undefined) {
+    if (provider === 'facebook' && accessToken !== '') {
       AsyncStorage.clear();
       LoginManager.logOut();
-      Actions.login();
-    } else if (provider === 'google' && typeof accessToken !== undefined){
+      Actions.login({ type: 'reset' });
+    } else if (provider === 'google' && accessToken !== '') {
       AsyncStorage.clear();
       google.signOut();
-      Actions.login();
+      Actions.login({ type: 'reset' });
     } else {
       AsyncStorage.clear();
-      Actions.login();
+      Actions.login({ type: 'reset' });
     }
   } catch (err) {
     console.log('logOut error : ', err);
