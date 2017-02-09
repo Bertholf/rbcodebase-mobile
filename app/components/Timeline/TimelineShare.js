@@ -61,7 +61,7 @@ export default class TimelineShare extends Component {
                 style={{ borderBottomWidth:1, borderColor: '#aaa', paddingLeft: 10 }}>
                 <View style={{ alignItems: 'center', marginLeft: 10 }}>
                   <Image source={{ uri: rowData.image }} style={styles.photo} />
-                  <Text style={{ fontSize: 15 }}>{rowData.first_name}</Text>
+                  <Text style={{ fontSize: 15, color: 'rgba(0,0,0,0.9)' }}>{rowData.first_name}</Text>
                   <Text style={{ fontSize: 13, fontStyle: 'italic' }}>{rowData.username}</Text>
                 </View>
               </TouchableOpacity>
