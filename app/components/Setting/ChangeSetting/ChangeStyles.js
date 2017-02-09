@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   invalid: {
     color: 'red',
     fontSize: 15,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
   },
 });
 

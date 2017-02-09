@@ -21,8 +21,8 @@ RCT_EXPORT_METHOD(configure)
   [GIDSignIn sharedInstance].uiDelegate = self;
   
   [GIDSignIn sharedInstance].scopes = @[@"email", @"profile"];
-  [GIDSignIn sharedInstance].clientID = @"855412335195-edbuimndea446k01ihvtn7d8s3285t1o.apps.googleusercontent.com";
-  [GIDSignIn sharedInstance].serverClientID = @"855412335195-5f869c8610qr44dbl3tcpi2a477mu657.apps.googleusercontent.com";
+  [GIDSignIn sharedInstance].clientID = @"173115952010-70ri1qc45avr8oh9ppepk4bv5upd81jt.apps.googleusercontent.com";
+  [GIDSignIn sharedInstance].serverClientID = @"173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe.apps.googleusercontent.com";
 }
 - (dispatch_queue_t)methodQueue{
   return dispatch_get_main_queue();
