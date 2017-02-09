@@ -57,7 +57,9 @@ export default class NameEdit extends Component{
             <Text style={styles.Text2}>
               Your current name
             </Text>
-            <Text style={styles.TextInput1}>{this.state.profile.first_name} {this.state.profile.last_name}</Text>
+            <Text style={styles.TextInput1}>
+              {this.state.profile.first_name} {this.state.profile.last_name}
+            </Text>
             <Text style={styles.Text2}>
               Enter your new name
             </Text>
