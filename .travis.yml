@@ -5,11 +5,15 @@ android:
     - android-25
     - add-on
     - extra
-  before_script:
-    - cd android
+  before_install: #1.1
+    - nvm install 7
+    - node --version
+    - npm install --global yarn
     - gem install fastlane
+  install:
+    - yarn
   script:
-    - fastlane android beta
+    - cd android && fastlane android beta
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
