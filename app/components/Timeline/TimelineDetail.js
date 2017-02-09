@@ -55,7 +55,6 @@ export default class CardDetail extends Component {
     return (
       <ScrollView>
         <View style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: 'white', elevation: 12 }}>
-          <Text style={styles.fntui}> Detail card </Text>
           <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 10 }}>
             <Image
               style={{ borderRadius: 70, width: 50, height: 50 }}
