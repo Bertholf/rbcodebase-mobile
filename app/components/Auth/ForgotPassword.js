@@ -37,7 +37,7 @@ export default class ForgotPassword extends Component {
       if (emailValidator && emailInput) {
         // Need action here, please fix it later, thanks!!!
         if (currentEmail == emailInput) {
-        Alert.alert('Success, Your Password Has Sent to Email')
+          Alert.alert('Success, Your Password Has Sent to Email')
         } else {
           Alert.alert('Wrong Email Address!')
         }

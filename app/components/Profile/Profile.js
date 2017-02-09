@@ -8,6 +8,7 @@ import {
      ActivityIndicator,
      Alert,
      PixelRatio,
+     Dimensions,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
@@ -112,44 +113,46 @@ export default class Profile extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-            <View>
-              <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                { this.state.avatarSource === null ? <Text>change Photo</Text> :
-                <Image style={styles.logo} source={{ uri: this.state.profile.imgProfile }} />
-                }
-              </TouchableOpacity>
-            </View>
-            <View style={styles.biodata}>
-              <Text style={styles.bio}>Bio</Text>
-              <Text style={styles.isi}>{this.state.profile.about}</Text>
-              <Text style={styles.bio}>Last Hiking</Text>
-              <View style={styles.posisi}>
-                <Image
-                  style={styles.icon} source={require('./../../images/jarak.png')}
-                />
-                <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
-              </View>
-              <View style={styles.posisi}>
-                <Image
-                  style = {styles.icon} source ={require('./../../images/mountain.png')}
-                />
-                <Text style={styles.isi}>from: {this.state.profile.from}</Text>
-              </View>
-              <View style={styles.posisi}>
-                <Image
-                  style={styles.location} source ={require('./../../images/live.png')}
-                />
-                <Text style={styles.isi}>live : {this.state.profile.live}</Text>
-              </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                <TouchableOpacity>
-                  <Text style={styles.isi2}>View More</Text>
+            <View style={{ position: 'absolute' }}>
+              <View style={styles.viewImgpp}>
+                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                  { this.state.avatarSource === null ? <Text>change Photo</Text> :
+                  <Image style={styles.logo} source={{ uri: this.state.profile.imgProfile }} />
+                  }
                 </TouchableOpacity>
               </View>
+              <View style={styles.biodata}>
+                <Text style={styles.bio}>Bio</Text>
+                <Text style={styles.isi}>{this.state.profile.about}</Text>
+                <Text style={styles.bio}>Last Hiking</Text>
+                <View style={styles.posisi}>
+                  <Image
+                    style={styles.icon} source={require('./../../images/jarak.png')}
+                  />
+                  <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
+                </View>
+                <View style={styles.posisi}>
+                  <Image
+                    style={styles.icon} source={require('./../../images/mountain.png')}
+                  />
+                  <Text style={styles.isi}>from: {this.state.profile.from}</Text>
+                </View>
+                <View style={styles.posisi}>
+                  <Image
+                    style={styles.location} source={require('./../../images/live.png')}
+                  />
+                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                  <TouchableOpacity>
+                    <Text style={styles.isi2}>View More</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
-          </View>
-          <View>
-            <MapMain />
+            <View style={styles.mapmain}>
+              <MapMain />
+            </View>
           </View>
         </ScrollView>
       );

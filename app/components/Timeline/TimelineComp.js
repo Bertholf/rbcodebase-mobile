@@ -10,19 +10,22 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-
-import { Actions } from 'react-native-router-flux';
+import Menu, {
+  MenuContext,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-menu';
+import Display from 'react-native-display';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineList from './../Timeline/TimelineList';
 import TimelineComment from './timelineComment';
-import TimelineRightNav from './TimelineRightNav';
 import Accordion from 'react-native-accordion';
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
-
+import { Actions } from 'react-native-router-flux';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,13 +57,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 15,
   },
+  divider: {
+    marginVertical: 5,
+    marginHorizontal: 2,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
   iconRightContainer: {
-    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
   iconRightMenu: {
-    position: 'absolute',
     width: 25,
     height: 25,
     top: 0,
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingTop: 7,
     paddingBottom: 7,
   },
@@ -93,9 +100,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
   },
-
 });
-
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
@@ -103,6 +108,7 @@ export default class MapMain extends Component {
       loading: true,
       list: {},
       onPress: true,
+      enable: true,
     };
   }
   componentDidMount() {
@@ -111,7 +117,6 @@ export default class MapMain extends Component {
       this.setState({ list: data, loading: false });
     });
   }
-
   onChangeImg() {
     this.setState({
       onPress: !this.state.onPress,
@@ -125,20 +130,22 @@ export default class MapMain extends Component {
   render() {
     if (this.state.loading === false) {
       return (
-        <ScrollView>
-          <View>
-            <PostCard />
-            <ListView
-              dataSource={ds.cloneWithRows(this.state.list)}
-              renderRow={dataPost => this.renderRow(dataPost)}
-            />
-          </View>
-        </ScrollView>
+        <MenuContext>
+          <ScrollView>
+            <View>
+              <PostCard />
+              <ListView
+                dataSource={ds.cloneWithRows(this.state.list)}
+                renderRow={dataPost => this.renderRow(dataPost)}
+              />
+            </View>
+          </ScrollView>
+        </MenuContext>
       );
-    }else {
-    return(
-      <ActivityIndicator />
-    );
+    } else {
+      return(
+        <ActivityIndicator />
+      );
     }
   }
 }
