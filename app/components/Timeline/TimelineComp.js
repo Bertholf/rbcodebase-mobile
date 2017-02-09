@@ -116,7 +116,7 @@ export default class MapMain extends Component {
       onPress: !this.state.onPress,
     });
   }
-  onPressComment(dataPost) {
+  gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
   }
 
@@ -152,13 +152,21 @@ export default class MapMain extends Component {
             </View>
             <TimelineRightNav />
           </View>
-          <View style={styles.statusContainer}>
-            <Text style={styles.textStatus}>
-              Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
-            </Text>
-          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => this.gotoDetail(dataPost)}
+          >
+            <View style={styles.statusContainer}>
+              <Text style={styles.textStatus}>
+                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
+              </Text>
+              <Image
+                source={{ uri: dataPost.imageTimeline }}
+                style={{ height: 183, justifyContent: 'center' }}
+              />
+            </View>
+          </TouchableOpacity>
           <View style={styles.mapContainer}>
-            <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center' }} />
             <View style={styles.commentsCountContainer}>
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center' }}
@@ -197,7 +205,7 @@ export default class MapMain extends Component {
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center' }}
                 activeOpacity={0.7}
-                onPress={() => this.onPressComment(dataPost)}
+                onPress={() => this.gotoDetail(dataPost)}
               >
                 <Image
                   source={require('./../../images/insert_comment_black.png')}
