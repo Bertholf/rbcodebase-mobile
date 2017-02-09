@@ -38,12 +38,16 @@ export default class NameEdit extends Component{
         if (firstNameInput === currentFirstName) {
           if (lastNameInput === currentLastName) {
             Alert.alert('Nothing Changed!', 'Your name is same as current :)');
+          } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
+            Alert.alert('Success', 'Your Last Name has been Changed');
           }
+        } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
+          Alert.alert('Success', 'Your First Name has been Changed');
         } else {
           Alert.alert('Success', 'Your name has been Changed');
         }
       } else {
-        Alert.alert('Error', 'You have invalid input or you have no input')
+        Alert.alert('Error', 'You have invalid input or You have no input');
       }
     };
     return (
