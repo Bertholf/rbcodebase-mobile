@@ -107,15 +107,15 @@ android {
         }
     }
     signingConfigs {
-      release2 {
-        storeFile file("../keystores/baseapp.keystore")
-        storePassword getProperty("storePasswordProp")
-        keyAlias getProperty("keyAliasProp")
-        keyPassword getProperty("keyPasswordProp")
-      }
+        release2 {
+            storeFile file("../keystores/rbcodebase.jks")
+            storePassword getProperty("storePasswordProp")
+            keyAlias getProperty("keyAliasProp")
+            keyPassword getProperty("keyPasswordProp")
+        }
     }
     buildTypes {
-        debug{
+        debug {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release2
         }
@@ -130,7 +130,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -150,16 +150,17 @@ dependencies {
     compile project(':react-native-mapbox-gl')
     compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:25.1.1"
-    compile "com.android.support:multidex:1.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
-    compile 'com.google.android.gms:play-services-auth:9.8.0'
+    // From node_modules
 
     compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
-      transitive = true;
+        transitive = true;
     }
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.facebook.react:react-native:+'
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+    compile 'com.google.firebase:firebase-crash:9.8.0'
 }
-
 
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
@@ -169,22 +170,22 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 buildscript {
-  repositories {
-    maven { url 'https://maven.fabric.io/public' }
-  }
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
 
-  dependencies {
-    // These docs use an open ended version so that our plugin
-    // can be updated quickly in response to Android tooling updates
+    dependencies {
+        // These docs use an open ended version so that our plugin
+        // can be updated quickly in response to Android tooling updates
 
-    // We recommend changing it to the latest version from our changelog:
-    // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
-    classpath 'io.fabric.tools:gradle:1.+'
-  }
+        // We recommend changing it to the latest version from our changelog:
+        // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
 }
 
 
 repositories {
-  maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://maven.fabric.io/public' }
 }
 apply plugin: 'com.google.gms.google-services'
