@@ -179,7 +179,7 @@ export default class MapMain extends Component {
                     </MenuOption>
                     <View style={styles.divider} />
                     <MenuOption value="normal">
-                      <Text>Unfollow</Text>
+                      <Text>Unfollow {dataPost.user}</Text>
                     </MenuOption>
                     <View style={styles.divider} />
                     <MenuOption value="normal">
