@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import MapView from 'react-native-maps';
+import CommentView from '../Comment/CommentListFriendView';
 
 const styles = StyleSheet.create({
   fntui: {
@@ -66,7 +67,7 @@ export default class CardDetail extends Component {
             </View>
           </View>
           <View>
-            <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.img} />
+            <Image source={{ uri: this.props.imageTimeline }} style={styles.img} />
           </View>
           <View>
             <Text style={styles.detail}>{this.props.textTimeline}</Text>
@@ -79,6 +80,7 @@ export default class CardDetail extends Component {
               onChangeText={text => this.setState({ text })}
             />
           </View>
+          <CommentView />
         </View>
       </ScrollView>
     );
