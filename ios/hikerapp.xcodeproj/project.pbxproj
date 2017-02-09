@@ -306,7 +306,7 @@
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
 		};
-		9C9E52561E4C4A2C006D9146 /* PBXContainerItemProxy */ = {
+		9CFDD5F81E4B52C20082B51C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */;
 			proxyType = 2;
@@ -1169,11 +1169,11 @@
 			remoteRef = 9C6973001E41B4F600D843FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9C9E52571E4C4A2C006D9146 /* libRNImagePicker.a */ = {
+		9CFDD5F91E4B52C20082B51C /* libRNImagePicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
-			remoteRef = 9C9E52561E4C4A2C006D9146 /* PBXContainerItemProxy */;
+			remoteRef = 9CFDD5F81E4B52C20082B51C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
