@@ -45,6 +45,7 @@ export default class LoginScreen extends Component {
         this.props.submitLogin(this.state.username, this.state.password);
       }
     });
+    this.setState({ loading: false });
   }
   render() {
     return (
