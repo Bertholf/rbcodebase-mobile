@@ -2,9 +2,12 @@ language: android
 jdk: openjdk6
 android:
   components:
-    - build-tools-23.0.3
-    - android-25
+    - build-tools-23.0.1
+    - android-23
     - add-on
+    - extra-android-m2repository
+    - extra-google-google_play_services
+    - extra-google-m2repository
     - extra
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
