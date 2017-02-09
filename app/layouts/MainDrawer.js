@@ -96,7 +96,7 @@ export default class MainDrawer extends Component {
       { index: 4, name: 'Inbox', action: 'listInbox', iconName: 'message' },
       { index: 5, name: 'Friend list', action: 'friendlist', iconName: 'group' },
       { index: 6, name: 'Setting', action: 'setting', iconName: 'settings' },
-      { index: 7, name: 'Logout', action: 'logout', iconName: 'directions-run' },
+      { index: 7, name: 'Logout', action: 'login', iconName: 'directions-run' },
     ];
     return (
       <View style={styles.wrapper}>

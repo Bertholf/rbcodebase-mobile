@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
   imgUser: {
     marginTop: 5,
     left: 5,
-    width: 30,
-    height: 30,
-    borderRadius: 6,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
   },
   body: {
     flexDirection: 'row',
