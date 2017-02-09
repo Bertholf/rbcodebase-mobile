@@ -121,10 +121,16 @@ export default class MapMain extends Component {
       onPress: !this.state.onPress,
     });
   }
+
+  gotoDetail(dataPost) {
+    Actions.timelineDetail(dataPost);
+  }
+
   toggleDisplay() {
     let toggle = !this.state.enable;
     this.setState({ enable: toggle });
   }
+
   renderRow(dataPost) {
     return (
         <View style={styles.container}>
@@ -179,15 +185,21 @@ export default class MapMain extends Component {
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
+
               </TouchableOpacity>
             </View>
             <View style={styles.statusContainer}>
-              <Text style={styles.textStatus}>
-                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
-              </Text>
+              <TouchableOpacity
+                onPress={() => this.gotoDetail(dataPost)}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.textStatus}>
+                  Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
+                </Text>
+                <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center'}} />
+              </TouchableOpacity>
             </View>
             <View style={styles.mapContainer}>
-              <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center'}} />
               <View style={styles.commentsCountContainer}>
                 <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
