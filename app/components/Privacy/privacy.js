@@ -11,7 +11,7 @@ import {
   Switch,
   TouchableOpacity,
 } from 'react-native';
-import styles from './../../components/Privacy/style';
+import styles from './../../components/Edit/Privacy/style';
 import settingService from '../../services/setting';
 
 

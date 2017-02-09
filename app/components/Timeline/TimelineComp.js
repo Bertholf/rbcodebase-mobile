@@ -18,6 +18,7 @@ import Menu, {
 } from 'react-native-menu';
 
 import Display from 'react-native-display';
+import { Actions } from 'react-native-router-flux';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineComment from './timelineComment';
@@ -26,7 +27,6 @@ import Accordion from 'react-native-accordion';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
-import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {

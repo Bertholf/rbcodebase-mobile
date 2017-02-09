@@ -54,3 +54,4 @@ fastlane/screenshots
 
 crashlytics-build.properties
 com_crashlytics_export_strings.xml
+ios/Pods/

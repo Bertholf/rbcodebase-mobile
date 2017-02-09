@@ -20,7 +20,7 @@ import Privacy from './components/Privacy/privacy';
 import Email from './components/Setting/EmailNotif';
 import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
-import Loader from './layouts/Loader';
+import Loader from './containers/Loader';
 import Account from './components/Profile/AccountSetting';
 import EmailEdit from './components/Setting/EmailEdit';
 import NameEdit from './components/Setting/ChangeName';
@@ -30,7 +30,7 @@ import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 
-const Routing = () => (
+const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
@@ -39,13 +39,13 @@ const Routing = () => (
             {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene
-              key="setting" component={Setting} title="Setting"
+              key="setting" component={Setting} title={'Setting'}
             />
             <Scene
-              key="chatfriend" component={ChatListFriendView} title="ChatListFriendView"
+              key="chatfriend" component={ChatListFriendView} title={'Chat'}
             />
             <Scene
-              key="inbox" component={Inbox} tittle="Inbox"
+              key="inbox" component={Inbox} title={'Inbox'}
             />
             <Scene
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
@@ -60,13 +60,10 @@ const Routing = () => (
               key={'chatlist'} component={ChatListFriendView} title={'Chat List'}
             />
             <Scene
-              key={'account'} component={Account} title={'account'}
+              key={'friendlist'} component={Friendlist} title={'Friend list'}
             />
             <Scene
-              key={'friendlist'} component={Friendlist} title={'friendlist'}
-            />
-            <Scene
-              key={'account'} component={Account} title={'account'}
+              key={'account'} component={Account} title={'Account'}
               />
             <Scene
               key={'privacy'} component={Privacy} title={'Privacy'}
@@ -99,7 +96,7 @@ const Routing = () => (
               key={'register'} component={Register} hideNavBar title={'Register Screen'}
             />
             <Scene
-              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'forgotPassword'}
+              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'Forgot Password'}
             />
             <Scene
               key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -117,14 +114,14 @@ const Routing = () => (
               key={'chat'} component={Chat} title={'Profile'}
             />
             <Scene
-              key={'loader'} component={Loader} hideNavBar
-            />
-            <Scene
               key={'deactive'} component={Deactivate} title={'Deactivate'}
             />
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
+        <Scene
+          key={'loader'} component={Loader}
+        />
       </Scene>
     </Router>
   </View>
