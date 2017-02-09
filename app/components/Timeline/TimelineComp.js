@@ -169,11 +169,19 @@ export default class MapMain extends Component {
                   </MenuTrigger>
                   <MenuOptions>
                     <MenuOption value="normal">
-                      <Text>Show Map</Text>
+                      <Text>Save Post</Text>
                     </MenuOption>
                     <View style={styles.divider} />
-                    <MenuOption value="do not close">
-                      <Text>Does not close menu</Text>
+                    <MenuOption value="normal">
+                      <Text>Hide Post</Text>
+                    </MenuOption>
+                    <View style={styles.divider} />
+                    <MenuOption value="normal">
+                      <Text>Unfollow {dataPost.user}</Text>
+                    </MenuOption>
+                    <View style={styles.divider} />
+                    <MenuOption value="normal">
+                      <Text>Report Post</Text>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
