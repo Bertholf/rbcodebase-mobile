@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   View,
   ScrollView,
@@ -55,17 +56,20 @@ export default class CardDetail extends Component {
         <View style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: 'white', elevation: 12 }}>
           <Text style={styles.fntui}> Detail card </Text>
           <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 10 }}>
-            <Image style={{ borderRadius: 70, width: 50, height: 50 }} source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />
+            <Image
+              style={{ borderRadius: 70, width: 50, height: 50 }}
+              source={{ uri: this.props.avatarTimeline }}
+            />
             <View style={{ flexDirection: 'column', marginLeft: 15 }}>
-              <Text style={styles.user}>User name</Text>
-              <Text style={styles.time}>Date/time</Text>
+              <Text style={styles.user}>{this.props.user}</Text>
+              <Text style={styles.time}>{this.props.dateTimeline}</Text>
             </View>
           </View>
           <View>
             <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.img} />
           </View>
           <View>
-            <Text style={styles.detail}>Detail:ini  adalah detail ini adalah detail</Text>
+            <Text style={styles.detail}>{this.props.textTimeline}</Text>
             <Text>{'\n'}</Text>
           </View>
           <View>
@@ -79,4 +83,4 @@ export default class CardDetail extends Component {
       </ScrollView>
     );
   }
-  }
+}

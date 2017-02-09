@@ -116,6 +116,9 @@ export default class MapMain extends Component {
       onPress: !this.state.onPress,
     });
   }
+  onPressComment(dataPost) {
+    Actions.timelineDetail(dataPost);
+  }
 
   renderRow(dataPost) {
     return (
@@ -194,6 +197,7 @@ export default class MapMain extends Component {
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center' }}
                 activeOpacity={0.7}
+                onPress={() => this.onPressComment(dataPost)}
               >
                 <Image
                   source={require('./../../images/insert_comment_black.png')}
