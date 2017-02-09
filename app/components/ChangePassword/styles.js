@@ -14,18 +14,21 @@ module.exports = StyleSheet.create({
     marginTop: 70,
     width: width * 0.9
   },
-  icon: {
-    width: 25,
-    height: 25,
-  },
   title: {
+    alignItems: 'center',
+    top: 20,
+    marginBottom: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  text: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 30,
-    color: '#2196F3'
+    color: '#2196F3',
   },
   new_password: {
-    marginTop: 20
+    marginTop: 20,
+    color: '#2196f3',
   },
   button_save: {
     backgroundColor: '#2196F3',
@@ -33,12 +36,7 @@ module.exports = StyleSheet.create({
     marginTop: 50,
     borderRadius: 5,
     alignItems: 'center',
-    width: width * 0.5
-  },
-  link: {
-    color : '#2196F3',
-    margin : 10,
-    textAlign :'left'
+    width: width * 0.5,
   },
   middle_line: {
     borderWidth: 0.4,
@@ -46,10 +44,9 @@ module.exports = StyleSheet.create({
     width: width * 0.2,
     height: 0.5,
   },
-  middle_text: {
-    width: width * 0.4,
-    margin: 5,
-    textAlign: 'center', 
-    fontStyle: 'italic'
-  }
-})
+  invalid: {
+    color: 'red',
+    fontSize: 15,
+    alignSelf: 'center',
+  },
+});

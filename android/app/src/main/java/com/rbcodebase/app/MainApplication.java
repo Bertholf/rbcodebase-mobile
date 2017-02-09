@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
+import com.rbcodebase.app.modules.google.GoogleSignInPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -45,7 +47,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
+              new ImagePickerPackage(),
               new VectorIconsPackage(),
+              new GoogleSignInPackage(),
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),
               new ReactNativeLocalizationPackage(),
