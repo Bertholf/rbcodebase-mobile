@@ -236,6 +236,7 @@ export default class MapMain extends Component {
                   <Text>Comment</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  onPress= {Actions.timelineshare}
                   style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
                 >
