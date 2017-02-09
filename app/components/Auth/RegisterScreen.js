@@ -31,12 +31,14 @@ export default class Register extends Component {
     this.state = {
       male: true,
       female: false,
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       username: '',
       password: '',
       gender: 'male',
-      validName: true,
+      validFName: true,
+      validLName: true,
       validEmail: true,
       validUsername: true,
       validPass: true,
@@ -59,8 +61,11 @@ export default class Register extends Component {
     const usernameRegex = /^[a-zA-Z0-9]+$/;
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const nameRegex = /^[a-zA-Z ]+$/;
-    if (!this.state.name.match(nameRegex)) {
-      this.setState({ validName: false, loading: false });
+    if (!this.state.firstName.match(nameRegex)) {
+      this.setState({ validFName: false, loading: false });
+    }
+    if (!this.state.lastName.match(nameRegex)) {
+      this.setState({ validLName: false, loading: false });
     }
     if (!emailRegex.test(this.state.email)) {
       this.setState({ validEmail: false, loading: false });
@@ -73,7 +78,7 @@ export default class Register extends Component {
     }
     this.setState({}, () => {
       if ((this.state.validEmail && this.state.validUsername) &&
-      (this.state.validName)) {
+      (this.state.validFName && this.state.validLName)) {
         registerService.register(this.state, () => {
           const Message = registerService.errorMsg();
           if (Message !== undefined) {
@@ -110,20 +115,26 @@ export default class Register extends Component {
             <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7, color: 'silver' }}> OR </Text>
             <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
           </View>
-          {this.state.errMsg === '' ? <Text /> : (
-            <View style={styles.errBox}>
-              <Text style={{ color: '#fff' }}>{this.state.errMsg}</Text>
-            </View>
-          )}
+
           <TextInput
             multiline={false}
             maxLength={32}
-            placeholder={'Name'}
+            placeholder={'First Name'}
             style={styles.textInput}
-            onChangeText={name => this.setState({ name, validName: true, errMsg: '' })}
+            onChangeText={firstName => this.setState({ firstName, validFName: true, errMsg: '' })}
           />
-          {this.state.validName ? (<Text />)
-            : (<Text style={styles.wrong}>Name cannot contain numbers and simbols</Text>)
+          {this.state.validFName ? (<Text />)
+            : (<Text style={styles.wrong}>First name cannot contain numbers and simbols</Text>)
+          }
+          <TextInput
+            multiline={false}
+            maxLength={32}
+            placeholder={'Last Name'}
+            style={styles.textInput}
+            onChangeText={lastName => this.setState({ lastName, validLName: true, errMsg: '' })}
+          />
+          {this.state.validLName ? (<Text />)
+            : (<Text style={styles.wrong}>Last name cannot contain numbers and simbols</Text>)
           }
           <TextInput
             multiline={false}
@@ -156,6 +167,11 @@ export default class Register extends Component {
           {this.state.validPass ? (<Text />)
             : (<Text style={styles.wrong}>Password cannot be blank</Text>)
           }
+          {this.state.errMsg === '' ? <Text /> : (
+            <View style={styles.errBox}>
+              <Text style={{ color: '#fff' }}>{this.state.errMsg}</Text>
+            </View>
+          )}
           <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
             <Text style={{ color: 'white' }}>Gender</Text>
           </View>
