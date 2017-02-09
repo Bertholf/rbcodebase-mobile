@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Text,
   View,
   ScrollView,
   StyleSheet,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import MapView from 'react-native-maps';
+import CommentView from '../Comment/CommentListFriendView';
 
 const styles = StyleSheet.create({
   fntui: {
@@ -46,6 +49,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  buttonPost: {
+    borderRadius: 3,
+    flex: 1,
+    backgroundColor: '#2196F3',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default class CardDetail extends Component {
@@ -53,30 +63,38 @@ export default class CardDetail extends Component {
     return (
       <ScrollView>
         <View style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: 'white', elevation: 12 }}>
-          <Text style={styles.fntui}> Detail card </Text>
           <View style={{ flexDirection: 'row', marginLeft: 15, marginTop: 10 }}>
-            <Image style={{ borderRadius: 70, width: 50, height: 50 }} source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} />
+            <Image
+              style={{ borderRadius: 70, width: 50, height: 50 }}
+              source={{ uri: this.props.avatarTimeline }}
+            />
             <View style={{ flexDirection: 'column', marginLeft: 15 }}>
-              <Text style={styles.user}>User name</Text>
-              <Text style={styles.time}>Date/time</Text>
+              <Text style={styles.user}>{this.props.user}</Text>
+              <Text style={styles.time}>{this.props.dateTimeline}</Text>
             </View>
           </View>
           <View>
-            <Image source={{ uri: 'http://facebook.github.io/react/img/logo_og.png' }} style={styles.img} />
+            <Image source={{ uri: this.props.imageTimeline }} style={styles.img} />
           </View>
           <View>
-            <Text style={styles.detail}>Detail:ini  adalah detail ini adalah detail</Text>
+            <Text style={styles.detail}>{this.props.textTimeline}</Text>
             <Text>{'\n'}</Text>
           </View>
           <View>
             <Text style={styles.comment}>Comment</Text>
-            <TextInput
-              style={styles.comment}
-              onChangeText={text => this.setState({ text })}
-            />
+            <View style={{ flexDirection: 'row', flex: 1, height:40, paddingRight: 10, paddingLeft: 10 }}>
+                <TextInput
+                  style={{flex:3}}
+                  onChangeText={text => this.setState({ text })}
+                />
+                <TouchableOpacity style={styles.buttonPost}>
+                  <Text style={{color: '#fff'}}>Post</Text>
+                </TouchableOpacity>
           </View>
+          </View>
+          <CommentView />
         </View>
       </ScrollView>
     );
   }
-  }
+}

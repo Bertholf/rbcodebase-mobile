@@ -29,6 +29,7 @@ import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
+import TimelineShare from './components/Timeline/TimelineShare';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -106,6 +107,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'listInbox'} component={Inbox} title={'Timeline Detial'}
+            />
+            <Scene
+              key={'timelineshare'} component={TimelineShare} title={'Timeline Share'}
             />
             <Scene
               key={'profile'} component={Profile} title={'Profile'}

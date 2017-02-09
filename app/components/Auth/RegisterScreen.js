@@ -115,55 +115,119 @@ export default class Register extends Component {
             <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7, color: 'silver' }}> OR </Text>
             <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
           </View>
-
+        <View
+          style={{
+            marginLeft: 5,
+            marginRight: 5,
+            borderColor: '#2196f3',
+            borderWidth: 0.5,
+            borderRadius: 4,
+            height: 50,
+          }}
+        >
           <TextInput
             multiline={false}
             maxLength={32}
             placeholder={'First Name'}
-            style={styles.textInput}
+            selectionColor={'silver'}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
+            style={{ marginLeft: 10, marginRight: 10, height: 50 }}
             onChangeText={firstName => this.setState({ firstName, validFName: true, errMsg: '' })}
           />
+        </View>
           {this.state.validFName ? (<Text />)
             : (<Text style={styles.wrong}>First name cannot contain numbers and simbols</Text>)
           }
+        <View
+          style={{
+            marginLeft: 5,
+            marginRight: 5,
+            borderColor: '#2196f3',
+            borderWidth: 0.5,
+            borderRadius: 4,
+            height: 50,
+          }}
+        >
           <TextInput
             multiline={false}
             maxLength={32}
             placeholder={'Last Name'}
-            style={styles.textInput}
+            selectionColor={'silver'}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
+            style={{ marginLeft: 10, marginRight: 10, height: 50 }}
             onChangeText={lastName => this.setState({ lastName, validLName: true, errMsg: '' })}
           />
+        </View>
           {this.state.validLName ? (<Text />)
             : (<Text style={styles.wrong}>Last name cannot contain numbers and simbols</Text>)
           }
-          <TextInput
-            multiline={false}
-            keyboardType={'email-address'}
-            placeholder={'Email'}
-            style={styles.textInput}
-            onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
-          />
+          <View
+            style={{
+              marginLeft: 5,
+              marginRight: 5,
+              borderColor: '#2196f3',
+              borderWidth: 0.5,
+              borderRadius: 4,
+              height: 50,
+            }}
+          >
+            <TextInput
+              multiline={false}
+              keyboardType={'email-address'}
+              placeholder={'Email'}
+              selectionColor={'silver'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+              onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
+            />
+          </View>
           {this.state.validEmail ? (<Text />)
             : (<Text style={styles.wrong}>Please input valid email</Text>)
           }
-          <TextInput
-            multiline={false}
-            placeholder={'Username'}
-            maxLength={32}
-            style={styles.textInput}
-            onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
-          />
+          <View
+            style={{
+              marginLeft: 5,
+              marginRight: 5,
+              borderColor: '#2196f3',
+              borderWidth: 0.5,
+              borderRadius: 4,
+              height: 50,
+            }}
+          >
+            <TextInput
+              multiline={false}
+              placeholder={'Username'}
+              maxLength={32}
+              selectionColor={'silver'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+              onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
+            />
+          </View>
           {this.state.validUsername ? (<Text />)
             : (<Text style={styles.wrong}>Username just contain letter and number</Text>)
           }
-          <TextInput
-            multiline={false}
-            placeholder={'Password'}
-            maxLength={32}
-            style={styles.textInput}
-            secureTextEntry
-            onChangeText={password => this.setState({ password, validPass: true })}
-          />
+          <View
+            style={{
+              marginLeft: 5,
+              marginRight: 5,
+              borderColor: '#2196f3',
+              borderWidth: 0.5,
+              borderRadius: 4,
+              height: 50,
+            }}
+          >
+            <TextInput
+              multiline={false}
+              placeholder={'Password'}
+              maxLength={32}
+              selectionColor={'silver'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+              secureTextEntry
+              onChangeText={password => this.setState({ password, validPass: true })}
+            />
+            </View>
           {this.state.validPass ? (<Text />)
             : (<Text style={styles.wrong}>Password cannot be blank</Text>)
           }
