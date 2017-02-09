@@ -3870,6 +3870,10 @@ react-native-fbsdk@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-0.5.0.tgz#3ccd67d189755df11d366b8de9acb91ea2300e6e"
 
+react-native-image-picker@^0.25.1:
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.25.1.tgz#0743f1c30bb942559560295e3408f9fce73da44b"
+
 react-native-localization@^0.1.26:
   version "0.1.26"
   resolved "https://registry.yarnpkg.com/react-native-localization/-/react-native-localization-0.1.26.tgz#56b47895a4f30ef3e206938b1ccb2f836249fc64"

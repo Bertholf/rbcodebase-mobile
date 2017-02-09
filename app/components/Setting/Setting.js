@@ -27,11 +27,11 @@ const Setting = () => {
               <Text style={styles.text}>Email</Text>
             </View>
           </TouchableOpacity>
-          <View style={styles.list1}>
-            <TouchableOpacity onPress={Actions.deactive}>
+          <TouchableOpacity onPress={Actions.deactive}>
+            <View style={styles.list1}>
               <Text style={styles.deactive}>Deactive</Text>
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

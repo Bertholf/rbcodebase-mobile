@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>855412335195-edbuimndea446k01ihvtn7d8s3285t1o.apps.googleusercontent.com</string>
+	<string>173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.855412335195-edbuimndea446k01ihvtn7d8s3285t1o</string>
+	<string>com.googleusercontent.apps.173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC18tPDTzIbxVDboep23syHL2UZDHrPRbM</string>
+	<string>AIzaSyDtxKh2jej3uPXRTzp5ewQj7QOkVVOegAs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>855412335195</string>
+	<string>173115952010</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.rbcodebase.app</string>
 	<key>PROJECT_ID</key>
-	<string>beranda-pribadi</string>
+	<string>rbcodebase</string>
 	<key>STORAGE_BUCKET</key>
-	<string>beranda-pribadi.appspot.com</string>
+	<string>rbcodebase.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:855412335195:ios:3a944f0bb2d12128</string>
+	<string>1:173115952010:ios:3a944f0bb2d12128</string>
 	<key>DATABASE_URL</key>
-	<string>https://beranda-pribadi.firebaseio.com</string>
+	<string>https://rbcodebase.firebaseio.com</string>
 </dict>
 </plist>

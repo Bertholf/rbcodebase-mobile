@@ -26,7 +26,7 @@ module.exports = StyleSheet.create({
     margin: 20,
   },
   deactivate: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#D50000',
     alignSelf: 'stretch',
     padding: 10,
     marginTop: 10,

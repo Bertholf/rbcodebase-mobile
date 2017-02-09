@@ -10,12 +10,18 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
+import Menu, {
+  MenuContext,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-menu';
 
+import Display from 'react-native-display';
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineComment from './timelineComment';
-import TimelineRightNav from './TimelineRightNav';
 import Accordion from 'react-native-accordion';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -53,13 +59,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 15,
   },
+  divider: {
+    marginVertical: 5,
+    marginHorizontal: 2,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
   iconRightContainer: {
-    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
   iconRightMenu: {
-    position: 'absolute',
     width: 25,
     height: 25,
     top: 0,
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingTop: 7,
     paddingBottom: 7,
   },
@@ -102,6 +112,7 @@ export default class MapMain extends Component {
       loading: true,
       list: {},
       onPress: true,
+      enable: true,
     };
   }
   componentDidMount() {
@@ -117,126 +128,162 @@ export default class MapMain extends Component {
     });
   }
 
+  toggleDisplay() {
+    let toggle = !this.state.enable;
+    this.setState({ enable: toggle });
+  }
+
   renderRow(dataPost) {
     return (
-      <View style={styles.container}>
-        <View style={styles.timelineContainer}>
-          <View style={styles.about}>
-            <TouchableOpacity activeOpacity={0.7} onPress={Actions.profile}>
-              <Image
-                source={{ uri: dataPost.avatarTimeline }}
-                style={styles.avatarImg}
-              />
-            </TouchableOpacity>
-            <View style={styles.textAboutContainer}>
-              <TouchableOpacity activeOpacity={0.7} onPress={Actions.profile}>
+        <View style={styles.container}>
+          <View style={styles.timelineContainer}>
+            <View style={styles.about}>
+              <TouchableOpacity activeOpacity={0.7}>
+                <Image
+                  source={{ uri: dataPost.avatarTimeline }}
+                  style={styles.avatarImg}
+                />
+              </TouchableOpacity>
+              <View style={styles.textAboutContainer}>
                 <Text style={styles.textNameProfile}>{dataPost.user}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+                    source={require('./../../images/ic_watch_later_black_18dp.png')}
+                    style={{ marginRight: 5, height: 10, width: 10 }}
+                  />
+                  <Text style={styles.textDay}>10 days ago</Text>
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+                    source={require('./../../images/ic_landscape_black_18dp.png')}
+                    style={{ marginRight: 3, height: 13, width: 13 }}
+                  />
+                  <Text style={styles.textDay}>Mount salak</Text>
+                </View>
+              </View>
+              <TouchableOpacity activeOpacity={0.7}>
+                <Menu>
+                  <MenuTrigger>
+                    <Image
+                      source={require('./../../images/ic_more_vert_black_24dp.png')}
+                      style={styles.iconRightMenu}
+                    />
+                  </MenuTrigger>
+                  <MenuOptions>
+                    <MenuOption value="normal">
+                      <Text>Show Map</Text>
+                    </MenuOption>
+                    <View style={styles.divider} />
+                    <MenuOption value="do not close">
+                      <Text>Does not close menu</Text>
+                    </MenuOption>
+                  </MenuOptions>
+                </Menu>
               </TouchableOpacity>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../images/ic_watch_later_black_18dp.png')}
-                  style={{ marginRight: 5, height: 10, width: 10 }}
-                />
-                <Text style={styles.textDay}>10 days ago</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../images/ic_landscape_black_18dp.png')}
-                  style={{ marginRight: 3, height: 13, width: 13 }}
-                />
-                <Text style={styles.textDay}>Mount salak</Text>
-              </View>
             </View>
-            <TimelineRightNav />
-          </View>
-          <View style={styles.statusContainer}>
-            <Text style={styles.textStatus}>
-              Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
-            </Text>
-          </View>
-          <View style={styles.mapContainer}>
-            <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center' }} />
-            <View style={styles.commentsCountContainer}>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../images/ic_thumb_up_black_18dp.png')}
-                  style={{ marginRight: 5, height: 14, width: 14 }}
-                />
-                <Text style={styles.textLike}>{dataPost.numberTimeline} Likes</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../images/insert_comment_black.png')}
-                  style={{ marginRight: 5, height: 14, width: 14 }}
-                />
+            <View style={styles.statusContainer}>
+              <Text style={styles.textStatus}>
+                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
+              </Text>
+            </View>
+            <View style={styles.mapContainer}>
+              <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center'}} />
+              <View style={styles.commentsCountContainer}>
+                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                  activeOpacity={0.7}
+                >
+                  <Image
+                    source={require('./../../images/ic_thumb_up_black_18dp.png')}
+                    style={{ marginRight: 5, height: 14, width: 14 }}
+                  />
+                  <Text style={styles.textLike}>{dataPost.numberTimeline} Likes</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={this.toggleDisplay.bind(this)}
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                  activeOpacity={0.7}
+                >
+                <View style={{ flexDirection: 'row', alignItems: 'center' }} >
+                  <Image
+                    source={require('./../../images/insert_comment_black.png')}
+                    style={{ marginRight: 5, height: 14, width: 14 }}
+                  />
                 <Text>{dataPost.numberTimeline} Comments</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.commentContainer}>
-              <TouchableOpacity
-                onPress={() => this.onChangeImg()}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={this.state.onPress ? imgLike : imgUnLike}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../images/insert_comment_black.png')}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>Comment</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../images/share_black.png')}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>Share</Text>
-              </TouchableOpacity>
+                </View>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.commentContainer}>
+                <TouchableOpacity
+                  onPress={() => this.onChangeImg()}
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                  activeOpacity={0.7}
+                >
+                  <Image
+                    source={this.state.onPress ? imgLike : imgUnLike}
+                    style={{ marginRight: 10, height: 15, width: 15 }}
+                  />
+                  <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={this.toggleDisplay.bind(this)}
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                  activeOpacity={0.7}
+                >
+                  <Image
+                    source={require('./../../images/insert_comment_black.png')}
+                    style={{ marginRight: 10, height: 15, width: 15 }}
+                  />
+                  <Text>Comment</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                  activeOpacity={0.7}
+                >
+                  <Image
+                    source={require('./../../images/share_black.png')}
+                    style={{ marginRight: 10, height: 15, width: 15 }}
+                  />
+                  <Text>Share</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
+          <Display
+            enable={!this.state.enable}
+            enterDuration={250}
+            exitDuration={250}
+            exit="fadeOutDown"
+            enter="fadeInUp"
+          >
+            <View style={{ marginLeft: 16, marginRight: 26, borderTopWidth: 1, borderColor: '#aaa' }}>
+              <TimelineComment />
+            </View>
+          </Display>
+          <View style={{ height: 10, backgroundColor: '#aaa' }} />
         </View>
-        <View style={{ height: 10, backgroundColor: '#aaa' }} />
-      </View>
     );
   }
 
   render() {
     if (this.state.loading === false) {
       return (
-        <ScrollView>
-          <View>
-            <PostCard />
-            <ListView
-              dataSource={ds.cloneWithRows(this.state.list)}
-              renderRow={dataPost => this.renderRow(dataPost)}
-            />
-          </View>
-        </ScrollView>
+        <MenuContext>
+          <ScrollView>
+            <View>
+              <PostCard />
+              <ListView
+                dataSource={ds.cloneWithRows(this.state.list)}
+                renderRow={dataPost => this.renderRow(dataPost)}
+              />
+            </View>
+
+          </ScrollView>
+        </MenuContext>
       );
-    }else {
-    return(
-      <ActivityIndicator />
-    );
+    } else {
+      return(
+        <ActivityIndicator />
+      );
     }
   }
 }
