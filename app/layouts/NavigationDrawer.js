@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import { DefaultRenderer } from 'react-native-router-flux';
 import DrawerLayout from 'react-native-drawer-layout';
 import NavigationBar from 'react-native-navbar';
 import MainDrawer from './MainDrawer';
+import DrawerIcon from './DrawerIcon';
 
 export default class NavigationDrawer extends Component {
   constructor(props) {
@@ -36,10 +37,9 @@ export default class NavigationDrawer extends Component {
       title: 'Next',
       handler: () => console.log('hello!'),
     };
-    const leftButtonConfig = {
-      title: 'Drawer',
-      handler: () => this.DRAWER.openDrawer(),
-    };
+    const leftButtonConfig = () => {
+      this.DRAWER.openDrawer();
+    }
     return (
       <DrawerLayout
         drawerWidth={300}
@@ -52,7 +52,7 @@ export default class NavigationDrawer extends Component {
 
         {activeChildren[activeChildren.length - 1].hideNavBar ? <View /> : <NavigationBar
           title={{ title: activeChildren[activeChildren.length - 1].title }}
-          leftButton={leftButtonConfig}
+          leftButton={<DrawerIcon onPress={leftButtonConfig} />}
           rightButton={rightButtonConfig}
         /> }
         <DefaultRenderer
