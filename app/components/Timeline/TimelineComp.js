@@ -17,6 +17,7 @@ import Menu, {
   MenuTrigger,
 } from 'react-native-menu';
 
+import Display from 'react-native-display';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineComment from './timelineComment';
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingTop: 7,
     paddingBottom: 7,
   },
@@ -111,6 +112,7 @@ export default class MapMain extends Component {
       loading: true,
       list: {},
       onPress: true,
+      enable: true,
     };
   }
   componentDidMount() {
@@ -124,6 +126,11 @@ export default class MapMain extends Component {
     this.setState({
       onPress: !this.state.onPress,
     });
+  }
+
+  toggleDisplay() {
+    let toggle = !this.state.enable;
+    this.setState({ enable: toggle });
   }
 
   renderRow(dataPost) {
@@ -164,16 +171,14 @@ export default class MapMain extends Component {
                   </MenuTrigger>
                   <MenuOptions>
                     <MenuOption value="normal">
-                      <Text>View Map</Text>
+                      <Text>Show Map</Text>
                     </MenuOption>
                     <View style={styles.divider} />
                     <MenuOption value="do not close">
                       <Text>Does not close menu</Text>
                     </MenuOption>
-
                   </MenuOptions>
                 </Menu>
-
               </TouchableOpacity>
             </View>
             <View style={styles.statusContainer}>
@@ -193,15 +198,19 @@ export default class MapMain extends Component {
                   />
                   <Text style={styles.textLike}>{dataPost.numberTimeline} Likes</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
+                <TouchableOpacity
+                  onPress={this.toggleDisplay.bind(this)}
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
                 >
+                <View style={{ flexDirection: 'row', alignItems: 'center' }} >
                   <Image
                     source={require('./../../images/insert_comment_black.png')}
                     style={{ marginRight: 5, height: 14, width: 14 }}
                   />
                 <Text>{dataPost.numberTimeline} Comments</Text>
-              </TouchableOpacity>
+                </View>
+                </TouchableOpacity>
               </View>
               <View style={styles.commentContainer}>
                 <TouchableOpacity
@@ -215,20 +224,17 @@ export default class MapMain extends Component {
                   />
                   <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
                 </TouchableOpacity>
-
-
-                  <TouchableOpacity
-                    style={{ flexDirection: 'row', alignItems: 'center' }}
-                    activeOpacity={0.7}
-                  >
-                    <Image
-                      source={require('./../../images/insert_comment_black.png')}
-                      style={{ marginRight: 10, height: 15, width: 15 }}
-                    />
-                    <Text>Comment</Text>
-                  </TouchableOpacity>
-
-
+                <TouchableOpacity
+                  onPress={this.toggleDisplay.bind(this)}
+                  style={{ flexDirection: 'row', alignItems: 'center' }}
+                  activeOpacity={0.7}
+                >
+                  <Image
+                    source={require('./../../images/insert_comment_black.png')}
+                    style={{ marginRight: 10, height: 15, width: 15 }}
+                  />
+                  <Text>Comment</Text>
+                </TouchableOpacity>
                 <TouchableOpacity
                   style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
@@ -242,9 +248,19 @@ export default class MapMain extends Component {
               </View>
             </View>
           </View>
+          <Display
+            enable={!this.state.enable}
+            enterDuration={250}
+            exitDuration={250}
+            exit="fadeOutDown"
+            enter="fadeInUp"
+          >
+            <View style={{ marginLeft: 16, marginRight: 26, borderTopWidth: 1, borderColor: '#aaa' }}>
+              <TimelineComment />
+            </View>
+          </Display>
           <View style={{ height: 10, backgroundColor: '#aaa' }} />
         </View>
-
     );
   }
 
