@@ -41,53 +41,50 @@ export default class NameEdit extends Component{
         Alert.alert('Enter your Name!');
       }
     };
-  return (
-    <View style={styles.OuterView}>
-      <ScrollView>
-        <View style={styles.View1}>
-          <Text style={styles.Text2}>
-            Your current name
-          </Text>
-          <TextInput
-            style={styles.TextInput1} placeholder={this.state.profile.first_name} underlineColorAndroid={'rgba(0,0,0,0)'}
-            placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline={true}
-            numberOfLines={4} editable={false}
-          />
-          <Text style={styles.Text2}>
-            Enter your new name
-          </Text>
-          <TextInput
-            style={styles.TextInput1}
-            underlineColorAndroid={'#2196f3'}
-            placeholderTextColor={'#2196f3'}
-            placeholder="Enter your new name"
-            onChangeText={firstName => this.setState({ firstName })}
-            multiline={true}
-            numberOfLines={4} editable={true}
-          />
-          {nameInput && nameValidator ?
-            <Text /> : <Text style={styles.invalid}>Enter Valid Character (A-Z/a-z)</Text>}
-          <Text style={styles.Text2}>
-            Confirm change
-          </Text>
-          <TextInput
-            style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-            placeholderTextColor={'#2196f3'} placeholder="Enter received code" onChangeText={() => console.log('dummy')} multiline={true}
-            numberOfLines={4} editable={true}
-          />
-
-        </View>
-      </ScrollView>
-      <TouchableOpacity onPress={validateName}>
-        <View style={styles.View2}>
-          <Text style={styles.Button}>
-            SAVE
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
+    return (
+      <View style={styles.OuterView}>
+        <ScrollView>
+          <View style={styles.View1}>
+            <Text style={styles.Text2}>
+              Your current name
+            </Text>
+            <TextInput
+              style={styles.TextInput1} placeholder={this.state.profile.first_name} underlineColorAndroid={'rgba(0,0,0,0)'}
+              placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline={true}
+              numberOfLines={4} editable={false}
+            />
+            <Text style={styles.Text2}>
+              Enter your new name
+            </Text>
+            <TextInput
+              style={styles.TextInput1}
+              underlineColorAndroid={'#2196f3'}
+              placeholderTextColor={'#2196f3'}
+              placeholder="Enter your new name"
+              onChangeText={firstName => this.setState({ firstName })}
+              multiline={true}
+              numberOfLines={4} editable={true}
+            />
+            {nameInput && nameValidator ?
+              <Text /> : <Text style={styles.invalid}>Enter Valid Character (A-Z/a-z)</Text>}
+            <Text style={styles.Text2}>
+              Confirm change
+            </Text>
+            <TextInput
+              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
+              placeholderTextColor={'#2196f3'} placeholder="Enter received code" onChangeText={() => console.log('dummy')} multiline={true}
+              numberOfLines={4} editable={true}
+            />
+          </View>
+        </ScrollView>
+        <TouchableOpacity onPress={validateName}>
+          <View style={styles.View2}>
+            <Text style={styles.Button}>
+              SAVE
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
   }
 }
-
-module.exports = NameEdit;
