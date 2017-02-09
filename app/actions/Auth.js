@@ -33,6 +33,8 @@ export function submitLogin(username, password) {
   }
 }
 export function doneLogin(response) {
+  AsyncStorage.setItem('provider', response.provider);
+  AsyncStorage.setItem('accessToken', response.accessToken);
   Actions.pop();
   Actions.timelineList();
   return { type: DONE_LOGIN, response };
