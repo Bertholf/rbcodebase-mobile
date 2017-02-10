@@ -27,7 +27,7 @@ platform :android do
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
-    gradle(task: "assembleRelease")
+    gradle(task: "assembleRelease", flags: "--info --stacktrace")
     crashlytics(
         api_token: "cb67fe1b74fd28626b9d3d1ce0269fabe56e79b3",
         build_secret: "e9236f5da9c5fa7160c77912538915f8355e8af12ae383fed6411d9a85f415a0"
@@ -39,7 +39,7 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "assembleRelease", flag: "--info --stacktrace")
+    gradle(task: "assembleRelease", flags: "--info --stacktrace")
     supply
   end
 
