@@ -21,9 +21,9 @@ export class Splash extends Component {
         if (token !== null && typeof token !== 'undefined') {
           this.props.moveToAuthLogin();
         } else {
-          this.props.moveToAuthLogin();
+          console.log('Salah');
         }
-      })
+      }).catch((err) => {console.log(err)})
   }
   render() {
     return (<SplashScreen />);

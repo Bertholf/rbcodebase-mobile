@@ -54,15 +54,17 @@ export default class LoginScreen extends Component {
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} style={styles.logo} />
           </View>
-          <View style={{ alignItems: 'center' }} ><Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text></View>
+          <View style={{ alignItems: 'center' }} >
+            <Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text>
+          </View>
           <View style={styles.otherlog}>
             <TouchableHighlight style={styles.facebook} onPress={() => this.props.loginWithFacebook()} underlayColor={'#99d9f4'}>
               <Image source={facebook} style={styles.facebook} />
             </TouchableHighlight>
             <TouchableHighlight style={styles.google}
-            onPress={() => this.props.loginWithGoogle()}  underlayColor={'#99d9f4'}>
-            <Image source={google} style={styles.google} />
-          </TouchableHighlight>
+              onPress={() => this.props.loginWithGoogle()} underlayColor={'#99d9f4'}>
+              <Image source={google} style={styles.google} />
+            </TouchableHighlight>
             <TouchableHighlight style={styles.twitter} onPress={() => Actions.timelineList()} underlayColor={'#99d9f4'}>
               <Image source={twitter} style={styles.twitter} />
             </TouchableHighlight>
@@ -72,6 +74,12 @@ export default class LoginScreen extends Component {
             <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
+          { this.props.message !== '' &&
+          <View style={styles.errBox}>
+            <Text style={{ color: '#fff', fontWeight: 'bold'}}>
+              {this.props.message}
+            </Text>
+          </View> }
           <TextInput
             style={{ height: 40 }}
             onChangeText={username =>
