@@ -11,7 +11,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import TimelineRightNav from './TimelineRightNav';
 import timelineList from '../../services/timelineList';
 import TimelineComment from './timelineComment';
 import Accordion from 'react-native-accordion';
@@ -136,7 +135,6 @@ export default class TimelineList extends Component {
                 <Text style={styles.textDay}>Mount salak</Text>
               </View>
             </View>
-            <TimelineRightNav />
           </View>
           <View style={styles.statusContainer}>
             <Text style={styles.textStatus}>
