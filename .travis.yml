@@ -19,6 +19,8 @@ android:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
+cache:
+  yarn: true
 before_install: #1.1
   - rvm install 2.3.1
   - rvm use 2.3.1
