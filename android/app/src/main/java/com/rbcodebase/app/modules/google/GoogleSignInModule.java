@@ -67,6 +67,7 @@ public class GoogleSignInModule extends ReactContextBaseJavaModule {
                 new Runnable() {
                     @Override
                     public void run() {
+
                         promise.reject("failed", "connectionError");
                     }
                 }
@@ -197,6 +198,7 @@ public class GoogleSignInModule extends ReactContextBaseJavaModule {
                                             new Runnable() {
                                                 @Override
                                                 public void run() {
+                                                    Log.d(TAG, connectionResult.getErrorMessage());
                                                     onConnectionError.run();
                                                 }
                                             }

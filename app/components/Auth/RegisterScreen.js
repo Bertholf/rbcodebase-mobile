@@ -31,12 +31,14 @@ export default class Register extends Component {
     this.state = {
       male: true,
       female: false,
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       username: '',
       password: '',
       gender: 'male',
-      validName: true,
+      validFName: true,
+      validLName: true,
       validEmail: true,
       validUsername: true,
       validPass: true,
@@ -59,8 +61,11 @@ export default class Register extends Component {
     const usernameRegex = /^[a-zA-Z0-9]+$/;
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const nameRegex = /^[a-zA-Z ]+$/;
-    if (!this.state.name.match(nameRegex)) {
-      this.setState({ validName: false, loading: false });
+    if (!this.state.firstName.match(nameRegex)) {
+      this.setState({ validFName: false, loading: false });
+    }
+    if (!this.state.lastName.match(nameRegex)) {
+      this.setState({ validLName: false, loading: false });
     }
     if (!emailRegex.test(this.state.email)) {
       this.setState({ validEmail: false, loading: false });
@@ -73,7 +78,7 @@ export default class Register extends Component {
     }
     this.setState({}, () => {
       if ((this.state.validEmail && this.state.validUsername) &&
-      (this.state.validName)) {
+      (this.state.validFName && this.state.validLName)) {
         registerService.register(this.state, () => {
           const Message = registerService.errorMsg();
           if (Message !== undefined) {
@@ -110,52 +115,127 @@ export default class Register extends Component {
             <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7, color: 'silver' }}> OR </Text>
             <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
           </View>
+        <View
+          style={{
+            marginLeft: 5,
+            marginRight: 5,
+            borderColor: '#2196f3',
+            borderWidth: 0.5,
+            borderRadius: 4,
+            height: 50,
+          }}
+        >
+          <TextInput
+            multiline={false}
+            maxLength={32}
+            placeholder={'First Name'}
+            selectionColor={'silver'}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
+            style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+            onChangeText={firstName => this.setState({ firstName, validFName: true, errMsg: '' })}
+          />
+        </View>
+          {this.state.validFName ? (<Text />)
+            : (<Text style={styles.wrong}>First name cannot contain numbers and simbols</Text>)
+          }
+        <View
+          style={{
+            marginLeft: 5,
+            marginRight: 5,
+            borderColor: '#2196f3',
+            borderWidth: 0.5,
+            borderRadius: 4,
+            height: 50,
+          }}
+        >
+          <TextInput
+            multiline={false}
+            maxLength={32}
+            placeholder={'Last Name'}
+            selectionColor={'silver'}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
+            style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+            onChangeText={lastName => this.setState({ lastName, validLName: true, errMsg: '' })}
+          />
+        </View>
+          {this.state.validLName ? (<Text />)
+            : (<Text style={styles.wrong}>Last name cannot contain numbers and simbols</Text>)
+          }
+          <View
+            style={{
+              marginLeft: 5,
+              marginRight: 5,
+              borderColor: '#2196f3',
+              borderWidth: 0.5,
+              borderRadius: 4,
+              height: 50,
+            }}
+          >
+            <TextInput
+              multiline={false}
+              keyboardType={'email-address'}
+              placeholder={'Email'}
+              selectionColor={'silver'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+              onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
+            />
+          </View>
+          {this.state.validEmail ? (<Text />)
+            : (<Text style={styles.wrong}>Please input valid email</Text>)
+          }
+          <View
+            style={{
+              marginLeft: 5,
+              marginRight: 5,
+              borderColor: '#2196f3',
+              borderWidth: 0.5,
+              borderRadius: 4,
+              height: 50,
+            }}
+          >
+            <TextInput
+              multiline={false}
+              placeholder={'Username'}
+              maxLength={32}
+              selectionColor={'silver'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+              onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
+            />
+          </View>
+          {this.state.validUsername ? (<Text />)
+            : (<Text style={styles.wrong}>Username just contain letter and number</Text>)
+          }
+          <View
+            style={{
+              marginLeft: 5,
+              marginRight: 5,
+              borderColor: '#2196f3',
+              borderWidth: 0.5,
+              borderRadius: 4,
+              height: 50,
+            }}
+          >
+            <TextInput
+              multiline={false}
+              placeholder={'Password'}
+              maxLength={32}
+              selectionColor={'silver'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={{ marginLeft: 10, marginRight: 10, height: 50 }}
+              secureTextEntry
+              onChangeText={password => this.setState({ password, validPass: true })}
+            />
+            </View>
+          {this.state.validPass ? (<Text />)
+            : (<Text style={styles.wrong}>Password cannot be blank</Text>)
+          }
           {this.state.errMsg === '' ? <Text /> : (
             <View style={styles.errBox}>
               <Text style={{ color: '#fff' }}>{this.state.errMsg}</Text>
             </View>
           )}
-          <TextInput
-            multiline={false}
-            maxLength={32}
-            placeholder={'Name'}
-            style={styles.textInput}
-            onChangeText={name => this.setState({ name, validName: true, errMsg: '' })}
-          />
-          {this.state.validName ? (<Text />)
-            : (<Text style={styles.wrong}>Name cannot contain numbers and simbols</Text>)
-          }
-          <TextInput
-            multiline={false}
-            keyboardType={'email-address'}
-            placeholder={'Email'}
-            style={styles.textInput}
-            onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
-          />
-          {this.state.validEmail ? (<Text />)
-            : (<Text style={styles.wrong}>Please input valid email</Text>)
-          }
-          <TextInput
-            multiline={false}
-            placeholder={'Username'}
-            maxLength={32}
-            style={styles.textInput}
-            onChangeText={username => this.setState({ username, validUsername: true, errMsg: '' })}
-          />
-          {this.state.validUsername ? (<Text />)
-            : (<Text style={styles.wrong}>Username just contain letter and number</Text>)
-          }
-          <TextInput
-            multiline={false}
-            placeholder={'Password'}
-            maxLength={32}
-            style={styles.textInput}
-            secureTextEntry
-            onChangeText={password => this.setState({ password, validPass: true })}
-          />
-          {this.state.validPass ? (<Text />)
-            : (<Text style={styles.wrong}>Password cannot be blank</Text>)
-          }
           <View style={{ alignItems: 'flex-start', width: width * 0.87, height: 20 }} >
             <Text style={{ color: 'white' }}>Gender</Text>
           </View>

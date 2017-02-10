@@ -63,5 +63,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 2,
   },
+  errBox: {
+    marginTop: 20,
+    height: 40,
+    backgroundColor: 'rgba(255, 0, 0, 0.7)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+  },
+  wrong: {
+    color: '#ff0000',
+    alignSelf: 'flex-start',
+  },
 });
 export default styles;

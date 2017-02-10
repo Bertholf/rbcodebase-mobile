@@ -30,6 +30,8 @@ import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
+import TimelineShare from './components/Timeline/TimelineShare';
+
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -40,13 +42,13 @@ const Routing = (props) => (
             {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene
-              key="setting" component={Setting} title="Setting"
+              key="setting" component={Setting} title={'Setting'}
             />
             <Scene
-              key="chatfriend" component={ChatListFriendView} title="ChatListFriendView"
+              key="chatfriend" component={ChatListFriendView} title={'Chat'}
             />
             <Scene
-              key="inbox" component={Inbox} tittle="Inbox"
+              key="inbox" component={Inbox} title={'Inbox'}
             />
             <Scene
               key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
@@ -61,13 +63,10 @@ const Routing = (props) => (
               key={'chatlist'} component={ChatListFriendView} title={'Chat List'}
             />
             <Scene
-              key={'account'} component={Account} title={'account'}
+              key={'friendlist'} component={Friendlist} title={'Friend list'}
             />
             <Scene
-              key={'friendlist'} component={Friendlist} title={'friendlist'}
-            />
-            <Scene
-              key={'account'} component={Account} title={'account'}
+              key={'account'} component={Account} title={'Account'}
               />
             <Scene
               key={'privacy'} component={Privacy} title={'Privacy'}
@@ -100,7 +99,7 @@ const Routing = (props) => (
               key={'register'} component={Register} hideNavBar title={'Register Screen'}
             />
             <Scene
-              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'forgotPassword'}
+              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'Forgot Password'}
             />
             <Scene
               key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -110,6 +109,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'listInbox'} component={Inbox} title={'Timeline Detial'}
+            />
+            <Scene
+              key={'timelineshare'} component={TimelineShare} title={'Timeline Share'}
             />
             <Scene
               key={'profile'} component={Profile} title={'Profile'}

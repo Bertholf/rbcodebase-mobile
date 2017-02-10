@@ -27,7 +27,6 @@ export default class TimelineComment extends Component {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flex:1,
     borderRadius: 2,
     paddingTop: 16,
     paddingBottom: 16
