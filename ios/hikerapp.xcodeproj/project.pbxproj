@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -379,6 +378,7 @@
 		E46248E267E24717944664D2 /* SafariServices.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F24401036A854BF28E10064A /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		FE86053E2C3843B5BA235FB4 /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; name = "OAuthManager.xcodeproj"; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -611,6 +611,7 @@
 				04EB77DAC1974A9B9247DEA3 /* RCTFBSDK.xcodeproj */,
 				4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */,
 				9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */,
+				A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
