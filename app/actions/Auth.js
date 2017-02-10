@@ -20,11 +20,11 @@ export function updatePassword(password) {
 export function submitLogin(username, password) {
   return dispatch => {
     dispatch (requestLogin())
-    return auth.login(username, password).then(({data})=> {
-     return AsyncStorage.setItem('accessToken', data.accessToken);
-   }).then(() =>{
-     return AsyncStorage.getItem('accessToken');
-   })
+    return auth.login(username, password).then((data)=> {
+      return AsyncStorage.setItem('accessToken', data.access_token);
+    }).then(() =>{
+      return AsyncStorage.getItem('accessToken');
+    })
    .then((token)=>{
      dispatch(doneLogin());
      Actions.timelineList();

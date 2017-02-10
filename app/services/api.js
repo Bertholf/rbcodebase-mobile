@@ -21,6 +21,11 @@ class Api {
       // console.log(config);
       return config;
     });
+
+    this.client.interceptors.response.use(response => {
+      console.log(response);
+      return response;
+    });
   }
   put(url, json, qs = {}, config) {
     return this.sendRequest('PUT', url, { qs, json, config });
@@ -35,6 +40,8 @@ class Api {
     return this.sendRequest('DELETE', url, { qs, config });
   }
   sendRequest(requestMethod, url, data = {}) {
+
+      const headers = data.config.headers || {};
     this.client.defaults.headers.common['Auth-Token'] = data.config.headers;
     const request = this.client.request({
       method: requestMethod,
@@ -42,43 +49,46 @@ class Api {
       baseURL: this.baseUrl,
       params: data.qs,
       data: data.json || querystring.stringify(data.form) || data.formData,
-      headers: data.config.headers,
+      headers: Object.assign(headers, data.json ? {'Content-type':'application/json'} : (data.form ? {'Content-Type': 'application/x-www-form-urlencoded'} : {'Content-Type': 'multipart/form'}) ),
       timeout: 60 * 1000,
       paramsSerializer: params => querystring.stringify(params),
     }, data.config);
     return request
     .then(json => Promise.resolve(json.data))
-    .catch(error => Promise.reject(error));
+    .catch(error => {
+      console.log(error)
+      return Promise.reject(error)
+    });
   }
 }
 
-const api = new Api('https://jsonplaceholder.typicode.com', (instance) => {
-  const mockery = new MockAdapter(instance, { delayResponse: 2000 });
-  mockery.onGet('/me').reply(200, userFactory());
-  mockery.onPut('/me').reply(200);
-  mockery.onGet('/timeline').reply(200, listTimeline());
-  mockery.onGet('/timeline').reply(200, {
-  });
-    data: timelineFactory(),
-  mockery.onGet('/notifications').reply(200, {
-    data: notifFactory(),
-  });
-  mockery.onGet('/posts').reply(200, listTimeline());
-  mockery.onPost('/posts').reply(200);
-  mockery.onGet('/setting').reply(200, settingfactory());
-  mockery.onPut('/setting').reply(200);
-  mockery.onPost('/login').reply(200, {
-    data: loginFactory(),
-  });
-  mockery.onGet('/friendlist').reply(200, {
-    data: friendlistFactory(),
-  });
-  mockery.onGet('/setting').reply(200, settingfactory());
-  mockery.onPut('/setting').reply(200);
-  mockery.onGet('/comment').reply(200, commentFactory());
-  mockery.onPost('/register').reply(200, registerFactory());
-  mockery.onGet('/chat').reply(200, chatFactory());
-  mockery.onPost('/chat').reply(200, chatFactory());
+const api = new Api('http://rbcodebase.com/', (instance) => {
+  // const mockery = new MockAdapter(instance, { delayResponse: 2000 });
+  // mockery.onGet('/me').reply(200, userFactory());
+  // mockery.onPut('/me').reply(200);
+  // mockery.onGet('/timeline').reply(200, listTimeline());
+  // mockery.onGet('/timeline').reply(200, {
+  // });
+  //   data: timelineFactory(),
+  // mockery.onGet('/notifications').reply(200, {
+  //   data: notifFactory(),
+  // });
+  // mockery.onGet('/posts').reply(200, listTimeline());
+  // mockery.onPost('/posts').reply(200);
+  // mockery.onGet('/setting').reply(200, settingfactory());
+  // mockery.onPut('/setting').reply(200);
+  // mockery.onPost('/login').reply(200, {
+  //   data: loginFactory(),
+  // });
+  // mockery.onGet('/friendlist').reply(200, {
+  //   data: friendlistFactory(),
+  // });
+  // mockery.onGet('/setting').reply(200, settingfactory());
+  // mockery.onPut('/setting').reply(200);
+  // mockery.onGet('/comment').reply(200, commentFactory());
+  // mockery.onPost('/register').reply(200, registerFactory());
+  // mockery.onGet('/chat').reply(200, chatFactory());
+  // mockery.onPost('/chat').reply(200, chatFactory());
 
 });
 export default api;

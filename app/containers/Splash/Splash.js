@@ -19,7 +19,7 @@ export class Splash extends Component {
       AsyncStorage.getItem('accessToken')
       .then((token) => {
         if (token !== null && typeof token !== 'undefined') {
-          this.props.moveToDashboard();
+          this.props.moveToAuthLogin();
         } else {
           this.props.moveToAuthLogin();
         }
