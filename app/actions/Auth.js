@@ -4,8 +4,9 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import auth from '../services/auth';
 import {AsyncStorage} from 'react-native';
+import config from '../config';
 
-// const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = require('../config');
+const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
 export const UPDATE_PASSWORD_TEXT = 'UPDATE_PASSWORD_TEXT';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
@@ -74,24 +75,20 @@ export function loginWithFacebook() {
   };
 }
 
+
 export function loginWithTwitter() {
-  const TWITTER_CONSUMER_KEY = 'wNZNQ1UNNTpKJ8ycOjm8dKEGT';
-  const TWITTER_CONSUMER_SECRET = 'BH9A27MBP00qmzvMJJIMniHIACitxI5J3YR1uYa0xoSwhN2nUH';
-  const manager = new OAuthManager('RB Codebase');
   return (dispatch) => {
-    dispatch(requestLogin('Login With Twitter'));
+    const manager = new OAuthManager('RB Codebase');
     manager.configure({
       twitter: {
         consumer_key: TWITTER_CONSUMER_KEY,
         consumer_secret: TWITTER_CONSUMER_SECRET,
       },
     });
+    dispatch(requestLogin('Login With Twitter'));
     return manager.authorize('twitter')
       .then((resp) => {
         const accessToken = resp.response.credentials.accessToken;
-        console.log('TWITTER TOKEN', accessToken);
-        AsyncStorage.setItem('accessToken', accessToken);
-        AsyncStorage.setItem('provider', 'twiter');
         return accessToken;
       })
       .then(accessToken => dispatch(doneLogin({ accessToken, provider: 'twitter' })))
