@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -7,24 +7,30 @@ import {
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
-import TimelineService from './../../../services/timelineList';
+import post from './../../../services/post';
 
-const PostCard = () => {
-
-
-//   this.state = {
-//     button:{}
-//
-// }
-
-
-  addText = () => {
-    this.setState({button : 'status card' })
-    console.log(this.state.button);
+export default class PostCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posting: '',
+      //'user', 'post', 'type,text', 'image'
+    };
   }
 
-  return (
-    <View>
+  postToShow() {
+     //postService.updatePost(this.state.posting)
+     let postTo = this.state.posting;
+     post.getPosts()
+     .then((data) => {
+       this.setState({ posting: data });
+       console.log('this is POST for API', data);
+     }).catch((err) => console.error('Ooopss', err));
+   }
+
+  render() {
+    return (
+       <View>
       <View style={styles.containerCard}>
         <Text style={styles.titleText}>Your Stories?</Text>
         <View>
@@ -32,6 +38,7 @@ const PostCard = () => {
             style={{ height: 70 }}
             multiline={true}
             blurOnSubmit={true}
+            onChangeText={(posting) => this.setState({ posting })}
             placeholder="Your Status"
             placeholderTextColor="#BDBDBD"
           />
@@ -39,14 +46,14 @@ const PostCard = () => {
         <View style={styles.border}>
           <PostMenu />
           <View style={{ flex: 1, paddingTop: 12 }}>
-            <Button title={'Post'}
-              onPress={() => console.log(this.state.TimelineService,'ggugu')}
+            <Button
+              title={'Post'}
+              onPress={() => this.postToShow()}
             />
           </View>
         </View>
       </View>
     </View>
   );
-};
-
-module.exports = PostCard;
+  }
+}
