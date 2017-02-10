@@ -16,12 +16,10 @@ import Menu, {
   MenuOption,
   MenuTrigger,
 } from 'react-native-menu';
-import Display from 'react-native-display';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineList from './../Timeline/TimelineList';
 import TimelineComment from './timelineComment';
-import Accordion from 'react-native-accordion';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
@@ -121,6 +119,9 @@ export default class MapMain extends Component {
     this.setState({
       onPress: !this.state.onPress,
     });
+  }
+  gotoDetail(dataPost) {
+    Actions.timelineDetail(dataPost);
   }
   renderRow(dataPost) {
     return (

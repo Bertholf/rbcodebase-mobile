@@ -11,13 +11,13 @@
 
 # This is the minimum version number required.
 # Update this, if you use features of a newer version
-fastlane_version "2.13.0"
+fastlane_version "2.14.2"
 
 default_platform :android
 
 platform :android do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
   end
 
   desc "Runs all the tests"
@@ -25,18 +25,24 @@ platform :android do
     gradle(task: "test")
   end
 
-  # desc "Submit a new Beta Build to Crashlytics Beta"
-  # lane :beta do
-  #   gradle(task: "assembleRelease")
-  #   crashlytics
-  #
-  #   # sh "your_script.sh"
-  #   # You can also use other beta testing services here
-  # end
+  desc "Submit a new Beta Build to Crashlytics Beta"
+  lane :beta do
+    gradle(task: "assembleRelease", flags: "--info --stacktrace")
+    crashlytics(
+        api_token: "cb67fe1b74fd28626b9d3d1ce0269fabe56e79b3",
+        build_secret: "e9236f5da9c5fa7160c77912538915f8355e8af12ae383fed6411d9a85f415a0",
+        groups: "beta-tester",
+        notes: changelog_from_git_commits,
+        notifications: true
+    )
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here
+  end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "assembleRelease")
+    gradle(task: "assembleRelease", flags: "--info --stacktrace")
     supply
   end
 
@@ -45,28 +51,17 @@ platform :android do
   after_all do |lane|
     # This block is called, only if the executed lane was successful
 
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
+    slack(
+      message: "Successfully deployed new App Update."
+    )
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+    slack(
+      message: exception.message,
+      success: false
+    )
   end
-
-  lane :beta do
-  # Adjust the `build_type` and `flavor` params as needed to build the right APK for your setup
-  gradle(
-    task: 'assemble',
-    build_type: 'Release'
-  )
-
-  # ...
-  end
-
 end
 
 
