@@ -63,7 +63,7 @@ export default class LoginScreen extends Component {
             onPress={() => this.props.loginWithGoogle()}  underlayColor={'#99d9f4'}>
             <Image source={google} style={styles.google} />
           </TouchableHighlight>
-            <TouchableHighlight style={styles.twitter} onPress={() => Actions.timelineList()} underlayColor={'#99d9f4'}>
+            <TouchableHighlight style={styles.twitter} onPress={() => this.props.loginWithTwitter()} underlayColor={'#99d9f4'}>
               <Image source={twitter} style={styles.twitter} />
             </TouchableHighlight>
           </View>

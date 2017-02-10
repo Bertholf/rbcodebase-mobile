@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
-import { updateUsername, updatePassword, submitLogin, loginWithGoogle, loginWithFacebook } from '../../actions/Auth';
+import { updateUsername, updatePassword, submitLogin, loginWithGoogle, loginWithFacebook, loginWithTwitter } from '../../actions/Auth';
 import AuthLoginService from '../../services/AuthLogin';
 
 
@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
   updatePassword: text => dispatch(updatePassword(text)),
   loginWithGoogle: () => dispatch(loginWithGoogle()),
   loginWithFacebook: () => dispatch(loginWithFacebook()),
+  loginWithTwitter: () => dispatch(loginWithTwitter()),
   submitLogin: (username, password) => {
     dispatch(submitLogin(username, password));
   },
