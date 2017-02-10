@@ -29,6 +29,7 @@ import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
+import Location from './components/Timeline/StatusPostCard/createLocation';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -118,6 +119,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'deactive'} component={Deactivate} title={'Deactivate'}
+            />
+            <Scene
+              key={'createLocation'} component={Location} title={'Location'}
             />
           </Scene>
         </Scene>
