@@ -32,7 +32,11 @@ export function submitLogin(username, password) {
    .catch(err => console.log(err));
   }
 }
-export function doneLogin(response) {
+export function doneLogin(response = '') {
+  if (response) {
+    AsyncStorage.setItem('provider', response.provider);
+    AsyncStorage.setItem('accessToken', response.accessToken);
+  }
   Actions.pop();
   Actions.timelineList();
   return { type: DONE_LOGIN, response };
