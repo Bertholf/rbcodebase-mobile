@@ -1,8 +1,11 @@
 import { Actions } from 'react-native-router-flux';
+import OAuthManager from 'react-native-oauth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import auth from '../services/auth';
 import {AsyncStorage} from 'react-native';
+import { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } from '../config';
+
 
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
 export const UPDATE_PASSWORD_TEXT = 'UPDATE_PASSWORD_TEXT';
@@ -70,4 +73,17 @@ export function loginWithFacebook() {
     }).then(({ accessToken }) => dispatch(doneLogin({ provider: 'facebook', accessToken })))
     .catch(err => errorLogin(err));
   };
+}
+
+export function loginWithTwitter() {
+  const manager = new OAuthManager('RB Codebase');
+  manager.configure({
+    twitter: {
+      consumer_key: TWITTER_CONSUMER_KEY,
+      consumer_secret: TWITTER_CONSUMER_SECRET,
+    },
+  });
+  manager.authorize('twitter')
+  .then(resp => console.log(resp))
+  .catch(err => console.log(err));
 }
