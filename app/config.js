@@ -3,5 +3,5 @@ export default {
   FACEBOOK_APP_SECRET: '4d9e95344804626dc231fefd97fb1750',
   CLIENT_ID: '2',
   CLIENT_SECRET: 'F3cAPA5doHFSt83rQ5TYsh3BMopvZb6B0tasb2nm',
-  GRANT_TYPE: 'password'
+  GRANT_TYPE: 'password',
 };

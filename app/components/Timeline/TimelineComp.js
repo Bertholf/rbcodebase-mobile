@@ -114,7 +114,7 @@ export default class MapMain extends Component {
     timelineList.getTimeline()
     .then((data) => {
       this.setState({ list: data, loading: false });
-    }).catch(({ err }) => console.error('SORY ERROR!!!!!!', err));
+    }).catch(({ err }) => console.log('SORY ERROR!!!!!!', err));
   }
   onChangeImg() {
     this.setState({
