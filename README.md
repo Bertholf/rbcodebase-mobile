@@ -142,11 +142,19 @@ Create an intuitive interface to register via SSO or email.  Ideally this includ
 - :black_large_square: "Request Password Reset"
 
 
+## Interface
 
+The the interface should be thought of as a "t" or cross shaped environment allowing for navigation by swiping in a direction. This is similar to how shapchat's workspace is arranged.  Up (swipe down) is user, left (swipe right) is apps, right (swipe left) is timeline, down (swipe up) is reserved for application specific interface.
 
+![Swipe](images/2-navigation-1-overview.png "Swipe")
 
+## User
 
+![User](images/3-user-1-overview.png "User")
 
+### Settings
+
+![Settings](images/3-user-2-settings.png "Settings")
 
 
 # Temporary
