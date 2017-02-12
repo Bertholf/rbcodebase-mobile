@@ -15,6 +15,8 @@ The first phase of the deliverable will be to complete the on-boarding & authent
 
 ### Splash Screen
 
+![Splash Screen](images/1-onboard-1-splash.png "Splash Screen")
+
 **Documentation Needed:**
 - :black_large_square: Document image size for background and logo
 
@@ -22,6 +24,9 @@ The first phase of the deliverable will be to complete the on-boarding & authent
 - :black_large_square: Display background image and logo on splash screen
 
 ### Walkthrough
+
+![Walkthrough](images/1-onboard-2-walkthrough.png "Walkthrough")
+
 Let's keep this flexible, store the walkthrough screens as a configuration array [screenshot, title, text].
 
 	'screen' => [
@@ -76,6 +81,9 @@ Have the app read the array generate screen for each so that it is easy to add/e
 - :black_large_square: "Get Started"
 
 ### Login Screen
+
+![Login](images/1-onboard-3-login.png "Login")
+
 Create an intuitive screen to log in via SSO or email.  Expect that new users will use this screen to also register as via SSO.  Ideally this includes a configurable file that allows the disabling or enabling of different supported SSO providers.
 
 **Documentation Needed:**
@@ -102,6 +110,10 @@ Create an intuitive screen to log in via SSO or email.  Expect that new users wi
 
 
 ### Registration Screen
+
+![Register](images/1-onboard-4-register.png "Register")
+![Register via SSO](images/1-onboard-4-register-sso.png "Register via SSO")
+
 Create an intuitive interface to register via SSO or email.  Ideally this includes a configurable file that allows the disabling or enabling of different supported SSO providers.  After returning from registering with an SSO provider (e.g. Facebook) prompt to complete registration by entering in an email address (only if not provided by provider) and setting the password along with any custom fields.  Custom fields are indicated via "data_users_roles.show_on_registration".
 
 **Documentation Needed:**
