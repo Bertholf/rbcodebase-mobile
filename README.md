@@ -128,6 +128,7 @@ Create an intuitive interface to register via SSO or email.  Ideally this includ
 - :black_large_square: Validation: Prompt if Password does not contain minimum characters
 - :black_large_square: Validation: Prompt if Username is less than 4 characters or is taken
 - :black_large_square: Display TOS/Privacy Policy Statement with App name
+- :black_large_square: If registered via SSO, check if required fields have input from provider.  If no value provided show complete registration screen.  Expected fields include Email (if not provided by provider), Password, Username & Custom Fields.  Custom fields are indicated via "data_users_roles.show_on_registration".  Set name_slug to username pulled from SSO and check if available, allow user to easily change name_slug on Complete registration screen.
 
 **Translation:**
 - :black_large_square: "Create Account"
