@@ -25,7 +25,7 @@ const submitLogin = (username, password, callback) => {
     Actions.timelineList();
   })
   .catch((err) => {
-    console.log(err);
+    console.log('ERORbroo', err);
     callback();
   });
 };

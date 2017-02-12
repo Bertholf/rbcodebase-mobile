@@ -11,6 +11,7 @@ import registerFactory from '../factories/AuthRegister';
 import friendlistFactory from '../factories/friendlist';
 import listTimeline from '../factories/listTimeline';
 import chatFactory from '../factories/listChat';
+import {AsyncStorage} from 'react-native';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
@@ -40,25 +41,33 @@ class Api {
     return this.sendRequest('DELETE', url, { qs, config });
   }
   sendRequest(requestMethod, url, data = {}) {
+   return AsyncStorage.getItem('accessToken')
+   .then((token) => {
+     console.log('requesting');
+     const headers = data.config.headers || {};
+     if (token) {
+       headers.Authorization = `Bearer ${token}`;
+     }
+    //  headers.Authorization = token !== null ? `Bearer ${token}`: null;
+   this.client.defaults.headers.common = headers;
+   const request = this.client.request({
+     method: requestMethod,
+     url,
+     baseURL: this.baseUrl,
+     params: data.qs,
+     data: data.json || querystring.stringify(data.form) || data.formData,
+     headers: Object.assign(headers, data.json ? {'Content-type':'application/json'} : (data.form ? {'Content-Type': 'application/x-www-form-urlencoded'} : {'Content-Type': 'multipart/form'}) ),
+     timeout: 60 * 1000,
+     paramsSerializer: params => querystring.stringify(params),
+   }, data.config);
+   return request
+   })
+   .then(json => Promise.resolve(json.data))
+   .catch(error => {
+     console.log(error)
+     return Promise.reject(error)
+   })
 
-      const headers = data.config.headers || {};
-    this.client.defaults.headers.common['Auth-Token'] = data.config.headers;
-    const request = this.client.request({
-      method: requestMethod,
-      url,
-      baseURL: this.baseUrl,
-      params: data.qs,
-      data: data.json || querystring.stringify(data.form) || data.formData,
-      headers: Object.assign(headers, data.json ? {'Content-type':'application/json'} : (data.form ? {'Content-Type': 'application/x-www-form-urlencoded'} : {'Content-Type': 'multipart/form'}) ),
-      timeout: 60 * 1000,
-      paramsSerializer: params => querystring.stringify(params),
-    }, data.config);
-    return request
-    .then(json => Promise.resolve(json.data))
-    .catch(error => {
-      console.log(error)
-      return Promise.reject(error)
-    });
   }
 }
 
