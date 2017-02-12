@@ -8,13 +8,17 @@ import {
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import ImagePicker from 'react-native-image-picker';
 
+const imgName = []
+const listBase64 = []
+
 export default class PostMenu extends Component {
   constructor(props){
     super(props);
     state = {
-      avatarSource: null,
+      avatarSource: null
     };
   }
+
   selectPhotoTapped() {
     const options = {
       quality: 1.0,
@@ -27,6 +31,10 @@ export default class PostMenu extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
+      console.log('Aris adalah: ', response.data);
+      imgName.push(response.fileName)
+      listBase64.push(response.data)
+      this.props.getName(imgName, listBase64)
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -44,11 +52,17 @@ export default class PostMenu extends Component {
       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source
+          avatarSource: source,
+          name: response.fileName
         });
       }
+
     });
+
   }
+
+
+
   render() {
     return (
       <View style={styles.containerBottom}>
@@ -81,7 +95,9 @@ export default class PostMenu extends Component {
             source={require('./../../../images/ic_insert_emoticon_black_24dp.png')}
             style={styles.image}
           />
+
         </TouchableOpacity>
+
       </View>
     );
   }
