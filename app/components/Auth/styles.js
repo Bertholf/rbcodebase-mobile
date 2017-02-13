@@ -24,15 +24,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     height: 50,
-    backgroundColor: '#s00c1e4',
+    backgroundColor: '#4099FF',
     marginBottom: 5,
   },
-  ,buttonTwitter: {
+  buttonTwitter: {
     justifyContent: 'center',
     flexDirection: 'row',
     padding: 10,
     height: 50,
-    backgroundColor: '#s00c1e4',
+    backgroundColor: '#4099FF',
     marginBottom: 5,
   },
   buttonFacebook: {
