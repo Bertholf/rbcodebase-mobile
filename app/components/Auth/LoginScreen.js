@@ -15,8 +15,8 @@ import styles from './LoginStyles';
 
 const facebookLogo = require('../../images/facebook-square.png');
 const google = require('../../images/login/google.png');
+const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
-const twitter = require('./../../images/twitter.png');
 const email = require('./../../images/ic_email_white_24dp.png');
 
 export default class LoginScreen extends Component {
@@ -73,6 +73,7 @@ export default class LoginScreen extends Component {
           <View style={styles.otherlog}>
             <TouchableHighlight style={styles.google}
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+
               <View style={{flexDirection: 'row', paddingLeft: 20 }}>
               <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
               <View style= {{justifyContent: 'space-around', paddingLeft: 38 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
