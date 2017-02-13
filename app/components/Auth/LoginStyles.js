@@ -91,5 +91,28 @@ const styles = StyleSheet.create({
     color: '#ff0000',
     alignSelf: 'flex-start',
   },
+  facebookBtn: {
+    height: 50,
+    width: 320,
+    backgroundColor: '#3B5998',
+    borderColor: '#3B5998',
+    borderWidth: 1,
+    borderRadius: 7,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    elevation: 2,
+  },
+  facebookLogo: {
+    height: 45,
+    width: 45,
+    borderRadius: 7,
+  },
+  facebookText: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'white',
+    alignSelf: 'center',
+  },
 });
 export default styles;
