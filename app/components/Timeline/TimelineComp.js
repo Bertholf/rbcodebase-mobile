@@ -16,11 +16,9 @@ import Menu, {
   MenuOption,
   MenuTrigger,
 } from 'react-native-menu';
-import Display from 'react-native-display';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineComment from './timelineComment';
-import Accordion from 'react-native-accordion';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
@@ -114,17 +112,18 @@ export default class MapMain extends Component {
     timelineList.getTimeline()
     .then((data) => {
       this.setState({ list: data, loading: false });
-    }).catch(({ err }) => console.error('SORY ERROR!!!!!!', err));
+    }).catch(({ err }) => console.log('SORY ERROR!!!!!!', err));
   }
   onChangeImg() {
     this.setState({
       onPress: !this.state.onPress,
     });
   }
-  toggleDisplay() {
-    let toggle = !this.state.enable;
-    this.setState({ enable: toggle });
+
+  gotoDetail(dataPost) {
+    Actions.timelineDetail(dataPost);
   }
+
   renderRow(dataPost) {
     return (
         <View style={styles.container}>
@@ -163,23 +162,37 @@ export default class MapMain extends Component {
                   </MenuTrigger>
                   <MenuOptions>
                     <MenuOption value="normal">
-                      <Text>Show Map</Text>
+                      <Text>Save Post</Text>
                     </MenuOption>
                     <View style={styles.divider} />
-                    <MenuOption value="do not close">
-                      <Text>Does not close menu</Text>
+                    <MenuOption value="normal">
+                      <Text>Hide Post</Text>
+                    </MenuOption>
+                    <View style={styles.divider} />
+                    <MenuOption value="normal">
+                      <Text>Unfollow {dataPost.user}</Text>
+                    </MenuOption>
+                    <View style={styles.divider} />
+                    <MenuOption value="normal">
+                      <Text>Report Post</Text>
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
+
               </TouchableOpacity>
             </View>
             <View style={styles.statusContainer}>
-              <Text style={styles.textStatus}>
-                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
-              </Text>
+              <TouchableOpacity
+                onPress={() => this.gotoDetail(dataPost)}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.textStatus}>
+                  Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
+                </Text>
+                <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center'}} />
+              </TouchableOpacity>
             </View>
             <View style={styles.mapContainer}>
-              <Image source={{ uri: dataPost.imageTimeline }} style={{ height: 183, justifyContent: 'center'}} />
               <View style={styles.commentsCountContainer}>
                 <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
@@ -191,7 +204,6 @@ export default class MapMain extends Component {
                   <Text style={styles.textLike}>{dataPost.numberTimeline} Likes</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={this.toggleDisplay.bind(this)}
                   style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
                 >
@@ -217,7 +229,7 @@ export default class MapMain extends Component {
                   <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={this.toggleDisplay.bind(this)}
+                  onPress={Actions.timelineDetail}
                   style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
                 >
@@ -228,6 +240,7 @@ export default class MapMain extends Component {
                   <Text>Comment</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  onPress= {Actions.timelineshare}
                   style={{ flexDirection: 'row', alignItems: 'center' }}
                   activeOpacity={0.7}
                 >
@@ -240,17 +253,6 @@ export default class MapMain extends Component {
               </View>
             </View>
           </View>
-          <Display
-            enable={!this.state.enable}
-            enterDuration={250}
-            exitDuration={250}
-            exit="fadeOutDown"
-            enter="fadeInUp"
-          >
-            <View style={{ marginLeft: 16, marginRight: 26, borderTopWidth: 1, borderColor: '#aaa' }}>
-              <TimelineComment />
-            </View>
-          </Display>
           <View style={{ height: 10, backgroundColor: '#aaa' }} />
         </View>
     );

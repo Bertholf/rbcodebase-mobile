@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+
+import React from 'react';
+import { Actions } from 'react-native-router-flux';
 import {
   View,
   TouchableOpacity,

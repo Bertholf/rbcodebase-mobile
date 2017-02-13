@@ -2,8 +2,8 @@ import axios from 'axios';
 import api from './api';
 
 class Me {
-  getMe(token) {
-    return api.get('/me', { headers: { Autorization: token } });
+  getMe() {
+    return api.get('/auth/token');
   }
   updateMe(json) {
     api.put('/me', { json })

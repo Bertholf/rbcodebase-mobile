@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
-import TimelineService from './../../../services/timelineList';
+import post from './../../../services/post';
 
 export default class PostCard extends Component {
 
