@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
-import { updateUsername, updatePassword, submitLogin, loginWithGoogle, loginWithFacebook, loginWithTwitter } from '../../actions/Auth';
+import { errorLogin, updateUsername, updatePassword, submitLogin, loginWithGoogle, loginWithFacebook, loginWithTwitter } from '../../actions/Auth';
 import AuthLoginService from '../../services/AuthLogin';
 
 
 const mapStateToProps = ({ app }) => ({
   username: app.auth.username,
   password: app.auth.password,
+  message: app.auth.message,
 });
 const mapDispatchToProps = dispatch => ({
   updateUsername: text => dispatch(updateUsername(text)),
@@ -24,5 +25,8 @@ const mapDispatchToProps = dispatch => ({
   register: () => {
     Actions.register();
   },
+  errorLogin: () => {
+    Action.errorLogin();
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

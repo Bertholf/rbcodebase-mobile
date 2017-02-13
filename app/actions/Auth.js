@@ -3,8 +3,9 @@ import OAuthManager from 'react-native-oauth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import auth from '../services/auth';
-import {AsyncStorage} from 'react-native';
+
 import config from '../config';
+import { AsyncStorage } from 'react-native';
 
 const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
@@ -22,7 +23,7 @@ export function updatePassword(password) {
 }
 export function submitLogin(username, password) {
   return dispatch => {
-    dispatch (requestLogin())
+    dispatch (requestLogin("Logging in"))
     return auth.login(username, password).then((data)=> {
       return AsyncStorage.setItem('accessToken', data.access_token);
     }).then(() =>{
@@ -32,7 +33,7 @@ export function submitLogin(username, password) {
      dispatch(doneLogin());
      Actions.timelineList();
    })
-   .catch(err => console.log(err));
+   .catch(err => dispatch(errorLogin(err)));
   }
 }
 export function doneLogin(response = '') {

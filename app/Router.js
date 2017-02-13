@@ -8,6 +8,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
+import PPContainer from './containers/PrivacyPolicy/PPContainer';
 import Register from './components/Auth/RegisterScreen';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
@@ -93,7 +94,7 @@ const Routing = (props) => (
               key={'welcome'} component={Welcome} title={'Welcome'}
             />
             <Scene
-              key={'login'} component={Login} hideNavBar title={'Login Screen'}
+              key={'login'} component={Login}  hideNavBar title={'Login Screen'}
             />
             <Scene
               key={'register'} component={Register} hideNavBar title={'Register Screen'}
@@ -128,6 +129,7 @@ const Routing = (props) => (
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
+          <Scene key={'pp'} component={PPContainer} />
         <Scene
           key={'loader'} component={Loader}
         />
