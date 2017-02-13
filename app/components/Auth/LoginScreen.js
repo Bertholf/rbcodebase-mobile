@@ -13,6 +13,7 @@ import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
 import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
+// import facebookBtn from './facebookBtn';
 // import GoogleSignIn from './../../services/signingoogle';
 
 const google = require('./../../images/login/google.png');
@@ -80,6 +81,8 @@ export default class LoginScreen extends Component {
               {this.props.message}
             </Text>
           </View> }
+
+
           <TextInput
             style={{ height: 40 }}
             onChangeText={username =>
