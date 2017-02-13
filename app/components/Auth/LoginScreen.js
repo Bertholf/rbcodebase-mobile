@@ -84,22 +84,22 @@ export default class LoginScreen extends Component {
           </View> }
 
 
-            <TouchableOpacity
+          <TouchableOpacity
             onPress={() => this.props.loginWithFacebook()}
             style={styles.facebookBtn}
-            >
-              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
-                <View style={styles.facebookLogo}>
-                  <Image
-                    style={styles.facebookLogo}
-                    source={facebookLogo}
-                  />
-                </View>
-                <View style={{ justifyContent: 'space-around', marginLeft: 30, justifyContent: 'center' }} >
-                  <Text style={styles.facebookText}>Sign in with facebook</Text>
-                </View>
+          >
+            <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+              <View style={styles.facebookLogo}>
+                <Image
+                  style={styles.facebookLogo}
+                  source={facebookLogo}
+                />
               </View>
-            </TouchableOpacity>
+              <View style={{ justifyContent: 'space-around', marginLeft: 30 }} >
+                <Text style={styles.facebookText}>Sign in with facebook</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
 
           <TextInput
             style={{ height: 40 }}
