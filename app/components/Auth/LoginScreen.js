@@ -51,12 +51,39 @@ export default class LoginScreen extends Component {
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} style={styles.logo} />
           </View>
+          <TouchableOpacity
+            onPress={() => this.props.loginWithFacebook()}
+            style={styles.facebookBtn}
+          >
+            <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+              <View style={styles.facebookLogo}>
+                <Image
+                  style={styles.facebookLogo}
+                  source={facebookLogo}
+                />
+              </View>
+              <View style={{ justifyContent: 'space-around', marginLeft: 45 }} >
+                <Text style={styles.facebookText}>Sign in with Facebook</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
           <View style={styles.otherlog}>
             <TouchableHighlight style={styles.google}
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
-              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
+              <View style={{flexDirection: 'row', paddingLeft: 20 }}>
               <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Signin with Google</Text></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+              </View>
+            </TouchableHighlight>
+          </View>
+
+          <View style={styles.otherlog}>
+            <TouchableHighlight style={styles.google}
+              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+              <View style={{flexDirection: 'row', paddingLeft: 20 }}>
+              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
             </TouchableHighlight>
           </View>
@@ -74,59 +101,8 @@ export default class LoginScreen extends Component {
             </Text>
           </View> }
 
-          <TouchableOpacity
-            onPress={() => this.props.loginWithFacebook()}
-            style={styles.facebookBtn}
-          >
-            <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
-              <View style={styles.facebookLogo}>
-                <Image
-                  style={styles.facebookLogo}
-                  source={facebookLogo}
-                />
-              </View>
-              <View style={{ justifyContent: 'space-around', marginLeft: 30 }} >
-                <Text style={styles.facebookText}>Sign in with facebook</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
 
-          <TextInput
-            style={{ height: 40 }}
-            onChangeText={username =>
-              this.setState({ username, validUsername: true, isFail: false })}
-            placeholder={'Username'}
-            required
-          />
-          {this.state.validUsername ? <Text /> : (
-            <Text style={styles.wrong}>Usename cannot blank</Text>
-          )}
-          <TextInput
-            secureTextEntry style={{ height: 40 }}
-            onChangeText={password =>
-              this.setState({ password, validPassword: true, isFail: false })
-            }
-            placeholder="Password"
-          />
-          {this.state.validPassword ? <Text /> : (
-            <Text style={styles.wrong}>Password cannot blank</Text>
-          )}
-          {!this.state.loading ? (
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.button}
-              onPress={() => this.validate()}
-            >
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.button}
-            >
-              <ActivityIndicator size={'large'} />
-            </TouchableOpacity>
-          )}
+        
 
           <View style={{ padding:50 }}>
             <TouchableOpacity onPress={() => Actions.register()}>
