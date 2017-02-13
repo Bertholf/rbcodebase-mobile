@@ -3,7 +3,12 @@ import { View, Text, Image, ActivityIndicator } from 'react-native';
 
 
 const SplashScreen = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#64DD17', paddingBottom: 20, opacity:0.5 }}>
+  <Image  source={require('./../../images/splash.jpg')} style={{ 	width: null,
+		height: null,
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'rgba(0,0,0,0)', }}>
     <Image
       source={require('./../../images/logo.png')}
       style={{
@@ -13,10 +18,10 @@ const SplashScreen = () => (
 
        }}
     />
-    <Text style={{ fontSize: 30, fontWeight: 'bold', color: '#2E7D32', marginTop: 16 }}>
+    <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'white', marginTop: 16 }}>
       RBCodebase
     </Text>
     <ActivityIndicator color="white" size="large" />
-  </View>
+  </Image>
 );
 export default SplashScreen;
