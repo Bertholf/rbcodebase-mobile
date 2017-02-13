@@ -59,12 +59,15 @@ export default class LoginScreen extends Component {
             <TouchableHighlight style={styles.facebook} onPress={() => this.props.loginWithFacebook()} underlayColor={'#99d9f4'}>
               <Image source={facebook} style={styles.facebook} />
             </TouchableHighlight>
-            <TouchableHighlight style={styles.google}
-              onPress={() => this.props.loginWithGoogle()} underlayColor={'#99d9f4'}>
-              <Image source={google} style={styles.google} />
-            </TouchableHighlight>
             <TouchableHighlight style={styles.twitter} onPress={() => Actions.timelineList()} underlayColor={'#99d9f4'}>
               <Image source={twitter} style={styles.twitter} />
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.google}
+              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
+              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Signin with Google</Text></View>
+              </View>
             </TouchableHighlight>
           </View>
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
