@@ -182,7 +182,7 @@ export default class RegistrationForm extends Component {
             </Text>
           </View>
           <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
-            <TouchableOpacity onPress={Actions.TOSContainer}>
+            <TouchableOpacity onPress={Actions.tos}>
               <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
                 Terms of Use
               </Text>
@@ -192,7 +192,7 @@ export default class RegistrationForm extends Component {
               and
             </Text>
             <Text>  </Text>
-            <TouchableOpacity onPress={Actions.privacy}>
+            <TouchableOpacity onPress={Actions.pp}>
               <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
                 Privacy Policy
               </Text>

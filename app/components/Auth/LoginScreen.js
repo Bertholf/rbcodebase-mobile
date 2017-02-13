@@ -129,7 +129,7 @@ export default class LoginScreen extends Component {
           )}
 
           <View style={{ padding:50 }}>
-            <TouchableOpacity onPress={() => Actions.register()}>
+            <TouchableOpacity onPress={() => Actions.registrationform()}>
               <Text style={{ color: 'black', textAlign: 'center' }}>
                   Create Account
               </Text>

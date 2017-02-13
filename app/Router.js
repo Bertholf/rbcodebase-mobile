@@ -32,7 +32,7 @@ import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
-
+import RegistrationForm from './components/Auth/RegistrationForm';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -125,6 +125,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'createLocation'} component={Location} title={'Location'}
+            />
+            <Scene
+              key={'registrationform'} component={RegistrationForm} title={'Location'}
             />
           </Scene>
         </Scene>
