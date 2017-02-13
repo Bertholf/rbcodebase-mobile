@@ -5,6 +5,7 @@ import { Router, Scene, Modal } from 'react-native-router-flux';
 import NavBar from './layouts/NavBar';
 import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
+import Walkthrough from './components/Splash/Walkthrough';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
@@ -36,6 +37,9 @@ const Routing = (props) => (
       <Scene key={'modal'} component={Modal}>
         <Scene key={'drawerLayout'} component={NavigationDrawer} open={false} >
           <Scene key={'root'} navBar={NavBar}>
+            <Scene
+              key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            />
             {/* <Schema
             key={'modal'} sceneConfig={Animations.FlatFloatFromBottom} navBar={NavBarModal }/> */}
             <Scene
@@ -64,7 +68,7 @@ const Routing = (props) => (
             />
             <Scene
               key={'account'} component={Account} title={'Account'}
-              />
+            />
             <Scene
               key={'privacy'} component={Privacy} title={'Privacy'}
             />
