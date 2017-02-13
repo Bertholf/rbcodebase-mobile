@@ -269,7 +269,7 @@ export default class Register extends Component {
           ) : (
             <TouchableOpacity
               activeOpacity={0.7} style={styles.btnReg}
-              onPress={() => this.validate()}
+              onPress={Actions.registrationform}
             >
               <Text style={styles.textReg}>Register</Text>
             </TouchableOpacity>

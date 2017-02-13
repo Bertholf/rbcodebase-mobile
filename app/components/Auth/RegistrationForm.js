@@ -79,7 +79,7 @@ export default class RegistrationForm extends Component {
     return (
       <View style={{ marginLeft: 8, marginRight: 8, flex: 1 }} >
         <View style={{ flexDirection: 'row', marginTop: 20, marginBottom: 20 }} >
-          <TouchableOpacity onPress={Actions.loginscreen}>
+          <TouchableOpacity onPress={Actions.register}>
             <Image source={require('../../images/backbuttonblue.png')} style={{ width: 50, height: 50 }} />
           </TouchableOpacity>
           <Text style={{ fontSize: 24, color: '#2196F3', fontWeight: 'bold', paddingTop: 8 }}>Register</Text>

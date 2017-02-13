@@ -33,7 +33,6 @@ import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
-import LoginScreen from './components/Auth/LoginScreen';
 
 
 const Routing = (props) => (
@@ -129,10 +128,7 @@ const Routing = (props) => (
               key={'createLocation'} component={Location} title={'Location'}
             />
             <Scene
-              key={'registrationform'} component={RegistrationForm} title={'Location'}
-            />
-            <Scene
-              key={'loginscreen'} component={LoginScreen} title={'Location'}
+              key={'registrationform'} component={RegistrationForm} hideNavBar={'Register'}
             />
           </Scene>
         </Scene>
