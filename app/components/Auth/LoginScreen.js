@@ -56,15 +56,15 @@ export default class LoginScreen extends Component {
             </TouchableHighlight>
           </View>
 
-          <View style={styles.otherlog}>
-            <TouchableHighlight style={styles.twitter }
-              onPress={() => this.props.loginWithTwitter()} underlayColor={'#f44336'}>
-              <View style={{flexDirection: 'row', paddingLeft: 20 }}>
-              <View style ={styles.logoTwitter}><Image source={twitter} style={styles.logoTwitter} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
+          <TouchableHighlight
+              style={styles.twitter}
+              onPress={() => this.props.loginWithTwitter()} underlayColor={'#1E88E5'}
+            >
+              <View style={{flexDirection: 'row', paddingLeft: 7, paddingLeft: 10, }}>
+                <View style ={styles.logoTwitter}><Image source={twitter} style={styles.logoTwitter} /></View>
+                <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
               </View>
-            </TouchableHighlight>
-          </View>
+              </TouchableHighlight>
 
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
