@@ -14,6 +14,7 @@ import styles from './LoginStyles';
 // import GoogleSignIn from './../../services/signingoogle';
 
 const facebookLogo = require('../../images/facebook-square.png');
+const google = require('../../images/login/google.png');
 const logo = require('./../../images/logo.png');
 
 export default class LoginScreen extends Component {
@@ -50,18 +51,28 @@ export default class LoginScreen extends Component {
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} style={styles.logo} />
           </View>
+          <View style={styles.otherlog}>
+            <TouchableHighlight style={styles.google}
+              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
+              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Signin with Google</Text></View>
+              </View>
+            </TouchableHighlight>
+          </View>
+
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
             <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
+
           { this.props.message !== '' &&
           <View style={styles.errBox}>
             <Text style={{ color: '#fff', fontWeight: 'bold'}}>
               {this.props.message}
             </Text>
           </View> }
-
 
           <TouchableOpacity
             onPress={() => this.props.loginWithFacebook()}
