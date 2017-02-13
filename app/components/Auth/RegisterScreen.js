@@ -15,6 +15,7 @@ import styles from './styles';
 // import {GoogleSigninButton} from 'react-native-google-signin';
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
+import facebookRegister from '../../services/FacebookRegister';
 import registerService from '../../services/AuthRegister';
 
 const { width } = Dimensions.get('window');
@@ -76,9 +77,11 @@ export default class Register extends Component {
                 <Text style={styles.text}>Register With Google</Text>
               </View>
             </TouchableOpacity>
-            </View>
-            <View style={styles.otherlog}>
-            <TouchableOpacity style={styles.buttonTwitter} activeOpacity={0.7} onPress={() => this.register()}>
+          </View>
+          <View style={styles.otherlog}>
+            <TouchableOpacity style={styles.buttonTwitter}
+              activeOpacity={0.7}
+              onPress={() => this.register()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.icon} />
                 <Text style={styles.text}>Register With Twitter</Text>
