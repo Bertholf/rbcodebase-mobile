@@ -11,7 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 import me from '../services/me';
-
+import Logout from '../services/logout';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -81,8 +81,10 @@ export default class MainDrawer extends Component {
     this.setState({
       name: item.name,
     });
-
-    if (item.action) {
+    if (item.action === 'logout') {
+      this.props.navigate();
+      Logout();
+    } else if (item.action) {
       Actions[item.action]({ ...item.props });
       this.props.navigate();
     }
@@ -96,7 +98,7 @@ export default class MainDrawer extends Component {
       { index: 4, name: 'Inbox', action: 'listInbox', iconName: 'message' },
       { index: 5, name: 'Friend list', action: 'friendlist', iconName: 'group' },
       { index: 6, name: 'Setting', action: 'setting', iconName: 'settings' },
-      { index: 7, name: 'Logout', action: 'login', iconName: 'directions-run' },
+      { index: 7, name: 'Logout', action: 'logout', iconName: 'directions-run' },
     ];
     return (
       <View style={styles.wrapper}>

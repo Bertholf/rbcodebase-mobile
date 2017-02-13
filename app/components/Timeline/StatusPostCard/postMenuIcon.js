@@ -1,10 +1,12 @@
 import React from 'react';
+import { Actions } from 'react-native-router-flux';
 import {
   View,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
+import Location from './../../../components/Timeline/StatusPostCard/createLocation';
 
 const PostMenu = () => {
   return (
@@ -15,7 +17,7 @@ const PostMenu = () => {
           style={styles.image}
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={Actions.createLocation}>
         <Image
           source={require('./../../../images/ic_place_black_24dp.png')}
           style={styles.image}

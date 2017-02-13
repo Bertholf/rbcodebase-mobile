@@ -306,7 +306,7 @@
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
 		};
-		9C9E521C1E4C3668006D9146 /* PBXContainerItemProxy */ = {
+		9C96B78F1E4D344A00B90FF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */;
 			proxyType = 2;
@@ -735,7 +735,7 @@
 		9C9E52331E4C4A2C006D9146 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C9E52571E4C4A2C006D9146 /* libRNImagePicker.a */,
+				9C96B7901E4D344A00B90FF6 /* libRNImagePicker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -756,14 +756,6 @@
 				9CFDD4FF1E4AE2820082B51C /* GoogleSignInModule.m */,
 			);
 			path = google;
-			sourceTree = "<group>";
-		};
-		9CFDD60F1E4C23870082B51C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9C9E521D1E4C3668006D9146 /* libRNImagePicker.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -823,6 +815,10 @@
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 8RM68JA526;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1177,11 +1173,11 @@
 			remoteRef = 9C6973001E41B4F600D843FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9C9E521D1E4C3668006D9146 /* libRNImagePicker.a */ = {
+		9C96B7901E4D344A00B90FF6 /* libRNImagePicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
-			remoteRef = 9C9E521C1E4C3668006D9146 /* PBXContainerItemProxy */;
+			remoteRef = 9C96B78F1E4D344A00B90FF6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1427,6 +1423,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 8RM68JA526;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1452,6 +1449,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
+				PROVISIONING_PROFILE = "92c9b5b0-5885-4833-8b5e-86ce8d0a99d9";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1461,7 +1460,9 @@
 			baseConfigurationReference = 357E11807EE13E1113B707BA /* Pods-hikerapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RM68JA526;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1487,6 +1488,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
+				PROVISIONING_PROFILE = "92c9b5b0-5885-4833-8b5e-86ce8d0a99d9";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
