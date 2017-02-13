@@ -17,11 +17,13 @@ import styles from './styles';
 import FacebookLogin from './../../services/FacebookLogin';
 import facebookRegister from '../../services/FacebookRegister';
 import registerService from '../../services/AuthRegister';
+import registerWithGoogle from '../../services/googleRegister';
+import google from '../../modules/google';
 import twitterRegister from '../../services/TwitterRegister';
 
 const { width } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
-const google = require('../../images/login/google.png');
+const google2 = require('../../images/login/google.png');
 const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png')
@@ -51,6 +53,11 @@ export default class Register extends Component {
     Alert.alert('Button Pressed');
   }
 
+  registerWithGoogle() {
+    google.signIn()
+    .then(({user}) => Actions.registrationform({firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email}))
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -72,9 +79,9 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity
               style={styles.buttonGoogle}
-              activeOpacity={0.7} onPress={() => this.register()} >
+              activeOpacity={0.7} onPress={() => this.registerWithGoogle()} >
               <View style={{ flexDirection: 'row'}}>
-                <Image source={google} style={styles.icon} />
+                <Image source={google2} style={styles.icon} />
                 <Text style={styles.text}>Register With Google</Text>
               </View>
             </TouchableOpacity>

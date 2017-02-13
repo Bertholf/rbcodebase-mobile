@@ -1,59 +1,115 @@
 import React, { Component } from 'react';
+
 import {
+
    ActivityIndicator,
+
    Text,
+
    View,
+
    Image,
+
    TouchableOpacity,
+
    TouchableHighlight,
+
    ScrollView,
+
    Dimensions,
+
  } from 'react-native';
+
 import { Actions } from 'react-native-router-flux';
+
 import styles from './LoginStyles';
+
 import FacebookLogin from './../../services/FacebookLogin';
+
+
 
 // import GoogleSignIn from './../../services/signingoogle';
 
+
+
 const { width, height } = Dimensions.get('window');
+
 const facebookLogo = require('../../images/facebook-square.png');
+
 const google = require('../../images/login/google.png');
+
 const twitter = require('../../images/login/twitter.png');
+
 const logo = require('./../../images/logo.png');
+
 const email = require('./../../images/ic_email_white_24dp.png');
 
+
+
 export default class LoginScreen extends Component {
+
   render() {
+
     return (
+
       <View style={styles.container}>
+
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+
             <Image source={logo} style={styles.logo} />
+
           </View>
+
           <TouchableOpacity
+
             onPress={() => this.props.loginWithFacebook()}
+
             style={styles.facebookBtn}
+
           >
+
             <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+
               <View style={styles.facebookLogo}>
+
                 <Image
+
                   style={styles.facebookLogo}
+
                   source={facebookLogo}
+
                 />
+
               </View>
+
               <View style={{ justifyContent: 'space-around', marginLeft: 45 }} >
+
                 <Text style={styles.facebookText}>Sign in with Facebook</Text>
+
               </View>
+
             </View>
+
           </TouchableOpacity>
 
+
+
           <View style={styles.otherlog}>
+
             <TouchableHighlight style={styles.google}
+
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+
               <View style={{flexDirection: 'row', paddingLeft: 20 }}>
+
               <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
+
               <View style= {{justifyContent: 'space-around', paddingLeft: 38 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+
               </View>
+
             </TouchableHighlight>
+
           </View>
 
           <TouchableHighlight
