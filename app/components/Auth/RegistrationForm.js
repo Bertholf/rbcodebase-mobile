@@ -261,7 +261,6 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
 
                 style={styles.textinputStyle}
-                value={this.props.email ? this.props.email : ''}
 
               />
 
@@ -410,4 +409,5 @@ export default class RegistrationForm extends Component {
     );
 
   }
+
 }
