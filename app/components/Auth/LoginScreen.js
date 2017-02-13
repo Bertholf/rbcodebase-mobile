@@ -54,9 +54,7 @@ export default class LoginScreen extends Component {
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} style={styles.logo} />
           </View>
-          <View style={{ alignItems: 'center' }} >
-            <Text style={{ fontSize: 14, color: '#2196F3' }}>Login With</Text>
-          </View>
+
           <View style={styles.otherlog}>
             <TouchableHighlight style={styles.facebook} onPress={() => this.props.loginWithFacebook()} underlayColor={'#99d9f4'}>
               <Image source={facebook} style={styles.facebook} />
@@ -116,17 +114,28 @@ export default class LoginScreen extends Component {
               <ActivityIndicator size={'large'} />
             </TouchableOpacity>
           )}
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+          <View style={{ padding:50 }}>
             <TouchableOpacity onPress={() => Actions.register()}>
-              <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  Register
+              <Text style={{ color: 'black', textAlign: 'center' }}>
+                  Create Account
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.forgotPassword()}>
-              <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  Forgot Password
-                </Text>
-            </TouchableOpacity>
+
+          </View>
+          <View style={{ textAlign:'center'}}>
+          <Text style={{ color: 'grey', textAlign: 'center' }}>
+              By signing up, you agree to RBC
+          </Text>
+          </View>
+          <View style={{alignItems:'center'}}>
+          <View style={{height: 40}}>
+            <Text style={{ color: '#2196F3' , text:'underlineColorAndroid'}} onPress={() => Actions.tos()}> Terms of Service
+            <Text style={{ color: 'grey' }}> and
+                <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> Privacy Policy</Text>
+            </Text>
+            </Text>
+          </View>
           </View>
           {!this.state.isFail ? <Text /> : (
             <View style={styles.errBox}>
