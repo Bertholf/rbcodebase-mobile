@@ -61,6 +61,10 @@ const styles = StyleSheet.create({
     width: 30,
     marginTop: 20,
   },
+  policyStyle: {
+    flexDirection: 'row',
+    alignSelf: 'center'
+  },
 });
 
 export default class RegistrationForm extends Component {
@@ -68,6 +72,7 @@ export default class RegistrationForm extends Component {
     super(props);
     this.state = {
       availableUser: true,
+      app: 'RBCodeBase'
     };
   }
   render() {
@@ -170,6 +175,28 @@ export default class RegistrationForm extends Component {
             <Text style={styles.textReg} >
               Register
             </Text>
+          </View>
+          <View style={styles.policyStyle} >
+            <Text>
+              By registering, you agree to {this.state.app}
+            </Text>
+          </View>
+          <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
+            <TouchableOpacity onPress={Actions.TOSContainer}>
+              <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
+                Terms of Use
+              </Text>
+            </TouchableOpacity>
+            <Text>  </Text>
+            <Text>
+              and
+            </Text>
+            <Text>  </Text>
+            <TouchableOpacity onPress={Actions.privacy}>
+              <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
+                Privacy Policy
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
