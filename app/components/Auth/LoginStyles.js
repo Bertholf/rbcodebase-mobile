@@ -101,13 +101,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: 'white',
-    alignSelf: 'center',
+
   },
   buttonText: {
     fontSize: 18,
     fontWeight: '400',
     color: 'white',
-    alignSelf: 'center',
+
   },
   button: {
     height: 36,
