@@ -16,6 +16,8 @@ import styles from './LoginStyles';
 const facebookLogo = require('../../images/facebook-square.png');
 const google = require('../../images/login/google.png');
 const logo = require('./../../images/logo.png');
+const twitter = require('./../../images/twitter.png');
+const email = require('./../../images/ic_email_white_24dp.png');
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -47,7 +49,7 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
+
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} style={styles.logo} />
           </View>
@@ -73,26 +75,41 @@ export default class LoginScreen extends Component {
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
               <View style={{flexDirection: 'row', paddingLeft: 20 }}>
               <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 38 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
             </TouchableHighlight>
           </View>
 
           <View style={styles.otherlog}>
-            <TouchableHighlight style={styles.google}
-              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+            <TouchableHighlight style={styles.twitter }
+              onPress={() => this.props.loginWithTwitter()} underlayColor={'#f44336'}>
               <View style={{flexDirection: 'row', paddingLeft: 20 }}>
-              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+              <View style ={styles.logoTwitter}><Image source={twitter} style={styles.logoTwitter} /></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
               </View>
             </TouchableHighlight>
           </View>
 
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
-            <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-            <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
-            <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
+            <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 318, height: 1, marginLeft: 5 }} />
+
           </View>
+
+          <View style={styles.loginEmail}>
+           <TouchableHighlight
+             style={styles.email}
+             onPress={() => Actions.loginEmail()} underlayColor={'#039be5'}
+           >
+             <View style={{ flexDirection: 'row', paddingLeft: 20 }}>
+               <View style={styles.logoEmail}>
+                 <Image source={email} style={styles.logoEmail} />
+               </View>
+               <View style={{ justifyContent: 'space-around', paddingLeft: 38 }}>
+                 <Text style={styles.buttonText}>Sign in with Email</Text>
+               </View>
+             </View>
+           </TouchableHighlight>
+         </View>
 
           { this.props.message !== '' &&
           <View style={styles.errBox}>
@@ -100,9 +117,6 @@ export default class LoginScreen extends Component {
               {this.props.message}
             </Text>
           </View> }
-
-
-        
 
           <View style={{ padding:50 }}>
             <TouchableOpacity onPress={() => Actions.register()}>
@@ -119,7 +133,7 @@ export default class LoginScreen extends Component {
           </View>
           <View style={{alignItems:'center'}}>
           <View style={{height: 40}}>
-            <Text style={{ color: '#2196F3' , text:'underlineColorAndroid'}} onPress={() => Actions.tos()}> Terms of Service
+            <Text style={{ color: '#2196F3' , text:'underlineColorAndroid'}} onPress={() => Actions.tos()}> Terms of Use
             <Text style={{ color: 'grey' }}> and
                 <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> Privacy Policy</Text>
             </Text>
@@ -131,7 +145,7 @@ export default class LoginScreen extends Component {
               <Text style={{ color: '#fff' }} >Username or Password not match</Text>
             </View>
           )}
-        </ScrollView>
+
       </View>
     );
   }
