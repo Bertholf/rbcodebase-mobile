@@ -15,6 +15,7 @@ import styles from './styles';
 // import {GoogleSigninButton} from 'react-native-google-signin';
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';
+import facebookRegister from '../../services/FacebookRegister';
 import registerService from '../../services/AuthRegister';
 
 const { width } = Dimensions.get('window');
@@ -98,7 +99,7 @@ export default class Register extends Component {
             <Text style={styles.separatorText}>Register with:</Text>
             <View style={styles.buttonGroup}>
               <TouchableOpacity
-                activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()}
+                activeOpacity={0.7} onPress={() => facebookRegister()}
               >
                 <Image source={facebook} style={styles.icon} />
               </TouchableOpacity>
@@ -133,6 +134,7 @@ export default class Register extends Component {
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={{ marginLeft: 10, marginRight: 10, height: 50 }}
             onChangeText={firstName => this.setState({ firstName, validFName: true, errMsg: '' })}
+            value={this.props.firstName ? this.props.firstName : ''}
           />
         </View>
           {this.state.validFName ? (<Text />)
@@ -156,6 +158,7 @@ export default class Register extends Component {
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={{ marginLeft: 10, marginRight: 10, height: 50 }}
             onChangeText={lastName => this.setState({ lastName, validLName: true, errMsg: '' })}
+            value={this.props.lastName ? this.props.lastName : ''}
           />
         </View>
           {this.state.validLName ? (<Text />)
@@ -179,6 +182,7 @@ export default class Register extends Component {
               underlineColorAndroid={'rgba(0,0,0,0)'}
               style={{ marginLeft: 10, marginRight: 10, height: 50 }}
               onChangeText={email => this.setState({ email, validEmail: true, errMsg: '' })}
+              value={this.props.email ? this.props.email : ''}
             />
           </View>
           {this.state.validEmail ? (<Text />)
