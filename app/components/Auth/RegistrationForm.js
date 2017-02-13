@@ -94,6 +94,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
+                value={this.props.firstName ? this.props.firstName : ''}
               />
             </View>
             <View style={styles.textinputWrapperStyle}>
@@ -108,12 +109,12 @@ export default class RegistrationForm extends Component {
             <View style={styles.line} />
             <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
               <TextInput
-                value={this.setState.user}
                 placeholder="Username"
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
+                value={this.props.username ? this.props.username : ''}
               />
               {this.state.availableUser === true ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
               : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
