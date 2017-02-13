@@ -48,83 +48,53 @@ export default class Register extends Component {
     Alert.alert('Button Pressed');
   }
 
-  validate() {
-    this.setState({ loading: true });
-    if (this.state.male) {
-      this.setState({ gender: 'male' });
-    } else {
-      this.setState({ gender: 'female' });
-    }
-    const usernameRegex = /^[a-zA-Z0-9]+$/;
-    const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
-    const nameRegex = /^[a-zA-Z ]+$/;
-    if (!this.state.firstName.match(nameRegex)) {
-      this.setState({ validFName: false, loading: false });
-    }
-    if (!this.state.lastName.match(nameRegex)) {
-      this.setState({ validLName: false, loading: false });
-    }
-    if (!emailRegex.test(this.state.email)) {
-      this.setState({ validEmail: false, loading: false });
-    }
-    if (!this.state.username.match(usernameRegex)) {
-      this.setState({ validUsername: false, loading: false });
-    }
-    if (this.state.password === '') {
-      this.setState({ validPass: false, loading: false });
-    }
-    this.setState({}, () => {
-      if ((this.state.validEmail && this.state.validUsername) &&
-      (this.state.validFName && this.state.validLName)) {
-        registerService.register(this.state, () => {
-          const Message = registerService.errorMsg();
-          if (Message !== undefined) {
-            this.setState({ errMsg: Message, loading: false });
-          }
-        });
-      }
-    });
-  }
-
   render() {
     return (
+      <View style={styles.container}>
       <ScrollView>
-        <View style={styles.container}>
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <Image style={styles.logo} source={logo} />
-            <Text style={styles.separatorText}>Register with:</Text>
-            <View style={styles.otherlog}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => FacebookLogin.getFacebookLogin()}
-              >
-                <View style={styles.buttonFacebook}>
-                  <Image source={facebookLogo} style={styles.icon} />
-                  <Text>Register With Facebook</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
-                <View style={styles.buttonGoogle}>
-                  <Image source={google} style={styles.icon} />
-                  <Text>Register With Google</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
-                <View style={styles.buttonEmail}>
-                  <Image source={facebookLogo} style={styles.icon} />
-                  <Text>Register With Twitter</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
-                <View style={styles.buttonEmail}>
-                  <Image source={mail} style={{alignSelf: 'flex-start'}} />
-                  <Text>Register With Email</Text>
-                </View>
-              </TouchableOpacity>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Image style={styles.logo} source={logo} />
+          <Text style={styles.separatorText}>Register with:</Text>
+          <View style={styles.otherlog}>
+            <TouchableOpacity style={styles.buttonFacebook}
+              activeOpacity={0.7}
+              onPress={() => FacebookLogin.getFacebookLogin()}
+            >
+              <View style={{ flexDirection: 'row'}}>
+                <Image source={facebookLogo} style={styles.icon} />
+                <Text style={styles.text}>Register With Facebook</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.otherlog}>
+            <TouchableOpacity
+              style={styles.buttonGoogle}
+              activeOpacity={0.7} onPress={() => this.register()} >
+              <View style={{ flexDirection: 'row'}}>
+                <Image source={google} style={styles.icon} />
+                <Text style={styles.text}>Register With Google</Text>
+              </View>
+            </TouchableOpacity>
             </View>
+            <View style={styles.otherlog}>
+            <TouchableOpacity style={styles.buttonTwitter} activeOpacity={0.7} onPress={() => this.register()}>
+              <View style={{ flexDirection: 'row'}}>
+                <Image source={facebookLogo} style={styles.icon} />
+                <Text style={styles.text}>Register With Twitter</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.otherlog}>
+            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7} onPress={() => this.register()}>
+              <View style={{ flexDirection: 'row'}}>
+                <Image style={styles.icon} source={mail} />
+                <Text style={styles.text}>Register With Email</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
+      </View>
     );
   }
 }
