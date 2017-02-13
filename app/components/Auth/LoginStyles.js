@@ -5,9 +5,11 @@ const styles = StyleSheet.create({
   container: {
     height,
     flex: 1,
-    justifyContent: 'center',
     padding: 20,
     backgroundColor: '#fff',
+  },
+  contentLoginEmail: {
+    marginTop: 20,
   },
   title: {
     fontSize: 30,
@@ -50,6 +52,10 @@ const styles = StyleSheet.create({
   logoEmail: {
     width: 30,
     height: 30,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    marginTop: 5,
+    marginBottom: 5,
   },
   facebook: {
     height: 25,
@@ -86,6 +92,19 @@ const styles = StyleSheet.create({
     borderColor: '#DC4A38',
     borderWidth: 1,
     borderRadius: 0,
+    borderRadius: 3,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
+  },
+  email: {
+    marginTop: 10,
+    height: 50,
+    width: 320,
+    backgroundColor: '#039be5',
+    borderColor: '#0288d1',
+    borderWidth: 1,
+    borderRadius: 3,
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
@@ -97,6 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 48,
   },
+
   buttonTextGoogle: {
     fontSize: 18,
     fontWeight: '400',
@@ -111,10 +131,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#2196F3',
-    borderColor: '#2196F3',
+    backgroundColor: '#039be5',
+    borderColor: '#0288d1',
     borderWidth: 1,
-    borderRadius: 2,
+    borderRadius: 3,
     marginTop: 5,
     alignSelf: 'stretch',
     justifyContent: 'center',

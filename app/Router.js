@@ -10,6 +10,7 @@ import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
 import PPContainer from './containers/PrivacyPolicy/PPContainer';
 import Register from './components/Auth/RegisterScreen';
+import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
@@ -68,7 +69,7 @@ const Routing = (props) => (
             />
             <Scene
               key={'account'} component={Account} title={'Account'}
-              />
+            />
             <Scene
               key={'privacy'} component={Privacy} title={'Privacy'}
             />
@@ -97,10 +98,13 @@ const Routing = (props) => (
               key={'login'} component={Login}  hideNavBar title={'Login Screen'}
             />
             <Scene
+              key={'loginEmail'} component={LoginScreenEmail} title={'Sign In'}
+            />
+            <Scene
               key={'register'} component={Register} hideNavBar title={'Register Screen'}
             />
             <Scene
-              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'Forgot Password'}
+              key={'forgotPassword'} component={ForgotPassword} title={'Password Reset'}
             />
             <Scene
               key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -129,7 +133,7 @@ const Routing = (props) => (
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
-          <Scene key={'pp'} component={PPContainer} />
+        <Scene key={'pp'} component={PPContainer} />
         <Scene
           key={'loader'} component={Loader}
         />
