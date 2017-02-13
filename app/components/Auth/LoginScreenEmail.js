@@ -55,6 +55,7 @@ export default class LoginScreenEmail extends Component {
             style={{ height: 40 }}
             onChangeText={email =>
               this.setState({ email, validEmail: true, isFail: false })}
+            placeholderTextColor={'#2196f3'}
             placeholder={'Email'}
             required
           />
@@ -66,6 +67,7 @@ export default class LoginScreenEmail extends Component {
             onChangeText={password =>
               this.setState({ password, validPassword: true, isFail: false })
             }
+            placeholderTextColor={'#2196f3'}
             placeholder="Password"
           />
           {this.state.validPassword ? <Text /> : (
