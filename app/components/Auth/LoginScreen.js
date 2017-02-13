@@ -26,19 +26,36 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} style={styles.logo} />
           </View>
+          <TouchableOpacity
+            onPress={() => this.props.loginWithFacebook()}
+            style={styles.facebookBtn}
+          >
+            <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+              <View style={styles.facebookLogo}>
+                <Image
+                  style={styles.facebookLogo}
+                  source={facebookLogo}
+                />
+              </View>
+              <View style={{ justifyContent: 'space-around', marginLeft: 45 }} >
+                <Text style={styles.facebookText}>Sign in with Facebook</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
           <View style={styles.otherlog}>
             <TouchableHighlight style={styles.google}
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
-              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
-              <View style={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 25 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+              <View style={{flexDirection: 'row', paddingLeft: 20 }}>
+              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 38 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
             </TouchableHighlight>
           </View>
+
           <TouchableHighlight
               style={styles.twitter}
               onPress={() => this.props.loginWithTwitter()} underlayColor={'#1E88E5'}
@@ -59,11 +76,11 @@ export default class LoginScreen extends Component {
               style={styles.email}
               onPress={() => Actions.loginEmail()} underlayColor={'#039be5'}
             >
-              <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+              <View style={{ flexDirection: 'row', paddingLeft: 20 }}>
                 <View style={styles.logoEmail}>
                   <Image source={email} style={styles.logoEmail} />
                 </View>
-                <View style={{ justifyContent: 'space-around', paddingLeft: 30 }}>
+                <View style={{ justifyContent: 'space-around', paddingLeft: 38 }}>
                   <Text style={styles.buttonText}>Sign in with Email</Text>
                 </View>
               </View>
@@ -90,8 +107,7 @@ export default class LoginScreen extends Component {
               </Text>
             </View>
           </View>
-        </ScrollView>
-      </View>
+          </View>
     );
   }
 }
