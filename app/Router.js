@@ -8,6 +8,7 @@ import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
+import PPContainer from './containers/PrivacyPolicy/PPContainer';
 import Register from './components/Auth/RegisterScreen';
 import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
@@ -30,7 +31,9 @@ import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
+import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
+
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -92,7 +95,7 @@ const Routing = (props) => (
               key={'welcome'} component={Welcome} title={'Welcome'}
             />
             <Scene
-              key={'login'} component={Login} hideNavBar title={'Login Screen'}
+              key={'login'} component={Login}  hideNavBar title={'Login Screen'}
             />
             <Scene
               key={'loginEmail'} component={LoginScreenEmail} hideNavBar title={'Login Screen Email'}
@@ -124,9 +127,13 @@ const Routing = (props) => (
             <Scene
               key={'deactive'} component={Deactivate} title={'Deactivate'}
             />
+            <Scene
+              key={'createLocation'} component={Location} title={'Location'}
+            />
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
+          <Scene key={'pp'} component={PPContainer} />
         <Scene
           key={'loader'} component={Loader}
         />

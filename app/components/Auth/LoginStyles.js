@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   },
   errBox: {
     marginTop: 20,
+    marginBottom: 30,
     height: 40,
     backgroundColor: 'rgba(255, 0, 0, 0.7)',
     alignItems: 'center',
