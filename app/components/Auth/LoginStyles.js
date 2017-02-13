@@ -86,12 +86,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     alignSelf: 'stretch',
-    justifyContent: 'center',
     elevation: 2,
   },
   facebookLogo: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
     borderRadius: 7,
   },
   facebookText: {
