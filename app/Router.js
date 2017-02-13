@@ -64,6 +64,9 @@ const Routing = (props) => (
             key={'friendlist'} component={Friendlist} title={'Friend list'}
           />
           <Scene
+            key={'loginscreenemail'} component={LoginScreenEmail} title={'Friend list'}
+          />
+          <Scene
             key={'account'} component={Account} title={'Account'}
             />
           <Scene
@@ -129,7 +132,7 @@ const Routing = (props) => (
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
         <Scene key={'pp'} component={PPContainer} />
-        <Scene key={'loader'} component={Loader} />        
+        <Scene key={'loader'} component={Loader} />
       </Scene>
     </Router>
   </View>
