@@ -17,6 +17,7 @@ import styles from './styles';
 import FacebookLogin from './../../services/FacebookLogin';
 import facebookRegister from '../../services/FacebookRegister';
 import registerService from '../../services/AuthRegister';
+import twitterRegister from '../../services/TwitterRegister';
 
 const { width } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
@@ -60,7 +61,7 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
-              onPress={() => FacebookLogin.getFacebookLogin()}
+              onPress={() => facebookRegister()}
             >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={facebookLogo} style={styles.icon} />
@@ -81,7 +82,7 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonTwitter}
               activeOpacity={0.7}
-              onPress={() => this.register()}>
+              onPress={() => twitterRegister()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.icon} />
                 <Text style={styles.text}>Register With Twitter</Text>
