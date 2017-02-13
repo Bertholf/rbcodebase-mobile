@@ -11,7 +11,6 @@ import {
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
-import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
 
 // import GoogleSignIn from './../../services/signingoogle';
@@ -31,11 +30,16 @@ export default class LoginScreen extends Component {
             <Image source={logo} style={styles.logo} />
           </View>
           <View style={styles.otherlog}>
-            <TouchableHighlight style={styles.google}
-              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
-              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
-              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Signin with Google</Text></View>
+            <TouchableHighlight
+              style={styles.google}
+              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}
+            >
+              <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+                <View style={styles.logoGoogle}>
+                  <Image source={google} style={styles.logoGoogle} /></View>
+                <View style={{ justifyContent: 'space-around', paddingLeft: 30 }}>
+                  <Text style={styles.buttonText}>Signin with Google</Text>
+                </View>
               </View>
             </TouchableHighlight>
           </View>

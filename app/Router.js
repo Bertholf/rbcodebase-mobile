@@ -69,7 +69,7 @@ const Routing = (props) => (
             />
             <Scene
               key={'account'} component={Account} title={'Account'}
-              />
+            />
             <Scene
               key={'privacy'} component={Privacy} title={'Privacy'}
             />
@@ -98,13 +98,13 @@ const Routing = (props) => (
               key={'login'} component={Login} initial hideNavBar title={'Login Screen'}
             />
             <Scene
-              key={'loginEmail'} component={LoginScreenEmail} hideNavBar title={'Login Screen Email'}
+              key={'loginEmail'} component={LoginScreenEmail} title={'Sign In'}
             />
             <Scene
               key={'register'} component={Register} hideNavBar title={'Register Screen'}
             />
             <Scene
-              key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'Forgot Password'}
+              key={'forgotPassword'} component={ForgotPassword} title={'Password Reset'}
             />
             <Scene
               key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -133,7 +133,7 @@ const Routing = (props) => (
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
-          <Scene key={'pp'} component={PPContainer} />
+        <Scene key={'pp'} component={PPContainer} />
         <Scene
           key={'loader'} component={Loader}
         />
