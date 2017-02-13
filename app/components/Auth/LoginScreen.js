@@ -50,12 +50,19 @@ export default class LoginScreen extends Component {
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
-          <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
-            <TouchableHighlight style={{ backgroundColor: '#37474f', padding: 5, borderWidth: 0.3, borderColor: '#333' }}>
-              <Image style={{ width: 28, height: 28 }} source={email} />
-            </TouchableHighlight>
-            <TouchableHighlight onPress={() => Actions.loginEmail()} style={{ backgroundColor: '#0277bd', borderWidth: 0.3, borderColor: '#333', padding: 5, width }}>
-              <Text style={{ color: '#fff', justifyContent: 'center', height: 28, paddingTop: 3, paddingLeft: 10 }}>Sign in with Email</Text>
+          <View style={styles.loginEmail}>
+            <TouchableHighlight
+              style={styles.email}
+              onPress={() => Actions.loginEmail()} underlayColor={'#039be5'}
+            >
+              <View style={{ flexDirection: 'row', paddingLeft: 5 }}>
+                <View style={styles.logoEmail}>
+                  <Image source={email} style={styles.logoEmail} />
+                </View>
+                <View style={{ justifyContent: 'space-around', paddingLeft: 30 }}>
+                  <Text style={styles.buttonText}>Sign in with Email</Text>
+                </View>
+              </View>
             </TouchableHighlight>
           </View>
           <View style={{ padding: 50 }}>

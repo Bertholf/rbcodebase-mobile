@@ -95,7 +95,7 @@ const Routing = (props) => (
               key={'welcome'} component={Welcome} title={'Welcome'}
             />
             <Scene
-              key={'login'} component={Login}  hideNavBar title={'Login Screen'}
+              key={'login'} component={Login} initial hideNavBar title={'Login Screen'}
             />
             <Scene
               key={'loginEmail'} component={LoginScreenEmail} hideNavBar title={'Login Screen Email'}
