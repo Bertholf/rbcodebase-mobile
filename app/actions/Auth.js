@@ -76,10 +76,10 @@ export function loginWithFacebook() {
   };
 }
 
+export const manager = new OAuthManager('RB Codebase');
 
 export function loginWithTwitter() {
   return (dispatch) => {
-    const manager = new OAuthManager('RB Codebase');
     manager.configure({
       twitter: {
         consumer_key: TWITTER_CONSUMER_KEY,
