@@ -9,6 +9,7 @@ import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
 import PPContainer from './containers/PrivacyPolicy/PPContainer';
 import Register from './components/Auth/RegisterScreen';
+import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
@@ -128,7 +129,7 @@ const Routing = (props) => (
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
         <Scene key={'pp'} component={PPContainer} />
-        <Scene key={'loader'} component={Loader} />
+        <Scene key={'loader'} component={Loader} />        
       </Scene>
     </Router>
   </View>
