@@ -16,6 +16,7 @@ import FacebookLogin from './../../services/FacebookLogin';
 // import facebookBtn from './facebookBtn';
 // import GoogleSignIn from './../../services/signingoogle';
 
+const facebookLogo = require('../../images/facebook-square.png');
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
@@ -82,6 +83,23 @@ export default class LoginScreen extends Component {
             </Text>
           </View> }
 
+
+            <TouchableOpacity
+            onPress={() => this.props.loginWithFacebook()}
+            style={styles.facebookBtn}
+            >
+              <View style={{flexDirection: 'row', paddingLeft: 5 }}>
+                <View style={styles.facebookLogo}>
+                  <Image
+                    style={styles.facebookLogo}
+                    source={facebookLogo}
+                  />
+                </View>
+                <View style={{ justifyContent: 'space-around', marginLeft: 30, justifyContent: 'center' }} >
+                  <Text style={styles.facebookText}>Sign in with facebook</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
 
           <TextInput
             style={{ height: 40 }}
