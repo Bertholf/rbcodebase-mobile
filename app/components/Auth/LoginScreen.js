@@ -4,13 +4,14 @@ import {
    Text,
    View,
    Image,
-   TextInput,
    TouchableOpacity,
    TouchableHighlight,
    ScrollView,
+   Dimensions,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
+const { width, height } = Dimensions.get('window');
 import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
 // import GoogleSignIn from './../../services/signingoogle';
@@ -19,34 +20,9 @@ const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
+const email = require('./../../images/ic_email_white_24dp.png');
 
 export default class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      validUsername: true,
-      validPassword: true,
-      isFail: false,
-      loading: false,
-    };
-    this.validate = this.validate.bind(this);
-  }
-  validate() {
-    this.setState({ loading: true }, () => {
-      if (this.state.username === '') {
-        this.setState({ validUsername: false, loading: false });
-      }
-      if (this.state.password === '') {
-        this.setState({ validPassword: false, loading: false });
-      }
-      if (this.state.username !== '' && this.state.password !== '') {
-        this.props.submitLogin(this.state.username, this.state.password);
-      }
-    });
-    this.setState({ loading: false });
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -69,62 +45,16 @@ export default class LoginScreen extends Component {
           </View>
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-            <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
-          <TextInput
-            style={{ height: 40 }}
-            onChangeText={username =>
-              this.setState({ username, validUsername: true, isFail: false })}
-            placeholder={'Username'}
-            required
-          />
-          {this.state.validUsername ? <Text /> : (
-            <Text style={styles.wrong}>Usename cannot blank</Text>
-          )}
-          <TextInput
-            secureTextEntry style={{ height: 40 }}
-            onChangeText={password =>
-              this.setState({ password, validPassword: true, isFail: false })
-            }
-            placeholder="Password"
-          />
-          {this.state.validPassword ? <Text /> : (
-            <Text style={styles.wrong}>Password cannot blank</Text>
-          )}
-          {!this.state.loading ? (
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.button}
-              onPress={() => this.validate()}
-            >
-              <Text style={styles.buttonText}>Login</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.button}
-            >
-              <ActivityIndicator size={'large'} />
-            </TouchableOpacity>
-          )}
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TouchableOpacity onPress={() => Actions.register()}>
-              <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  Register
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.forgotPassword()}>
-              <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  Forgot Password
-                </Text>
-            </TouchableOpacity>
+          <View style={{ flexDirection: 'row', marginTop: 10, alignItems: 'center' }}>
+            <TouchableHighlight style={{ backgroundColor: '#37474f', padding: 5, borderWidth: 0.3, borderColor: '#333' }}>
+              <Image style={{ width: 28, height: 28 }} source={email} />
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => Actions.loginEmail()} style={{ backgroundColor: '#0277bd', borderWidth: 0.3, borderColor: '#333', padding: 5, width }}>
+              <Text style={{ color: '#fff', justifyContent: 'center', height: 28, paddingTop: 3, paddingLeft: 10 }}>Sign in with Email</Text>
+            </TouchableHighlight>
           </View>
-          {!this.state.isFail ? <Text /> : (
-            <View style={styles.errBox}>
-              <Text style={{ color: '#fff' }} >Username or Password not match</Text>
-            </View>
-          )}
         </ScrollView>
       </View>
     );

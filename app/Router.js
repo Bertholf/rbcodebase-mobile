@@ -9,6 +9,7 @@ import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
 import Register from './components/Auth/RegisterScreen';
+import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
@@ -92,6 +93,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'login'} component={Login} hideNavBar title={'Login Screen'}
+            />
+            <Scene
+              key={'loginEmail'} component={LoginScreenEmail} hideNavBar title={'Login Screen Email'}
             />
             <Scene
               key={'register'} component={Register} hideNavBar title={'Register Screen'}

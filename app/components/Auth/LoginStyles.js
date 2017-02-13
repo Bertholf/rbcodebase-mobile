@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
+  contentLoginEmail: {
+    marginTop: 20,
+  },
   title: {
     fontSize: 30,
     alignSelf: 'center',
