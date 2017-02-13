@@ -18,6 +18,7 @@ import FacebookLogin from './../../services/FacebookLogin';
 const { width, height } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
 const google = require('../../images/login/google.png');
+const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 const email = require('./../../images/ic_email_white_24dp.png');
 
