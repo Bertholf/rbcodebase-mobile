@@ -4,10 +4,10 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    padding: 15,
     flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#fff',
   },
   logo: {
     marginTop: 16,
@@ -19,8 +19,13 @@ const styles = StyleSheet.create({
     borderRightWidth: 0.5,
     borderColor: '#000000',
   },
+  otherlog: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    marginTop: 5,
+    marginBottom: 5,
+  },
   buttonEmail: {
-    justifyContent: 'center',
     flexDirection: 'row',
     padding: 10,
     height: 50,
@@ -28,7 +33,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   buttonTwitter: {
-    justifyContent: 'center',
     flexDirection: 'row',
     padding: 10,
     height: 50,
@@ -36,7 +40,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   buttonFacebook: {
-    justifyContent: 'center',
     flexDirection: 'row',
     padding: 10,
     height: 50,
@@ -44,7 +47,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   buttonGoogle: {
-    justifyContent: 'center',
     flexDirection: 'row',
     padding: 10,
     height: 50,
@@ -58,7 +60,6 @@ const styles = StyleSheet.create({
   icon: {
     height: 50,
     width: 50,
-    marginRight: 20 * 0.5,
   },
   picker: {
     height: 50,
