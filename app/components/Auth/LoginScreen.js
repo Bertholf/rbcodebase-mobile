@@ -74,7 +74,7 @@ export default class LoginScreen extends Component {
           <View style={styles.loginEmail}>
             <TouchableHighlight
               style={styles.email}
-              onPress={() => Actions.loginEmail()} underlayColor={'#039be5'}
+              onPress={() => Actions.loginscreenemail()} underlayColor={'#039be5'}
             >
               <View style={{ flexDirection: 'row', paddingLeft: 20 }}>
                 <View style={styles.logoEmail}>
