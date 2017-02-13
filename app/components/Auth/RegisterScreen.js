@@ -95,7 +95,7 @@ export default class Register extends Component {
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
           <View style={styles.otherlog}>
-            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7} onPress={() => this.register()}>
+            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7} onPress={Actions.registrationform}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
                 <Text style={styles.text}>Register With Email</Text>

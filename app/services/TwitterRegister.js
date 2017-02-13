@@ -19,10 +19,10 @@ const twitterRegister = () => {
       .then((resp) => {
         console.log('TWITTER OK',resp);
         const props = {
-          username: resp.user.screen_name,
-          firstName: resp.user.name,
+          username: resp.data[0].user.screen_name,
+          firstName: resp.data[0].user.name,
         };
-        Actions.register(props);
+        Actions.registrationform(props);
       })
 
       const accessToken = response.response.credentials.accessToken;
