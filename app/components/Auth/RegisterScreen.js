@@ -22,9 +22,7 @@ const logo = require('./../../images/logo.png');
 const google = require('./../../images/login/google.png');
 const facebook = require('./../../images/login/facebook.png');
 const twitter = require('./../../images/login/twitter.png');
-const imgmale = require('./../../images/male.png');
-const imgfemale = require('./../../images/female.png');
-
+const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png')
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -96,35 +94,42 @@ export default class Register extends Component {
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image style={styles.logo} source={logo} />
             <Text style={styles.separatorText}>Register with:</Text>
-            <View style={styles.buttonGroup}>
+            <View>
               <TouchableOpacity
                 activeOpacity={0.7} onPress={() => FacebookLogin.getFacebookLogin()}
               >
-                <View>
+                <View style={styles.buttonFacebook}>
                   <Image source={facebook} style={styles.icon} />
                   <Text>Register With Facebook</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()} >
-                <Image source={google} style={styles.icon} />
-                <Text>Register With Google</Text>
+                <View style={styles.buttonGoogle}>
+                  <Image source={google} style={styles.icon} />
+                  <Text>Register With Google</Text>
+                </View>
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
-                <Image source={twitter} style={styles.icon} />
-                <Text>Register With Twitter</Text>
+                <View style={styles.buttonEmail}>
+                  <Image source={twitter} style={styles.icon} />
+                  <Text>Register With Twitter</Text>
+                </View>
               </TouchableOpacity>
-              <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+              {/* <View style={{ alignItems: 'center', top: 10, marginBottom: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
                 <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginLeft: 5 }} />
                 <Text style={{ width: 20, marginRight: 5, marginLeft: 5, top: -7, color: 'silver' }}> OR </Text>
                 <View style={{ borderWidth: 1, borderColor: 'silver', width: 140, height: 1, marginRight: 5 }} />
                 </View>
-              </View>
+              </View> */}
               <TouchableOpacity activeOpacity={0.7} onPress={() => this.register()}>
-                <Image source={twitter} style={styles.icon} />
-                <Text>Register With Email</Text>
+                <View style={styles.buttonEmail}>
+                  <Image source={mail} />
+                  <Text>Register With Email</Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>
+        </View>
       </ScrollView>
     );
   }
