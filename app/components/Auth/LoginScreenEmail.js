@@ -52,7 +52,7 @@ export default class LoginScreenEmail extends Component {
       <View style={styles.container}>
         <View style={styles.contentLoginEmail}>
           <TextInput
-            style={{ height: 40 }}
+            style={styles.textInput}
             onChangeText={email =>
               this.setState({ email, validEmail: true, isFail: false })}
             placeholderTextColor={'#2196f3'}
@@ -63,7 +63,9 @@ export default class LoginScreenEmail extends Component {
             <Text style={styles.wrong}>PLease input valid email</Text>
           )}
           <TextInput
-            secureTextEntry style={{ height: 40 }}
+            secureTextEntry
+            underlineColorAndroid={'transparent'}
+            style={styles.textInput}
             onChangeText={password =>
               this.setState({ password, validPassword: true, isFail: false })
             }
