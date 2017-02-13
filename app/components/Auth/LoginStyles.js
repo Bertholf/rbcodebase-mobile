@@ -34,11 +34,25 @@ const styles = StyleSheet.create({
     borderRadius: 48,
   },
   twitter: {
-    height: 48,
-    width: 48,
+    height: 50,
+    backgroundColor: '#2196F3',
+    borderColor: '#1E88E5',
+    borderWidth: 1,
+    borderRadius: 7,
     alignSelf: 'stretch',
     justifyContent: 'center',
-    borderRadius: 48,
+    elevation: 2,
+    marginTop: 10,
+  },
+  logoTwitter: {
+    width: 35,
+    height: 35,
+    tintColor: '#fff',
+  },
+  buttonTextTwitter: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'white',
   },
   google: {
     height: 50,

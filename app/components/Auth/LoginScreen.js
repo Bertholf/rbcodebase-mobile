@@ -15,6 +15,7 @@ import styles from './LoginStyles';
 
 const facebookLogo = require('../../images/facebook-square.png');
 const google = require('../../images/login/google.png');
+const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 
 export default class LoginScreen extends Component {
@@ -53,21 +54,22 @@ export default class LoginScreen extends Component {
           </View>
           <View style={styles.otherlog}>
             <TouchableHighlight style={styles.google}
-<<<<<<< HEAD
-            onPress={() => this.props.loginWithGoogle()}  underlayColor={'#99d9f4'}>
-            <Image source={google} style={styles.google} />
-          </TouchableHighlight>
-            <TouchableHighlight style={styles.twitter} onPress={() => this.props.loginWithTwitter()} underlayColor={'#99d9f4'}>
-              <Image source={twitter} style={styles.twitter} />
-=======
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
               <View style={{flexDirection: 'row', paddingLeft: 5 }}>
-              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Signin with Google</Text></View>
+              <View style={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 25 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
->>>>>>> develop
             </TouchableHighlight>
           </View>
+          <TouchableHighlight
+              style={styles.twitter}
+              onPress={() => this.props.loginWithTwitter()} underlayColor={'#1E88E5'}
+            >
+              <View style={{flexDirection: 'row', paddingLeft: 7, paddingLeft: 10, }}>
+                <View style ={styles.logoTwitter}><Image source={twitter} style={styles.logoTwitter} /></View>
+                <View style= {{justifyContent: 'space-around', paddingLeft: 30 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
+              </View>
+              </TouchableHighlight>
 
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
