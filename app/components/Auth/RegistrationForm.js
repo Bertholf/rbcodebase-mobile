@@ -98,10 +98,8 @@ export default class RegistrationForm extends Component {
     const emptyLName = this.state.lastname === '';
     const emptyUName = this.state.username === '';
     const emptyEmail = this.state.email === '' || !this.state.email;
-    console.log(emptyEmail);
     const validUsername = this.state.username.length > 4;
     const validEmail = emailRegex.test(this.state.email);
-    // console.log(validEmail);
     const validPass = (this.state.password === this.state.confirmPassword);
     const validLPass = this.state.password.length >= 6;
     const emptyPass = this.state.password === '';
