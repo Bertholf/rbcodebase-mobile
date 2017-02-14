@@ -91,7 +91,7 @@ export default class Register extends Component {
               activeOpacity={0.7}
               onPress={() => twitterRegister()}>
               <View style={{ flexDirection: 'row'}}>
-                <Image source={twitter} style={styles.icon} />
+                <Image source={twitter} style={styles.logoTwitter} />
                 <Text style={styles.text}>Register With Twitter</Text>
               </View>
             </TouchableOpacity>

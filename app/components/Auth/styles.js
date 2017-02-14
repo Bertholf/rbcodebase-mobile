@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 0.5,
     borderColor: '#000000',
   },
+  logoTwitter:{
+    tintColor: '#fff',
+    height: 24,
+    width: 24,
+    marginLeft: 10,
+  },
   otherlog: {
     flexDirection: 'row',
     justifyContent: 'space-around',
