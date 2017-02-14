@@ -9,24 +9,75 @@ const Setting = () => {
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
+            <Text>Account</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
-              <Image style={styles.imagesLeft} source={require('../../images/ic_account_box_black_24dp.png')} />
-              <Text style={styles.text}>Account</Text>
+              <Text style={styles.text}>Name</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.privacy}>
             <View style={styles.list}>
-              <Image style={styles.imagesLeft} source={require('../../images/ic_build_black_24dp.png')} />
-              <Text style={styles.text}>Privacy</Text>
+              <Text style={styles.text}>Username</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.email}>
             <View style={styles.list}>
-              <Image style={styles.imagesLeft} source={require('../../images/ic_contact_mail_black_24dp.png')} />
+              <Text style={styles.text}>Birthday</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Mobile Number</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
               <Text style={styles.text}>Email</Text>
             </View>
           </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Password</Text>
+            </View>
+          </TouchableOpacity>
+          <Text>Preference</Text>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Privacy</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Notifications</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Ad Preference</Text>
+            </View>
+          </TouchableOpacity>
+          <Text>More Information</Text>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Support</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Privacy Police</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Term of Service</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Licenses</Text>
+            </View>
+          </TouchableOpacity>
+          <Text>Account Actions</Text>
           <TouchableOpacity onPress={Actions.deactive}>
             <View style={styles.list1}>
               <Text style={styles.deactive}>Deactive</Text>
