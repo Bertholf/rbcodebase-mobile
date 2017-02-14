@@ -32,6 +32,7 @@ import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
+import LoginScreen from './components/Auth/LoginScreen';
 
 
 const Routing = (props) => (
@@ -128,6 +129,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'registrationform'} component={RegistrationForm} hideNavBar={'Register'}
+          />
+          <Scene
+            key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />

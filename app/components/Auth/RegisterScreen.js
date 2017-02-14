@@ -109,6 +109,11 @@ export default class Register extends Component {
               </View>
             </TouchableOpacity>
           </View>
+          <View style={{ paddingTop: 8, paddingBottom: 30 }}>
+            <TouchableOpacity onPress={Actions.loginscreen}>
+              <Text style={{ fontSize: 14, color: 'black' }}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
           <View style={{ marginTop: 10, alignItems: 'center' }}>
             <View style={{ height: 40 }}>
               <Text>By Signing up, you agree to App Name</Text>

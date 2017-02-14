@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#2196f3',
     width: 0.75 * width,
+    height: 60,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
@@ -37,6 +38,8 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     height: 50,
     marginBottom: 40,
+    marginRight: 16,
+    marginLeft: 16,
   },
   textReg: {
     color: '#fff',
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
   acceptImg: {
     height: 30,
     width: 30,
-    marginTop: 20,
+    marginTop: 15,
     marginRight: 20,
   },
   policyStyle: {
@@ -78,12 +81,6 @@ export default class RegistrationForm extends Component {
   render() {
     return (
       <View style={{ flex: 1 }} >
-        <View style={{ flexDirection: 'row', marginTop: 20, marginBottom: 20 }} >
-          <TouchableOpacity onPress={Actions.register}>
-            <Image source={require('../../images/backbuttonblue.png')} style={{ width: 50, height: 50 }} />
-          </TouchableOpacity>
-          <Text style={{ fontSize: 24, color: '#2196F3', fontWeight: 'bold', paddingTop: 8 }}>Register</Text>
-        </View>
         <ScrollView>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16,  }} >
             <View style={styles.textinputWrapperStyle}>
