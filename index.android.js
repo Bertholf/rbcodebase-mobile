@@ -8,12 +8,10 @@ import {
    AppRegistry,
  } from 'react-native';
 import App from './app/App';
-import App1 from './app/components/UserPanel/UserPanel';
-import App2 from './app/components/Setting/Setting';
 
 
 const HikerApp = () => (
-  <App1 />
+  <App />
 );
 
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
