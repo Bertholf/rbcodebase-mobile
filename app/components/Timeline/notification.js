@@ -64,7 +64,6 @@ export default class Notification extends React.Component {
   render() {
     if (this.state.loading === false) {
       return (
-        <Swiper showsButtons={true} loop={false} showsPagination={false}>
         <ListView
           dataSource={ds.cloneWithRows(this.state.notif.data)} renderRow={(rowData) =>
             <TouchableOpacity onPress={Actions.profile}>
@@ -83,10 +82,6 @@ export default class Notification extends React.Component {
             </TouchableOpacity>
             }
         />
-        <View style={styles.slide1} >
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-      </Swiper>
       );
     } else {
       return (

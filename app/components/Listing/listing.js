@@ -26,12 +26,43 @@ const styles = {
 
 
 export default class test extends Component {
+  constructor(props) {
+    super(props);
+
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        'John',
+        'Joel',
+        'James',
+        'Jimmy',
+        'Jackson',
+        'Jillian',
+        'Julie',
+        'Devin',
+      ]),
+    };
+  }
+  renderRow(rowData) {
+    return (
+      <ScrollView>
+        <TouchableOpacity>
+          <View style={styles.container}>
+            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight:50 }}>
+              <Text style={styles.user}>{rowData}</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  }
   render() {
     return (
       <Swiper showsButtons={true} loop={false} showsPagination={false}>
-        <View style={styles.slide1} >
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={rowData => this.renderRow(rowData)}
+        />
         <View style={styles.slide2} >
           <Text style={styles.text}>This is Slide 2</Text>
         </View>
