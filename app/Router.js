@@ -4,6 +4,7 @@ import { Router, Scene, Modal } from 'react-native-router-flux';
 // import your components below here
 import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
+import Walkthrough from './components/Splash/Walkthrough';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
@@ -45,6 +46,9 @@ const Routing = (props) => (
             key="setting" component={Setting} title={'Setting'}
           />
           <Scene
+            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+          />
+          <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
           <Scene
@@ -55,9 +59,6 @@ const Routing = (props) => (
           />
           <Scene
             key={'notifications'} component={Notifications} title={'Notifications'}
-          />
-          <Scene
-            key={'dashboard'} component={Dashboard}  hideNavBar  title={'Dashboard'}
           />
           <Scene
             key={'chat'} component={Chat} title={'Chat'}
@@ -73,7 +74,7 @@ const Routing = (props) => (
           />
           <Scene
             key={'account'} component={Account} title={'Account'}
-            />
+          />
           <Scene
             key={'privacy'} component={Privacy} title={'Privacy'}
           />
@@ -99,7 +100,7 @@ const Routing = (props) => (
             key={'welcome'} component={Welcome} title={'Welcome'}
           />
           <Scene
-            key={'login'} component={Login}  hideNavBar title={'Login Screen'}
+            key={'login'} component={Login} hideNavBar title={'Login Screen'}
           />
           <Scene
             key={'register'} component={Register} hideNavBar title={'Register Screen'}
