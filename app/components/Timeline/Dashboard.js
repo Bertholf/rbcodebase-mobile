@@ -21,25 +21,31 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <TouchableOpacity onPress={Actions.profile}>
           <View style={{ justifyContent: 'flex-end' }}>
             <Image source={account} style={styles.account} />
           </View>
+          </TouchableOpacity>
+
+
+          <Text style= {{textAlign: 'center', marginTop : 100, fontSize : 18}}> Dashboard</Text>
+
 
           <View style={{ flex:1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
           <View style={{ justifyContent: 'flex-end' }}>
-          <TouchableOpacity onPress={() => this.pressScroll()}>
+          <TouchableOpacity onPress={Actions.timeline}>
             <Image style={styles.icon}
                 source={modul} />
           </TouchableOpacity>
           </View>
 
-          <TouchableOpacity onPress={() => this.pressScroll()}>
+          <TouchableOpacity onPress={Actions.friendlist}>
             <Image style={styles.icon}
                 source={home} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => this.pressScroll()}>
+          <TouchableOpacity onPress={Actions.chat}>
             <Image style={styles.icon}
                 source={chat} />
           </TouchableOpacity>

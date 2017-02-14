@@ -32,6 +32,7 @@ import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
+import Dashboard from './components/Timeline/Dashboard';
 
 
 const Routing = (props) => (
@@ -53,6 +54,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'notifications'} component={Notifications} title={'Notifications'}
+          />
+          <Scene
+            key={'dashboard'} component={Dashboard}  hideNavBar  title={'Dashboard'}
           />
           <Scene
             key={'chat'} component={Chat} title={'Chat'}
