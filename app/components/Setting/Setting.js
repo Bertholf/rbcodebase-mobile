@@ -9,6 +9,7 @@ const Setting = () => {
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
+          <Text>Account</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <Text style={styles.text}>Name</Text>
@@ -39,11 +40,13 @@ const Setting = () => {
               <Text style={styles.text}>Password</Text>
             </View>
           </TouchableOpacity>
+          <Text>Preferences</Text>
           <TouchableOpacity onPress={Actions.deactive}>
             <View style={styles.list1}>
               <Text style={styles.deactive}>Deactive</Text>
             </View>
           </TouchableOpacity>
+
         </View>
       </ScrollView>
     </View>
