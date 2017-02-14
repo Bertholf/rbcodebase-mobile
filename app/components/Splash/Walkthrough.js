@@ -21,7 +21,7 @@ export default class walkthrough extends Component {
           >
             <View style={{ flex: 1, backgroundColor:'#26A69A', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/Bromo.jpg')} />
+                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/bromo.jpg')} />
               </View>
               <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>FEATURE OR BENEFIT</Text>
@@ -30,7 +30,7 @@ export default class walkthrough extends Component {
             </View>
             <View style={{ flex: 1, backgroundColor:'#26C6DA', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270, width: width * 1 }} source={require('./../../images/Everest.jpg')} />
+                <Image style={{ height: 270, width: width * 1 }} source={require('./../../images/everest.jpg')} />
               </View>
               <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>FEATURE OR BENEFIT 2</Text>
@@ -39,7 +39,7 @@ export default class walkthrough extends Component {
             </View>
             <View style={{ flex: 1, backgroundColor:'#29B6F6', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/Jayawijaya.jpg')} />
+                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/jayawijaya.jpg')} />
               </View>
               <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>ENJOY UNLIMITED PAYES</Text>
@@ -48,7 +48,7 @@ export default class walkthrough extends Component {
             </View>
             <View style={{ flex: 1, backgroundColor:'#64B5F6', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/Rinjani.jpg')} />
+                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/rinjani.jpg')} />
               </View>
             <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>ENJOY UNLIMITED PAYES</Text>
