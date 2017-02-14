@@ -43,7 +43,8 @@ const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
-        <Scene key={'root'} component={NavBar}>
+          <Scene key={'navbar'} component={NavBar}>
+        <Scene key={'root'}>
           <Scene
             key="setting" component={Setting} title={'Setting'}
           />
@@ -111,7 +112,7 @@ const Routing = (props) => (
             key={'login'} component={Login} hideNavBar title={'Login Screen'}
           />
           <Scene
-            key={'register'} component={Register} hideNavBar title={'Register Screen'}
+            key={'register'} component={Register} title={'Register Screen'}
           />
           <Scene
             key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
@@ -150,6 +151,7 @@ const Routing = (props) => (
         <Scene key={'tos'} component={TOSContainer} />
         <Scene key={'pp'} component={PPContainer} />
         <Scene key={'loader'} component={Loader} />
+      </Scene>
       </Scene>
     </Router>
   </View>
