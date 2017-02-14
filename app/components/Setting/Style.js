@@ -5,7 +5,7 @@ const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    padding: 10,
+    padding: 20,
     elevation: 20,
   },
   imagesLeft: {
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
     borderWidth: 0.8,
-    borderRadius: 4,
-    justifyContent: 'flex-start',
+    borderRadius: 2,
+    justifyContent: 'space-between',
     marginBottom: 8,
   },
   list1: {
@@ -37,11 +37,14 @@ const styles = StyleSheet.create({
   text: {
     color: '#000000',
     fontSize: 20,
-    paddingLeft: 16,
   },
   deactive: {
     fontSize: 25,
     color: 'white',
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
