@@ -5,7 +5,6 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import {
   IndicatorViewPager, PagerDotIndicator
@@ -14,31 +13,6 @@ import { Actions } from 'react-native-router-flux';
 
 const { height } = Dimensions.get('window');
 export default class walkthrough extends Component {
-  constructor(props) {
-    super(props);
-    this.state =
-    {
-      gambar: './../../images/account.png',
-      subtitle: 'INTRODUCTION2',
-      subtitle2: 'WEATHER AND TRAIL CONDITIONS',
-    };
-          // {
-          //   gambar: "./Img/ic_android_black_24dp.png",
-          //   subtitle: "INTRODUCTION",
-          //   subtitle2: "WEATHER AND TRAIL CONDITIONS",
-          // },
-          // {
-          //   gambar: './Img/ic_perm_media_black_24dp.png',
-          //   subtitle: "INTRODUCTION",
-          //   subtitle2: "WEATHER AND TRAIL CONDITIONS",
-          // },
-          // {
-          //   gambar: "./ic_room_black_24dp.png",
-          //   subtitle: "INTRODUCTION",
-          //   subtitle2: "WEATHER AND TRAIL CONDITIONS",
-          // };
-  }
-
   render() {
     return (
       <View style={{ backgroundColor: '#2196F3' }}>
