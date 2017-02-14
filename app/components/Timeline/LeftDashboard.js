@@ -16,7 +16,7 @@ export default class LeftDashboard extends Component {
       <View>
         <View>
           <View>
-            <TouchableOpacity onPress= { Actions.dashboard}>
+            <TouchableOpacity onPress= { Actions.actionswiper}>
               <Image style={{height: 50}} source={require('../../images/dashboard/left.png')} />
             </TouchableOpacity>
           </View>
