@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#2196f3',
     width: 0.75 * width,
+    height: 60,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   acceptImg: {
     height: 30,
     width: 30,
-    marginTop: 20,
+    marginTop: 15,
     marginRight: 20,
   },
   policyStyle: {
