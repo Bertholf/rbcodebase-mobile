@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
   logoEmail: {
     width: 30,
     height: 30,
-    flexDirection: 'column',
     justifyContent: 'space-around',
     marginTop: 5,
     marginBottom: 5,
@@ -123,8 +122,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: 'white',
-    alignSelf: 'center'
-
   },
   button: {
     height: 36,
@@ -136,7 +133,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
-    padding:15,
+    padding: 15,
   },
   errBox: {
     marginTop: 20,

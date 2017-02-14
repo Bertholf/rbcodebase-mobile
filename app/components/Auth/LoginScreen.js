@@ -78,7 +78,7 @@ export default class LoginScreen extends Component {
               <View style={styles.logoEmail}>
                 <Image source={email} style={styles.logoEmail} />
               </View>
-              <View style={{ jjustifyContent: 'space-around', paddingLeft: 40 }}>
+              <View style={{ justifyContent: 'space-around', paddingLeft: 40 }}>
                 <Text style={styles.buttonText}>Sign in with Email</Text>
               </View>
             </View>
