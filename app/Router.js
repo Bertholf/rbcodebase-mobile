@@ -2,8 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 import { Router, Scene, Modal } from 'react-native-router-flux';
 // import your components below here
+import NavBar from './layouts/NavBar';
 import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
+import Walkthrough from './components/Splash/Walkthrough';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
@@ -32,15 +34,21 @@ import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
+import Dashboard from './components/Timeline/Dashboard';
+import LoginScreen from './components/Auth/LoginScreen';
+import LeftDashboard from './components/Timeline/LeftDashboard';
 
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
-        <Scene key={'root'}>
+        <Scene key={'root'} component={NavBar}>
           <Scene
             key="setting" component={Setting} title={'Setting'}
+          />
+          <Scene
+            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
@@ -55,6 +63,12 @@ const Routing = (props) => (
             key={'notifications'} component={Notifications} title={'Notifications'}
           />
           <Scene
+            key={'dashboard'} component={Dashboard} title={'Dashboard'}
+          />
+          <Scene
+            key={'leftdashboard'} component={LeftDashboard} title={'LeftDashboard'}
+          />
+          <Scene
             key={'chat'} component={Chat} title={'Chat'}
           />
           <Scene
@@ -64,11 +78,11 @@ const Routing = (props) => (
             key={'friendlist'} component={Friendlist} title={'Friend list'}
           />
           <Scene
-            key={'loginscreenemail'} component={LoginScreenEmail} title={'Friend list'}
+            key={'loginscreenemail'} component={LoginScreenEmail} title={'Sign in'}
           />
           <Scene
             key={'account'} component={Account} title={'Account'}
-            />
+          />
           <Scene
             key={'privacy'} component={Privacy} title={'Privacy'}
           />
@@ -94,13 +108,13 @@ const Routing = (props) => (
             key={'welcome'} component={Welcome} title={'Welcome'}
           />
           <Scene
-            key={'login'} component={Login}  hideNavBar title={'Login Screen'}
+            key={'login'} component={Login} hideNavBar title={'Login Screen'}
           />
           <Scene
             key={'register'} component={Register} hideNavBar title={'Register Screen'}
           />
           <Scene
-            key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'Forgot Password'}
+            key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
           />
           <Scene
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -127,7 +141,10 @@ const Routing = (props) => (
             key={'createLocation'} component={Location} title={'Location'}
           />
           <Scene
-            key={'registrationform'} component={RegistrationForm} hideNavBar={'Register'}
+            key={'registrationform'} component={RegistrationForm} title={'Register'}
+          />
+          <Scene
+            key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
