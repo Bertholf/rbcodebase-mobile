@@ -46,7 +46,7 @@ export default class walkthrough extends Component {
             style={{ height: height * 0.91 }}
             indicator={this._renderDotIndicator()}
           >
-            <View style={{flex: 1,paddingLeft: 10, paddingRight: 10, backgroundColor:'#3498db', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
+            <View style={{flex: 1,paddingLeft: 12, paddingRight: 12, backgroundColor:'#3498db', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
                 <Image style={{ height: 300 , width: 300, }} source={require('./../../images/account.png')} />
               </View>
@@ -60,7 +60,7 @@ export default class walkthrough extends Component {
                 <Image style={{ height: 300 , width: 300, }} source={require('./../../images/female.png')} />
               </View>
               <View style={{flex: 4, alignItems: 'center' }}>
-                <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>ENJOY UNLIMITED PAYES</Text>
+                <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>FEATURE OR BENEFIT 2</Text>
                 <Text>The 93 mile long Wonderland Trail circumnavigates Mt Rainier withinroad and can be done as day hikes</Text>
               </View>
             </View>
