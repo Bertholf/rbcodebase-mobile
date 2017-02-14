@@ -57,10 +57,10 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} component={SplashScreen}  hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
           />
           <Scene
-            key={'notifications'} component={Notifications} initial title={'Notifications'}
+            key={'notifications'} component={Notifications}  title={'Notifications'}
           />
           <Scene
             key={'dashboard'} component={Dashboard} title={'Dashboard'}
