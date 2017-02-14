@@ -48,23 +48,12 @@ const styles = StyleSheet.create({
   },
   swapContainer: {
     flex: 1,
-    justifyContent: 'flex-end',
+    marginTop: 90,
     alignItems: 'center',
   },
   swapImage: {
     width: 70,
     height: 50,
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold',
   },
 });
 
