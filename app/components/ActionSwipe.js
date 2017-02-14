@@ -53,7 +53,19 @@ class ActionSwiper extends Component {
         let sgs = new SimpleGesture(e, gs);
         console.log('Swiped ', sgs.relativeGestureDistance.x*100, '% of the screen horizontally');
         console.log('Swiped ', sgs.relativeGestureDistance.y*100, '% of the screen vertically');
-        Animated.event([null, {dx: this.state.pan.x, dy: this.state.pan.y }]);
+        // Animated.event([null, {dx: this.state.pan.x, dy: this.state.pan.y }]);
+        if (sgs.isSwipeUp()) {
+          this.setState({ top: height, right: 0, left: 0, bottom: 0 });
+        }
+        if (sgs.isSwipeLeft()) {
+          this.setState({ left: width, right: 0, top: 0, bottom: 0 });
+        }
+        if (sgs.isSwipeUp()) {
+          this.setState({ bottom: height, right: 0, left: 0, top: 0 });
+        }
+        if (sgs.isSwipeRight()) {
+          this.setState({ right: width, top: 0, left: 0, bottom: 0 });
+        }
       },
       onPanResponderRelease: (e, { vx, vy }) => {
       },
@@ -82,7 +94,7 @@ class ActionSwiper extends Component {
         <View style={[styles.scene, { zIndex:2, top: -height + this.state.top }]}>
           <Text style={{ fontSize: 30 }}>TOP</Text>
         </View>
-        <View style={[styles.scene, { zIndex:2, left: -width +  this.state.left}]}>
+        <View style={[styles.scene, { zIndex:2, left: -width +  this.state.left }]}>
           <Text style={{ fontSize: 30 }}>LEFT</Text>
         </View>
         <View style={[styles.scene, { zIndex:2, right: -width + this.state.right }]}>
