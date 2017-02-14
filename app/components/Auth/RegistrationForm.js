@@ -90,6 +90,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
+                editable
                 value={this.props.firstName ? this.props.firstName : ''}
               />
             </View>
@@ -112,6 +113,7 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 value={this.props.username ? this.props.username : ''}
+                editable
               />
               {this.state.availableUser === true ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
               : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
@@ -128,6 +130,7 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 value={this.props.email ? this.props.email : ''}
+                editable
               />
             </View>
             <View style={styles.textinputWrapperStyle}>
