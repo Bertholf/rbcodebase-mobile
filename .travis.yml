@@ -1,0 +1,34 @@
+language: android
+jdk: oraclejdk8
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-23.0.1
+    - build-tools-23.0.3
+    - build-tools-25.0.2
+    - android-25
+    - android-24
+    - android-23
+    - add-on
+    - extra-android-m2repository
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+cache:
+  yarn: true
+before_install: #1.1
+  - rvm install 2.3.1
+  - rvm use 2.3.1
+  - nvm install 7
+  - node --version
+  - npm install --global yarn
+  - gem install fastlane
+install:
+  - yarn
+script:
+  - cd android && fastlane android beta

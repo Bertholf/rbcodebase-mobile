@@ -306,7 +306,14 @@
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
 		};
-		9C9E521C1E4C3668006D9146 /* PBXContainerItemProxy */ = {
+		9C8102411E5217E100074327 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D91353961DA7849100AABC96;
+			remoteInfo = OAuthManager;
+		};
+		9C96B78F1E4D344A00B90FF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */;
 			proxyType = 2;
@@ -368,6 +375,7 @@
 		9CFDD4FF1E4AE2820082B51C /* GoogleSignInModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSignInModule.m; sourceTree = "<group>"; };
 		9CFDD52D1E4AEFE10082B51C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "hikerapp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A065F7BAC4F2468BB723C844 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
+		A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OAuthManager.xcodeproj; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; };
 		A6D0BCB65B494568AF355C1F /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeLocalization.xcodeproj; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; };
 		B135926FE6B844F78E9EB10A /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B484EA379C5246CF8A18C12E /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -611,6 +619,7 @@
 				04EB77DAC1974A9B9247DEA3 /* RCTFBSDK.xcodeproj */,
 				4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */,
 				9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */,
+				A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -732,10 +741,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9C81023E1E5217E100074327 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C8102421E5217E100074327 /* libOAuthManager.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9C9E52331E4C4A2C006D9146 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C9E52571E4C4A2C006D9146 /* libRNImagePicker.a */,
+				9C96B7901E4D344A00B90FF6 /* libRNImagePicker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -756,14 +773,6 @@
 				9CFDD4FF1E4AE2820082B51C /* GoogleSignInModule.m */,
 			);
 			path = google;
-			sourceTree = "<group>";
-		};
-		9CFDD60F1E4C23870082B51C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9C9E521D1E4C3668006D9146 /* libRNImagePicker.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -824,6 +833,10 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 8RM68JA526;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "hikerapp" */;
@@ -845,6 +858,10 @@
 				{
 					ProductGroup = 9C6972A01E40B92700D843FA /* Products */;
 					ProjectRef = 4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */;
+				},
+				{
+					ProductGroup = 9C81023E1E5217E100074327 /* Products */;
+					ProjectRef = A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1177,11 +1194,18 @@
 			remoteRef = 9C6973001E41B4F600D843FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9C9E521D1E4C3668006D9146 /* libRNImagePicker.a */ = {
+		9C8102421E5217E100074327 /* libOAuthManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOAuthManager.a;
+			remoteRef = 9C8102411E5217E100074327 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9C96B7901E4D344A00B90FF6 /* libRNImagePicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
-			remoteRef = 9C9E521C1E4C3668006D9146 /* PBXContainerItemProxy */;
+			remoteRef = 9C96B78F1E4D344A00B90FF6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1427,6 +1451,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 8RM68JA526;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1452,6 +1477,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
+				PROVISIONING_PROFILE = "92c9b5b0-5885-4833-8b5e-86ce8d0a99d9";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1461,7 +1488,9 @@
 			baseConfigurationReference = 357E11807EE13E1113B707BA /* Pods-hikerapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8RM68JA526;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1487,6 +1516,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
+				PROVISIONING_PROFILE = "92c9b5b0-5885-4833-8b5e-86ce8d0a99d9";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

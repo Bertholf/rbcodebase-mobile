@@ -2,14 +2,15 @@ import React from 'react';
 import { View } from 'react-native';
 import { Router, Scene, Modal } from 'react-native-router-flux';
 // import your components below here
-import NavBar from './layouts/NavBar';
 import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
 import Walkthrough from './components/Splash/Walkthrough';
 import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
+import PPContainer from './containers/PrivacyPolicy/PPContainer';
 import Register from './components/Auth/RegisterScreen';
+import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
@@ -19,7 +20,6 @@ import Setting from './components/Setting/Setting';
 import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy';
 import Email from './components/Setting/EmailNotif';
-import NavigationDrawer from './layouts/NavigationDrawer';
 import Notifications from './components/Timeline/notification';
 import Loader from './containers/Loader';
 import Account from './components/Profile/AccountSetting';
@@ -30,6 +30,10 @@ import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
+import Location from './components/Timeline/StatusPostCard/createLocation';
+import TimelineShare from './components/Timeline/TimelineShare';
+import RegistrationForm from './components/Auth/RegistrationForm';
+
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -123,9 +127,8 @@ const Routing = (props) => (
           </Scene>
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
-        <Scene
-          key={'loader'} component={Loader}
-        />
+        <Scene key={'pp'} component={PPContainer} />
+        <Scene key={'loader'} component={Loader} />
       </Scene>
     </Router>
   </View>

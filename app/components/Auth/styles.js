@@ -4,10 +4,10 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffffff',
+    flex: 1,
     justifyContent: 'center',
     padding: 20,
-    flex: 1,
+    backgroundColor: '#fff',
   },
   logo: {
     marginTop: 16,
@@ -19,44 +19,61 @@ const styles = StyleSheet.create({
     borderRightWidth: 0.5,
     borderColor: '#000000',
   },
-  textInput: {
-    // // width: width * 0.8,
-    // height: 50,
-    bottom: 10,
-    color: '#2196F3',
+  otherlog: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 5,
+    marginBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
-  btnReg: {
-    backgroundColor: '#2196F3',
-    borderRadius: 2,
+  buttonEmail: {
+    height: 50,
+    width: 320,
+    backgroundColor: '#4099FF',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
     elevation: 2,
-    height: 40,
   },
-  textReg: {
-    color: '#fff',
-    fontSize: 20,
-    textAlign: 'center',
-    paddingBottom:8,
-    paddingTop: 8,
+  buttonTwitter: {
+    height: 50,
+    width: 320,
+    backgroundColor: '#4099FF',
+    borderColor: '#4099FF',
+    borderWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
+    tintColor : 'white'
+  },
+  buttonFacebook: {
+    height: 50,
+    width: 320,
+    backgroundColor: '#3b5998',
+    borderColor: '#3b5998',
+    borderWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
+  },
+  buttonGoogle: {
+    height: 50,
+    width: 320,
+    backgroundColor: '#DC4A38',
+    borderColor: '#DC4A38',
+    borderWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
   },
   buttonGroup: {
     top: 10,
     width: width * 0.6,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   icon: {
-    height: 50,
-    width: 50,
-    marginRight: 20 * 0.5,
-  },
-  separator: {
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
-  },
-  separatorText: {
-    fontSize: 15,
-    color: 'white',
+    height: 24,
+    width: 24,
+    marginLeft: 10,
   },
   picker: {
     height: 50,
@@ -64,46 +81,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#f0f0f0',
   },
-  genderRow: {
-    width: width * 0.9,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 7,
-  },
-  btnGender: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 2,
-    height: 55,
-    width: (width * 0.85) / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-  },
   imgGender: {
     height: 40,
     width: 40,
     marginRight: 10,
   },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
+  text: {
+    fontSize: 18,
+    color: 'white',
+    marginLeft: 10,
   },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
-  },
-  wrong: {
-    color: '#ff0000',
-    alignSelf: 'flex-start',
-  },
-  errBox: {
-    height: 40,
-    backgroundColor: 'rgba(255, 0, 0, 0.7)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-  },
+  separatorText:{
+    marginTop: 20,
+    marginBottom: 20,
+    fontSize: 20,
+  }
 });
 export default styles;

@@ -1,9 +1,13 @@
 import { Actions } from 'react-native-router-flux';
+import OAuthManager from 'react-native-oauth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import auth from '../services/auth';
-import {AsyncStorage} from 'react-native';
 
+import config from '../config';
+import { AsyncStorage } from 'react-native';
+
+const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
 export const UPDATE_PASSWORD_TEXT = 'UPDATE_PASSWORD_TEXT';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
@@ -19,20 +23,24 @@ export function updatePassword(password) {
 }
 export function submitLogin(username, password) {
   return dispatch => {
-    dispatch (requestLogin())
-    return auth.login(username, password).then(({data})=> {
-     return AsyncStorage.setItem('accessToken', data.accessToken);
-   }).then(() =>{
-     return AsyncStorage.getItem('accessToken');
-   })
+    dispatch (requestLogin("Logging in"))
+    return auth.login(username, password).then((data)=> {
+      return AsyncStorage.setItem('accessToken', data.access_token);
+    }).then(() =>{
+      return AsyncStorage.getItem('accessToken');
+    })
    .then((token)=>{
      dispatch(doneLogin());
      Actions.timelineList();
    })
-   .catch(err => console.log(err));
+   .catch(err => dispatch(errorLogin(err)));
   }
 }
-export function doneLogin(response) {
+export function doneLogin(response = '') {
+  if (response) {
+    AsyncStorage.setItem('provider', response.provider);
+    AsyncStorage.setItem('accessToken', response.accessToken);
+  }
   Actions.pop();
   Actions.timelineList();
   return { type: DONE_LOGIN, response };
@@ -65,5 +73,26 @@ export function loginWithFacebook() {
       return AccessToken.getCurrentAccessToken();
     }).then(({ accessToken }) => dispatch(doneLogin({ provider: 'facebook', accessToken })))
     .catch(err => errorLogin(err));
+  };
+}
+
+export const manager = new OAuthManager('RB Codebase');
+
+export function loginWithTwitter() {
+  return (dispatch) => {
+    manager.configure({
+      twitter: {
+        consumer_key: TWITTER_CONSUMER_KEY,
+        consumer_secret: TWITTER_CONSUMER_SECRET,
+      },
+    });
+    dispatch(requestLogin('Login With Twitter'));
+    return manager.authorize('twitter')
+      .then((resp) => {
+        const accessToken = resp.response.credentials.accessToken;
+        return accessToken;
+      })
+      .then(accessToken => dispatch(doneLogin({ accessToken, provider: 'twitter' })))
+      .catch(err => console.log('TWITTER ERR', err));
   };
 }
