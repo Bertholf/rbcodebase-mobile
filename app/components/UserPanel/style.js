@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
-  linksContainer: {
+  userContainer: {
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
@@ -23,14 +23,18 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   userImage: {
-    width: 130,
-    height: 130,
-    borderRadius: 130,
+    width: 120,
+    height: 120,
+    borderRadius: 120,
+  },
+  linksContainer: {
+    flexDirection: 'column',
+    marginTop: 45,
   },
   imgLinksContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 10,
   },
   imgLinks: {
     width: 40,
