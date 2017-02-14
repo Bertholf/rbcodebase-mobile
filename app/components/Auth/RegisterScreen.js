@@ -26,7 +26,8 @@ const facebookLogo = require('../../images/facebook-square.png');
 const google2 = require('../../images/login/google.png');
 const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
-const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png')
+const mail = require('./../../images/ic_email_white_24dp.png');
+
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -71,7 +72,7 @@ export default class Register extends Component {
               onPress={() => facebookRegister()}
             >
               <View style={{ flexDirection: 'row'}}>
-                <Image source={facebookLogo} style={styles.icon} />
+                <Image source={facebookLogo} style={styles.facebookLogo} />
                 <Text style={styles.text}>Register With Facebook</Text>
               </View>
             </TouchableOpacity>
@@ -81,7 +82,7 @@ export default class Register extends Component {
               style={styles.buttonGoogle}
               activeOpacity={0.7} onPress={() => this.registerWithGoogle()} >
               <View style={{ flexDirection: 'row'}}>
-                <Image source={google2} style={styles.icon} />
+                <Image source={google2} style={styles.logoGoogle} />
                 <Text style={styles.text}>Register With Google</Text>
               </View>
             </TouchableOpacity>
@@ -96,13 +97,15 @@ export default class Register extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 20, marginBottom: 20 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-            <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
           <View style={styles.otherlog}>
-            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7} onPress={Actions.registrationform}>
+            <TouchableOpacity
+              style={styles.buttonEmail}
+              activeOpacity={0.7}
+              onPress={Actions.registrationform}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
                 <Text style={styles.text}>Register With Email</Text>

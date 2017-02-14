@@ -19,7 +19,22 @@ const styles = StyleSheet.create({
     borderRightWidth: 0.5,
     borderColor: '#000000',
   },
-  logoTwitter:{
+  logoGoogle: {
+    height: 23,
+    width: 35,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    borderRadius: 48,
+    marginRight: -5,
+    marginLeft: 5,
+  },
+  facebookLogo: {
+    height: 30,
+    width: 30,
+    borderRadius: 7,
+    marginLeft: 5,
+  },
+  logoTwitter: {
     tintColor: '#fff',
     height: 24,
     width: 24,
@@ -36,7 +51,8 @@ const styles = StyleSheet.create({
   buttonEmail: {
     height: 50,
     width: 320,
-    backgroundColor: '#4099FF',
+    borderColor: '#01579b',
+    backgroundColor: '#01579b',
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
@@ -44,8 +60,8 @@ const styles = StyleSheet.create({
   buttonTwitter: {
     height: 50,
     width: 320,
-    backgroundColor: '#4099FF',
-    borderColor: '#4099FF',
+    backgroundColor: '#55acee',
+    borderColor: '#55acee',
     borderWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -95,9 +111,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: 'white',
-    marginLeft: 10,
+    marginLeft: 20,
   },
-  separatorText:{
+  separatorText: {
     marginTop: 20,
     marginBottom: 20,
     fontSize: 20,

@@ -12,8 +12,13 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    flex: 1,
+  },
   textinputStyle: {
     fontSize: 16,
     color: '#2196f3',
@@ -62,11 +67,11 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     marginTop: 15,
-    marginRight: 20,
+    marginLeft: -40,
   },
   policyStyle: {
     flexDirection: 'row',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });
 
@@ -75,14 +80,20 @@ export default class RegistrationForm extends Component {
     super(props);
     this.state = {
       availableUser: true,
-      app: 'RBCodeBase'
+      app: 'RBCodeBase',
+      firstname: this.props.firstName,
+      lastname: this.props.lastName,
     };
+  }
+  componentWillMount() {
+    const firstname = this.props.firstName;
+    const lastname = this.props.lastName;
   }
   render() {
     return (
-      <View style={{ flex: 1 }} >
+      <View style={styles.container} >
         <ScrollView>
-          <View style={{ flex: 3, marginLeft: 16, marginRight: 16,  }} >
+          <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
                 placeholder="First Name"
@@ -90,7 +101,8 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                value={this.props.firstName ? this.props.firstName : ''}
+                onChangeText={({ firstname }) => this.setState({ firstname })}
+                value={this.state.firstname}
               />
             </View>
             <View style={styles.textinputWrapperStyle}>
@@ -100,7 +112,9 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                value={this.props.lastName ? this.props.lastName : ''}
+                editable
+                onChangeText={({ lastname }) => this.setState({ lastname })}
+                value={this.state.lastname}
               />
             </View>
             <View style={styles.line} />
@@ -112,6 +126,7 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 value={this.props.username ? this.props.username : ''}
+                editable
               />
               {this.state.availableUser === true ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
               : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
@@ -127,7 +142,8 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                value={this.props.email ? this.props.email : ''}
+                value={this.props.email}
+                editable
               />
             </View>
             <View style={styles.textinputWrapperStyle}>
