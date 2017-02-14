@@ -41,7 +41,7 @@ export default class Dashboard extends Component {
                 source={home}     />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={Actions.chat}>
+            <TouchableOpacity onPress={Actions.leftdashboard}>
               <Image
                 style={styles.icon}
                 source={chat} />

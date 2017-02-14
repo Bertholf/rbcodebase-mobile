@@ -34,6 +34,7 @@ import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
 import Dashboard from './components/Timeline/Dashboard';
 import LoginScreen from './components/Auth/LoginScreen';
+import LeftDashboard from './components/Timeline/LeftDashboard';
 
 
 const Routing = (props) => (
@@ -60,6 +61,9 @@ const Routing = (props) => (
             key={'dashboard'} component={Dashboard} hideNavBar title={'Dashboard'}
           />
           <Scene
+            key={'leftdashboard'} component={LeftDashboard}  hideNavBar title={'LeftDashboard'}
+          />
+          <Scene
             key={'chat'} component={Chat} title={'Chat'}
           />
           <Scene
@@ -73,7 +77,7 @@ const Routing = (props) => (
           />
           <Scene
             key={'account'} component={Account} title={'Account'}
-            />
+          />
           <Scene
             key={'privacy'} component={Privacy} title={'Privacy'}
           />
@@ -99,7 +103,7 @@ const Routing = (props) => (
             key={'welcome'} component={Welcome} title={'Welcome'}
           />
           <Scene
-            key={'login'} component={Login}  hideNavBar title={'Login Screen'}
+            key={'login'} component={Login} hideNavBar title={'Login Screen'}
           />
           <Scene
             key={'register'} component={Register} hideNavBar title={'Register Screen'}
