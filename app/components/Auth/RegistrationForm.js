@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   textinputStyle: {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   policyStyle: {
     flexDirection: 'row',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
 });
 
