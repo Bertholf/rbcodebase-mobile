@@ -75,7 +75,11 @@ export default class RegistrationForm extends Component {
     super(props);
     this.state = {
       availableUser: true,
-      app: 'RBCodeBase'
+      app: 'RBCodeBase',
+      onchangef: false,
+      onchangel: false,
+      firstname: '',
+      lastname: '',
     };
   }
   render() {
@@ -91,7 +95,8 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 editable
-                value={this.props.firstName ? this.props.firstName : ''}
+                onPress={({ onchange }) => this.setState({ onchange: true })}
+                value={this.state.onchange ? ({ firstname }) => this.setState({ firstname }) : this.props.firstName}
               />
             </View>
             <View style={styles.textinputWrapperStyle}>
@@ -101,7 +106,9 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                value={this.props.lastName ? this.props.lastName : ''}
+                editable
+                onPress={({ onchange }) => this.setState({ onchange: true })}
+                value={this.state.onchange ? ({ lastname }) => this.setState({ lastname }) : this.props.lastName}
               />
             </View>
             <View style={styles.line} />
