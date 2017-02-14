@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  ListView,
+  ScrollView,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -21,16 +25,17 @@ const styles = {
 };
 
 
-const test = () => {
-  return (
-    <Swiper showsButtons={true} loop={false} showsPagination={false}>
-      <View style={styles.slide1} >
-        <Text style={styles.text}>Hello Swiper</Text>
-      </View>
-      <View style={styles.slide2}>
-        <Text style={styles.text}>Beautiful</Text>
-      </View>
-    </Swiper>
+export default class test extends Component {
+  render() {
+    return (
+      <Swiper showsButtons={true} loop={false} showsPagination={false}>
+        <View style={styles.slide1} >
+          <Text style={styles.text}>Hello Swiper</Text>
+        </View>
+        <View style={styles.slide2} >
+          <Text style={styles.text}>This is Slide 2</Text>
+        </View>
+      </Swiper>
   );
-};
-module.exports = test;
+  };
+}
