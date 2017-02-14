@@ -4,4 +4,7 @@ export default {
   CLIENT_ID: '2',
   CLIENT_SECRET: 'F3cAPA5doHFSt83rQ5TYsh3BMopvZb6B0tasb2nm',
   GRANT_TYPE: 'password',
+  TWITTER_CONSUMER_KEY: 'wMBFoiJYK4N9MEynkyFCpJsiw',
+  TWITTER_CONSUMER_SECRET: 'MfNHpjO7AXg7YE4BltnfCHjRKkhieqAES9HRcqXRgbRyIvFd8u',
+  TWITTER_REDIRECT_URL: 'http://rbcodebase.com/login/twitter',
 };

@@ -48,7 +48,7 @@ export default class ForgotPassword extends Component {
 
     return (
       <View style={styles.container}>
-        <View
+        {/* <View
           style={{
             justifyContent: 'center',
             alignItems: 'center' }}
@@ -56,13 +56,13 @@ export default class ForgotPassword extends Component {
           <Image
             source={logo} style={styles.image}
           />
-        </View>
+        </View> */}
         <Text>{this.state.profile.email}</Text>
         <TextInput
-          style={{ height: 40, color: '#2196f3' }}
+          style={styles.textInput}
           placeholderTextColor={'#2196f3'}
           onChangeText={email => this.setState({ email })}
-          placeholder="Email or Phone"
+          placeholder="Email"
         />
         {!emailInput || emailValidator ?
           <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
@@ -80,15 +80,23 @@ export default class ForgotPassword extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    marginTop: 20,
     padding: 20,
     flex: 1,
-    backgroundColor: '#dddddd',
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 30,
     alignSelf: 'center',
     marginBottom: 30,
+  },
+  textInput: {
+    height: 50,
+    color: '#2196f3',
+    borderColor: '#2196f3',
+    borderRadius: 2,
+    borderWidth: 0.5,
+    padding: 15,
   },
   buttonText: {
     fontSize: 18,
@@ -103,8 +111,8 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 36,
-    backgroundColor: '#1565C0',
-    borderColor: '#1976D2',
+    backgroundColor: '#039be5',
+    borderColor: '#0288d1',
     borderWidth: 1,
     borderRadius: 3,
     marginTop: 15,
