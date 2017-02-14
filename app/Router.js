@@ -62,7 +62,7 @@ const Routing = (props) => (
             key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
-            key={'notifications'} component={Notifications} title={'Notifications'}
+            key={'notifications'} component={Notifications}  title={'Notifications'}
           />
           <Scene
             key={'dashboard'} component={Dashboard} title={'Dashboard'}

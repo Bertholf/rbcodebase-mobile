@@ -1,38 +1,55 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
-    height,
     flex: 1,
+    justifyContent: 'center',
     padding: 20,
     backgroundColor: '#fff',
   },
-  contentLoginEmail: {
-    marginTop: 20,
-  },
-  title: {
-    fontSize: 30,
-    alignSelf: 'center',
-    marginBottom: 30,
-  },
   logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 30,
+    marginTop: 16,
+    height: 300 * 0.33,
+    width: 300 * 0.33,
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
+    borderColor: '#000000',
+    marginBottom: 30
+  },
+  logoGoogle: {
+    height: 23,
+    width: 35,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    borderRadius: 48,
+    marginRight: -5,
+    marginLeft: 5,
+  },
+  facebookLogo: {
+    height: 30,
+    width: 30,
+    borderRadius: 7,
+    marginLeft: 5,
+  },
+  logoTwitter: {
+    tintColor: '#fff',
+    height: 24,
+    width: 24,
+    marginLeft: 10,
   },
   otherlog: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 5,
     marginBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
-  loginEmail: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    marginBottom: 5,
-  },
-  email: {
+  buttonEmail: {
     height: 50,
     width: 320,
     borderColor: '#01579b',
@@ -41,97 +58,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 2,
   },
-  logoEmail: {
-    width: 30,
-    height: 30,
-    justifyContent: 'space-around',
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  facebook: {
-    height: 45,
-    width: 23,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    borderRadius: 48,
-  },
-  twitter: {
-    marginTop: 5,
-    height: 45,
+  buttonTwitter: {
+    height: 50,
     width: 320,
     backgroundColor: '#55acee',
     borderColor: '#55acee',
     borderWidth: 1,
-    borderRadius: 0,
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
+    tintColor : 'white'
   },
-  logoTwitter: {
-    width: 23,
-    height: 23,
-    marginRight: 10,
-    tintColor: '#fff',
-  },
-  buttonTextTwitter: {
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'white',
-  },
-  google: {
-    marginTop: 10,
-    height: 45,
-    width: 320,
-    backgroundColor: '#DC4A38',
-    borderColor: '#DC4A38',
-    borderWidth: 1,
-    borderRadius: 0,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    elevation: 2,
-  },
-  logoGoogle: {
-    height: 35,
-    width: 35,
-    justifyContent: 'center',
-  },
-  buttonTextGoogle: {
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'white',
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'white',
-  },
-  button: {
-    height: 36,
-    backgroundColor: '#039be5',
-    borderColor: '#0288d1',
-    borderWidth: 1,
-    borderRadius: 2,
-    marginTop: 5,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    elevation: 2,
-    padding: 15,
-  },
-  errBox: {
-    marginTop: 20,
-    marginBottom: 30,
-    height: 40,
-    backgroundColor: 'rgba(255, 0, 0, 0.7)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-  },
-  wrong: {
-    color: '#ff0000',
-    alignSelf: 'flex-start',
-  },
-  facebookBtn: {
-    height: 45,
+  buttonFacebook: {
+    height: 50,
     width: 320,
     backgroundColor: '#3b5998',
     borderColor: '#3b5998',
@@ -140,23 +79,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 2,
   },
-  facebookLogo: {
-    height: 30,
-    width: 30,
+  buttonGoogle: {
+    height: 50,
+    width: 320,
+    backgroundColor: '#DC4A38',
+    borderColor: '#DC4A38',
+    borderWidth: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
   },
-  facebookText: {
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'white',
+  buttonGroup: {
+    top: 10,
+    width: width * 0.6,
   },
-  textInput: {
+  icon: {
+    height: 24,
+    width: 24,
+    marginLeft: 10,
+  },
+  picker: {
+    height: 50,
+    width: width * 0.9,
+    borderBottomWidth: 1,
+    borderColor: '#f0f0f0',
+  },
+  imgGender: {
     height: 40,
-    borderWidth: 0.5,
-    borderRadius: 2,
-    paddingLeft: 15,
-    paddingRight: 15,
+    width: 40,
+    marginRight: 10,
+  },
+  text: {
+    fontSize: 18,
+    color: 'white',
+    marginLeft: 20,
+  },
+  separatorText: {
+    marginTop: 20,
     marginBottom: 20,
-    borderColor: '#2196f3',
+    fontSize: 20,
   }
 });
 export default styles;
