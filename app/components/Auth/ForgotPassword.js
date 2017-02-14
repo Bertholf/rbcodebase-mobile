@@ -59,7 +59,7 @@ export default class ForgotPassword extends Component {
         </View> */}
         <Text>{this.state.profile.email}</Text>
         <TextInput
-          style={{ height: 40, color: '#2196f3' }}
+          style={styles.textInput}
           placeholderTextColor={'#2196f3'}
           onChangeText={email => this.setState({ email })}
           placeholder="Email"
@@ -89,6 +89,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignSelf: 'center',
     marginBottom: 30,
+  },
+  textInput: {
+    height: 50,
+    color: '#2196f3',
+    borderColor: '#2196f3',
+    borderRadius: 2,
+    borderWidth: 0.5,
+    padding: 15,
   },
   buttonText: {
     fontSize: 18,
