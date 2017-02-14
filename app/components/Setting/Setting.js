@@ -11,20 +11,32 @@ const Setting = () => {
         <View style={styles.container}>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
-              <Image style={styles.imagesLeft} source={require('../../images/ic_account_box_black_24dp.png')} />
-              <Text style={styles.text}>Account</Text>
+              <Text style={styles.text}>Name</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.privacy}>
             <View style={styles.list}>
-              <Image style={styles.imagesLeft} source={require('../../images/ic_build_black_24dp.png')} />
-              <Text style={styles.text}>Privacy</Text>
+              <Text style={styles.text}>Username</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.email}>
             <View style={styles.list}>
-              <Image style={styles.imagesLeft} source={require('../../images/ic_contact_mail_black_24dp.png')} />
+              <Text style={styles.text}>Birthday</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Mobile Number</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
               <Text style={styles.text}>Email</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <Text style={styles.text}>Password</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.deactive}>
