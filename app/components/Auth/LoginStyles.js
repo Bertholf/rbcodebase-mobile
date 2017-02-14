@@ -33,6 +33,18 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
+  email: {
+    marginTop: 10,
+    height: 50,
+    width: 320,
+    backgroundColor: '#0277bd',
+    borderColor: '#01579b',
+    borderWidth: 0.5,
+    borderRadius: 0,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
+  },
   logoEmail: {
     width: 30,
     height: 30,
@@ -111,6 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: 'white',
+    alignSelf: 'center'
 
   },
   button: {
@@ -118,11 +131,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#039be5',
     borderColor: '#0288d1',
     borderWidth: 1,
-    borderRadius: 3,
+    borderRadius: 2,
     marginTop: 5,
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
+    padding:15,
   },
   errBox: {
     marginTop: 20,
@@ -160,5 +174,14 @@ const styles = StyleSheet.create({
     color: 'white',
     alignSelf: 'center',
   },
+  textInput: {
+    height: 40,
+    borderWidth: 0.5,
+    borderRadius: 2,
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginBottom: 20,
+    borderColor: '#2196f3',
+  }
 });
 export default styles;
