@@ -170,11 +170,6 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.deactive}>
-            <View style={styles.list1}>
-              <Text style={styles.deactive}>Deactive</Text>
-            </View>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
