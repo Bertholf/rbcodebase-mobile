@@ -2,6 +2,7 @@ import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
 import notifService from '../../services/notif';
+import Swiper from 'react-native-swiper';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +35,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#9091AC',
     fontWeight: 'bold',
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9DD6EB',
   },
 });
  console.log("helli", ListView);

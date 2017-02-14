@@ -4,8 +4,8 @@ export const MOVE_TO_DASHBOARD = 'MOVE_TO_DASHBOARD';
 export const MOVE_TO_AUTH_LOGIN = 'MOVE_TO_AUTH_LOGIN';
 
 export function moveToDashboard() {
-  Actions.timelineList();
+  Actions.Walkthrough();
 }
 export function moveToAuthLogin() {
-  Actions.login({ type: 'replace' });
+  Actions.Walkthrough({ type: 'replace' });
 }

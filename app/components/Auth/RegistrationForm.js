@@ -13,8 +13,13 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    flex: 1,
+  },
   textinputStyle: {
     fontSize: 16,
     color: '#2196f3',
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     marginTop: 15,
-    marginRight: 20,
+    marginLeft: -40,
   },
   policyStyle: {
     flexDirection: 'row',
@@ -113,7 +118,7 @@ export default class RegistrationForm extends Component {
       }
     };
     return (
-      <View style={{ flex: 1 }} >
+      <View style={styles.container} >
         <ScrollView>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
