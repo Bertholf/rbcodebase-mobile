@@ -25,16 +25,16 @@ const styles = {
 export default class extends Component {
   render () {
     return (
-      <View>
-        <Swiper>
-        <View style={styles.slide1}>
+
+        <Swiper showsButtons={true} loop={false} showsPagination={false}>
+        <View style={styles.slide1} >
           <Text style={styles.text}>Hello Swiper</Text>
         </View>
         <View style={styles.slide2}>
           <Text style={styles.text}>Beautiful</Text>
         </View>
       </Swiper>
-      </View>
+
     )
   }
 }
