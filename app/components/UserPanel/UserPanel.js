@@ -130,7 +130,7 @@ class userPanel extends React.Component {
         </View>
 
         <View style={this.viewStyle()}>
-          <TitleText label="Top" />
+          <TitleText label="Dashboard" />
         </View>
       </Swiper>
     );
