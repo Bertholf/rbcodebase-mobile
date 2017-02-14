@@ -10,7 +10,6 @@ import {
   IndicatorViewPager, PagerDotIndicator
 } from 'rn-viewpager';
 import { Actions } from 'react-native-router-flux';
-
 const { height } = Dimensions.get('window');
 export default class walkthrough extends Component {
   render() {
