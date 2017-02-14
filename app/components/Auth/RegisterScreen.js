@@ -26,7 +26,8 @@ const facebookLogo = require('../../images/facebook-square.png');
 const google2 = require('../../images/login/google.png');
 const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
-const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png')
+const mail = require('./../../images/ic_email_white_24dp.png');
+
 export default class Register extends Component {
   constructor(props) {
     super(props);
@@ -102,7 +103,10 @@ export default class Register extends Component {
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
           <View style={styles.otherlog}>
-            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7} onPress={Actions.registrationform}>
+            <TouchableOpacity
+              style={styles.buttonEmail}
+              activeOpacity={0.7}
+              onPress={Actions.registrationform}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
                 <Text style={styles.text}>Register With Email</Text>

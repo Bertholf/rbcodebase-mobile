@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
   buttonEmail: {
     height: 50,
     width: 320,
-    backgroundColor: '#4099FF',
+    borderColor: '#01579b',
+    backgroundColor: '#01579b',
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
@@ -59,8 +60,8 @@ const styles = StyleSheet.create({
   buttonTwitter: {
     height: 50,
     width: 320,
-    backgroundColor: '#4099FF',
-    borderColor: '#4099FF',
+    backgroundColor: '#55acee',
+    borderColor: '#55acee',
     borderWidth: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
