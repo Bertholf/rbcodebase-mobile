@@ -15,10 +15,9 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    height: 30,
-    width: 30,
-    borderRadius: 7,
-      justifyContent: 'space-around',
+    height: 20,
+    width: 20,
+    justifyContent: 'space-around',
   },
 });
 export default styles;
