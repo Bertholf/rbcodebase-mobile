@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-
 const styles = {
   slide1: {
     flex: 1,
@@ -22,19 +21,16 @@ const styles = {
 };
 
 
-export default class extends Component {
-  render () {
-    return (
-
-        <Swiper showsButtons={true} loop={false} showsPagination={false}>
-        <View style={styles.slide1} >
-          <Text style={styles.text}>Hello Swiper</Text>
-        </View>
-        <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-      </Swiper>
-
-    )
-  }
-}
+const test = () => {
+  return (
+    <Swiper showsButtons={true} loop={false} showsPagination={false}>
+      <View style={styles.slide1} >
+        <Text style={styles.text}>Hello Swiper</Text>
+      </View>
+      <View style={styles.slide2}>
+        <Text style={styles.text}>Beautiful</Text>
+      </View>
+    </Swiper>
+  );
+};
+module.exports = test;
