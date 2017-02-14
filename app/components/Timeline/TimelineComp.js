@@ -113,7 +113,7 @@ export default class MapMain extends Component {
     timelineList.getTimeline()
     .then((data) => {
       this.setState({ list: data, loading: false });
-    });
+    }).catch(err => console.log(err));
   }
   onChangeImg() {
     this.setState({
@@ -145,7 +145,7 @@ export default class MapMain extends Component {
       );
     } else {
       return(
-        <ActivityIndicator />
+        <Text>No Content Display</Text>
       );
     }
   }
