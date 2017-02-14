@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     height: 50,
     marginBottom: 40,
+    marginRight: 16,
+    marginLeft: 16,
   },
   textReg: {
     color: '#fff',
