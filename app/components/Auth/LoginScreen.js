@@ -42,7 +42,7 @@ export default class LoginScreen extends Component {
                   source={facebookLogo}
                 />
               </View>
-              <View style={{ justifyContent: 'space-around', paddingLeft: 45 }} >
+              <View style={{ justifyContent: 'space-around', paddingLeft: 23 }} >
                 <Text style={styles.facebookText}>Sign in with Facebook</Text>
               </View>
             </View>
@@ -53,7 +53,7 @@ export default class LoginScreen extends Component {
               <View style={{ flexDirection: 'row', paddingLeft: 7 }}>
                 <View style={styles.logoGoogle}>
                   <Image source={google} style={styles.logoGoogle} /></View>
-                <View style={{ justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+                <View style={{ justifyContent: 'space-around', paddingLeft: 18 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
             </TouchableHighlight>
           </View>
@@ -63,7 +63,7 @@ export default class LoginScreen extends Component {
           <View style={{ flexDirection: 'row', paddingLeft: 7 }}>
             <View style={styles.logoTwitter}>
               <Image source={twitter} style={styles.logoTwitter} /></View>
-            <View style={{ justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
+            <View style={{ justifyContent: 'space-around', paddingLeft: 20 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
           </View>
         </TouchableHighlight>
         <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
@@ -78,7 +78,7 @@ export default class LoginScreen extends Component {
               <View style={styles.logoEmail}>
                 <Image source={email} style={styles.logoEmail} />
               </View>
-              <View style={{ justifyContent: 'space-around', paddingLeft: 40 }}>
+              <View style={{ justifyContent: 'space-around', paddingLeft: 20 }}>
                 <Text style={styles.buttonText}>Sign in with Email</Text>
               </View>
             </View>
