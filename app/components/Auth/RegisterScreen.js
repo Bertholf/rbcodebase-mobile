@@ -91,7 +91,7 @@ export default class Register extends Component {
               activeOpacity={0.7}
               onPress={() => twitterRegister()}>
               <View style={{ flexDirection: 'row'}}>
-                <Image source={twitter} style={styles.icon} />
+                <Image source={twitter} style={styles.logoTwitter} />
                 <Text style={styles.text}>Register With Twitter</Text>
               </View>
             </TouchableOpacity>
@@ -107,6 +107,11 @@ export default class Register extends Component {
                 <Image style={styles.icon} source={mail} />
                 <Text style={styles.text}>Register With Email</Text>
               </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{ paddingTop: 8, paddingBottom: 30 }}>
+            <TouchableOpacity onPress={Actions.loginscreen}>
+              <Text style={{ fontSize: 14, color: 'black' }}>Sign In</Text>
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 10, alignItems: 'center' }}>

@@ -17,7 +17,7 @@ const facebookRegister = () => {
            lastName: result.last_name,
            email: result.email,
          };
-         Actions.register(props);
+         Actions.registrationform(props);
        } else {
         console.log('Success fetching data ', result);
        }
