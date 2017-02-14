@@ -10,47 +10,47 @@ import {
   IndicatorViewPager, PagerDotIndicator
 } from 'rn-viewpager';
 import { Actions } from 'react-native-router-flux';
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 export default class walkthrough extends Component {
   render() {
     return (
       <View style={{ backgroundColor: '#2196F3' }}>
           <IndicatorViewPager
-            style={{ height: height * 0.91 }}
+            style={{ height: height * 0.88 }}
             indicator={this._renderDotIndicator()}
           >
-            <View style={{flex: 1,paddingLeft: 12, paddingRight: 12, backgroundColor:'#3498db', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
+            <View style={{ flex: 1, backgroundColor:'#26A69A', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270, width: 270 }} source={require('./../../images/android1.png')} />
+                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/Bromo.jpg')} />
               </View>
-              <View style={{flex: 4, alignItems: 'center' }}>
+              <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>FEATURE OR BENEFIT</Text>
                 <Text>The 93 mile long Wonderland Trail circumnavigates Mt Rainier withinroad and can be done as day hikes</Text>
               </View>
             </View>
-            <View style={{flex: 1,paddingLeft: 10, paddingRight: 10, backgroundColor: '#1abc9c', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
+            <View style={{ flex: 1, backgroundColor:'#26C6DA', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270, width: 270 }} source={require('./../../images/android2.png')} />
+                <Image style={{ height: 270, width: width * 1 }} source={require('./../../images/Everest.jpg')} />
               </View>
-              <View style={{flex: 4, alignItems: 'center' }}>
+              <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>FEATURE OR BENEFIT 2</Text>
                 <Text>The 93 mile long Wonderland Trail circumnavigates Mt Rainier withinroad and can be done as day hikes</Text>
               </View>
             </View>
-            <View style={{flex: 1,paddingLeft: 10, paddingRight: 10, backgroundColor: '#2ecc71', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
+            <View style={{ flex: 1, backgroundColor:'#29B6F6', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270, width: 270}} source={require('./../../images/android4.png')} />
+                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/Jayawijaya.jpg')} />
               </View>
-              <View style={{flex: 4, alignItems: 'center' }}>
+              <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>ENJOY UNLIMITED PAYES</Text>
                 <Text>The 93 mile long Wonderland Trail circumnavigates Mt Rainier withinroad and can be done as day hikes</Text>
               </View>
             </View>
-            <View style={{flex: 1,paddingLeft: 10, paddingRight: 10, backgroundColor: '#e74c3c', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
+            <View style={{ flex: 1, backgroundColor:'#64B5F6', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
               <View style={{flex:5}}>
-                <Image style={{ height: 270 , width: 270 }} source={require('./../../images/android3.png')} />
+                <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/Rinjani.jpg')} />
               </View>
-              <View style={{flex: 4, alignItems: 'center' }}>
+            <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
                 <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>ENJOY UNLIMITED PAYES</Text>
                 <Text>The 93 mile long Wonderland Trail circumnavigates Mt Rainier withinroad and can be done as day hikes</Text>
               </View>
@@ -60,9 +60,11 @@ export default class walkthrough extends Component {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={Actions.login}
-            style={{ height: 50, backgroundColor: '#2196F3', alignSelf: 'stretch', elevation: 2 }}
+            style={{ height: 500, backgroundColor: '#2196F3', alignSelf: 'stretch', elevation: 2 }}
           >
-            <Text style={{ fontWeight: '200', fontSize: 24, color: 'white', alignSelf: 'center'}}> Get Started </Text>
+            <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ padding: 15, fontWeight: '200', fontSize: 17, color: 'white', alignSelf: 'center', justifyContent: 'center' }}> GET STARTED </Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
