@@ -10,7 +10,7 @@ import {
    ScrollView,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import styles from './LoginStyles';
+import styles from './LoginStyleEmail';
 import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
 // import GoogleSignIn from './../../services/signingoogle';
