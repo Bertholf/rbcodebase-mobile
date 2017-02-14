@@ -71,7 +71,7 @@ export default class Register extends Component {
               onPress={() => facebookRegister()}
             >
               <View style={{ flexDirection: 'row'}}>
-                <Image source={facebookLogo} style={styles.icon} />
+                <Image source={facebookLogo} style={styles.facebookLogo} />
                 <Text style={styles.text}>Register With Facebook</Text>
               </View>
             </TouchableOpacity>
@@ -81,7 +81,7 @@ export default class Register extends Component {
               style={styles.buttonGoogle}
               activeOpacity={0.7} onPress={() => this.registerWithGoogle()} >
               <View style={{ flexDirection: 'row'}}>
-                <Image source={google2} style={styles.icon} />
+                <Image source={google2} style={styles.logoGoogle} />
                 <Text style={styles.text}>Register With Google</Text>
               </View>
             </TouchableOpacity>
