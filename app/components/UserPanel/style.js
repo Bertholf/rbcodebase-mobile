@@ -51,6 +51,17 @@ const styles = StyleSheet.create({
     width: 70,
     height: 50,
   },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;
