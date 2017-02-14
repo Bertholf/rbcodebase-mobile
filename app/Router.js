@@ -37,7 +37,8 @@ import RegistrationForm from './components/Auth/RegistrationForm';
 import Dashboard from './components/Timeline/Dashboard';
 import LoginScreen from './components/Auth/LoginScreen';
 import LeftDashboard from './components/Timeline/LeftDashboard';
-import ActionSwiper from './components/ActionSwipe'
+import ActionSwiper from './components/ActionSwipe';
+import UserPanel from './components/UserPanel/UserPanel';
 
 
 const Routing = (props) => (
@@ -134,7 +135,7 @@ const Routing = (props) => (
             key={'profile'} component={Profile} title={'Profile'} direction={'vertical'}
           />
           <Scene
-            key={'chat'} component={Chat} title={'Profile'}
+            key={'chat'} component={Chat} title={'Chat'}
           />
           <Scene
             key={'deactive'} component={Deactivate} title={'Deactivate'}
@@ -150,6 +151,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'actionswiper'} initial component={ActionSwiper} hideNavBar title={'Dashboard'}
+          />
+          <Scene
+            key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />

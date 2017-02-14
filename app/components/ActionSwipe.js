@@ -12,7 +12,6 @@ import Swiper from 'react-native-swiper';
 import SlidingUpPanel from 'react-native-sliding-up-panel';
 import Dashboard from './Timeline/Dashboard';
 import LeftDashboard from './Timeline/LeftDashboard';
-import Profile from './Profile/Profile'
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -46,21 +45,12 @@ class ActionSwiper extends Component {
       },
       onPanResponderMove: (e, gs) => {
         let sgs = new SimpleGesture(e, gs);
-        console.log('Swiped ', sgs.relativeGestureDistance.x*100, '% of the screen horizontally');
-        console.log('Swiped ', sgs.relativeGestureDistance.y*100, '% of the screen vertically');
-        // Animated.event([null, {dx: this.state.pan.x, dy: this.state.pan.y }]);
-        // if (sgs.isSwipeUp()) {
-        //   Actions.chatlist();
-        // }
-        // if (sgs.isSwipeLeft()) {
-        //   Actions.timelineList();
-        // }
-        // if (sgs.isSwipeDown()) {
-        //   Actions.profile();
-        // }
-        // if (sgs.isSwipeRight()) {
-        //   Actions.leftdashboard();
-        // }
+        if (sgs.isSwipeUp()) {
+          Actions.profile();
+        }
+        if (sgs.isSwipeDown()) {
+          Actions.userpanel();
+        }
       },
       onPanResponderRelease: (e, { vx, vy }) => {
       },
@@ -75,26 +65,19 @@ class ActionSwiper extends Component {
 
   render() {
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         <Swiper
           loop={false}
           showsPagination={false}
-          index={0}
-          height={height-10}
+          index={1}
+          height={height-30}
           showsButtons={true}
         >
-          <View style={styles.container}>
+          <View style={[styles.container,{justifyContent: 'center', alignItems: 'center', backgroundColor: '#cbc'}]}>
+            <Text style={styles.text}>LEFT</Text>
+          </View>
+          <View style={styles.container}  {...this.panResponder.panHandlers}>
             <Dashboard />
-            <SlidingUpPanel
-              ref={panel => { this.panel = panel; }}
-              containerMaximumHeight={height}
-              handlerHeight={30}
-              allowStayMiddle
-              handlerDefaultView={<View style={{backgroundColor: 'rgba(0,0,0,0)', width, height: 30}}/>}
-              getContainerHeight={this.getContainerHeight}
-            >
-              <LeftDashboard />
-            </SlidingUpPanel>
           </View>
           <LeftDashboard />
         </Swiper>
