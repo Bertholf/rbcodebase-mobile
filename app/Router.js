@@ -57,7 +57,7 @@ const Routing = (props) => (
             key={'notifications'} component={Notifications} title={'Notifications'}
           />
           <Scene
-            key={'dashboard'} component={Dashboard}  hideNavBar  title={'Dashboard'}
+            key={'dashboard'} component={Dashboard} hideNavBar title={'Dashboard'}
           />
           <Scene
             key={'chat'} component={Chat} title={'Chat'}
