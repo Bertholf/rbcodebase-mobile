@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Router, Scene, Modal } from 'react-native-router-flux';
 // import your components below here
+import NavBar from './layouts/NavBar';
 import Chat from './components/Chat/ChatView';
 import SplashScreen from './containers/Splash/Splash';
 import Welcome from './containers/Welcome/Welcome';
@@ -41,7 +42,7 @@ const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
-        <Scene key={'root'}>
+        <Scene key={'root'} component={NavBar}>
           <Scene
             key="setting" component={Setting} title={'Setting'}
           />
@@ -58,10 +59,10 @@ const Routing = (props) => (
             key={'notifications'} component={Notifications} title={'Notifications'}
           />
           <Scene
-            key={'dashboard'} component={Dashboard} hideNavBar title={'Dashboard'}
+            key={'dashboard'} component={Dashboard} title={'Dashboard'}
           />
           <Scene
-            key={'leftdashboard'} component={LeftDashboard}  hideNavBar title={'LeftDashboard'}
+            key={'leftdashboard'} component={LeftDashboard} title={'LeftDashboard'}
           />
           <Scene
             key={'chat'} component={Chat} title={'Chat'}
@@ -73,7 +74,7 @@ const Routing = (props) => (
             key={'friendlist'} component={Friendlist} title={'Friend list'}
           />
           <Scene
-            key={'loginscreenemail'} component={LoginScreenEmail} title={'Friend list'}
+            key={'loginscreenemail'} component={LoginScreenEmail} title={'Sign in'}
           />
           <Scene
             key={'account'} component={Account} title={'Account'}
@@ -109,7 +110,7 @@ const Routing = (props) => (
             key={'register'} component={Register} hideNavBar title={'Register Screen'}
           />
           <Scene
-            key={'forgotPassword'} component={ForgotPassword} hideNavBar title={'Forgot Password'}
+            key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
           />
           <Scene
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -136,7 +137,7 @@ const Routing = (props) => (
             key={'createLocation'} component={Location} title={'Location'}
           />
           <Scene
-            key={'registrationform'} component={RegistrationForm} hideNavBar={'Register'}
+            key={'registrationform'} component={RegistrationForm} title={'Register'}
           />
           <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
