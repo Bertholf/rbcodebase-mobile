@@ -97,9 +97,8 @@ export default class Register extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 20, marginBottom: 20 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-            <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
           <View style={styles.otherlog}>

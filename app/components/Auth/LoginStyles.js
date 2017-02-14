@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   loginEmail: {
     flexDirection: 'column',
     justifyContent: 'space-around',
-    marginTop: 5,
     marginBottom: 5,
   },
   email: {
@@ -85,18 +84,6 @@ const styles = StyleSheet.create({
     width: 320,
     backgroundColor: '#DC4A38',
     borderColor: '#DC4A38',
-    borderWidth: 1,
-    borderRadius: 0,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    elevation: 2,
-  },
-  email: {
-    marginTop: 10,
-    height: 45,
-    width: 320,
-    backgroundColor: '#039be5',
-    borderColor: '#0288d1',
     borderWidth: 1,
     borderRadius: 0,
     alignSelf: 'stretch',

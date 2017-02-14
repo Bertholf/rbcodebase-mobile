@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 48,
     marginRight: -5,
-    marginLeft:5,
+    marginLeft: 5,
   },
   facebookLogo: {
     height: 30,
