@@ -3879,6 +3879,10 @@ react-native-dropdown@0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-dropdown/-/react-native-dropdown-0.0.6.tgz#f4b899b4082c4823340c7377fbe73bc01399148d"
 
+react-native-easy-listview-gridview@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-easy-listview-gridview/-/react-native-easy-listview-gridview-1.0.3.tgz#9dee1e313b3884e0dabbda1e8db2a690d496d959"
+
 react-native-emoji@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-emoji/-/react-native-emoji-1.2.0.tgz#ab424590fc88f12c0fab2b4fb7eaf7b51926a9bf"
@@ -3976,6 +3980,10 @@ react-native-router-flux@^3.37.0:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
+react-native-simple-gesture@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-simple-gesture/-/react-native-simple-gesture-0.0.2.tgz#7ce5ba6eb59132b65effe4f33eb8a28953272d17"
+
 react-native-smart-splash-screen@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/react-native-smart-splash-screen/-/react-native-smart-splash-screen-2.3.3.tgz#083eb407b721de2b6597aecb25e519315a60feb2"
@@ -3984,9 +3992,17 @@ react-native-stateless-form@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-native-stateless-form/-/react-native-stateless-form-0.2.2.tgz#c806a750e49e9f84473761d9bbff556f2c87e3fe"
 
+react-native-swipe-gestures@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.2.tgz#914e1a72a94bc55b322b4622a01103ab879296dd"
+
 react-native-swipe-list-view@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-native-swipe-list-view/-/react-native-swipe-list-view-0.3.3.tgz#7517d68a4392beabf54322ca44651c24cb2f99f4"
+
+react-native-swiper@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
 
 react-native-tab-view@0.0.54:
   version "0.0.54"
@@ -4114,6 +4130,10 @@ react-static-container@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
+react-swap@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/react-swap/-/react-swap-1.5.3.tgz#9b7332b17692a75275c99ccdb511db3d28043878"
+
 react-test-renderer@~15.4.0-rc.4:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.4.2.tgz#27e1dff5d26d0e830f99614c487622bc831416f3"
@@ -4142,7 +4162,7 @@ react-validation@^2.10.9:
   version "2.10.9"
   resolved "https://registry.yarnpkg.com/react-validation/-/react-validation-2.10.9.tgz#f56e32cabcf22d53d82af34a7bed80f2b22ba7c4"
 
-react@~15.4.0-rc.4:
+react@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
