@@ -104,6 +104,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
+                value={this.props.lastName ? this.props.lastName : ''}
               />
             </View>
             <View style={styles.line} />
@@ -130,6 +131,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
+                value={this.props.email ? this.props.email : ''}
               />
             </View>
             <View style={styles.textinputWrapperStyle}>
