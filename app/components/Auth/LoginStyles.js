@@ -93,9 +93,7 @@ const styles = StyleSheet.create({
   logoGoogle: {
     height: 35,
     width: 35,
-    alignSelf: 'stretch',
     justifyContent: 'center',
-    borderRadius: 48,
   },
   buttonTextGoogle: {
     fontSize: 18,
@@ -145,7 +143,6 @@ const styles = StyleSheet.create({
   facebookLogo: {
     height: 30,
     width: 30,
-    borderRadius: 7,
   },
   facebookText: {
     fontSize: 18,
