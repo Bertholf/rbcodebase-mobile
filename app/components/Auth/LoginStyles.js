@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   google: {
-    marginTop: 5,
+    marginTop: 10,
     height: 45,
     width: 320,
     backgroundColor: '#DC4A38',
