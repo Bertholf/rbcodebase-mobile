@@ -66,7 +66,7 @@ export default class LoginScreen extends Component {
             <View style={{ justifyContent: 'space-around', paddingLeft: 20 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
           </View>
         </TouchableHighlight>
-        <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 20, marginBottom: 20 }}>
           <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
           <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
         </View>
