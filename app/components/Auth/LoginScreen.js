@@ -47,6 +47,7 @@ export default class LoginScreen extends Component {
               <View style={{ flexDirection: 'row'}}>
                 <Image source={google2} style={styles.icon} />
                 <Text style={styles.text}>Sig in with Google</Text>
+
               </View>
             </TouchableOpacity>
           </View>
@@ -84,7 +85,7 @@ export default class LoginScreen extends Component {
           <View style={{ marginTop: 10, alignItems: 'center' }}>
             <View style={{ height: 40 }}>
               <Text>By Signing up, you agree to App Name</Text>
-              <Text style={{ color: '#2196F3' , text: 'underlineColorAndroid' }} onPress={() => Actions.tos()}> Terms of Service
+              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> Terms of Service
               <Text style={{ color: 'grey' }}> and
                   <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> Privacy Policy</Text>
               </Text>
