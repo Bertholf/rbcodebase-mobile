@@ -35,14 +35,14 @@ export default class LoginScreen extends Component {
           <TouchableOpacity onPress={() => this.props.loginWithFacebook()}
             style={styles.facebookBtn}
           >
-            <View style={{ flexDirection: 'row', paddingLeft: 5}}>
+            <View style={{ flexDirection: 'row', paddingLeft: 7}}>
               <View style={styles.facebookLogo}>
                 <Image
                   style={styles.facebookLogo}
                   source={facebookLogo}
                 />
               </View>
-              <View style={{ justifyContent: 'space-around', paddingLeft: 40 }} >
+              <View style={{ justifyContent: 'space-around', paddingLeft: 45 }} >
                 <Text style={styles.facebookText}>Sign in with Facebook</Text>
               </View>
             </View>
@@ -52,7 +52,7 @@ export default class LoginScreen extends Component {
               onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
               <View style={{flexDirection: 'row', paddingLeft: 7 }}>
               <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 35 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
+              <View style= {{justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
             </TouchableHighlight>
           </View>
