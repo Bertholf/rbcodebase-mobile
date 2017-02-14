@@ -149,15 +149,15 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   facebookBtn: {
+    marginTop: 5,
     height: 45,
     width: 320,
     backgroundColor: '#3B5998',
     borderColor: '#3B5998',
     borderWidth: 1,
     borderRadius: 0,
-    marginTop: 10,
-    marginBottom: 4,
     alignSelf: 'stretch',
+    justifyContent: 'center',
     elevation: 2,
   },
   facebookLogo: {
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: 'white',
-    alignSelf: 'center',
   },
   textInput: {
     height: 40,
