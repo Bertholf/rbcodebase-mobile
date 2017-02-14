@@ -58,7 +58,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications} title={'Notifications'}
@@ -148,7 +148,7 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} component={ActionSwiper} hideNavBar={'Register'}
+            key={'actionswiper'} initial component={ActionSwiper} hideNavBar={'Register'}
           />
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
