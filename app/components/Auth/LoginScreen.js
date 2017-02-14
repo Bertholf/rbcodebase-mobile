@@ -47,65 +47,65 @@ export default class LoginScreen extends Component {
               </View>
             </View>
           </TouchableOpacity>
-
-            <TouchableHighlight style={styles.google}
-              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
-              <View style={{flexDirection: 'row', paddingLeft: 7 }}>
-              <View style ={styles.logoGoogle}><Image source={google} style={styles.logoGoogle} /></View>
-              <View style= {{justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <TouchableHighlight
-            style={styles.twitter}
-              onPress={() => this.props.loginWithTwitter()} underlayColor={'#1E88E5'}
-            >
-              <View style={{flexDirection: 'row', paddingLeft: 7 }}>
-                <View style ={styles.logoTwitter}><Image source={twitter} style={styles.logoTwitter} /></View>
-                <View style= {{justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
-              </View>
-              </TouchableHighlight>
-          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
-            <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-            <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
-          </View>
-          <View style={styles.loginEmail}>
             <TouchableHighlight
-              style={styles.email}
-              onPress={() => Actions.loginscreenemail()} underlayColor={'#039be5'}
-            >
-              <View style={{ flexDirection: 'row', paddingLeft: 10 }}>
-                <View style={styles.logoEmail}>
-                  <Image source={email} style={styles.logoEmail} />
-                </View>
-                <View style={{ jjustifyContent: 'space-around', paddingLeft: 40 }}>
-                  <Text style={styles.buttonText}>Sign in with Email</Text>
-                </View>
+              style={styles.google}
+              onPress={() => this.props.loginWithGoogle()} underlayColor={'#f44336'}>
+              <View style={{ flexDirection: 'row', paddingLeft: 7 }}>
+                <View style={styles.logoGoogle}>
+                  <Image source={google} style={styles.logoGoogle} /></View>
+                <View style={{ justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Google</Text></View>
               </View>
             </TouchableHighlight>
           </View>
-          <View style={{ padding: 50 }}>
-            <TouchableOpacity onPress={() => Actions.register()}>
-              <Text style={{ color: 'black', textAlign: 'center' }}>
+        <TouchableHighlight
+          style={styles.twitter}
+          onPress={() => this.props.loginWithTwitter()} underlayColor={'#1E88E5'}>
+          <View style={{ flexDirection: 'row', paddingLeft: 7 }}>
+            <View style={styles.logoTwitter}>
+              <Image source={twitter} style={styles.logoTwitter} /></View>
+            <View style={{ justifyContent: 'space-around', paddingLeft: 40 }}><Text style={styles.buttonText}>Sign in with Twitter</Text></View>
+          </View>
+        </TouchableHighlight>
+        <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
+          <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
+          <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
+        </View>
+        <View style={styles.loginEmail}>
+          <TouchableHighlight
+            style={styles.email}
+            onPress={() => Actions.loginscreenemail()} underlayColor={'#039be5'}>
+            <View style={{ flexDirection: 'row', paddingLeft: 10 }}>
+              <View style={styles.logoEmail}>
+                <Image source={email} style={styles.logoEmail} />
+              </View>
+              <View style={{ jjustifyContent: 'space-around', paddingLeft: 40 }}>
+                <Text style={styles.buttonText}>Sign in with Email</Text>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <View style={{ padding: 50 }}>
+          <TouchableOpacity onPress={() => Actions.register()}>
+            <Text style={{ color: 'black', textAlign: 'center' }}>
                   Create Account
               </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={{ textAlign: 'center' }}>
-            <Text style={{ color: 'grey', textAlign: 'center' }}>
+          </TouchableOpacity>
+        </View>
+        <View style={{ textAlign: 'center' }}>
+          <Text style={{ color: 'grey', textAlign: 'center' }}>
                 By signing up, you agree to RBC
             </Text>
-          </View>
-          <View style={{ alignItems: 'center' }}>
-            <View style={{ height: 40 }}>
-              <Text style={{ color: '#2196F3', text: 'underlineColorAndroid' }} onPress={() => Actions.tos()}> Terms of Service
-              <Text style={{ color: 'grey' }}> and
+        </View>
+        <View style={{ alignItems: 'center' }}>
+          <View style={{ height: 40 }}>
+            <Text style={{ color: '#2196F3', text: 'underlineColorAndroid' }} onPress={() => Actions.tos()}> Terms of Service
+            <Text style={{ color: 'grey' }}> and
                   <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> Privacy Policy</Text>
-              </Text>
-              </Text>
-            </View>
+            </Text>
+            </Text>
           </View>
-          </View>
+        </View>
+      </View>
     );
   }
 }
