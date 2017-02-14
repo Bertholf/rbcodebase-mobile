@@ -12,6 +12,7 @@ import Swiper from 'react-native-swiper';
 import SlidingUpPanel from 'react-native-sliding-up-panel';
 import Dashboard from './Timeline/Dashboard';
 import LeftDashboard from './Timeline/LeftDashboard';
+import Profile from './Profile/Profile'
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -87,9 +88,9 @@ class ActionSwiper extends Component {
             <SlidingUpPanel
               ref={panel => { this.panel = panel; }}
               containerMaximumHeight={height}
-              handlerHeight={20}
+              handlerHeight={30}
               allowStayMiddle
-              handlerDefaultView={<View style={{backgroundColor: 'rgba(0,0,0,0)', width, height: 20}}/>}
+              handlerDefaultView={<View style={{backgroundColor: 'rgba(0,0,0,0)', width, height: 30}}/>}
               getContainerHeight={this.getContainerHeight}
             >
               <LeftDashboard />
