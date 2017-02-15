@@ -9,7 +9,9 @@ target 'hikerapp' do
   # Pods for hikerapp
   pod 'Firebase/Core'
   pod 'Google/SignIn'
-  pod 'STTwitter'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'TwitterKit'
   pod 'GoogleToolboxForMac', '2.1.0'
   target 'hikerappTests' do
     inherit! :search_paths

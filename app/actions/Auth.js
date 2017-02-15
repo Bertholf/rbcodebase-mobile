@@ -4,7 +4,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
-
+console.log('twitter', twitter);
 import config from '../config';
 import { AsyncStorage } from 'react-native';
 
@@ -82,10 +82,8 @@ export const manager = new OAuthManager('RB Codebase');
 export function loginWithTwitter() {
   return dispatch => {
     dispatch(requestLogin('Login with Twitter'));
-    twitter.signIn().then(response =>{
-      console.log(response);
-      dispatch(doneLogin({ ...response }))
-    })
+    twitter.signIn().then(response=>
+      dispatch(doneLogin({ accessToken: response.token, ...response, provider: 'twitter' })))
     .catch(err => errorLogin(err));
   }
 }
