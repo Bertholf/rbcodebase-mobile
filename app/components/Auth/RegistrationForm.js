@@ -12,6 +12,7 @@ import {
      Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import strings from './../../localizations/';
 
 
 const { width } = Dimensions.get('window');
@@ -112,18 +113,19 @@ export default class RegistrationForm extends Component {
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
-        Alert.alert('Success');
+        Alert.alert(strings.register.Success);
       } else {
-        Alert.alert('FAILED');
+        Alert.alert(strings.register.Failed);
       }
     };
+    strings.setLanguage('en');
     return (
       <View style={styles.container} >
         <ScrollView>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="First Name"
+                placeholder={strings.register.FirstName}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -132,11 +134,11 @@ export default class RegistrationForm extends Component {
                 value={this.state.firstname}
               />
             </View>
-            {validFName || emptyFName ? <Text /> : <Text style={styles.fail}>Invalid First Name</Text>}
+            {validFName || emptyFName ? <Text /> : <Text style={styles.fail}>{strings.register.InvalidFirstName}</Text>}
 
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Last Name"
+                placeholder={strings.register.LastName}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -146,12 +148,12 @@ export default class RegistrationForm extends Component {
                 value={this.state.lastname}
               />
             </View>
-            {validLName || emptyLName ? <Text /> : <Text style={styles.fail}>Invalid Last Name</Text>}
+            {validLName || emptyLName ? <Text /> : <Text style={styles.fail}>{strings.register.InvalidLastName}</Text>}
 
             <View style={styles.line} />
             <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
               <TextInput
-                placeholder="Username"
+                placeholder={strings.register.UserName}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -166,11 +168,11 @@ export default class RegistrationForm extends Component {
 
             </View>
             {validUsername || emptyUName ? (<Text />) : (<Text style={styles.fail}>
-              The username already taken</Text>)
+              {strings.register.AlreadyUser}</Text>)
             }
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Email"
+                placeholder={strings.register.Email}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -181,11 +183,11 @@ export default class RegistrationForm extends Component {
               />
             </View>
             {validEmail || emptyEmail ? (<Text />)
-              : (<Text style={styles.fail}>Invalid email</Text>)
+              : (<Text style={styles.fail}>{strings.register.InvalidEmail}</Text>)
             }
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Password"
+                placeholder={strings.register.Password}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -196,7 +198,7 @@ export default class RegistrationForm extends Component {
             </View>
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Confirm Password"
+                placeholder={strings.register.ConfirmPassword}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -205,11 +207,11 @@ export default class RegistrationForm extends Component {
                 secureTextEntry
               />
             </View>
-            {(validPass && validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>Password doesn't match</Text>}
+            {(validPass && validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.PassdoesntMatch}</Text>}
             <View style={styles.line} />
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="{{ custom field }}"
+                placeholder={strings.register.CustomField}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -218,7 +220,7 @@ export default class RegistrationForm extends Component {
             </View>
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="{{ custom field }}"
+                placeholder={strings.register.CustomField}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -230,29 +232,29 @@ export default class RegistrationForm extends Component {
           <TouchableOpacity onPress={validate}>
             <View style={styles.btnReg} >
               <Text style={styles.textReg} >
-                Register
+                {strings.register.Register}
               </Text>
             </View>
           </TouchableOpacity>
           <View style={styles.policyStyle} >
             <Text>
-              By registering, you agree to {this.state.app}
+              {strings.register.ByRegisteringYouAgreeTo} {this.state.app}
             </Text>
           </View>
           <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
             <TouchableOpacity onPress={Actions.tos}>
               <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                Terms of Use
+                {strings.register.TermsofUse}
               </Text>
             </TouchableOpacity>
             <Text>  </Text>
             <Text>
-              and
+              {strings.register.And}
             </Text>
             <Text>  </Text>
             <TouchableOpacity onPress={Actions.pp}>
               <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                Privacy Policy
+                {strings.register.PrivacyPolicy}
               </Text>
             </TouchableOpacity>
           </View>
