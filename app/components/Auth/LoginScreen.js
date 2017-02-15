@@ -13,13 +13,14 @@ import {
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyles';
 import FacebookLogin from './../../services/FacebookLogin';
+import strings from '../../localizations';
 
 const { width,height } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
 const google2 = require('../../images/login/google.png');
 const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
-const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png')
+const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png');
 
 export default class LoginScreen extends Component {
   render() {
@@ -34,20 +35,20 @@ export default class LoginScreen extends Component {
               activeOpacity={0.7}
               onPress={() =>this.props.loginWithFacebook()}
             >
-              <View style={{ flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image source={facebookLogo} style={styles.icon} />
-                <Text style={styles.text}>Sign in with Facebook</Text>
+                <Text style={styles.text}>{strings.LoginScreen.fb}</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.otherlog}>
             <TouchableOpacity
               style={styles.buttonGoogle}
-              activeOpacity={0.7} onPress={() => this.props.loginWithGoogle()} >
-              <View style={{ flexDirection: 'row'}}>
+              activeOpacity={0.7} onPress={() => this.props.loginWithGoogle()}
+            >
+              <View style={{ flexDirection: 'row' }}>
                 <Image source={google2} style={styles.icon} />
-                <Text style={styles.text}>Sig in with Google</Text>
-
+                <Text style={styles.text}>{strings.LoginScreen.google}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -57,40 +58,35 @@ export default class LoginScreen extends Component {
               onPress={() => this.props.loginWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
-                <Text style={styles.text}>Sign in with Twitter</Text>
+                <Text style={styles.text}>{strings.LoginScreen.twitter}</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-            <Text style={{ width: 20, color: 'rgba(0,0,0,0.8)' }}> Or </Text>
+            <Text style={{ paddingLeft: 3, paddingRight: 3, color: 'rgba(0,0,0,0.8)' }}>{strings.LoginScreen.or}</Text>
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7}   onPress={() => Actions.loginscreenemail()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
-                <Text style={styles.text}>Sign in with Email</Text>
+                <Text style={styles.text}>{strings.LoginScreen.email}</Text>
               </View>
             </TouchableOpacity>
           </View>
-          <View style={{ padding: 50 }}>
+          <View style={{ padding: 50, paddingBottom: 20 }}>
           <TouchableOpacity onPress={() => Actions.register()}>
             <Text style={{ color: 'black', textAlign: 'center' }}>
-                  Create Account
+                  {strings.LoginScreen.create}
               </Text>
           </TouchableOpacity>
         </View>
 
-          <View style={{ marginTop: 10, alignItems: 'center' }}>
-            <View style={{ height: 40 }}>
-              <Text>By Signing up, you agree to App Name</Text>
-              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> Terms of Service
-              <Text style={{ color: 'grey' }}> and
-                  <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> Privacy Policy</Text>
-              </Text>
-              </Text>
-            </View>
+          <View style={{ marginTop: 10, marginBottom: 20, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <Text>{strings.LoginScreen.agreement} <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}>{strings.LoginScreen.tos}</Text>
+              <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}</Text>
+              <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text></Text>
           </View>
         </View>
       </ScrollView>
