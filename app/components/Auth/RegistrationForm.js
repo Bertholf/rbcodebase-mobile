@@ -12,6 +12,7 @@ import {
      Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import registerService from '../../services/AuthRegistration'
 
 
 const { width } = Dimensions.get('window');
@@ -82,41 +83,23 @@ export default class RegistrationForm extends Component {
     this.state = {
       availableUser: false,
       app: 'RBCodeBase',
-      firstname: this.props.firstName,
-      lastname: this.props.lastName,
-      email: this.props.email,
-      username: props.username,
+      // name_first: this.props.firstName,
+      // name_last: this.props.lastName,
+      // email: this.props.email
+      name_first: '',
+      name_last: '',
+      email: '',
+      name_slug: '',
       password: '',
-      confirmPassword: '',
+      password_confirmation: '',
       valid: false,
     };
   }
-
+  submitRegister() {
+    this.props
+  }
   render() {
-    const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
-    const usernameRegex = /^[a-zA-Z0-9]{0,4}$/;
-    const nameRegex = /^[a-zA-Z]+$/;
 
-    const validFName = nameRegex.test(this.state.firstname);
-    const validLName = nameRegex.test(this.state.lastname);
-    const emptyFName = this.state.firstname === '';
-    const emptyLName = this.state.lastname === '';
-    const emptyUName = this.state.username === '';
-    const emptyEmail = this.state.email === '' || !this.state.email;
-    const validUsername = this.state.username.length > 4;
-    const validEmail = emailRegex.test(this.state.email);
-    const validPass = (this.state.password === this.state.confirmPassword);
-    const validLPass = this.state.password.length >= 6;
-    const emptyPass = this.state.password === '';
-    const available = validFName && validLName && validUsername && validEmail && validPass && validLPass;
-    const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
-    const validate = () => {
-      if (available && notEmpty) {
-        Alert.alert('Success');
-      } else {
-        Alert.alert('FAILED');
-      }
-    };
     return (
       <View style={styles.container} >
         <ScrollView>
@@ -128,11 +111,10 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={firstname => this.setState({ firstname })}
-                value={this.state.firstname}
+                onChangeText={name_first => this.setState({ name_first })}
+                value={this.state.name_first}
               />
             </View>
-            {validFName || emptyFName ? <Text /> : <Text style={styles.fail}>Invalid First Name</Text>}
 
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -142,11 +124,10 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 editable
-                onChangeText={lastname => this.setState({ lastname })}
-                value={this.state.lastname}
+                onChangeText={name_last => this.setState({ name_last })}
+                value={this.state.name_last}
               />
             </View>
-            {validLName || emptyLName ? <Text /> : <Text style={styles.fail}>Invalid Last Name</Text>}
 
             <View style={styles.line} />
             <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
@@ -156,18 +137,12 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={username => this.setState({ username })}
-                value={this.state.username}
+                onChangeText={name_slug => this.setState({ name_slug })}
+                value={this.state.name_slug}
                 editable
               />
-              {validUsername ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
-              : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
-              }
+                          </View>
 
-            </View>
-            {validUsername || emptyUName ? (<Text />) : (<Text style={styles.fail}>
-              The username already taken</Text>)
-            }
             <View style={styles.textinputWrapperStyle}>
               <TextInput
                 placeholder="Email"
@@ -180,9 +155,7 @@ export default class RegistrationForm extends Component {
                 value={this.state.email}
               />
             </View>
-            {validEmail || emptyEmail ? (<Text />)
-              : (<Text style={styles.fail}>Invalid email</Text>)
-            }
+
             <View style={styles.textinputWrapperStyle}>
               <TextInput
                 placeholder="Password"
@@ -201,11 +174,10 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={confirmPassword => this.setState({ confirmPassword })}
+                onChangeText={password_confirmation => this.setState({ password_confirmation })}
                 secureTextEntry
               />
             </View>
-            {(validPass && validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>Password doesn't match</Text>}
             <View style={styles.line} />
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -227,7 +199,7 @@ export default class RegistrationForm extends Component {
             </View>
           </View>
           <View style={styles.line} />
-          <TouchableOpacity onPress={validate}>
+          <TouchableOpacity onPress= {() => registerService(this.state.name_first, this.state.name_last, this.state.name_slug, this.state.email,this.state.password, this.state.password_confirmation, )}>
             <View style={styles.btnReg} >
               <Text style={styles.textReg} >
                 Register
@@ -261,3 +233,5 @@ export default class RegistrationForm extends Component {
     );
   }
 }
+
+//componets/auth/
