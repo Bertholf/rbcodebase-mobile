@@ -1,6 +1,7 @@
 import LocalizedStrings from 'react-native-localization';
 import ForgotPass from './ForgotPassword';
 import LoginScreen from './LoginScreen';
+import register from './register';
 import walkthrought from './walkthrought';
 import settings from './settings';
 
@@ -9,6 +10,7 @@ const id = {
   walkthrought,
   ForgotPass,
   LoginScreen,
+  register,
 };
 
 export default id;
