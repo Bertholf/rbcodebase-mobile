@@ -9,5 +9,6 @@ const id = {
   walkthrought,
   ForgotPass,
   LoginScreen,
+};
 
 export default id;
