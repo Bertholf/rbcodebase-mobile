@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 export default class walkthrough extends Component {
   constructor(props) {
     super(props);
-    strings.setLanguage('id');
+    strings.setLanguage('en');
     this.state = {
       screen: strings.walkthrought.screen.information,
     };
