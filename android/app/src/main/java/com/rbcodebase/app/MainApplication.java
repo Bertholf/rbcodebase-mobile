@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 import io.fullstack.oauth.OAuthManagerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -24,9 +25,11 @@ import java.util.List;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.rbcodebase.app.modules.google.GoogleSignInPackage;
+import com.rbcodebase.app.modules.twitter.TwitterAuthPackage;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
 
 public class MainApplication extends Application implements ReactApplication {
-
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
   protected static CallbackManager getCallbackManager() {
       return mCallbackManager;
@@ -48,6 +51,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
+            new RCTSplashScreenPackage(),
             new OAuthManagerPackage(),
               new ImagePickerPackage(),
               new VectorIconsPackage(),
@@ -55,6 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),
               new ReactNativeLocalizationPackage(),
+              new TwitterAuthPackage(),
               new FBSDKPackage(mCallbackManager),
               new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
       );
@@ -69,7 +74,10 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    Fabric.with(this, new Crashlytics());
+    String TWITTER_CONSUMER_KEY = getResources().getString(R.string.twitter_consumer_key);
+    String TWITTER_CONSUMER_SECRET = getResources().getString(R.string.twitter_consumer_secret);;
+    TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
+    Fabric.with(this, new Crashlytics(), new Twitter(authConfig));
     SoLoader.init(this, /* native exopackage */ false);
     FacebookSdk.sdkInitialize(getApplicationContext());
   }

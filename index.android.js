@@ -9,7 +9,6 @@ import {
  } from 'react-native';
 import App from './app/App';
 
-
 const HikerApp = () => (
   <App />
 );
