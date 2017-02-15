@@ -10,6 +10,8 @@ import {
   IndicatorViewPager, PagerDotIndicator
 } from 'rn-viewpager';
 import { Actions } from 'react-native-router-flux';
+import { strings } from './../../localizations/en/WalkthroughtLocalization';
+
 const { height, width } = Dimensions.get('window');
 export default class walkthrough extends Component {
   render() {
@@ -24,8 +26,8 @@ export default class walkthrough extends Component {
                 <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/bromo.jpg')} />
               </View>
               <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
-                <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>FEATURE OR BENEFIT</Text>
-                <Text>The 93 mile long Wonderland Trail circumnavigates Mt Rainier withinroad and can be done as day hikes</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{strings.title}</Text>
+                <Text>{strings.description}</Text>
               </View>
             </View>
             <View style={{ flex: 1, backgroundColor:'#26C6DA', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
