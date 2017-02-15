@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0.5,
     borderRightWidth: 0.5,
     borderColor: '#000000',
-    marginBottom: 30
+    marginBottom: 30,
   },
   logoGoogle: {
     height: 23,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
-    tintColor : 'white'
+    // tintColor: 'white',
   },
   buttonFacebook: {
     height: 50,

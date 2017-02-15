@@ -8,7 +8,7 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
-
+import strings from '../../localizations';
 import  me from '../../services/me';
 const logo = require('./../../images/logo.png');
 
@@ -29,6 +29,7 @@ export default class ForgotPassword extends Component {
   static propTypes = { url: React.PropTypes.string };
 
   render() {
+      strings.setLanguage('id');
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;
@@ -37,9 +38,9 @@ export default class ForgotPassword extends Component {
       if (emailValidator && emailInput) {
         // Need action here, please fix it later, thanks!!!
         if (currentEmail == emailInput) {
-          Alert.alert('Success, Your Password Has Sent to Email')
+          Alert.alert({strings.ForgotPass.validemailS});
         } else {
-          Alert.alert('Wrong Email Address!')
+          Alert.alert({strings.ForgotPass.validemailF});
         }
       } else {
         return;
@@ -63,15 +64,16 @@ export default class ForgotPassword extends Component {
           placeholderTextColor={'#2196f3'}
           onChangeText={email => this.setState({ email })}
           placeholder="Email"
+          underlineColorAndroid='rgba(0,0,0,0)'
         />
         {!emailInput || emailValidator ?
-          <Text /> : <Text style={styles.invalid}>Invalid email</Text>}
+          <Text /> : <Text style={styles.invalid}>{strings.ForgotPass.statusF}</Text>}
         <TouchableHighlight
           style={styles.button}
           onPress={validateEmail}
           underlayColor="#99d9f4"
         >
-          <Text style={styles.buttonText}>Send</Text>
+          <Text style={styles.buttonText}>{strings.ForgotPass.send}</Text>
         </TouchableHighlight>
       </View>
     );
