@@ -149,7 +149,7 @@ dependencies {
     compile project(':react-native-material-kit')
     compile project(':react-native-maps')
     compile project(':react-native-mapbox-gl')
-    compile project(':react-native-localization')
+    compile project(':ReactNativeLocalization')
     compile fileTree(dir: "libs", include: ["*.jar"])
     // From node_modules
 
