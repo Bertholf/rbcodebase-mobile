@@ -25,6 +25,7 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <ScrollView>
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Image style={styles.logo} source={logo} />
 
@@ -45,7 +46,8 @@ export default class LoginScreen extends Component {
               activeOpacity={0.7} onPress={() => this.props.loginWithGoogle()} >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={google2} style={styles.icon} />
-                <Text style={styles.text}>Sign in with Google</Text>
+                <Text style={styles.text}>Sig in with Google</Text>
+
               </View>
             </TouchableOpacity>
           </View>
@@ -91,6 +93,7 @@ export default class LoginScreen extends Component {
             </View>
           </View>
         </View>
+      </ScrollView>
       </View>
     );
   }

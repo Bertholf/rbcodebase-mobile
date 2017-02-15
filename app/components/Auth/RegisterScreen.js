@@ -20,6 +20,7 @@ import facebookRegister from '../../services/FacebookRegister';
 import registerService from '../../services/AuthRegister';
 import registerWithGoogle from '../../services/googleRegister';
 import google from '../../modules/google';
+import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
 
@@ -62,6 +63,10 @@ export default class Register extends Component {
     google.signIn()
     .then(({user}) => Actions.registrationform({firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email}))
   }
+  registerWithTwitter() {
+    twitterModule.signIn()
+    .then(({user}) => Actions.registrationform({username: user.username, firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1]}));
+  }
 
   render() {
     strings.setLanguage('en');
@@ -95,7 +100,7 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonTwitter}
               activeOpacity={0.7}
-              onPress={() => twitterRegister()}>
+              onPress={() => this.registerWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
                 <Text style={styles.text}>{strings.register.RegisterTwitter}</Text>

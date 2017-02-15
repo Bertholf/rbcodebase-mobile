@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GoogleSignInModule.h"
 #import <Google/SignIn.h>
+#import "Constant.h"
 @implementation GoogleSignInModule
 @synthesize onAfterLoginReject;
 @synthesize onAfterLoginResolve;
@@ -21,8 +22,8 @@ RCT_EXPORT_METHOD(configure)
   [GIDSignIn sharedInstance].uiDelegate = self;
   
   [GIDSignIn sharedInstance].scopes = @[@"email", @"profile"];
-  [GIDSignIn sharedInstance].clientID = @"173115952010-70ri1qc45avr8oh9ppepk4bv5upd81jt.apps.googleusercontent.com";
-  [GIDSignIn sharedInstance].serverClientID = @"173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe.apps.googleusercontent.com";
+  [GIDSignIn sharedInstance].clientID = kGoogleClientId;
+  [GIDSignIn sharedInstance].serverClientID = kGoogleServerId;
 }
 - (dispatch_queue_t)methodQueue{
   return dispatch_get_main_queue();

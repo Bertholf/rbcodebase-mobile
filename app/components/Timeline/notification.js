@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#9DD6EB',
   },
 });
- console.log("helli", ListView);
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {

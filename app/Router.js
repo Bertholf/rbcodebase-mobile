@@ -37,7 +37,9 @@ import RegistrationForm from './components/Auth/RegistrationForm';
 import Dashboard from './components/Timeline/Dashboard';
 import LoginScreen from './components/Auth/LoginScreen';
 import LeftDashboard from './components/Timeline/LeftDashboard';
-
+import ActionSwiper from './components/ActionSwipe';
+import UserPanel from './components/UserPanel/UserPanel';
+import strings from './localizations';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -46,10 +48,10 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={'Setting'}
+            key="setting" component={Setting} title={strings.settings.title}
           />
           <Scene
-            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
@@ -58,7 +60,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} component={SplashScreen} initial hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications}  title={'Notifications'}
@@ -67,13 +69,13 @@ const Routing = (props) => (
             key={'dashboard'} component={Dashboard} title={'Dashboard'}
           />
           <Scene
-            key={'leftdashboard'} component={LeftDashboard} title={'LeftDashboard'}
+            key={'leftdashboard'} component={LeftDashboard} title={'LeftDashboard'} direction={'leftToRight'}
           />
           <Scene
             key={'chat'} component={Chat} title={'Chat'}
           />
           <Scene
-            key={'chatlist'} component={ChatListFriendView} title={'Chat List'}
+            key={'chatlist'} component={ChatListFriendView} title={'Chat List'} direction={'vertically'}
           />
           <Scene
             key={'friendlist'} component={Friendlist} title={'Friend list'}
@@ -121,7 +123,7 @@ const Routing = (props) => (
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
           />
           <Scene
-            key={'timelineList'} component={TimelineList} title={'Timeline List'}
+            key={'timelineList'} component={TimelineList} title={'Timeline List'} direction={'horizontal'}
           />
           <Scene
             key={'listInbox'} component={Inbox} title={'Timeline Detial'}
@@ -130,10 +132,10 @@ const Routing = (props) => (
             key={'timelineshare'} component={TimelineShare} title={'Timeline Share'}
           />
           <Scene
-            key={'profile'} component={Profile} title={'Profile'}
+            key={'profile'} component={Profile} title={'Profile'} direction={'vertical'}
           />
           <Scene
-            key={'chat'} component={Chat} title={'Profile'}
+            key={'chat'} component={Chat} title={'Chat'}
           />
           <Scene
             key={'deactive'} component={Deactivate} title={'Deactivate'}
@@ -146,6 +148,12 @@ const Routing = (props) => (
           />
           <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
+          />
+          <Scene
+            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
+          />
+          <Scene
+            key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
