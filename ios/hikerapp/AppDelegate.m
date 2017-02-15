@@ -13,7 +13,9 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+#import <TwitterKit/TwitterKit.h>
 @import Firebase;
 
 @implementation AppDelegate
@@ -45,6 +47,7 @@
   NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
   [GIDSignIn sharedInstance].delegate = self;
   [FIRApp configure];
+  [Fabric with:@[[Crashlytics class],[Twitter class]]];
   return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
@@ -55,8 +58,7 @@
                                                       sourceApplication:sourceApplication
                                                              annotation:annotation
                   ];
-  
-  return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation] || handled;
+  return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:sourceApplication annotation:annotation] || handled || [[Twitter sharedInstance] application:application openURL:url options:@{@"annotation": annotation}];;
   // Add any custom logic here.
 }
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error{
