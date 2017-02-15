@@ -9,5 +9,6 @@ const en = {
   LoginScreen,
   settings,
   walkthrought,
+};
 
 export default en;
