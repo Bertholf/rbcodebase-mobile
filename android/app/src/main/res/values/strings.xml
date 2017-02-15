@@ -3,4 +3,6 @@
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">tifpz9VaXWthvsGDRf9p1h22OsN3EkqZNr78G</string>
     <string name="facebook_app_id">223632998053908</string>
     <string name="server_client_id">173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe.apps.googleusercontent.com</string>
+    <string name="twitter_consumer_key">wMBFoiJYK4N9MEynkyFCpJsiw</string>
+    <string name="twitter_consumer_secret">MfNHpjO7AXg7YE4BltnfCHjRKkhieqAES9HRcqXRgbRyIvFd8u</string>
 </resources>

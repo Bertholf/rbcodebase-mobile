@@ -85,7 +85,7 @@ export default class RegistrationForm extends Component {
       firstname: this.props.firstName,
       lastname: this.props.lastName,
       email: this.props.email,
-      username: '',
+      username: props.username,
       password: '',
       confirmPassword: '',
       valid: false,

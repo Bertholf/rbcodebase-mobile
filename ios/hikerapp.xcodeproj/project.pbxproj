@@ -35,6 +35,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		89ECEAF7E1BE4C52971A5A5C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6C31008384FEBB4AC1DDE /* Octicons.ttf */; };
 		94E1FE3B3B6C4E29BA15D06A /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13149F0D225143288E8EB049 /* Entypo.ttf */; };
+		9C3892601E545FD300C896D8 /* TwitterAuthModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C38925F1E545FD300C896D8 /* TwitterAuthModule.m */; };
 		9CFDD4F31E4AD9630082B51C /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6973011E41B4F600D843FA /* libRCTFBSDK.a */; };
 		9CFDD4F51E4ADCBE0082B51C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFDD4F41E4ADCBE0082B51C /* Bolts.framework */; };
 		9CFDD4F71E4ADCD50082B51C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFDD4F61E4ADCD50082B51C /* FBSDKCoreKit.framework */; };
@@ -50,7 +51,8 @@
 		F50B3923284744B5946E794A /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7950C308C3404ABEF68AE9 /* libRNImagePicker.a */; };
 		FA63392BC3004B1687ADDE99 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B484EA379C5246CF8A18C12E /* MaterialIcons.ttf */; };
 		FF95616694674740BDB04C2F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E7308C80AAD4876AAFC9787 /* Ionicons.ttf */; };
-		8BA62AEDCF9147DAABD7E58B /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E56BDB3395D4B79891FEC3A /* libRCTSplashScreen.a */; };
+		9954633F463B47BFA05E1C2F /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B5E650A63C471CBC8E05D5 /* libRCTSplashScreen.a */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,6 +369,9 @@
 		83858F01B6DE44ED8DEBE2C5 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
 		95EDFAB9916442A8877959ED /* RCTMaterialKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTMaterialKit.xcodeproj; path = "../node_modules/react-native-material-kit/iOS/RCTMaterialKit.xcodeproj"; sourceTree = "<group>"; };
 		9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		9C38925F1E545FD300C896D8 /* TwitterAuthModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterAuthModule.m; sourceTree = "<group>"; };
+		9C3892611E545FDE00C896D8 /* TwitterAuthModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwitterAuthModule.h; sourceTree = "<group>"; };
+		9C38927A1E54696C00C896D8 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		9CFDD4F41E4ADCBE0082B51C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9CFDD4F61E4ADCD50082B51C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		9CFDD4F81E4ADCE40082B51C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -387,8 +392,9 @@
 		E46248E267E24717944664D2 /* SafariServices.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		F24401036A854BF28E10064A /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		FE86053E2C3843B5BA235FB4 /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		35FC465CD061472A9A206872 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "RCTSplashScreen.xcodeproj"; path = "../node_modules/react-native-smart-splash-screen/ios/RCTSplashScreen/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		6E56BDB3395D4B79891FEC3A /* libRCTSplashScreen.a */ = {isa = PBXFileReference; name = "libRCTSplashScreen.a"; path = "libRCTSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AA17F4D1749E4715951E4FD9 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "RCTSplashScreen.xcodeproj"; path = "../node_modules/react-native-smart-splash-screen/ios/RCTSplashScreen/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		48B5E650A63C471CBC8E05D5 /* libRCTSplashScreen.a */ = {isa = PBXFileReference; name = "libRCTSplashScreen.a"; path = "libRCTSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,7 +436,7 @@
 				174B0377AF214783AF796391 /* libRNVectorIcons.a in Frameworks */,
 				1E9D08B00E3F48CA9DD949F8 /* libCodePush.a in Frameworks */,
 				F50B3923284744B5946E794A /* libRNImagePicker.a in Frameworks */,
-				8BA62AEDCF9147DAABD7E58B /* libRCTSplashScreen.a in Frameworks */,
+				9954633F463B47BFA05E1C2F /* libRCTSplashScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +549,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				9C38927A1E54696C00C896D8 /* Constant.h */,
 			);
 			name = hikerapp;
 			sourceTree = "<group>";
@@ -623,7 +630,7 @@
 				4CB68D9FB1154DB394FBD44B /* CodePush.xcodeproj */,
 				9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */,
 				A4653192BA1E4FA58DF34354 /* OAuthManager.xcodeproj */,
-				35FC465CD061472A9A206872 /* RCTSplashScreen.xcodeproj */,
+				AA17F4D1749E4715951E4FD9 /* RCTSplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -696,6 +703,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9C38923B1E545F8D00C896D8 /* twitter */ = {
+			isa = PBXGroup;
+			children = (
+				9C38925F1E545FD300C896D8 /* TwitterAuthModule.m */,
+				9C3892611E545FDE00C896D8 /* TwitterAuthModule.h */,
+			);
+			path = twitter;
+			sourceTree = "<group>";
+		};
 		9C4BB48D1E49D1600025D3D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -764,6 +780,7 @@
 		9CFDD4FC1E4AE1830082B51C /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				9C38923B1E545F8D00C896D8 /* twitter */,
 				9CFDD4FD1E4AE1830082B51C /* google */,
 			);
 			name = modules;
@@ -1365,6 +1382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				9C3892601E545FD300C896D8 /* TwitterAuthModule.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				9CFDD5001E4AE2820082B51C /* GoogleSignInModule.m in Sources */,
 			);
