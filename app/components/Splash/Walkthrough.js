@@ -33,15 +33,13 @@ const styles = StyleSheet.create({
 export default class walkthrough extends Component {
   constructor(props) {
     super(props);
-    console.log('STRINGS+++',strings);
+    strings.setLanguage('id');
     this.state = {
       screen: strings.walkthrought.screen.information,
     };
   }
   render() {
-    strings.setLanguage('en');
     return (
-      // console.log(strings);
       <View style={{ backgroundColor: '#2196F3', flex: 1 }}>
           <IndicatorViewPager
             style={{ flex: 1 }}
@@ -91,7 +89,7 @@ export default class walkthrough extends Component {
             onPress={Actions.login}
             style={{ flex: 1, backgroundColor: '#2196F3', width, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ padding: 10, fontWeight: '200', fontSize: 17, color: 'white', justifyContent: 'center', alignItems: 'center' }}> {strings.buttonText} </Text>
+            <Text style={{ padding: 10, fontWeight: '200', fontSize: 17, color: 'white', justifyContent: 'center', alignItems: 'center' }}> {strings.walkthrought.buttonText} </Text>
           </TouchableOpacity>
         </View>
       </View>
