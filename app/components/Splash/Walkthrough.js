@@ -10,12 +10,14 @@ import {
   IndicatorViewPager, PagerDotIndicator
 } from 'rn-viewpager';
 import { Actions } from 'react-native-router-flux';
-import { strings } from './../../localizations/en/WalkthroughtLocalization';
+import strings from '../../localizations';
 
 const { height, width } = Dimensions.get('window');
 export default class walkthrough extends Component {
   render() {
+    strings.setLanguage('en');
     return (
+      // console.log(strings);
       <View style={{ backgroundColor: '#2196F3', flex: 1 }}>
           <IndicatorViewPager
             style={{ flex: 1 }}
@@ -26,8 +28,8 @@ export default class walkthrough extends Component {
                 <Image style={{ height: 270,width: width * 1 }} source={require('./../../images/bromo.jpg')} />
               </View>
               <View style={{flex: 4, flexDirection: 'column', alignItems: 'center', padding: 20, justifyContent: 'center' }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{strings.title}</Text>
-                <Text>{strings.description}</Text>
+                <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{strings.walkthrought.title}</Text>
+                <Text>{strings.walkthrought.description}</Text>
               </View>
             </View>
             <View style={{ flex: 1, backgroundColor:'#26C6DA', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingBottom: 50 }}>
@@ -64,7 +66,7 @@ export default class walkthrough extends Component {
             onPress={Actions.login}
             style={{ flex: 1, backgroundColor: '#2196F3'}}
           >
-            <Text style={{ padding: 10, fontWeight: '200', fontSize: 17, color: 'white', justifyContent: 'center' }}> GET STARTED </Text>
+            <Text style={{ padding: 10, fontWeight: '200', fontSize: 17, color: 'white', justifyContent: 'center' }}> {strings.walkthrought.buttonText} </Text>
           </TouchableOpacity>
         </View>
       </View>
