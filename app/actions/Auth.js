@@ -2,6 +2,7 @@ import { Actions } from 'react-native-router-flux';
 import OAuthManager from 'react-native-oauth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
+import twitter from './../modules/twitter';
 import auth from '../services/auth';
 
 import config from '../config';
@@ -79,20 +80,12 @@ export function loginWithFacebook() {
 export const manager = new OAuthManager('RB Codebase');
 
 export function loginWithTwitter() {
-  return (dispatch) => {
-    manager.configure({
-      twitter: {
-        consumer_key: TWITTER_CONSUMER_KEY,
-        consumer_secret: TWITTER_CONSUMER_SECRET,
-      },
-    });
-    dispatch(requestLogin('Login With Twitter'));
-    return manager.authorize('twitter')
-      .then((resp) => {
-        const accessToken = resp.response.credentials.accessToken;
-        return accessToken;
-      })
-      .then(accessToken => dispatch(doneLogin({ accessToken, provider: 'twitter' })))
-      .catch(err => console.log('TWITTER ERR', err));
-  };
+  return dispatch => {
+    dispatch(requestLogin('Login with Twitter'));
+    twitter.signIn().then(response =>{
+      console.log(response);
+      dispatch(doneLogin({ ...response }))
+    })
+    .catch(err => errorLogin(err));
+  }
 }
