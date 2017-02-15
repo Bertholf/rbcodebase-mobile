@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import LocalizationStrings from 'react-native-localization';
 import styles from './../../components/Setting/Style';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
@@ -10,7 +11,7 @@ const Setting = () => {
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
-            <Text style={styles.titleText}>Account</Text>
+            <Text style={styles.titleText}>{ settings.account }</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>

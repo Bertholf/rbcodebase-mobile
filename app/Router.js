@@ -48,7 +48,7 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={'Setting'}
+            key="setting" component={Setting} initial title={'Setting'}
           />
           <Scene
             key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
@@ -150,7 +150,7 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} initial component={ActionSwiper} hideNavBar title={'Dashboard'}
+            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
