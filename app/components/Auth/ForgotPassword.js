@@ -18,6 +18,8 @@ export default class ForgotPassword extends Component {
     this.state = {
       email: '',
       profile: {},
+      alertS: '',
+      alertF: '',
     }
   }
   componentDidMount() {
@@ -29,7 +31,6 @@ export default class ForgotPassword extends Component {
   static propTypes = { url: React.PropTypes.string };
 
   render() {
-      strings.setLanguage('id');
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;
@@ -38,9 +39,9 @@ export default class ForgotPassword extends Component {
       if (emailValidator && emailInput) {
         // Need action here, please fix it later, thanks!!!
         if (currentEmail == emailInput) {
-          Alert.alert({strings.ForgotPass.validemailS});
+          Alert.alert(strings.ForgotPass.validemailS);
         } else {
-          Alert.alert({strings.ForgotPass.validemailF});
+          Alert.alert(strings.ForgotPass.validemailF);
         }
       } else {
         return;
