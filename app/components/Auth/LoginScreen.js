@@ -26,6 +26,7 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <ScrollView>
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Image style={styles.logo} source={logo} />
 
@@ -88,6 +89,7 @@ export default class LoginScreen extends Component {
               <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text></Text>
           </View>
         </View>
+      </ScrollView>
       </View>
     );
   }
