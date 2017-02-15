@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
@@ -10,11 +11,11 @@ const Setting = () => {
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
-            <Text style={styles.titleText}>Account</Text>
+          <Text style={styles.titleText}>{strings.settings.account}</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Name</Text>
+                <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center'}}>My Name</Text>
@@ -25,7 +26,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.privacy}>
             <View style={styles.list}>
               <View style={{alignSelf: 'center' }}>
-                <Text style={styles.text}>Username</Text>
+                <Text style={styles.text}>{strings.settings.username}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center' }}>@tester</Text>
@@ -36,7 +37,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.email}>
             <View style={styles.list}>
               <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>Birthday</Text>
+                <Text style={styles.text}>{strings.settings.birthday}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center'}}>1 Jan 2017</Text>
@@ -47,7 +48,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Mobile Number</Text>
+                <Text style={styles.text}>{strings.settings.mobile}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center'}}>+621293823</Text>
@@ -58,7 +59,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Email</Text>
+                <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center'}}>email@domain.com</Text>
@@ -69,7 +70,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Password</Text>
+                <Text style={styles.text}>{strings.settings.password}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center'}}>email@domain.com</Text>
@@ -77,11 +78,11 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <Text style={styles.titleText}>Preference</Text>
+          <Text style={styles.titleText}>{strings.settings.preference}</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Privacy</Text>
+                <Text style={styles.text}>{strings.settings.privacy}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
@@ -91,7 +92,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Notificaitons</Text>
+                <Text style={styles.text}>{strings.settings.notification}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
@@ -101,28 +102,18 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Ad Preference</Text>
+                <Text style={styles.text}>{strings.settings.adPreference}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
-          <Text style={styles.titleText}>More Information</Text>
+          <Text style={styles.titleText}>{strings.settings.moreInfo}</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Support</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
-            <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Privacy Policy</Text>
+                <Text style={styles.text}>{strings.settings.support}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
@@ -132,7 +123,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Term of Services</Text>
+                <Text style={styles.text}>{strings.settings.privayPolicy}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
@@ -142,18 +133,7 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Licences</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <Text style={styles.titleText}>Account Actions</Text>
-          <TouchableOpacity onPress={Actions.account} >
-            <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Cleaser Cache</Text>
+                <Text style={styles.text}>{strings.settings.termService}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
@@ -163,7 +143,28 @@ const Setting = () => {
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
-                <Text style={styles.text}>Log Out</Text>
+                <Text style={styles.text}>{strings.settings.licence}</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Image style={styles.image} source={next} />
+              </View>
+            </View>
+          </TouchableOpacity>
+          <Text style={styles.titleText}>{strings.settings.accountAction}</Text>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <View style={{alignSelf: 'center'}}>
+                <Text style={styles.text}>{strings.settings.clearChache}</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Image style={styles.image} source={next} />
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.account} >
+            <View style={styles.list}>
+              <View style={{alignSelf: 'center'}}>
+                <Text style={styles.text}>{strings.settings.logout}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />

@@ -8,10 +8,11 @@ import {
    AppRegistry,
  } from 'react-native';
 import App from './app/App';
+import App1 from './app/components/Splash/Walkthrough'
 
 
 const HikerApp = () => (
-  <App />
+  <App1 />
 );
 
 AppRegistry.registerComponent('hikerapp', () => HikerApp);
