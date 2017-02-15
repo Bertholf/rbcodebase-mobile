@@ -39,7 +39,7 @@ import LoginScreen from './components/Auth/LoginScreen';
 import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
-
+import strings from './localizations';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -48,7 +48,7 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} initial title={'Setting'}
+            key="setting" component={Setting} initial title={strings.settings.title}
           />
           <Scene
             key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
