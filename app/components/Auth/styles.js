@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    marginTop: 16,
+    marginTop: 13,
     height: 300 * 0.33,
     width: 300 * 0.33,
     alignItems: 'center',
