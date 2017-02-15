@@ -63,7 +63,7 @@ export function requestLogin(message) {
 
 //register
 export function submitRegister(name_first, name_last, name_slug, email, password, password_confirmation) {
-  return(dispatch)=> {
+  return(dispatch) {
     dispatch(requestLogin)
   }
   Actions.pop();
