@@ -7,7 +7,6 @@ import styles from './../../components/Setting/Style';
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 const Setting = () => {
-  strings.setLanguage('id');
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
