@@ -52,6 +52,7 @@
 		FA63392BC3004B1687ADDE99 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B484EA379C5246CF8A18C12E /* MaterialIcons.ttf */; };
 		FF95616694674740BDB04C2F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E7308C80AAD4876AAFC9787 /* Ionicons.ttf */; };
 		9954633F463B47BFA05E1C2F /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B5E650A63C471CBC8E05D5 /* libRCTSplashScreen.a */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +394,7 @@
 		FE86053E2C3843B5BA235FB4 /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		AA17F4D1749E4715951E4FD9 /* RCTSplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "RCTSplashScreen.xcodeproj"; path = "../node_modules/react-native-smart-splash-screen/ios/RCTSplashScreen/RCTSplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		48B5E650A63C471CBC8E05D5 /* libRCTSplashScreen.a */ = {isa = PBXFileReference; name = "libRCTSplashScreen.a"; path = "libRCTSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
