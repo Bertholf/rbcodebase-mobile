@@ -23,17 +23,27 @@ RCT_EXPORT_METHOD(signIn:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejec
   [[Twitter sharedInstance] logInWithCompletion:^(TWTRSession *session, NSError *error){
     if(error != nil){
       onAfterLoginReject( [[NSString alloc] initWithFormat:@"%ld", [error code]] , [error localizedDescription], error);
+      return;
     }
+    TWTRAPIClient *client = [TWTRAPIClient clientWithCurrentUser];
+    [client loadUserWithID:[session userID] completion:^(TWTRUser *user, NSError *error){
+      if(error != nil){
+        onAfterLoginReject( [[NSString alloc] initWithFormat:@"%ld", [error code]] , [error localizedDescription], error);
+        return;
+      }
+      NSDictionary *info = @{
+                             @"userId": [session userID],
+                             @"token": [session authToken],
+                             @"tokenSecret": [session authTokenSecret],
+                             @"user": @{
+                                 @"username": [session userName],
+                                 @"screenName": [user screenName],
+                                 @"name": [user name],
+                                 }
+                             };
+      onAfterLoginResolve(info);
+    }];
     
-    NSDictionary *info = @{
-                           @"userId": [session userID],
-                           @"token": [session authToken],
-                           @"tokenSecret": [session authTokenSecret],
-                           @"user": @{
-                               @"username": [session userName],
-                               }
-                           };
-    onAfterLoginResolve(info);
   }];
   
 }
