@@ -5,7 +5,7 @@ export default class AdPref extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#2196f3' }}>
           Ad Preference
         </Text>
       </View>
