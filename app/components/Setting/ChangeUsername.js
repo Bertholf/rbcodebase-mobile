@@ -24,17 +24,20 @@ class ChangeUsername extends Component {
             <Text style={styles.Text2}>
               Your current username
             </Text>
-            <Text style={styles.TextInput1}>
-              {this.state.currentUsername}
-            </Text>
+            <TextInput
+              style={styles.TextInput1}
+              underlineColorAndroid="rgba(0,0,0,0)"
+              defaultValue={this.state.currentUsername}
+              editable={false}
+            />
             <Text style={styles.Text2}>
               Enter your new username
             </Text>
             <TextInput
               style={styles.TextInput1}
-              underlineColorAndroid={'#2196f3'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
-              placeholder="Enter your new name"
+              placeholder="New Username"
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={4} editable={true}
@@ -43,7 +46,7 @@ class ChangeUsername extends Component {
               <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>} */}
           </View>
         </ScrollView>
-        <TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.7}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
               SAVE
