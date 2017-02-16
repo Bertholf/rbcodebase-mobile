@@ -84,8 +84,6 @@ export default class MobilePhone extends Component {
           </TouchableOpacity>
         </View>
       </View>
-
-
        );
      }
 }
