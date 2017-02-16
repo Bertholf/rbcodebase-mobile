@@ -23,7 +23,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.pr}>
+          <TouchableOpacity onPress={Actions.account}>
             <View style={styles.list}>
               <View style={{alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.username}</Text>

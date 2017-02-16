@@ -12,7 +12,7 @@ class ChangeUsername extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUsername: 'WaNdrY',
+      currentUsername: 'Mr. Jonhys',
     };
   }
 
@@ -35,7 +35,7 @@ class ChangeUsername extends Component {
             </Text>
             <TextInput
               style={styles.TextInput1}
-              underlineColorAndroid={'rgba(0,0,0,0)'}
+              underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
               placeholder="New Username"
               onChangeText={firstName => this.setState({ firstName })}
