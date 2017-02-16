@@ -79,14 +79,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>My Friends </Text>
@@ -94,14 +87,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={addFriendIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>Add Friends </Text>
