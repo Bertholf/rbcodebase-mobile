@@ -40,6 +40,7 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import License from './containers/License/License';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -157,6 +158,7 @@ const Routing = (props) => (
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+          <Scene key={'license'} hideNavBar component={License} />
           </Scene>
         <Scene key={'loader'} component={Loader} />
       </Scene>
