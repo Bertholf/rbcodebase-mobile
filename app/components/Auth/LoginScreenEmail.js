@@ -92,7 +92,7 @@ export default class LoginScreenEmail extends Component {
               activeOpacity={1}
               style={styles.button}
             >
-              <ActivityIndicator size={'large'} />
+              <ActivityIndicator size={'large'} color={'#fff'}/>
             </TouchableOpacity>
           )}
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
