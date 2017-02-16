@@ -10,6 +10,7 @@ import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
 import PPContainer from './containers/PrivacyPolicy/PPContainer';
+import SupportContainer from './containers/Support/SupportContainer';
 import Register from './components/Auth/RegisterScreen';
 import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
@@ -49,7 +50,7 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={strings.settings.title}
+            key="setting" initial component={Setting} title={strings.settings.title}
           />
           <Scene
             key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
@@ -61,7 +62,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications}  title={'Notifications'}
@@ -161,6 +162,7 @@ const Routing = (props) => (
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+          <Scene key={'support'} hideNavBar component={SupportContainer} />
         </Scene>
             <Scene key={'loader'} component={Loader} />
           </Scene>
