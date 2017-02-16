@@ -155,9 +155,9 @@ const Routing = (props) => (
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
+          <Scene key={'tos'} component={TOSContainer} />
+          <Scene key={'pp'} component={PPContainer} />
         </Scene>
-        <Scene key={'tos'} component={TOSContainer} />
-        <Scene key={'pp'} component={PPContainer} />
         <Scene key={'loader'} component={Loader} />
       </Scene>
       </Scene>
