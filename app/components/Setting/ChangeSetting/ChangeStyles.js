@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   Text2: {
-    fontSize: 18,
+    fontSize: 17,
     alignSelf: 'flex-start',
     paddingTop: 8,
     paddingBottom: 8,
@@ -47,7 +47,10 @@ const styles = StyleSheet.create({
     width: 0.7 * width,
     paddingTop: 2,
     color: '#2196f3',
-    fontSize: 20,
+    fontSize: 19,
+    borderWidth: 0.5,
+    borderRadius: 2,
+    borderColor: '#2196f3',
   },
   invalid: {
     color: 'red',

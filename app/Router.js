@@ -30,6 +30,7 @@ import editBirthday from './components/Setting/editBirthday';
 import PassEdit from './components/Setting/PasswordEdit';
 import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
+import UsernameEdit from './components/Setting/ChangeUsername';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
@@ -41,6 +42,7 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
 
@@ -112,6 +114,9 @@ const Routing = (props) => (
             key={'about'} component={About} title={'Edit Bio'}
           />
           <Scene
+            key={'usernameEdit'} component={UsernameEdit} title={'Edit Username'}
+          />
+          <Scene
             key={'nameEdit'} component={NameEdit} title={'Edit Name'}
           />
           <Scene
@@ -165,6 +170,7 @@ const Routing = (props) => (
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
+          <Scene key={'license'} hideNavBar component={License} />
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
