@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 7,
-    marginLeft: 5,
+    marginLeft: 10,
+    marginRight: -7
   },
   facebookLogo: {
     height: 30,
