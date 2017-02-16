@@ -41,6 +41,8 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import ReserveScreen from './components/ReserveScreen';
+import AppListing from './components/Listing/listing';
 import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
@@ -131,7 +133,7 @@ const Routing = (props) => (
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
           />
           <Scene
-            key={'timelineList'} component={TimelineList} title={'Timeline List'} direction={'horizontal'}
+            key={'timelineList'} hideNavBar component={TimelineList} title={'Timeline List'} direction={'horizontal'}
           />
           <Scene
             key={'listInbox'} component={Inbox} title={'Timeline Detial'}
@@ -161,12 +163,18 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
+            key={'actionswiper'} component={ActionSwiper} title={'Dashboard'} hideNavBar
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
           <Scene key={'license'} hideNavBar component={License} />
+          <Scene
+            key={'reservescreen'} component={ReserveScreen} title={'Reserve Screen'} direction={'vertical'}
+          />
+          <Scene
+            key={'appListing'} hideNavBar component={AppListing} title={'App Listing'} direction={'leftToRight'}
+          />
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
