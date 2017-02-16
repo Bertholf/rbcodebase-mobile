@@ -24,7 +24,7 @@ class GoogleSignIn {
     this.setupGoogleSignin().then(() => GoogleSignin.signIn())
     .then((received) => {
       const user = GoogleSignin.currentUser();
-      Actions.timelineList();
+      Actions.actionswiper();
     })
     .catch((err) => {
       console.log('WRONG SIGNIN', err);

@@ -54,6 +54,11 @@ export default class LoginScreenEmail extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentLoginEmail}>
+        {!this.state.isFail ? <Text /> : (
+          <View style={styles.errBox}>
+            <Text style={{ color: '#fff' }} >Email or Password not match</Text>
+          </View>
+        )}
           <TextInput
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
@@ -102,11 +107,6 @@ export default class LoginScreenEmail extends Component {
                 </Text>
             </TouchableOpacity>
           </View>
-          {!this.state.isFail ? <Text /> : (
-            <View style={styles.errBox}>
-              <Text style={{ color: '#fff' }} >Email or Password not match</Text>
-            </View>
-          )}
         </View>
       </View>
     );
