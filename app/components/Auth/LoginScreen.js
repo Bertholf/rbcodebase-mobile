@@ -82,12 +82,16 @@ export default class LoginScreen extends Component {
               </Text>
           </TouchableOpacity>
         </View>
-
-          <View style={{ marginTop: 10, marginBottom: 20, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{strings.LoginScreen.agreement} <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}>{strings.LoginScreen.tos}</Text>
-              <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}</Text>
-              <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text></Text>
+        <View style={{ marginTop: 10, alignItems: 'center' }}>
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{justifyContent: 'center' }}>{strings.LoginScreen.agreement}</Text>
+            <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.LoginScreen.tos}
+            <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
+                <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text>
+            </Text>
+            </Text>
           </View>
+        </View>
         </View>
       </ScrollView>
       </View>
