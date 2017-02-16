@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
-import styles from './../../components/UserPanel/style';
+import styles from './style';
 
 
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
@@ -96,7 +96,7 @@ class userPanel extends React.Component {
             </View>
           </ScrollView>
           <View style={styles.swapContainer}>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity activeOpacity={0.7} onPress={Actions.pop}>
               <Image source={bottomArrowIcon} style={styles.swapImage} />
             </TouchableOpacity>
           </View>
