@@ -113,7 +113,8 @@ export default class RegistrationForm extends Component {
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
-        Alert.alert(strings.register.Success);
+        const {firstname, lastname,email,username, password, confirmPassword } = this.state;
+        submitRegister(firstname, lastname,username,email, password, confirmPassword);
       } else {
         Alert.alert(strings.register.Failed);
       }
