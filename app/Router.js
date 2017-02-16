@@ -157,9 +157,9 @@ const Routing = (props) => (
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+        </Scene>
+            <Scene key={'loader'} component={Loader} />
           </Scene>
-        <Scene key={'loader'} component={Loader} />
-      </Scene>
       </Scene>
     </Router>
   </View>
