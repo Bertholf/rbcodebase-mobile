@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 48,
     marginRight: -5,
     marginLeft: 5,
+    tintColor: '#fff'
   },
   facebookLogo: {
     height: 30,
