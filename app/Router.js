@@ -51,134 +51,134 @@ const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
-          <Scene key={'navbar'} component={NavBar}>
-        <Scene key={'root'}>
-          <Scene
-            key="setting" hideNavBar component={Setting} title={strings.settings.title}
-          />
-          <Scene
-            key="editBirthday" component={editBirthday} title={'editBirthday'}
-          />
-          <Scene
-            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
-          />
-          <Scene
-            key="chatfriend" component={ChatListFriendView} title={'Chat'}
-          />
-          <Scene
-            key="inbox" component={Inbox} title={'Inbox'}
-          />
-          <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
-          />
-          <Scene
-            key={'notifications'} component={Notifications}  title={'Notifications'}
-          />
-          <Scene
-            key={'dashboard'} component={Dashboard} title={'Dashboard'}
-          />
-          <Scene
-            key={'leftdashboard'} component={LeftDashboard} title={'LeftDashboard'} direction={'leftToRight'}
-          />
-          <Scene
-            key={'chat'} component={Chat} title={'Chat'}
-          />
-          <Scene
-            key={'chatlist'} component={ChatListFriendView} title={'Chat List'} direction={'vertically'}
-          />
-          <Scene
-            key={'friendlist'} component={Friendlist} title={'Friend list'}
-          />
-          <Scene
-            key={'loginscreenemail'} component={LoginScreenEmail} title={'Sign in'}
-          <Scene
-            key={'account'} component={Account} title={'Account'}
-          />
-          <Scene
-            key={'privacy'} component={Privacy} title={'Privacy'}
-          />
-        />
-          <Scene
-            key={'email'} component={Email} title={'Email'}
-          />
-          <Scene
-            key={'emailEdit'} component={EmailEdit} title={'Edit Email'}
-          />
-          <Scene
-            key={'genderEdit'} component={Gender} title={'Edit Gender'}
-          />
-          <Scene
-            key={'passEdit'} component={PassEdit} title={'Edit Password'}
-          />
-          <Scene
-            key={'about'} component={About} title={'Edit Bio'}
-          />
-          <Scene
-            key={'usernameEdit'} component={UsernameEdit} title={'Edit Username'}
-          />
-          <Scene
-            key={'nameEdit'} component={NameEdit} title={'Edit Name'}
-          />
-          <Scene
-            key={'welcome'} component={Welcome} title={'Welcome'}
-          />
-          <Scene
-            key={'login'} component={Login} hideNavBar title={'Login Screen'}
-          />
-          <Scene
-            key={'register'} component={Register} title={'Register Screen'}
-          />
-          <Scene
-            key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
-          />
-          <Scene
-            key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
-          />
-          <Scene
-            key={'timelineList'} component={TimelineList} title={'Timeline List'} direction={'horizontal'}
-          />
-          <Scene
-            key={'listInbox'} component={Inbox} title={'Timeline Detial'}
-          />
-          <Scene
-            key={'timelineshare'} component={TimelineShare} title={'Timeline Share'}
-          />
-          <Scene
-            key={'profile'} component={Profile} title={'Profile'} direction={'vertical'}
-          />
-          <Scene
-            key={'chat'} component={Chat} title={'Chat'}
-          />
-          <Scene
-            key={'deactive'} component={Deactivate} title={'Deactivate'}
-          />
-          <Scene
-            key={'createLocation'} component={Location} title={'Location'}
-          />
-          <Scene
-            key={'registrationform'} component={RegistrationForm} title={'Register'}
-          />
-          <Scene
-            key={'adpref'} component={AdPref} title={'Ad Preference'}
-          />
-          <Scene
-            key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
-          />
-          <Scene
-            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
-          />
-          <Scene
-            key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
-          />
-          <Scene key={'license'} hideNavBar component={License} />
-          <Scene
-            key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
-          />
-          <Scene key={'tos'} hideNavBar component={TOSContainer} />
-          <Scene key={'pp'} hideNavBar component={PPContainer} />
-        </Scene>
-            <Scene key={'loader'} component={Loader} />
+        <Scene key={'navbar'} component={NavBar}>
+          <Scene key={'root'}>
+            <Scene
+              key="setting" hideNavBar component={Setting} title={strings.settings.title}
+            />
+            <Scene
+              key="editBirthday" component={editBirthday} title={'editBirthday'}
+            />
+            <Scene
+              key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            />
+            <Scene
+              key="chatfriend" component={ChatListFriendView} title={'Chat'}
+            />
+            <Scene
+              key="inbox" component={Inbox} title={'Inbox'}
+            />
+            <Scene
+              key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            />
+            <Scene
+              key={'notifications'} component={Notifications} title={'Notifications'}
+            />
+            <Scene
+              key={'dashboard'} component={Dashboard} title={'Dashboard'}
+            />
+            <Scene
+              key={'leftdashboard'} component={LeftDashboard} title={'LeftDashboard'} direction={'leftToRight'}
+            />
+            <Scene
+              key={'chat'} component={Chat} title={'Chat'}
+            />
+            <Scene
+              key={'chatlist'} component={ChatListFriendView} title={'Chat List'} direction={'vertically'}
+            />
+            <Scene
+              key={'friendlist'} component={Friendlist} title={'Friend list'}
+            />
+            <Scene
+              key={'loginscreenemail'} component={LoginScreenEmail} title={'Sign in'}
+            />
+            <Scene
+              key={'account'} component={Account} title={'Account'}
+            />
+            <Scene
+              key={'privacy'} component={Privacy} title={'Privacy'}
+            />
+            <Scene
+              key={'email'} component={Email} title={'Email'}
+            />
+            <Scene
+              key={'emailEdit'} component={EmailEdit} title={'Edit Email'}
+            />
+            <Scene
+              key={'genderEdit'} component={Gender} title={'Edit Gender'}
+            />
+            <Scene
+              key={'passEdit'} component={PassEdit} title={'Edit Password'}
+            />
+            <Scene
+              key={'about'} component={About} title={'Edit Bio'}
+            />
+            <Scene
+              key={'usernameEdit'} component={UsernameEdit} title={'Edit Username'}
+            />
+            <Scene
+              key={'nameEdit'} component={NameEdit} title={'Edit Name'}
+            />
+            <Scene
+              key={'welcome'} component={Welcome} title={'Welcome'}
+            />
+            <Scene
+              key={'login'} component={Login} hideNavBar title={'Login Screen'}
+            />
+            <Scene
+              key={'register'} component={Register} title={'Register Screen'}
+            />
+            <Scene
+              key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
+            />
+            <Scene
+              key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
+            />
+            <Scene
+              key={'timelineList'} component={TimelineList} title={'Timeline List'} direction={'horizontal'}
+            />
+            <Scene
+              key={'listInbox'} component={Inbox} title={'Timeline Detial'}
+            />
+            <Scene
+              key={'timelineshare'} component={TimelineShare} title={'Timeline Share'}
+            />
+            <Scene
+              key={'profile'} component={Profile} title={'Profile'} direction={'vertical'}
+            />
+            <Scene
+              key={'chat'} component={Chat} title={'Chat'}
+            />
+            <Scene
+              key={'deactive'} component={Deactivate} title={'Deactivate'}
+            />
+            <Scene
+              key={'createLocation'} component={Location} title={'Location'}
+            />
+            <Scene
+              key={'registrationform'} component={RegistrationForm} title={'Register'}
+            />
+            <Scene
+              key={'adpref'} component={AdPref} title={'Ad Preference'}
+            />
+            <Scene
+              key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
+            />
+            <Scene
+              key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
+            />
+            <Scene
+              key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+            />
+            <Scene key={'license'} hideNavBar component={License} />
+            <Scene
+              key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
+            />
+            <Scene key={'tos'} hideNavBar component={TOSContainer} />
+            <Scene key={'pp'} hideNavBar component={PPContainer} />
           </Scene>
+          <Scene key={'loader'} component={Loader} />
+        </Scene>
       </Scene>
     </Router>
   </View>
