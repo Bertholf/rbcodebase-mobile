@@ -42,6 +42,9 @@ import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
 import ReserveScreen from './components/ReserveScreen';
 import AppListing from './components/Listing/listing';
+import MobilePhone from './components/Setting/mobilePhone';
+import AdPref from './components/Setting/AdPreference';
+
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -50,10 +53,10 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={strings.settings.title}
+            key="setting" initial component={Setting} title={strings.settings.title}
           />
           <Scene
-            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
@@ -62,7 +65,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications}  title={'Notifications'}
@@ -149,6 +152,9 @@ const Routing = (props) => (
             key={'registrationform'} component={RegistrationForm} title={'Register'}
           />
           <Scene
+            key={'adpref'} component={AdPref} title={'Ad Preference'}
+          />
+          <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
@@ -162,6 +168,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'appListing'} component={AppListing} title={'App Listing'} direction={'leftToRight'}
+          />
+          <Scene
+            key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />

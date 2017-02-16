@@ -8,8 +8,8 @@ import {
   Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import styles from './../../components/UserPanel/style';
 import Swiper from 'react-native-swiper';
+import styles from './style';
 
 
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
@@ -28,7 +28,7 @@ class TitleText extends React.Component {
       <Text style={{ fontSize: 48, color: 'white' }}>
         {this.props.label}
       </Text>
-    )
+    );
   }
 }
 
@@ -56,14 +56,7 @@ class userPanel extends React.Component {
             <View style={styles.btnSettingContainer}>
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => Alert.alert(
-                  'Alert Title',
-                  alertMessage,
-                  [
-                    { text: 'Cancel' },
-                    { text: 'OK' },
-                  ],
-                )}
+                onPress={Actions.setting}
               >
                 <Image source={settingIcon} style={styles.iconImage} />
               </TouchableOpacity>
@@ -78,14 +71,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>Following Me </Text>
@@ -93,14 +79,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>My Friends </Text>
@@ -108,14 +87,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={addFriendIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>Add Friends </Text>
