@@ -9,9 +9,9 @@ import {
 import SimpleGesture from 'react-native-simple-gesture';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
-import SlidingUpPanel from 'react-native-sliding-up-panel';
 import Dashboard from './Timeline/Dashboard';
-import LeftDashboard from './Timeline/LeftDashboard';
+import TimelineComp from './Timeline/TimelineComp';
+import AppListing from './Listing/listing';
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -46,7 +46,7 @@ class ActionSwiper extends Component {
       onPanResponderMove: (e, gs) => {
         let sgs = new SimpleGesture(e, gs);
         if (sgs.isSwipeUp()) {
-          Actions.profile();
+          Actions.reservescreen();
         }
         if (sgs.isSwipeDown()) {
           Actions.userpanel();
@@ -70,16 +70,14 @@ class ActionSwiper extends Component {
           loop={false}
           showsPagination={false}
           index={1}
-          height={height-30}
+          height={height-60}
           showsButtons={true}
         >
-          <View style={[styles.container,{justifyContent: 'center', alignItems: 'center', backgroundColor: '#cbc'}]}>
-            <Text style={styles.text}>LEFT</Text>
-          </View>
+          <AppListing />
           <View style={styles.container}  {...this.panResponder.panHandlers}>
             <Dashboard />
           </View>
-          <LeftDashboard />
+          <TimelineComp />
         </Swiper>
       </View>
     );

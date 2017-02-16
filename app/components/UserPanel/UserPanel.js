@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import styles from './../../components/UserPanel/style';
 import Swiper from 'react-native-swiper';
 
@@ -123,7 +124,7 @@ class userPanel extends React.Component {
             </View>
           </ScrollView>
           <View style={styles.swapContainer}>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity activeOpacity={0.7} onPress={Actions.pop}>
               <Image source={bottomArrowIcon} style={styles.swapImage} />
             </TouchableOpacity>
           </View>

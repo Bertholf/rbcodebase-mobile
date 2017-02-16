@@ -58,15 +58,10 @@ export default class test extends Component {
   }
   render() {
     return (
-      <Swiper showsButtons={true} loop={false} showsPagination={false}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={rowData => this.renderRow(rowData)}
         />
-        <View style={styles.slide2} >
-          <Text style={styles.text}>This is Slide 2</Text>
-        </View>
-      </Swiper>
   );
   };
 }

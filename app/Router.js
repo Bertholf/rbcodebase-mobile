@@ -40,6 +40,8 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import ReserveScreen from './components/ReserveScreen';
+import AppListing from './components/Listing/listing';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -150,10 +152,16 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
+            key={'actionswiper'} component={ActionSwiper} title={'Dashboard'} hideNavBar
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+          />
+          <Scene
+            key={'reservescreen'} component={ReserveScreen} title={'Reserve Screen'} direction={'vertical'}
+          />
+          <Scene
+            key={'appListing'} component={AppListing} title={'App Listing'} direction={'leftToRight'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
