@@ -79,7 +79,7 @@ const Setting = () => {
             </View>
           </TouchableOpacity>
           <Text style={styles.titleText}>{strings.settings.preference}</Text>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.pp} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.privacy}</Text>
