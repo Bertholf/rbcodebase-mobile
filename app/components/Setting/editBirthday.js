@@ -19,7 +19,7 @@ export default class editBirthday extends Component {
   render() {
     return (
       <View>
-        <View style={{ padding: 10 }}>
+        <View style={{ padding: 9 }}>
           <View>
             <Text>Birthday</Text>
           </View>
