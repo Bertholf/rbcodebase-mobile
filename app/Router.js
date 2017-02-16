@@ -52,7 +52,7 @@ const Routing = (props) => (
             key="setting" component={Setting} title={strings.settings.title}
           />
           <Scene
-            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
@@ -61,7 +61,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications}  title={'Notifications'}
@@ -159,9 +159,9 @@ const Routing = (props) => (
           <Scene key={'license'} hideNavBar component={License} />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+        </Scene>
+            <Scene key={'loader'} component={Loader} />
           </Scene>
-        <Scene key={'loader'} component={Loader} />
-      </Scene>
       </Scene>
     </Router>
   </View>
