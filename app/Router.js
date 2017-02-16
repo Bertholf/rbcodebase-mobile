@@ -40,6 +40,7 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import MobilePhone from './components/Setting/mobilePhone';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -48,7 +49,7 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={strings.settings.title}
+            key="setting" initial component={Setting} title={strings.settings.title}
           />
           <Scene
             key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
@@ -154,6 +155,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+          />
+          <Scene
+            key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
