@@ -12,7 +12,7 @@ const Setting = () => {
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.titleText}>{strings.settings.account}</Text>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.nameEdit} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.name}</Text>
