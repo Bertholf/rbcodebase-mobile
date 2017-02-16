@@ -129,7 +129,7 @@ const Routing = (props) => (
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
           />
           <Scene
-            key={'timelineList'} component={TimelineList} title={'Timeline List'} direction={'horizontal'}
+            key={'timelineList'} hideNavBar component={TimelineList} title={'Timeline List'} direction={'horizontal'}
           />
           <Scene
             key={'listInbox'} component={Inbox} title={'Timeline Detial'}
@@ -169,7 +169,7 @@ const Routing = (props) => (
             key={'reservescreen'} component={ReserveScreen} title={'Reserve Screen'} direction={'vertical'}
           />
           <Scene
-            key={'appListing'} component={AppListing} title={'App Listing'} direction={'leftToRight'}
+            key={'appListing'} hideNavBar component={AppListing} title={'App Listing'} direction={'leftToRight'}
           />
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
