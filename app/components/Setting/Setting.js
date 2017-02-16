@@ -34,7 +34,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.editBirthday}>
+          <TouchableOpacity onPress={Actions.editbirthday}>
             <View style={styles.list}>
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.birthday}</Text>
