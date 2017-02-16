@@ -40,6 +40,7 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import AdPref from './components/Setting/AdPreference';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -147,6 +148,9 @@ const Routing = (props) => (
             key={'registrationform'} component={RegistrationForm} title={'Register'}
           />
           <Scene
+            key={'adpref'} component={AdPref} title={'Ad Preference'}
+          />
+          <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
@@ -155,6 +159,7 @@ const Routing = (props) => (
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
+
         </Scene>
         <Scene key={'tos'} component={TOSContainer} />
         <Scene key={'pp'} component={PPContainer} />
