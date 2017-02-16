@@ -67,7 +67,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.passEdit}>
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.password}</Text>

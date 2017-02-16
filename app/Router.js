@@ -59,6 +59,9 @@ const Routing = (props) => (
               key="setting" hideNavBar component={Setting} title={strings.settings.title}
             />
             <Scene
+              key={'reservescreen'} component={ReserveScreen} direction={'vertical'} title={'Reserve Screen'} 
+            />
+            <Scene
               key="editBirthday" component={editBirthday} title={'editBirthday'}
             />
             <Scene
