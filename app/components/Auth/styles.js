@@ -25,9 +25,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     borderRadius: 48,
-    marginRight: -5,
-    marginLeft: 5,
-    tintColor: '#fff'
+    marginRight: -10,
+    marginLeft: 10,
   },
   facebookLogo: {
     height: 30,
