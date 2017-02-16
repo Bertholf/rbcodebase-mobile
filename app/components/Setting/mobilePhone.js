@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   textinputWrapperStyle: {
     borderColor: '#2196F3',
     borderWidth: 0.4,
-    borderRadius: 6,
+    borderRadius: 2,
     flexDirection: 'column',
     paddingLeft: 4,
     paddingRight: 4,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     button: {
       backgroundColor: '#2196F3',
-      borderRadius: 6,
+      borderRadius: 2,
       elevation: 2,
       paddingTop: 5,
       paddingBottom: 5,
