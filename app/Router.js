@@ -26,6 +26,7 @@ import Loader from './containers/Loader';
 import Account from './components/Profile/AccountSetting';
 import EmailEdit from './components/Setting/EmailEdit';
 import NameEdit from './components/Setting/ChangeName';
+import editBirthday from './components/Setting/editBirthday';
 import PassEdit from './components/Setting/PasswordEdit';
 import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
@@ -48,10 +49,13 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={strings.settings.title}
+            key="setting" initial hideNavBar component={Setting} title={strings.settings.title}
           />
           <Scene
-            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            key="editBirthday" component={editBirthday} title={'editBirthday'}
+          />
+          <Scene
+            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
