@@ -141,7 +141,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-localization')
     compile project(':react-native-smart-splash-screen')
     compile project(':react-native-oauth')
     compile project(':react-native-image-picker')
