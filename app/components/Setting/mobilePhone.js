@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {
    Text,
    View,
+2
    TextInput,
    TouchableOpacity,
    StyleSheet,
  } from 'react-native';
-
 
 const styles = StyleSheet.create({
   container: {

@@ -99,7 +99,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.adpref} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.adPreference}</Text>
