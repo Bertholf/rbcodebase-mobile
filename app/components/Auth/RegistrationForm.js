@@ -90,6 +90,7 @@ export default class RegistrationForm extends Component {
       password: '',
       confirmPassword: '',
       valid: false,
+      submitting: false
     };
   }
 
@@ -114,6 +115,7 @@ export default class RegistrationForm extends Component {
     const validate = () => {
       if (available && notEmpty) {
         const {firstname, lastname,email,username, password, confirmPassword } = this.state;
+        this.setState({submitting: true});
         submitRegister(firstname, lastname,username,email, password, confirmPassword);
       } else {
         Alert.alert(strings.register.Failed);
@@ -232,9 +234,9 @@ export default class RegistrationForm extends Component {
           <View style={styles.line} />
           <TouchableOpacity onPress={validate}>
             <View style={styles.btnReg} >
-              <Text style={styles.textReg} >
+              {this.state.submitting ? <ActivityIndicator size={'large'} color={'#fff'} /> : <Text style={styles.textReg} >
                 {strings.register.Register}
-              </Text>
+              </Text>}
             </View>
           </TouchableOpacity>
           <View style={styles.policyStyle} >
