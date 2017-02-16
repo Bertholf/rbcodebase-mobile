@@ -31,7 +31,8 @@ export default class Profile extends Component {
 
   componentDidMount() {
     me.getMe()
-    .then(data => this.setState({ profile: data, loading: false }));
+    .then(data => this.setState({ profile: data, loading: false }))
+    .catch(err => this.setState({ loading: false }));
   }
   // toggleSwitch() {
   //   if (!this.state.clicked) {
@@ -158,7 +159,7 @@ export default class Profile extends Component {
       );
     } else {
       return (
-        <ActivityIndicator />
+          <Text>No Data Found</Text>
       );
     }
   }
