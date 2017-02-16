@@ -27,6 +27,7 @@ import Loader from './containers/Loader';
 import Account from './components/Profile/AccountSetting';
 import EmailEdit from './components/Setting/EmailEdit';
 import NameEdit from './components/Setting/ChangeName';
+import editBirthday from './components/Setting/editBirthday';
 import PassEdit from './components/Setting/PasswordEdit';
 import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';

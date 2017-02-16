@@ -12,7 +12,7 @@ const Setting = () => {
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.titleText}>{strings.settings.account}</Text>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.nameEdit} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.name}</Text>
@@ -56,7 +56,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.emailEdit} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.email}</Text>
@@ -67,7 +67,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.passEdit}>
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.password}</Text>
@@ -79,7 +79,7 @@ const Setting = () => {
             </View>
           </TouchableOpacity>
           <Text style={styles.titleText}>{strings.settings.preference}</Text>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.pp} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.privacy}</Text>
