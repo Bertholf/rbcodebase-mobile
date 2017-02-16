@@ -38,6 +38,7 @@
 		94E1FE3B3B6C4E29BA15D06A /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13149F0D225143288E8EB049 /* Entypo.ttf */; };
 		9954633F463B47BFA05E1C2F /* libRCTSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48B5E650A63C471CBC8E05D5 /* libRCTSplashScreen.a */; };
 		9C3892601E545FD300C896D8 /* TwitterAuthModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C38925F1E545FD300C896D8 /* TwitterAuthModule.m */; };
+		9CF9ADDC1E5573ED000D40E2 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1686C71E35F7D4002D8E35 /* libReactNativeLocalization.a */; };
 		9CFDD4F31E4AD9630082B51C /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6973011E41B4F600D843FA /* libRCTFBSDK.a */; };
 		9CFDD4F51E4ADCBE0082B51C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFDD4F41E4ADCBE0082B51C /* Bolts.framework */; };
 		9CFDD4F71E4ADCD50082B51C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CFDD4F61E4ADCD50082B51C /* FBSDKCoreKit.framework */; };
@@ -417,6 +418,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF9ADDC1E5573ED000D40E2 /* libReactNativeLocalization.a in Frameworks */,
 				9CFDD4F31E4AD9630082B51C /* libRCTFBSDK.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,

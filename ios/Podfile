@@ -8,6 +8,7 @@ target 'hikerapp' do
 
   # Pods for hikerapp
   pod 'Firebase/Core'
+  pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
   pod 'Google/SignIn'
   pod 'Fabric'
   pod 'Crashlytics'
