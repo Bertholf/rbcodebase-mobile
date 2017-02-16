@@ -11,7 +11,7 @@ const submitRegister = (name_first, name_last, name_slug, email, password, passw
     auth.login(name_slug, password)
     .then((respL) => {
       AsyncStorage.setItem('accessToken', respL.access_token)
-      .then(() => Actions.timelineList())
+      .then(() => Actions.actionswiper())
       .catch(err => console.log('FAIL TO SAVE ACCESS TOKEN', err));
     })
     .catch(err => console.log('LOGIN ERR', err));
