@@ -49,7 +49,7 @@ export function doneLogin(response = '') {
     AsyncStorage.setItem('accessToken', response.accessToken);
   }
   Actions.pop();
-  Actions.timelineList();
+  Actions.actionswiper();
   return { type: DONE_LOGIN, response };
 }
 export function errorLogin(error) {
