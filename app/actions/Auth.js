@@ -28,19 +28,19 @@ export function updateUsername(username) {
 export function updatePassword(password) {
   return { type: UPDATE_PASSWORD_TEXT, password };
 }
-export function submitLogin(username, password) {
-  return dispatch => {
-    dispatch (requestLogin("Logging in"))
-    return auth.login(username, password).then((data)=> {
+export function submitLogin(username, password, okCallback, failCallback) {
+  return () => {
+    return auth.login(username, password).then((data) => {
       return AsyncStorage.setItem('accessToken', data.access_token);
-    }).then(() =>{
+    })
+    .then(() => {
       return AsyncStorage.getItem('accessToken');
     })
-   .then((token)=>{
-     dispatch(doneLogin());
-     Actions.timelineList();
+   .then((token) => {
+     Actions.actionswiper();
+     okCallback();
    })
-   .catch(err => dispatch(errorLogin(err)));
+   .catch(err => failCallback());
   }
 }
 export function doneLogin(response = '') {
@@ -49,7 +49,7 @@ export function doneLogin(response = '') {
     AsyncStorage.setItem('accessToken', response.accessToken);
   }
   Actions.pop();
-  Actions.timelineList();
+  Actions.actionswiper();
   return { type: DONE_LOGIN, response };
 }
 export function errorLogin(error) {

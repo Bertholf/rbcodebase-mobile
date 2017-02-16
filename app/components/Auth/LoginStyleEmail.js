@@ -123,10 +123,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 30,
     height: 40,
-    backgroundColor: 'rgba(255, 0, 0, 0.7)',
+    backgroundColor: '#f44336',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5,
+    borderRadius: 2,
   },
   wrong: {
     color: '#ff0000',
