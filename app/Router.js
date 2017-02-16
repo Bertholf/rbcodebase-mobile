@@ -41,6 +41,8 @@ import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
 import MobilePhone from './components/Setting/mobilePhone';
+import AdPref from './components/Setting/AdPreference';
+
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -146,6 +148,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'registrationform'} component={RegistrationForm} title={'Register'}
+          />
+          <Scene
+            key={'adpref'} component={AdPref} title={'Ad Preference'}
           />
           <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
