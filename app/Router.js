@@ -41,7 +41,9 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
+
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -50,13 +52,13 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" initial hideNavBar component={Setting} title={strings.settings.title}
+            key="setting" hideNavBar component={Setting} title={strings.settings.title}
           />
           <Scene
             key="editBirthday" component={editBirthday} title={'editBirthday'}
           />
           <Scene
-            key={'Walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
@@ -87,13 +89,13 @@ const Routing = (props) => (
           />
           <Scene
             key={'loginscreenemail'} component={LoginScreenEmail} title={'Sign in'}
-          />
           <Scene
             key={'account'} component={Account} title={'Account'}
           />
           <Scene
             key={'privacy'} component={Privacy} title={'Privacy'}
           />
+        />
           <Scene
             key={'email'} component={Email} title={'Email'}
           />
@@ -162,6 +164,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+          />
+          <Scene
+            key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
