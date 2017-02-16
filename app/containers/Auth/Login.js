@@ -9,6 +9,7 @@ const mapStateToProps = ({ app }) => ({
   username: app.auth.username,
   password: app.auth.password,
   message: app.auth.message,
+  is_loading: app.auth.is_loading,
 });
 const mapDispatchToProps = dispatch => ({
   updateUsername: text => dispatch(updateUsername(text)),
@@ -16,8 +17,8 @@ const mapDispatchToProps = dispatch => ({
   loginWithGoogle: () => dispatch(loginWithGoogle()),
   loginWithFacebook: () => dispatch(loginWithFacebook()),
   loginWithTwitter: () => dispatch(loginWithTwitter()),
-  submitLogin: (username, password) => {
-    dispatch(submitLogin(username, password));
+  submitLogin: (username, password, okCallback, failCallback) => {
+    dispatch(submitLogin(username, password, okCallback, failCallback));
   },
   forgotPassword: () => {
     Actions.forgotPassword();
