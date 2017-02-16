@@ -41,6 +41,7 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import AdPref from './components/Setting/AdPreference';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -64,7 +65,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications}  title={'Notifications'}
@@ -151,6 +152,9 @@ const Routing = (props) => (
             key={'registrationform'} component={RegistrationForm} title={'Register'}
           />
           <Scene
+            key={'adpref'} component={AdPref} title={'Ad Preference'}
+          />
+          <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
@@ -161,9 +165,9 @@ const Routing = (props) => (
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+        </Scene>
+            <Scene key={'loader'} component={Loader} />
           </Scene>
-        <Scene key={'loader'} component={Loader} />
-      </Scene>
       </Scene>
     </Router>
   </View>
