@@ -150,16 +150,16 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} initial component={ActionSwiper} hideNavBar title={'Dashboard'}
+            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
           />
           <Scene
-            key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+            key={'userpanel'} initial component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+        </Scene>
+            <Scene key={'loader'} component={Loader} />
           </Scene>
-        <Scene key={'loader'} component={Loader} />
-      </Scene>
       </Scene>
     </Router>
   </View>

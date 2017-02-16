@@ -71,14 +71,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>Following Me </Text>
