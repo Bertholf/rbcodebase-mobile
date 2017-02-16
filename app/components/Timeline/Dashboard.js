@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={Actions.profile}>
+        <TouchableOpacity onPress={Actions.userpanel}>
           <View style={{ justifyContent: 'flex-end' }}>
             <Image source={account} style={styles.account} />
           </View>
