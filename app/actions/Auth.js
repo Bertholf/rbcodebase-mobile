@@ -38,7 +38,7 @@ export function submitLogin(username, password) {
     })
    .then((token)=>{
      dispatch(doneLogin());
-     Actions.timelineList();
+     Actions.actionswiper();
    })
    .catch(err => dispatch(errorLogin(err)));
   }
