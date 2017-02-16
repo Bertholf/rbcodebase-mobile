@@ -75,20 +75,20 @@ export default class LoginScreen extends Component {
               </View>
             </TouchableOpacity>
           </View>
-          <View style={{ padding: 50, paddingBottom: 20 }}>
+          <View style={{ paddingTop: 20, paddingBottom: 20 }}>
           <TouchableOpacity onPress={() => Actions.register()}>
             <Text style={{ color: 'black', textAlign: 'center' }}>
                   {strings.LoginScreen.create}
               </Text>
           </TouchableOpacity>
         </View>
-        <View style={{ marginTop: 10, alignItems: 'center' }}>
+        <View style={{ alignItems: 'center' }}>
           <View style={{ alignItems: 'center' }}>
             <Text style={{justifyContent: 'center' }}>{strings.LoginScreen.agreement}</Text>
             <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.LoginScreen.tos}
-            <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
+              <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
                 <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text>
-            </Text>
+              </Text>
             </Text>
           </View>
         </View>
