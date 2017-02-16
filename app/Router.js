@@ -42,6 +42,7 @@ import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
 import ReserveScreen from './components/ReserveScreen';
 import AppListing from './components/Listing/listing';
+import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
 
@@ -163,6 +164,7 @@ const Routing = (props) => (
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
+          <Scene key={'license'} hideNavBar component={License} />
           <Scene
             key={'reservescreen'} component={ReserveScreen} title={'Reserve Screen'} direction={'vertical'}
           />

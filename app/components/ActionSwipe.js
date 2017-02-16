@@ -35,7 +35,6 @@ class ActionSwiper extends Component {
       containerHeight: 0,
       height:0,
     };
-    this.getContainerHeight = this.getContainerHeight.bind(this);
   }
   componentWillMount() {
     this.panResponder = PanResponder.create({
@@ -57,12 +56,6 @@ class ActionSwiper extends Component {
     });
   }
 
-  getContainerHeight(h){
-    this.setState({
-      containerHeight : h,
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -70,8 +63,8 @@ class ActionSwiper extends Component {
           loop={false}
           showsPagination={false}
           index={1}
-          height={height-60}
-          showsButtons={true}
+          height={height-30}
+          showsButtons
         >
           <AppListing />
           <View style={styles.container}  {...this.panResponder.panHandlers}>
