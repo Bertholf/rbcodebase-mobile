@@ -19,13 +19,13 @@ export default class editBirthday extends Component {
   render() {
     return (
       <View>
-        <View>
+        <View style={{ padding: 10 }}>
           <View>
             <Text>Birthday</Text>
           </View>
           <View>
             <DatePicker
-              style={{ width: width * 1 }}
+              style={{ width: width * .97 }}
               date={this.state.date}
               placeholder="select date"
               format="YYYY-MM-DD"
@@ -37,7 +37,7 @@ export default class editBirthday extends Component {
             />
           </View>
         </View>
-        <View style={{ marginTop: 25 }}>
+        <View style={{ marginTop: 30, padding: 7 }}>
           <TouchableOpacity style={styles.button} onPress={Actions.setting}>
             <Text style={styles.titleButton} >Save</Text>
           </TouchableOpacity>
