@@ -45,7 +45,7 @@ class Api {
    .then((token) => {
      console.log('requesting');
      const headers = data.config.headers || {};
-     if (token && url === '/oauth/token') {
+     if (token && url !== '/oauth/token' && url !== '/api/users/register') {
        headers.Authorization = `Bearer ${token}`;
      }
     //  headers.Authorization = token !== null ? `Bearer ${token}`: null;

@@ -12,8 +12,8 @@ import {
      Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import registerService from '../../services/AuthRegistration'
-
+import strings from './../../localizations/';
+import submitRegister from '../../services/AuthRegistration';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -83,69 +83,96 @@ export default class RegistrationForm extends Component {
     this.state = {
       availableUser: false,
       app: 'RBCodeBase',
-      // name_first: this.props.firstName,
-      // name_last: this.props.lastName,
-      // email: this.props.email
-      name_first: '',
-      name_last: '',
-      email: '',
-      name_slug: '',
+      firstname: this.props.firstName,
+      lastname: this.props.lastName,
+      email: this.props.email,
+      username: '',
       password: '',
-      password_confirmation: '',
+      confirmPassword: '',
       valid: false,
     };
   }
-  submitRegister() {
-    this.props
-  }
-  render() {
 
+  render() {
+    const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
+    const usernameRegex = /^[a-zA-Z0-9]{0,4}$/;
+    const nameRegex = /^[a-zA-Z]+$/;
+
+    const validFName = nameRegex.test(this.state.firstname);
+    const validLName = nameRegex.test(this.state.lastname);
+    const emptyFName = this.state.firstname === '';
+    const emptyLName = this.state.lastname === '';
+    const emptyUName = this.state.username === '';
+    const emptyEmail = this.state.email === '' || !this.state.email;
+    const validUsername = this.state.username.length > 4;
+    const validEmail = emailRegex.test(this.state.email);
+    const validPass = (this.state.password === this.state.confirmPassword);
+    const validLPass = this.state.password.length >= 6;
+    const emptyPass = this.state.password === '';
+    const available = validFName && validLName && validUsername && validEmail && validPass && validLPass;
+    const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
+    const validate = () => {
+      if (available && notEmpty) {
+        Alert.alert(strings.register.Success);
+      } else {
+        Alert.alert(strings.register.Failed);
+      }
+    };
+    strings.setLanguage('en');
     return (
       <View style={styles.container} >
         <ScrollView>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="First Name"
+                placeholder={strings.register.FirstName}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={name_first => this.setState({ name_first })}
-                value={this.state.name_first}
+                onChangeText={firstname => this.setState({ firstname })}
+                value={this.state.firstname}
               />
             </View>
+            {validFName || emptyFName ? <Text /> : <Text style={styles.fail}>{strings.register.InvalidFirstName}</Text>}
 
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Last Name"
+                placeholder={strings.register.LastName}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 editable
-                onChangeText={name_last => this.setState({ name_last })}
-                value={this.state.name_last}
+                onChangeText={lastname => this.setState({ lastname })}
+                value={this.state.lastname}
               />
             </View>
+            {validLName || emptyLName ? <Text /> : <Text style={styles.fail}>{strings.register.InvalidLastName}</Text>}
 
             <View style={styles.line} />
             <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
               <TextInput
-                placeholder="Username"
+                placeholder={strings.register.UserName}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={name_slug => this.setState({ name_slug })}
-                value={this.state.name_slug}
+                onChangeText={username => this.setState({ username })}
+                value={this.state.username}
                 editable
               />
-                          </View>
+              {validUsername ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
+              : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
+              }
 
+            </View>
+            {validUsername || emptyUName ? (<Text />) : (<Text style={styles.fail}>
+              {strings.register.AlreadyUser}</Text>)
+            }
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Email"
+                placeholder={strings.register.Email}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -155,10 +182,12 @@ export default class RegistrationForm extends Component {
                 value={this.state.email}
               />
             </View>
-
+            {validEmail || emptyEmail ? (<Text />)
+              : (<Text style={styles.fail}>{strings.register.InvalidEmail}</Text>)
+            }
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Password"
+                placeholder={strings.register.Password}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -169,19 +198,20 @@ export default class RegistrationForm extends Component {
             </View>
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="Confirm Password"
+                placeholder={strings.register.ConfirmPassword}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={password_confirmation => this.setState({ password_confirmation })}
+                onChangeText={confirmPassword => this.setState({ confirmPassword })}
                 secureTextEntry
               />
             </View>
+            {(validPass && validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.PassdoesntMatch}</Text>}
             <View style={styles.line} />
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="{{ custom field }}"
+                placeholder={strings.register.CustomField}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -190,7 +220,7 @@ export default class RegistrationForm extends Component {
             </View>
             <View style={styles.textinputWrapperStyle}>
               <TextInput
-                placeholder="{{ custom field }}"
+                placeholder={strings.register.CustomField}
                 placeholderTextColor="silver"
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
@@ -199,32 +229,32 @@ export default class RegistrationForm extends Component {
             </View>
           </View>
           <View style={styles.line} />
-          <TouchableOpacity onPress= {() => registerService(this.state.name_first, this.state.name_last, this.state.name_slug, this.state.email,this.state.password, this.state.password_confirmation, )}>
+          <TouchableOpacity onPress={validate}>
             <View style={styles.btnReg} >
               <Text style={styles.textReg} >
-                Register
+                {strings.register.Register}
               </Text>
             </View>
           </TouchableOpacity>
           <View style={styles.policyStyle} >
             <Text>
-              By registering, you agree to {this.state.app}
+              {strings.register.ByRegisteringYouAgreeTo} {this.state.app}
             </Text>
           </View>
           <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
             <TouchableOpacity onPress={Actions.tos}>
               <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                Terms of Use
+                {strings.register.TermsofUse}
               </Text>
             </TouchableOpacity>
             <Text>  </Text>
             <Text>
-              and
+              {strings.register.And}
             </Text>
             <Text>  </Text>
             <TouchableOpacity onPress={Actions.pp}>
               <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                Privacy Policy
+                {strings.register.PrivacyPolicy}
               </Text>
             </TouchableOpacity>
           </View>
@@ -233,5 +263,3 @@ export default class RegistrationForm extends Component {
     );
   }
 }
-
-//componets/auth/

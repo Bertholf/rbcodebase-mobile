@@ -8,13 +8,16 @@ import submitLogin from './AuthLogin'
 const submitRegister = (name_first, name_last, name_slug, email, password, password_confirmation, callback) => {
   auth.register(name_first, name_last, name_slug, email, password, password_confirmation)
   .then((resp) => {
-    console.log('MY PASS', password);
-    auth.login(resp.data.data.name_slug, password)
-    .then((respL)=> console.log('LOGIN OK',respL))
+    auth.login(name_slug, password)
+    .then((respL) => {
+      AsyncStorage.setItem('accessToken', respL.access_token)
+      .then(() => Actions.timelineList())
+      .catch(err => console.log('FAIL TO SAVE ACCESS TOKEN', err));
+    })
     .catch(err => console.log('LOGIN ERR', err));
   })
   .catch((err) => {
-    console.log('ERORbroo', err);
+    console.log('ERROR REGISTER', err);
     callback();
 
   });
