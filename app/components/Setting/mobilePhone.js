@@ -8,20 +8,22 @@ import {
    StyleSheet,
  } from 'react-native';
 
+
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 16,
     flex: 1,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
-    borderWidth: 0.8,
+    borderWidth: 0.4,
     borderRadius: 6,
     flexDirection: 'column',
-    paddingLeft: 16,
-    paddingRight: 8,
-    marginBottom: 6,
-    marginTop: 6,
+    paddingLeft: 4,
+    paddingRight: 4,
+    marginBottom: 10,
+    marginTop: 10,
+    height: 40,
     },
     heading: {
         fontSize: 30,
@@ -40,19 +42,17 @@ const styles = StyleSheet.create({
     },
     button: {
       backgroundColor: '#2196F3',
-      borderRadius: 2,
+      borderRadius: 6,
       elevation: 2,
-      paddingTop: 10,
-      paddingBottom: 10,
-      height: 50,
-      marginBottom: 40,
-      marginRight: 16,
-      marginLeft: 16,
+      paddingTop: 5,
+      paddingBottom: 5,
+      marginTop: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     buttonText: {
         color: '#fff',
         fontSize: 24,
-        justifyContent: 'center',
     },
 });
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
    render() {
      return (
            <View style={styles.container}>
-             <Text style={styles.heading}>Mobile Phone</Text>
+             <Text style={styles.heading}></Text>
              <View style={styles.textinputWrapperStyle}>
                <TextInput
                  placeholder="Old Phone Number"
@@ -79,9 +79,11 @@ const styles = StyleSheet.create({
                  style={styles.textinputStyle}
                />
                </View>
+               <View>
                      <TouchableOpacity  style={styles.button}>
-                   <Text style={styles.buttonText}>Save</Text>
+                  <Text style={styles.buttonText}>Save</Text>
                </TouchableOpacity>
+               </View>
            </View>
 
 
