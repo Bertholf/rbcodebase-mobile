@@ -22,7 +22,7 @@ const submitLogin = (username, password, callback) => {
     console.log('TOKEN : ', token.data.accessToken);
     saveToken(token.data.accessToken);
     secondRequest(token.data.accessToken);
-    Actions.timelineList();
+    Actions.actionswiper();
   })
   .catch((err) => {
     console.log('ERORbroo', err);

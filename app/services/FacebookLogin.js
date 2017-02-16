@@ -26,7 +26,7 @@ class FacebookLogin {
             this.setState({ fbLoggedIn: true, accessToken });
             initUser(accessToken);
           });
-          Actions.timelineList();
+          Actions.actionswiper();
         }
       },
       (error) => {
