@@ -28,20 +28,20 @@ export default class Dashboard extends Component {
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>
-              <TouchableOpacity onPress={Actions.timeline}>
+              <TouchableOpacity onPress={Actions.appListing}>
                 <Image
                   style={styles.icon}
                   source={modul} />
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={Actions.friendlist}>
+            <TouchableOpacity onPress={Actions.reservescreen}>
               <Image
                 style={styles.icon}
                 source={home}     />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={Actions.leftdashboard}>
+            <TouchableOpacity onPress={Actions.timelineList}>
               <Image
                 style={styles.icon}
                 source={chat} />

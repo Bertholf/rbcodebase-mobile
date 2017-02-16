@@ -23,7 +23,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.privacy}>
+          <TouchableOpacity onPress={Actions.usernameEdit}>
             <View style={styles.list}>
               <View style={{alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.username}</Text>
@@ -45,7 +45,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.mobilephone} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.mobile}</Text>
@@ -140,7 +140,7 @@ const Setting = () => {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Actions.license} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.licence}</Text>
