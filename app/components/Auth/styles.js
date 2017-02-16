@@ -20,12 +20,9 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
   },
   logoGoogle: {
-    height: 23,
-    width: 35,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    borderRadius: 48,
-    marginRight: -5,
+    height: 30,
+    width: 30,
+    borderRadius: 7,
     marginLeft: 5,
   },
   facebookLogo: {
@@ -87,6 +84,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
+    tintColor: '#fff'
   },
   buttonGroup: {
     top: 10,

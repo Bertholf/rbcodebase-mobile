@@ -13,7 +13,6 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
-import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -60,7 +59,6 @@ public class MainApplication extends Application implements ReactApplication {
               new GoogleSignInPackage(),
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),
-              new ReactNativeLocalizationPackage(),
               new TwitterAuthPackage(),
               new FBSDKPackage(mCallbackManager),
               new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)

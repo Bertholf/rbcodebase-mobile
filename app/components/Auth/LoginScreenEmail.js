@@ -56,11 +56,11 @@ export default class LoginScreenEmail extends Component {
             onChangeText={email =>
               this.setState({ email, validEmail: true, isFail: false })}
             placeholderTextColor={'#2196f3'}
-            placeholder={'Email'}
+            placeholder={'Username'}
             required
           />
           {this.state.validEmail ? <Text /> : (
-            <Text style={styles.wrong}>PLease input valid email</Text>
+            <Text style={styles.wrong}>Please input valid username</Text>
           )}
           <TextInput
             secureTextEntry
