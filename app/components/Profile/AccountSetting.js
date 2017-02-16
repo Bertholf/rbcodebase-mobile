@@ -89,6 +89,22 @@ const AccountSetting = () => {
           </TouchableOpacity>
         </View>
         <View style={{ paddingTop: 15 }}>
+          <TouchableOpacity onPress={Actions.usernameEdit}>
+            <Text style={styles.title}>
+              Username
+            </Text>
+            <View style={styles.content}>
+              <Text style={styles.name}>
+                Edit Username
+              </Text>
+              <Image
+                style={styles.icon}
+                source={require('./../../images/backbuttonblue.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={{ paddingTop: 15 }}>
           <TouchableOpacity onPress={Actions.emailEdit}>
             <Text style={styles.title}>
               Email

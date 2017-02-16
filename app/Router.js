@@ -29,6 +29,7 @@ import NameEdit from './components/Setting/ChangeName';
 import PassEdit from './components/Setting/PasswordEdit';
 import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
+import UsernameEdit from './components/Setting/ChangeUsername';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
@@ -107,6 +108,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'about'} component={About} title={'Edit Bio'}
+          />
+          <Scene
+            key={'usernameEdit'} component={UsernameEdit} title={'Edit Username'}
           />
           <Scene
             key={'nameEdit'} component={NameEdit} title={'Edit Name'}
