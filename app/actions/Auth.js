@@ -38,7 +38,7 @@ export function submitLogin(username, password) {
     })
    .then((token)=>{
      dispatch(doneLogin());
-     Actions.timelineList();
+     Actions.actionswiper();
    })
    .catch(err => dispatch(errorLogin(err)));
   }
@@ -49,7 +49,7 @@ export function doneLogin(response = '') {
     AsyncStorage.setItem('accessToken', response.accessToken);
   }
   Actions.pop();
-  Actions.timelineList();
+  Actions.actionswiper();
   return { type: DONE_LOGIN, response };
 }
 export function errorLogin(error) {
