@@ -24,47 +24,56 @@ export default class LoginScreenEmail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
-      validEmail: true,
+      validUsername: true,
       validPassword: true,
       isFail: false,
-      loading: false,
+      // loading: false,
     };
     this.validate = this.validate.bind(this);
   }
   validate() {
+    if (this.state.username === '') {
+      this.setState({ validUsername: false, loading: false });
+    }
+    if (this.state.password === '') {
+      this.setState({ validPassword: false, loading: false });
+    }
     this.setState({ loading: true }, () => {
-      if (this.state.email === '') {
-        this.setState({ validEmail: false, loading: false });
-      }
-      if (this.state.password === '') {
-        this.setState({ validPassword: false, loading: false });
-      }
-      if (this.state.email !== '' && this.state.password !== '') {
-        this.props.login(this.state.email, this.state.password);
+      if (this.state.username !== '' && this.state.password !== '') {
+        this.props.login(this.state.username, this.state.password, () => {
+          this.setState({ loading: false });
+        }, () => {
+          this.setState({ loading: false, isFail: true });
+        });
       }
     });
-    this.setState({ loading: false });
   }
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.contentLoginEmail}>
+        {!this.state.isFail ? <Text /> : (
+          <View style={styles.errBox}>
+            <Text style={{ color: '#fff' }} >Email or Password not match</Text>
+          </View>
+        )}
           <TextInput
+            underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
-            onChangeText={email =>
-              this.setState({ email, validEmail: true, isFail: false })}
+            onChangeText={username =>
+              this.setState({ username, validUsername: true, isFail: false })}
             placeholderTextColor={'#2196f3'}
             placeholder={'Username'}
             required
           />
-          {this.state.validEmail ? <Text /> : (
-            <Text style={styles.wrong}>Please input valid username</Text>
+          {this.state.validUsername ? <Text /> : (
+            <Text style={styles.wrong}>PLease input valid username</Text>
           )}
           <TextInput
             secureTextEntry
-            underlineColorAndroid={'transparent'}
+            underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
             onChangeText={password =>
               this.setState({ password, validPassword: true, isFail: false })
@@ -85,10 +94,10 @@ export default class LoginScreenEmail extends Component {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              activeOpacity={0.7}
+              activeOpacity={1}
               style={styles.button}
             >
-              <ActivityIndicator size={'large'} />
+              <ActivityIndicator size={'large'} color={'#fff'}/>
             </TouchableOpacity>
           )}
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -98,11 +107,6 @@ export default class LoginScreenEmail extends Component {
                 </Text>
             </TouchableOpacity>
           </View>
-          {!this.state.isFail ? <Text /> : (
-            <View style={styles.errBox}>
-              <Text style={{ color: '#fff' }} >Email or Password not match</Text>
-            </View>
-          )}
         </View>
       </View>
     );
