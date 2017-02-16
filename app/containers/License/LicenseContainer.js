@@ -23,11 +23,11 @@ const mapStateToProps = ({ app }) => ({
   ...app.license,
 });
 
-class License extends React.Component {
+class LicenseContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      offset: Animated.Value(-height),
+      offset: new Animated.Value(-height),
     };
   }
 
@@ -59,4 +59,4 @@ class License extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(License);
+export default connect(mapStateToProps)(LicenseContainer);
