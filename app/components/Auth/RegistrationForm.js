@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from './../../localizations/';
-
+import submitRegister from '../../services/AuthRegistration';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -113,7 +113,8 @@ export default class RegistrationForm extends Component {
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
-        Alert.alert(strings.register.Success);
+        const {firstname, lastname,email,username, password, confirmPassword } = this.state;
+        submitRegister(firstname, lastname,username,email, password, confirmPassword);
       } else {
         Alert.alert(strings.register.Failed);
       }

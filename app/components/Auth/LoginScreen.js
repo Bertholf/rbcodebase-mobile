@@ -68,7 +68,7 @@ export default class LoginScreen extends Component {
             <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
           </View>
           <View style={styles.otherlog}>
-            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7}   onPress={() => Actions.loginscreenemail()}>
+            <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7}   onPress={() => Actions.loginscreenemail({login: this.props.submitLogin})}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
                 <Text style={styles.text}>{strings.LoginScreen.email}</Text>

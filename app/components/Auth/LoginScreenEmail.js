@@ -42,7 +42,7 @@ export default class LoginScreenEmail extends Component {
         this.setState({ validPassword: false, loading: false });
       }
       if (this.state.email !== '' && this.state.password !== '') {
-        this.props.submitLogin(this.state.email, this.state.password);
+        this.props.login(this.state.email, this.state.password);
       }
     });
     this.setState({ loading: false });
