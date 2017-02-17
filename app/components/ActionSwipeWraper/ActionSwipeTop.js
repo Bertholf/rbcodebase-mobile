@@ -17,17 +17,15 @@ const styles = StyleSheet.create({
   },
 });
 
-class ActionSwiper extends Component {
-  render() {
-    return (
-      <GestureRecognizer
-        onSwipeDown={() => Actions.pop()}
-        style={styles.container}
-      >
-        <ReserveScreen />
-      </GestureRecognizer>
-    );
-  }
+const ActionSwiperTop = () => {
+  return (
+    <GestureRecognizer
+      onSwipeDown={() => Actions.pop()}
+      style={styles.container}
+    >
+      <ReserveScreen />
+    </GestureRecognizer>
+  );
 }
 
-export default ActionSwiper;
+export default ActionSwiperTop;

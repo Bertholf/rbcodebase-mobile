@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  PanResponder,
-  Animated,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import UserPanel from '../UserPanel/UserPanel';
 import GestureRecognizer from 'react-native-swipe-gestures';
@@ -21,17 +15,15 @@ const styles = StyleSheet.create({
   },
 });
 
-class ActionSwiper extends Component {
-  render() {
-    return (
-      <GestureRecognizer
-        onSwipeUp={() => Actions.pop()}
-        style={styles.container}
-      >
-        <UserPanel />
-      </GestureRecognizer>
-    );
-  }
+const ActionSwiperBottom = () => {
+  return (
+    <GestureRecognizer
+      onSwipeUp={() => Actions.pop()}
+      style={styles.container}
+    >
+      <UserPanel />
+    </GestureRecognizer>
+  );
 }
 
-export default ActionSwiper;
+export default ActionSwiperBottom;

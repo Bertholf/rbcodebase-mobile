@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Dashboard from './Timeline/Dashboard';
 import GestureRecognizer from 'react-native-swipe-gestures';

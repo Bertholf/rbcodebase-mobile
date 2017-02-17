@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image, Dimensions, View, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import Timeline from '../Timeline/TimelineComp';
 
+const arrowLeft = require('../../images/arrowLeft.png');
+
+const { height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -13,19 +16,34 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: 'transparent',
   },
+  arrowLeft: {
+    position: 'absolute',
+    left: 0,
+    top: height / 2,
+    zIndex: 10,
+  },
 });
 
-class ActionSwiper extends Component {
-  render() {
-    return (
-      <GestureRecognizer
-        onSwipeRight={() => Actions.pop()}
-        style={styles.container}
-      >
+const ActionSwiperLeft = () => {
+  return (
+    <GestureRecognizer
+      onSwipeRight={() => Actions.pop()}
+      style={styles.container}
+    >
+      <View>
+        <TouchableOpacity
+          onPress={() => Actions.pop()}
+          activeOpacity={0.7}
+          style={styles.arrowLeft}
+        >
+          <Image
+            source={arrowLeft}
+          />
+        </TouchableOpacity>
         <Timeline />
-      </GestureRecognizer>
-    );
-  }
+      </View>
+    </GestureRecognizer>
+  );
 }
 
-export default ActionSwiper;
+export default ActionSwiperLeft;

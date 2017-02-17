@@ -19,7 +19,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={Actions.userpanel}>
+        <TouchableOpacity onPress={Actions.actionSwipeBottom}>
           <View style={{ justifyContent: 'flex-end' }}>
             <Image source={account} style={styles.account} />
           </View>
@@ -28,20 +28,20 @@ export default class Dashboard extends Component {
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>
-              <TouchableOpacity onPress={Actions.appListing}>
+              <TouchableOpacity onPress={Actions.actionSwipeRight}>
                 <Image
                   style={styles.icon}
                   source={modul} />
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={Actions.reservescreen}>
+            <TouchableOpacity onPress={Actions.actionSwipeTop}>
               <Image
                 style={styles.icon}
                 source={home}     />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={Actions.timelineList}>
+            <TouchableOpacity onPress={Actions.actionSwipeLeft}>
               <Image
                 style={styles.icon}
                 source={chat} />
