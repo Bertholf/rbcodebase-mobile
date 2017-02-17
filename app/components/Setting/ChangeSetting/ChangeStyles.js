@@ -37,20 +37,23 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   Text2: {
-    fontSize: 17,
+    fontSize: 12,
     alignSelf: 'flex-start',
     paddingTop: 8,
     paddingBottom: 8,
   },
+
   TextInput1: {
-    height: 0.1 * height,
+    height: 0.07 * height,
     width: 0.7 * width,
     paddingTop: 2,
     color: '#2196f3',
-    fontSize: 19,
+    fontSize: 14,
     borderWidth: 0.5,
     borderRadius: 2,
     borderColor: '#2196f3',
+    paddingLeft: 8,
+
   },
   invalid: {
     color: 'red',
