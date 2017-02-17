@@ -18,11 +18,11 @@ class ChangeUsername extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.OuterView}>
         <ScrollView>
-          <View style={styles.inputUsernameContainer}>
+          <View style={styles.View1}>
             <TextInput
-              style={styles.textInputUsername}
+              style={styles.TextInput1}
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder="New Username"
@@ -31,19 +31,20 @@ class ChangeUsername extends Component {
               numberOfLines={4} editable={true}
             />
           </View>
-          <Text>
+          <Text style={{ marginTop: 10 }}>
             Your username should be unique.
           </Text>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={styles.buttonSave}
-          >
-            <Text style={styles.buttonText}>SAVE</Text>
-          </TouchableOpacity>
-          <Text style={{ marginTop: 20 }}>
+          <Text style={{ marginTop: 10, lineHeight: 20 }}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </Text>
         </ScrollView>
+        <TouchableOpacity>
+          <View style={styles.View2}>
+            <Text style={styles.Button}>
+              SAVE
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
