@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   inputUsernameContainer: {
-    marginTop: 50,
+    marginTop: 0.07 * height,
   },
   textInputUsername: {
     height: 40,
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     padding: 15,
     marginTop: 20,
   },
-
   buttonText: {
     fontSize: 18,
     fontWeight: '400',
