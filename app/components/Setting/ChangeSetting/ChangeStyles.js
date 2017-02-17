@@ -62,12 +62,13 @@ const styles = StyleSheet.create({
   container: {
     height,
     flex: 1,
-    padding: 20,
+    justifyContent: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
     backgroundColor: '#fff',
   },
   inputUsernameContainer: {
-    justifyContent: 'space-between',
-    paddingTop: 50,
+    marginTop: 50,
   },
   textInputUsername: {
     height: 40,
@@ -84,7 +85,6 @@ const styles = StyleSheet.create({
     borderColor: '#0288d1',
     borderWidth: 1,
     borderRadius: 2,
-    marginTop: 5,
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
