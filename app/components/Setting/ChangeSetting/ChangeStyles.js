@@ -56,10 +56,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     alignSelf: 'flex-start',
   },
-  View3: {
-    flexDirection: 'row',
-    flex: 1,
-  },
 });
 
 module.exports = styles;
