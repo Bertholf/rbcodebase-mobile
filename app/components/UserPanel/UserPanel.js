@@ -45,12 +45,6 @@ class userPanel extends React.Component {
 
   render() {
     return (
-      <Swiper
-        horizontal={false}
-        loop={false}
-        showsPagination={false}
-        index={0}
-      >
         <View style={styles.container}>
           <ScrollView>
             <View style={styles.btnSettingContainer}>
@@ -101,11 +95,6 @@ class userPanel extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-
-        <View style={this.viewStyle()}>
-          <TitleText label="Dashboard" />
-        </View>
-      </Swiper>
     );
   }
 }

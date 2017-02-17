@@ -48,7 +48,10 @@ import AppListing from './components/Listing/listing';
 import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
-
+import ActionSwipeRight from './components/ActionSwipeWraper/ActionSwipeRight';
+import ActionSwipeLeft from './components/ActionSwipeWraper/ActionSwipeLeft';
+import ActionSwipeBottom from './components/ActionSwipeWraper/ActionSwipeBottom';
+import ActionSwipeTop from './components/ActionSwipeWraper/ActionSwipeTop';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -183,6 +186,19 @@ const Routing = (props) => (
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
+          <Scene
+            key={'actionSwipeLeft'} component={ActionSwipeLeft} hideNavBar direction={'horizontal'}
+          />
+          <Scene
+            key={'actionSwipeRight'} component={ActionSwipeRight} hideNavBar direction={'leftToRight'}
+          />
+          <Scene
+            key={'actionSwipeTop'} component={ActionSwipeTop} hideNavBar direction={'vertical'}
+          />
+          <Scene
+            key={'actionSwipeBottom'} component={ActionSwipeBottom} hideNavBar direction={'vertical'}
+          />
+
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
           <Scene key={'support'} hideNavBar component={SupportContainer} />

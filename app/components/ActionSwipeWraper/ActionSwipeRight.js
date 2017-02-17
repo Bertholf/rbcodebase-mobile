@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import {
+  StyleSheet,
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Dashboard from './Timeline/Dashboard';
+import AppListing from '../Listing/listing';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 const styles = StyleSheet.create({
@@ -19,13 +21,10 @@ class ActionSwiper extends Component {
   render() {
     return (
       <GestureRecognizer
-        onSwipeUp={() => Actions.actionSwipeTop()}
-        onSwipeDown={() => Actions.actionSwipeBottom()}
-        onSwipeLeft={() => Actions.actionSwipeLeft()}
-        onSwipeRight={() => Actions.actionSwipeRight()}
+        onSwipeLeft={() => Actions.pop()}
         style={styles.container}
       >
-        <Dashboard />
+        <AppListing />
       </GestureRecognizer>
     );
   }

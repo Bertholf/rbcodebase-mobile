@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Dashboard from './Timeline/Dashboard';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Timeline from '../Timeline/TimelineComp';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,13 +19,10 @@ class ActionSwiper extends Component {
   render() {
     return (
       <GestureRecognizer
-        onSwipeUp={() => Actions.actionSwipeTop()}
-        onSwipeDown={() => Actions.actionSwipeBottom()}
-        onSwipeLeft={() => Actions.actionSwipeLeft()}
-        onSwipeRight={() => Actions.actionSwipeRight()}
+        onSwipeRight={() => Actions.pop()}
         style={styles.container}
       >
-        <Dashboard />
+        <Timeline />
       </GestureRecognizer>
     );
   }
