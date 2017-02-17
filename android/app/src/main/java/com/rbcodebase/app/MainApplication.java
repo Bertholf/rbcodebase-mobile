@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import io.fullstack.oauth.OAuthManagerPackage;
@@ -51,6 +52,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
+            new ReactNativeLocalizationPackage(),
             new RCTSplashScreenPackage(),
             new ReactNativeLocalizationPackage(),
             new OAuthManagerPackage(),
