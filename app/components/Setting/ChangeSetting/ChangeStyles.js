@@ -12,14 +12,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   View1: {
-    alignItems: 'flex-start',
     justifyContent: 'space-between',
     paddingTop: 80,
-    marginLeft: width * 0.1,
-    marginRight: width * 0.1,
+    marginLeft: 16,
+    marginRight: 16,
   },
   View2: {
-    // justifyContent: 'center',//
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -42,13 +41,12 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   TextInput1: {
-    height: 0.07 * height,
-    width: 0.7 * width,
+    height: 40,
     paddingTop: 2,
     paddingLeft: 8,
     paddingBottom: 5,
     color: '#2196f3',
-    fontSize: 19,
+    fontSize: 14,
     borderWidth: 0.5,
     borderRadius: 2,
     borderColor: '#2196f3',
@@ -57,6 +55,10 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 15,
     alignSelf: 'flex-start',
+  },
+  View3: {
+    flexDirection: 'row',
+    flex: 1,
   },
 });
 
