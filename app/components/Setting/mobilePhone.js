@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     flex: 1,
+    marginTop: 50,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
@@ -22,11 +23,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     height: 40,
-  },
-  heading: {
-    fontSize: 30,
-    margin: 10,
-    marginTop: 50,
   },
   loginInput: {
     height: 50,
@@ -55,6 +51,17 @@ const styles = StyleSheet.create({
 });
 
 export default class MobilePhone extends Component {
+  onChanged(text) {
+    let newText = '';
+    const numbers = '^[0-9]';
+
+    for (let i=0; i < text.length; i++) {
+      if (numbers.indexOf(text[i] >-1)) {
+          newText = newText + text[i];
+      }
+      this.setState({ myNumber: newText });
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -66,6 +73,9 @@ export default class MobilePhone extends Component {
             selectionColor="silver"
             underlineColorAndroid="rgba(0,0,0,0)"
             style={styles.textinputStyle}
+            keyboardType="numeric"
+            onChangeText={text => this.onChanged(text)}
+            maxLength={12}
             />
         </View>
         <View style={styles.textinputWrapperStyle}>
@@ -75,6 +85,9 @@ export default class MobilePhone extends Component {
             selectionColor="silver"
             underlineColorAndroid="rgba(0,0,0,0)"
             style={styles.textinputStyle}
+            keyboardType="numeric"
+            onChangeText={text => this.onChanged(text)}
+            maxLength={12}
             />
         </View>
         <View>
