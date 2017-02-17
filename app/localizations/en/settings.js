@@ -8,7 +8,7 @@ const settings = {
   email: 'Email',
   password: 'Password',
   privacy: 'Privacy',
-  notification: 'Notificaitons',
+  notification: 'Notification',
   preference: 'Preference',
   adPreference: 'Ad Preference',
   moreInfo: 'More Information',
@@ -17,7 +17,7 @@ const settings = {
   termService: 'Term of Services',
   licence: 'Licences',
   accountAction: 'Account Actions',
-  clearChache: 'Cleaser Chache',
+  clearChache: 'Clear Cache',
   logout: 'Log Out',
 };
 

@@ -14,10 +14,9 @@ const styles = StyleSheet.create({
   View1: {
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    paddingTop: 50,
+    paddingTop: 80,
     marginLeft: width * 0.1,
     marginRight: width * 0.1,
-
   },
   View2: {
     // justifyContent: 'center',//
@@ -37,20 +36,25 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   Text2: {
-    fontSize: 17,
+    fontSize: 12,
     alignSelf: 'flex-start',
     paddingTop: 8,
     paddingBottom: 8,
   },
+
   TextInput1: {
-    height: 0.1 * height,
+    height: 0.07 * height,
     width: 0.7 * width,
     paddingTop: 2,
+    paddingLeft: 8,
+    paddingBottom: 5,
     color: '#2196f3',
-    fontSize: 19,
+    fontSize: 14,
     borderWidth: 0.5,
     borderRadius: 2,
     borderColor: '#2196f3',
+    paddingLeft: 8,
+
   },
   invalid: {
     color: 'red',
