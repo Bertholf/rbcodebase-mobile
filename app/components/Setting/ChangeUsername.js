@@ -21,7 +21,7 @@ class ChangeUsername extends Component {
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
+            {/* <Text style={styles.Text2}>
               Your current username
             </Text>
             <TextInput
@@ -29,30 +29,36 @@ class ChangeUsername extends Component {
               underlineColorAndroid="rgba(0,0,0,0)"
               defaultValue={this.state.currentUsername}
               editable={false}
-            />
-            <Text style={styles.Text2}>
+            /> */}
+            {/* <Text style={styles.Text2}>
               Enter your new username
-            </Text>
+            </Text> */}
             <TextInput
               style={styles.TextInput1}
-              underlineColorAndroid={'#2196f3'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder="New Username"
-              onChangeText={firstName => this.setState({ firstName })}
+              onChangeText={currentUsername => this.setState({ currentUsername })}
               multiline={false}
               numberOfLines={4} editable={true}
             />
             {/* {firstNameValidator || !firstNameInput ?
               <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>} */}
           </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>SAVE</Text>
+          </TouchableOpacity>
         </ScrollView>
-        <TouchableOpacity activeOpacity={0.7}>
+        {/* <TouchableOpacity activeOpacity={0.7}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
               SAVE
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     );
   }
