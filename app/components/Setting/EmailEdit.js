@@ -48,7 +48,7 @@ export default class EmailEdit extends Component {
               Enter your new email
             </Text>
             <TextInput
-              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
+              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} placeholder="Enter your new email" onChangeText={newEmail => this.setState({ newEmail })} multiline
               numberOfLines={4}
             />
@@ -60,7 +60,7 @@ export default class EmailEdit extends Component {
               Confirm change
             </Text>
             <TextInput
-              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
+              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} placeholder="Enter received code" onChangeText={() => console.log('dummy')} multiline
               numberOfLines={4}
             />
