@@ -43,7 +43,7 @@ export default class editBirthday extends Component {
         </View>
         <View style={{ marginTop: 20, padding: 14 }}>
           <TouchableOpacity style={styles.button} onPress={Actions.setting}>
-            <Text style={styles.titleButton} >Save</Text>
+            <Text style={styles.titleButton} >SAVE</Text>
           </TouchableOpacity>
         </View>
       </View>
