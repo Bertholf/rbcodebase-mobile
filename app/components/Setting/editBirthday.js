@@ -14,18 +14,17 @@ import { Actions } from 'react-native-router-flux';
 export default class editBirthday extends Component {
   constructor(props){
     super(props);
-    this.state = { date: '2016-05-15' };
+    this.state = { date: '2016-01-01' };
   }
   render() {
     return (
-      <View>
-        <View style={{ padding: 9 }}>
-          <View>
-            <Text>Birthday</Text>
-          </View>
-          <View>
+      <View style={{ flex: 1}}>
+        <View style={{ padding: 16 }}>
+          <View style={styles.styleView}>
+            <View style={{alignSelf: 'center'}}>
+              <Text style={styles.text}>Birthday</Text>
+            </View>
             <DatePicker
-              style={{ width: width * .97 }}
               date={this.state.date}
               placeholder="select date"
               format="YYYY-MM-DD"
@@ -33,13 +32,18 @@ export default class editBirthday extends Component {
               maxDate="2017-06-01"
               confirmBtnText="Confirm"
               cancelBtnText="Cancel"
-              onDateChange={(date) => { this.setState({date:date})}}
+              onDateChange={(date) => { this.setState({ date: date }); }}
+              customStyles={{
+                dateInput: {
+                  borderColor: 'rgba(0,0,0,0)',
+                },
+              }}
             />
           </View>
         </View>
-        <View style={{ marginTop: 30, padding: 7 }}>
+        <View style={{ marginTop: 20, padding: 14 }}>
           <TouchableOpacity style={styles.button} onPress={Actions.setting}>
-            <Text style={styles.titleButton} >Save</Text>
+            <Text style={styles.titleButton} >SAVE</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -57,10 +61,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     borderRadius: 2,
     elevation: 2,
-    paddingLeft: 24,
-    paddingRight: 24,
     paddingTop: 14,
     paddingBottom: 14,
     alignItems: 'center',
+  },
+  styleView: {
+    marginTop: 10,
+    flexDirection: 'row',
+    paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    height: 40,
+  },
+  text: {
+    color: '#000000',
+    fontSize: 13,
   },
 });
