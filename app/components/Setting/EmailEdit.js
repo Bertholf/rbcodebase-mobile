@@ -39,7 +39,6 @@ export default class EmailEdit extends Component {
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              Your current email
             </Text><TextInput
               style={styles.TextInput1} placeholder={currentEmail} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline
