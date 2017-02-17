@@ -18,23 +18,11 @@ class ChangeUsername extends Component {
 
   render() {
     return (
-      <View style={styles.OuterView}>
+      <View style={styles.container}>
         <ScrollView>
-          <View style={styles.View1}>
-            {/* <Text style={styles.Text2}>
-              Your current username
-            </Text>
+          <View style={styles.inputUsernameContainer}>
             <TextInput
-              style={styles.TextInput1}
-              underlineColorAndroid="rgba(0,0,0,0)"
-              defaultValue={this.state.currentUsername}
-              editable={false}
-            /> */}
-            {/* <Text style={styles.Text2}>
-              Enter your new username
-            </Text> */}
-            <TextInput
-              style={styles.TextInput1}
+              style={styles.textInputUsername}
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder="New Username"
@@ -42,23 +30,17 @@ class ChangeUsername extends Component {
               multiline={false}
               numberOfLines={4} editable={true}
             />
-            {/* {firstNameValidator || !firstNameInput ?
-              <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>} */}
           </View>
+          <Text>
+            Your username should be unique.
+          </Text>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={styles.button}
+            style={styles.buttonSave}
           >
             <Text style={styles.buttonText}>SAVE</Text>
           </TouchableOpacity>
         </ScrollView>
-        {/* <TouchableOpacity activeOpacity={0.7}>
-          <View style={styles.View2}>
-            <Text style={styles.Button}>
-              SAVE
-            </Text>
-          </View>
-        </TouchableOpacity> */}
       </View>
     );
   }

@@ -8,15 +8,15 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   OuterView: {
-    height,
+    flexDirection: 'column',
     flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
   },
   View1: {
-    // alignItems: 'flex-start',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     paddingTop: 50,
+    marginLeft: width * 0.1,
+    marginRight: width * 0.1,
 
   },
   View2: {
@@ -43,30 +43,42 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   TextInput1: {
-    height: 40,
-    // width: 0.7 * width,
-    // paddingTop: 2,
-    // color: '#2196f3',
-    // fontSize: 19,
+    height: 0.1 * height,
+    width: 0.7 * width,
+    paddingTop: 2,
+    color: '#2196f3',
+    fontSize: 19,
     borderWidth: 0.5,
     borderRadius: 2,
     borderColor: '#2196f3',
-    // height: 40,
-    // borderWidth: 0.5,
-    // borderRadius: 2,
+  },
+  invalid: {
+    color: 'red',
+    fontSize: 15,
+    alignSelf: 'flex-start',
+  },
+
+  // style for edit change username screen
+  container: {
+    height,
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  inputUsernameContainer: {
+    justifyContent: 'space-between',
+    paddingTop: 50,
+  },
+  textInputUsername: {
+    height: 40,
+    borderWidth: 0.5,
+    borderRadius: 2,
+    borderColor: '#2196f3',
     paddingLeft: 15,
     paddingRight: 15,
-    // // paddingRight: 15,
-    marginBottom: 20,
-    // borderColor: '#2196f3',
+    marginBottom: 10,
   },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '400',
-    color: 'white',
-    textAlign:'center',
-  },
-  button: {
+  buttonSave: {
     height: 36,
     backgroundColor: '#039be5',
     borderColor: '#0288d1',
@@ -77,11 +89,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 2,
     padding: 15,
+    marginTop: 20,
   },
-  invalid: {
-    color: 'red',
-    fontSize: 15,
-    alignSelf: 'flex-start',
+
+  buttonText: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'white',
+    textAlign: 'center',
+  },
+  button: {
+    height: 36,
+    backgroundColor: '#039be5',
+    borderColor: '#0288d1',
+    borderWidth: 1,
+    borderRadius: 2,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    elevation: 2,
+    padding: 15,
+    marginTop: 20,
   },
 });
 
