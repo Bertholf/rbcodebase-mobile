@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import OAuthManager from 'react-native-oauth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
+import twitter from './../modules/twitter';
 import auth from '../services/auth';
 
 import config from '../config';
@@ -43,7 +44,7 @@ export function submitLogin(username, password, okCallback, failCallback) {
    .catch(err => failCallback());
   }
 }
-export function doneLogin(response = '') {
+export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
@@ -104,19 +105,10 @@ export const manager = new OAuthManager('RB Codebase');
 
 export function loginWithTwitter() {
   return (dispatch) => {
-    manager.configure({
-      twitter: {
-        consumer_key: TWITTER_CONSUMER_KEY,
-        consumer_secret: TWITTER_CONSUMER_SECRET,
-      },
-    });
-    dispatch(requestLogin('Login With Twitter'));
-    return manager.authorize('twitter')
-      .then((resp) => {
-        const accessToken = resp.response.credentials.accessToken;
-        return accessToken;
+    return twitter.signIn()
+      .then(response => {
+        dispatch(doneLogin({ accessToken: response.token, provider: 'twitter' }))
       })
-      .then(accessToken => dispatch(doneLogin({ accessToken, provider: 'twitter' })))
       .catch(err => console.log('TWITTER ERR', err));
   };
 }
