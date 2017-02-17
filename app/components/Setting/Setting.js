@@ -72,8 +72,8 @@ const Setting = () => {
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.password}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>email@domain.com</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ alignSelf: 'center' }}>********</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
