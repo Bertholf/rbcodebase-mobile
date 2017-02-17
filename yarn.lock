@@ -3852,6 +3852,12 @@ react-native-code-push@^1.17.0-beta:
     inquirer "1.1.2"
     plist "1.2.0"
 
+react-native-datepicker@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-datepicker/-/react-native-datepicker-1.4.4.tgz#465e2b792ad6b5ba1a86349f87552ece6cfa03a8"
+  dependencies:
+    moment "2.x.x"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -3983,6 +3989,10 @@ react-native-router-flux@^3.37.0:
 react-native-simple-gesture@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/react-native-simple-gesture/-/react-native-simple-gesture-0.0.2.tgz#7ce5ba6eb59132b65effe4f33eb8a28953272d17"
+
+react-native-sliding-up-panel@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/react-native-sliding-up-panel/-/react-native-sliding-up-panel-1.1.11.tgz#d803798c817b9b732e6c03ee496ed9960236535f"
 
 react-native-smart-splash-screen@^2.3.3:
   version "2.3.3"

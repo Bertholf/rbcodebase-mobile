@@ -10,6 +10,7 @@ import Welcome from './containers/Welcome/Welcome';
 import Login from './containers/Auth/Login';
 import TOSContainer from './containers/TOS/TOSContainer';
 import PPContainer from './containers/PrivacyPolicy/PPContainer';
+import SupportContainer from './containers/Support/SupportContainer';
 import Register from './components/Auth/RegisterScreen';
 import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
@@ -26,9 +27,11 @@ import Loader from './containers/Loader';
 import Account from './components/Profile/AccountSetting';
 import EmailEdit from './components/Setting/EmailEdit';
 import NameEdit from './components/Setting/ChangeName';
+import editBirthday from './components/Setting/editBirthday';
 import PassEdit from './components/Setting/PasswordEdit';
 import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
+import UsernameEdit from './components/Setting/ChangeUsername';
 import Friendlist from './components/Profile/friendlist';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
@@ -40,6 +43,9 @@ import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
+import ReserveScreen from './components/ReserveScreen';
+import AppListing from './components/Listing/listing';
+import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
 
@@ -58,6 +64,9 @@ const Routing = (props) => (
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
+          />
+          <Scene
+            key={'editbirthday'} component={editBirthday} title={'Edit Birthday'}
           />
           <Scene
             key="inbox" component={Inbox} title={'Inbox'}
@@ -108,6 +117,9 @@ const Routing = (props) => (
             key={'about'} component={About} title={'Edit Bio'}
           />
           <Scene
+            key={'usernameEdit'} component={UsernameEdit} title={'Edit Username'}
+          />
+          <Scene
             key={'nameEdit'} component={NameEdit} title={'Edit Name'}
           />
           <Scene
@@ -126,7 +138,7 @@ const Routing = (props) => (
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
           />
           <Scene
-            key={'timelineList'} component={TimelineList} title={'Timeline List'} direction={'horizontal'}
+            key={'timelineList'} hideNavBar component={TimelineList} title={'Timeline List'} direction={'horizontal'}
           />
           <Scene
             key={'listInbox'} component={Inbox} title={'Timeline Detial'}
@@ -156,16 +168,24 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} component={ActionSwiper} hideNavBar title={'Dashboard'}
+            key={'actionswiper'} component={ActionSwiper} title={'Dashboard'} hideNavBar
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+          />
+          <Scene key={'license'} hideNavBar component={License} />
+          <Scene
+            key={'reservescreen'} component={ReserveScreen} title={'Reserve Screen'} direction={'vertical'}
+          />
+          <Scene
+            key={'appListing'} hideNavBar component={AppListing} title={'App Listing'} direction={'leftToRight'}
           />
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
+          <Scene key={'support'} hideNavBar component={SupportContainer} />
         </Scene>
             <Scene key={'loader'} component={Loader} />
           </Scene>
