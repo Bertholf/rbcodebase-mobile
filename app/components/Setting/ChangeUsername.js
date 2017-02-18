@@ -21,32 +21,24 @@ class ChangeUsername extends Component {
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-              Your current username
-            </Text>
             <TextInput
               style={styles.TextInput1}
-              underlineColorAndroid="rgba(0,0,0,0)"
-              defaultValue={this.state.currentUsername}
-              editable={false}
-            />
-            <Text style={styles.Text2}>
-              Enter your new username
-            </Text>
-            <TextInput
-              style={styles.TextInput1}
-              underlineColorAndroid={'#2196f3'}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder="New Username"
-              onChangeText={firstName => this.setState({ firstName })}
+              onChangeText={currentUsername => this.setState({ currentUsername })}
               multiline={false}
               numberOfLines={4} editable={true}
             />
-            {/* {firstNameValidator || !firstNameInput ?
-              <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>} */}
           </View>
+          <Text style={{ marginTop: 10 }}>
+            Your username should be unique.
+          </Text>
+          <Text style={{ marginTop: 10, lineHeight: 20 }}>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </Text>
         </ScrollView>
-        <TouchableOpacity activeOpacity={0.7}>
+        <TouchableOpacity>
           <View style={styles.View2}>
             <Text style={styles.Button}>
               SAVE

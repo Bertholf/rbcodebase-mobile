@@ -103,7 +103,7 @@ export default class Friendlist extends React.Component {
     );
   }else{
    return (
-     <ActivityIndicator />
+     <Text>No Content Display</Text>
    );
  }
  }

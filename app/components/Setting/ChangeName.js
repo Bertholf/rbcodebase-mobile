@@ -54,9 +54,6 @@ export default class NameEdit extends Component{
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-              Your current name
-            </Text>
             <Text style={styles.TextInput1}>
               {this.state.profile.first_name} {this.state.profile.last_name}
             </Text>
@@ -70,7 +67,7 @@ export default class NameEdit extends Component{
               placeholder="Enter your new name"
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
-              numberOfLines={4} editable={true}
+              numberOfLines={1} editable={true}
             />
             {firstNameValidator || !firstNameInput ?
               <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
@@ -81,7 +78,7 @@ export default class NameEdit extends Component{
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder="Your Last Name" onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
-              numberOfLines={4} editable={true}
+              numberOfLines={1} editable={true}
             />
             {lastNameValidator || !lastNameInput ?
               <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
