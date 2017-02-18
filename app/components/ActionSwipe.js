@@ -25,8 +25,8 @@ class ActionSwiper extends Component {
   constructor(props) {
     super(props);
     this.pan = new Animated.ValueXY();
-    this.lastX = null;
-    this.lastY = null;
+    // this.lastX = null;
+    // this.lastY = null;
     this.currentX = 0;
     this.currentY = 0;
     this.state = {
