@@ -13,6 +13,7 @@ import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
 import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
+import strings from '../../localizations';
 // import GoogleSignIn from './../../services/signingoogle';
 
 const google = require('./../../images/login/google.png');
@@ -54,11 +55,11 @@ export default class LoginScreenEmail extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.contentLoginEmail}>
-        {!this.state.isFail ? <Text /> : (
-          <View style={styles.errBox}>
-            <Text style={{ color: '#fff' }} >Email or Password not match</Text>
-          </View>
-        )}
+          {!this.state.isFail ? <Text /> : (
+            <View style={styles.errBox}>
+              <Text style={{ color: '#fff' }} >{strings.LoginbyEmail.validate}</Text>
+            </View>
+          )}
           <TextInput
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
@@ -69,7 +70,7 @@ export default class LoginScreenEmail extends Component {
             required
           />
           {this.state.validUsername ? <Text /> : (
-            <Text style={styles.wrong}>PLease input valid username</Text>
+            <Text style={styles.wrong}>{strings.LoginbyEmail.validEUser}</Text>
           )}
           <TextInput
             secureTextEntry
@@ -79,10 +80,10 @@ export default class LoginScreenEmail extends Component {
               this.setState({ password, validPassword: true, isFail: false })
             }
             placeholderTextColor={'#2196f3'}
-            placeholder="Password"
+            placeholder={strings.LoginbyEmail.pass}
           />
           {this.state.validPassword ? <Text /> : (
-            <Text style={styles.wrong}>Password cannot blank</Text>
+            <Text style={styles.wrong}>{strings.LoginbyEmail.validEPass}</Text>
           )}
           {!this.state.loading ? (
             <TouchableOpacity
@@ -90,7 +91,7 @@ export default class LoginScreenEmail extends Component {
               style={styles.button}
               onPress={() => this.validate()}
             >
-              <Text style={styles.buttonText}>Sign In</Text>
+              <Text style={styles.buttonText}>{strings.LoginbyEmail.signIn}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -103,7 +104,7 @@ export default class LoginScreenEmail extends Component {
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <TouchableOpacity onPress={() => Actions.forgotPassword()}>
               <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  Forgot your Password?
+                  {strings.LoginbyEmail.forgot}
                 </Text>
             </TouchableOpacity>
           </View>

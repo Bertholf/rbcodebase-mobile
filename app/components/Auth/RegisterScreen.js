@@ -69,7 +69,6 @@ export default class Register extends Component {
   }
 
   render() {
-    //strings.setLanguage('en');
     return (
       <View style={styles.container}>
       <ScrollView>

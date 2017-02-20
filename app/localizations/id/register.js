@@ -3,10 +3,10 @@ import LocalizedStrings from 'react-native-localization';
 
 const register = {
   RegisterWith: 'Daftar dengan:',
-  Registerfacebook: 'Register dengan Facebook',
-  RegisterGoogle: 'Register dengan Google',
-  RegisterTwitter: 'Register dengan Twitter',
-  RegisterEmail: 'Register dengan Email',
+  Registerfacebook: 'Daftar dengan Facebook',
+  RegisterGoogle: 'Daftar dengan Google',
+  RegisterTwitter: 'Daftar dengan Twitter',
+  RegisterEmail: 'Daftar dengan Email',
   SignIn: 'Masuk',
   BySigningupYouAgree: 'Dengan Mendaftar, Anda menyetujui Aplikasi ini',
   TermsofService: 'Jangka layanan',

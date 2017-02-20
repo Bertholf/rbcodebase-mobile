@@ -84,7 +84,7 @@ export default class LoginScreen extends Component {
         </View>
         <View style={{ alignItems: 'center' }}>
           <View style={{ alignItems: 'center' }}>
-            <Text style={{justifyContent: 'center' }}>{strings.LoginScreen.agreement}</Text>
+            <Text style={{ textAlign: 'center' }}>{strings.LoginScreen.agreement}</Text>
             <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.LoginScreen.tos}
               <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
                 <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text>
