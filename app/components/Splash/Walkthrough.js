@@ -85,14 +85,32 @@ const styles = StyleSheet.create({
   },
 });
 
+let setlang = '';
+
 export default class walkthrough extends Component {
   constructor(props) {
+    const lang = strings.getInterfaceLanguage();
+    switch (lang) {
+      case 'in-ID':
+        console.log('Bahasa');
+        setlang = 'id';
+        break;
+      case 'en-US':
+        console.log('Language');
+        setlang = 'en';
+        break;
+      default:
+        setlang = 'en';
+        break;
+    }
+    strings.setLanguage(setlang);
     super(props);
-    strings.setLanguage('en');
     this.state = {
       screen: strings.walkthrought.screen.information,
     };
   }
+
+
   renderTitleIndicator() {
     return <PagerTitleIndicator titles={['one', 'two', 'three', 'four']} />;
   }
