@@ -10,6 +10,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import styles from './style';
+import auth from './../../services/auth';
 
 
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
@@ -41,7 +42,18 @@ class userPanel extends React.Component {
       alignItems: 'center',
     };
   }
-
+  constructor(props){
+    super(props)
+    this.state = {
+      profile: {},
+      loading:true,
+    }
+  }
+  componentDidMount(){
+    auth.profile ()
+    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+    .catch(Err=> console.log('err', Err))
+  }
 
   render() {
     return (
@@ -63,7 +75,7 @@ class userPanel extends React.Component {
             </View>
             <View style={styles.userContainer} >
               <TouchableOpacity activeOpacity={0.7} style={styles.userButton}>
-                <Image source={userImage} style={styles.userImage} />
+                <Image source={{uri:this.state.profile.picture}} style={styles.userImage} />
               </TouchableOpacity>
               <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
 

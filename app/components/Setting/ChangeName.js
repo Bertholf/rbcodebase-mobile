@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import me from '../../services/me';
+import auth from './../../services/auth';
 
 export default class NameEdit extends Component{
   constructor(props) {
@@ -20,9 +21,9 @@ export default class NameEdit extends Component{
     };
   }
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data }))
-    .then(() => console.log(this.state.profile));
+    auth.profile()
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
 
   render() {
@@ -55,7 +56,7 @@ export default class NameEdit extends Component{
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.TextInput1}>
-              {this.state.profile.first_name} {this.state.profile.last_name}
+              {this.state.profile.name_first} {this.state.profile.name_last}
             </Text>
             <Text style={styles.Text2}>
               Enter your new name
