@@ -36,7 +36,7 @@ export default class LoginScreen extends Component {
               onPress={() =>this.props.loginWithFacebook()}
             >
               <View style={{ flexDirection: 'row' }}>
-                <Image source={facebookLogo} style={styles.icon} />
+                <Image source={facebookLogo} style={styles.facebookLogo} />
                 <Text style={styles.text}>{strings.LoginScreen.fb}</Text>
               </View>
             </TouchableOpacity>

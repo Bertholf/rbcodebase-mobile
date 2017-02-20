@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 7,
-    marginLeft: 5,
+    marginLeft: 9,
   },
   logoTwitter: {
     tintColor: '#fff',
@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     width: width * 0.6,
   },
   icon: {
-    height: 24,
-    width: 24,
+    height: 30,
+    width: 30,
     marginLeft: 10,
   },
   picker: {
