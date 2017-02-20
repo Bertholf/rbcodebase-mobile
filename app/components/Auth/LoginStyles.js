@@ -27,19 +27,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 48,
     marginRight: -5,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   facebookLogo: {
     height: 30,
     width: 30,
     borderRadius: 7,
-    marginLeft: 5,
+    marginLeft: 7,
+    justifyContent: 'center'
   },
   logoTwitter: {
     tintColor: '#fff',
     height: 24,
     width: 24,
-    marginLeft: 10,
+    marginLeft: 13,
   },
   otherlog: {
     flexDirection: 'row',
@@ -94,9 +95,9 @@ const styles = StyleSheet.create({
     width: width * 0.6,
   },
   icon: {
-    height: 24,
-    width: 24,
-    marginLeft: 10,
+    height: 30,
+    width: 30,
+    marginLeft: 7,
   },
   picker: {
     height: 50,
@@ -113,6 +114,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'white',
     marginLeft: 20,
+  },
+  textfb: {
+    fontSize: 18,
+    color: 'white',
+    marginLeft: 22,
+  },
+  texttw: {
+    fontSize: 18,
+    color: 'white',
+    marginLeft: 21,
   },
   separatorText: {
     marginTop: 20,

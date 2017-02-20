@@ -7,13 +7,19 @@ import {
   ScrollView,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
+import auth from './../../services/auth';
 
-class ChangeUsername extends Component {
+export default class ChangeUsername extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUsername: 'Mr. Jonhys',
+      profile: {},
     };
+  }
+  componentDidMount() {
+    auth.profile ()
+    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+    .catch(Err=> console.log('err', Err))
   }
 
   render() {
@@ -21,6 +27,18 @@ class ChangeUsername extends Component {
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
+            <Text style={styles.Text2}>
+              Your current username
+            </Text>
+            <TextInput
+              style={styles.TextInput1}
+              underlineColorAndroid="rgba(0,0,0,0)"
+              defaultValue={this.state.profile.name_slug}
+              editable={false}
+            />
+            <Text style={styles.Text2}>
+              Enter your new username
+            </Text>
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid={'rgba(0,0,0,0)'}
@@ -49,5 +67,3 @@ class ChangeUsername extends Component {
     );
   }
 }
-
-export default ChangeUsername;
