@@ -200,21 +200,21 @@ class ActionSwiper extends Component {
 
   gotoUp() {
     Animated.spring(this.pan, {
-      toValue: { x: 0, y: this.currentY + height },
+      toValue: { x: 0, y:height },
       friction: 6,
     }).start(() => {
       this.currentX = 0;
-      this.currentY += height;
+      this.currentY = height;
     });
   }
 
   gotoDown() {
     Animated.spring(this.pan, {
-      toValue: { x: 0, y: this.currentY - height },
+      toValue: { x: 0, y: -height },
       friction: 6,
     }).start(() => {
       this.currentX = 0;
-      this.currentY -= height;
+      this.currentY = -(height);
     });
   }
 
