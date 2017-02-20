@@ -17,7 +17,7 @@ import strings from '../../localizations';
 
 const { width,height } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
-const google2 = require('../../images/login/google.png');
+const google2 = require('../../images/login/gplus.png');
 const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png');
@@ -36,8 +36,8 @@ export default class LoginScreen extends Component {
               onPress={() =>this.props.loginWithFacebook()}
             >
               <View style={{ flexDirection: 'row' }}>
-                <Image source={facebookLogo} style={styles.icon} />
-                <Text style={styles.text}>{strings.LoginScreen.fb}</Text>
+                <Image source={facebookLogo} style={styles.facebookLogo} />
+                <Text style={styles.textfb}>{strings.LoginScreen.fb}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -47,7 +47,7 @@ export default class LoginScreen extends Component {
               activeOpacity={0.7} onPress={() => this.props.loginWithGoogle()}
             >
               <View style={{ flexDirection: 'row' }}>
-                <Image source={google2} style={styles.icon} />
+                <Image source={google2} style={styles.logoGoogle} />
                 <Text style={styles.text}>{strings.LoginScreen.google}</Text>
               </View>
             </TouchableOpacity>
@@ -58,7 +58,7 @@ export default class LoginScreen extends Component {
               onPress={() => this.props.loginWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
-                <Text style={styles.text}>{strings.LoginScreen.twitter}</Text>
+                <Text style={styles.texttw}>{strings.LoginScreen.twitter}</Text>
               </View>
             </TouchableOpacity>
           </View>

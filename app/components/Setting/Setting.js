@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
+import auth from './../../services/auth';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
 
-const Setting = () => {
-  return (
+export default class Setting extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      profile: {},
+      loading:true,
+    }
+  }
+  componentDidMount(){
+    auth.profile ()
+    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+    .catch(Err=> console.log('err', Err))
+  }
+  render() {
+   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
@@ -18,7 +32,7 @@ const Setting = () => {
                 <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>My Name</Text>
+                <Text style={{ alignSelf: 'center'}}>{this.state.profile.name_first}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -29,7 +43,7 @@ const Setting = () => {
                 <Text style={styles.text}>{strings.settings.username}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center' }}>@tester</Text>
+                <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_slug}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -62,7 +76,7 @@ const Setting = () => {
                 <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>email@domain.com</Text>
+                <Text style={{ alignSelf: 'center'}}>{this.state.profile.email}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -175,5 +189,5 @@ const Setting = () => {
       </ScrollView>
     </View>
   );
+}
 };
-export default Setting;
