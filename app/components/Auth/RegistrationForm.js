@@ -121,7 +121,7 @@ export default class RegistrationForm extends Component {
         Alert.alert(strings.register.Failed);
       }
     };
-    strings.setLanguage('en');
+    // strings.setLanguage('en');
     return (
       <View style={styles.container} >
         <ScrollView>
