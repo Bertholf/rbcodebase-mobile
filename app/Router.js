@@ -49,7 +49,6 @@ import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
 
-
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
     <Router>
@@ -168,7 +167,7 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} component={ActionSwiper} title={'Dashboard'} hideNavBar
+            key={'actionswiper'} hideNavBar component={ActionSwiper} title={'Dashboard'} hideNavBar
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
@@ -183,6 +182,7 @@ const Routing = (props) => (
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
+
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
           <Scene key={'support'} hideNavBar component={SupportContainer} />

@@ -1,77 +1,281 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  PanResponder,
-} from 'react-native';
-import SimpleGesture from 'react-native-simple-gesture';
-import { Actions } from 'react-native-router-flux';
-import Swiper from 'react-native-swiper';
+import { StyleSheet, Animated, Dimensions, PanResponder, View, Image, TouchableOpacity } from 'react-native';
+import clamp from 'clamp';
 import Dashboard from './Timeline/Dashboard';
-import TimelineComp from './Timeline/TimelineComp';
-import AppListing from './Listing/listing';
+import UserPanel from './UserPanel/UserPanel';
+import ReserveScreen from './ReserveScreen';
+import Timeline from './Timeline/TimelineComp';
+import Listing from './Listing/listing';
 
-const { height, width } = Dimensions.get('window');
+const arrowRight = require('../images/arrowRight.png');
+const arrowLeft = require('../images/arrowLeft.png');
+
+const { width, height } = Dimensions.get('window');
+const screenWidth = width * 3;
+const screenHeight = height * 3;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'transparent',
   },
-  text: {
-    fontSize: 30,
-    color: '#fff',
+  card: {
+    width,
+    height,
+    padding: 15,
+  },
+  arrowLeft: {
+    position: 'absolute',
+    top: height / 2,
+    left: 0,
+    zIndex: 10,
+  },
+  arrowRight: {
+    position: 'absolute',
+    top: height / 2,
+    right: 0,
+    zIndex: 10,
   },
 });
 
 class ActionSwiper extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      containerHeight: 0,
-      height:0,
-    };
-  }
-  componentWillMount() {
+    this.pan = new Animated.ValueXY();
+    this.currentX = 0;
+    this.currentY = 0;
+    this.onHorizontalSwipe = this.onHorizontalSwipe.bind(this);
+    this.onVerticalSwipe = this.onVerticalSwipe.bind(this);
     this.panResponder = PanResponder.create({
       onMoveShouldSetResponderCapture: () => true,
-      onMoveShouldSetPanResponderCapture: () => true,
-      onPanResponderGrant: (e, gestureState) => {
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => {
+        return gestureState.dx !== 0 && gestureState.dy !== 0;
       },
-      onPanResponderMove: (e, gs) => {
-        let sgs = new SimpleGesture(e, gs);
-        if (sgs.isSwipeUp()) {
-          Actions.reservescreen();
-        }
-        if (sgs.isSwipeDown()) {
-          Actions.userpanel();
-        }
+      onPanResponderGrant: () => {
+        this.pan.setOffset({ x: this.pan.x._value, y: this.pan.y._value });
+        this.pan.setValue({ x: 0, y: 0 });
       },
-      onPanResponderRelease: (e, { vx, vy }) => {
+      onPanResponderMove: Animated.event([
+        null, { dx: this.pan.x, dy: this.pan.y }
+      ]),
+      onPanResponderRelease: (e, { vx, vy, dx, dy }) => {
+        this.pan.flattenOffset();
+        let velocity;
+        if (vx >= 0) {
+          velocity = clamp(vx, 3, 5);
+        } else if (vx < 0) {
+          velocity = clamp(vx * -1, 3, 5) * -1;
+        }
+        if (Math.abs(dx) > Math.abs(dy)) {
+          this.onHorizontalSwipe(dx);
+        } else {
+          this.onVerticalSwipe(dy);
+        }
       },
     });
   }
 
+  onHorizontalSwipe(dx) {
+    console.log('dx dan currentY :',dx ,' == ',this.currentY);
+    if(dx > 0 && this.currentY === 0) {
+      if(this.currentX >= width) {
+        Animated.spring(this.pan, {
+          toValue: { x: this.currentX, y: 0 },
+          friction: 6,
+        }).start(() => {
+          console.log(' out of reach LEFT currentX: ',this.currentX);
+        });
+        return;
+      }
+
+      Animated.spring(this.pan, {
+        toValue: { x: this.currentX + width, y: 0 },
+        friction: 6,
+      }).start(()=> {
+        this.currentX = this.currentX + width;
+        console.log('if currentX: ',this.currentX);
+      });
+    }else if (dx<0 && this.currentY === 0){
+      if(this.currentX <= -width) {
+        Animated.spring(this.pan, {
+          toValue: { x: this.currentX, y: 0 },
+          friction: 6,
+        }).start(() => {
+          console.log(' out of reach RIGHT currentX: ',this.currentX);
+        });
+        return;
+      }
+      Animated.spring(this.pan, {
+        toValue: { x: this.currentX - width, y: 0 },
+        friction: 6,
+      }).start(() => {
+        this.currentX = this.currentX - width;
+        console.log(' else currentX: ',this.currentX);
+      });
+    } else {
+      Animated.spring(this.pan, {
+        toValue: { x: this.currentX, y: this.currentY },
+        friction: 6,
+      }).start();
+    }
+
+  }
+
+  onVerticalSwipe(dy) {
+    if(dy > 0 && this.currentX === 0) {
+      if(this.currentY >= height) {
+        Animated.spring(this.pan, {
+          toValue: { y: this.currentY, x: 0 },
+          friction: 6,
+        }).start(() => {
+          // this.currentX = Math.floor(this.pan.x._value);
+          console.log(' out of reach TOP currentY: ',this.currentY);
+        });
+        return;
+      }
+
+      Animated.spring(this.pan, {
+        toValue: { y: this.currentY + height, x: 0 },
+        friction: 6,
+      }).start(()=> {
+        this.currentY = this.currentY + height;
+        console.log('if currentY: ',this.currentY);
+      });
+    } else if (dy < 0 && this.currentX === 0) {
+      if(this.currentY <= -width) {
+        Animated.spring(this.pan, {
+          toValue: { y: this.currentY, x: 0 },
+          friction: 6,
+        }).start(() => {
+          // this.currentX = Math.floor(this.pan.x._value);
+          console.log(' out of reach BOTTOM currentY: ',this.currentY);
+        });
+        return;
+      }
+      Animated.spring(this.pan, {
+        toValue: { y: this.currentY - height, x: 0 },
+        friction: 6,
+      }).start(() => {
+        this.currentY = this.currentY - height;
+        console.log(' else currentY: ',this.currentY);
+      });
+    } else {
+      Animated.spring(this.pan, {
+        toValue: { x: this.currentX, y: this.currentY },
+        friction: 6,
+      }).start();
+    }
+  }
+  gotoCenter() {
+    Animated.spring(this.pan, {
+      toValue: { x: 0, y: 0 },
+      friction: 6,
+    }).start(() => {
+      this.currentX = 0;
+      this.currentY = 0;
+    });
+  }
+  gotoLeft() {
+    Animated.spring(this.pan, {
+      toValue: { x: width, y: 0 },
+      friction: 6,
+    }).start(() => {
+      this.currentX = width;
+      this.currentY = 0;
+    });
+  }
+
+  gotoRight() {
+    Animated.spring(this.pan, {
+      toValue: { x: -width, y: 0 },
+      friction: 6,
+    }).start(() => {
+      this.currentX = -(width);
+      this.currentY = 0;
+    });
+  }
+
+  gotoUp() {
+    Animated.spring(this.pan, {
+      toValue: { x: 0, y:height },
+      friction: 6,
+    }).start(() => {
+      this.currentX = 0;
+      this.currentY = height;
+    });
+  }
+
+  gotoDown() {
+    Animated.spring(this.pan, {
+      toValue: { x: 0, y: -height },
+      friction: 6,
+    }).start(() => {
+      this.currentX = 0;
+      this.currentY = -(height);
+    });
+  }
+
   render() {
+    const props = {
+      goLeft: () => this.gotoLeft(),
+      goRight: () => this.gotoRight(),
+      goUp: () => this.gotoUp(),
+      goDown: () => this.gotoDown(),
+      goCenter: () => this.gotoCenter(),
+    };
+
+    console.log('render',height,'  ', width);
+    const { pan } = this;
+    const [translateX, translateY] = [pan.x, pan.y];
+
+    const animatedCardstyles = { transform: [{ translateX }, { translateY }] };
     return (
-      <View style={styles.container}>
-        <Swiper
-          loop={false}
-          showsPagination={false}
-          index={1}
-          height={height-30}
-          showsButtons
+      <View style={{ flex: 1 }}>
+        <Animated.View
+          style={[{ width: screenWidth, height: screenHeight, position: 'absolute', top: -height, left: -width }, animatedCardstyles]}
+          {...this.panResponder.panHandlers}
         >
-          <AppListing />
-          <View style={styles.container}  {...this.panResponder.panHandlers}>
-            <Dashboard />
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.card} />
+            <View style={styles.card}>
+              <UserPanel {...props} />
+            </View>
+            <View style={styles.card} />
           </View>
-          <TimelineComp />
-        </Swiper>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.card}>
+              <TouchableOpacity
+                onPress={() => this.gotoCenter()}
+                style={styles.arrowRight}
+              >
+                <Image source={arrowRight} />
+              </TouchableOpacity>
+              <Listing />
+            </View>
+            <View style={styles.card}>
+              <Dashboard {...props} />
+            </View>
+            <View style={styles.card}>
+              <TouchableOpacity
+                onPress={() => this.gotoCenter()}
+                style={styles.arrowLeft}
+              >
+                <Image source={arrowLeft} />
+              </TouchableOpacity>
+              <Timeline />
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.card} />
+            <View style={styles.card}>
+              <ReserveScreen {...props} />
+            </View>
+            <View style={styles.card} />
+          </View>
+        </Animated.View>
       </View>
     );
   }

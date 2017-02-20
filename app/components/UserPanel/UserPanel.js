@@ -57,12 +57,6 @@ class userPanel extends React.Component {
 
   render() {
     return (
-      <Swiper
-        horizontal={false}
-        loop={false}
-        showsPagination={false}
-        index={0}
-      >
         <View style={styles.container}>
           <ScrollView>
             <View style={styles.btnSettingContainer}>
@@ -108,16 +102,11 @@ class userPanel extends React.Component {
             </View>
           </ScrollView>
           <View style={styles.swapContainer}>
-            <TouchableOpacity activeOpacity={0.7} onPress={Actions.pop}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.props.goCenter()}>
               <Image source={bottomArrowIcon} style={styles.swapImage} />
             </TouchableOpacity>
           </View>
         </View>
-
-        <View style={this.viewStyle()}>
-          <TitleText label="Dashboard" />
-        </View>
-      </Swiper>
     );
   }
 }

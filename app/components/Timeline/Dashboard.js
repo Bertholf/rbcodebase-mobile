@@ -35,7 +35,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={Actions.userpanel}>
+        <TouchableOpacity onPress={() => this.props.goUp()}>
           <View style={{ justifyContent: 'flex-end' }}>
             <Image source={{uri:this.state.profile.picture}} style={styles.account} />
           </View>
@@ -44,20 +44,20 @@ export default class Dashboard extends Component {
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>
-              <TouchableOpacity onPress={Actions.appListing}>
+              <TouchableOpacity onPress={() => this.props.goLeft()}>
                 <Image
                   style={styles.icon}
                   source={modul} />
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={Actions.reservescreen}>
+            <TouchableOpacity onPress={() => this.props.goDown()}>
               <Image
                 style={styles.icon}
                 source={home}     />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={Actions.timelineList}>
+            <TouchableOpacity onPress={() => this.props.goRight()}>
               <Image
                 style={styles.icon}
                 source={chat} />
@@ -67,4 +67,4 @@ export default class Dashboard extends Component {
       </View>
     );
   }
-  }
+}
