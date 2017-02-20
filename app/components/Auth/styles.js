@@ -114,6 +114,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     fontSize: 20,
-  }
+  },
 });
 export default styles;
