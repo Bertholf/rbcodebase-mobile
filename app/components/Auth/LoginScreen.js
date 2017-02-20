@@ -17,7 +17,7 @@ import strings from '../../localizations';
 
 const { width,height } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
-const google2 = require('../../images/login/google.png');
+const google2 = require('../../images/login/gplus.png');
 const twitter = require('../../images/login/twitter.png');
 const logo = require('./../../images/logo.png');
 const mail = require('./../../images/ic_mail_outline_white_24dp_1x.png');
