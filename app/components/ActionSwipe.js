@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Animated, Dimensions, PanResponder, View } from 'react-native';
+import { StyleSheet, Animated, Dimensions, PanResponder, View, Image, TouchableOpacity } from 'react-native';
 import clamp from 'clamp';
 import Dashboard from './Timeline/Dashboard';
 import UserPanel from './UserPanel/UserPanel';
 import ReserveScreen from './ReserveScreen';
 import Timeline from './Timeline/TimelineComp';
 import Listing from './Listing/listing';
+
+const arrowRight = require('../images/arrowRight.png');
+const arrowLeft = require('../images/arrowLeft.png');
 
 const { width, height } = Dimensions.get('window');
 const screenWidth = width * 3;
@@ -23,6 +26,18 @@ const styles = StyleSheet.create({
     width,
     height,
     padding: 10,
+  },
+  arrowLeft: {
+    position: 'absolute',
+    top: height / 2,
+    left: 0,
+    zIndex: 10,
+  },
+  arrowRight: {
+    position: 'absolute',
+    top: height / 2,
+    right: 0,
+    zIndex: 10,
   },
 });
 
@@ -154,8 +169,64 @@ class ActionSwiper extends Component {
       }).start();
     }
   }
+  gotoCenter() {
+    Animated.spring(this.pan, {
+      toValue: { x: 0, y: 0 },
+      friction: 6,
+    }).start(() => {
+      this.currentX = 0;
+      this.currentY = 0;
+    });
+  }
+  gotoLeft() {
+    Animated.spring(this.pan, {
+      toValue: { x: width, y: 0 },
+      friction: 6,
+    }).start(() => {
+      this.currentX = width;
+      this.currentY = 0;
+    });
+  }
+
+  gotoRight() {
+    Animated.spring(this.pan, {
+      toValue: { x: -width, y: 0 },
+      friction: 6,
+    }).start(() => {
+      this.currentX = -(width);
+      this.currentY = 0;
+    });
+  }
+
+  gotoUp() {
+    Animated.spring(this.pan, {
+      toValue: { x: 0, y: this.currentY + height },
+      friction: 6,
+    }).start(() => {
+      this.currentX = 0;
+      this.currentY += height;
+    });
+  }
+
+  gotoDown() {
+    Animated.spring(this.pan, {
+      toValue: { x: 0, y: this.currentY - height },
+      friction: 6,
+    }).start(() => {
+      this.currentX = 0;
+      this.currentY -= height;
+    });
+  }
 
   render() {
+    const props = {
+      goLeft: () => this.gotoLeft(),
+      goRight: () => this.gotoRight(),
+      goUp: () => this.gotoUp(),
+      goDown: () => this.gotoDown(),
+      goCenter: () => this.gotoCenter(),
+    };
+
     console.log('render',height,'  ', width);
     const { pan } = this;
     const [translateX, translateY] = [pan.x, pan.y];
@@ -170,25 +241,37 @@ class ActionSwiper extends Component {
           <View style={{ flexDirection: 'row' }}>
             <View style={styles.card} />
             <View style={styles.card}>
-              <UserPanel />
+              <UserPanel {...props} />
             </View>
             <View style={styles.card} />
           </View>
           <View style={{ flexDirection: 'row' }}>
             <View style={styles.card}>
+              <TouchableOpacity
+                onPress={() => this.gotoCenter()}
+                style={styles.arrowRight}
+              >
+                <Image source={arrowRight} />
+              </TouchableOpacity>
               <Listing />
             </View>
             <View style={styles.card}>
-              <Dashboard />
+              <Dashboard {...props} />
             </View>
             <View style={styles.card}>
+              <TouchableOpacity
+                onPress={() => this.gotoCenter()}
+                style={styles.arrowLeft}
+              >
+                <Image source={arrowLeft} />
+              </TouchableOpacity>
               <Timeline />
             </View>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <View style={styles.card} />
             <View style={styles.card}>
-              <ReserveScreen />
+              <ReserveScreen {...props} />
             </View>
             <View style={styles.card} />
           </View>

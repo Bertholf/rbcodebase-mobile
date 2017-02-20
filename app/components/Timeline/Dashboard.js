@@ -22,16 +22,14 @@ export default class Dashboard extends Component {
     super(props)
     this.state = {
     profile: {},
-    loading: true,
     }
   }
   componentDidMount(){
     auth.profile()
     .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-    .cath(Err=> console.log('err',Err))
+    .catch(Err=> console.log('err',Err));
   }
   render() {
-    if (this.state.loading === false){
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={Actions.actionSwipeBottom}>
@@ -43,20 +41,20 @@ export default class Dashboard extends Component {
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>
-              <TouchableOpacity onPress={Actions.actionSwipeRight}>
+              <TouchableOpacity onPress={() => this.props.goLeft()}>
                 <Image
                   style={styles.icon}
                   source={modul} />
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity onPress={Actions.actionSwipeTop}>
+            <TouchableOpacity onPress={() => this.props.goDown()}>
               <Image
                 style={styles.icon}
                 source={home}     />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={Actions.actionSwipeLeft}>
+            <TouchableOpacity onPress={() => this.props.goRight()}>
               <Image
                 style={styles.icon}
                 source={chat} />
@@ -65,11 +63,5 @@ export default class Dashboard extends Component {
         </View>
       </View>
     );
-  }
-  else {
-    return (
-      <ActivityIndicator />
-    )
-  }
   }
 }

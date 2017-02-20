@@ -102,7 +102,7 @@ class userPanel extends React.Component {
             </View>
           </ScrollView>
           <View style={styles.swapContainer}>
-            <TouchableOpacity activeOpacity={0.7} onPress={Actions.pop}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this.props.goCenter()}>
               <Image source={bottomArrowIcon} style={styles.swapImage} />
             </TouchableOpacity>
           </View>

@@ -6,7 +6,7 @@ export default class ReserveScreen extends Component {
     render() {
     return (
         <View style={{ position:'absolute', paddingLeft: 150}}>
-          <TouchableOpacity onPress={Actions.pop}>
+          <TouchableOpacity onPress={() => this.props.goCenter()}>
             <Image source={require('../images/arrowtop.png')}/>
           </TouchableOpacity>
         </View>
