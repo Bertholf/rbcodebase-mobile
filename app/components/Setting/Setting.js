@@ -3,7 +3,8 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
-import auth from './../../services/auth'
+import auth from './../../services/auth';
+
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {

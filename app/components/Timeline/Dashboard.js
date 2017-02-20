@@ -5,6 +5,7 @@ import {
    Image,
    TouchableOpacity,
    Dimensions,
+   ActivityIndicator,
 } from 'react-native';
 import auth from './../../services/auth';
 import { Actions } from 'react-native-router-flux';
@@ -36,7 +37,7 @@ export default class Dashboard extends Component {
       <View style={styles.container}>
         <TouchableOpacity onPress={Actions.userpanel}>
           <View style={{ justifyContent: 'flex-end' }}>
-            <Image source={{ uri: this.state.profile.picture}} style={styles.account} />
+            <Image source={{uri:this.state.profile.picture}} style={styles.account} />
           </View>
         </TouchableOpacity>
         <Text style={{ textAlign: 'center', marginTop : 100, fontSize : 18 }} > {this.state.profile.name_first} {this.state.profile.name_last} </Text>
@@ -66,4 +67,4 @@ export default class Dashboard extends Component {
       </View>
     );
   }
-}
+  }
