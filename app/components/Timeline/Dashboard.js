@@ -35,7 +35,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={Actions.actionSwipeBottom}>
+        <TouchableOpacity onPress={() => this.props.goUp()}>
           <View style={{ justifyContent: 'flex-end' }}>
             <Image source={{uri:this.state.profile.picture}} style={styles.account} />
           </View>
