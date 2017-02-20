@@ -9,19 +9,19 @@ const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       profile: {},
-      loading:true,
+      loading: true,
     }
   }
-  componentDidMount(){
-    auth.profile ()
-    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-    .catch(Err=> console.log('err', Err))
+  componentDidMount() {
+    auth.profile()
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
-  render() {
-   return (
+  render(){
+  return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
@@ -32,7 +32,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>{this.state.profile.name_first}</Text>
+                <Text style={{ alignSelf: 'center'}}>{this.state.profile.name_first} {this.state.profile.name_last}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -189,5 +189,5 @@ export default class Setting extends Component {
       </ScrollView>
     </View>
   );
+  }
 }
-};

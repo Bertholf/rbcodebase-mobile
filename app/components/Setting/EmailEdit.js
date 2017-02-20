@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
+import auth from './../../services/auth';
 
 export default class EmailEdit extends Component {
   constructor(props) {
@@ -19,8 +20,11 @@ export default class EmailEdit extends Component {
     };
   }
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data }));
+    // me.getMe()
+    // .then(data => this.setState({ profile: data }));
+    auth.profile()
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
   render() {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

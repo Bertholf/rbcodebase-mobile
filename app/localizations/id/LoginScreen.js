@@ -1,8 +1,8 @@
 const LoginScreen = {
-  fb: 'Masuk melalui Facebook',
-  google: 'Masuk melalui Google',
-  twitter: 'Masuk melalui Twitter',
-  email: 'Masuk melalui Email',
+  fb: 'Masuk dengan Facebook',
+  google: 'Masuk dengan Google',
+  twitter: 'Masuk dengan Twitter',
+  email: 'Masuk dengan Email',
   or: 'Atau',
   create: 'Membuat Akun Baru',
   agreement: 'Dengan mendaftar, Anda menyetujui kebijakan RBCodeBase mengenai',

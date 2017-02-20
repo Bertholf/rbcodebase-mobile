@@ -21,13 +21,9 @@ export default class NameEdit extends Component{
     };
   }
   componentDidMount() {
-    auth.profile ()
-    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-    .catch(Err=> console.log('err', Err)),
-
-    me.getMe()
-    .then(data => this.setState({ profile: data }))
-    .then(() => console.log(this.state.profile));
+    auth.profile()
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
 
   render() {
@@ -60,7 +56,7 @@ export default class NameEdit extends Component{
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.TextInput1}>
-              {this.state.profile.name_first}
+              {this.state.profile.name_first} {this.state.profile.name_last}
             </Text>
             <Text style={styles.Text2}>
               Enter your new name
