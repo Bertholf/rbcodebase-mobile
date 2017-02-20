@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
-    tintColor : 'white'
   },
   buttonFacebook: {
     height: 50,
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center',
     elevation: 2,
-    tintColor: '#fff'
   },
   buttonGroup: {
     top: 10,
