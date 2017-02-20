@@ -37,7 +37,7 @@ export default class LoginScreen extends Component {
             >
               <View style={{ flexDirection: 'row' }}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />
-                <Text style={styles.text}>{strings.LoginScreen.fb}</Text>
+                <Text style={styles.textfb}>{strings.LoginScreen.fb}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -47,7 +47,7 @@ export default class LoginScreen extends Component {
               activeOpacity={0.7} onPress={() => this.props.loginWithGoogle()}
             >
               <View style={{ flexDirection: 'row' }}>
-                <Image source={google2} style={styles.icon} />
+                <Image source={google2} style={styles.logoGoogle} />
                 <Text style={styles.text}>{strings.LoginScreen.google}</Text>
               </View>
             </TouchableOpacity>
@@ -58,7 +58,7 @@ export default class LoginScreen extends Component {
               onPress={() => this.props.loginWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
-                <Text style={styles.text}>{strings.LoginScreen.twitter}</Text>
+                <Text style={styles.texttw}>{strings.LoginScreen.twitter}</Text>
               </View>
             </TouchableOpacity>
           </View>
