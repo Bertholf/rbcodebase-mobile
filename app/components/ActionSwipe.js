@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   card: {
     width,
     height,
-    padding: 10,
+    padding: 15,
   },
   arrowLeft: {
     position: 'absolute',
