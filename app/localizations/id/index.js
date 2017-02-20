@@ -4,6 +4,7 @@ import LoginScreen from './LoginScreen';
 import register from './register';
 import walkthrought from './walkthrought';
 import settings from './settings';
+import LoginbyEmail from './LoginbyEmail';
 
 const id = {
   settings,
@@ -11,6 +12,7 @@ const id = {
   ForgotPass,
   LoginScreen,
   register,
+  LoginbyEmail,
 };
 
 export default id;
