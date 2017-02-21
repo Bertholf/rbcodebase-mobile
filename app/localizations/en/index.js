@@ -5,6 +5,7 @@ import settings from './settings';
 import ForgotPass from './ForgotPassword';
 import LoginScreen from './LoginScreen';
 import LoginbyEmail from './LoginbyEmail';
+import editBirthday from './editBirthday';
 
 const en = {
   ForgotPass,
@@ -13,6 +14,7 @@ const en = {
   walkthrought,
   register,
   LoginbyEmail,
+  editBirthday,
 };
 
 export default en;
