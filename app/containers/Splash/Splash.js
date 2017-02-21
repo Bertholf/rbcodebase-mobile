@@ -29,7 +29,7 @@ export class Splash extends Component {
           }
         } else {
           console.log('No TOKEN');
-          Actions.loginscreen();
+          Actions.login();
         }
       }).catch((err) => { console.log(err) })
   }

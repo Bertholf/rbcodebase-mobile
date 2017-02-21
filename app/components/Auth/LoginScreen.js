@@ -33,7 +33,7 @@ export default class LoginScreen extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
-              onPress={() =>this.props.loginWithFacebook()}
+              onPress={() => this.props.loginWithFacebook()}
             >
               <View style={{ flexDirection: 'row' }}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />
