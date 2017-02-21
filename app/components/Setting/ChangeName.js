@@ -11,6 +11,8 @@ import styles from './ChangeSetting/ChangeStyles';
 import me from '../../services/me';
 import auth from './../../services/auth';
 
+import saveName from '../../services/updateProfile';
+
 export default class NameEdit extends Component{
   constructor(props) {
     super(props);
@@ -45,6 +47,8 @@ export default class NameEdit extends Component{
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
+          console.log(firstNameInput, lastNameInput);
+          saveName(firstNameInput, lastNameInput);
           Alert.alert('Success', 'Your name has been Changed');
         }
       } else {
@@ -69,6 +73,7 @@ export default class NameEdit extends Component{
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={1} editable={true}
+              value={this.state.firstName}
             />
             {firstNameValidator || !firstNameInput ?
               <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
@@ -80,6 +85,7 @@ export default class NameEdit extends Component{
               placeholderTextColor={'#2196f3'} placeholder="Your Last Name" onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
+              value={this.state.lastName}
             />
             {lastNameValidator || !lastNameInput ?
               <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}

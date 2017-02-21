@@ -61,9 +61,9 @@ const Routing = (props) => (
           <Scene
             key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
-          <Scene
+          {/* <Scene
             key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
-          />
+          /> */}
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
