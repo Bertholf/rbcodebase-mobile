@@ -9,8 +9,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-const { width } = Dimensions.get('window');
 import { Actions } from 'react-native-router-flux';
+import strings from '../../localizations';
+
+const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
   constructor(props){
     super(props);
@@ -22,16 +24,16 @@ export default class editBirthday extends Component {
         <View style={{ padding: 16 }}>
           <View style={styles.styleView}>
             <View style={{alignSelf: 'center'}}>
-              <Text style={styles.text}>Birthday</Text>
+              <Text style={styles.text}>{strings.editBirthday.birthday}</Text>
             </View>
             <DatePicker
               date={this.state.date}
-              placeholder="select date"
+              placeholder={strings.editBirthday.placeholder}
               format="YYYY-MM-DD"
               minDate="1990-05-01"
               maxDate="2017-06-01"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
+              confirmBtnText={strings.editBirthday.confirm}
+              cancelBtnText={strings.editBirthday.cancel}
               onDateChange={(date) => { this.setState({ date: date }); }}
               customStyles={{
                 dateInput: {
@@ -42,8 +44,8 @@ export default class editBirthday extends Component {
           </View>
         </View>
         <View style={{ marginTop: 20, padding: 14 }}>
-          <TouchableOpacity style={styles.button} onPress={Actions.setting}>
-            <Text style={styles.titleButton} >SAVE</Text>
+          <TouchableOpacity style={styles.button} onPress={() => Actions.pop()}>
+            <Text style={styles.titleButton} >{strings.editBirthday.save}</Text>
           </TouchableOpacity>
         </View>
       </View>
