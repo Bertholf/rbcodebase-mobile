@@ -56,6 +56,9 @@ export default class NameEdit extends Component{
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
+          <Text style={styles.Text2}>
+            {strings.ChangeName.oldname}
+          </Text>
             <Text style={styles.TextInput1}>
               {this.state.profile.name_first} {this.state.profile.name_last}
             </Text>
@@ -66,7 +69,7 @@ export default class NameEdit extends Component{
               style={styles.TextInput1}
               underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
-              placeholder="Enter your new name"
+              placeholder={strings.ChangeName.newname}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={1} editable={true}
@@ -78,7 +81,7 @@ export default class NameEdit extends Component{
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder="Your Last Name" onChangeText={lastName => this.setState({ lastName })}
+              placeholderTextColor={'#2196f3'} placeholder= {strings.ChangeName.lastName} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
             />

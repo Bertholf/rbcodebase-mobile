@@ -8,6 +8,7 @@ import LoginbyEmail from './LoginbyEmail';
 import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
+import ChangeName from './ChangeName';
 
 const id = {
   settings,
@@ -19,6 +20,7 @@ const id = {
   userpanel,
   editBirthday,
   changeUname,
+  ChangeName,
 };
 
 export default id;

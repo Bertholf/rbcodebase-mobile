@@ -8,6 +8,7 @@ import LoginbyEmail from './LoginbyEmail';
 import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
+import ChangeName from './ChangeName';
 
 const en = {
   ForgotPass,
@@ -19,6 +20,7 @@ const en = {
   userpanel,
   editBirthday,
   changeUname,
+  ChangeName,
 };
 
 export default en;
