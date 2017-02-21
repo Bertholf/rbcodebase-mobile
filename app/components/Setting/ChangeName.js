@@ -10,6 +10,7 @@ import {
 import styles from './ChangeSetting/ChangeStyles';
 import me from '../../services/me';
 import auth from './../../services/auth';
+import strings from '../../localizations';
 
 export default class NameEdit extends Component{
   constructor(props) {
@@ -59,7 +60,7 @@ export default class NameEdit extends Component{
               {this.state.profile.name_first} {this.state.profile.name_last}
             </Text>
             <Text style={styles.Text2}>
-              Enter your new name
+              {strings.ChangeName.newname}
             </Text>
             <TextInput
               style={styles.TextInput1}
@@ -71,9 +72,9 @@ export default class NameEdit extends Component{
               numberOfLines={1} editable={true}
             />
             {firstNameValidator || !firstNameInput ?
-              <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertnewname}</Text>}
             <Text style={styles.Text2}>
-              Last Name
+              {strings.ChangeName.lastName}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
@@ -82,13 +83,13 @@ export default class NameEdit extends Component{
               numberOfLines={1} editable={true}
             />
             {lastNameValidator || !lastNameInput ?
-              <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertlastname}</Text>}
           </View>
         </ScrollView>
         <TouchableOpacity onPress={validateName}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
-              SAVE
+              {strings.ChangeName.store}
             </Text>
           </View>
         </TouchableOpacity>
