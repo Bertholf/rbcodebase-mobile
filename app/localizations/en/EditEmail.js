@@ -3,7 +3,8 @@ const EditEmail = {
   invalidEmail: 'Invalid Email Input',
   sameEmail: 'Seems Your Email is Same as Before',
   confirmChange: 'Confirm Change',
-  save: 'Save',
+  save: 'SAVE',
+  confirmCode: 'Enter your recieved code',
 };
 
 module.exports = EditEmail;

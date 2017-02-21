@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import strings from '../../localizations';
 import SplashScreen from '../../components/Splash/SplashScreen';
 import { moveToAuthLogin, moveToDashboard } from '../../actions/Splash';
 
@@ -16,6 +17,28 @@ const mapStateToProps = () => ({
 // });
 
 export class Splash extends Component {
+  constructor(props) {
+    AsyncStorage.setItem('loadingWalk', 'True')
+    const lang = strings.getInterfaceLanguage();
+    switch (lang) {
+      case 'in-ID':
+        console.log('Bahasa');
+        setlang = 'id';
+        break;
+      case 'en-US':
+        console.log('Language');
+        setlang = 'en';
+        break;
+      default:
+        setlang = 'en';
+        break;
+    }
+    strings.setLanguage(setlang);
+    super(props);
+    this.state = {
+      screen: strings.walkthrought.screen.information,
+    };
+  }
   componentWillMount() {
     AsyncStorage.getItem('accessToken')
       .then((token) => {

@@ -3,7 +3,8 @@ const EditEmail = {
   invalidEmail: 'Email Yang Anda Masukkan',
   sameEmail: 'Email Anda Masih Sama Dengan Sebelumnya',
   confirmChange: 'Konfirmasi Perubahan',
-  save: 'Simpan',
+  save: 'SIMPAN',
+  confirmCode: 'Masukkan kode yang anda terima',
 };
 
 module.exports = EditEmail;
