@@ -9,6 +9,7 @@ import PassEditLoc from './passwordEdit';
 import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
+import EditEmail from './EditEmail';
 import ChangeName from './ChangeName';
 
 
@@ -23,6 +24,7 @@ const id = {
   userpanel,
   editBirthday,
   changeUname,
+  EditEmail,
   ChangeName,
 };
 
