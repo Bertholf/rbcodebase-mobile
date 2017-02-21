@@ -11,6 +11,7 @@ import {
 import DatePicker from 'react-native-datepicker';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
+import saveProfile from '../../services/updateProfile';
 
 const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
@@ -19,6 +20,10 @@ export default class editBirthday extends Component {
     this.state = { date: '2016-01-01' };
   }
   render() {
+    const updateBirthday = () => {
+      const birthday = this.state.date;
+      saveProfile(birthday);
+    };
     return (
       <View style={{ flex: 1}}>
         <View style={{ padding: 16 }}>
@@ -44,7 +49,7 @@ export default class editBirthday extends Component {
           </View>
         </View>
         <View style={{ marginTop: 20, padding: 14 }}>
-          <TouchableOpacity style={styles.button} onPress={() => Actions.pop()}>
+          <TouchableOpacity style={styles.button} onPress={updateBirthday}>
             <Text style={styles.titleButton} >{strings.editBirthday.save}</Text>
           </TouchableOpacity>
         </View>

@@ -9,12 +9,14 @@ import {
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
 import strings from '../../localizations';
+import saveProfile from '../../services/updateProfile';
 
 export default class ChangeUsername extends Component {
   constructor(props) {
     super(props);
     this.state = {
       profile: {},
+      newUsername: '',
     };
   }
   componentDidMount() {
@@ -24,6 +26,11 @@ export default class ChangeUsername extends Component {
   }
 
   render() {
+    const saveUsername = () => {
+      const newUsername = this.state.newUsername;
+      console.log(newUsername);
+      saveProfile(newUsername);
+    };
     return (
       <View style={styles.OuterView}>
         <ScrollView>
@@ -45,9 +52,10 @@ export default class ChangeUsername extends Component {
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder="New Username"
-              onChangeText={currentUsername => this.setState({ currentUsername })}
+              onChangeText={newUsername => this.setState({ newUsername })}
               multiline={false}
               numberOfLines={4} editable
+              value={this.state.newUsername}
             />
           </View>
           <Text style={{ marginTop: 10 }}>
@@ -57,7 +65,7 @@ export default class ChangeUsername extends Component {
             {strings.changeUname.text}
           </Text>
         </ScrollView>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={saveUsername}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
               {strings.changeUname.store}
