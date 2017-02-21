@@ -77,11 +77,11 @@ export default class NameEdit extends Component{
             {firstNameValidator || !firstNameInput ?
               <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertnewname}</Text>}
             <Text style={styles.Text2}>
-              {strings.ChangeName.lastName}
+              {strings.ChangeName.lastname}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder= {strings.ChangeName.lastName} onChangeText={lastName => this.setState({ lastName })}
+              placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.lastname} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
             />
