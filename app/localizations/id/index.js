@@ -9,6 +9,7 @@ import PassEditLoc from './passwordEdit';
 import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
+import ChangeName from './ChangeName';
 
 
 const id = {
@@ -22,7 +23,7 @@ const id = {
   userpanel,
   editBirthday,
   changeUname,
-
+  ChangeName,
 };
 
 export default id;

@@ -10,6 +10,7 @@ import {
 import styles from './ChangeSetting/ChangeStyles';
 import me from '../../services/me';
 import auth from './../../services/auth';
+import strings from '../../localizations';
 
 export default class NameEdit extends Component{
   constructor(props) {
@@ -55,40 +56,43 @@ export default class NameEdit extends Component{
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
+          <Text style={styles.Text2}>
+            {strings.ChangeName.oldname}
+          </Text>
             <Text style={styles.TextInput1}>
               {this.state.profile.name_first} {this.state.profile.name_last}
             </Text>
             <Text style={styles.Text2}>
-              Enter your new name
+              {strings.ChangeName.newname}
             </Text>
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
-              placeholder="Enter your new name"
+              placeholder={strings.ChangeName.newname}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={1} editable={true}
             />
             {firstNameValidator || !firstNameInput ?
-              <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertnewname}</Text>}
             <Text style={styles.Text2}>
-              Last Name
+              {strings.ChangeName.lastname}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder="Your Last Name" onChangeText={lastName => this.setState({ lastName })}
+              placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.lastname} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
             />
             {lastNameValidator || !lastNameInput ?
-              <Text /> : <Text style={styles.invalid}>The Name Must Be Alphabet Character</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertlastname}</Text>}
           </View>
         </ScrollView>
         <TouchableOpacity onPress={validateName}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
-              SAVE
+              {strings.ChangeName.store}
             </Text>
           </View>
         </TouchableOpacity>
