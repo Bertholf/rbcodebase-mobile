@@ -29,7 +29,7 @@ export default class ChangeUsername extends Component {
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              {strings.ChangeUname.txt1}
+              {strings.changeUname.oldname}
             </Text>
             <TextInput
               style={styles.TextInput1}
@@ -38,7 +38,7 @@ export default class ChangeUsername extends Component {
               editable={false}
             />
             <Text style={styles.Text2}>
-              {strings.ChangeUname.txt2}
+              {strings.changeUname.newname}
             </Text>
             <TextInput
               style={styles.TextInput1}
@@ -51,16 +51,16 @@ export default class ChangeUsername extends Component {
             />
           </View>
           <Text style={{ marginTop: 10 }}>
-            {strings.ChangeUname.txt3}
+            {strings.changeUname.uniquename}
           </Text>
           <Text style={{ marginTop: 10, lineHeight: 20 }}>
-            {strings.ChangeUname.txt4}
+            {strings.changeUname.text}
           </Text>
         </ScrollView>
         <TouchableOpacity>
           <View style={styles.View2}>
             <Text style={styles.Button}>
-              {strings.ChangeUname.txt5}
+              {strings.changeUname.store}
             </Text>
           </View>
         </TouchableOpacity>
