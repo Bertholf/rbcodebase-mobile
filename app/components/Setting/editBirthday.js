@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import { Actions } from 'react-native-router-flux';
@@ -22,7 +23,9 @@ export default class editBirthday extends Component {
   render() {
     const updateBirthday = () => {
       const birthday = this.state.date;
+      console.log(" tangal lahir==", birthday);
       saveProfile(birthday);
+      Alert.alert('Success', 'Your birthday has been Changed');
     };
     return (
       <View style={{ flex: 1}}>

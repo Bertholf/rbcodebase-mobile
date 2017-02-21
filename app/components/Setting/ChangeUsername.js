@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   ScrollView,
+  Alert,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
@@ -30,6 +31,7 @@ export default class ChangeUsername extends Component {
       const newUsername = this.state.newUsername;
       console.log(newUsername);
       saveProfile(newUsername);
+      Alert.alert('Success', 'Your Username has been Changed');
     };
     return (
       <View style={styles.OuterView}>
