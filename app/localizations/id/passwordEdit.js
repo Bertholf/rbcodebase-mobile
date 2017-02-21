@@ -2,7 +2,7 @@ import LocalizedStrings from 'react-native-localization';
 
 const PassEditLoc = {
   enterYourPassword: 'Masukkan Kode Sandi Anda',
-  wrongPasswod: 'Password Salah',
+  wrongPassword: 'Password Salah',
   inputEnterOldPassword: 'Kode Sandi Lama Anda',
   enterYourNewPassword: 'Masukkan Kode Sandi Baru Anda',
   inputEnterYourPassword: 'Kode Sandi Baru Anda',

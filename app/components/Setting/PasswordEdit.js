@@ -36,7 +36,7 @@ export default class PassEdit extends Component {
         Alert.alert('Valid password');
       }
     };
-    strings.setLanguage('en');
+    // strings.setLanguage('en');
     return (
       <View style={styles.OuterView}>
         <ScrollView>
@@ -50,17 +50,17 @@ export default class PassEdit extends Component {
             </Text>
             <TextInput
               style={styles.TextInput1} placeholder={strings.PassEditLoc.inputEnterOldPassword} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} onChangeText={() => console.log('Password')}
+              placeholderTextColor={'#2196f3'} onChangeText={password => this.setState({ password })}
               numberOfLines={4}
             />
             {!Invalidpassword || !usedPassword ?
-              <Text /> : <Text style={styles.invalid}>{strings.PassEdit.wrongPasswod}</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.wrongPassword}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.enterYourNewPassword}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={() => console.log('newPassword')} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
             />
             {!passwordLength || !passwordInput ? <Text /> :
