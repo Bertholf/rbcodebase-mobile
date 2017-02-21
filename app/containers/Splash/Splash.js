@@ -23,13 +23,13 @@ export class Splash extends Component {
         if (token !== null && typeof token !== 'undefined') {
           console.log('TOKEN', token);
           if (loadWalkthrough) {
-            Actions.actionswiper();
+            Actions.actionswiper({ type: 'reset' });
           } else {
-            Actions.walkthrough();
+            Actions.walkthrough({ type: 'reset' });
           }
         } else {
           console.log('No TOKEN');
-          Actions.login();
+          Actions.login({ type: 'reset' });
         }
       }).catch((err) => { console.log(err) })
   }
