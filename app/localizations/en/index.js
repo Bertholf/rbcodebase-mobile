@@ -5,6 +5,7 @@ import settings from './settings';
 import ForgotPass from './ForgotPassword';
 import LoginScreen from './LoginScreen';
 import LoginbyEmail from './LoginbyEmail';
+import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
 
@@ -15,6 +16,7 @@ const en = {
   walkthrought,
   register,
   LoginbyEmail,
+  userpanel,
   editBirthday,
   changeUname,
 };
