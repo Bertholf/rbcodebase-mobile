@@ -5,10 +5,13 @@ import settings from './settings';
 import ForgotPass from './ForgotPassword';
 import LoginScreen from './LoginScreen';
 import LoginbyEmail from './LoginbyEmail';
+import PassEditLoc from './passwordEdit';
 import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
 import EditEmail from './EditEmail';
+import ChangeName from './ChangeName';
+
 
 const en = {
   ForgotPass,
@@ -17,10 +20,12 @@ const en = {
   walkthrought,
   register,
   LoginbyEmail,
+  PassEditLoc,
   userpanel,
   editBirthday,
   changeUname,
   EditEmail,
+  ChangeName,
 };
 
 export default en;
