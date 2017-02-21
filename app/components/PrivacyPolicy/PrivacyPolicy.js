@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, WebView, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
+import strings from '../../localizations';
+
 const ic_close = require('./../../images/ic_close.png');
 
 const PPComponent = ({ tosUrl, onClose }) => (
@@ -9,7 +11,7 @@ const PPComponent = ({ tosUrl, onClose }) => (
         <Image source={ic_close} style={{ resizeMode: 'cover', width: 30, height: 30 }} />
       </TouchableOpacity>
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 20 }}>Privacy Policy</Text>
+        <Text style={{ fontSize: 20 }}>{strings.settings.privacy}</Text>
       </View>
     </View>
     <WebView

@@ -59,22 +59,22 @@ const Routing = (props) => (
             key="setting" component={Setting} title={strings.settings.title}
           />
           <Scene
-            key={'Walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+            key={'walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
           <Scene
-            key={'editbirthday'} component={editBirthday} title={'Edit Birthday'}
+            key={'editbirthday'} component={editBirthday} title={strings.editBirthday.title}
           />
           <Scene
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
-            key={'notifications'} component={Notifications}  title={'Notifications'}
+            key={'notifications'} component={Notifications} title={'Notifications'}
           />
           <Scene
             key={'dashboard'} component={Dashboard} title={'Dashboard'}
