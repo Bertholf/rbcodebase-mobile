@@ -6,6 +6,7 @@ import ForgotPass from './ForgotPassword';
 import LoginScreen from './LoginScreen';
 import LoginbyEmail from './LoginbyEmail';
 import editBirthday from './editBirthday';
+import changeUname from './ChangeUname';
 
 const en = {
   ForgotPass,
@@ -15,6 +16,7 @@ const en = {
   register,
   LoginbyEmail,
   editBirthday,
+  changeUname,
 };
 
 export default en;
