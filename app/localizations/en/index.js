@@ -6,6 +6,7 @@ import ForgotPass from './ForgotPassword';
 import LoginScreen from './LoginScreen';
 import LoginbyEmail from './LoginbyEmail';
 import PassEditLoc from './passwordEdit';
+import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
 
@@ -18,6 +19,7 @@ const en = {
   register,
   LoginbyEmail,
   PassEditLoc,
+  userpanel,
   editBirthday,
   changeUname,
 

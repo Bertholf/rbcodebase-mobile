@@ -6,6 +6,7 @@ import walkthrought from './walkthrought';
 import settings from './settings';
 import LoginbyEmail from './LoginbyEmail';
 import PassEditLoc from './passwordEdit';
+import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
 
@@ -18,6 +19,7 @@ const id = {
   register,
   LoginbyEmail,
   PassEditLoc,
+  userpanel,
   editBirthday,
   changeUname,
 
