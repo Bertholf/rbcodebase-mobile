@@ -10,6 +10,7 @@ import {
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
+import saveProfile from '../../services/updateProfile';
 
 export default class EmailEdit extends Component {
   constructor(props) {
@@ -35,7 +36,9 @@ export default class EmailEdit extends Component {
     const validEmail = () => {
       if (emailValidator && emailInput && sameEmail) {
         // @TODO We need to fix it later thanks!!!
-        Alert.alert('Valid email');
+        console.log(emailInput);
+        saveProfile(emailInput);
+        Alert.alert('Success', 'Your email has been Changed');
       }
     };
     return (
