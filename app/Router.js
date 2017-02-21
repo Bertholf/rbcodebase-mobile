@@ -65,7 +65,7 @@ const Routing = (props) => (
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
           <Scene
-            key={'editbirthday'} component={editBirthday} title={'Edit Birthday'}
+            key={'editbirthday'} component={editBirthday} title={strings.editBirthday.title}
           />
           <Scene
             key="inbox" component={Inbox} title={'Inbox'}
