@@ -23,7 +23,7 @@ export class Splash extends Component {
         if (token !== null && typeof token !== 'undefined') {
           console.log('TOKEN', token);
           if (loadWalkthrough) {
-            Actions.dashboard();
+            Actions.actionswiper();
           } else {
             Actions.walkthrough();
           }
