@@ -19,10 +19,10 @@ export class Splash extends Component {
   componentWillMount() {
     AsyncStorage.getItem('accessToken')
       .then((token) => {
-        const loadWalk = AsyncStorage.getItem('loadingWalk');
+        const loadWalkthrough = AsyncStorage.getItem('loadingWalk');
         if (token !== null && typeof token !== 'undefined') {
           console.log('TOKEN', token);
-          if (loadWalk) {
+          if (loadWalkthrough) {
             Actions.dashboard();
           } else {
             Actions.walkthrough();
