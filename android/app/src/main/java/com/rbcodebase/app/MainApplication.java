@@ -6,7 +6,6 @@ import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
-import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import io.fullstack.oauth.OAuthManagerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -54,7 +53,6 @@ public class MainApplication extends Application implements ReactApplication {
               new MainReactPackage(),
             new ReactNativeLocalizationPackage(),
             new RCTSplashScreenPackage(),
-            new ReactNativeLocalizationPackage(),
             new OAuthManagerPackage(),
               new ImagePickerPackage(),
               new VectorIconsPackage(),
