@@ -15,6 +15,7 @@ import { Actions } from 'react-native-router-flux';
 import me from '../../services/me';
 import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
+import auth from './../../services/auth';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -30,9 +31,9 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data, loading: false }))
-    .catch(err => this.setState({ loading: false }));
+    auth.profile()
+   .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+   .catch(Err => console.log('err,Err'));
   }
   // toggleSwitch() {
   //   if (!this.state.clicked) {
@@ -85,19 +86,19 @@ export default class Profile extends Component {
   }
 
   render() {
-    if (this.state.loading === false) {
+    //if (this.state.loading === false) {
       return (
         <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
-                source={{ uri: this.state.profile.imgBackground }}
+                source={{ uri: this.state.profile.picture }}
                 resizeMode={'cover'}
                 style={styles.backdrop}
               />
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.first_name} {this.state.profile.last_name}
+                  {this.state.profile.name_first} {this.state.profile.name_last}
                 </Text>
               </View>
               <View style={styles.textInform} >
@@ -118,7 +119,7 @@ export default class Profile extends Component {
               <View style={styles.viewImgpp}>
                 <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
                   { this.state.avatarSource === null ? <Text>change Photo</Text> :
-                  <Image style={styles.logo} source={{ uri: this.state.profile.imgProfile }} />
+                  <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
                   }
                 </TouchableOpacity>
               </View>
@@ -157,10 +158,11 @@ export default class Profile extends Component {
           </View>
         </ScrollView>
       );
-    } else {
-      return (
-          <Text>No Data Found</Text>
-      );
-    }
+  //  }
+    // else {
+    //   return (
+    //       <Text>No Data Found</Text>
+    //   );
+    // }
   }
 }

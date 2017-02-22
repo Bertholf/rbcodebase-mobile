@@ -78,10 +78,10 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.profile}
+                  onPress={()=>this.toggleSwitch()}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.follme} </Text>
+                  <Text style={styles.textLinks}>{this.state.clicked ? 'Follow' : 'unfollow' } </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -109,6 +109,17 @@ class userPanel extends React.Component {
           </View>
         </View>
     );
+  }
+  toggleSwitch() {
+    if (!this.state.clicked) {
+      Alert.alert('Confirmation',
+               'Are you sure to unfollow this user?', [
+                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+               ]);
+    } else {
+      this.setState({ clicked: !this.state.clicked });
+    }
   }
 }
 
