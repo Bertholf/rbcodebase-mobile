@@ -11,6 +11,7 @@ import styles from './ChangeSetting/ChangeStyles';
 import me from '../../services/me';
 import auth from './../../services/auth';
 import strings from '../../localizations';
+import saveProfile from '../../services/updateProfile';
 
 export default class NameEdit extends Component{
   constructor(props) {
@@ -46,6 +47,8 @@ export default class NameEdit extends Component{
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
+          console.log('name===', firstNameInput, lastNameInput);
+          saveProfile(firstNameInput, lastNameInput);
           Alert.alert('Success', 'Your name has been Changed');
         }
       } else {
