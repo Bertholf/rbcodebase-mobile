@@ -60,7 +60,6 @@ let setlang = '';
 
 export default class walkthrough extends Component {
   constructor(props) {
-    AsyncStorage.setItem('loadingWalk', 'True')
     const lang = strings.getInterfaceLanguage();
     switch (lang) {
       case 'in-ID':
@@ -81,7 +80,17 @@ export default class walkthrough extends Component {
       screen: strings.walkthrought.screen.information,
     };
   }
-
+  componentDidMount() {
+    AsyncStorage.setItem('loadingWalk', 'true').then(() => {
+      AsyncStorage.getItem('loadingWalk').then((response) => {
+        console.log('HELLO RESPON', response);
+      }, (error) => {
+        console.log(error);
+      });
+    }, (error) => {
+      console.log(error);
+    });
+  }
   renderDotIndicator() {
     return <PagerDotIndicator pageCount={4} />;
   }
@@ -100,6 +109,13 @@ export default class walkthrough extends Component {
         </View>
       </View>);
   }
+  // componentDidMount() {
+  //   AsyncStorage.setItem('loadingWalk', 'true')
+  //     .then(() => {
+  //       const isiWalk = AsyncStorage.getItem('loadingWalk');
+  //       console.log('----------ISI walkthrough -----------------', isiWalk);
+  //     }).catch((err) => { console.log(err); })
+  // }
   render() {
     return (
       <View style={{ backgroundColor: '#2196F3', flex: 1 }}>

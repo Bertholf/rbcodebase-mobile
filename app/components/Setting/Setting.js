@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
 import auth from './../../services/auth';
+import Logout from '../../services/logout';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
 
@@ -20,8 +21,8 @@ export default class Setting extends Component {
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
     .catch(Err => console.log('err,Err'));
   }
-  render(){
-  return (
+  render() {
+    return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
@@ -175,7 +176,7 @@ export default class Setting extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.account} >
+          <TouchableOpacity onPress={Logout} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.logout}</Text>
