@@ -11,36 +11,32 @@ const Logout = async () => {
   const accessT = AsyncStorage.getItem('accessToken');
   const prov = AsyncStorage.getItem('provider');
   if (prov === 'facebook' && accessT !== '') {
-    AsyncStorage.removeItem('accessToken');
+    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
     LoginManager.logOut();
-    Actions.login({ type: 'reset' });
-    console.log('----------PROVIDER=FACEBOOK-----------------');
+    Actions.login();
   } else if (prov === 'google' && accessT !== '') {
-    AsyncStorage.removeItem('accessToken');
+    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
     google.signOut();
-    Actions.login({ type: 'reset' });
-    console.log('----------PROVIDER=GOOGLE-----------------');
+    Actions.login();
   } else if (prov === 'twitter' && accessT !== '') {
-    AsyncStorage.removeItem('accessToken');
+    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
     manager.configure({
       twitter: {
         consumer_key: TWITTER_CONSUMER_KEY,
         consumer_secret: TWITTER_CONSUMER_SECRET,
       },
     });
-    console.log('----------PROVIDER=TWITTER-----------------');
     manager.deauthorize('twitter');
     console.log('TWITTER LOG');
     // OAuthManager().deauthorize('twitter');
-    Actions.login({ type: 'reset' });
+    Actions.login();
   } else {
-    AsyncStorage.removeItem('accessToken');
-    Actions.login({ type: 'reset' });
-    console.log('----------PROVIDER=EMAIL-----------------');
+    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+    Actions.login();
   }
-  console.log('+++++++++++ SUCCESS CLEARING ASYNCSTORAGE+++++++++++', accessToken);
   // } catch (err) {
   //   console.log('logOut error : ', err);
   // }
-}
+
+};
 export default Logout;
