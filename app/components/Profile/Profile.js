@@ -143,7 +143,7 @@ export default class Profile extends Component {
                   <Image
                     style={styles.location} source={require('./../../images/live.png')}
                   />
-                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
+                  <Text style={styles.isi}>live : {this.state.profile.live} {this.state.profile.created_at}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                   <TouchableOpacity>
