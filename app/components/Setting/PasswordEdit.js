@@ -10,6 +10,7 @@ import {
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import saveProfile from '../../services/updateProfile';
+import strings from '../../localizations/';
 
 export default class PassEdit extends Component {
   constructor(props) {
@@ -40,40 +41,41 @@ export default class PassEdit extends Component {
         Alert.alert('Success', 'Your password has been Changed');
       }
     };
+    // strings.setLanguage('en');
     return (
       <View style={styles.OuterView}>
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              Enter your password
+              {strings.PassEditLoc.enterYourPassword}
             </Text>
             {/* @TODO we need to delete this current password later, thanks!!! */}
             <Text style={styles.Text2}>
               {currentPassword}
             </Text>
             <TextInput
-              style={styles.TextInput1} placeholder="Enter your password" underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1} placeholder={strings.PassEditLoc.inputEnterOldPassword} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} onChangeText={password => this.setState({ password })}
               numberOfLines={4}
             />
             {!Invalidpassword || !usedPassword ?
-              <Text /> : <Text style={styles.invalid}>Wrong password</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.wrongPassword}</Text>}
             <Text style={styles.Text2}>
-              Enter your new password
+              {strings.PassEditLoc.enterYourNewPassword}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder="Enter your new password" onChangeText={newPassword => this.setState({ newPassword })} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
             />
             {!passwordLength || !passwordInput ? <Text /> :
-            <Text style={styles.invalid}>The password must be at least  6 characters</Text>}
+            <Text style={styles.invalid}>{strings.PassEditLoc.passwordMustbeharacters}</Text>}
             <Text style={styles.Text2}>
-              Confirm change
+              {strings.PassEditLoc.confirmChange}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder="Enter received code" onChangeText={confirmPassword => this.setState({ confirmPassword })} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={() => console.log('dummy')} multiline
               numberOfLines={4}
             />
           </View>
@@ -81,7 +83,7 @@ export default class PassEdit extends Component {
         <TouchableOpacity onPress={validPassword}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
-              SAVE
+              {strings.PassEditLoc.save}
             </Text>
           </View>
         </TouchableOpacity>

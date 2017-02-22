@@ -5,8 +5,13 @@ import register from './register';
 import walkthrought from './walkthrought';
 import settings from './settings';
 import LoginbyEmail from './LoginbyEmail';
+import PassEditLoc from './passwordEdit';
+import userpanel from './userpanel';
 import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
+import EditEmail from './EditEmail';
+import ChangeName from './ChangeName';
+
 
 const id = {
   settings,
@@ -15,8 +20,12 @@ const id = {
   LoginScreen,
   register,
   LoginbyEmail,
+  PassEditLoc,
+  userpanel,
   editBirthday,
   changeUname,
+  EditEmail,
+  ChangeName,
 };
 
 export default id;

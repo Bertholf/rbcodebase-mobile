@@ -6,6 +6,7 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 import {
   IndicatorViewPager,
@@ -59,6 +60,7 @@ let setlang = '';
 
 export default class walkthrough extends Component {
   constructor(props) {
+    AsyncStorage.setItem('loadingWalk', 'True')
     const lang = strings.getInterfaceLanguage();
     switch (lang) {
       case 'in-ID':

@@ -11,6 +11,7 @@ import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
+import strings from '../../localizations';
 
 export default class EmailEdit extends Component {
   constructor(props) {
@@ -52,23 +53,23 @@ export default class EmailEdit extends Component {
               numberOfLines={4} editable={false}
             />
             <Text style={styles.Text2}>
-              Enter your new email
+              {strings.EditEmail.enterNewEmail}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} placeholder="Enter your new email" onChangeText={newEmail => this.setState({ newEmail })} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.enterNewEmail} onChangeText={newEmail => this.setState({ newEmail })} multiline
               numberOfLines={4}
             />
             {emailValidator || !emailInput ?
-              <Text /> : <Text style={styles.invalid}>Invalid email input</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.invalidEmail}</Text>}
             {sameEmail ?
-              <Text /> : <Text style={styles.invalid}>Seems you input the same email</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.sameEmail}</Text>}
             <Text style={styles.Text2}>
-              Confirm change
+              {strings.EditEmail.confirmChange}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} placeholder="Enter received code" onChangeText={() => console.log('dummy')} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.confirmCode} onChangeText={() => console.log('dummy')} multiline
               numberOfLines={4}
             />
           </View>
@@ -76,7 +77,7 @@ export default class EmailEdit extends Component {
         <TouchableOpacity onPress={validEmail}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
-              SAVE
+              {strings.EditEmail.save}
             </Text>
           </View>
         </TouchableOpacity>

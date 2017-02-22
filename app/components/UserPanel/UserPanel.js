@@ -11,6 +11,7 @@ import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import styles from './style';
 import auth from './../../services/auth';
+import strings from '../../localizations';
 
 
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
@@ -80,7 +81,7 @@ class userPanel extends React.Component {
                   onPress={Actions.friendlist}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>Following Me </Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.follme} </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -88,7 +89,7 @@ class userPanel extends React.Component {
                   onPress={Actions.friendlist}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>My Friends </Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.myfrie}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -96,7 +97,7 @@ class userPanel extends React.Component {
                   onPress={Actions.friendlist}
                 >
                   <Image source={addFriendIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>Add Friends </Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.addfrie} </Text>
                 </TouchableOpacity>
               </View>
             </View>
