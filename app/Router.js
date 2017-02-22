@@ -33,6 +33,7 @@ import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
 import UsernameEdit from './components/Setting/ChangeUsername';
 import Friendlist from './components/Profile/friendlist';
+import FollowingMe from './components/Profile/FollowingMe';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
@@ -71,7 +72,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications} title={'Notifications'}
@@ -167,7 +168,7 @@ const Routing = (props) => (
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
           />
           <Scene
-            key={'actionswiper'} hideNavBar component={ActionSwiper} title={'Dashboard'} hideNavBar
+            key={'actionswiper'} initial hideNavBar component={ActionSwiper} title={'Dashboard'} hideNavBar
           />
           <Scene
             key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
@@ -182,7 +183,9 @@ const Routing = (props) => (
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
-
+          <Scene
+            key={'followingme'} component={FollowingMe} title={'Following Me'}
+          />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
           <Scene key={'support'} hideNavBar component={SupportContainer} />

@@ -4,6 +4,7 @@ import friend from '../../services/friend';
 import {Actions} from 'react-native-router-flux';
 import ListFollow from './ListFollow';
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 });
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-export default class Friendlist extends React.Component {
+export default class AddFriendScreen extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -69,23 +70,46 @@ export default class Friendlist extends React.Component {
     }
     componentDidMount() {
       friend.getFriend()
-      .then((data) => {
-        this.setState({ friendlist: data, loading: false });
-      }).catch(err => console.log('ERROR LOH', err));
+      .then((response) => {
+        this.setState({ friendlist: response.data, loading: false });
+        console.log('getFriend Response ',this.state.friendlist);
+      }).catch(err => console.log('getFriend ERROR', err));
     }
 
   render() {
-    if (this.state.loading === false) {
-      return (
+     if (this.state.loading === false) {
+    return (
+      <View style={{ flex: 1 }}>
+        <View
+          style={{ flexDirection: 'row', flex: 1,  }}
+        >
+          <TextInput />
+          <TouchableOpacity >
+          </TouchableOpacity>
+        </View>
         <ListView
-          dataSource={ds.cloneWithRows(this.state.friendlist.data)}
-          renderRow={(rowData) => <ListFollow rowData={rowData}/> }
+          style={{flex: 9}}
+          dataSource={ds.cloneWithRows(this.state.friendlist)}
+          renderRow={rowData => <ListFollow rowData={rowData} />}
         />
-      );
-    } else {
-      return (
-        <Text>No Content Display</Text>
-      );
-    }
-  }
+      </View>
+    );
+  }else{
+   return (
+     <ActivityIndicator />
+   );
+ }
+ }
+ toggleSwitch() {
+   if (!this.state.clicked) {
+     Alert.alert('Confirmation',
+              'Are you sure to unfollow this user?', [
+               { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+              ]);
+   } else {
+     this.setState({ clicked: !this.state.clicked });
+   }
+ }
+
 }
