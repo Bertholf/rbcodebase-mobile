@@ -10,6 +10,8 @@ import {
 import auth from './../../services/auth';
 import { Actions } from 'react-native-router-flux';
 import styles from './DashboardStyle';
+import { AsyncStorage } from 'react-native';
+
 const { width, height } = Dimensions.get('window');
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -29,7 +31,16 @@ export default class Dashboard extends Component {
 
   componentDidMount() {
     auth.profile()
-    .then(response => this.setState({ profile: response.data }, ()=> console.log(this.state)))
+    .then((response) => {
+       this.setState({ profile: response.data }, () => {
+         AsyncStorage.setItem('userId', this.state.profile.id.toString())
+         .then(() => {
+           AsyncStorage.getItem('userId').then((id) => console.log('USER ID', id));
+           console.log('SAVE USERDATA SUKSES')})
+         .catch((err) => console.log('SAVE FAILED', err));
+       });
+
+     })
     .catch(Err => console.log('err,Err'));
   }
   render() {
