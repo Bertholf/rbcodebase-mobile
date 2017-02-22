@@ -84,13 +84,6 @@ export default class walkthrough extends Component {
     AsyncStorage.setItem('loadingWalk', 'true')
     .then((response) => { console.log(response); },
      (error) => { console.log(error); });
-    //   AsyncStorage.getItem('loadingWalk').then((response) => {
-    //     // console.log('HELLO RESPON', response);
-    //   }, (error) => {
-    //     // console.log(error);
-    //   });
-    // }, (error) => {
-    //   // console.log(error);
   }
   renderDotIndicator() {
     return <PagerDotIndicator pageCount={4} />;
