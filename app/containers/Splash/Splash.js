@@ -51,9 +51,11 @@ export class Splash extends Component {
             if (response === 'true') {
               Actions.login({ type: 'reset' });
               console.log('----GOTO ACTIONSWIPER-----');
-            } else if (response === 'null') {
+            } else if (response === null) {
               Actions.walkthrough({ type: 'reset' });
               console.log('----GOTO WALKTHROUGH-----');
+            } else {
+              console.log('ERRRRRR');
             }
           }
         }, (error) => {
