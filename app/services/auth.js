@@ -11,8 +11,18 @@ export default {
   profile: ()=> api.get('/api/me',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
-  updateProfile: (name_first, name_last, name_slug, email, phone, birthday, password, password_confirmation) => api.put('api/me',
-    { name_first, name_last, name_slug, email, phone, birthday, password, password_confirmation, client_id: config.CLIENT_ID, client_secret: config.client_secret, grant_type: config.GRANT_TYPE }
+  updateProfile: (name_first, name_last, name_slug, email, phone, birthday) =>
+  api.put('api/users/46', {
+    name_first,
+    name_last,
+    name_slug,
+    email,
+    phone,
+    birthday,
+    client_id: config.CLIENT_ID,
+    client_secret: config.client_secret,
+    grant_type: config.GRANT_TYPE,
+  },
   ),
 };
 // app /services

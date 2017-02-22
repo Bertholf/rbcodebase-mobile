@@ -36,8 +36,13 @@ export default class NameEdit extends Component{
     const lastNameInput = this.state.lastName;
     const currentFirstName = this.state.profile.first_name;
     const currentLastName = this.state.profile.last_name;
+    const slug = this.state.profile.name_slug;
+    const email = this.state.profile.email;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.birthday;
+
     const validateName = () => {
-      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator){
+      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
         if (firstNameInput === currentFirstName) {
           if (lastNameInput === currentLastName) {
             Alert.alert('Nothing Changed!', 'Your name is same as current :)');
@@ -48,7 +53,7 @@ export default class NameEdit extends Component{
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
           console.log('name===', firstNameInput, lastNameInput);
-          saveProfile(firstNameInput, lastNameInput);
+          saveProfile(firstNameInput, lastNameInput, slug, email, phone, birthday);
           Alert.alert('Success', 'Your name has been Changed');
         }
       } else {
