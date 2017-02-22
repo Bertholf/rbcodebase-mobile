@@ -2,6 +2,8 @@ import React from 'react';
 import { View,Alert, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView, ActivityIndicator } from 'react-native';
 import friend from '../../services/friend';
 import {Actions} from 'react-native-router-flux';
+import Follow from './follow';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -80,24 +82,9 @@ export default class Friendlist extends React.Component {
      if (this.state.loading === false) {
     return (
       <ListView
-        dataSource={ds.cloneWithRows(this.state.friendlist)}  renderRow={(rowData) =>
-          <TouchableOpacity>
-            <View style={styles.container}>
-              <View style={{flexDirection: 'row'}}>
-              <Image source={{ uri: rowData.picture }} style={styles.photo} />
-              <View style={styles.account}>
-                <TouchableOpacity onPress ={()=>Actions.profile({user: rowData})}>
-                <Text style={styles.user}>{rowData.name_first} {rowData.name_last}</Text>
-              </TouchableOpacity>
-                <Text style={styles.detail}>{rowData.name_slug}</Text>
-              </View>
-            </View>
-              <TouchableOpacity onPress={()=>this.toggleSwitch()}>
-                <Text style = {styles.button}>
-                   {this.state.clicked ? 'Follow' : 'unfollow' }</Text>
-                </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
+        dataSource={ds.cloneWithRows(this.state.friendlist)}
+        renderRow={(rowData) =>
+          <Follow rowData={rowData} />
         }
       />
     );
