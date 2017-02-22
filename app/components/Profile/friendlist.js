@@ -70,26 +70,26 @@ export default class Friendlist extends React.Component {
     }
     componentDidMount() {
       friend.getFriend()
-      .then((data) => {
-        this.setState({ friendlist: data, loading: false });
-        console.log('hAYYYY ',this.state.friendlist);
-      }).catch(err => console.log('ERROR LOH', err));
+      .then((response) => {
+        this.setState({ friendlist: response.data, loading: false });
+        console.log('****Friendlist ****',this.state.friendlist);
+      }).catch(err => console.log('=====Friendlist ERROR', err));
     }
 
   render() {
      if (this.state.loading === false) {
     return (
       <ListView
-        dataSource={ds.cloneWithRows(this.state.friendlist.data)}  renderRow={(rowData) =>
+        dataSource={ds.cloneWithRows(this.state.friendlist)}  renderRow={(rowData) =>
           <TouchableOpacity>
             <View style={styles.container}>
               <View style={{flexDirection: 'row'}}>
-              <Image source={{ uri: rowData.image }} style={styles.photo} />
+              <Image source={{ uri: rowData.picture }} style={styles.photo} />
               <View style={styles.account}>
                 <TouchableOpacity onPress ={()=>Actions.profile({user: rowData})}>
-                <Text style={styles.user}>{rowData.first_name}</Text>
+                <Text style={styles.user}>{rowData.name_first} {rowData.name_last}</Text>
               </TouchableOpacity>
-                <Text style={styles.detail}>{rowData.username}</Text>
+                <Text style={styles.detail}>{rowData.name_slug}</Text>
               </View>
             </View>
               <TouchableOpacity onPress={()=>this.toggleSwitch()}>
@@ -103,7 +103,9 @@ export default class Friendlist extends React.Component {
     );
   }else{
    return (
-     <Text>No Content Display</Text>
+     <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <ActivityIndicator size={'large'} />
+     </View>
    );
  }
  }
