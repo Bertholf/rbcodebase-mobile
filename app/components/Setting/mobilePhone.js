@@ -5,7 +5,9 @@ import {
    TextInput,
    TouchableOpacity,
    StyleSheet,
+   Alert,
  } from 'react-native';
+import saveProfile from '../../services/updateProfile';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,6 +65,12 @@ export default class MobilePhone extends Component {
     }
   }
   render() {
+    const savePhone = () => {
+      const mNumber = this.state.myNumber;
+      console.log(mNumber);
+      saveProfile(mNumber);
+      Alert.alert('Success', 'Your Phone Number has been Changed');
+    };
     return (
       <View style={styles.container}>
         <Text style={styles.heading}></Text>
@@ -91,7 +99,7 @@ export default class MobilePhone extends Component {
             />
         </View>
         <View>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={savePhone}>
             <Text style={styles.buttonText}>Save</Text>
           </TouchableOpacity>
         </View>
