@@ -2,6 +2,8 @@ import React from 'react';
 import { View,Alert, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollView, ActivityIndicator } from 'react-native';
 import friend from '../../services/friend';
 import {Actions} from 'react-native-router-flux';
+import Follow from './follow';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -70,40 +72,27 @@ export default class Friendlist extends React.Component {
     }
     componentDidMount() {
       friend.getFriend()
-      .then((data) => {
-        this.setState({ friendlist: data, loading: false });
-        console.log('hAYYYY ',this.state.friendlist);
-      }).catch(err => console.log('ERROR LOH', err));
+      .then((response) => {
+        this.setState({ friendlist: response.data, loading: false });
+        console.log('****Friendlist ****',this.state.friendlist);
+      }).catch(err => console.log('=====Friendlist ERROR', err));
     }
 
   render() {
      if (this.state.loading === false) {
     return (
       <ListView
-        dataSource={ds.cloneWithRows(this.state.friendlist.data)}  renderRow={(rowData) =>
-          <TouchableOpacity>
-            <View style={styles.container}>
-              <View style={{flexDirection: 'row'}}>
-              <Image source={{ uri: rowData.image }} style={styles.photo} />
-              <View style={styles.account}>
-                <TouchableOpacity onPress ={()=>Actions.profile({user: rowData})}>
-                <Text style={styles.user}>{rowData.first_name}</Text>
-              </TouchableOpacity>
-                <Text style={styles.detail}>{rowData.username}</Text>
-              </View>
-            </View>
-              <TouchableOpacity onPress={()=>this.toggleSwitch()}>
-                <Text style = {styles.button}>
-                   {this.state.clicked ? 'Follow' : 'unfollow' }</Text>
-                </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
+        dataSource={ds.cloneWithRows(this.state.friendlist)}
+        renderRow={(rowData) =>
+          <Follow rowData={rowData} />
         }
       />
     );
   }else{
    return (
-     <Text>No Content Display</Text>
+     <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <ActivityIndicator size={'large'} />
+     </View>
    );
  }
  }
