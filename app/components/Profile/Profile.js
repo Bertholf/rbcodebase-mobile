@@ -16,6 +16,7 @@ import me from '../../services/me';
 import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
+import userPanel from '../UserPanel/UserPanel';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -157,7 +158,7 @@ export default class Profile extends Component {
                       <Text style = {styles.button}>
                          {this.state.friend ? 'Add Friend' : 'Delete Friend' }</Text>
                       </TouchableOpacity> */}
-                      {this.state.my ? <Text /> : <Text>Oy bukan Gw </Text> }
+                      {this.props.my ? <Text /> : <Text>It's not Profile me </Text> }
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                   <TouchableOpacity>
