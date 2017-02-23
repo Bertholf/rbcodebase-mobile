@@ -1,6 +1,6 @@
 const userpanel = {
-  follme: 'Following Me',
-  myfrie: 'My Friends',
-  addfrie: 'Add Friends',
+  follme: 'Follower ',
+  myfrie: 'Following',
+  addfrie: 'Search Friend',
 };
 export default userpanel;
