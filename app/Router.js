@@ -49,6 +49,7 @@ import AppListing from './components/Listing/listing';
 import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
+import AddFriendScreen from './components/Profile/AddFriend';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -185,6 +186,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'followingme'} component={FollowingMe} title={'Following Me'}
+          />
+          <Scene
+            key={'addfriendscreen'} component={AddFriendScreen} title={'Add Friends'}
           />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
