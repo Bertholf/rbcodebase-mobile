@@ -16,8 +16,6 @@ import me from '../../services/me';
 import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
-import userPanel from '../UserPanel/UserPanel';
-import friend from '../../services/friend';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -26,19 +24,17 @@ export default class Profile extends Component {
       avatarSource: null,
     };
     this.state = {
+      loading: true,
+      profile: this.props.profile,
       followed: false,
       friend: false,
-      loading: true,
-      profile: {},
-      my: this.props.my,
-      name: false,
     };
   }
 
   componentDidMount() {
-    auth.profile()
-   .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
-   .catch(Err => console.log('err,Err'));
+  //   auth.profile()
+  //  .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+  // .catch(Err => console.log('err,Err'));
     if (this.state.profile){
       this.setState({ loading: false })
     } else {
@@ -47,7 +43,6 @@ export default class Profile extends Component {
       // .then((response) => console.log('ME Response', response))
       // .catch(err => this.setState({ loading: false }));
     }
-
   }
   // toggleSwitch() {
   //   if (!this.state.clicked) {
@@ -100,8 +95,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    //if (this.state.loading === false) {
-    console.log(this.state.my);
+    if (this.state.loading === false) {
       return (
         <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
           <View style={styles.container} >
@@ -112,7 +106,7 @@ export default class Profile extends Component {
                 style={styles.backdrop}
               />
               <View style={styles.backgroundname} >
-                <Text style={styles.headline} colors={['#F00', 'transparent']} >
+                <Text style={styles.headline} colors={['#000', 'transparent']} >
                   {this.state.profile.name_first} {this.state.profile.name_last}
                 </Text>
               </View>
@@ -138,6 +132,7 @@ export default class Profile extends Component {
                   }
                 </TouchableOpacity>
               </View>
+            </View>
               <View style={styles.biodata}>
                 <Text style={styles.bio}>Bio</Text>
                 <Text style={styles.isi}>{this.state.profile.about}</Text>
@@ -158,18 +153,17 @@ export default class Profile extends Component {
                   <Image
                     style={styles.location} source={require('./../../images/live.png')}
                   />
-                  <Text style={styles.isi}>live : {this.state.profile.live} {this.state.profile.created_at}</Text>
+                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
                 </View>
-                <View style ={{ flexDirection: 'row', justifyContent: 'space-around'}}>
-                  {/* <TouchableOpacity onPress={()=>this.toggleSwitchFollow()}>
+                <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                  <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
                     <Text style = {styles.button}>
                        {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>this.toggleSwitchFriend()}>
+                    <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
                       <Text style = {styles.button}>
                          {this.state.friend ? 'Add Friend' : 'Delete Friend' }</Text>
-                      </TouchableOpacity> */}
-                      {this.props.my ? <Text /> : <Text>It's not Profile me </Text> }
+                      </TouchableOpacity>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                   <TouchableOpacity>
@@ -177,19 +171,17 @@ export default class Profile extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-            </View>
             <View style={styles.mapmain}>
               <MapMain />
             </View>
           </View>
         </ScrollView>
       );
-  //  }
-    // else {
-    //   return (
-    //       <Text>No Data Found</Text>
-    //   );
-    // }
+    } else {
+      return (
+          <Text>No Data Found</Text>
+      );
+    }
   }
   toggleSwitchFollow() {
     if (!this.state.followed) {
