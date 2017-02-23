@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   View1: {
     justifyContent: 'space-between',
-    paddingTop: 80,
+    paddingTop: 15,
     marginLeft: 16,
     marginRight: 16,
   },
@@ -55,6 +55,20 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 15,
     alignSelf: 'flex-start',
+  },
+  TextInput3: {
+    paddingTop: 10,
+    paddingLeft: 8,
+    paddingBottom: 5,
+    color: 'grey',
+    marginLeft: 16,
+    marginRight: 16,
+  },
+  TextInput5: {
+    paddingTop: 10,
+    paddingLeft: 8,
+    paddingBottom: 5,
+    color: 'grey',
   },
 });
 

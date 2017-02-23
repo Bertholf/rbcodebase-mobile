@@ -10,6 +10,7 @@ import {
 import styles from './ChangeSetting/ChangeStyles';
 import me from '../../services/me';
 import auth from './../../services/auth';
+import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
 export default class NameEdit extends Component{
@@ -46,6 +47,8 @@ export default class NameEdit extends Component{
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
+          console.log(firstNameInput, lastNameInput);
+          saveProfile(firstNameInput, lastNameInput);
           Alert.alert('Success', 'Your name has been Changed');
         }
       } else {
@@ -54,6 +57,9 @@ export default class NameEdit extends Component{
     };
     return (
       <View style={styles.OuterView}>
+        <View style={{alignItems: 'center',flexDirection: 'row',justifyContent: 'center'}}>
+          <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>
+        </View>
         <ScrollView>
           <View style={styles.View1}>
           <Text style={styles.Text2}>
@@ -73,6 +79,7 @@ export default class NameEdit extends Component{
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={1} editable={true}
+              value={this.state.firstName}
             />
             {firstNameValidator || !firstNameInput ?
               <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertnewname}</Text>}
@@ -84,10 +91,31 @@ export default class NameEdit extends Component{
               placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.lastname} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
+              value={this.state.lastName}
+            />
+            <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'row', marginTop: 30, marginBottom: 10, justifyContent: 'space-between' }}>
+              <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
+              <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
+            </View>
+            <Text style={styles.Text2}>
+              {strings.ChangeName.display}
+            </Text>
+            <TextInput
+              style={styles.TextInput1}
+              underlineColorAndroid={'#2196f3'}
+              placeholderTextColor={'#2196f3'}
+              placeholder= ""
+              numberOfLines={1}
+              editable={true}
+              multiline={false}
+              autoCorrect={true}
             />
             {lastNameValidator || !lastNameInput ?
               <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertlastname}</Text>}
           </View>
+        <View>
+          <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
+        </View>
         </ScrollView>
         <TouchableOpacity onPress={validateName}>
           <View style={styles.View2}>
