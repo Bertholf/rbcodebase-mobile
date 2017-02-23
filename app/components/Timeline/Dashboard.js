@@ -32,10 +32,13 @@ export default class Dashboard extends Component {
   componentDidMount() {
     auth.profile()
     .then((response) => {
-       this.setState({ profile: response.data }, () => {
-         AsyncStorage.setItem('userId', this.state.profile.id.toString())
-         .then(() => {
-           AsyncStorage.getItem('userId').then((id) => console.log('USER ID', id));
+      let profileString = JSON.stringify(response);
+       this.setState({ profile: profileString }, () => {
+         console.log('----------THIS IS A USER DATA HEHEHEHEHE------------', this.state.profile);
+         AsyncStorage.multiSet([['userId', this.state.profile.id], ['name_first', this.state.profile.name_first], ['name_last', this.state.profile.name_last]], )
+         .then((response1) => {
+           console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', response1);
+           AsyncStorage.getItem('userId').then((id) => console.log('===============USER ID=======', id));
            console.log('SAVE USERDATA SUKSES')})
          .catch((err) => console.log('SAVE FAILED', err));
        });

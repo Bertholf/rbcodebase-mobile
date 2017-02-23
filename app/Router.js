@@ -71,7 +71,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications} title={'Notifications'}
@@ -170,7 +170,7 @@ const Routing = (props) => (
             key={'actionswiper'} hideNavBar component={ActionSwiper} title={'Dashboard'} hideNavBar
           />
           <Scene
-            key={'userpanel'} component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
+            key={'userpanel'} initial component={UserPanel} hideNavBar title={'User Panel'} direction={'vertical'}
           />
           <Scene key={'license'} hideNavBar component={License} />
           <Scene
