@@ -22,7 +22,7 @@ export default class FollowingMe extends React.Component {
     .then((response) => {
       this.setState({ friendlist: response.data, loading: false });
     }).catch((err) => {
-      console.log('FOllowing ME ERROR', err);
+      console.log('Following Me Error', err);
       Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
     });
     auth.follower()

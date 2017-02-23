@@ -76,9 +76,9 @@ export default class ListFollow extends Component {
       statusFollow: [],
     };
   }
-  componentDidMount() {
+  updateFollowData() {
     auth.updatefollow()
-    .then(response => this.setState({ statusFollow: response.data }, () => console.log('------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response)))
+    .then(response => this.setState({ statusFollow: response.data, clicked: this.state.clicked }, () => console.log('------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response)))
     .catch(Err => console.log('err', Err));
   }
 
@@ -86,7 +86,7 @@ export default class ListFollow extends Component {
     if (!this.state.clicked) {
       Alert.alert(strings.listfollow.confirmation,
                strings.listfollow.question, [
-                { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: strings.listfollow.cancel, onPress: () => updateFollowData()  },
                 { text: strings.listfollow.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
                ]);
     } else {
