@@ -1,5 +1,6 @@
 import { LoginManager, AccessToken, GraphRequestManager, GraphRequest } from 'react-native-fbsdk';
 import { Actions } from 'react-native-router-flux';
+import auth from './auth';
 
 const facebookRegister = () => {
   LoginManager.logInWithReadPermissions(['public_profile'])
@@ -9,25 +10,28 @@ const facebookRegister = () => {
      }
      return AccessToken.getCurrentAccessToken();
    })
-   .then((accessToken) => {
-     const responseCallback = (error, result) => {
-       if (!error) {
+   .then((res) => {
+     console.log('RES FACEBOOK',res);
+     auth.check(res.accessToken, 'facebook', res.userID)
+     .then((resL) => {
+       console.log("RESPON RBCODEBASE FB", resL);
+       if (resL.data.registered === false) {
          const props = {
-           firstName: result.first_name,
-           lastName: result.last_name,
-           email: result.email,
+           firstName: resL.data.name.split(' ')[0],
+           lastName: resL.data.name.split(' ')[1],
+           email: resL.data.email,
          };
          Actions.registrationform(props);
        } else {
+         Actions.login();
         console.log('Success fetching data ', result);
        }
-     };
      const profileRequestParams = {
        fields: {
          string: 'id, name, email, first_name, last_name, gender',
        },
      };
-
+    }).catch(err => console.log(err))
      const profileRequestConfig = {
        httpMethod: 'GET',
        version: 'v2.5',
