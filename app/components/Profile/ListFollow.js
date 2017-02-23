@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,27 +36,27 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: 'grey',
     marginRight: 5,
-    marginLeft: 3
+    marginLeft: 3,
   },
   buttonFollow: {
-     flexDirection: 'row',
-     padding: 6,
-     backgroundColor: '#2196F3',
-     justifyContent:'space-between',
-     color: 'white',
-     alignItems:'center',
-     marginTop: 7,
-     borderRadius: 2,
+    flexDirection: 'row',
+    padding: 6,
+    backgroundColor: '#2196F3',
+    justifyContent: 'space-between',
+    color: 'white',
+    alignItems: 'center',
+    marginTop: 7,
+    borderRadius: 2,
   },
   buttonUnfollow: {
-     flexDirection: 'row',
-     padding: 6,
-     backgroundColor: '#ddd',
-     justifyContent:'space-between',
-     color: '#333',
-     alignItems:'center',
-     marginTop: 7,
-     borderRadius: 2,
+    flexDirection: 'row',
+    padding: 6,
+    backgroundColor: '#ddd',
+    justifyContent: 'space-between',
+    color: '#333',
+    alignItems: 'center',
+    marginTop: 7,
+    borderRadius: 2,
   },
   time: {
     fontSize: 12,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
 export default class ListFollow extends Component {
   constructor(props) {
     super(props);
@@ -75,28 +75,6 @@ export default class ListFollow extends Component {
     };
   }
 
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={() => Actions.profile({ profile: this.props.rowData })}
-        activeOpacity={0.7}
-      >
-          <View style={styles.container}>
-            <View style={{ flexDirection: 'row' }}>
-              <Image source={{ uri: this.props.rowData.picture }} style={styles.photo} />
-              <View style={styles.account}>
-                  <Text style={styles.user}>{this.props.rowData.name_first} {this.props.rowData.name_last}</Text>
-                <Text style={styles.detail}>{this.props.rowData.name_slug}</Text>
-              </View>
-            </View>
-            <TouchableOpacity onPress={() => this.toggleSwitch()}>
-              <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-                {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-    );
-  }
   toggleSwitch() {
     if (!this.state.clicked) {
       Alert.alert('Confirmation',
@@ -108,4 +86,30 @@ export default class ListFollow extends Component {
       this.setState({ clicked: !this.state.clicked });
     }
   }
+
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={() => Actions.profile({ profile: this.props.rowData })}
+        activeOpacity={0.7}
+      >
+        <View style={styles.container}>
+          <View style={{ flexDirection: 'row' }}>
+            <Image source={{ uri: this.props.rowData.picture }} style={styles.photo} />
+            <View style={styles.account}>
+              <Text style={styles.user}>
+                {this.props.rowData.name_first} {this.props.rowData.name_last}
+              </Text>
+              <Text style={styles.detail}>{this.props.rowData.name_slug}</Text>
+            </View>
+          </View>
+          <TouchableOpacity onPress={() => this.toggleSwitch()}>
+            <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
+              {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
 }
