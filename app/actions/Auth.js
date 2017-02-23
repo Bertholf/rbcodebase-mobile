@@ -6,6 +6,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
+import facebookRegister from '../services/FacebookRegister';
 
 import config from '../config';
 import { AsyncStorage } from 'react-native';
@@ -46,12 +47,25 @@ export function submitLogin(username, password, okCallback, failCallback) {
 }
 export function doneLogin(response = {}) {
   if (response) {
+    console.log('RESPONSE FACEBOOK', response);
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
+    AsyncStorage.setItem('oauthId', response.idToken);
+    AsyncStorage.setItem('userInfo', response);
+    auth.check(response.provider, response.accessToken, response.idToken)
+    .then((resL) => {
+        if(resL.data.registered === false) {
+          facebookRegister();
+        } else {
+          Actions.pop();
+          Actions.actionswiper();
+            return { type: DONE_LOGIN, response };
+        }
+      }
+    ).catch(err => console.log(err))
   }
-  Actions.pop();
-  Actions.actionswiper({ type: 'reset' });
-  return { type: DONE_LOGIN, response };
+  // Actions.pop();
+  // Actions.actionswiper();
 }
 export function errorLogin(error) {
   Actions.pop();
