@@ -43,22 +43,24 @@ export class Splash extends Component {
       .then((token) => {
         AsyncStorage.getItem('loadingWalk').then((response) => {
           console.log('HELLO RESPON', response);
+          if (token !== null && typeof token !== 'undefined') {
+            console.log('TOKEN', token);
+            Actions.actionswiper({ type: 'reset' });
+          } else {
+            console.log('No TOKEN');
+            if (response === 'true') {
+              Actions.login({ type: 'reset' });
+              console.log('----GOTO ACTIONSWIPER-----');
+            } else if (response === null) {
+              Actions.walkthrough({ type: 'reset' });
+              console.log('----GOTO WALKTHROUGH-----');
+            } else {
+              console.log('ERRRRRR');
+            }
+          }
         }, (error) => {
           console.log(error);
         });
-        if (token !== null && typeof token !== 'undefined') {
-          console.log('TOKEN', token);
-          if (loadWalkthrough) {
-            Actions.actionswiper({ type: 'reset' });
-            console.log('----GOTO ACTIONSWIPER-----');
-          } else {
-            Actions.walkthrough({ type: 'reset' });
-            console.log('----GOTO WALKTHROUGH-----');
-          }
-        } else {
-          console.log('No TOKEN');
-          Actions.login({ type: 'reset' });
-        }
       }).catch((err) => { console.log(err) })
   }
   render() {
