@@ -81,21 +81,15 @@ export default class walkthrough extends Component {
     };
   }
   componentDidMount() {
-    AsyncStorage.setItem('loadingWalk', 'true').then(() => {
-      AsyncStorage.getItem('loadingWalk').then((response) => {
-        console.log('HELLO RESPON', response);
-      }, (error) => {
-        console.log(error);
-      });
-    }, (error) => {
-      console.log(error);
-    });
+    AsyncStorage.setItem('loadingWalk', 'true')
+    .then((response) => { console.log(response); },
+     (error) => { console.log(error); });
   }
   renderDotIndicator() {
     return <PagerDotIndicator pageCount={4} />;
   }
 
-  renderItem(screen){
+  renderItem(screen) {
     return (
       <View style={[styles.page, { backgroundColor: screen.bg }]}>
         <View style={{ flex: 5 }}>
