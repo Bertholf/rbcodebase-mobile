@@ -17,6 +17,7 @@ import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
 import userPanel from '../UserPanel/UserPanel';
+import friend from '../../services/friend';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -28,11 +29,9 @@ export default class Profile extends Component {
       followed: false,
       friend: false,
       loading: true,
-
       profile: {},
       my: this.props.my,
-      profile: this.props.profile,
-]
+      name: false,
     };
   }
 
