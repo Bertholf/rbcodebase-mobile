@@ -36,6 +36,7 @@
     "react-native-localization": "^0.1.26",
     "react-native-mapbox-gl": "^5.1.0",
     "react-native-maps": "^0.12.4",
+    "react-native-material-design-searchbar": "^1.1.0",
     "react-native-material-kit": "^0.4.1",
     "react-native-menu": "^0.20.2",
     "react-native-modal-dropdown": "^0.4.1",

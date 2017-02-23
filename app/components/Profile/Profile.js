@@ -28,8 +28,11 @@ export default class Profile extends Component {
       followed: false,
       friend: false,
       loading: true,
+
       profile: {},
       my: this.props.my,
+      profile: this.props.profile,
+]
     };
   }
 
@@ -37,6 +40,15 @@ export default class Profile extends Component {
     auth.profile()
    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
    .catch(Err => console.log('err,Err'));
+    if (this.state.profile){
+      this.setState({ loading: false })
+    } else {
+      me.getMe()
+      .then(data => this.setState({ profile: data, loading: false }))
+      // .then((response) => console.log('ME Response', response))
+      // .catch(err => this.setState({ loading: false }));
+    }
+
   }
   // toggleSwitch() {
   //   if (!this.state.clicked) {
