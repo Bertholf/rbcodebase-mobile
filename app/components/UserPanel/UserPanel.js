@@ -96,7 +96,7 @@ class userPanel extends React.Component {
                   onPress={Actions.friendlist}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.myfriend}</Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.myfrie}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
