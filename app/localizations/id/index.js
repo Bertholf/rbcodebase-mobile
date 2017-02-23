@@ -11,9 +11,12 @@ import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
 import EditEmail from './EditEmail';
 import ChangeName from './ChangeName';
-
+import addfriend from './AddFriend';
+import listfollow from './ListFollow';
 
 const id = {
+  listfollow,
+  addfriend,
   settings,
   walkthrought,
   ForgotPass,

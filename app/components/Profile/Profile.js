@@ -25,14 +25,19 @@ export default class Profile extends Component {
     this.state = {
       clicked: false,
       loading: true,
-      profile: {},
+      profile: this.props.profile,
     };
   }
 
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data, loading: false }))
-    .catch(err => this.setState({ loading: false }));
+    if (this.state.profile){
+      this.setState({ loading: false })
+    } else {
+      me.getMe()
+      .then(data => this.setState({ profile: data, loading: false }))
+      // .then((response) => console.log('ME Response', response))
+      // .catch(err => this.setState({ loading: false }));
+    }
   }
   // toggleSwitch() {
   //   if (!this.state.clicked) {
@@ -91,13 +96,13 @@ export default class Profile extends Component {
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
-                source={{ uri: this.state.profile.imgBackground }}
+                source={{ uri: this.state.profile.picture }}
                 resizeMode={'cover'}
                 style={styles.backdrop}
               />
               <View style={styles.backgroundname} >
-                <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.first_name} {this.state.profile.last_name}
+                <Text style={styles.headline} colors={['#000', 'transparent']} >
+                  {this.state.profile.name_first} {this.state.profile.name_last}
                 </Text>
               </View>
               <View style={styles.textInform} >
