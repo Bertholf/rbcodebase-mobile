@@ -14,11 +14,17 @@ import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
 
+const moment = require('moment');
+
 const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
   constructor(props){
     super(props);
     this.state = { date: '2016-01-01' };
+  }
+
+  getDate() {
+    return moment().local();
   }
   render() {
     const updateBirthday = () => {
@@ -39,7 +45,7 @@ export default class editBirthday extends Component {
               placeholder={strings.editBirthday.placeholder}
               format="YYYY-MM-DD"
               minDate="1990-05-01"
-              maxDate="2017-06-01"
+              maxDate={this.getDate()}
               confirmBtnText={strings.editBirthday.confirm}
               cancelBtnText={strings.editBirthday.cancel}
               onDateChange={(date) => { this.setState({ date: date }); }}
