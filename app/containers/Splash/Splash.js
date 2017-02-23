@@ -18,7 +18,6 @@ const mapStateToProps = () => ({
 
 export class Splash extends Component {
   constructor(props) {
-    AsyncStorage.setItem('loadingWalk', 'True')
     const lang = strings.getInterfaceLanguage();
     switch (lang) {
       case 'in-ID':
@@ -42,18 +41,26 @@ export class Splash extends Component {
   componentWillMount() {
     AsyncStorage.getItem('accessToken')
       .then((token) => {
-        const loadWalkthrough = AsyncStorage.getItem('loadingWalk');
-        if (token !== null && typeof token !== 'undefined') {
-          console.log('TOKEN', token);
-          if (loadWalkthrough) {
+        AsyncStorage.getItem('loadingWalk').then((response) => {
+          console.log('HELLO RESPON', response);
+          if (token !== null && typeof token !== 'undefined') {
+            console.log('TOKEN', token);
             Actions.actionswiper({ type: 'reset' });
           } else {
-            Actions.walkthrough({ type: 'reset' });
+            console.log('No TOKEN');
+            if (response === 'true') {
+              Actions.login({ type: 'reset' });
+              console.log('----GOTO ACTIONSWIPER-----');
+            } else if (response === null) {
+              Actions.walkthrough({ type: 'reset' });
+              console.log('----GOTO WALKTHROUGH-----');
+            } else {
+              console.log('ERRRRRR');
+            }
           }
-        } else {
-          console.log('No TOKEN');
-          Actions.login({ type: 'reset' });
-        }
+        }, (error) => {
+          console.log(error);
+        });
       }).catch((err) => { console.log(err) })
   }
   render() {
