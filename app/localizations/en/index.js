@@ -11,9 +11,10 @@ import editBirthday from './editBirthday';
 import changeUname from './ChangeUname';
 import EditEmail from './EditEmail';
 import ChangeName from './ChangeName';
-
+import addfriend from './AddFriend';
 
 const en = {
+  addfriend,
   ForgotPass,
   LoginScreen,
   settings,

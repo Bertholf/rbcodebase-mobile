@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
-import ListFollow from './ListFollow';
+import ListAddFriend from './ListAddFriend';
+import strings from '../../localizations';
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -58,7 +59,7 @@ export default class AddFriendScreen extends React.Component {
           >
             <TextInput
               style={styles.searchText}
-              placeholder={'Search'}
+              placeholder={strings.addfriend.search}
               placeholderTextColor="silver"
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
@@ -67,14 +68,14 @@ export default class AddFriendScreen extends React.Component {
             />
             <TouchableOpacity >
               <View style={styles.searchBtn} >
-                <Text style={{ color: '#fff' }}>Search</Text>
+                <Text style={{ color: '#fff' }}>{strings.addfriend.search}</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
-              renderRow={rowData => <ListFollow rowData={rowData} />}
+              renderRow={rowData => <ListAddFriend rowData={rowData} />}
             />
           </View>
         </View>
