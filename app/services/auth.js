@@ -11,6 +11,9 @@ export default {
   register: (name_first, name_last, name_slug, email, password, password_confirmation) => api.post('/api/users/register',
      { name_first, name_last, name_slug, email, password, password_confirmation, client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
+  check: (access_token, provider, oauth_provider_id) => api.post('/api/after-oauth',
+      { access_token, provider, oauth_provider_id}
+  ),
   profile: ()=> api.get('/api/me',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
