@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Alert, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import strings from '../../localizations';
 
 const styles = StyleSheet.create({
   container: {
@@ -77,10 +78,10 @@ export default class ListFollow extends Component {
 
   toggleSwitch() {
     if (!this.state.clicked) {
-      Alert.alert('Confirmation',
-               'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+      Alert.alert(strings.listfollow.confirmation,
+               strings.listfollow.question, [
+                { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: strings.listfollow.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
                ]);
     } else {
       this.setState({ clicked: !this.state.clicked });

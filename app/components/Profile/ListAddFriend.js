@@ -80,8 +80,8 @@ export default class ListAddFriend extends Component {
     if (!this.state.clicked) {
       Alert.alert(strings.addfriend.cofirmation,
                strings.addfriend.question, [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+                { text: strings.addfriend.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: strings.addfriend.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
                ]);
     } else {
       this.setState({ clicked: !this.state.clicked });

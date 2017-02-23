@@ -4,4 +4,6 @@ export default {
   unfriend: 'Unfriend',
   confirmation: 'Confirmation',
   question: 'Are you sure to unfriend this user?',
+  yes: 'Yes',
+  cancel: 'Cancel',
 };
