@@ -33,6 +33,7 @@ import Gender from './components/Setting/GenderEdit';
 import About from './components/Setting/About';
 import UsernameEdit from './components/Setting/ChangeUsername';
 import Friendlist from './components/Profile/friendlist';
+import FollowingMe from './components/Profile/FollowingMe';
 import Deactivate from './components/Deactivate/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
@@ -48,6 +49,7 @@ import AppListing from './components/Listing/listing';
 import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
+import AddFriendScreen from './components/Profile/AddFriend';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -185,7 +187,12 @@ const Routing = (props) => (
           <Scene
             key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
           />
-
+          <Scene
+            key={'followingme'} component={FollowingMe} title={'Following Me'}
+          />
+          <Scene
+            key={'addfriendscreen'} component={AddFriendScreen} title={'Add Friends'}
+          />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
           <Scene key={'support'} hideNavBar component={SupportContainer} />
