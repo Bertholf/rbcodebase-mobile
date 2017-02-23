@@ -27,12 +27,19 @@ export default class ChangeUsername extends Component {
   }
 
   render() {
-    const saveUsername = () => {
-      const newUsername = this.state.newUsername;
-      console.log(newUsername);
-      saveProfile(newUsername);
-      Alert.alert('Success', 'Your Username has been Changed');
-    };
+    const emptyUsername = this.state.newUsername === '';
+    const regex = /^[a-zA-Z0-9_-]{5,25}$/;
+    const validRegex = regex.test(this.state.newUsername);
+    const validUsername = this.state.profile.name_slug !== this.state.newUsername;
+    const onSave = () => {
+    if (validRegex && validUsername) {
+        // @TODO need to save new username
+        saveProfile(newUsername);
+        console.log('Username changed');
+      } else {
+        Alert.alert("Error", "invalid username");
+      }
+    }
     return (
       <View style={styles.OuterView}>
         <ScrollView>
@@ -59,15 +66,14 @@ export default class ChangeUsername extends Component {
               numberOfLines={4} editable
               value={this.state.newUsername}
             />
+            {validRegex || emptyUsername ? <Text /> : <Text style={styles.invalid}>Username should be at least 5 characters or numbers</Text>}
+            {validUsername ? <Text /> : <Text style={styles.invalid}>Your new username should be different with current username</Text>}
           </View>
-          <Text style={{ marginTop: 10 }}>
+          <Text style={{ marginLeft: 20, marginTop: 10 }}>
             {strings.changeUname.uniquename}
           </Text>
-          <Text style={{ marginTop: 10, lineHeight: 20 }}>
-            {strings.changeUname.text}
-          </Text>
         </ScrollView>
-        <TouchableOpacity onPress={saveUsername}>
+        <TouchableOpacity onPress={onSave}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
               {strings.changeUname.store}
