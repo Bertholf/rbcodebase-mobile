@@ -1,5 +1,8 @@
 import api from './api';
 import config from './../config';
+import { AsyncStorage } from 'react-native';
+
+
 
 export default {
   login: (username, password) => api.post('/oauth/token',
@@ -12,7 +15,7 @@ export default {
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
   updateProfile: (name_first, name_last, name_slug, phone, birthday, password, password_confirmation) =>
-  api.put('api/users/46', {
+  api.put('api/users/18', {
     name_first,
     name_last,
     name_slug,

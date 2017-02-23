@@ -18,6 +18,7 @@ export default class ChangeUsername extends Component {
     this.state = {
       profile: {},
       newUsername: '',
+      currentUserName: '',
     };
   }
   componentDidMount() {
@@ -34,6 +35,7 @@ export default class ChangeUsername extends Component {
     const saveUsername = () => {
       const name_first = this.state.profile.name_first;
       const name_last = this.state.profile.name_last;
+      const name_slug = this.state.profile.name_slug;
       const email = this.state.profile.email;
       const phone = this.state.profile.phone;
       const birthday = this.state.profile.birthday;
@@ -53,7 +55,10 @@ export default class ChangeUsername extends Component {
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid="rgba(0,0,0,0)"
-              defaultValue={this.state.profile.name_slug}
+              // defaultValue={this.state.profile.name_slug}
+              // onChangeText={(this.stat.profile.name_slug) => this.setState({ currentUserName })}
+
+              value={this.state.profile.name_slug}
               editable={false}
             />
             <Text style={styles.Text2}>
