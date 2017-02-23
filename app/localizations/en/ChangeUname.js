@@ -2,7 +2,8 @@ const ChangeUname = {
   oldname: 'Your current username',
   newname: 'Enter your new username',
   uniquename: 'Your username should be unique.',
-  text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+  error_length: 'Username should be at least 5 characters or numbers',
+  error_same_username: 'Your new username should be different with current username',
   store: 'SAVE',
 };
 

@@ -66,8 +66,8 @@ export default class ChangeUsername extends Component {
               numberOfLines={4} editable
               value={this.state.newUsername}
             />
-            {validRegex || emptyUsername ? <Text /> : <Text style={styles.invalid}>Username should be at least 5 characters or numbers</Text>}
-            {validUsername ? <Text /> : <Text style={styles.invalid}>Your new username should be different with current username</Text>}
+            {validRegex || emptyUsername ? <Text /> : <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
+            {validUsername ? <Text /> : <Text style={styles.invalid}>{strings.changeUname.error_same_username}</Text>}
           </View>
           <Text style={{ marginLeft: 20, marginTop: 10 }}>
             {strings.changeUname.uniquename}
