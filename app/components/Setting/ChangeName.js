@@ -28,6 +28,10 @@ export default class NameEdit extends Component{
     .catch(Err => console.log('err,Err'));
   }
 
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   render() {
     const value = /^[a-zA-Z ]+$/
     const firstNameValidator = value.test(this.state.firstName);
@@ -53,8 +57,10 @@ export default class NameEdit extends Component{
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
           console.log('name===', firstNameInput, lastNameInput);
-          saveProfile(firstNameInput, lastNameInput, slug, email, phone, birthday);
+          saveProfile(firstNameInput, lastNameInput, slug, phone, birthday);
           Alert.alert('Success', 'Your name has been Changed');
+          this.clearText('textInput1');
+          this.clearText('textInput2');
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');
@@ -74,6 +80,7 @@ export default class NameEdit extends Component{
               {strings.ChangeName.newname}
             </Text>
             <TextInput
+              ref={'textInput1'}
               style={styles.TextInput1}
               underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
@@ -88,6 +95,7 @@ export default class NameEdit extends Component{
               {strings.ChangeName.lastname}
             </Text>
             <TextInput
+              ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.lastname} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}

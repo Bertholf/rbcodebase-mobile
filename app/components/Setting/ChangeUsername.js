@@ -26,6 +26,10 @@ export default class ChangeUsername extends Component {
     .catch(Err=> console.log('err', Err))
   }
 
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   render() {
     const saveUsername = () => {
       const name_first = this.state.profile.name_first;
@@ -35,8 +39,9 @@ export default class ChangeUsername extends Component {
       const birthday = this.state.profile.birthday;
       const newUsernames = this.state.newUsername;
       console.log('Username==>', name_first, name_last, newUsernames, email, phone, birthday);
-      saveProfile(name_first, name_last, newUsernames, email, phone, birthday);
+      saveProfile(name_first, name_last, newUsernames, phone, birthday);
       Alert.alert('Success', 'Your Username has been Changed');
+      this.clearText('textInput')
     };
     return (
       <View style={styles.OuterView}>
@@ -55,6 +60,7 @@ export default class ChangeUsername extends Component {
               {strings.changeUname.newname}
             </Text>
             <TextInput
+              ref={'textInput'}
               style={styles.TextInput1}
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}

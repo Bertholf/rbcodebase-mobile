@@ -24,7 +24,7 @@ export default class editBirthday extends Component {
     const updateBirthday = () => {
       const birthday = this.state.date;
       console.log('tangal lahir==>', birthday);
-      saveProfile(birthday);
+      //saveProfile(name_first, name_last, name_slug, phone, birthday);
       Alert.alert('Success', 'Your birthday has been Changed');
     };
     return (

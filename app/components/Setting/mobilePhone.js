@@ -8,6 +8,7 @@ import {
    Alert,
  } from 'react-native';
 import saveProfile from '../../services/updateProfile';
+import auth from './../../services/auth';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +54,17 @@ const styles = StyleSheet.create({
 });
 
 export default class MobilePhone extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: {},
+    };
+  }
+  componentDidMount() {
+    auth.profile ()
+    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+    .catch(Err=> console.log('err', Err))
+  }
   onChanged(text) {
     let newText = '';
     const numbers = '^[0-9]';
@@ -64,12 +76,22 @@ export default class MobilePhone extends Component {
       this.setState({ myNumber: newText });
     }
   }
+
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
   render() {
     const savePhone = () => {
-      const mNumber = this.state.myNumber;
-      console.log('Phone Nubmer==>', mNumber);
-      saveProfile(mNumber);
+      const name_first = this.state.profile.name_first;
+      const name_last = this.state.profile.name_last;
+      const name_slug = this.state.profile.name_slug;
+      const email = this.state.profile.email;
+      const birthday = this.state.profile.birthday;
+      const phone = this.state.myNumber;
+      console.log('Phone Nubmer==>', phone);
+      saveProfile(name_first, name_last, name_slug, phone, birthday);
       Alert.alert('Success', 'Your Phone Number has been Changed');
+      this.clearText('textInput')
     };
     return (
       <View style={styles.container}>
@@ -88,6 +110,7 @@ export default class MobilePhone extends Component {
         </View>
         <View style={styles.textinputWrapperStyle}>
           <TextInput
+            ref={'textInput'}
             placeholder=" New Phone Number"
             placeholderTextColor="silver"
             selectionColor="silver"
