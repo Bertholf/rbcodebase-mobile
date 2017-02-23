@@ -6,7 +6,6 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
-import facebookRegister from '../services/FacebookRegister';
 
 import config from '../config';
 import { AsyncStorage } from 'react-native';
@@ -55,7 +54,12 @@ export function doneLogin(response = {}) {
     auth.check(response.provider, response.accessToken, response.idToken)
     .then((resL) => {
         if(resL.data.registered === false) {
-          facebookRegister();
+          const props = {
+           firstName: resL.data.name.split(' ')[0],
+           lastName: resL.data.name.split(' ')[1],
+           email: resL.data.email,
+         };
+         Actions.registrationform(props);
         } else {
           Actions.pop();
           Actions.actionswiper();
