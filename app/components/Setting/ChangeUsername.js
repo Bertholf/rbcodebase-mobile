@@ -28,14 +28,14 @@ export default class ChangeUsername extends Component {
 
   render() {
     const emptyUsername = this.state.newUsername === '';
+    const newUsernames = this.state.newUsername;
     const regex = /^[a-zA-Z0-9_-]{5,25}$/;
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
     if (validRegex && validUsername) {
-        // @TODO need to save new username
-        saveProfile(newUsername);
-        console.log('Username changed');
+        saveProfile(newUsernames);
+        console.log('Username changed' + newUsernames);
       } else {
         Alert.alert("Error", "invalid username");
       }
