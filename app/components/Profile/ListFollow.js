@@ -106,7 +106,7 @@ export default class ListFollow extends Component {
           </View>
           <TouchableOpacity onPress={() => this.toggleSwitch()}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
+              {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
