@@ -24,9 +24,11 @@ export default class Profile extends Component {
       avatarSource: null,
     };
     this.state = {
-      clicked: false,
+      followed: false,
+      friend: false,
       loading: true,
       profile: {},
+      my: this.props.my,
     };
   }
 
@@ -87,6 +89,7 @@ export default class Profile extends Component {
 
   render() {
     //if (this.state.loading === false) {
+    console.log(this.state.my);
       return (
         <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
           <View style={styles.container} >
@@ -145,6 +148,17 @@ export default class Profile extends Component {
                   />
                   <Text style={styles.isi}>live : {this.state.profile.live} {this.state.profile.created_at}</Text>
                 </View>
+                <View style ={{ flexDirection: 'row', justifyContent: 'space-around'}}>
+                  {/* <TouchableOpacity onPress={()=>this.toggleSwitchFollow()}>
+                    <Text style = {styles.button}>
+                       {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.toggleSwitchFriend()}>
+                      <Text style = {styles.button}>
+                         {this.state.friend ? 'Add Friend' : 'Delete Friend' }</Text>
+                      </TouchableOpacity> */}
+                      {this.state.my ? <Text /> : <Text>Oy bukan Gw </Text> }
+                </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                   <TouchableOpacity>
                     <Text style={styles.isi2}>View More</Text>
@@ -164,5 +178,28 @@ export default class Profile extends Component {
     //       <Text>No Data Found</Text>
     //   );
     // }
+  }
+  toggleSwitchFollow() {
+    if (!this.state.followed) {
+      Alert.alert('Confirmation',
+               'Are you sure to unfollow this user?', [
+                { text: 'Cancel', onPress: () => this.setState({ followed: this.state.followed }) },
+                { text: 'Yes', onPress: () => this.setState({ followed: !this.state.followed }) },
+               ]);
+    } else {
+      this.setState({ followed: !this.state.followed });
+    }
+  }
+
+  toggleSwitchFriend() {
+    if (!this.state.friend) {
+      Alert.alert('Confirmation',
+               'Are you sure to Delete this user?', [
+                { text: 'Cancel', onPress: () => this.setState({ friend: this.state.friend }) },
+                { text: 'Yes', onPress: () => this.setState({ friend: !this.state.friend }) },
+               ]);
+    } else {
+      this.setState({ friend: !this.state.friend });
+    }
   }
 }
