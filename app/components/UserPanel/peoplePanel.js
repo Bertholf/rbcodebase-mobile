@@ -48,22 +48,15 @@ class userPanel extends React.Component {
     this.state = {
       profile: {},
       loading:true,
-      my: true,
     }
   }
-
   componentDidMount(){
     auth.profile ()
     .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
     .catch(Err=> console.log('err', Err))
   }
 
-
   render() {
-    const onPressed = () => {
-      this.state.my;
-      Actions.profile();
-    };
     return (
         <View style={styles.container}>
           <ScrollView>
@@ -76,7 +69,7 @@ class userPanel extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.userContainer} >
-              <TouchableOpacity activeOpacity={0.7} style={styles.userButton} onPress={ () => Actions.profile({ profile: this.state.profile})}>
+              <TouchableOpacity activeOpacity={0.7} style={styles.userButton} onPress={Actions.profile}>
                 <Image source={{uri:this.state.profile.picture}} style={styles.userImage} />
               </TouchableOpacity>
               <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
@@ -85,10 +78,10 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.followingme}
+                  onPress={()=>this.toggleSwitch()}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.follme} </Text>
+                  <Text style={styles.textLinks}>{this.state.clicked ? 'Follow' : 'unfollow' } </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -96,12 +89,12 @@ class userPanel extends React.Component {
                   onPress={Actions.friendlist}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.myfriend}</Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.myfrie}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.addfriendscreen}
+                  onPress={Actions.friendlist}
                 >
                   <Image source={addFriendIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>{strings.userpanel.addfrie} </Text>
@@ -116,6 +109,17 @@ class userPanel extends React.Component {
           </View>
         </View>
     );
+  }
+  toggleSwitch() {
+    if (!this.state.clicked) {
+      Alert.alert('Confirmation',
+               'Are you sure to unfollow this user?', [
+                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+               ]);
+    } else {
+      this.setState({ clicked: !this.state.clicked });
+    }
   }
 }
 
