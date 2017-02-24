@@ -18,8 +18,6 @@ const home = require('../../images/dashboard/home.png');
 const account = require('../../images/dashboard/account.png');
 const modul = require('../../images/dashboard/panel.png');
 
-
-
 export default class Dashboard extends Component {
   constructor(props){
     super(props);
@@ -32,7 +30,7 @@ export default class Dashboard extends Component {
   componentDidMount() {
     auth.profile()
     .then((response) => {
-       this.setState({ profile: response }, () => {
+       this.setState({ profile: response.data }, () => {
          console.log('profile', this.state.profile);
          AsyncStorage.multiSet([['userId', JSON.stringify(response.data.id)], ['name_first',(response.data.name_first)],
          ['name_last', (response.data.name_last)], ['name_slug', (response.data.name_slug)], ['email', (response.data.email)],
