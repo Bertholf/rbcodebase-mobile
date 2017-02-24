@@ -96,7 +96,6 @@ export default class ListFollow extends Component {
 
   render() {
     let rowData;
-    console.log('props list ccomponent', this.props);
     if (this.props.person.type === 'follower') {
       rowData = this.props.person.follower;
     } else {

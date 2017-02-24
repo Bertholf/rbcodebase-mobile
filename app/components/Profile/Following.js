@@ -3,7 +3,7 @@ import { View,Alert, ListView, StyleSheet, Text, TouchableOpacity, Image,ScrollV
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
 import ListFollow from './ListFollow';
-
+import strings from '../../localizations';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Friendlist extends React.Component {
@@ -67,7 +67,7 @@ export default class Friendlist extends React.Component {
     } else if (nodata === true) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: '#000', fontSize: 30 }}>No Follower</Text>
+          <Text style={{ color: '#000', fontSize: 30 }}>{strings.listfollow.nofollowing}</Text>
         </View>
       );
     } else {
