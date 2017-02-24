@@ -30,6 +30,9 @@ export default {
     client_secret: config.client_secret,
     grant_type: config.GRANT_TYPE,
   },
-  )
+),
+  followers: ()=> api.get('api/follows?leader_id='+id,
+  {client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE, follower}
+),
 };
 // app /services
