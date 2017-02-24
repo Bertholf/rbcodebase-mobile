@@ -48,8 +48,13 @@ export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
+    if(response.provider === 'twitter') {
+      Actions.actionswiper({ type: 'reset' });
+    }
+    Actions.pop();
+    Actions.actionswiper({ type: 'reset' });
   }
-  Actions.actionswiper({ type: 'reset' });
+
   return { type: DONE_LOGIN, response };
 }
 
