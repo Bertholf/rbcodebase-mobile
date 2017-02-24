@@ -5,4 +5,6 @@ export default {
   question: 'Are you sure to unfollow this user?',
   yes: 'Yes',
   cancel: 'Cancel',
+  nofollower: 'No Follower',
+  nofollowing: 'No Following',
 };
