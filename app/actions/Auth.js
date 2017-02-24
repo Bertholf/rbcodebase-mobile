@@ -49,6 +49,8 @@ export function doneLogin(response = {}) {
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
     if(response.provider === 'twitter') {
+      AsyncStorage.setItem('accessToken', response.secret);
+      auth.checktwitter(response.accessToken, response.provider, response.secret)
       Actions.actionswiper({ type: 'reset' });
     }
     Actions.pop();
@@ -142,7 +144,7 @@ export function loginWithTwitter() {
   return (dispatch) => {
     return twitter.signIn()
       .then(response => {
-        dispatch(doneLogin({ accessToken: response.token, provider: 'twitter' }))
+        dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret }))
       })
       .catch(err => console.log('TWITTER ERR', err));
   };
