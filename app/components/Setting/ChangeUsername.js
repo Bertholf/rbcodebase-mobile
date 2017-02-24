@@ -11,6 +11,9 @@ import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
+import {Actions} from 'react-native-router-flux';
 
 export default class ChangeUsername extends Component {
   constructor(props) {
@@ -27,6 +30,18 @@ export default class ChangeUsername extends Component {
   }
 
   render() {
+    const rightButtonConfig = {
+    title: 'Save',
+    handler: () => alert('successfully!'),
+  };
+    const leftButtonConfig = {
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
+
+  const titleConfig = {
+    title: 'Edit Username',
+  };
     const saveUsername = () => {
       const newUsername = this.state.newUsername;
       console.log(newUsername);
@@ -35,6 +50,12 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
@@ -63,17 +84,8 @@ export default class ChangeUsername extends Component {
           <Text style={{ marginTop: 10 }}>
             {strings.changeUname.uniquename}
           </Text>
-          <Text style={{ marginTop: 10, lineHeight: 20 }}>
-            {strings.changeUname.text}
-          </Text>
         </ScrollView>
-        <TouchableOpacity onPress={saveUsername}>
-          <View style={styles.View2}>
-            <Text style={styles.Button}>
-              {strings.changeUname.store}
-            </Text>
-          </View>
-        </TouchableOpacity>
+        
       </View>
     );
   }

@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
+import {Actions} from 'react-native-router-flux';
 import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
@@ -29,6 +32,19 @@ export default class NameEdit extends Component{
   }
 
   render() {
+    const rightButtonConfig = {
+    title: 'Save',
+    handler: () => alert('successfully!'),
+  };
+    const leftButtonConfig = {
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
+
+  const titleConfig = {
+    title: 'Edit Name',
+  };
+
     const value = /^[a-zA-Z ]+$/
     const firstNameValidator = value.test(this.state.firstName);
     const lastNameValidator = value.test(this.state.lastName);
@@ -57,6 +73,12 @@ export default class NameEdit extends Component{
     };
     return (
       <View style={styles.OuterView}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
         <View style={{alignItems: 'center',flexDirection: 'row',justifyContent: 'center'}}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>
         </View>
@@ -117,13 +139,6 @@ export default class NameEdit extends Component{
           <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
         </View>
         </ScrollView>
-        <TouchableOpacity onPress={validateName}>
-          <View style={styles.View2}>
-            <Text style={styles.Button}>
-              {strings.ChangeName.store}
-            </Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }

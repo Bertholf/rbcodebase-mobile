@@ -12,6 +12,9 @@ import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
+import {Actions} from 'react-native-router-flux';
 
 export default class EmailEdit extends Component {
   constructor(props) {
@@ -29,6 +32,18 @@ export default class EmailEdit extends Component {
     .catch(Err => console.log('err,Err'));
   }
   render() {
+    const rightButtonConfig = {
+    title: 'Save',
+    handler: () => alert('successfully!'),
+  };
+    const leftButtonConfig = {
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
+
+  const titleConfig = {
+    title: 'Edit Email',
+  };
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.newEmail);
     const emailInput = this.state.newEmail;
@@ -44,6 +59,12 @@ export default class EmailEdit extends Component {
     };
     return (
       <View style={styles.OuterView}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
@@ -74,13 +95,7 @@ export default class EmailEdit extends Component {
             />
           </View>
         </ScrollView>
-        <TouchableOpacity onPress={validEmail}>
-          <View style={styles.View2}>
-            <Text style={styles.Button}>
-              {strings.EditEmail.save}
-            </Text>
-          </View>
-        </TouchableOpacity>
+        
       </View>
     );
   }

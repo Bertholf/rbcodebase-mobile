@@ -13,6 +13,9 @@ import DatePicker from 'react-native-datepicker';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
+
 
 const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
@@ -21,6 +24,18 @@ export default class editBirthday extends Component {
     this.state = { date: '2016-01-01' };
   }
   render() {
+    const rightButtonConfig = {
+    title: 'Save',
+    handler: () => alert('successfully!'),
+  };
+    const leftButtonConfig = {
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
+
+  const titleConfig = {
+    title: 'Edit Birthday',
+  };
     const updateBirthday = () => {
       const birthday = this.state.date;
       console.log(" tangal lahir==", birthday);
@@ -29,6 +44,12 @@ export default class editBirthday extends Component {
     };
     return (
       <View style={{ flex: 1}}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
         <View style={{ padding: 16 }}>
           <View style={styles.styleView}>
             <View style={{alignSelf: 'center'}}>
@@ -50,11 +71,6 @@ export default class editBirthday extends Component {
               }}
             />
           </View>
-        </View>
-        <View style={{ marginTop: 20, padding: 14 }}>
-          <TouchableOpacity style={styles.button} onPress={updateBirthday}>
-            <Text style={styles.titleButton} >{strings.editBirthday.save}</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );

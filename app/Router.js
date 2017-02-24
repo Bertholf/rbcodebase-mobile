@@ -68,7 +68,7 @@ const Routing = (props) => (
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
           <Scene
-            key={'editbirthday'} component={editBirthday} title={strings.editBirthday.title}
+            key={'editbirthday'} component={editBirthday} hideNavBar title={strings.editBirthday.title}
           />
           <Scene
             key="inbox" component={Inbox} title={'Inbox'}
@@ -107,22 +107,22 @@ const Routing = (props) => (
             key={'email'} component={Email} title={'Email'}
           />
           <Scene
-            key={'emailEdit'} component={EmailEdit} title={'Edit Email'}
+            key={'emailEdit'} component={EmailEdit} hideNavBar title={'Edit Email'}
           />
           <Scene
             key={'genderEdit'} component={Gender} title={'Edit Gender'}
           />
           <Scene
-            key={'passEdit'} component={PassEdit} title={'Edit Password'}
+            key={'passEdit'} component={PassEdit} hideNavBar  title={'Edit Password'}
           />
           <Scene
-            key={'about'} component={About} title={'Edit Bio'}
+            key={'about'} component={About} hideNavBar title={'Edit Bio'}
           />
           <Scene
-            key={'usernameEdit'} component={UsernameEdit} title={'Edit Username'}
+            key={'usernameEdit'} component={UsernameEdit} hideNavBar title={'Edit Username'}
           />
           <Scene
-            key={'nameEdit'} component={NameEdit} title={'Edit Name'}
+            key={'nameEdit'} component={NameEdit} hideNavBar title={'Edit Name'}
           />
           <Scene
             key={'welcome'} component={Welcome} title={'Welcome'}
@@ -183,7 +183,7 @@ const Routing = (props) => (
             key={'appListing'} hideNavBar component={AppListing} title={'App Listing'} direction={'leftToRight'}
           />
           <Scene
-            key={'mobilephone'} component={MobilePhone} title={'Mobile Phone'}
+            key={'mobilephone'} hideNavBar component={MobilePhone} title={'Mobile Phone'}
           />
 
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
