@@ -14,14 +14,15 @@ const twitterRegister = () => {
   });
   manager.authorize('twitter')
     .then((response) => {
+      console.log('TWITTER ',response);
       const userTimelineUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
       manager.makeRequest('twitter', userTimelineUrl)
       .then((resp) => {
         console.log('TWITTER OK',resp);
         const props = {
           username: resp.data[0].user.screen_name,
-          firstName: resp.data[0].user.name,
         };
+
         Actions.registrationform(props);
       })
 

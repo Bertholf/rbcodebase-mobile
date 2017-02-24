@@ -77,6 +77,7 @@ export default class ChangeUsername extends Component {
               onChangeText={newUsername => this.setState({ newUsername })}
               multiline={false}
               numberOfLines={4} editable
+              value={this.state.newUsername}
             />
           </View>
           <Text style={{ marginTop: 10 }}>

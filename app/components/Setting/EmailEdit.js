@@ -10,8 +10,8 @@ import {
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
-import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
+import strings from '../../localizations';
 
 export default class EmailEdit extends Component {
   constructor(props) {

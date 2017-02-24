@@ -49,10 +49,40 @@ export function doneLogin(response = {}) {
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
   }
-  Actions.pop();
   Actions.actionswiper({ type: 'reset' });
   return { type: DONE_LOGIN, response };
 }
+
+
+// Sutani Working Code
+// export function doneLogin(response = {}) {
+//   if (response) {
+//     console.log('RESPONSE FACEBOOK', response);
+//     AsyncStorage.setItem('provider', response.provider);
+//     AsyncStorage.setItem('accessToken', response.accessToken);
+//     AsyncStorage.setItem('oauthId', response.idToken);
+//     AsyncStorage.setItem('userInfo', response);
+//     auth.check(response.provider, response.accessToken, response.idToken)
+//     .then((resL) => {
+//         if(resL.data.registered === false) {
+//           const props = {
+//            firstName: resL.data.name.split(' ')[0],
+//            lastName: resL.data.name.split(' ')[1],
+//            email: resL.data.email,
+//          };
+//          Actions.registrationform(props);
+//         } else {
+//           Actions.pop();
+//           Actions.actionswiper();
+//             return { type: DONE_LOGIN, response };
+//         }
+//       }
+//     ).catch(err => console.log(err))
+//   }
+//   // Actions.pop();
+//   // Actions.actionswiper();
+// }
+
 export function errorLogin(error) {
   Actions.pop();
   return { type: ERROR_LOGIN, error };

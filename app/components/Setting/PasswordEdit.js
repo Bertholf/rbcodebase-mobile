@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
+import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations/';
 import auth from './../../services/auth';
-import saveProfile from '../../services/updateProfile';
 
 export default class PassEdit extends Component {
   constructor(props) {
