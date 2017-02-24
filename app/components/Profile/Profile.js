@@ -28,6 +28,8 @@ export default class Profile extends Component {
       profile: this.props.profile,
       followed: false,
       friend: false,
+      edit: false,
+      button: false,
     };
   }
 
@@ -44,17 +46,6 @@ export default class Profile extends Component {
       // .catch(err => this.setState({ loading: false }));
     }
   }
-  // toggleSwitch() {
-  //   if (!this.state.clicked) {
-  //     Alert.alert('Confirmation',
-  //              'Are you sure to unfollow this user?', [
-  //             { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-  //               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
-  //              ]);
-  //   } else {
-  //     this.setState({ clicked: !this.state.clicked });
-  //   }
-  // }
   pressScroll() {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
@@ -116,10 +107,11 @@ export default class Profile extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
+                  <Text style={{ marginLeft: 8 }}>888888</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.setting} >
-                  <Text style={styles.button}>
-                    Edit
+                  <Text  style= {this.state.button ? styles.button : {} } >
+                    {this.state.edit ? 'Edit'  : <Text/> }
                   </Text>
                 </TouchableOpacity>
               </View>
