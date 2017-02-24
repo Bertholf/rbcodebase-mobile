@@ -44,7 +44,7 @@ class Api {
    return AsyncStorage.getItem('accessToken')
    .then((token) => {
      console.log('requesting');
-     const headers = data.config.headers || {};
+     const headers = data.config ? (data.config.headers || {}) : {};
      if (token && url !== '/oauth/token' && url !== '/api/users/register') {
        headers.Authorization = `Bearer ${token}`;
      }

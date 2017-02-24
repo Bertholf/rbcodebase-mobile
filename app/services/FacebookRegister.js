@@ -22,6 +22,7 @@ const facebookRegister = () => {
            email: resL.data.email,
            username: '',
          };
+         Actions.pop();
          Actions.registrationform(props);
        } else {
          Actions.login();
