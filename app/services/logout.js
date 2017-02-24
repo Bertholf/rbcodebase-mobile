@@ -28,7 +28,7 @@ const Logout = () => {
         google.signOut();
         Actions.login({ type: 'reset' });
       } else if (temp[1] === 'twitter' && temp[0] !== '') {
-        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON TWITTER', response); }, (error) => { console.log(error); });
         manager.configure({
           twitter: {
             consumer_key: TWITTER_CONSUMER_KEY,
@@ -40,7 +40,7 @@ const Logout = () => {
         // OAuthManager().deauthorize('twitter');
         Actions.login();
       } else {
-        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); }).catch(err => console.log(err));
         Actions.login({ type: 'reset' });
       }
 

@@ -20,6 +20,7 @@ const facebookRegister = () => {
            firstName: resL.data.name.split(' ')[0],
            lastName: resL.data.name.split(' ')[1],
            email: resL.data.email,
+           username: '',
          };
          Actions.registrationform(props);
        } else {
