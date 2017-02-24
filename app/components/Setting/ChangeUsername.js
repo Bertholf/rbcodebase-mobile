@@ -45,6 +45,9 @@ export default class ChangeUsername extends Component {
       saveProfile(id, name_first, name_last, newUsernames, phone, birthday)
       Alert.alert('Success', 'Your Username has been Changed');
       this.clearText('textInput')
+      auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
     };
     return (
       <View style={styles.OuterView}>

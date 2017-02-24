@@ -24,6 +24,6 @@ export default {
     client_secret: config.client_secret,
     grant_type: config.GRANT_TYPE,
   },
-  ),
+  )
 };
 // app /services

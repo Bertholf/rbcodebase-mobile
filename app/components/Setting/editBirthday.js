@@ -42,6 +42,9 @@ export default class editBirthday extends Component {
       console.log('tangal lahir==>', birthday);
       saveProfile(id, name_first, name_last, name_slug, phone, birthday);
       Alert.alert('Success', 'Your birthday has been Changed');
+      auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
     };
     return (
       <View style={{ flex: 1}}>

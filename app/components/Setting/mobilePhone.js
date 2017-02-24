@@ -93,6 +93,9 @@ export default class MobilePhone extends Component {
       saveProfile(id, name_first, name_last, name_slug, phone, birthday);
       Alert.alert('Success', 'Your Phone Number has been Changed');
       this.clearText('textInput')
+      auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
     };
     return (
       <View style={styles.container}>

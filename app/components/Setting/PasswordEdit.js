@@ -32,6 +32,11 @@ export default class PassEdit extends Component {
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
     .catch(Err => console.log('err,Err'));
   }
+
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   render() {
     const usedPassword = this.state.password;
     const currentPassword = this.state.profile.password;
@@ -51,6 +56,11 @@ export default class PassEdit extends Component {
         console.log('new password==>', passwordInput, password_confirmation);
         saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, password_confirmation);
         Alert.alert('Success', 'Your password has been Changed');
+        this.clearText('textInput1')
+        this.clearText('textInput2')
+        auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
       }
     };
     // strings.setLanguage('en');
@@ -76,6 +86,7 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.enterYourNewPassword}
             </Text>
             <TextInput
+              ref={'textInput1'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
@@ -86,6 +97,7 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.confirmChange}
             </Text>
             <TextInput
+              ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={confirmPassword => this.setState({ confirmPassword })} multiline
               numberOfLines={4}

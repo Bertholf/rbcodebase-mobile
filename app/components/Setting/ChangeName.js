@@ -62,6 +62,9 @@ export default class NameEdit extends Component{
           Alert.alert('Success', 'Your name has been Changed');
           this.clearText('textInput1');
           this.clearText('textInput2');
+          auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');

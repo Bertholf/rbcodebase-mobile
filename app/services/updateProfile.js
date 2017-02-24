@@ -5,7 +5,6 @@ const saveProfile = (id, name_first, name_last, name_slug, phone, birthday, pass
   .then((response) => {
     console.log('update===', response);
   })
-  .then(resp => this.setState({}));
 };
 
 
