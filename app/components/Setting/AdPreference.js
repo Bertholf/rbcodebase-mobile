@@ -28,7 +28,7 @@ export default class AdPreference extends Component {
 
   componentDidMount() {
     auth.adprefe()
-    .then(response => this.setState({ adprefe: response.data }, ()=> console.log(this.state)))
+    .then(response => this.setState({ adprefe: response.data }, ()=> console.log("aku bingung", this.state.adprefe)))
     .catch(Err => console.log('err', Err));
   }
 
@@ -59,11 +59,13 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <Picker
-            selectedValue={this.state.language}
+            selectedValue="popo"
             onValueChange={(lang) => this.setState({language: lang})}>
-            {this.state.data.map((x) => (
+            <Picker.Item label="All" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+            {/* {this.state.data.map((x) => (
               <Picker.Item label={x.status} value={x.status} />
-            ))}
+            ))} */}
           </Picker>
         </View>
         <View style={{ padding: 16 }}>
@@ -72,13 +74,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Comment</Text>
             </View>
           </View>
-          <Picker
+          {/* <Picker
             selectedValue={this.state.language}
             onValueChange={(lang) => this.setState({language: lang})}>
             {this.state.data.map((x) => (
               <Picker.Item label={x.status} value={x.status} />
             ))}
-          </Picker>
+          </Picker> */}
         </View>
         <View style={{ padding: 16 }}>
           <View style={styles.styleView}>
@@ -86,13 +88,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>PrivacyPolicy</Text>
             </View>
           </View>
-          <Picker
+          {/* <Picker
             selectedValue={this.state.language}
             onValueChange={(lang) => this.setState({language: lang})}>
             {this.state.data.map((x) => (
               <Picker.Item label={x.status} value={x.status} />
             ))}
-          </Picker>
+          </Picker> */}
         </View>
         <View style={{ marginTop: 20, padding: 14 }}>
           <TouchableOpacity style={styles.button}>

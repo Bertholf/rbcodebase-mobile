@@ -85,7 +85,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.followingme}
+                  onPress={Actions.following}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>{strings.userpanel.follme} </Text>
@@ -93,7 +93,7 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.friendlist}
+                  onPress={Actions.follower}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>{strings.userpanel.myfrie}</Text>

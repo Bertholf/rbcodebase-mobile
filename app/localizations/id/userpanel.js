@@ -1,6 +1,6 @@
 const userpanel = {
-  follme: 'Pengikut Saya',
-  myfrie: 'Teman Saya',
-  addfrie: 'Tambahkan Teman'
+  follme: 'Mengikuti',
+  myfrie: 'Pengikut',
+  addfrie: 'Cari Teman',
 };
 export default userpanel;
