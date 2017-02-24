@@ -15,6 +15,8 @@ import strings from '../../localizations';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 
+const moment = require('moment');
+
 const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
   constructor(props){
@@ -25,12 +27,16 @@ export default class editBirthday extends Component {
    };
   }
 
+  getDate() {
+    return moment().local();
+  }
+  
   componentDidMount() {
    auth.profile()
    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
    .catch(Err => console.log('err,Err'));
   }
-
+  
   render() {
     const updateBirthday = () => {
       const id = this.state.profile.id;
@@ -58,7 +64,7 @@ export default class editBirthday extends Component {
               placeholder={strings.editBirthday.placeholder}
               format="YYYY-MM-DD"
               minDate="1990-05-01"
-              maxDate="2017-06-01"
+              maxDate={this.getDate()}
               confirmBtnText={strings.editBirthday.confirm}
               cancelBtnText={strings.editBirthday.cancel}
               onDateChange={(date) => { this.setState({ date: date }); }}

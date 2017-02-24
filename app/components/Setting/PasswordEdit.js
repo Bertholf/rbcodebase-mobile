@@ -19,7 +19,7 @@ export default class PassEdit extends Component {
     this.state = {
       password: '',
       newPassword: '',
-      confirmPassword: '',
+      confirmNewPassword: '',
       profile: {},
     };
   }
@@ -40,19 +40,20 @@ export default class PassEdit extends Component {
   render() {
     const usedPassword = this.state.password;
     const currentPassword = this.state.profile.password;
-    const Invalidpassword = usedPassword !== currentPassword;
+    const validPassword = usedPassword === currentPassword;
     const passwordInput = this.state.newPassword;
+    const passwordConfirmation = this.state.confirmPassword;
+    const combinePassword = this.state.newPassword === this.state.confirmNewPassword;
+    const passwordLength = passwordInput.length >= 6;
     const password_confirmation = this.state.confirmPassword;
-    const passwordLength = passwordInput.length < 6;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.date;
-    const validPassword = () => {
-      if (!Invalidpassword && !passwordLength) {
-        // @TODO We need to fix it later, thanks!!!
+    const onSave = () => {
+      if (validPassword && passwordLength && combinePassword) {
         console.log('new password==>', passwordInput, password_confirmation);
         saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, password_confirmation);
         Alert.alert('Success', 'Your password has been Changed');
@@ -80,8 +81,8 @@ export default class PassEdit extends Component {
               placeholderTextColor={'#2196f3'} onChangeText={password => this.setState({ password })}
               numberOfLines={4}
             />
-            {!Invalidpassword || !usedPassword ?
-              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.wrongPassword}</Text>}
+            {validPassword || !usedPassword ?
+              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_wrongPassword}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.enterYourNewPassword}
             </Text>
@@ -91,20 +92,21 @@ export default class PassEdit extends Component {
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
             />
-            {!passwordLength || !passwordInput ? <Text /> :
-            <Text style={styles.invalid}>{strings.PassEditLoc.passwordMustbeharacters}</Text>}
+            {passwordLength || !passwordInput ? <Text /> :
+            <Text style={styles.invalid}>{strings.PassEditLoc.error_passwordLength}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.confirmChange}
             </Text>
             <TextInput
               ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={confirmPassword => this.setState({ confirmPassword })} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
               numberOfLines={4}
             />
+            {combinePassword ? <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_passwordCombination}</Text>}
           </View>
         </ScrollView>
-        <TouchableOpacity onPress={validPassword}>
+        <TouchableOpacity onPress={onSave}>
           <View style={styles.View2}>
             <Text style={styles.Button}>
               {strings.PassEditLoc.save}
