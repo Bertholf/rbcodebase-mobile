@@ -21,8 +21,6 @@ const twitterRegister = () => {
         console.log('TWITTER OK',resp);
         const props = {
           username: resp.data[0].user.screen_name,
-          firstName: resp.data[0].user.name,
-          lastName: resp.data[0].user.name,
         };
 
         Actions.registrationform(props);

@@ -106,7 +106,6 @@ export function loginWithTwitter() {
   return (dispatch) => {
     return twitter.signIn()
       .then(response => {
-        console.log("RESPON TWITTER KAKAK");
         dispatch(doneLogin({ accessToken: response.token, provider: 'twitter' }))
       })
       .catch(err => console.log('TWITTER ERR', err));
