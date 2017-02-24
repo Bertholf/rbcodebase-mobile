@@ -34,11 +34,17 @@ export default class EmailEdit extends Component {
     const emailInput = this.state.newEmail;
     const currentEmail = this.state.profile.email;
     const sameEmail = currentEmail !== emailInput;
+
+    // const firstName = this.state.profile.name_first;
+    // const lastName = this.state.profile.name_last;
+    // const slug = this.state.profile.name_slug;
+    // const phone = this.state.profile.phone;
+    // const birthday = this.state.profile.birthday;
     const validEmail = () => {
       if (emailValidator && emailInput && sameEmail) {
         // @TODO We need to fix it later thanks!!!
-        console.log(emailInput);
-        saveProfile(emailInput);
+        // console.log('New Email==>', emailInput);
+        // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
         Alert.alert('Success', 'Your email has been Changed');
       }
     };

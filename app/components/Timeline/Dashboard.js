@@ -19,6 +19,7 @@ const account = require('../../images/dashboard/account.png');
 const modul = require('../../images/dashboard/panel.png');
 
 
+
 export default class Dashboard extends Component {
   constructor(props){
     super(props);
@@ -27,7 +28,6 @@ export default class Dashboard extends Component {
       loading: true,
     };
   }
-
 
   componentDidMount() {
     auth.profile()
