@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import strings from '../../localizations';
+import follows from '../../services/follows';
 
 const styles = StyleSheet.create({
   container: {
@@ -76,12 +77,35 @@ export default class ListFollow extends Component {
       statusFollow: [],
     };
   }
-  updateFollowData() {
-    auth.updatefollow()
-    .then(response => this.setState({ statusFollow: response.data, clicked: this.state.clicked }, () => console.log('------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response)))
-    .catch(Err => console.log('err', Err));
+  componentWillMount(){
+    if (this.props.rowData.status === 'request') {
+      this.setState({ clicked: false });
+    }
   }
-
+  updateFollowData(targetID) {
+    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++', targetID);
+    AsyncStorage.getItem('userId')
+    .then((id) => {
+      console.log('-----------USER ID From asyn-----------', id);
+      const status = 'request';
+      follows.updatefollow(id, targetID, status)
+      .then((response) => {
+        if (response.data.status === 'request') {
+          this.setState({ clicked: false });
+          console.log('TRUE');
+        } else if (response.data.status === 'approved') {
+          this.setState({ clicked: false });
+          console.log('FALSE');
+        } else {
+          console.log();
+        }
+        this.setState({ statusFollow: response.data });
+        console.log(this.state.statusFollow);
+        console.log('-------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response);
+      })
+      .catch((Err) => {console.log('err', Err); });
+    });
+  }
   toggleSwitch() {
     if (!this.state.clicked) {
       Alert.alert(strings.listfollow.confirmation,
@@ -96,10 +120,10 @@ export default class ListFollow extends Component {
 
   render() {
     let rowData;
-    if (this.props.person.type === 'follower') {
-      rowData = this.props.person.follower;
+    if (this.props.rowData.type === 'follower') {
+      rowData = this.props.rowData.follower;
     } else {
-      rowData = this.props.person.leader;
+      rowData = this.props.rowData.leader;
     }
     return (
       <TouchableOpacity
@@ -116,7 +140,10 @@ export default class ListFollow extends Component {
               <Text style={styles.detail}>{rowData.name_slug}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => this.toggleSwitch()}>
+          <TouchableOpacity onPress={() => {
+            this.toggleSwitch();
+            this.updateFollowData(rowData.id);
+          }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
               {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>

@@ -61,7 +61,7 @@ export default class FollowingMe extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
-          renderRow={rowData => <ListFollow person={{ ...rowData, type: 'follower' }} />}
+          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
         />
       );
     } else if (nodata === true) {
