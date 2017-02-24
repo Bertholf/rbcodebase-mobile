@@ -61,7 +61,7 @@ export default class Register extends Component {
 
   registerWithGoogle() {
     google.signIn()
-    .then(({user}) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email }))
+    .then(({user}) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }))
   }
   registerWithTwitter() {
     twitterModule.signIn()
