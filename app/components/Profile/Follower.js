@@ -22,7 +22,7 @@ export default class FollowingMe extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-          follows.showFolllower(53)
+          follows.showFolllower(myId)
         .then((res) => {
           this.changeState(res);
         })

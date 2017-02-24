@@ -23,7 +23,7 @@ export default class Friendlist extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-        follows.showFollowing(53)
+        follows.showFollowing(myId)
         .then((res) => {
           this.changeState(res);
         })
