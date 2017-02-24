@@ -10,6 +10,7 @@ import {
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import strings from '../../localizations/';
+import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 
 export default class PassEdit extends Component {
@@ -22,9 +23,14 @@ export default class PassEdit extends Component {
       profile: {},
     };
   }
+  // componentDidMount() {
+  //   me.getMe()
+  //   .then(data => this.setState({ profile: data }));
+  // }
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data }));
+    auth.profile()
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
   render() {
     const usedPassword = this.state.password;
@@ -33,11 +39,17 @@ export default class PassEdit extends Component {
     const passwordInput = this.state.newPassword;
     const password_confirmation = this.state.confirmPassword;
     const passwordLength = passwordInput.length < 6;
+    const id = this.state.profile.id;
+    const name_first = this.state.profile.name_first;
+    const name_last = this.state.profile.name_last;
+    const name_slug = this.state.profile.name_slug;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.date;
     const validPassword = () => {
       if (!Invalidpassword && !passwordLength) {
         // @TODO We need to fix it later, thanks!!!
         console.log('new password==>', passwordInput, password_confirmation);
-        saveProfile(passwordInput, password_confirmation);
+        saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, password_confirmation);
         Alert.alert('Success', 'Your password has been Changed');
       }
     };

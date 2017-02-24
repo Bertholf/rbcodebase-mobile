@@ -33,6 +33,7 @@ export default class ChangeUsername extends Component {
 
   render() {
     const saveUsername = () => {
+      const id = this.state.profile.id;
       const name_first = this.state.profile.name_first;
       const name_last = this.state.profile.name_last;
       const name_slug = this.state.profile.name_slug;
@@ -40,8 +41,8 @@ export default class ChangeUsername extends Component {
       const phone = this.state.profile.phone;
       const birthday = this.state.profile.birthday;
       const newUsernames = this.state.newUsername;
-      console.log('Username==>', name_first, name_last, newUsernames, email, phone, birthday);
-      saveProfile(name_first, name_last, newUsernames, phone, birthday);
+      console.log('Username==>', id, name_first, name_last, newUsernames, email, phone, birthday);
+      saveProfile(id, name_first, name_last, newUsernames, phone, birthday)
       Alert.alert('Success', 'Your Username has been Changed');
       this.clearText('textInput')
     };

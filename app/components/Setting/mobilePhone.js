@@ -82,6 +82,7 @@ export default class MobilePhone extends Component {
   }
   render() {
     const savePhone = () => {
+      const id = this.state.profile.id;
       const name_first = this.state.profile.name_first;
       const name_last = this.state.profile.name_last;
       const name_slug = this.state.profile.name_slug;
@@ -89,7 +90,7 @@ export default class MobilePhone extends Component {
       const birthday = this.state.profile.birthday;
       const phone = this.state.myNumber;
       console.log('Phone Nubmer==>', phone);
-      saveProfile(name_first, name_last, name_slug, phone, birthday);
+      saveProfile(id, name_first, name_last, name_slug, phone, birthday);
       Alert.alert('Success', 'Your Phone Number has been Changed');
       this.clearText('textInput')
     };
