@@ -61,11 +61,12 @@ export default class Register extends Component {
 
   registerWithGoogle() {
     google.signIn()
-    .then(({user}) => Actions.registrationform({firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email}))
+    .then(({user}) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }))
   }
   registerWithTwitter() {
     twitterModule.signIn()
-    .then(({user}) => Actions.registrationform({username: user.username, firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1]}));
+    .then(({user}) => Actions.registrationform({ username: user.username }))
+    .catch(err => console.log("ERROR TWITTER", err))
   }
 
   render() {
