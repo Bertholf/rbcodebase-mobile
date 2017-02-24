@@ -39,10 +39,9 @@ export default class ChangeUsername extends Component {
     const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
+    const emptyUsername = this.state.newUsername;
     const newUsernames = this.state.newUsername;
-    const emptyUsername = this.state.newUsername === '';
-    const newUsernames = this.state.newUsername;
-    const regex = /^[a-zA-Z0-9_-]{5,25}$/;
+    const regex = /^[a-zA-Z0-9_.-]{5,25}$/;
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
@@ -87,7 +86,7 @@ export default class ChangeUsername extends Component {
               numberOfLines={4} editable
               value={this.state.newUsername}
             />
-            {validRegex || emptyUsername ? <Text /> : <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
+            {validRegex || !emptyUsername ? <Text /> : <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
             {validUsername ? <Text /> : <Text style={styles.invalid}>{strings.changeUname.error_same_username}</Text>}
           </View>
           <Text style={{ marginLeft: 20, marginTop: 10 }}>

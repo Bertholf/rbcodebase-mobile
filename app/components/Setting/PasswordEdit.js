@@ -46,7 +46,6 @@ export default class PassEdit extends Component {
     const combinePassword = this.state.newPassword === this.state.confirmNewPassword;
     const passwordLength = passwordInput.length >= 6;
     const password_confirmation = this.state.confirmPassword;
-    const passwordLength = passwordInput.length < 6;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
