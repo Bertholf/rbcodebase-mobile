@@ -12,6 +12,9 @@ import styles from './ChangeSetting/ChangeStyles';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations/';
 import auth from './../../services/auth';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
+import {Actions} from 'react-native-router-flux';
 
 export default class PassEdit extends Component {
   constructor(props) {
@@ -38,6 +41,18 @@ export default class PassEdit extends Component {
   }
 
   render() {
+    const rightButtonConfig = {
+    title: 'Save',
+    handler: () => alert('successfully!'),
+  };
+    const leftButtonConfig = {
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
+
+  const titleConfig = {
+    title: 'Edit Paasword',
+  };
     const usedPassword = this.state.password;
     const currentPassword = this.state.profile.password;
     const validPassword = usedPassword === currentPassword;
@@ -67,6 +82,12 @@ export default class PassEdit extends Component {
     // strings.setLanguage('en');
     return (
       <View style={styles.OuterView}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
@@ -106,13 +127,6 @@ export default class PassEdit extends Component {
             {combinePassword ? <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_passwordCombination}</Text>}
           </View>
         </ScrollView>
-        <TouchableOpacity onPress={onSave}>
-          <View style={styles.View2}>
-            <Text style={styles.Button}>
-              {strings.PassEditLoc.save}
-            </Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }
