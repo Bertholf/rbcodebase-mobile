@@ -43,7 +43,7 @@ export default class AddFriendScreen extends React.Component {
   componentDidMount() {
     friend.getFriend()
     .then((response) => {
-      this.setState({ friendlist: response.data, loading: false });
+      this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
       console.log('ADD FRIEND ERROR', err);
       Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
@@ -52,6 +52,13 @@ export default class AddFriendScreen extends React.Component {
 
   render() {
     if (this.state.loading === false) {
+      const privacyFollow = this.state.friendlist[0].setting.privacy_follow;
+      console.log('privas=========', privacyFollow);
+
+      // const checkPrivacyFollow = () => {
+      //   if(privacyFollow !== 'none')
+      // }
+
       return (
         <View style={styles.container}>
           <View

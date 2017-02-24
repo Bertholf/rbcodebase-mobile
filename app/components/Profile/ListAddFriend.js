@@ -90,11 +90,12 @@ export default class ListAddFriend extends Component {
 
   render() {
     return (
+      <View style={styles.container}>
       <TouchableOpacity
         onPress={() => Actions.profile({ profile: this.props.rowData })}
         activeOpacity={0.7}
       >
-        <View style={styles.container}>
+        <View >
           <View style={{ flexDirection: 'row' }}>
             <Image source={{ uri: this.props.rowData.picture }} style={styles.photo} />
             <View style={styles.account}>
@@ -104,12 +105,15 @@ export default class ListAddFriend extends Component {
               <Text style={styles.detail}>{this.props.rowData.name_slug}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => this.toggleSwitch()}>
-            <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.state.clicked ? strings.addfriend.add : strings.addfriend.unfriend }</Text>
-          </TouchableOpacity>
+          
         </View>
       </TouchableOpacity>
+      <TouchableOpacity disabled={this.privacyFollow !== 'none' ? false : true}  onPress={() => this.toggleSwitch()}>
+        <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
+          {this.state.clicked ? strings.addfriend.add : strings.addfriend.unfriend }
+        </Text>
+      </TouchableOpacity>
+      </View>
     );
   }
 
