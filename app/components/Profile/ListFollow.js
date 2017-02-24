@@ -95,19 +95,26 @@ export default class ListFollow extends Component {
   }
 
   render() {
+    let rowData;
+    console.log('props list ccomponent', this.props);
+    if (this.props.person.type === 'follower') {
+      rowData = this.props.person.follower;
+    } else {
+      rowData = this.props.person.leader;
+    }
     return (
       <TouchableOpacity
-        onPress={() => Actions.profile({ profile: this.props.rowData })}
+        onPress={() => Actions.profile({ profile: rowData })}
         activeOpacity={0.7}
       >
         <View style={styles.container}>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={{ uri: this.props.rowData.picture }} style={styles.photo} />
+            <Image source={{ uri: rowData.picture }} style={styles.photo} />
             <View style={styles.account}>
               <Text style={styles.user}>
-                {this.props.rowData.name_first} {this.props.rowData.name_last}
+                {rowData.name_first} {rowData.name_last}
               </Text>
-              <Text style={styles.detail}>{this.props.rowData.name_slug}</Text>
+              <Text style={styles.detail}>{rowData.name_slug}</Text>
             </View>
           </View>
           <TouchableOpacity onPress={() => this.toggleSwitch()}>
