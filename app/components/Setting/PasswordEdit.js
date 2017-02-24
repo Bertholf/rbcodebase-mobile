@@ -11,6 +11,7 @@ import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations/';
+import auth from './../../services/auth';
 
 export default class PassEdit extends Component {
   constructor(props) {
@@ -22,10 +23,20 @@ export default class PassEdit extends Component {
       profile: {},
     };
   }
+  // componentDidMount() {
+  //   me.getMe()
+  //   .then(data => this.setState({ profile: data }));
+  // }
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data }));
+    auth.profile()
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
+
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   render() {
     const usedPassword = this.state.password;
     const currentPassword = this.state.profile.password;
@@ -34,11 +45,24 @@ export default class PassEdit extends Component {
     const passwordConfirmation = this.state.confirmPassword;
     const combinePassword = this.state.newPassword === this.state.confirmNewPassword;
     const passwordLength = passwordInput.length >= 6;
+    const password_confirmation = this.state.confirmPassword;
+    const passwordLength = passwordInput.length < 6;
+    const id = this.state.profile.id;
+    const name_first = this.state.profile.name_first;
+    const name_last = this.state.profile.name_last;
+    const name_slug = this.state.profile.name_slug;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.date;
     const onSave = () => {
       if (validPassword && passwordLength && combinePassword) {
-        console.log('new password', passwordInput, passwordConfirmation);
-        saveProfile(passwordInput, passwordConfirmation);
+        console.log('new password==>', passwordInput, password_confirmation);
+        saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, password_confirmation);
         Alert.alert('Success', 'Your password has been Changed');
+        this.clearText('textInput1')
+        this.clearText('textInput2')
+        auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
       }
     };
     // strings.setLanguage('en');
@@ -64,6 +88,7 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.enterYourNewPassword}
             </Text>
             <TextInput
+              ref={'textInput1'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
@@ -74,6 +99,7 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.confirmChange}
             </Text>
             <TextInput
+              ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
               numberOfLines={4}

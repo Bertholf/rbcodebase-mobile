@@ -28,16 +28,26 @@ export default class NameEdit extends Component{
     .catch(Err => console.log('err,Err'));
   }
 
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   render() {
     const value = /^[a-zA-Z ]+$/
+    const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);
     const lastNameValidator = value.test(this.state.lastName);
     const firstNameInput = this.state.firstName;
     const lastNameInput = this.state.lastName;
     const currentFirstName = this.state.profile.first_name;
     const currentLastName = this.state.profile.last_name;
+    const slug = this.state.profile.name_slug;
+    const email = this.state.profile.email;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.birthday;
+
     const validateName = () => {
-      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator){
+      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
         if (firstNameInput === currentFirstName) {
           if (lastNameInput === currentLastName) {
             Alert.alert('Nothing Changed!', 'Your name is same as current :)');
@@ -47,9 +57,14 @@ export default class NameEdit extends Component{
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
-          console.log(firstNameInput, lastNameInput);
-          saveProfile(firstNameInput, lastNameInput);
+          console.log('name===', firstNameInput, lastNameInput);
+          saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
           Alert.alert('Success', 'Your name has been Changed');
+          this.clearText('textInput1');
+          this.clearText('textInput2');
+          auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');
@@ -72,6 +87,7 @@ export default class NameEdit extends Component{
               {strings.ChangeName.newname}
             </Text>
             <TextInput
+              ref={'textInput1'}
               style={styles.TextInput1}
               underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
@@ -87,6 +103,7 @@ export default class NameEdit extends Component{
               {strings.ChangeName.lastname}
             </Text>
             <TextInput
+              ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.lastname} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}

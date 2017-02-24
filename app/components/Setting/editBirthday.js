@@ -12,6 +12,7 @@ import {
 import DatePicker from 'react-native-datepicker';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
+import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 
 const moment = require('moment');
@@ -20,18 +21,36 @@ const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
   constructor(props){
     super(props);
-    this.state = { date: '2016-01-01' };
+    this.state = { 
+      date: '2016-01-01',
+      profile: {},
+   };
   }
 
   getDate() {
     return moment().local();
   }
+  
+  componentDidMount() {
+   auth.profile()
+   .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+   .catch(Err => console.log('err,Err'));
+  }
+  
   render() {
     const updateBirthday = () => {
+      const id = this.state.profile.id;
+      const name_first = this.state.profile.name_first;
+      const name_last = this.state.profile.name_last;
+      const name_slug = this.state.profile.name_slug;
+      const phone = this.state.profile.phone;
       const birthday = this.state.date;
-      console.log(" tangal lahir==", birthday);
-      saveProfile(birthday);
+      console.log('tangal lahir==>', birthday);
+      saveProfile(id, name_first, name_last, name_slug, phone, birthday);
       Alert.alert('Success', 'Your birthday has been Changed');
+      auth.profile ()
+        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .catch(Err=> console.log('err', Err))
     };
     return (
       <View style={{ flex: 1}}>
