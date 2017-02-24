@@ -5,7 +5,6 @@ import friend from '../../services/friend';
 import ListFollow from './ListFollow';
 import auth from './../../services/auth';
 
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class FollowingMe extends React.Component {
   constructor(props) {

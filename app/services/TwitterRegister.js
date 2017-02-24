@@ -14,6 +14,7 @@ const twitterRegister = () => {
   });
   manager.authorize('twitter')
     .then((response) => {
+      console.log(response);
       const userTimelineUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
       manager.makeRequest('twitter', userTimelineUrl)
       .then((resp) => {

@@ -66,28 +66,22 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class ListFollow extends Component {
+export default class ListAddFriend extends Component {
   constructor(props) {
     super(props);
     this.state = {
       clicked: true,
       loading: true,
       friendlist: {},
-      statusFollow: [],
     };
-  }
-  updateFollowData() {
-    auth.updatefollow()
-    .then(response => this.setState({ statusFollow: response.data, clicked: this.state.clicked }, () => console.log('------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response)))
-    .catch(Err => console.log('err', Err));
   }
 
   toggleSwitch() {
     if (!this.state.clicked) {
-      Alert.alert(strings.listfollow.confirmation,
-               strings.listfollow.question, [
-                { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: strings.listfollow.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
+      Alert.alert(strings.addfriend.cofirmation,
+               strings.addfriend.question, [
+                { text: strings.addfriend.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
+                { text: strings.addfriend.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
                ]);
     } else {
       this.setState({ clicked: !this.state.clicked });
@@ -112,7 +106,7 @@ export default class ListFollow extends Component {
           </View>
           <TouchableOpacity onPress={() => this.toggleSwitch()}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
+              {this.state.clicked ? strings.addfriend.add : strings.addfriend.unfriend }</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>

@@ -7,33 +7,46 @@ import manager from '../actions/Auth';
 
 const google = NativeModules.GoogleSignInModule;
 const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
-const Logout = async () => {
-  const accessT = AsyncStorage.getItem('accessToken');
-  const prov = AsyncStorage.getItem('provider');
-  if (prov === 'facebook' && accessT !== '') {
-    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
-    LoginManager.logOut();
-    Actions.login();
-  } else if (prov === 'google' && accessT !== '') {
-    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
-    google.signOut();
-    Actions.login();
-  } else if (prov === 'twitter' && accessT !== '') {
-    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
-    manager.configure({
-      twitter: {
-        consumer_key: TWITTER_CONSUMER_KEY,
-        consumer_secret: TWITTER_CONSUMER_SECRET,
-      },
-    });
-    manager.deauthorize('twitter');
-    console.log('TWITTER LOG');
-    // OAuthManager().deauthorize('twitter');
-    Actions.login();
-  } else {
-    AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
-    Actions.login();
-  }
+const Logout = () => {
+  AsyncStorage.getItem('accessToken')
+  .then((accessToken) => {
+    let temp1 = [];
+    temp1.push(accessToken);
+    AsyncStorage.getItem('provider')
+    .then((provider) => {
+      temp1.push(provider);
+      console.log('my TEMP', temp1);
+      return temp1;
+    })
+    .then((temp) => {
+      if (temp[1] === 'facebook' && temp[0] !== null) {
+        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON FACEBOOK', response); }, (error) => { console.log(error); });
+        LoginManager.logOut();
+        Actions.login({ type: 'reset'});
+      } else if (temp[1] === 'google' && temp[0] !== '') {
+        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        google.signOut();
+        Actions.login({ type: 'reset' });
+      } else if (temp[1] === 'twitter' && temp[0] !== '') {
+        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        manager.configure({
+          twitter: {
+            consumer_key: TWITTER_CONSUMER_KEY,
+            consumer_secret: TWITTER_CONSUMER_SECRET,
+          },
+        });
+        manager.deauthorize('twitter');
+        console.log('TWITTER LOG');
+        // OAuthManager().deauthorize('twitter');
+        Actions.login();
+      } else {
+        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        Actions.login({ type: 'reset' });
+      }
+
+  })
+  }).catch(err => console.log(err));
+
   // } catch (err) {
   //   console.log('logOut error : ', err);
   // }
