@@ -49,12 +49,26 @@ export function doneLogin(response = {}) {
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
     if(response.provider === 'twitter') {
-      AsyncStorage.setItem('accessToken', response.secret);
       auth.checktwitter(response.accessToken, response.provider, response.secret)
+      .then((resL) => {
+        console.log('RESPONSE RBCODETWITTER', resL);
+        if (resL.data.registered === false ) {
+          const props = {
+            firstName: resL.data.name.split(' ')[0],
+            lastName: resL.data.name.split(' ')[1],
+            username: resL.data.nickname,
+            email: resL.data.email,
+          }
+          Actions.registrationform(props);
+          AsyncStorage.removeItem('accessToken');
+        } else {
+          Actions.actionswiper({ type: 'reset' });
+        }
+      })
+    } else {
+      Actions.pop();
       Actions.actionswiper({ type: 'reset' });
     }
-    Actions.pop();
-    Actions.actionswiper({ type: 'reset' });
   }
 
   return { type: DONE_LOGIN, response };
