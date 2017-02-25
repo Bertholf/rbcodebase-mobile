@@ -14,6 +14,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
+import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -96,24 +97,25 @@ export default class RegistrationForm extends Component {
 
   render() {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
-    const usernameRegex = /^[a-zA-Z0-9_-]{5,25}$/;
+    const usernameRegex = /^[a-zA-Z0-9]{0,4}$/;
     const nameRegex = /^[a-zA-Z]+$/;
 
     const validFName = nameRegex.test(this.state.firstname);
     const validLName = nameRegex.test(this.state.lastname);
-    const validUsername = usernameRegex.test(this.state.username);
-    const validEmail = emailRegex.test(this.state.email);
     const emptyFName = this.state.firstname === '';
     const emptyLName = this.state.lastname === '';
     const emptyUName = this.state.username === '';
     const emptyEmail = this.state.email === '' || !this.state.email;
+    const validUsername = this.state.username.length >= 4;
+    const validEmail = emailRegex.test(this.state.email);
     const validPass = (this.state.password === this.state.confirmPassword);
+    const validLPass = this.state.password.length >= 6;
     const emptyPass = this.state.password === '';
-    const available = validFName && validLName && validUsername && validEmail && validPass;
+    const available = validFName && validLName && validUsername && validEmail && validPass && validLPass;
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
-        const { firstname, lastname, username, email, password, confirmPassword } = this.state;
+        const {firstname, lastname, username, email, password, confirmPassword } = this.state;
         this.setState({ submitting: true });
         submitRegister(firstname, lastname, username, email, password, confirmPassword);
       } else {
@@ -122,8 +124,17 @@ export default class RegistrationForm extends Component {
     };
     // strings.setLanguage('en');
     return (
+      <View style={{flex: 1}}>
+           <KeyboardAwareView animated={true}>
       <View style={styles.container} >
-        <ScrollView>
+        <ScrollView
+        ref={(view) => {this.scrollView = view; }}
+                  style={[{flex: 1, alignSelf: 'stretch'}]}
+                  keyboardShouldPersistTaps={true}
+                  automaticallyAdjustContentInsets={false}
+                  onScroll={this.onScroll}
+                  scrollEventThrottle={200}
+                  onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -209,7 +220,7 @@ export default class RegistrationForm extends Component {
                 secureTextEntry
               />
             </View>
-            {validPass || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.PassdoesntMatch}</Text>}
+            {(validPass && validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.PassdoesntMatch}</Text>}
             <View style={styles.line} />
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -261,6 +272,8 @@ export default class RegistrationForm extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
+      </View>
+      </KeyboardAwareView>
       </View>
     );
   }
