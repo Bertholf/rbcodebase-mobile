@@ -60,10 +60,6 @@ class userPanel extends React.Component {
 
 
   render() {
-    const onPressed = () => {
-      this.state.my;
-      Actions.profile();
-    };
     return (
         <View style={styles.container}>
           <ScrollView>
@@ -76,7 +72,7 @@ class userPanel extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.userContainer} >
-              <TouchableOpacity activeOpacity={0.7} style={styles.userButton} onPress={ () => Actions.profile({ profile: this.state.profile})}>
+              <TouchableOpacity activeOpacity={0.7} style={styles.userButton} onPress={ () => Actions.profile({ profile: this.state.profile })}>
                 <Image source={{uri:this.state.profile.picture}} style={styles.userImage} />
               </TouchableOpacity>
               <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
