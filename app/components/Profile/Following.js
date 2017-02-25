@@ -61,7 +61,7 @@ export default class Friendlist extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.following)}
-          renderRow={rowData => <ListFollow person={{ ...rowData, type: 'following' }} />}
+          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following' }} />}
         />
       );
     } else if (nodata === true) {
