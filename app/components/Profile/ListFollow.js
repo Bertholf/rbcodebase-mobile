@@ -106,12 +106,20 @@ export default class ListFollow extends Component {
       .catch((Err) => {console.log('err', Err); });
     });
   }
+
+  unfollowUser() {
+    follows.unfollow(this.props.rowData.id)
+      .then(result => {
+        console.log(result.id, 'UNFOLLOWED');
+      }).catch(err => console.log(err))
+  }
+
   toggleSwitch() {
     if (!this.state.clicked) {
       Alert.alert(strings.listfollow.confirmation,
                strings.listfollow.question, [
                 { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: strings.listfollow.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
+                { text: strings.listfollow.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
       this.setState({ clicked: !this.state.clicked });
@@ -141,8 +149,7 @@ export default class ListFollow extends Component {
             </View>
           </View>
           <TouchableOpacity onPress={() => {
-            this.toggleSwitch();
-            this.updateFollowData(rowData.id);
+            this.toggleSwitch(rowData.id);
           }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
               {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
