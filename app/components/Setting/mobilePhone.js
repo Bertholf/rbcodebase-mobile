@@ -9,6 +9,9 @@ import {
  } from 'react-native';
 import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
+import {Actions} from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   container: {
@@ -81,6 +84,18 @@ export default class MobilePhone extends Component {
     this.refs[fieldName].setNativeProps({ text: '' });
   }
   render() {
+    const rightButtonConfig = {
+    title: 'Save',
+    handler: () => alert('successfully!'),
+  };
+    const leftButtonConfig = {
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
+
+  const titleConfig = {
+    title: 'Edit Phone',
+  };
     const savePhone = () => {
       const id = this.state.profile.id;
       const name_first = this.state.profile.name_first;
@@ -98,6 +113,13 @@ export default class MobilePhone extends Component {
         .catch(Err=> console.log('err', Err))
     };
     return (
+      <View>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
       <View style={styles.container}>
         <Text style={styles.heading}></Text>
         <View style={styles.textinputWrapperStyle}>
@@ -125,11 +147,7 @@ export default class MobilePhone extends Component {
             maxLength={12}
             />
         </View>
-        <View>
-          <TouchableOpacity style={styles.button} onPress={savePhone}>
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableOpacity>
-        </View>
+      </View>
       </View>
        );
      }

@@ -19,7 +19,7 @@ const NavBar = (props) => {
          leftButton={<IconClose onPress={Actions.pop} />}
          statusBar={{hidden: true}}
         title={{ title: scenes[scenes.length - 1].title }}
-        style={{backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}
+        style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}
       />}
       <DefaultRenderer
         navigationState={children[children.length - 1]}
