@@ -71,7 +71,7 @@ export default class ListFollow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: !this.props.rowData.followed,
+      clicked: true,
       loading: true,
       friendlist: {},
       statusFollow: [],
@@ -114,7 +114,7 @@ export default class ListFollow extends Component {
       }).catch(err => console.log(err))
   }
 
-  toggleSwitch() {
+  toggleSwitch(id) {
     if (!this.state.clicked) {
       // this section will executed when button unFollow pressed
       Alert.alert(strings.listfollow.confirmation,
@@ -131,7 +131,8 @@ export default class ListFollow extends Component {
     AsyncStorage.getItem('userId')
     .then((followerId) => {
       follows.followsomeone(followerId, leaderId)
-      .then(() => {
+      .then((res) => {
+        console.log('FOLLOW RES', res);
         this.setState({ clicked: false });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
