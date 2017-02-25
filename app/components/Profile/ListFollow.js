@@ -77,7 +77,7 @@ export default class ListFollow extends Component {
       statusFollow: [],
     };
   }
-  componentWillMount(){
+  componentWillMount() {
     if (this.props.rowData.status === 'request') {
       this.setState({ clicked: false });
     }
@@ -114,24 +114,41 @@ export default class ListFollow extends Component {
       }).catch(err => console.log(err))
   }
 
-  toggleSwitch() {
+  toggleSwitch(id) {
     if (!this.state.clicked) {
+      // this section will executed when button unFollow pressed
       Alert.alert(strings.listfollow.confirmation,
                strings.listfollow.question, [
                 { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
                 { text: strings.listfollow.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
-      this.setState({ clicked: !this.state.clicked });
+      // this section will executed when button follow pressed
+      this.follow(id);
     }
+  }
+  follow(leaderId) {
+    AsyncStorage.getItem('userId')
+    .then((followerId) => {
+      follows.followsomeone(followerId, leaderId)
+      .then((res) => {
+        console.log('FOLLOW RES', res);
+        this.setState({ clicked: false });
+      })
+      .catch(err => console.log('FAIL FOLLLOW', err));
+    })
+    .catch(err => console.log('fail ASYNC follow', err));
   }
 
   render() {
     let rowData;
     if (this.props.rowData.type === 'follower') {
       rowData = this.props.rowData.follower;
-    } else {
+    } else if (this.props.rowData.type === 'following') {
       rowData = this.props.rowData.leader;
+    } else {
+      // this section will call when add friend call use this this component
+      rowData = this.props.rowData;
     }
     return (
       <TouchableOpacity
