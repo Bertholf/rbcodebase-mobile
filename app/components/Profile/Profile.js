@@ -142,7 +142,9 @@ export default class Profile extends Component {
               </View>
             </View>
               <View style={styles.biodata}>
+                <TouchableOpacity onPress= {Actions.about}>
                 <Text style={styles.bio}>Bio</Text>
+                </TouchableOpacity>
                 <Text style={styles.isi}>{this.state.profile.about}</Text>
                 <Text style={styles.bio}>Last Hiking</Text>
                 <View style={styles.posisi}>
