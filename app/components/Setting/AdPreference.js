@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import auth from './../../services/auth';
 
@@ -18,90 +19,263 @@ export default class AdPreference extends Component {
       selected1: 'key1',
       selected2: 'key1',
       selected3: 'key1',
-      data: [
-        {status: "all"},
-        {status: "everyone"},
-        {staus: "none"}
-      ]
+      language: ""
     };
   }
 
   componentDidMount() {
     auth.adprefe()
-    .then(response => this.setState({ adprefe: response.data }, ()=> console.log("aku bingung", this.state.adprefe)))
+    .then(response => this.setState({
+      privacy_follow: response.data[0].privacy_follow ,
+      privacy_follow_confirm: response.data[0].privacy_follow_confirm,
+      privacy_comment: response.data[0].privacy_comment,
+      privacy_post: response.data[0].privacy_post,
+      privacy_timeline_post: response.data[0].privacy_timeline_post,
+      privacy_message: response.data[0].privacy_message,
+    }) )
     .catch(Err => console.log('err', Err));
   }
-
-  // dataPrivacy() {
-  //   let value;
-  //   switch (this.state.adprefe.user_id) {
-  //     case 'Everyone':
-  //       value = 'Everyone';
-  //       break;
-  //     case 'All':
-  //       value = 'All';
-  //       break;
-  //     case 'None':
-  //       value = 'None';
-  //       break;
-  //     // default:
-  //     //   value = this.state.adprefe.privacy_follow;
-  //   }
-  // }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ padding: 16 }}>
+        <ScrollView>
+        <View>
           <View style={styles.styleView}>
             <View style={{alignSelf: 'center'}}>
               <Text style={styles.text}>Privacy Follow</Text>
             </View>
           </View>
-          <Picker
-            selectedValue="popo"
-            onValueChange={(lang) => this.setState({language: lang})}>
-            <Picker.Item label="All" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-            {/* {this.state.data.map((x) => (
-              <Picker.Item label={x.status} value={x.status} />
-            ))} */}
-          </Picker>
+          { this.state.privacy_follow == 'everyone' ?
+              <Picker
+                selectedValue={this.state.language}
+                onValueChange={(lang) => this.setState({language: lang})}>
+                <Picker.Item label={this.state.privacy_follow} value="everyone" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
+             </Picker> :
+
+             this.state.privacy_follow == 'all' ?
+
+            <Picker
+              selectedValue={this.state.language}
+              onValueChange={(lang) => this.setState({language: lang})}>
+              <Picker.Item label={this.state.privacy_follow} value="all" />
+              <Picker.Item label="everyone" value="everyone" />
+              <Picker.Item label="none" value="none" />
+           </Picker> :
+
+             this.state.privacy_follow == 'none' ?
+             <Picker
+               selectedValue={this.state.language}
+               onValueChange={(lang) => this.setState({language: lang})}>
+               <Picker.Item label={this.state.privacy_follow} value="none" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="everyone" value="everyone" />
+            </Picker>
+
+            : <Text>Loading...</Text>
+
+          }
         </View>
-        <View style={{ padding: 16 }}>
+        <View>
+          <View style={styles.styleView}>
+            <View style={{alignSelf: 'center'}}>
+              <Text style={styles.text}>Privacy Follow Confirm</Text>
+            </View>
+          </View>
+          { this.state.privacy_follow_confirm == 'everyone' ?
+          <Picker
+            selectedValue={this.state.language}
+            onValueChange={(lang) => this.setState({language: lang})}>
+            <Picker.Item label={this.state.privacy_follow_confirm} value="everyone" />
+            <Picker.Item label="all" value="all" />
+            <Picker.Item label="none" value="none" />
+          </Picker> :
+
+          this.state.privacy_follow_confirm == 'all' ?
+
+          <Picker
+            selectedValue={this.state.language}
+            onValueChange={(lang) => this.setState({language: lang})}>
+            <Picker.Item label={this.state.privacy_follow_confirm} value="all" />
+            <Picker.Item label="everyone" value="everyone" />
+            <Picker.Item label="none" value="none" />
+          </Picker> :
+
+          this.state.privacy_follow_confirm == 'none' ?
+          <Picker
+            selectedValue={this.state.language}
+            onValueChange={(lang) => this.setState({language: lang})}>
+            <Picker.Item label={this.state.privacy_follow_confirm} value="none" />
+            <Picker.Item label="all" value="all" />
+            <Picker.Item label="everyone" value="everyone" />
+          </Picker>
+
+          : <Text>Loading...</Text>
+
+        }
+      </View>
+        <View>
           <View style={styles.styleView}>
             <View style={{alignSelf: 'center'}}>
               <Text style={styles.text}>Privacy Comment</Text>
             </View>
           </View>
-          {/* <Picker
-            selectedValue={this.state.language}
-            onValueChange={(lang) => this.setState({language: lang})}>
-            {this.state.data.map((x) => (
-              <Picker.Item label={x.status} value={x.status} />
-            ))}
-          </Picker> */}
+          { this.state.privacy_comment == 'everyone' ?
+              <Picker
+                selectedValue={this.state.language}
+                onValueChange={(lang) => this.setState({language: lang})}>
+                <Picker.Item label={this.state.privacy_comment} value="everyone" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
+             </Picker> :
+
+             this.state.privacy_comment == 'all' ?
+
+            <Picker
+              selectedValue={this.state.language}
+              onValueChange={(lang) => this.setState({language: lang})}>
+              <Picker.Item label={this.state.privacy_comment} value="all" />
+              <Picker.Item label="everyone" value="everyone" />
+              <Picker.Item label="none" value="none" />
+           </Picker> :
+
+             this.state.privacy_comment == 'none' ?
+             <Picker
+               selectedValue={this.state.language}
+               onValueChange={(lang) => this.setState({language: lang})}>
+               <Picker.Item label={this.state.privacy_comment} value="none" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="everyone" value="everyone" />
+            </Picker>
+
+            : <Text>Loading...</Text>
+
+          }
         </View>
-        <View style={{ padding: 16 }}>
+        <View>
           <View style={styles.styleView}>
             <View style={{alignSelf: 'center'}}>
-              <Text style={styles.text}>PrivacyPolicy</Text>
+              <Text style={styles.text}>Privacy Post</Text>
             </View>
           </View>
-          {/* <Picker
-            selectedValue={this.state.language}
-            onValueChange={(lang) => this.setState({language: lang})}>
-            {this.state.data.map((x) => (
-              <Picker.Item label={x.status} value={x.status} />
-            ))}
-          </Picker> */}
+          { this.state.privacy_follow_confirm == 'everyone' ?
+              <Picker
+                selectedValue={this.state.language}
+                onValueChange={(lang) => this.setState({language: lang})}>
+                <Picker.Item label={this.state.privacy_follow_confirm} value="everyone" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
+             </Picker> :
+
+             this.state.privacy_follow_confirm == 'all' ?
+
+            <Picker
+              selectedValue={this.state.language}
+              onValueChange={(lang) => this.setState({language: lang})}>
+              <Picker.Item label={this.state.privacy_follow_confirm} value="all" />
+              <Picker.Item label="everyone" value="everyone" />
+              <Picker.Item label="none" value="none" />
+           </Picker> :
+
+             this.state.privacy_follow_confirm == 'none' ?
+             <Picker
+               selectedValue={this.state.language}
+               onValueChange={(lang) => this.setState({language: lang})}>
+               <Picker.Item label={this.state.privacy_follow_confirm} value="none" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="everyone" value="everyone" />
+            </Picker>
+
+            : <Text>Loading...</Text>
+
+          }
+        </View>
+        <View>
+          <View style={styles.styleView}>
+            <View style={{alignSelf: 'center'}}>
+              <Text style={styles.text}>Privacy Timeline Post</Text>
+            </View>
+          </View>
+          { this.state.privacy_timeline_post == 'everyone' ?
+              <Picker
+                selectedValue={this.state.language}
+                onValueChange={(lang) => this.setState({language: lang})}>
+                <Picker.Item label={this.state.privacy_timeline_post} value="everyone" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
+             </Picker> :
+
+             this.state.privacy_timeline_post == 'all' ?
+
+            <Picker
+              selectedValue={this.state.language}
+              onValueChange={(lang) => this.setState({language: lang})}>
+              <Picker.Item label={this.state.privacy_timeline_post} value="all" />
+              <Picker.Item label="everyone" value="everyone" />
+              <Picker.Item label="none" value="none" />
+           </Picker> :
+
+             this.state.privacy_timeline_post == 'none' ?
+             <Picker
+               selectedValue={this.state.language}
+               onValueChange={(lang) => this.setState({language: lang})}>
+               <Picker.Item label={this.state.privacy_timeline_post} value="none" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="everyone" value="everyone" />
+            </Picker>
+
+            : <Text>Loading...</Text>
+
+          }
+        </View>
+        <View>
+          <View style={styles.styleView}>
+            <View style={{alignSelf: 'center'}}>
+              <Text style={styles.text}>Privacy Message</Text>
+            </View>
+          </View>
+          { this.state.privacy_message == 'everyone' ?
+              <Picker
+                selectedValue={this.state.language}
+                onValueChange={(lang) => this.setState({language: lang})}>
+                <Picker.Item label={this.state.privacy_message} value="everyone" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
+             </Picker> :
+
+             this.state.privacy_message == 'all' ?
+
+            <Picker
+              selectedValue={this.state.language}
+              onValueChange={(lang) => this.setState({language: lang})}>
+              <Picker.Item label={this.state.privacy_message} value="all" />
+              <Picker.Item label="everyone" value="everyone" />
+              <Picker.Item label="none" value="none" />
+           </Picker> :
+
+             this.state.privacy_message == 'none' ?
+             <Picker
+               selectedValue={this.state.language}
+               onValueChange={(lang) => this.setState({language: lang})}>
+               <Picker.Item label={this.state.privacy_message} value="none" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="everyone" value="everyone" />
+            </Picker>
+
+            : <Text>Loading...</Text>
+
+          }
         </View>
         <View style={{ marginTop: 20, padding: 14 }}>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.titleButton} >Tekan</Text>
           </TouchableOpacity>
         </View>
+      </ScrollView>
       </View>
+
     );
   }
 }
