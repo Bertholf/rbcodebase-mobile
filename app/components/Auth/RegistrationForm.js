@@ -76,6 +76,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
   },
+  errBox: {
+    margin: 10,
+    borderRadius: 6,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,0,0,0.7)',
+    width: 0.75 * width,
+    height: 60,
+    padding: 10,
+  },
 });
 
 export default class RegistrationForm extends Component {
@@ -84,14 +95,16 @@ export default class RegistrationForm extends Component {
     this.state = {
       availableUser: false,
       app: 'RBCodeBase',
-      firstname: this.props.firstName,
-      lastname: this.props.lastName,
-      email: this.props.email,
-      username: this.props.username,
+      firstname: this.props.firstName || '',
+      lastname: this.props.lastName || '',
+      email: this.props.email || '',
+      username: this.props.username || '',
       password: '',
       confirmPassword: '',
       valid: false,
-      submitting: false
+      submitting: false,
+      failregister: false,
+      failMsg: '',
     };
   }
 
@@ -99,7 +112,6 @@ export default class RegistrationForm extends Component {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const usernameRegex = /^[a-zA-Z0-9_-]{5,25}$/;
     const nameRegex = /^[a-zA-Z]+$/;
-
     const validFName = nameRegex.test(this.state.firstname);
     const validLName = nameRegex.test(this.state.lastname);
     const validUsername = usernameRegex.test(this.state.username);
@@ -117,7 +129,10 @@ export default class RegistrationForm extends Component {
       if (available && notEmpty) {
         const {firstname, lastname, username, email, password, confirmPassword } = this.state;
         this.setState({ submitting: true });
-        submitRegister(firstname, lastname, username, email, password, confirmPassword);
+        submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
+          this.setState({ failregister: true, failMsg: msg, submitting: false }, () =>
+        console.log('FINAL State : ', this.state));
+        });
       } else {
         Alert.alert(strings.register.error_failed);
       }
@@ -128,13 +143,14 @@ export default class RegistrationForm extends Component {
            <KeyboardAwareView animated={true}>
       <View style={styles.container} >
         <ScrollView
-        ref={(view) => {this.scrollView = view; }}
-                  style={[{flex: 1, alignSelf: 'stretch'}]}
-                  keyboardShouldPersistTaps={true}
-                  automaticallyAdjustContentInsets={false}
-                  onScroll={this.onScroll}
-                  scrollEventThrottle={200}
-                  onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}>
+          ref={(view) => {this.scrollView = view; }}
+          style={[{ flex: 1, alignSelf: 'stretch'}]}
+          keyboardShouldPersistTaps
+          automaticallyAdjustContentInsets={false}
+          onScroll={this.onScroll}
+          scrollEventThrottle={200}
+          onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}
+        >
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -143,7 +159,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={firstname => this.setState({ firstname })}
+                onChangeText={firstname => this.setState({ firstname, failregister: false })}
                 value={this.state.firstname}
               />
             </View>
@@ -157,7 +173,7 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 editable
-                onChangeText={lastname => this.setState({ lastname })}
+                onChangeText={lastname => this.setState({ lastname, failregister: false })}
                 value={this.state.lastname}
               />
             </View>
@@ -171,7 +187,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={username => this.setState({ username })}
+                onChangeText={username => this.setState({ username, failregister: false })}
                 value={this.state.username}
                 editable
               />
@@ -191,7 +207,7 @@ export default class RegistrationForm extends Component {
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
                 editable
-                onChangeText={email => this.setState({ email })}
+                onChangeText={email => this.setState({ email, failregister: false })}
                 value={this.state.email}
               />
             </View>
@@ -205,7 +221,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={password => this.setState({ password })}
+                onChangeText={password => this.setState({ password, failregister: false })}
                 secureTextEntry
               />
             </View>
@@ -216,7 +232,7 @@ export default class RegistrationForm extends Component {
                 selectionColor="silver"
                 underlineColorAndroid="rgba(0,0,0,0)"
                 style={styles.textinputStyle}
-                onChangeText={confirmPassword => this.setState({ confirmPassword })}
+                onChangeText={confirmPassword => this.setState({ confirmPassword, failregister: false })}
                 secureTextEntry
               />
             </View>
@@ -242,6 +258,15 @@ export default class RegistrationForm extends Component {
             </View>
           </View>
           <View style={styles.line} />
+
+          {this.state.failregister ? (
+            <View style={styles.errBox}>
+              <Text style={{ color: '#fff' }}>{this.state.failMsg}</Text>
+            </View>
+          ) : (
+            <Text />
+          )}
+
           <TouchableOpacity onPress={validate}>
             <View style={styles.btnReg} >
               {this.state.submitting ? <ActivityIndicator size={'large'} color={'#fff'} /> : <Text style={styles.textReg} >

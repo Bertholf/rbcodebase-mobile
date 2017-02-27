@@ -9,6 +9,7 @@ import {
   Text,
   Alert,
   ActivityIndicator,
+  Timers,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -23,6 +24,7 @@ import google from '../../modules/google';
 import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
+import Loader from '../../views/Loader';
 import auth from '../../services/auth';
 
 
@@ -68,17 +70,20 @@ export default class Register extends Component {
     twitterModule.signIn()
     .then((res) => {
       auth.checktwitter(res.token, res.provider, res.secret)
-      .then((resL)=> {
-        if(resL.data.registered === false) {
-          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email })
+      .then((resL) => {
+        if (resL.data.registered === false) {
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email });
         } else {
-          Actions.actionswiper({ type: 'reset' })
+          this.registered();
         }
-      }).catch(err => console.log(err))
+      }).catch(err => console.log(err));
     })
-    .catch(err => console.log("ERROR TWITTER", err))
+    .catch(err => console.log("ERROR TWITTER", err));
   }
-
+  registered() {
+    const loader = Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
+    setTimeout(() => Actions.actionswiper({ type: 'reset'}), 1000);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -89,7 +94,7 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
-              onPress={() => facebookRegister()}
+              onPress={() => facebookRegister(() => this.registered())}
             >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />
