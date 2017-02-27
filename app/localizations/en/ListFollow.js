@@ -6,6 +6,6 @@ export default {
   yes: 'Yes',
   cancel: 'Cancel',
   nofollower: 'You have no follower, click search friend button to follow someone',
-  nofollowing: 'You are not following friend, click search friend button to follow someon',
+  nofollowing: 'You are not following friend, click search friend button to follow someone',
   findfriend: 'Search Friend',
 };
