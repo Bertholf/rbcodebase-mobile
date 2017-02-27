@@ -88,7 +88,7 @@ export default class ChangeUsername extends Component {
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              {strings.changeUname.oldname}
+              {strings.changeUname.current_name}
             </Text>
             <TextInput
               style={styles.TextInput1}
@@ -100,7 +100,7 @@ export default class ChangeUsername extends Component {
               editable={false}
             />
             <Text style={styles.Text2}>
-              {strings.changeUname.newname}
+              {strings.changeUname.new_name}
             </Text>
             <TextInput
               ref={'textInput'}

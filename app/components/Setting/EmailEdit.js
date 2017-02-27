@@ -80,28 +80,27 @@ export default class EmailEdit extends Component {
               numberOfLines={4} editable={false}
             />
             <Text style={styles.Text2}>
-              {strings.EditEmail.enterNewEmail}
+              {strings.EditEmail.enter_new_mail}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.enterNewEmail} onChangeText={newEmail => this.setState({ newEmail })} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.enter_new_email} onChangeText={newEmail => this.setState({ newEmail })} multiline
               numberOfLines={4}
             />
             {emailValidator || !emailInput ?
-              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.invalidEmail}</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.error_invalid_email}</Text>}
             {sameEmail ?
-              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.sameEmail}</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}
             <Text style={styles.Text2}>
-              {strings.EditEmail.confirmChange}
+              {strings.EditEmail.confirm_change}
             </Text>
             <TextInput
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.confirmCode} onChangeText={() => console.log('dummy')} multiline
+              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.confirm_code} onChangeText={() => console.log('dummy')} multiline
               numberOfLines={4}
             />
           </View>
         </ScrollView>
-        
       </View>
     );
   }
