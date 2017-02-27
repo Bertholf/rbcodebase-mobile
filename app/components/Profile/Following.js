@@ -66,10 +66,13 @@ export default class Friendlist extends React.Component {
       );
     } else if (nodata === true) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: '#000', fontSize: 20 }}>{strings.listfollow.nofollower}</Text>
-          <TouchableOpacity>
-            <Text>{stings.listfollow.findfriend}</Text>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+          <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>
+          <TouchableOpacity
+            onPress={() => Actions.addfriendscreen()}
+            style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
+          >
+            <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
           </TouchableOpacity>
         </View>
       );

@@ -31,7 +31,7 @@ export default class FollowingMe extends React.Component {
       })
       .catch(err => console.log('fail to get user id from asyncStorege', err));
     } else {
-      follows.showFolllower(this.props.user_id)
+      follows.showFollower(this.props.user_id)
       .then((res) => {
         this.changeState(res);
         console.log('Other follower data response ', res);
@@ -66,10 +66,13 @@ export default class FollowingMe extends React.Component {
       );
     } else if (nodata === true) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: '#000', fontSize: 20 }}>{strings.listfollow.nofollower}</Text>
-          <TouchableOpacity style={{ height: 50, width: 120 }}>
-            <Text>{stings.listfollow.findfriend}</Text>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+          <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
+          <TouchableOpacity
+            onPress={() => Actions.addfriendscreen()}
+            style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
+          >
+            <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
           </TouchableOpacity>
         </View>
       );
