@@ -1,5 +1,6 @@
 import { LoginManager, AccessToken, GraphRequestManager, GraphRequest } from 'react-native-fbsdk';
 import { Actions } from 'react-native-router-flux';
+import { Alert } from 'react-native';
 import auth from './auth';
 
 const facebookRegister = () => {
@@ -25,6 +26,7 @@ const facebookRegister = () => {
          Actions.pop();
          Actions.registrationform(props);
        } else {
+         Alert.alert('You are already registered', '', [{ text: 'OK', onPress: () => Actions.actionswiper() }]);
          Actions.login();
         console.log('Success fetching data ', result);
        }
