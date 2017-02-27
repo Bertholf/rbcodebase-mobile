@@ -29,6 +29,7 @@ export default class Profile extends Component {
       profile: this.props.profile,
       followed: false,
       countFollow: 0,
+      id: this.props.idFollow,
       friend: false,
       edit: false,
       button: false,
@@ -58,8 +59,8 @@ export default class Profile extends Component {
   }
 
   unfollowUser() {
-    console.log('UNFOLLOW FROM PROFILE', this.props.idFollow);
-    follows.unfollow(this.props.idFollow)
+    console.log('UNFOLLOW FROM PROFILE', this.state.id);
+    follows.unfollow(this.state.id)
       .then(result => {
         this.setState({ followed: true });
       }).catch(err => console.log(err))
@@ -68,14 +69,17 @@ export default class Profile extends Component {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
 
+
+
   follow() {
-    console.log('THIS.PROPS.PROFILE', this.props.profile);
+    console.log('THIS.PROPS.PROFILE', this.state.profile);
     AsyncStorage.getItem('userId')
     .then((followerId) => {
-      follows.followsomeone(followerId, this.props.profile.id)
+      let idleader = followerId;
+      follows.followsomeone(this.state.profile.id, idleader)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ followed: false });
+        this.setState({ followed: false, id: res.data.id });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
@@ -215,7 +219,7 @@ export default class Profile extends Component {
     }
   }
   toggleSwitchFollow() {
-    if (!this.state.followed) {
+    if (this.state.followed === false) {
       Alert.alert('Confirmation',
                'Are you sure to unfollow this user?', [
                 { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
