@@ -1,6 +1,6 @@
 const ChangeUname = {
-  oldname: 'Nama pengguna saat ini',
-  newname: 'Masukkan nama pengguna baru',
+  current_name: 'Nama pengguna saat ini',
+  new_name: 'Masukkan nama pengguna baru',
   uniquename: 'Nama pengguna harus unik.',
   error_length: 'Username minimal 5 karakter',
   error_same_username: 'Username baru harus berbeda dengan username lama Anda',
