@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, Alert, TouchableOpacity, AsyncStorage } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
@@ -7,8 +7,6 @@ import auth from './../../services/auth';
 import Logout from '../../services/logout';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
-
-let alertMessage = 'Are you sure want to Logout?';
 
 export default class Setting extends Component {
   constructor(props){
@@ -178,17 +176,7 @@ export default class Setting extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress=
-             {() => Alert.alert(
-            'Log Out',
-            alertMessage,
-            [
-              { text: 'Cancel', onPress:() => console.log('cancelled Pressed')},
-              { text: 'OK', onPress:  () => { Logout() ;
-              console.log('OK Pressed')}},
-            ]
-          ) }
-          >
+          <TouchableOpacity onPress={Logout} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.logout}</Text>

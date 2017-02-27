@@ -55,22 +55,30 @@ export default class ChangeUsername extends Component {
         auth.profile ()
         .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
         .catch(Err=> console.log('err', Err))
+        Actions.pop(onSave);
       } else {
         Alert.alert("Error", "invalid username");
       }
     }
+
     const rightButtonConfig = {
     title: 'Save',
     handler: () => onSave(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
-    handler: () => Actions.pop(),
+    handler: () => onSave(),
   };
 
   const titleConfig = {
     title: 'Edit Username',
   };
+    // const saveUsername = () => {
+    //   const newUsername = this.state.newUsername;
+    //   console.log(newUsername);
+    //   saveProfile(newUsername);
+    //   Alert.alert('Success', 'Your Username has been Changed');
+    // };
     return (
       <View style={styles.OuterView}>
       <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
