@@ -25,6 +25,7 @@ import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
 import Loader from '../../views/Loader';
+import auth from '../../services/auth';
 
 const { width } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
@@ -68,19 +69,19 @@ export default class Register extends Component {
     twitterModule.signIn()
     .then((res) => {
       auth.checktwitter(res.token, res.provider, res.secret)
-      .then((resL)=> {
-        if(resL.data.registered === false) {
-          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email })
+      .then((resL) => {
+        if (resL.data.registered === false) {
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email });
         } else {
-          Actions.login({ type: 'reset' })
+          this.registered();
         }
-      }).catch(err => console.log(err))
+      }).catch(err => console.log(err));
     })
-    .catch(err => console.log("ERROR TWITTER", err))
+    .catch(err => console.log("ERROR TWITTER", err));
   }
   registered() {
-    const loader = Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper()});
-    setTimeout(() => Actions.actionswiper(), 1000);
+    const loader = Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
+    setTimeout(() => Actions.actionswiper({ type: 'reset'}), 1000);
   }
   render() {
     return (
