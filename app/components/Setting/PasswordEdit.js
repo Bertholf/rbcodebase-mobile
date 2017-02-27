@@ -109,7 +109,7 @@ export default class PassEdit extends Component {
             </Text>
             <TextInput
               ref={'textInput1'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
+              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
             />
@@ -120,7 +120,7 @@ export default class PassEdit extends Component {
             </Text>
             <TextInput
               ref={'textInput2'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
+              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
               numberOfLines={4}
             />

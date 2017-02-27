@@ -23,7 +23,6 @@ export default class Setting extends Component {
     .catch(Err => console.log('err,Err'));
   }
   render() {
-    strings.setLanguage('id');
     return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>

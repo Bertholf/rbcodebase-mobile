@@ -101,7 +101,6 @@ export default class EmailEdit extends Component {
             />
           </View>
         </ScrollView>
-
       </View>
     );
   }
