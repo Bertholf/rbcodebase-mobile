@@ -61,7 +61,7 @@ export default class ChangeUsername extends Component {
     }
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => saveUsername(),
+    handler: () => onSave(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -71,12 +71,6 @@ export default class ChangeUsername extends Component {
   const titleConfig = {
     title: 'Edit Username',
   };
-    const saveUsername = () => {
-      const newUsername = this.state.newUsername;
-      console.log(newUsername);
-      saveProfile(newUsername);
-      Alert.alert('Success', 'Your Username has been Changed');
-    };
     return (
       <View style={styles.OuterView}>
       <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
