@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { Alert } from 'react-native';
 import auth from './auth';
 
-const facebookRegister = () => {
+const facebookRegister = (callback) => {
   LoginManager.logInWithReadPermissions(['public_profile'])
    .then((result) => {
      if (result.isCancelled) {
@@ -26,7 +26,7 @@ const facebookRegister = () => {
          Actions.pop();
          Actions.registrationform(props);
        } else {
-         Alert.alert('You are already registered', '', [{ text: 'OK', onPress: () => Actions.actionswiper() }]);
+         callback();
          Actions.login();
         console.log('Success fetching data ', result);
        }

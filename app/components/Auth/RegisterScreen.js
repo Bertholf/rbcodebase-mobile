@@ -68,7 +68,9 @@ export default class Register extends Component {
     .then(({user}) => Actions.registrationform({ username: user.username }))
     .catch(err => console.log("ERROR TWITTER", err))
   }
-
+  registered(){
+    Alert.alert('You are already registered', '', [{ text: 'OK', onPress: () => Actions.actionswiper() }]);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -79,7 +81,7 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
-              onPress={() => facebookRegister()}
+              onPress={() => facebookRegister(() => this.registered())}
             >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />

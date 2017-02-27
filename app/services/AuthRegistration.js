@@ -17,9 +17,7 @@ const submitRegister = (name_first, name_last, name_slug, email, password, passw
     .catch(err => console.log('LOGIN ERR', err));
   })
   .catch((err) => {
-    console.log('ERROR REGISTER', err);
-    callback();
-
+    callback(err.response.data.message);
   });
 };
 
