@@ -27,6 +27,7 @@ import strings from './../../localizations/';
 import Loader from '../../views/Loader';
 import auth from '../../services/auth';
 
+
 const { width } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
 const google2 = require('../../images/login/gplus.png');
