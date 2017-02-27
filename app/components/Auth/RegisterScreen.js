@@ -23,6 +23,7 @@ import google from '../../modules/google';
 import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
+import auth from '../../services/auth';
 
 
 const { width } = Dimensions.get('window');
@@ -71,7 +72,7 @@ export default class Register extends Component {
         if(resL.data.registered === false) {
           Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email })
         } else {
-          Actions.login({ type: 'reset' })
+          Actions.actionswiper({ type: 'reset' })
         }
       }).catch(err => console.log(err))
     })
