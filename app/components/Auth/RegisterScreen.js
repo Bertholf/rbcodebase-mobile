@@ -64,7 +64,13 @@ export default class Register extends Component {
 
   registerWithGoogle() {
     google.signIn()
-    .then(({user}) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }))
+    .then(({user}) => 
+      
+      const loader = Actions.loaderview({message: 'Loading', onPress: () =>
+          Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' })) });
+        setTimeout(() => 
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email }), 1000);
+          
   }
   registerWithTwitter() {
     twitterModule.signIn()
@@ -72,7 +78,12 @@ export default class Register extends Component {
       auth.checktwitter(res.token, res.provider, res.secret)
       .then((resL) => {
         if (resL.data.registered === false) {
-          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email });
+
+        const loader = Actions.loaderview({message: 'Loading', onPress: () =>
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email }) });
+        setTimeout(() => 
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email }), 1000);
+          
         } else {
           this.registered();
         }
