@@ -8,7 +8,7 @@ import Logout from '../../services/logout';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
 
-let alertMessage = 'Are you sure want Logout?';
+let alertMessage = 'Are you sure want to Logout?';
 
 export default class Setting extends Component {
   constructor(props){
