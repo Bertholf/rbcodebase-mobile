@@ -85,7 +85,7 @@ export default class Register extends Component {
       <ScrollView>
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
           <Image style={styles.logo} source={logo} />
-          <Text style={styles.separatorText}>{strings.register.RegisterWith}</Text>
+          <Text style={styles.separatorText}>{strings.register.Register_with}</Text>
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
@@ -93,7 +93,7 @@ export default class Register extends Component {
             >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />
-                <Text style={styles.text}>{strings.register.Registerfacebook}</Text>
+                <Text style={styles.text}>{strings.register.Register_facebook}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -103,7 +103,7 @@ export default class Register extends Component {
               activeOpacity={0.7} onPress={() => this.registerWithGoogle()} >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={google2} style={styles.logoGoogle} />
-                <Text style={styles.text}>{strings.register.RegisterGoogle}</Text>
+                <Text style={styles.text}>{strings.register.Register_google}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -113,7 +113,7 @@ export default class Register extends Component {
               onPress={() => this.registerWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
-                <Text style={styles.text}>{strings.register.RegisterTwitter}</Text>
+                <Text style={styles.text}>{strings.register.Register_twitter}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -128,21 +128,21 @@ export default class Register extends Component {
               onPress={Actions.registrationform}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
-                <Text style={styles.text}>{strings.register.RegisterEmail}</Text>
+                <Text style={styles.text}>{strings.register.Register_email}</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={{ paddingTop: 8, paddingBottom: 10 }}>
             <TouchableOpacity onPress={Actions.loginscreen}>
-              <Text style={{ fontSize: 14, color: 'black' }}>{strings.register.SignIn}</Text>
+              <Text style={{ fontSize: 14, color: 'black' }}>{strings.register.Sign_in}</Text>
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 10, alignItems: 'center' }}>
             <View style={{ alignItems: 'center' }}>
-              <Text style={{justifyContent: 'center' }}>{strings.register.BySigningupYouAgree}</Text>
-              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.register.TermsofService}
-              <Text style={{ color: 'grey' }}> {strings.register.And}
-                  <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.register.PrivacyPolicy}</Text>
+              <Text style={{justifyContent: 'center' }}>{strings.register.sign_agreement}</Text>
+              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.register.tos}
+              <Text style={{ color: 'grey' }}> {strings.register.and}
+                  <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.register.Privacy_policy}</Text>
               </Text>
               </Text>
             </View>

@@ -37,7 +37,7 @@ export default class LoginScreen extends Component {
             >
               <View style={{ flexDirection: 'row' }}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />
-                <Text style={styles.textfb}>{strings.LoginScreen.fb}</Text>
+                <Text style={styles.textfb}>{strings.LoginScreen.facebook_sign_in}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -48,7 +48,7 @@ export default class LoginScreen extends Component {
             >
               <View style={{ flexDirection: 'row' }}>
                 <Image source={google2} style={styles.logoGoogle} />
-                <Text style={styles.text}>{strings.LoginScreen.google}</Text>
+                <Text style={styles.text}>{strings.LoginScreen.google_sign_in}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -58,7 +58,7 @@ export default class LoginScreen extends Component {
               onPress={() => this.props.loginWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
-                <Text style={styles.texttw}>{strings.LoginScreen.twitter}</Text>
+                <Text style={styles.texttw}>{strings.LoginScreen.twitter_sign_in}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -71,14 +71,14 @@ export default class LoginScreen extends Component {
             <TouchableOpacity style={styles.buttonEmail} activeOpacity={0.7}   onPress={() => Actions.loginscreenemail({login: this.props.submitLogin})}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
-                <Text style={styles.text}>{strings.LoginScreen.email}</Text>
+                <Text style={styles.text}>{strings.LoginScreen.email_sign_in}</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={{ paddingTop: 20, paddingBottom: 20 }}>
           <TouchableOpacity onPress={() => Actions.register()}>
             <Text style={{ color: 'black', textAlign: 'center' }}>
-                  {strings.LoginScreen.create}
+                  {strings.LoginScreen.create_new_account}
               </Text>
           </TouchableOpacity>
         </View>
@@ -87,7 +87,7 @@ export default class LoginScreen extends Component {
             <Text style={{ textAlign: 'center' }}>{strings.LoginScreen.agreement}</Text>
             <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.LoginScreen.tos}
               <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
-                <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.pp}</Text>
+                <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.privacy_policy}</Text>
               </Text>
             </Text>
           </View>

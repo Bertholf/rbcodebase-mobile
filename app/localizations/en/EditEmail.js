@@ -1,10 +1,10 @@
 const EditEmail = {
-  enterNewEmail: 'Enter Your New Email',
-  invalidEmail: 'Invalid Email Input',
-  sameEmail: 'Seems Your Email is Same as Before',
-  confirmChange: 'Confirm Change',
+  enter_new_email: 'Enter your new email',
+  confirm_change: 'Confirm change',
+  confirm_code: 'Enter your recieved code',
+  alert_same_email: 'Seems your email is same as before',
+  error_invalid_email: 'Invalid email input',
   save: 'SAVE',
-  confirmCode: 'Enter your recieved code',
 };
 
 module.exports = EditEmail;
