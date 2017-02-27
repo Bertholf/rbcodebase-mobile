@@ -119,7 +119,7 @@ export default class Profile extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
-                  <Text>{this.state.countFollow}</Text>
+                  <Text style={{ marginLeft: 8 }}>{this.state.countFollow}</Text>
                 </TouchableOpacity>
                 {this.state.me ? (
                   <TouchableOpacity onPress={Actions.setting} >
