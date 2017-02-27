@@ -14,6 +14,7 @@ import ChangeName from './ChangeName';
 import addfriend from './AddFriend';
 import listfollow from './ListFollow';
 import profileLocalization from './profile';
+import logoutLocalization from './logout';
 
 const en = {
   listfollow,
@@ -31,6 +32,7 @@ const en = {
   EditEmail,
   ChangeName,
   profileLocalization,
+  logoutLocalization,
 };
 
 export default en;

@@ -8,7 +8,7 @@ import Logout from '../../services/logout';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
 
-let alertMessage = 'Are you sure want to Logout?';
+let alertMessage = strings.logoutLocalization.AreYouSure;
 
 export default class Setting extends Component {
   constructor(props){
@@ -180,10 +180,10 @@ export default class Setting extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress=
              {() => Alert.alert(
-            'Log Out',
+            '',
             alertMessage,
             [
-              { text: 'Cancel', onPress:() => console.log('cancelled Pressed')},
+              { text: strings.logoutLocalization.cancel, onPress:() => console.log('cancelled Pressed')},
               { text: 'OK', onPress:  () => { Logout() ;
               console.log('OK Pressed')}},
             ]
