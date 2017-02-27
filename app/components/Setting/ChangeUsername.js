@@ -61,7 +61,7 @@ export default class ChangeUsername extends Component {
     }
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => onSave(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
