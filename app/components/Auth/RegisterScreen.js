@@ -9,6 +9,7 @@ import {
   Text,
   Alert,
   ActivityIndicator,
+  Timers,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -23,7 +24,7 @@ import google from '../../modules/google';
 import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
-
+import Loader from '../../views/Loader';
 
 const { width } = Dimensions.get('window');
 const facebookLogo = require('../../images/facebook-square.png');
@@ -68,8 +69,9 @@ export default class Register extends Component {
     .then(({user}) => Actions.registrationform({ username: user.username }))
     .catch(err => console.log("ERROR TWITTER", err))
   }
-  registered(){
-    Alert.alert('You are already registered', '', [{ text: 'OK', onPress: () => Actions.actionswiper() }]);
+  registered() {
+    const loader = Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper()});
+    setTimeout(() => Actions.actionswiper(), 1000);
   }
   render() {
     return (

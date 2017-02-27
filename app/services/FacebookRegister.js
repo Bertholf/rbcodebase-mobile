@@ -27,7 +27,6 @@ const facebookRegister = (callback) => {
          Actions.registrationform(props);
        } else {
          callback();
-         Actions.login();
         console.log('Success fetching data ', result);
        }
      const profileRequestParams = {
