@@ -61,7 +61,9 @@ export default class Dashboard extends Component {
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.props.goUp()}>
           <View style={{ justifyContent: 'flex-end' }}>
-            <Image source={{uri:this.state.profile.picture}} style={styles.account} />
+            {this.state.profile.picture == null ?
+            <Image style={styles.account} source= {{uri :'http://www.gravatar.com/avatar/96e379f4896795739d346ed058255968.jpg?s=80&d=mm&r=g' }} /> : <Image source={{uri:this.state.profile.picture}} style={styles.account} />
+          }
           </View>
         </TouchableOpacity>
         <Text style={{ textAlign: 'center', marginTop : 100, fontSize : 18 }} > {this.state.profile.name_first} {this.state.profile.name_last} </Text>
