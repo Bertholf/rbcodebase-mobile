@@ -58,9 +58,10 @@ export default class Profile extends Component {
   }
 
   unfollowUser() {
-    follows.unfollow(this.props.profile.id)
+    console.log('UNFOLLOW FROM PROFILE', this.props.idFollow);
+    follows.unfollow(this.props.idFollow)
       .then(result => {
-        console.log(result.id, 'UNFOLLOWED');
+        this.setState({ followed: true });
       }).catch(err => console.log(err))
   }
   pressScroll() {
@@ -68,12 +69,13 @@ export default class Profile extends Component {
   }
 
   follow() {
+    console.log('THIS.PROPS.PROFILE', this.props.profile);
     AsyncStorage.getItem('userId')
     .then((followerId) => {
       follows.followsomeone(followerId, this.props.profile.id)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ clicked: false });
+        this.setState({ followed: false });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
@@ -220,7 +222,7 @@ export default class Profile extends Component {
                 { text: 'Yes', onPress: () => this.unfollowUser() },
                ]);
     } else {
-      this.setState({ followed: !this.state.followed });
+      this.follow();
     }
   }
 }
