@@ -76,6 +76,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     borderRadius: 10,
   },
+  buttonUnfollow: {
+    flexDirection: 'row',
+    padding: 6,
+    backgroundColor: '#ddd',
+    justifyContent: 'space-between',
+    color: '#333',
+    alignItems: 'center',
+    marginTop: 7,
+    borderRadius: 2,
+  },
   images: {
     height: 100,
     width: 100,

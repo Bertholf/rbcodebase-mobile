@@ -57,6 +57,16 @@ export default class Profile extends Component {
     .catch(err => console.log('FAIL TO ASYNC', err));
   }
 
+  unfollowUser() {
+    follows.unfollow(this.props.result.id)
+      .then(result => {
+        console.log(result.id, 'UNFOLLOWED');
+      }).catch(err => console.log(err))
+  }
+  pressScroll() {
+    this.scrollView.scrollTo({x:0, y: 400, animated: true});
+  }
+
   follow(leaderId) {
     AsyncStorage.getItem('userId')
     .then((followerId) => {
@@ -68,15 +78,6 @@ export default class Profile extends Component {
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
     .catch(err => console.log('fail ASYNC follow', err));
-  }
-  unfollowUser() {
-    follows.unfollow(this.props.id)
-      .then(result => {
-        console.log(result.id, 'UNFOLLOWED');
-      }).catch(err => console.log(err))
-  }
-  pressScroll() {
-    this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
 
   selectPhotoTapped() {
