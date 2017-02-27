@@ -152,7 +152,7 @@ export default class ListFollow extends Component {
     }
     return (
       <TouchableOpacity
-        onPress={() => Actions.profile({ profile: rowData })}
+        onPress={() => Actions.profile({ profile: rowData, follow: () => this.follow(), unfollow: () => this.unfollow() })}
         activeOpacity={0.7}
       >
         <View style={styles.container}>

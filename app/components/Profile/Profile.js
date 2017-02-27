@@ -58,7 +58,7 @@ export default class Profile extends Component {
   }
 
   unfollowUser() {
-    follows.unfollow(this.props.result.id)
+    follows.unfollow(this.props.profile.id)
       .then(result => {
         console.log(result.id, 'UNFOLLOWED');
       }).catch(err => console.log(err))
@@ -67,10 +67,10 @@ export default class Profile extends Component {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
 
-  follow(leaderId) {
+  follow() {
     AsyncStorage.getItem('userId')
     .then((followerId) => {
-      follows.followsomeone(followerId, leaderId)
+      follows.followsomeone(followerId, this.props.profile.id)
       .then((res) => {
         console.log('FOLLOW RES', res);
         this.setState({ clicked: false });
