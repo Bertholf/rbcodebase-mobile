@@ -151,11 +151,12 @@ export default class ListFollow extends Component {
       rowData = this.props.rowData;
     }
     return (
+      <View style={styles.container}>
       <TouchableOpacity
         onPress={() => Actions.profile({ profile: rowData })}
         activeOpacity={0.7}
       >
-        <View style={styles.container}>
+        
           <View style={{ flexDirection: 'row' }}>
             <Image source={{ uri: rowData.picture }} style={styles.photo} />
             <View style={styles.account}>
@@ -165,14 +166,15 @@ export default class ListFollow extends Component {
               <Text style={styles.detail}>{rowData.name_slug}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => {
+      </TouchableOpacity>
+      <TouchableOpacity disabled={this.privacyFollow === 'none' ? true : false} onPress={() => {
             this.toggleSwitch(rowData.id);
           }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
               {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>
+
         </View>
-      </TouchableOpacity>
     );
   }
 

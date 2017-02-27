@@ -53,11 +53,6 @@ export default class AddFriendScreen extends React.Component {
   render() {
     if (this.state.loading === false) {
       const privacyFollow = this.state.friendlist[0].setting.privacy_follow;
-      console.log('privas=========', privacyFollow);
-
-      // const checkPrivacyFollow = () => {
-      //   if(privacyFollow !== 'none')
-      // }
 
       return (
         <View style={styles.container}>

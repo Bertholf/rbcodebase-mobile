@@ -108,7 +108,7 @@ export default class ListAddFriend extends Component {
           
         </View>
       </TouchableOpacity>
-      <TouchableOpacity disabled={this.privacyFollow !== 'none' ? false : true}  onPress={() => this.toggleSwitch()}>
+      <TouchableOpacity  onPress={() => this.toggleSwitch()}>
         <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
           {this.state.clicked ? strings.addfriend.add : strings.addfriend.unfriend }
         </Text>
