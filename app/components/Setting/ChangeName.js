@@ -38,7 +38,7 @@ export default class NameEdit extends Component{
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => validateName() ,
   };
     const leftButtonConfig = {
     title: 'Cancel',
