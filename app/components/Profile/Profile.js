@@ -27,6 +27,7 @@ export default class Profile extends Component {
     this.state = {
       loading: true,
       profile: this.props.profile,
+      followId: this.props.profile.id,
       followed: false,
       countFollow: 0,
       id: this.props.idFollow,
@@ -69,17 +70,15 @@ export default class Profile extends Component {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
 
-
-
   follow() {
     console.log('THIS.PROPS.PROFILE', this.state.profile);
     AsyncStorage.getItem('userId')
     .then((followerId) => {
       let idleader = followerId;
-      follows.followsomeone(this.state.profile.id, idleader)
+      follows.followsomeone(this.state.followId, idleader)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ followed: false, id: res.data.id });
+        this.setState({ followed: false, id: res.data.id, followId: res.data.follower_id });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
