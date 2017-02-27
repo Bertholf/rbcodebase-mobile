@@ -67,6 +67,9 @@ const Routing = (props) => (
             key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
           /> */}
           <Scene
+            key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
+          />
+          <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
           <Scene
