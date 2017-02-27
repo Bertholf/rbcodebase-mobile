@@ -23,10 +23,8 @@ const facebookRegister = (callback) => {
            email: resL.data.email,
            username: '',
          };
-         // Actions.pop();
-         // Actions.registrationform(props);
-         const loader = Actions.loaderview({message: 'Loading', onPress: () => Actions.registrationform(props) });
-         setTimeout(() => Actions.registrationform(props), 1000);
+         Actions.pop();
+         Actions.registrationform(props);
        } else {
          callback();
         console.log('Success fetching data ', result);

@@ -105,7 +105,14 @@ export default class RegistrationForm extends Component {
       submitting: false,
       failregister: false,
       failMsg: '',
+      loading: true,
     };
+  }
+
+  componentDidMount(){
+    setTimeout(() =>{
+    this.setState({loading: false});
+    }, 1500)
   }
 
   render() {
@@ -138,6 +145,8 @@ export default class RegistrationForm extends Component {
       }
     };
     // strings.setLanguage('en');
+    if (this.state.loading === false) {
+      console.log("false");
     return (
       <View style={{flex: 1}}>
            <KeyboardAwareView animated={true}>
@@ -301,5 +310,9 @@ export default class RegistrationForm extends Component {
       </KeyboardAwareView>
       </View>
     );
+    }else{
+      console.log("true")
+      return (<ActivityIndicator />)
+    }
   }
 }
