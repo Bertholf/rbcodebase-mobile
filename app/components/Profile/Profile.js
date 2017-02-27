@@ -9,13 +9,14 @@ import {
      Alert,
      PixelRatio,
      Dimensions,
+     AsyncStorage,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
-import me from '../../services/me';
 import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
+import follows from '../../services/follows';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -27,34 +28,36 @@ export default class Profile extends Component {
       loading: true,
       profile: this.props.profile,
       followed: false,
+      countFollow: 0,
       friend: false,
+      edit: false,
+      button: false,
+      me: false,
     };
   }
 
   componentDidMount() {
-  //   auth.profile()
-  //  .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
-  // .catch(Err => console.log('err,Err'));
-    if (this.state.profile){
-      this.setState({ loading: false })
-    } else {
-      me.getMe()
-      .then(data => this.setState({ profile: data, loading: false }))
-      // .then((response) => console.log('ME Response', response))
-      // .catch(err => this.setState({ loading: false }));
-    }
+    console.log('this.state.profile', this.state.profile.id);
+    AsyncStorage.getItem('userId')
+    .then((id) => {
+      console.log(' AsyncStorage id', id);
+      if (id === this.state.profile.id.toString()) {
+        this.setState({ me: true });
+      }
+      follows.showFollower(this.state.profile.id)
+      .then((res) => {
+        const count = res.data.length;
+        this.setState({ countFollow: count, loading: false });
+      })
+      .catch(err => {
+        Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }])
+        console.log('FAIL TO COUNT FOLLOWER', err);
+      });
+    })
+    .catch(err => console.log('FAIL TO ASYNC', err));
+
+
   }
-  // toggleSwitch() {
-  //   if (!this.state.clicked) {
-  //     Alert.alert('Confirmation',
-  //              'Are you sure to unfollow this user?', [
-  //             { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-  //               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
-  //              ]);
-  //   } else {
-  //     this.setState({ clicked: !this.state.clicked });
-  //   }
-  // }
   pressScroll() {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
   }
@@ -116,12 +119,17 @@ export default class Profile extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
+                  <Text>{this.state.countFollow}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={Actions.setting} >
-                  <Text style={styles.button}>
-                    Edit
-                  </Text>
-                </TouchableOpacity>
+                {this.state.me ? (
+                  <TouchableOpacity onPress={Actions.setting} >
+                    <Text  style= {styles.button} >
+                      EDIT
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <Text />
+                ) }
               </View>
             </View>
             <View style={{ position: 'absolute' }}>
@@ -134,7 +142,9 @@ export default class Profile extends Component {
               </View>
             </View>
               <View style={styles.biodata}>
+                <TouchableOpacity onPress= {Actions.about}>
                 <Text style={styles.bio}>Bio</Text>
+                </TouchableOpacity>
                 <Text style={styles.isi}>{this.state.profile.about}</Text>
                 <Text style={styles.bio}>Last Hiking</Text>
                 <View style={styles.posisi}>
@@ -155,16 +165,21 @@ export default class Profile extends Component {
                   />
                   <Text style={styles.isi}>live : {this.state.profile.live}</Text>
                 </View>
-                <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                  <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
-                    <Text style = {styles.button}>
-                       {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
+                {!this.state.me ? (
+                  <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
                       <Text style = {styles.button}>
-                         {this.state.friend ? 'Add Friend' : 'Delete Friend' }</Text>
+                         {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
                       </TouchableOpacity>
-                </View>
+                      <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
+                        <Text style = {styles.button}>
+                           {this.state.friend ? 'Add Friend' : 'Delete Friend' }</Text>
+                        </TouchableOpacity>
+                  </View>
+                ) : (
+                <Text />
+                )}
+
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                   <TouchableOpacity>
                     <Text style={styles.isi2}>View More</Text>
@@ -179,7 +194,9 @@ export default class Profile extends Component {
       );
     } else {
       return (
-          <Text>No Data Found</Text>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <ActivityIndicator size={'large'}/>
+        </View>
       );
     }
   }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import strings from '../../localizations';
+import follows from '../../services/follows';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,38 +74,100 @@ export default class ListFollow extends Component {
       clicked: true,
       loading: true,
       friendlist: {},
+      statusFollow: [],
     };
   }
+  componentWillMount() {
+    if (this.props.rowData.status === 'request') {
+      this.setState({ clicked: false });
+    }
+  }
+  updateFollowData(targetID) {
+    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++', targetID);
+    AsyncStorage.getItem('userId')
+    .then((id) => {
+      console.log('-----------USER ID From asyn-----------', id);
+      const status = 'request';
+      follows.updatefollow(id, targetID, status)
+      .then((response) => {
+        if (response.data.status === 'request') {
+          this.setState({ clicked: false });
+          console.log('TRUE');
+        } else if (response.data.status === 'approved') {
+          this.setState({ clicked: false });
+          console.log('FALSE');
+        } else {
+          console.log();
+        }
+        this.setState({ statusFollow: response.data });
+        console.log(this.state.statusFollow);
+        console.log('-------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response);
+      })
+      .catch((Err) => {console.log('err', Err); });
+    });
+  }
 
-  toggleSwitch() {
+  unfollowUser() {
+    follows.unfollow(this.props.rowData.id)
+      .then(result => {
+        console.log(result.id, 'UNFOLLOWED');
+      }).catch(err => console.log(err))
+  }
+
+  toggleSwitch(id) {
     if (!this.state.clicked) {
+      // this section will executed when button unFollow pressed
       Alert.alert(strings.listfollow.confirmation,
                strings.listfollow.question, [
                 { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: strings.listfollow.yes, onPress: () => this.setState({ clicked: !this.state.clicked }) },
+                { text: strings.listfollow.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
-      this.setState({ clicked: !this.state.clicked });
+      // this section will executed when button follow pressed
+      this.follow(id);
     }
+  }
+  follow(leaderId) {
+    AsyncStorage.getItem('userId')
+    .then((followerId) => {
+      follows.followsomeone(followerId, leaderId)
+      .then((res) => {
+        console.log('FOLLOW RES', res);
+        this.setState({ clicked: false });
+      })
+      .catch(err => console.log('FAIL FOLLLOW', err));
+    })
+    .catch(err => console.log('fail ASYNC follow', err));
   }
 
   render() {
+    let rowData;
+    if (this.props.rowData.type === 'follower') {
+      rowData = this.props.rowData.follower;
+    } else if (this.props.rowData.type === 'following') {
+      rowData = this.props.rowData.leader;
+    } else {
+      // this section will call when add friend call use this this component
+      rowData = this.props.rowData;
+    }
     return (
       <TouchableOpacity
-        onPress={() => Actions.profile({ profile: this.props.rowData })}
+        onPress={() => Actions.profile({ profile: rowData })}
         activeOpacity={0.7}
       >
         <View style={styles.container}>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={{ uri: this.props.rowData.picture }} style={styles.photo} />
+            <Image source={{ uri: rowData.picture }} style={styles.photo} />
             <View style={styles.account}>
               <Text style={styles.user}>
-                {this.props.rowData.name_first} {this.props.rowData.name_last}
+                {rowData.name_first} {rowData.name_last}
               </Text>
-              <Text style={styles.detail}>{this.props.rowData.name_slug}</Text>
+              <Text style={styles.detail}>{rowData.name_slug}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => this.toggleSwitch()}>
+          <TouchableOpacity onPress={() => {
+            this.toggleSwitch(rowData.id);
+          }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
               {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>

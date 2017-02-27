@@ -1,14 +1,15 @@
 import LocalizedStrings from 'react-native-localization';
 
 const PassEditLoc = {
-  enterYourPassword: 'Enter Your Password',
-  wrongPassword: 'Wrong Password',
-  inputEnterOldPassword: 'Your Old Password',
-  enterYourNewPassword: 'Enter Your New Password',
-  inputEnterYourPassword: 'Your New password',
-  passwordMustbeharacters: 'The password must be at least  6 characters',
-  confirmChange: 'Enter Confirm New Password',
-  confirmInputChange: 'Confirm Your New Password',
+  enterYourPassword: 'Enter your password',
+  error_wrongPassword: 'Wrong assword',
+  inputEnterOldPassword: 'Your old password',
+  enterYourNewPassword: 'Enter your new password',
+  inputEnterYourPassword: 'Your new password',
+  error_passwordLength: 'The password must be at least  6 characters',
+  error_passwordCombination: 'Wrong new password combination',
+  confirmChange: 'Confirm new password',
+  confirmInputChange: 'Confirm your new password',
   save: 'SAVE',
 };
 

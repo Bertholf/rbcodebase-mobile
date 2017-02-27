@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
-import ListAddFriend from './ListAddFriend';
+import ListFollow from './ListFollow';
 import strings from '../../localizations';
 
 const styles = StyleSheet.create({
@@ -82,7 +82,7 @@ export default class AddFriendScreen extends React.Component {
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
-              renderRow={rowData => <ListAddFriend rowData={rowData} />}
+              renderRow={rowData => <ListFollow rowData={{ ...rowData }} />}
             />
           </View>
         </View>

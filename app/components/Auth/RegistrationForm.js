@@ -14,6 +14,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
+import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -105,7 +106,7 @@ export default class RegistrationForm extends Component {
     const emptyLName = this.state.lastname === '';
     const emptyUName = this.state.username === '';
     const emptyEmail = this.state.email === '' || !this.state.email;
-    const validUsername = this.state.username.length > 4;
+    const validUsername = this.state.username.length >= 4;
     const validEmail = emailRegex.test(this.state.email);
     const validPass = (this.state.password === this.state.confirmPassword);
     const validLPass = this.state.password.length >= 6;
@@ -123,8 +124,17 @@ export default class RegistrationForm extends Component {
     };
     // strings.setLanguage('en');
     return (
+      <View style={{flex: 1}}>
+           <KeyboardAwareView animated={true}>
       <View style={styles.container} >
-        <ScrollView>
+        <ScrollView
+        ref={(view) => {this.scrollView = view; }}
+                  style={[{flex: 1, alignSelf: 'stretch'}]}
+                  keyboardShouldPersistTaps={true}
+                  automaticallyAdjustContentInsets={false}
+                  onScroll={this.onScroll}
+                  scrollEventThrottle={200}
+                  onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -262,6 +272,8 @@ export default class RegistrationForm extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
+      </View>
+      </KeyboardAwareView>
       </View>
     );
   }
