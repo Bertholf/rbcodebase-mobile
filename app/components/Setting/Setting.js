@@ -8,7 +8,6 @@ import Logout from '../../services/logout';
 
 const next = require('./../../images/ic_navigate_next_2x.png');
 
-let alertMessage = strings.logoutLocalization.AreYouSure;
 
 export default class Setting extends Component {
   constructor(props){
@@ -24,6 +23,7 @@ export default class Setting extends Component {
     .catch(Err => console.log('err,Err'));
   }
   render() {
+    strings.setLanguage('id');
     return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
@@ -181,7 +181,7 @@ export default class Setting extends Component {
           <TouchableOpacity onPress=
              {() => Alert.alert(
             '',
-            alertMessage,
+            strings.logoutLocalization.AreYouSure,
             [
               { text: strings.logoutLocalization.cancel, onPress:() => console.log('cancelled Pressed')},
               { text: 'OK', onPress:  () => { Logout() ;
