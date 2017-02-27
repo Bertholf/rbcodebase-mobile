@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Alert, ListView, ActivityIndicator, AsyncStorage, Text } from 'react-native';
+import { View, Alert, ListView, ActivityIndicator, AsyncStorage, Text, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
 import ListFollow from './ListFollow';
@@ -23,7 +23,7 @@ export default class FollowingMe extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-          follows.showFolllower(myId)
+          follows.showFollower(myId)
         .then((res) => {
           this.changeState(res);
         })
@@ -67,7 +67,10 @@ export default class FollowingMe extends React.Component {
     } else if (nodata === true) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: '#000', fontSize: 30 }}>{strings.listfollow.nofollower}</Text>
+          <Text style={{ color: '#000', fontSize: 20 }}>{strings.listfollow.nofollower}</Text>
+          <TouchableOpacity style={{ height: 50, width: 120 }}>
+            <Text>{stings.listfollow.findfriend}</Text>
+          </TouchableOpacity>
         </View>
       );
     } else {

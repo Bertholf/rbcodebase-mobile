@@ -67,7 +67,10 @@ export default class Friendlist extends React.Component {
     } else if (nodata === true) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: '#000', fontSize: 30 }}>{strings.listfollow.nofollowing}</Text>
+          <Text style={{ color: '#000', fontSize: 20 }}>{strings.listfollow.nofollower}</Text>
+          <TouchableOpacity>
+            <Text>{stings.listfollow.findfriend}</Text>
+          </TouchableOpacity>
         </View>
       );
     } else {
