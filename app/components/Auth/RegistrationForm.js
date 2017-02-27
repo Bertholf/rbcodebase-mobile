@@ -130,7 +130,7 @@ export default class RegistrationForm extends Component {
         <ScrollView
         ref={(view) => {this.scrollView = view; }}
                   style={[{flex: 1, alignSelf: 'stretch'}]}
-                  keyboardShouldPersistTaps={true}
+                  keyboardShouldPersistTaps="always"
                   automaticallyAdjustContentInsets={false}
                   onScroll={this.onScroll}
                   scrollEventThrottle={200}

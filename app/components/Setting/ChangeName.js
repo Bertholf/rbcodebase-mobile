@@ -6,6 +6,8 @@ import {
   TextInput,
   Alert,
   TouchableOpacity,
+  Keyboard,
+  ToastAndroid,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import NavigationBar from 'react-native-navbar';
@@ -15,7 +17,6 @@ import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
-
 export default class NameEdit extends Component{
   constructor(props) {
     super(props);
@@ -38,7 +39,7 @@ export default class NameEdit extends Component{
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => validateName() ,
+    handler: () => validateName(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -75,12 +76,14 @@ export default class NameEdit extends Component{
         } else {
           console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
-          Alert.alert('Success', 'Your name has been Changed');
           this.clearText('textInput1');
           this.clearText('textInput2');
           auth.profile ()
         .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
         .catch(Err=> console.log('err', Err))
+          ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
+        Keyboard.dismiss();
+        Actions.actionswiper({ type: 'reset' });
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');
@@ -111,7 +114,7 @@ export default class NameEdit extends Component{
             <TextInput
               ref={'textInput1'}
               style={styles.TextInput1}
-              underlineColorAndroid={'transparent'}
+              underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.newname}
               onChangeText={firstName => this.setState({ firstName })}
@@ -126,7 +129,7 @@ export default class NameEdit extends Component{
             </Text>
             <TextInput
               ref={'textInput2'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
+              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.lastname} onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
@@ -141,7 +144,7 @@ export default class NameEdit extends Component{
             </Text>
             <TextInput
               style={styles.TextInput1}
-              underlineColorAndroid={'transparent'}
+              underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
               placeholder= ""
               numberOfLines={1}

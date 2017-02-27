@@ -21,6 +21,14 @@ export default class Setting extends Component {
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
     .catch(Err => console.log('err,Err'));
   }
+
+  componentWillReceiveProps() {
+    console.log('HELLO MY PROPS',this.props);
+    if (this.props.trigger) {
+      this.componentDidMount();
+    }
+  }
+
   render() {
     return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
