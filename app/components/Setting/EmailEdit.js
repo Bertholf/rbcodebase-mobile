@@ -34,7 +34,7 @@ export default class EmailEdit extends Component {
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => validEmail(),
   };
     const leftButtonConfig = {
     title: 'Cancel',

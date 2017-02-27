@@ -38,7 +38,7 @@ export default class NameEdit extends Component {
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => validateName() ,
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -111,7 +111,7 @@ export default class NameEdit extends Component {
             <TextInput
               ref={'textInput1'}
               style={styles.TextInput1}
-              underlineColorAndroid={'#2196f3'}
+              underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.first_name}
               onChangeText={firstName => this.setState({ firstName })}
@@ -143,7 +143,7 @@ export default class NameEdit extends Component {
             </Text>
             <TextInput
               style={styles.TextInput1}
-              underlineColorAndroid={'#2196f3'}
+              underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.display_name}
               numberOfLines={1}
