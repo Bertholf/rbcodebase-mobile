@@ -23,6 +23,7 @@ import google from '../../modules/google';
 import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
+import auth from '../../services/auth';
 
 
 const { width } = Dimensions.get('window');
@@ -65,7 +66,16 @@ export default class Register extends Component {
   }
   registerWithTwitter() {
     twitterModule.signIn()
-    .then(({user}) => Actions.registrationform({ username: user.username }))
+    .then((res) => {
+      auth.checktwitter(res.token, res.provider, res.secret)
+      .then((resL)=> {
+        if(resL.data.registered === false) {
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email })
+        } else {
+          Actions.actionswiper({ type: 'reset' })
+        }
+      }).catch(err => console.log(err))
+    })
     .catch(err => console.log("ERROR TWITTER", err))
   }
 

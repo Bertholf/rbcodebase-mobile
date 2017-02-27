@@ -73,7 +73,9 @@ class userPanel extends React.Component {
             </View>
             <View style={styles.userContainer} >
               <TouchableOpacity activeOpacity={0.7} style={styles.userButton} onPress={ () => Actions.profile({ profile: this.state.profile })}>
-                <Image source={{uri:this.state.profile.picture}} style={styles.userImage} />
+                {this.state.profile.picture == null ?
+                <Image style={styles.userImage} source= {{uri :'http://www.gravatar.com/avatar/96e379f4896795739d346ed058255968.jpg?s=80&d=mm&r=g' }} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.userImage} />
+              }
               </TouchableOpacity>
               <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
 
