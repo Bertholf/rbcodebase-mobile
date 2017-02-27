@@ -39,9 +39,9 @@ export default class ForgotPassword extends Component {
       if (emailValidator && emailInput) {
         // Need action here, please fix it later, thanks!!!
         if (currentEmail == emailInput) {
-          Alert.alert(strings.ForgotPass.validemailS);
+          Alert.alert(strings.ForgotPass.valid_email);
         } else {
-          Alert.alert(strings.ForgotPass.validemailF);
+          Alert.alert(strings.ForgotPass.invalid_email);
         }
       } else {
         return;
@@ -68,7 +68,7 @@ export default class ForgotPassword extends Component {
           underlineColorAndroid='rgba(0,0,0,0)'
         />
         {!emailInput || emailValidator ?
-          <Text /> : <Text style={styles.invalid}>{strings.ForgotPass.statusF}</Text>}
+          <Text /> : <Text style={styles.invalid}>{strings.ForgotPass.alert_invalid_email}</Text>}
         <TouchableHighlight
           style={styles.button}
           onPress={validateEmail}
