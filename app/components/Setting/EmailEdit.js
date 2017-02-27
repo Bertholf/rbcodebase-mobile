@@ -34,7 +34,7 @@ export default class EmailEdit extends Component {
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => validEmail(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -83,7 +83,7 @@ export default class EmailEdit extends Component {
               {strings.EditEmail.enterNewEmail}
             </Text>
             <TextInput
-              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1} underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.enterNewEmail} onChangeText={newEmail => this.setState({ newEmail })} multiline
               numberOfLines={4}
             />
@@ -101,7 +101,7 @@ export default class EmailEdit extends Component {
             />
           </View>
         </ScrollView>
-        
+
       </View>
     );
   }
