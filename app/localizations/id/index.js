@@ -13,6 +13,7 @@ import EditEmail from './EditEmail';
 import ChangeName from './ChangeName';
 import addfriend from './AddFriend';
 import listfollow from './ListFollow';
+import profileLocalization from './profile';
 
 const id = {
   listfollow,
@@ -29,6 +30,7 @@ const id = {
   changeUname,
   EditEmail,
   ChangeName,
+  profileLocalization,
 };
 
 export default id;

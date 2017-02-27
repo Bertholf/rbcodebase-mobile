@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   textInform: {
-    marginLeft: 100,
+    marginLeft: 120,
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
   },
