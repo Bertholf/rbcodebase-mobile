@@ -17,6 +17,8 @@ import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
+
+
 export default class NameEdit extends Component{
   constructor(props) {
     super(props);
