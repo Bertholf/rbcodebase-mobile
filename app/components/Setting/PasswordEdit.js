@@ -71,7 +71,7 @@ export default class PassEdit extends Component {
     };
 
     const titleConfig = {
-      title: 'Edit Paasword',
+      title: 'Edit Password',
     };
     // strings.setLanguage('en');
     return (

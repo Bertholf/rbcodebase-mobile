@@ -66,7 +66,7 @@ export default class LoginScreenEmail extends Component {
             onChangeText={username =>
               this.setState({ username, validUsername: true, isFail: false })}
             placeholderTextColor={'#2196f3'}
-            placeholder={'Username'}
+            placeholder={strings.LoginbyEmail.username}
             required
           />
           {this.state.validUsername ? <Text /> : (
