@@ -151,11 +151,12 @@ export default class RegistrationForm extends Component {
 
   render() {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
-    const usernameRegex = /^[a-zA-Z0-9_-]{5,25}$/;
-    const nameRegex = /^[a-zA-Z ]+$/;
+    const usernameRegex = /^[a-zA-Z0-9_-]/;
+    const nameRegex = /^[a-zA-Z]+$/;
     const validFName = nameRegex.test(this.state.firstname);
     const validLName = nameRegex.test(this.state.lastname);
     const validUsername = usernameRegex.test(this.state.username);
+    const usernameLength = this.state.username.length >= 5;
     const emptyFName = this.state.firstname === '';
     const emptyLName = this.state.lastname === '';
     const emptyUName = this.state.username === '';
@@ -228,13 +229,13 @@ export default class RegistrationForm extends Component {
                 value={this.state.username}
                 editable
               />
-              {validUsername ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
+              {usernameLength && validUsername ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
               : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
               }
 
             </View>
-            {validUsername || emptyUName ? (<Text />) : (<Text style={styles.fail}>
-              {strings.register.alert_username_taken}</Text>)
+            {usernameLength || emptyUName? (<Text />) : (<Text style={styles.fail}>
+              {strings.register.alert_username_length}</Text>)
             }
             <View style={styles.textinputWrapperStyle}>
               <TextInput
