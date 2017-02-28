@@ -116,7 +116,7 @@ export default class ChangeUsername extends Component {
               style={styles.TextInput1}
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
-              placeholder="New Username"
+              placeholder={strings.changeUname.placeholder}
               onChangeText={newUsername => this.setState({ newUsername })}
               multiline={false}
               numberOfLines={4} editable
