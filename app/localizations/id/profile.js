@@ -14,6 +14,8 @@ const profileLocalization = {
   deleteFriend: 'Hapus Teman',
   addFriend: 'Tambah Teman',
   viewMore: 'Lihat Selengkapnya',
+  areYouFollow: 'Apakah Anda yakin tidak mengiktui User ini?',
+  yes: 'IYA',
 };
 
 export default profileLocalization;

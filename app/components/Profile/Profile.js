@@ -29,7 +29,7 @@ export default class Profile extends Component {
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.profile.id,
-      followed: true,
+      followed: false,
       countFollow: 0,
       id: this.props.idFollow,
       friend: false,
@@ -207,25 +207,10 @@ export default class Profile extends Component {
                   />
                   <Text style={styles.isi}>{strings.profileLocalization.live} : {this.state.profile.live}</Text>
                 </View>
-                {!this.state.me ? (
-                  <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
-                      <Text style = {styles.button}>
-                         {this.state.followed ? strings.profileLocalization.follow : strings.profileLocalization.unfollow }</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
-                        <Text style = {styles.button}>
-                           {this.state.friend ? strings.profileLocalization.addFriend : strings.profileLocalization.deleteFriend }</Text>
-                        </TouchableOpacity>
-                  </View>
-                ) : (
-                <Text />
-                )}
-
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                  <TouchableOpacity>
+                  {/* <TouchableOpacity>
                     <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
               </View>
             {/* <View style={styles.mapmain}>
