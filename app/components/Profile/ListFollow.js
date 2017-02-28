@@ -81,6 +81,15 @@ export default class ListFollow extends Component {
     if (this.props.rowData.status === 'request') {
       this.setState({ clicked: false });
     }
+    if (this.props.rowData.type === 'follower') {
+      const idFol = this.props.rowData.follower_id;
+      const idLed = this.props.rowData.leader_id;
+      follows.showFollowing2(idLed, idFol)
+        .then((resp) => { console.log('TES INPUT', resp.data.id); this.setState({ clicked: false }); console.log(this.state.clicked); })
+        .catch((err) => { console.log('GA DAPAT ID', err); this.setState({ clicked: true }); console.log(this.state.clicked); });
+    } else if (this.props.rowData.type === 'following') {
+      this.setState({clicked: false});
+    }
   }
   updateFollowData(targetID) {
     console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++', targetID);
@@ -100,19 +109,38 @@ export default class ListFollow extends Component {
           console.log();
         }
         this.setState({ statusFollow: response.data });
-        console.log(this.state.statusFollow);
+        // console.log(this.state.statusFollow);
         console.log('-------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response);
       })
       .catch((Err) => {console.log('err', Err); });
     });
   }
+  // findFolloworUnFollow() {
+  //   const idFol = this.props.rowData.follower_id;
+  //   const idLed = this.props.rowData.leader_id;
+  //   follows.showFollowing2(idLed, idFol)
+  //     .then((resp) => { console.log('DAPETIN NO ID', resp.data.id); })
+  //     .catch((err) => { console.log('GA DAPAT ID', err); this.setState({ clicked: false })});
+  // }
 
   unfollowUser() {
-    follows.unfollow(this.props.rowData.id)
-      .then(result => {
-        console.log(result.id, 'UNFOLLOWED');
-        this.props.rowData.rerender();
-      }).catch(err => console.log(err))
+    if (this.props.rowData.type === 'follower') {
+      const idFol = this.props.rowData.follower_id;
+      const idLed = this.props.rowData.leader_id;
+      console.log('ID LEADER', idFol, idLed);
+      follows.showFollowing2(idLed, idFol)
+        .then((resp) => { console.log('DAPETIN NO ID', resp.data.id); follows.unfollow(resp.data.id)
+          .then((resp) => { console.log('RESPON DELETE UNFOLLOW', resp); this.setState({ clicked: false }); this.rerender(); })
+          .catch((err) => { console.log('ERROR', err); }); })
+        .catch((err) => { console.log('Error', err); });
+
+    } else {
+      follows.unfollow(this.props.rowData.id)
+        .then((result) => {
+          console.log(result.id, 'UNFOLLOWED');
+          this.props.rowData.rerender();
+        }).catch(err => console.log(err))
+    }
   }
 
   toggleSwitch(id) {
@@ -139,6 +167,12 @@ export default class ListFollow extends Component {
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
     .catch(err => console.log('fail ASYNC follow', err));
+  }
+  rerender() {
+    this.setState({ loading: true }, () => {
+      this.componentDidMount();
+      console.log('RE RENDER TRIGGERD');
+    })
   }
 
   render() {

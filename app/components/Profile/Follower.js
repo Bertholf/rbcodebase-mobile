@@ -23,7 +23,7 @@ export default class FollowingMe extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-          follows.showFollower(myId)
+        follows.showFollower(myId)
         .then((res) => {
           this.changeState(res);
         })
@@ -54,14 +54,19 @@ export default class FollowingMe extends React.Component {
       }
     });
   }
-
+  rerender() {
+    this.setState({ loading: true }, () => {
+      this.componentDidMount();
+      console.log('RE RENDER TRIGGERD');
+    })
+  }
   render() {
     const { loading, nodata } = this.state;
     if (loading === false && nodata === false) {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
-          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
+          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower', rerender: () => this.rerender() }} />}
         />
       );
     } else if (nodata === true) {
