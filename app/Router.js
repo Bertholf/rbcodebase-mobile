@@ -18,6 +18,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/Profile';
+import AddFriend from './components/Profile/AddFriend';
 import Setting from './components/Setting/Setting';
 import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy';
@@ -156,6 +157,9 @@ const Routing = (props) => (
           />
           <Scene
             key={'profile'} component={Profile} title={'Profile'} direction={'vertical'}
+          />
+          <Scene
+            key={'addfriendscreen'} component={AddFriend} title={'Search Friend'} direction={'vertical'}
           />
           <Scene
             key={'chat'} component={Chat} title={'Chat'}

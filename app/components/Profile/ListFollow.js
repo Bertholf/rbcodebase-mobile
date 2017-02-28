@@ -152,12 +152,23 @@ export default class ListFollow extends Component {
       // this section will call when add friend call use this this component
       rowData = this.props.rowData;
     }
+
+    // this state for disable button follow if privacy_follow = 'none'
+      let setting = this.props.rowData.setting;
+      let privacy_follow;
+      if (setting !== null){
+       privacy_follow = setting.privacy_follow;
+      }else{
+        console.log('this nul setting');
+      }
+    console.log('nin ada oo====', privacy_follow);
     return (
+      <View style={styles.container}>
       <TouchableOpacity
         onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
         activeOpacity={0.7}
       >
-        <View style={styles.container}>
+        <View>
           <View style={{ flexDirection: 'row' }}>
             <Image source={{ uri: rowData.picture }} style={styles.photo} />
             <View style={styles.account}>
@@ -167,14 +178,15 @@ export default class ListFollow extends Component {
               <Text style={styles.detail}>{rowData.name_slug}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => {
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity disabled={ privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
           }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
               {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 
