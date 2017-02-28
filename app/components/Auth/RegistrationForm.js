@@ -146,7 +146,7 @@ export default class RegistrationForm extends Component {
   render() {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const usernameRegex = /^[a-zA-Z0-9_-]{5,25}$/;
-    const nameRegex = /^[a-zA-Z]+$/;
+    const nameRegex = /^[a-zA-Z ]+$/;
     const validFName = nameRegex.test(this.state.firstname);
     const validLName = nameRegex.test(this.state.lastname);
     const validUsername = usernameRegex.test(this.state.username);
