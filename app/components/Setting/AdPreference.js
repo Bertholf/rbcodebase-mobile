@@ -11,6 +11,8 @@ import {
 import auth from './../../services/auth';
 import updatePref from '../../services/updatePref';
 import {Actions} from 'react-native-router-flux';
+import NavigationBar from 'react-native-navbar';
+import IconClose from './../../layouts/IconClose';
 
 
 export default class AdPreference extends Component {
@@ -129,8 +131,24 @@ export default class AdPreference extends Component {
       Actions.pop();
     }
 
+      const rightButtonConfig = {
+      title: 'Save',
+      handler: () => saveUpdate(),
+      handler: () => Actions.pop(),
+    };
+
+    const titleConfig = {
+      title: 'Ad Preference',
+    };
+
     return (
       <View style={{ flex: 1 }}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />} />
+      </View>
         <ScrollView>
         <View>
           <View style={styles.styleView}>
@@ -547,11 +565,6 @@ export default class AdPreference extends Component {
           }
         </View>
         </View>
-        </View>
-        <View style={{ marginTop: 20, padding: 14 }}>
-          <TouchableOpacity style={styles.button} onPress={saveUpdate}>
-            <Text style={styles.titleButton} >Submit</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
       </View>

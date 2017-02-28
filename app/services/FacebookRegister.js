@@ -13,6 +13,7 @@ const facebookRegister = (callback) => {
    })
    .then((res) => {
      console.log('RES FACEBOOK',res);
+     const fbRes = res;
      auth.check(res.accessToken, 'facebook', res.userID)
      .then((resL) => {
        console.log("RESPON RBCODEBASE FB", resL);
@@ -22,12 +23,14 @@ const facebookRegister = (callback) => {
            lastName: resL.data.name.split(' ')[1],
            email: resL.data.email,
            username: '',
+           provider: 'facebook',
+           accessToken: fbRes.accessToken,
+           oauthProviderId: fbRes.userID,
          };
          Actions.pop();
          Actions.registrationform(props);
        } else {
-         callback();
-        console.log('Success fetching data ', result);
+         callback(resL.data.access_token);
        }
      const profileRequestParams = {
        fields: {

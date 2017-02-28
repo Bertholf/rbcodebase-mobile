@@ -104,6 +104,7 @@ export default class RegistrationForm extends Component {
       secret: this.props.secret || '',
       provider: this.props.provider || '',
       accessToken: this.props.accessToken || '',
+      oauthProviderId: this.props.oauthProviderId || '',
       password: '',
       confirmPassword: '',
       valid: false,
@@ -118,22 +119,28 @@ export default class RegistrationForm extends Component {
     .then((loginRes) => {
       AsyncStorage.setItem('accessToken', loginRes.access_token)
       .then(() => Actions.actionswiper())
-      .catch(err => console.log('FAIL LOGIN AFTER REGISTER'));
+      .catch(err => {
+        console.log('FAIL LOGIN AFTER REGISTER');
+        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false  });
+      });
     })
-    .catch(err => console.log('FAIL LOGIN AFTER REGISTER', err));
+    .catch(err => this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false  }));
   }
 
 
   onSubmit() {
     const { firstname, lastname, username, email, password, confirmPassword } = this.state;
-    const { provider, accessToken, secret } = this.state;
-    if (provider && accessToken && secret) {
+    const { provider, accessToken, secret, oauthProviderId } = this.state;
+    if (provider && accessToken) {
       this.setState({ submitting: true });
-      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken)
+      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
         this.loginAfterRegister(username, password)
       ))
-      .catch(err => console.log('FAIL TO REGISTER SSO', err));
+      .catch(err => {
+        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
+        console.log('error register', err);
+      });
     } else {
       this.setState({ submitting: true });
       submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
@@ -145,7 +152,7 @@ export default class RegistrationForm extends Component {
   render() {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const usernameRegex = /^[a-zA-Z0-9_-]{5,25}$/;
-    const nameRegex = /^[a-zA-Z]+$/;
+    const nameRegex = /^[a-zA-Z ]+$/;
     const validFName = nameRegex.test(this.state.firstname);
     const validLName = nameRegex.test(this.state.lastname);
     const validUsername = usernameRegex.test(this.state.username);
@@ -167,7 +174,7 @@ export default class RegistrationForm extends Component {
       }
     };
     // strings.setLanguage('en');
-    if (this.state.loading === false) {
+    if (this.state.submitting === false) {
       console.log("false");
     return (
       <View style={{flex: 1}}>

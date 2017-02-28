@@ -85,19 +85,20 @@ export default class Register extends Component {
             accessToken: twitterResponse.token,
           });
         } else {
-          AsyncStorage.setItem('provider', 'twitter');
-          AsyncStorage.setItem('accessToken', resL.data.access_token)
-          .then(() => {
-            this.registered();
-          });
+          this.registered(resL.data.access_token, 'twitter');
         }
       }).catch(err => console.log(err));
     })
     .catch(err => console.log("ERROR TWITTER", err));
   }
-  registered() {
-    const loader = Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
-    setTimeout(() => Actions.actionswiper({ type: 'reset'}), 1000);
+
+  registered(token, provider) {
+    AsyncStorage.setItem('provider', provider);
+    AsyncStorage.setItem('accessToken', token)
+    .then(() => {
+      Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
+      setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
+    });
   }
   render() {
     return (
@@ -109,7 +110,7 @@ export default class Register extends Component {
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
-              onPress={() => facebookRegister(() => this.registered())}
+              onPress={() => facebookRegister((token) => this.registered(token, 'facebook'))}
             >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />

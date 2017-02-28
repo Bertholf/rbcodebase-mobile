@@ -41,26 +41,11 @@ export default class PassEdit extends Component {
   }
 
   render() {
-    const rightButtonConfig = {
-    title: 'Save',
-    handler: () => alert('successfully!'),
-  };
-    const leftButtonConfig = {
-    title: 'Cancel',
-    handler: () => Actions.pop(),
-  };
-
-  const titleConfig = {
-    title: 'Edit Paasword',
-  };
-    const usedPassword = this.state.password;
-    const currentPassword = this.state.profile.password;
-    const validPassword = usedPassword === currentPassword;
+    const validPassword = this.state.password === this.state.profile.password;
     const passwordInput = this.state.newPassword;
-    const passwordConfirmation = this.state.confirmPassword;
+    const passwordConfirmation = this.state.confirmNewPassword;
     const combinePassword = this.state.newPassword === this.state.confirmNewPassword;
     const passwordLength = passwordInput.length >= 6;
-    const password_confirmation = this.state.confirmPassword;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -69,8 +54,8 @@ export default class PassEdit extends Component {
     const birthday = this.state.profile.date;
     const onSave = () => {
       if (validPassword && passwordLength && combinePassword) {
-        console.log('new password==>', passwordInput, password_confirmation);
-        saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, password_confirmation);
+        console.log('new password==>', passwordInput, passwordConfirmation);
+        saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, passwordConfirmation);
         Alert.alert('Success', 'Your password has been Changed');
         this.clearText('textInput1')
         this.clearText('textInput2')
@@ -78,6 +63,15 @@ export default class PassEdit extends Component {
         .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
         .catch(Err=> console.log('err', Err))
       }
+    };
+
+    const rightButtonConfig = {
+      title: 'Save',
+      handler: () => onSave(),
+    };
+
+    const titleConfig = {
+      title: 'Edit Paasword',
     };
     // strings.setLanguage('en');
     return (
@@ -93,16 +87,12 @@ export default class PassEdit extends Component {
             <Text style={styles.Text2}>
               {strings.PassEditLoc.enter_old_password}
             </Text>
-            {/* @TODO we need to delete this current password later, thanks!!! */}
-            <Text style={styles.Text2}>
-              {currentPassword}
-            </Text>
             <TextInput
               style={styles.TextInput1} placeholder={strings.PassEditLoc.input_old_password} underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'} onChangeText={password => this.setState({ password })}
               numberOfLines={4}
             />
-            {validPassword || !usedPassword ?
+            {validPassword || !this.state.password ?
               <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_wrong_password}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.enter_new_password}
@@ -114,7 +104,7 @@ export default class PassEdit extends Component {
               numberOfLines={4}
             />
             {passwordLength || !passwordInput ? <Text /> :
-            <Text style={styles.invalid}>{strings.PassEditLoc.error_password_length}</Text>}
+            <Text style={styles.invalid}>{strings.PassEditLoc.alert_password_length}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.confirm_new_password}
             </Text>

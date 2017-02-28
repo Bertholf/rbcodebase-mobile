@@ -174,7 +174,7 @@ const Routing = (props) => (
             key={'registrationform'} component={RegistrationForm} title={'Register'}
           />
           <Scene
-            key={'adpref'} hideNavBar component={AdPref} title={'Ad Preference'}
+            key={'adpref'} component={AdPref} hideNavBar title={'Ad Preference'}
           />
           <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
