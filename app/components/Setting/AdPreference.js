@@ -92,11 +92,11 @@ export default class AdPreference extends Component {
 
   render() {
     const privacy_follow = this.state.language;
-    const privacy_follow_confirm =this.state.privacy_follow_confirm;
-    const privacy_comment = this.state.privacy_comment;
-    const privacy_post = this.state.privacy_post;
-    const privacy_timeline_post= this.state.privacy_timeline_post;
-    const privacy_message= this.state.privacy_message;
+    const privacy_follow_confirm =this.state.languages;
+    const privacy_comment = this.state.language3;
+    const privacy_post = this.state.language4;
+    const privacy_timeline_post= this.state.language5;
+    const privacy_message= this.state.language6;
     const email_follow = this.state.email_follow;
     const email_post_like = this.state.email_post_like;
     const email_post_share = this.state.email_post_share;
@@ -119,11 +119,11 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Follow</Text>
             </View>
           </View>
-          { this.state.privacy_follow == 'everyone' ?
+          { this.state.privacy_follow == 'only friend' ?
               <Picker
                 selectedValue={this.state.language}
                 onValueChange={(lang) => this.setState({language: lang})}>
-                <Picker.Item label={this.state.privacy_follow} value="everyone" />
+                <Picker.Item label={this.state.privacy_follow} value="only friend" />
                 <Picker.Item label="all" value="all" />
                 <Picker.Item label="none" value="none" />
              </Picker> :
@@ -134,7 +134,7 @@ export default class AdPreference extends Component {
               selectedValue={this.state.language}
               onValueChange={(lang) => this.setState({language: lang})}>
               <Picker.Item label={this.state.privacy_follow} value="all" />
-              <Picker.Item label="everyone" value="everyone" />
+              <Picker.Item label="only friend" value="only friend" />
               <Picker.Item label="none" value="none" />
            </Picker> :
 
@@ -144,7 +144,7 @@ export default class AdPreference extends Component {
                onValueChange={(lang) => this.setState({language: lang})}>
                <Picker.Item label={this.state.privacy_follow} value="none" />
                <Picker.Item label="all" value="all" />
-               <Picker.Item label="everyone" value="everyone" />
+               <Picker.Item label="only friend" value="only friend" />
             </Picker>
 
             : <Text>Loading...</Text>
@@ -157,13 +157,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Follow Confirm</Text>
             </View>
           </View>
-          { this.state.privacy_follow_confirm == 'everyone' ?
+          { this.state.privacy_follow_confirm == 'only friend' ?
           <Picker
             selectedValue={this.state.languages}
             onValueChange={(langs) => this.setState({languages: langs})}>
-            <Picker.Item label={this.state.privacy_follow_confirm} value="everyone" />
-            <Picker.Item label="all" value="all1" />
-            <Picker.Item label="none" value="none1" />
+            <Picker.Item label={this.state.privacy_follow_confirm} value="only friend" />
+            <Picker.Item label="all" value="all" />
+            <Picker.Item label="none" value="none" />
           </Picker> :
 
           this.state.privacy_follow_confirm == 'all' ?
@@ -172,8 +172,8 @@ export default class AdPreference extends Component {
             selectedValue={this.state.languages}
             onValueChange={(langs) => this.setState({languages: langs})}>
             <Picker.Item label={this.state.privacy_follow_confirm} value="all" />
-            <Picker.Item label="everyone" value="everyone1" />
-            <Picker.Item label="none" value="none1" />
+            <Picker.Item label="only friend" value="only friend" />
+            <Picker.Item label="none" value="none" />
           </Picker> :
 
           this.state.privacy_follow_confirm == 'none' ?
@@ -181,8 +181,8 @@ export default class AdPreference extends Component {
             selectedValue={this.state.languages}
             onValueChange={(langs) => this.setState({languages: langs})}>
             <Picker.Item label={this.state.privacy_follow_confirm} value="none" />
-            <Picker.Item label="all" value="all1" />
-            <Picker.Item label="everyone" value="everyone1" />
+            <Picker.Item label="all" value="all" />
+            <Picker.Item label="only friend" value="only friend" />
           </Picker>
 
           : <Text>Loading...</Text>
@@ -195,13 +195,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Comment</Text>
             </View>
           </View>
-          { this.state.privacy_comment == 'everyone' ?
+          { this.state.privacy_comment == 'only friend' ?
               <Picker
                 selectedValue={this.state.language3}
                 onValueChange={(lang3) => this.setState({language3: lang3})}>
-                <Picker.Item label={this.state.privacy_comment} value="everyone" />
-                <Picker.Item label="all" value="all2" />
-                <Picker.Item label="none" value="none2" />
+                <Picker.Item label={this.state.privacy_comment} value="only friend" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
              </Picker> :
 
              this.state.privacy_comment == 'all' ?
@@ -210,8 +210,8 @@ export default class AdPreference extends Component {
               selectedValue={this.state.language3}
               onValueChange={(lang3) => this.setState({language3: lang3})}>
               <Picker.Item label={this.state.privacy_comment} value="all" />
-              <Picker.Item label="everyone" value="everyone2" />
-              <Picker.Item label="none" value="none2" />
+              <Picker.Item label="only friend" value="only friend" />
+              <Picker.Item label="none" value="none" />
            </Picker> :
 
              this.state.privacy_comment == 'none' ?
@@ -219,8 +219,8 @@ export default class AdPreference extends Component {
                selectedValue={this.state.language3}
                onValueChange={(lang3) => this.setState({language3: lang3})}>
                <Picker.Item label={this.state.privacy_comment} value="none" />
-               <Picker.Item label="all" value="all2" />
-               <Picker.Item label="everyone" value="everyone2" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="only friend" value="only friend" />
             </Picker>
 
             : <Text>Loading...</Text>
@@ -233,13 +233,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Post</Text>
             </View>
           </View>
-          { this.state.privacy_post == 'everyone' ?
+          { this.state.privacy_post == 'only friend' ?
               <Picker
                 selectedValue={this.state.language4}
                 onValueChange={(lang4) => this.setState({language4: lang4})}>
-                <Picker.Item label={this.state.privacy_post} value="everyone" />
-                <Picker.Item label="all" value="all3" />
-                <Picker.Item label="none" value="none3" />
+                <Picker.Item label={this.state.privacy_post} value="only friend" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
              </Picker> :
 
              this.state.privacy_post == 'all' ?
@@ -248,8 +248,8 @@ export default class AdPreference extends Component {
               selectedValue={this.state.language4}
               onValueChange={(lang4) => this.setState({language4: lang4})}>
               <Picker.Item label={this.state.privacy_post} value="all" />
-              <Picker.Item label="everyone" value="everyone3" />
-              <Picker.Item label="none" value="none3" />
+              <Picker.Item label="only friend" value="only friend" />
+              <Picker.Item label="none" value="none" />
            </Picker> :
 
              this.state.privacy_post == 'none' ?
@@ -257,8 +257,8 @@ export default class AdPreference extends Component {
                selectedValue={this.state.language4}
                onValueChange={(lang4) => this.setState({language4: lang4})}>
                <Picker.Item label={this.state.privacy_post} value="none" />
-               <Picker.Item label="all" value="all3" />
-               <Picker.Item label="everyone" value="everyone3" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="only friend" value="only friend" />
             </Picker>
 
             : <Text>Loading...</Text>
@@ -271,13 +271,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Timeline Post</Text>
             </View>
           </View>
-          { this.state.privacy_timeline_post == 'everyone' ?
+          { this.state.privacy_timeline_post == 'only friend' ?
               <Picker
                 selectedValue={this.state.language5}
                 onValueChange={(lang5) => this.setState({language5: lang5})}>
-                <Picker.Item label={this.state.privacy_timeline_post} value="everyone" />
-                <Picker.Item label="all" value="all4" />
-                <Picker.Item label="none" value="none4" />
+                <Picker.Item label={this.state.privacy_timeline_post} value="only friend" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
              </Picker> :
 
              this.state.privacy_timeline_post == 'all' ?
@@ -286,8 +286,8 @@ export default class AdPreference extends Component {
               selectedValue={this.state.language5}
               onValueChange={(lang5) => this.setState({language5: lang5})}>
               <Picker.Item label={this.state.privacy_timeline_post} value="all" />
-              <Picker.Item label="everyone" value="everyone4" />
-              <Picker.Item label="none" value="none4" />
+              <Picker.Item label="only friend" value="only friend" />
+              <Picker.Item label="none" value="none" />
            </Picker> :
 
              this.state.privacy_timeline_post == 'none' ?
@@ -295,8 +295,8 @@ export default class AdPreference extends Component {
                selectedValue={this.state.language5}
                onValueChange={(lang5) => this.setState({language5: lang5})}>
                <Picker.Item label={this.state.privacy_timeline_post} value="none" />
-               <Picker.Item label="all" value="all4" />
-               <Picker.Item label="everyone" value="everyone4" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="only friend" value="only friend" />
             </Picker>
 
             : <Text>Loading...</Text>
@@ -309,13 +309,13 @@ export default class AdPreference extends Component {
               <Text style={styles.text}>Privacy Message</Text>
             </View>
           </View>
-          { this.state.privacy_message == 'everyone' ?
+          { this.state.privacy_message == 'only friend' ?
               <Picker
                 selectedValue={this.state.language6}
                 onValueChange={(lang6) => this.setState({language6: lang6})}>
-                <Picker.Item label={this.state.privacy_message} value="everyone" />
-                <Picker.Item label="all" value="all5" />
-                <Picker.Item label="none" value="none5" />
+                <Picker.Item label={this.state.privacy_message} value="only friend" />
+                <Picker.Item label="all" value="all" />
+                <Picker.Item label="none" value="none" />
              </Picker> :
 
              this.state.privacy_message == 'all' ?
@@ -324,8 +324,8 @@ export default class AdPreference extends Component {
               selectedValue={this.state.language6}
               onValueChange={(lang6) => this.setState({language6: lang6})}>
               <Picker.Item label={this.state.privacy_message} value="all" />
-              <Picker.Item label="everyone" value="everyone5" />
-              <Picker.Item label="none" value="none5" />
+              <Picker.Item label="only friend" value="only friend" />
+              <Picker.Item label="none" value="none" />
            </Picker> :
 
              this.state.privacy_message == 'none' ?
@@ -333,8 +333,8 @@ export default class AdPreference extends Component {
                selectedValue={this.state.language6}
                onValueChange={(lang6) => this.setState({language6: lang6})}>
                <Picker.Item label={this.state.privacy_message} value="none" />
-               <Picker.Item label="all" value="all5" />
-               <Picker.Item label="everyone" value="everyone5" />
+               <Picker.Item label="all" value="all" />
+               <Picker.Item label="only friend" value="only friend" />
             </Picker>
 
             : <Text>Loading...</Text>
