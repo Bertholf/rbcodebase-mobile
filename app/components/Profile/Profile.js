@@ -227,7 +227,7 @@ export default class Profile extends Component {
     }
   }
   toggleSwitchFollow() {
-    if (this.state.followed === false) {
+    if (this.state.followed === true) {
       Alert.alert('Confirmation',
                'Are you sure to unfollow this user?', [
                 { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
