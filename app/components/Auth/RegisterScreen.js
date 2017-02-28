@@ -88,7 +88,6 @@ export default class Register extends Component {
           AsyncStorage.setItem('provider', 'twitter');
           AsyncStorage.setItem('accessToken', resL.data.access_token)
           .then(() => {
-            // AsyncStorage.getItem('accessToken').then((at) => console.log('acess token twitter', at))
             this.registered();
           });
         }
