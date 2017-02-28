@@ -42,7 +42,6 @@ export default class AdPreference extends Component {
       // language9: '',
       // language10: '',
       // language11: '',
-      // language12: '',
     };
   }
 
