@@ -25,6 +25,12 @@ export default class AdPreference extends Component {
       language4: '',
       language5: '',
       language6: '',
+      language7: '',
+      language8: '',
+      language9: '',
+      language10: '',
+      language11: '',
+      language12: '',
     };
   }
 
@@ -97,12 +103,12 @@ export default class AdPreference extends Component {
     const privacy_post = this.state.language4;
     const privacy_timeline_post= this.state.language5;
     const privacy_message= this.state.language6;
-    const email_follow = this.state.email_follow;
-    const email_post_like = this.state.email_post_like;
-    const email_post_share = this.state.email_post_share;
-    const email_comment_post = this.state.email_comment_post;
-    const email_comment_like= this.state.email_comment_like;
-    const email_comment_reply= this.state.email_comment_reply;
+    const email_follow = this.state.language7;
+    const email_post_like = this.state.language8;
+    const email_post_share = this.state.language9;
+    const email_comment_post = this.state.language10;
+    const email_comment_like= this.state.language11;
+    const email_comment_reply= this.state.language12;
     const saveUpdate = () => {
       // console.log(id, user_id, privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply);
       auth.updateSetting(privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply)
@@ -115,48 +121,51 @@ export default class AdPreference extends Component {
         <ScrollView>
         <View>
           <View style={styles.styleView}>
-            <View style={{alignSelf: 'center'}}>
+            <View>
               <Text style={styles.text}>Privacy Follow</Text>
             </View>
+            <View style={{ width: 115, justifyContent: 'center' }}>
+              { this.state.privacy_follow == 'only friend' ?
+                  <Picker
+                    selectedValue={this.state.language}
+                    onValueChange={(lang) => this.setState({language: lang})}>
+                    <Picker.Item label={this.state.privacy_follow} value="only friend" />
+                    <Picker.Item label="all" value="all" />
+                    <Picker.Item label="none" value="none" />
+                 </Picker> :
+
+                 this.state.privacy_follow == 'all' ?
+
+                <Picker
+                  selectedValue={this.state.language}
+                  onValueChange={(lang) => this.setState({language: lang})}>
+                  <Picker.Item label={this.state.privacy_follow} value="all" />
+                  <Picker.Item label="only friend" value="only friend" />
+                  <Picker.Item label="none" value="none" />
+               </Picker> :
+
+                 this.state.privacy_follow == 'none' ?
+                 <Picker
+                   selectedValue={this.state.language}
+                   onValueChange={(lang) => this.setState({language: lang})}>
+                   <Picker.Item label={this.state.privacy_follow} value="none" />
+                   <Picker.Item label="all" value="all" />
+                   <Picker.Item label="only friend" value="only friend" />
+                </Picker>
+
+                : <Text>Loading...</Text>
+
+              }
+            </View>
           </View>
-          { this.state.privacy_follow == 'only friend' ?
-              <Picker
-                selectedValue={this.state.language}
-                onValueChange={(lang) => this.setState({language: lang})}>
-                <Picker.Item label={this.state.privacy_follow} value="only friend" />
-                <Picker.Item label="all" value="all" />
-                <Picker.Item label="none" value="none" />
-             </Picker> :
 
-             this.state.privacy_follow == 'all' ?
-
-            <Picker
-              selectedValue={this.state.language}
-              onValueChange={(lang) => this.setState({language: lang})}>
-              <Picker.Item label={this.state.privacy_follow} value="all" />
-              <Picker.Item label="only friend" value="only friend" />
-              <Picker.Item label="none" value="none" />
-           </Picker> :
-
-             this.state.privacy_follow == 'none' ?
-             <Picker
-               selectedValue={this.state.language}
-               onValueChange={(lang) => this.setState({language: lang})}>
-               <Picker.Item label={this.state.privacy_follow} value="none" />
-               <Picker.Item label="all" value="all" />
-               <Picker.Item label="only friend" value="only friend" />
-            </Picker>
-
-            : <Text>Loading...</Text>
-
-          }
         </View>
         <View>
           <View style={styles.styleView}>
-            <View style={{alignSelf: 'center'}}>
+            <View>
               <Text style={styles.text}>Privacy Follow Confirm</Text>
             </View>
-          </View>
+            <View style={{ width: 115, justifyContent: 'center' }}>
           { this.state.privacy_follow_confirm == 'only friend' ?
           <Picker
             selectedValue={this.state.languages}
@@ -189,12 +198,14 @@ export default class AdPreference extends Component {
 
         }
       </View>
-        <View>
-          <View style={styles.styleView}>
-            <View style={{alignSelf: 'center'}}>
-              <Text style={styles.text}>Privacy Comment</Text>
-            </View>
+      </View>
+      </View>
+      <View>
+        <View style={styles.styleView}>
+          <View>
+            <Text style={styles.text}>Privacy Comment</Text>
           </View>
+          <View style={{ width: 115, justifyContent: 'center' }}>
           { this.state.privacy_comment == 'only friend' ?
               <Picker
                 selectedValue={this.state.language3}
@@ -227,12 +238,14 @@ export default class AdPreference extends Component {
 
           }
         </View>
+        </View>
+        </View>
         <View>
           <View style={styles.styleView}>
-            <View style={{alignSelf: 'center'}}>
+            <View>
               <Text style={styles.text}>Privacy Post</Text>
             </View>
-          </View>
+            <View style={{ width: 115, justifyContent: 'center' }}>
           { this.state.privacy_post == 'only friend' ?
               <Picker
                 selectedValue={this.state.language4}
@@ -265,12 +278,14 @@ export default class AdPreference extends Component {
 
           }
         </View>
+        </View>
+        </View>
         <View>
           <View style={styles.styleView}>
-            <View style={{alignSelf: 'center'}}>
+            <View>
               <Text style={styles.text}>Privacy Timeline Post</Text>
             </View>
-          </View>
+            <View style={{ width: 115, justifyContent: 'center' }}>
           { this.state.privacy_timeline_post == 'only friend' ?
               <Picker
                 selectedValue={this.state.language5}
@@ -303,12 +318,14 @@ export default class AdPreference extends Component {
 
           }
         </View>
+        </View>
+        </View>
         <View>
           <View style={styles.styleView}>
-            <View style={{alignSelf: 'center'}}>
+            <View>
               <Text style={styles.text}>Privacy Message</Text>
             </View>
-          </View>
+            <View style={{ width: 115, justifyContent: 'center' }}>
           { this.state.privacy_message == 'only friend' ?
               <Picker
                 selectedValue={this.state.language6}
@@ -328,7 +345,7 @@ export default class AdPreference extends Component {
               <Picker.Item label="none" value="none" />
            </Picker> :
 
-             this.state.privacy_message == 'none' ?
+             this.state.privacy_message === 'none' ?
              <Picker
                selectedValue={this.state.language6}
                onValueChange={(lang6) => this.setState({language6: lang6})}>
@@ -341,6 +358,38 @@ export default class AdPreference extends Component {
 
           }
         </View>
+        </View>
+        </View>
+
+        {/* <View>
+          <View style={styles.styleView}>
+            <View>
+              <Text style={styles.text}>Email Follow</Text>
+            </View>
+            <View style={{ width: 115, justifyContent: 'center' }}>
+          { this.state.email_follow == '0' ?
+              <Picker
+                selectedValue={this.state.language7}
+                onValueChange={(lang7) => this.setState({language7: lang7})}>
+                <Picker.Item label={this.state.email_follow} value="0" />
+                <Picker.Item label="1" value="1" />
+             </Picker> :
+
+             this.state.email_follow == '1' ?
+
+            <Picker
+              selectedValue={this.state.language7}
+              onValueChange={(lang7) => this.setState({language7: lang7})}>
+              <Picker.Item label={this.state.email_follow} value="1" />
+              <Picker.Item label="0" value="0" />
+           </Picker>
+
+            : <Text>Loading...</Text>
+
+          }
+        </View>
+        </View>
+        </View> */}
         <View style={{ marginTop: 20, padding: 14 }}>
           <TouchableOpacity style={styles.button} onPress={saveUpdate}>
             <Text style={styles.titleButton} >Submit</Text>
@@ -369,18 +418,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   styleView: {
-    marginTop: 10,
+    flex: 1,
     flexDirection: 'row',
-    paddingLeft: 15,
+    justifyContent: 'space-between',
+    // paddingLeft: 15,
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
     borderWidth: 0.8,
     borderRadius: 2,
-    marginBottom: 8,
     height: 40,
+    alignItems: 'center',
   },
   text: {
     color: '#000000',
-    fontSize: 13,
+    fontSize: 16,
   },
 });
