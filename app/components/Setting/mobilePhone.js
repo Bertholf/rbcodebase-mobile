@@ -12,6 +12,7 @@ import auth from './../../services/auth';
 import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
 import {Actions} from 'react-native-router-flux';
+import strings from '../../localizations'
 
 const styles = StyleSheet.create({
   container: {
@@ -85,11 +86,11 @@ export default class MobilePhone extends Component {
   }
   render() {
     const rightButtonConfig = {
-    title: 'Save',
-    handler: () => alert('successfully!'),
+    title: strings.mobilephone.titleSave,
+    handler: () => alert(strings.mobilephone.allertSuccess),
   };
     const leftButtonConfig = {
-    title: 'Cancel',
+    title: strings.mobilephone.titleCancel,
     handler: () => Actions.pop(),
   };
 
@@ -106,7 +107,7 @@ export default class MobilePhone extends Component {
       const phone = this.state.myNumber;
       console.log('Phone Nubmer==>', phone);
       saveProfile(id, name_first, name_last, name_slug, phone, birthday);
-      Alert.alert('Success', 'Your Phone Number has been Changed');
+      Alert.alert(strings.mobilephone.alertTitleSuccess, strings.mobilephone.alertBodySuccess);
       this.clearText('textInput')
       auth.profile ()
         .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
@@ -124,7 +125,7 @@ export default class MobilePhone extends Component {
         <Text style={styles.heading}></Text>
         <View style={styles.textinputWrapperStyle}>
           <TextInput
-            placeholder="Old Phone Number"
+            placeholder={strings.mobilephone.placeholderOldNumber}
             placeholderTextColor="silver"
             selectionColor="silver"
             underlineColorAndroid="rgba(0,0,0,0)"
@@ -137,7 +138,7 @@ export default class MobilePhone extends Component {
         <View style={styles.textinputWrapperStyle}>
           <TextInput
             ref={'textInput'}
-            placeholder=" New Phone Number"
+            placeholder={strings.mobilephone.placeholderNewPhoneNumber}
             placeholderTextColor="silver"
             selectionColor="silver"
             underlineColorAndroid="rgba(0,0,0,0)"

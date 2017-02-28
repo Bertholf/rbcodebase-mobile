@@ -17,29 +17,28 @@ import saveProfile from '../../services/updateProfile';
 import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
 
-
 const moment = require('moment');
 
 const { width } = Dimensions.get('window');
 export default class editBirthday extends Component {
   constructor(props){
     super(props);
-    this.state = { 
+    this.state = {
       date: '2016-01-01',
       profile: {},
    };
   }
 
-  getDate() {
-    return moment().local();
-  }
-  
   componentDidMount() {
    auth.profile()
    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
    .catch(Err => console.log('err,Err'));
   }
-  
+
+  getDate() {
+    return moment().local();
+  }
+
   render() {
     const rightButtonConfig = {
     title: 'Save',

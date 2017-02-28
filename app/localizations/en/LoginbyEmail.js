@@ -1,4 +1,5 @@
 const LoginbyEmail = {
+  username: 'Username',
   password: 'Password',
   sign_in: 'Sign in',
   forgot_password: 'Forgot your password?',

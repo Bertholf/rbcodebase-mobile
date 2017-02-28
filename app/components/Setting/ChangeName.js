@@ -110,9 +110,11 @@ export default class NameEdit extends Component{
           <Text style={styles.Text2}>
             {strings.ChangeName.current_name}
           </Text>
-            <Text style={styles.TextInput1}>
-              {this.state.profile.name_first} {this.state.profile.name_last}
-            </Text>
+            <View style={styles.currentName}>
+              <Text style={{ color: '#2196f3', fontSize: 14 }}>
+                {this.state.profile.name_first} {this.state.profile.name_last}
+              </Text>
+            </View>
             <Text style={styles.Text2}>
               {strings.ChangeName.first_name}
             </Text>
@@ -122,9 +124,10 @@ export default class NameEdit extends Component{
               underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.first_name}
+              maxLength={25}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
-              numberOfLines={1} editable={true}
+              numberOfLines={1} editable
               value={this.state.firstName}
             />
             {firstNameValidator || !firstNameInput ?
@@ -135,7 +138,10 @@ export default class NameEdit extends Component{
             <TextInput
               ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'transparent'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.last_name} onChangeText={lastName => this.setState({ lastName })}
+              placeholderTextColor={'#2196f3'}
+              placeholder={strings.ChangeName.last_name}
+              maxLength={25}
+              onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
               value={this.state.lastName}

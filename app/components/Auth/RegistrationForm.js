@@ -119,9 +119,12 @@ export default class RegistrationForm extends Component {
     .then((loginRes) => {
       AsyncStorage.setItem('accessToken', loginRes.access_token)
       .then(() => Actions.actionswiper())
-      .catch(err => console.log('FAIL LOGIN AFTER REGISTER'));
+      .catch(err => {
+        console.log('FAIL LOGIN AFTER REGISTER');
+        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false  });
+      });
     })
-    .catch(err => console.log('FAIL LOGIN AFTER REGISTER', err));
+    .catch(err => this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false  }));
   }
 
 
@@ -134,7 +137,10 @@ export default class RegistrationForm extends Component {
       .then(res => this.setState({ submitting: false }, () =>
         this.loginAfterRegister(username, password)
       ))
-      .catch(err => console.log('FAIL TO REGISTER SSO', err));
+      .catch(err => {
+        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
+        console.log('error register', err);
+      });
     } else {
       this.setState({ submitting: true });
       submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {

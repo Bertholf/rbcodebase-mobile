@@ -46,12 +46,12 @@ export default class ChangeUsername extends Component {
     const birthday = this.state.profile.birthday;
     const emptyUsername = this.state.newUsername;
     const newUsernames = this.state.newUsername;
-    const regex = /^[a-zA-Z0-9_.-]{5,25}$/;
+    const regex = /^[a-zA-Z0-9_.-]{6,25}$/;
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
     if (validRegex && validUsername) {
-        saveProfile(id, name_first, name_last, newUsernames, phone, birthday)
+        saveProfile(id, name_first, name_last, newUsernames, phone, birthday);
         this.clearText('textInput')
         auth.profile ()
         .then (response => {
@@ -71,11 +71,7 @@ export default class ChangeUsername extends Component {
     const rightButtonConfig = {
     title: 'Save',
     handler: () => onSave(),
-  };
-    const leftButtonConfig = {
-    title: 'Cancel',
-    handler: () => {Actions.pop}
-  };
+    };
 
   const titleConfig = {
     title: 'Edit Username',
@@ -116,7 +112,8 @@ export default class ChangeUsername extends Component {
               style={styles.TextInput1}
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
-              placeholder="New Username"
+              placeholder={strings.changeUname.placeholder}
+              maxLength={25}
               onChangeText={newUsername => this.setState({ newUsername })}
               multiline={false}
               numberOfLines={4} editable

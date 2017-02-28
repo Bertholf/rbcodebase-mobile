@@ -70,6 +70,19 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     color: 'grey',
   },
+  currentName: {
+    height: 40,
+    paddingTop: 2,
+    paddingLeft: 8,
+    paddingBottom: 5,
+    color: '#2196f3',
+    fontSize: 14,
+    borderWidth: 0.5,
+    borderRadius: 2,
+    borderColor: '#2196f3',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 module.exports = styles;

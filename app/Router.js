@@ -138,7 +138,7 @@ const Routing = (props) => (
             key={'login'} component={Login} hideNavBar title={'Login Screen'}
           />
           <Scene
-            key={'register'} component={Register} title={'Register Screen'}
+            key={'register'} component={Register} title={'Register Screen'} hideNavBar
           />
           <Scene
             key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
