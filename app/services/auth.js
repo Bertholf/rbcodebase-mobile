@@ -53,8 +53,20 @@ export default {
     grant_type: config.GRANT_TYPE,
   },
 ),
-  followers: ()=> api.get('api/follows?leader_id='+id,
-  {client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE, follower}
-),
+  registerSSO: (name_first, name_last, name_slug, email, password, password_confirmation, provider, secret, access_token) =>
+    api.post('/api/users/register', {
+      name_first,
+      name_last,
+      name_slug,
+      email,
+      password,
+      password_confirmation,
+      provider,
+      access_token,
+      secret,
+      client_id: config.CLIENT_ID,
+      client_secret: config.CLIENT_SECRET,
+      grant_type: config.GRANT_TYPE,
+    }),
 };
 // app /services

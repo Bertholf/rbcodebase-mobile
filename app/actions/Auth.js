@@ -51,7 +51,7 @@ export function doneLogin(response = {}) {
     if(response.provider === 'twitter') {
       auth.checktwitter(response.accessToken, response.provider, response.secret)
       .then((resL) => {
-        console.log('RESPONSE RBCODETWITTER', resL);
+        console.log('RESPONSE RBCODEBASE TWITTER', resL);
         if (resL.data.registered === false ) {
           const props = {
             firstName: resL.data.name.split(' ')[0],
