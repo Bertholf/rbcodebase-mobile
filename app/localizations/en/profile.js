@@ -14,6 +14,8 @@ const profileLocalization = {
   deleteFriend: 'Delete Friend',
   addFriend: 'Add Friend',
   viewMore: 'View More',
+  areYouFollow: 'Are you sure to unfollow this user?',
+  yes: 'YES',
 };
 
 export default profileLocalization;

@@ -17,7 +17,7 @@ import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
 import follows from '../../services/follows';
-import strings from '../../localizations';
+import strings from '../../localizations'
 
 export default class Profile extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class Profile extends Component {
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.profile.id,
-      followed: true,
+      followed: false,
       countFollow: 0,
       id: this.props.idFollow,
       friend: false,
@@ -38,6 +38,7 @@ export default class Profile extends Component {
       me: false,
     };
   }
+
 
   componentDidMount() {
     console.log('this.state.profile', this.state.profile.id);
@@ -86,6 +87,7 @@ export default class Profile extends Component {
     .catch(err => console.log('fail ASYNC follow', err));
   }
 
+
   selectPhotoTapped() {
     const options = {
       quality: 1.0,
@@ -96,9 +98,9 @@ export default class Profile extends Component {
       }
     };
 
+
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       }
@@ -110,9 +112,9 @@ export default class Profile extends Component {
       }
       else {
         let source = { uri: response.uri };
-
       // You can also display the image using data:
       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
 
         this.setState({
           avatarSource: source
@@ -121,13 +123,6 @@ export default class Profile extends Component {
     });
   }
 
-  checkFollow(){
-    if(this.state.leaderId !== idFollower){
-
-    }else{
-
-    }
-  }
 
   render() {
     if (this.state.loading === false) {
@@ -148,10 +143,10 @@ export default class Profile extends Component {
               </View>
               <View style={styles.textInform} >
                 <TouchableOpacity onPress={() => this.pressScroll()}>
-                  <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
+                  <Text style={styles.pos}>{this.state.profile.postTotal} {strings.profileLocalization.post}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
-                  <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
+                  <Text style={styles.followers}>{this.state.profile.follower} {strings.profileLocalization.follower}</Text>
                   <Text style={{ marginLeft: 8 }}>{this.state.countFollow}</Text>
                 </TouchableOpacity>
                 {this.state.me ? (
@@ -165,7 +160,7 @@ export default class Profile extends Component {
                     <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                       <TouchableOpacity onPress={() => this.toggleSwitchFollow()}>
                         <Text style = {this.state.followed ? styles.button : styles.buttonUnfollow}>
-                           {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
+                           {this.state.followed ? strings.profileLocalization.follow : strings.profileLocalization.unfollow }</Text>
                         </TouchableOpacity>
                     </View>
                   ) : (
@@ -185,7 +180,7 @@ export default class Profile extends Component {
             </View>
               <View style={styles.biodata}>
                 <TouchableOpacity onPress= {Actions.about}>
-                <Text style={styles.bio}>{strings.profileLocalization.bio}</Text>
+                <Text style={styles.bio}>Bio</Text>
                 </TouchableOpacity>
                 <Text style={styles.isi}>{this.state.profile.about}</Text>
                 <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
@@ -193,39 +188,24 @@ export default class Profile extends Component {
                   <Image
                     style={styles.icon} source={require('./../../images/jarak.png')}
                   />
-                  <Text style={styles.isi}> {strings.profileLocalization.km} :</Text>
+                  <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
                 </View>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.icon} source={require('./../../images/mountain.png')}
                   />
-                  <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
+                  <Text style={styles.isi}>from: {this.state.profile.from}</Text>
                 </View>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.location} source={require('./../../images/live.png')}
                   />
-                  <Text style={styles.isi}>{strings.profileLocalization.live} : {this.state.profile.live}</Text>
+                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
                 </View>
-                {!this.state.me ? (
-                  <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
-                      <Text style = {styles.button}>
-                         {this.state.followed ? strings.profileLocalization.follow : strings.profileLocalization.unfollow }</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
-                        <Text style = {styles.button}>
-                           {this.state.friend ? strings.profileLocalization.addFriend : strings.profileLocalization.deleteFriend }</Text>
-                        </TouchableOpacity>
-                  </View>
-                ) : (
-                <Text />
-                )}
-
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                  <TouchableOpacity>
-                    <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
-                  </TouchableOpacity>
+                  {/* <TouchableOpacity>
+                    <Text style={styles.isi2}>View More</Text>
+                  </TouchableOpacity> */}
                 </View>
               </View>
             {/* <View style={styles.mapmain}>
@@ -242,12 +222,13 @@ export default class Profile extends Component {
       );
     }
   }
+
   toggleSwitchFollow() {
-    if (this.state.followed === true) {
-      Alert.alert('Confirmation',
-               'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
-                { text: 'Yes', onPress: () => this.unfollowUser() },
+    if (this.state.followed === false) {
+      Alert.alert('',
+               strings.profileLocalization.areYouFollow, [
+                { text: strings.logoutLocalization.cancel, onPress: () => this.setState({ clicked: this.state.followed }) },
+                { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
       this.follow();
