@@ -34,7 +34,7 @@ export default {
     grant_type: config.GRANT_TYPE,
   },
 ),
-  registerSSO: (name_first, name_last, name_slug, email, password, password_confirmation, provider, secret, access_token) =>
+  registerSSO: (name_first, name_last, name_slug, email, password, password_confirmation, provider, secret, access_token, oauth_provider_id) =>
     api.post('/api/users/register', {
       name_first,
       name_last,
@@ -45,6 +45,7 @@ export default {
       provider,
       access_token,
       secret,
+      oauth_provider_id,
       client_id: config.CLIENT_ID,
       client_secret: config.CLIENT_SECRET,
       grant_type: config.GRANT_TYPE,
