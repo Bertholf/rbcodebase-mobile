@@ -73,6 +73,7 @@ export default class Register extends Component {
       const twitterResponse = res;
       auth.checktwitter(res.token, res.provider, res.secret)
       .then((resL) => {
+        console.log('resL', resL);
         if (resL.data.registered === false) {
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
@@ -84,7 +85,12 @@ export default class Register extends Component {
             accessToken: twitterResponse.token,
           });
         } else {
-          this.registered();
+          AsyncStorage.setItem('provider', 'twitter');
+          AsyncStorage.setItem('accessToken', resL.data.access_token)
+          .then(() => {
+            // AsyncStorage.getItem('accessToken').then((at) => console.log('acess token twitter', at))
+            this.registered();
+          });
         }
       }).catch(err => console.log(err));
     })
