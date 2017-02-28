@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, AsyncStorage, Alert, alertMessage} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
@@ -58,7 +58,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.birthday}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>1 Jan 2017</Text>
+                <Text style={{ alignSelf: 'center'}}>{this.state.profile.date_birth}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
