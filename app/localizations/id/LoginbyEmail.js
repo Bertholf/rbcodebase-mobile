@@ -1,4 +1,5 @@
 const LoginbyEmail = {
+  username: 'Nama Pengguna',
   password: 'Kata sandi',
   sign_in: 'Masuk',
   forgot_password: 'Lupa kata sandi Anda?',
