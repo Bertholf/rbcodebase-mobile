@@ -42,7 +42,7 @@ export default class Setting extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.usernameEdit}>
+          <TouchableOpacity onPress={() => Actions.usernameEdit({ reRender: () => this.reRender() })}>
             <View style={styles.list}>
               <View style={{alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.user_name}</Text>

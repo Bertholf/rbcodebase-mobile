@@ -55,14 +55,14 @@ export default class ChangeUsername extends Component {
         this.clearText('textInput')
         auth.profile ()
         .then (response => {
-          this.setState({profile:response.data, loading:false}, () => console.log(this.state));
+          this.setState({profile:response.data, loading:false}, () => {
+            this.props.reRender();
+          })
           Keyboard.dismiss();
           ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
-          // [{ text: 'OK', onPress: () => Actions.userpanel() }]
-        // );
         })
         .catch(Err=> console.log('err', Err))
-        Actions.setting();
+        Actions.pop();
       } else {
         Alert.alert("Error", "invalid username");
       }
