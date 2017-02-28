@@ -114,6 +114,7 @@ export default class NameEdit extends Component {
               underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.first_name}
+              maxLength={25}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={1} editable={true}
@@ -127,7 +128,10 @@ export default class NameEdit extends Component {
             <TextInput
               ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.ChangeName.last_name} onChangeText={lastName => this.setState({ lastName })}
+              placeholderTextColor={'#2196f3'}
+              placeholder={strings.ChangeName.last_name}
+              maxLength={25}
+              onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
               numberOfLines={1} editable={true}
               value={this.state.lastName}
