@@ -47,6 +47,7 @@ export default class Profile extends Component {
       if (id === this.state.profile.id.toString()) {
         this.setState({ me: true });
       }
+      this.followHasSomeone(id, this.state.profile.id);
       follows.showFollower(this.state.profile.id)
       .then((res) => {
         const count = res.data.length;
@@ -64,7 +65,8 @@ export default class Profile extends Component {
     console.log('UNFOLLOW FROM PROFILE', this.state.id);
     follows.unfollow(this.state.id)
       .then(result => {
-        this.setState({ followed: true });
+        this.setState({ followed: false });
+        console.log('===============success unfollow======', this.state.id );
       }).catch(err => console.log(err))
   }
   pressScroll() {
@@ -121,9 +123,16 @@ export default class Profile extends Component {
     });
   }
 
-  // reRender(){
-  //   this.componentDidMount=>
-  // }
+  followHasSomeone(followerId, leaderId){
+    console.log('FOLLOW RES==========================|||');
+    follows.checkFollowing(followerId, leaderId)
+    .then((res)=> {
+      console.log("Landing here=====================", res.data);
+    this.setState({followed:(typeof res.data.id) !==  'undefined'})
+  }).catch((err)=>{
+    console.log(err);
+  })
+  }
 
   render() {
     if (this.state.loading === false) {
@@ -160,8 +169,8 @@ export default class Profile extends Component {
                   !this.state.me ? (
                     <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                       <TouchableOpacity onPress={() => this.toggleSwitchFollow()}>
-                        <Text style = {this.state.followed ? styles.button : styles.buttonUnfollow}>
-                           {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
+                        <Text style = {this.state.followed ? styles.buttonUnfollow  : styles.button }>
+                           {this.state.followed ? 'Unfollow' : 'Follow' }</Text>
                         </TouchableOpacity>
                     </View>
                   ) : (
@@ -224,7 +233,7 @@ export default class Profile extends Component {
     }
   }
   toggleSwitchFollow() {
-    if (this.state.followed === false) {
+    if (this.state.followed === true) {
       Alert.alert('Confirmation',
                'Are you sure to unfollow this user?', [
                 { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
