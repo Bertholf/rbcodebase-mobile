@@ -9,4 +9,5 @@ export default {
     { follower_id, leader_id, status },
   ),
   unfollow: id => api.delete('/api/follows/'+ id),
+  checkFollowing: (follower_id, leader_id) => api.get('/api/follows?leader_id=' + leader_id + '&follower_id=' + follower_id),
 };
