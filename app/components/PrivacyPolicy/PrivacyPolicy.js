@@ -11,7 +11,7 @@ const PPComponent = ({ tosUrl, onClose }) => (
         <Image source={ic_close} style={{ resizeMode: 'cover', width: 30, height: 30 }} />
       </TouchableOpacity>
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 20 }}>{strings.settings.privacy}</Text>
+        <Text style={{ fontSize: 20 }}>{strings.settings.Privacy_policy}</Text>
       </View>
     </View>
     <WebView
