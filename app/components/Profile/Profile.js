@@ -121,13 +121,9 @@ export default class Profile extends Component {
     });
   }
 
-  checkFollow(){
-    if(this.state.leaderId !== idFollower){
-
-    }else{
-
-    }
-  }
+  // reRender(){
+  //   this.componentDidMount=>
+  // }
 
   render() {
     if (this.state.loading === false) {
