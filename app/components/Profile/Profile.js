@@ -27,8 +27,8 @@ export default class Profile extends Component {
     this.state = {
       loading: true,
       profile: this.props.profile,
-      followId: this.props.profile.id,
-      followed: false,
+      leaderId: this.props.profile.id,
+      followed: true,
       countFollow: 0,
       id: this.props.idFollow,
       friend: false,
@@ -74,11 +74,11 @@ export default class Profile extends Component {
     console.log('THIS.PROPS.PROFILE', this.state.profile);
     AsyncStorage.getItem('userId')
     .then((followerId) => {
-      let idleader = followerId;
-      follows.followsomeone(this.state.followId, idleader)
+      let idFollower = followerId;
+      follows.followsomeone(idFollower, this.state.leaderId)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ followed: false, id: res.data.id, followId: res.data.follower_id });
+        this.setState({ followed: false, id: res.data.id, followId: res.data.leader_id });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
@@ -120,8 +120,17 @@ export default class Profile extends Component {
     });
   }
 
+  checkFollow(){
+    if(this.state.leaderId !== idFollower){
+
+    }else{
+
+    }
+  }
+
   render() {
     if (this.state.loading === false) {
+      console.log('INI ORANG: ',this.state.profile);
       return (
         <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
           <View style={styles.container} >
