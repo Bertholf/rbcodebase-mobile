@@ -104,6 +104,7 @@ export default class RegistrationForm extends Component {
       secret: this.props.secret || '',
       provider: this.props.provider || '',
       accessToken: this.props.accessToken || '',
+      oauthProviderId: this.props.oauthProviderId || '',
       password: '',
       confirmPassword: '',
       valid: false,
@@ -126,10 +127,10 @@ export default class RegistrationForm extends Component {
 
   onSubmit() {
     const { firstname, lastname, username, email, password, confirmPassword } = this.state;
-    const { provider, accessToken, secret } = this.state;
-    if (provider && accessToken && secret) {
+    const { provider, accessToken, secret, oauthProviderId } = this.state;
+    if (provider && accessToken) {
       this.setState({ submitting: true });
-      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken)
+      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
         this.loginAfterRegister(username, password)
       ))
@@ -167,7 +168,7 @@ export default class RegistrationForm extends Component {
       }
     };
     // strings.setLanguage('en');
-    if (this.state.loading === false) {
+    if (this.state.submitting === false) {
       console.log("false");
     return (
       <View style={{flex: 1}}>
