@@ -126,15 +126,15 @@ export default class AdPreference extends Component {
     const saveUpdate = () => {
       // console.log(id, user_id, privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply);
       auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
-      .then (response => this.setState({updateSetting:response.data, loading:false}, () => console.log(this.state)))
+      .then (response => this.setState({updateSetting:response.data, loading:false}, () =>   Actions.pop()))
       .catch(Err=> console.log('err',Err))
-      Actions.pop();
+    
     }
 
       const rightButtonConfig = {
       title: 'Save',
       handler: () => saveUpdate(),
-      handler: () => Actions.pop(),
+      // handler: () => Actions.pop(),
     };
 
     const titleConfig = {
