@@ -5,6 +5,7 @@ const ChangeUname = {
   error_length: 'Username minimal 6 karakter',
   error_same_username: 'Username baru harus berbeda dengan username lama Anda',
   store: 'SIMPAN',
+  placeholder: 'Nama Pengguna baru',
 };
 
 export default ChangeUname;

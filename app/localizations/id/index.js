@@ -15,6 +15,7 @@ import addfriend from './AddFriend';
 import listfollow from './ListFollow';
 import profileLocalization from './profile';
 import logoutLocalization from './logout';
+import mobilephone from './MobilePhone'
 
 const id = {
   listfollow,
@@ -33,6 +34,7 @@ const id = {
   ChangeName,
   profileLocalization,
   logoutLocalization,
+  mobilephone,
 };
 
 export default id;
