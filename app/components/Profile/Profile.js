@@ -17,6 +17,7 @@ import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
 import follows from '../../services/follows';
+import strings from '../../localizations';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -147,16 +148,16 @@ export default class Profile extends Component {
               </View>
               <View style={styles.textInform} >
                 <TouchableOpacity onPress={() => this.pressScroll()}>
-                  <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
+                  <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
-                  <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
+                  <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                   <Text style={{ marginLeft: 8 }}>{this.state.countFollow}</Text>
                 </TouchableOpacity>
                 {this.state.me ? (
                   <TouchableOpacity onPress={Actions.setting} >
                     <Text  style= {styles.button} >
-                      EDIT
+                      {strings.profileLocalization.edit}
                     </Text>
                   </TouchableOpacity>
                 ) : (
@@ -184,32 +185,47 @@ export default class Profile extends Component {
             </View>
               <View style={styles.biodata}>
                 <TouchableOpacity onPress= {Actions.about}>
-                <Text style={styles.bio}>Bio</Text>
+                <Text style={styles.bio}>{strings.profileLocalization.bio}</Text>
                 </TouchableOpacity>
                 <Text style={styles.isi}>{this.state.profile.about}</Text>
-                <Text style={styles.bio}>Last Hiking</Text>
+                <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.icon} source={require('./../../images/jarak.png')}
                   />
-                  <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
+                  <Text style={styles.isi}> {strings.profileLocalization.km} :</Text>
                 </View>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.icon} source={require('./../../images/mountain.png')}
                   />
-                  <Text style={styles.isi}>from: {this.state.profile.from}</Text>
+                  <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
                 </View>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.location} source={require('./../../images/live.png')}
                   />
-                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
+                  <Text style={styles.isi}>{strings.profileLocalization.live} : {this.state.profile.live}</Text>
                 </View>
+                {!this.state.me ? (
+                  <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
+                      <Text style = {styles.button}>
+                         {this.state.followed ? strings.profileLocalization.follow : strings.profileLocalization.unfollow }</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
+                        <Text style = {styles.button}>
+                           {this.state.friend ? strings.profileLocalization.addFriend : strings.profileLocalization.deleteFriend }</Text>
+                        </TouchableOpacity>
+                  </View>
+                ) : (
+                <Text />
+                )}
+
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                  {/* <TouchableOpacity>
-                    <Text style={styles.isi2}>View More</Text>
-                  </TouchableOpacity> */}
+                  <TouchableOpacity>
+                    <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             {/* <View style={styles.mapmain}>
