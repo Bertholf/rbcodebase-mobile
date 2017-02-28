@@ -152,14 +152,13 @@ export default class RegistrationForm extends Component {
            <KeyboardAwareView animated={true}>
       <View style={styles.container} >
         <ScrollView
-          ref={(view) => {this.scrollView = view; }}
-          style={[{ flex: 1, alignSelf: 'stretch'}]}
-          keyboardShouldPersistTaps
-          automaticallyAdjustContentInsets={false}
-          onScroll={this.onScroll}
-          scrollEventThrottle={200}
-          onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}
-        >
+        ref={(view) => {this.scrollView = view; }}
+                  style={[{flex: 1, alignSelf: 'stretch'}]}
+                  keyboardShouldPersistTaps="always"
+                  automaticallyAdjustContentInsets={false}
+                  onScroll={this.onScroll}
+                  scrollEventThrottle={200}
+                  onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
