@@ -110,9 +110,11 @@ export default class NameEdit extends Component{
           <Text style={styles.Text2}>
             {strings.ChangeName.current_name}
           </Text>
-            <Text style={styles.TextInput1}>
-              {this.state.profile.name_first} {this.state.profile.name_last}
-            </Text>
+            <View style={styles.currentName}>
+              <Text style={{ color: '#2196f3', fontSize: 14 }}>
+                {this.state.profile.name_first} {this.state.profile.name_last}
+              </Text>
+            </View>
             <Text style={styles.Text2}>
               {strings.ChangeName.first_name}
             </Text>
@@ -124,7 +126,7 @@ export default class NameEdit extends Component{
               placeholder={strings.ChangeName.first_name}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
-              numberOfLines={1} editable={true}
+              numberOfLines={1} editable
               value={this.state.firstName}
             />
             {firstNameValidator || !firstNameInput ?
