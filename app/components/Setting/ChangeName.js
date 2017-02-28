@@ -6,6 +6,8 @@ import {
   TextInput,
   Alert,
   TouchableOpacity,
+  Keyboard,
+  ToastAndroid,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import NavigationBar from 'react-native-navbar';
@@ -15,6 +17,7 @@ import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
+
 
 export default class NameEdit extends Component{
   constructor(props) {
@@ -38,7 +41,7 @@ export default class NameEdit extends Component{
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => validateName(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -75,12 +78,17 @@ export default class NameEdit extends Component{
         } else {
           console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
-          Alert.alert('Success', 'Your name has been Changed');
           this.clearText('textInput1');
           this.clearText('textInput2');
           auth.profile ()
-        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          this.props.reRender();
+        }))
         .catch(Err=> console.log('err', Err))
+          ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
+        Keyboard.dismiss();
+        Actions.refresh();
+        Actions.pop();
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');
@@ -100,29 +108,29 @@ export default class NameEdit extends Component{
         <ScrollView>
           <View style={styles.View1}>
           <Text style={styles.Text2}>
-            {strings.ChangeName.oldname}
+            {strings.ChangeName.current_name}
           </Text>
             <Text style={styles.TextInput1}>
               {this.state.profile.name_first} {this.state.profile.name_last}
             </Text>
             <Text style={styles.Text2}>
-              {strings.ChangeName.newname}
+              {strings.ChangeName.first_name}
             </Text>
             <TextInput
               ref={'textInput1'}
               style={styles.TextInput1}
               underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
-              placeholder={strings.ChangeName.newname}
+              placeholder={strings.ChangeName.first_name}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
               numberOfLines={1} editable={true}
               value={this.state.firstName}
             />
             {firstNameValidator || !firstNameInput ?
-              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertnewname}</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
             <Text style={styles.Text2}>
-              {strings.ChangeName.lastname}
+              {strings.ChangeName.last_name}
             </Text>
             <TextInput
               ref={'textInput2'}
@@ -132,25 +140,25 @@ export default class NameEdit extends Component{
               numberOfLines={1} editable={true}
               value={this.state.lastName}
             />
+            {lastNameValidator || !lastNameInput ?
+              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
             <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'row', marginTop: 30, marginBottom: 10, justifyContent: 'space-between' }}>
               <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
               <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
             </View>
             <Text style={styles.Text2}>
-              {strings.ChangeName.display}
+              {strings.ChangeName.display_name}
             </Text>
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid={'#2196f3'}
               placeholderTextColor={'#2196f3'}
-              placeholder= ""
+              placeholder={strings.ChangeName.display_name}
               numberOfLines={1}
               editable={true}
               multiline={false}
               autoCorrect={true}
             />
-            {lastNameValidator || !lastNameInput ?
-              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alertlastname}</Text>}
           </View>
         <View>
           <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>

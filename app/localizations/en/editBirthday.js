@@ -1,9 +1,9 @@
 const editBirthday = {
-  title: 'Edit Birthday',
+  title: 'Edit birthday',
   birthday: 'Birthday',
   confirm: 'Confirm',
   cancel: 'Cancel',
-  placeholder: 'Select Date',
+  placeholder: 'Select date',
   save: 'SAVE',
 };
 

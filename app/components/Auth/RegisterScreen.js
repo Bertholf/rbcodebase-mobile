@@ -9,6 +9,7 @@ import {
   Text,
   Alert,
   ActivityIndicator,
+  Timers,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -23,6 +24,8 @@ import google from '../../modules/google';
 import twitterModule from '../../modules/twitter';
 import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
+import Loader from '../../views/Loader';
+import auth from '../../services/auth';
 
 
 const { width } = Dimensions.get('window');
@@ -65,25 +68,37 @@ export default class Register extends Component {
   }
   registerWithTwitter() {
     twitterModule.signIn()
-    .then(({user}) => Actions.registrationform({ username: user.username }))
-    .catch(err => console.log("ERROR TWITTER", err))
+    .then((res) => {
+      auth.checktwitter(res.token, res.provider, res.secret)
+      .then((resL) => {
+        if (resL.data.registered === false) {
+          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email });
+        } else {
+          this.registered();
+        }
+      }).catch(err => console.log(err));
+    })
+    .catch(err => console.log("ERROR TWITTER", err));
   }
-
+  registered() {
+    const loader = Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
+    setTimeout(() => Actions.actionswiper({ type: 'reset'}), 1000);
+  }
   render() {
     return (
       <View style={styles.container}>
       <ScrollView>
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
           <Image style={styles.logo} source={logo} />
-          <Text style={styles.separatorText}>{strings.register.RegisterWith}</Text>
+          <Text style={styles.separatorText}>{strings.register.Register_with}</Text>
           <View style={styles.otherlog}>
             <TouchableOpacity style={styles.buttonFacebook}
               activeOpacity={0.7}
-              onPress={() => facebookRegister()}
+              onPress={() => facebookRegister(() => this.registered())}
             >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={facebookLogo} style={styles.facebookLogo} />
-                <Text style={styles.text}>{strings.register.Registerfacebook}</Text>
+                <Text style={styles.text}>{strings.register.Register_facebook}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -93,7 +108,7 @@ export default class Register extends Component {
               activeOpacity={0.7} onPress={() => this.registerWithGoogle()} >
               <View style={{ flexDirection: 'row'}}>
                 <Image source={google2} style={styles.logoGoogle} />
-                <Text style={styles.text}>{strings.register.RegisterGoogle}</Text>
+                <Text style={styles.text}>{strings.register.Register_google}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -103,7 +118,7 @@ export default class Register extends Component {
               onPress={() => this.registerWithTwitter()}>
               <View style={{ flexDirection: 'row'}}>
                 <Image source={twitter} style={styles.logoTwitter} />
-                <Text style={styles.text}>{strings.register.RegisterTwitter}</Text>
+                <Text style={styles.text}>{strings.register.Register_twitter}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -118,21 +133,21 @@ export default class Register extends Component {
               onPress={Actions.registrationform}>
               <View style={{ flexDirection: 'row'}}>
                 <Image style={styles.icon} source={mail} />
-                <Text style={styles.text}>{strings.register.RegisterEmail}</Text>
+                <Text style={styles.text}>{strings.register.Register_email}</Text>
               </View>
             </TouchableOpacity>
           </View>
           <View style={{ paddingTop: 8, paddingBottom: 10 }}>
             <TouchableOpacity onPress={Actions.loginscreen}>
-              <Text style={{ fontSize: 14, color: 'black' }}>{strings.register.SignIn}</Text>
+              <Text style={{ fontSize: 14, color: 'black' }}>{strings.register.Sign_in}</Text>
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: 10, alignItems: 'center' }}>
             <View style={{ alignItems: 'center' }}>
-              <Text style={{justifyContent: 'center' }}>{strings.register.BySigningupYouAgree}</Text>
-              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.register.TermsofService}
-              <Text style={{ color: 'grey' }}> {strings.register.And}
-                  <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.register.PrivacyPolicy}</Text>
+              <Text style={{justifyContent: 'center' }}>{strings.register.sign_agreement}</Text>
+              <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.register.tos}
+              <Text style={{ color: 'grey' }}> {strings.register.and}
+                  <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.register.Privacy_policy}</Text>
               </Text>
               </Text>
             </View>

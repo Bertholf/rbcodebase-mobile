@@ -56,8 +56,8 @@ export default class AddFriendScreen extends React.Component {
 
       return (
         <View style={styles.container}>
-          <View
-            style={styles.searchRow}
+          {/* <View
+             style={styles.searchRow}
           >
             <TextInput
               style={styles.searchText}
@@ -73,7 +73,7 @@ export default class AddFriendScreen extends React.Component {
                 <Text style={{ color: '#fff' }}>{strings.addfriend.search}</Text>
               </View>
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}

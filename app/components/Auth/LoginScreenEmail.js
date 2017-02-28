@@ -57,7 +57,7 @@ export default class LoginScreenEmail extends Component {
         <View style={styles.contentLoginEmail}>
           {!this.state.isFail ? <Text /> : (
             <View style={styles.errBox}>
-              <Text style={{ color: '#fff' }} >{strings.LoginbyEmail.validate}</Text>
+              <Text style={{ color: '#fff' }} >{strings.LoginbyEmail.alert_invalid}</Text>
             </View>
           )}
           <TextInput
@@ -70,7 +70,7 @@ export default class LoginScreenEmail extends Component {
             required
           />
           {this.state.validUsername ? <Text /> : (
-            <Text style={styles.wrong}>{strings.LoginbyEmail.validEUser}</Text>
+            <Text style={styles.wrong}>{strings.LoginbyEmail.alert_username}</Text>
           )}
           <TextInput
             secureTextEntry
@@ -80,10 +80,10 @@ export default class LoginScreenEmail extends Component {
               this.setState({ password, validPassword: true, isFail: false })
             }
             placeholderTextColor={'#2196f3'}
-            placeholder={strings.LoginbyEmail.pass}
+            placeholder={strings.LoginbyEmail.password}
           />
           {this.state.validPassword ? <Text /> : (
-            <Text style={styles.wrong}>{strings.LoginbyEmail.validEPass}</Text>
+            <Text style={styles.wrong}>{strings.LoginbyEmail.alert_password}</Text>
           )}
           {!this.state.loading ? (
             <TouchableOpacity
@@ -91,7 +91,7 @@ export default class LoginScreenEmail extends Component {
               style={styles.button}
               onPress={() => this.validate()}
             >
-              <Text style={styles.buttonText}>{strings.LoginbyEmail.signIn}</Text>
+              <Text style={styles.buttonText}>{strings.LoginbyEmail.sign_in}</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -104,7 +104,7 @@ export default class LoginScreenEmail extends Component {
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <TouchableOpacity onPress={() => Actions.forgotPassword()}>
               <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  {strings.LoginbyEmail.forgot}
+                  {strings.LoginbyEmail.forgot_password}
                 </Text>
             </TouchableOpacity>
           </View>

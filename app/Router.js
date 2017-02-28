@@ -51,6 +51,7 @@ import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
 import Follower from './components/Profile/Follower';
 import AddFriendScreen from './components/Profile/AddFriend';
+import LoaderView from './views/Loader';
 
 const Routing = (props) => (
   <View style={{ flex: 1 }}>
@@ -67,6 +68,9 @@ const Routing = (props) => (
           {/* <Scene
             key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
           /> */}
+          <Scene
+            key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
+          />
           <Scene
             key="chatfriend" component={ChatListFriendView} title={'Chat'}
           />
@@ -170,7 +174,7 @@ const Routing = (props) => (
             key={'registrationform'} component={RegistrationForm} title={'Register'}
           />
           <Scene
-            key={'adpref'} component={AdPref} title={'Ad Preference'}
+            key={'adpref'} hideNavBar component={AdPref} title={'Ad Preference'}
           />
           <Scene
             key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
@@ -197,6 +201,7 @@ const Routing = (props) => (
           <Scene
             key={'addfriendscreen'} component={AddFriendScreen} title={'Add Friends'}
           />
+          <Scene key={'loaderview'} component={LoaderView} hideNavBar />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />
           <Scene key={'pp'} hideNavBar component={PPContainer} />
           <Scene key={'support'} hideNavBar component={SupportContainer} />

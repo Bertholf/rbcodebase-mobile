@@ -73,7 +73,9 @@ class userPanel extends React.Component {
             </View>
             <View style={styles.userContainer} >
               <TouchableOpacity activeOpacity={0.7} style={styles.userButton} onPress={ () => Actions.profile({ profile: this.state.profile })}>
-                <Image source={{uri:this.state.profile.picture}} style={styles.userImage} />
+                {this.state.profile.picture == null ?
+                <Image style={styles.userImage} source= {{uri :'http://www.gravatar.com/avatar/96e379f4896795739d346ed058255968.jpg?s=80&d=mm&r=g' }} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.userImage} />
+              }
               </TouchableOpacity>
               <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
 
@@ -81,18 +83,18 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.follower}
+                  onPress={Actions.following}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.follme} </Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.followers} </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.following}
+                  onPress={Actions.follower}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.myfrie}</Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.following}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
@@ -100,7 +102,7 @@ class userPanel extends React.Component {
                   onPress={Actions.addfriendscreen}
                 >
                   <Image source={addFriendIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.addfrie} </Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.search_friend} </Text>
                 </TouchableOpacity>
               </View>
             </View>

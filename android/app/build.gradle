@@ -91,8 +91,8 @@ android {
         applicationId "com.rbcodebase.app"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 9
-        versionName "0.0.8"
+        versionCode 11
+        versionName "0.0.11"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

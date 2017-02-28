@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage, ActivityIndicator } from 'react-native';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 
@@ -77,7 +77,7 @@ export default class ListFollow extends Component {
       statusFollow: [],
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.rowData.status === 'request') {
       this.setState({ clicked: false });
     }
@@ -111,6 +111,7 @@ export default class ListFollow extends Component {
     follows.unfollow(this.props.rowData.id)
       .then(result => {
         console.log(result.id, 'UNFOLLOWED');
+        this.props.rowData.rerender();
       }).catch(err => console.log(err))
   }
 
@@ -141,6 +142,7 @@ export default class ListFollow extends Component {
   }
 
   render() {
+    console.log('list props',this.props);
     let rowData;
     if (this.props.rowData.type === 'follower') {
       rowData = this.props.rowData.follower;
@@ -153,7 +155,7 @@ export default class ListFollow extends Component {
     return (
       <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => Actions.profile({ profile: rowData })}
+        onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
         activeOpacity={0.7}
       >
         

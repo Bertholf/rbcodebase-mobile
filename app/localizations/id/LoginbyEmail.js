@@ -1,10 +1,10 @@
 const LoginbyEmail = {
-  validate: 'Email atau Kata Sandi tidak sama',
-  validEUser: 'Maaf, username Anda salah',
-  validEPass: 'Kata sandi tidak boleh kosong',
-  pass: 'Kata sandi',
-  signIn: 'Masuk',
-  forgot: 'Lupa kata sandi Anda?',
+  password: 'Kata sandi',
+  sign_in: 'Masuk',
+  forgot_password: 'Lupa kata sandi Anda?',
+  alert_invalid: 'Email atau password tidak valid',
+  alert_username: 'Maaf, username Anda salah',
+  alert_password: 'Kata sandi tidak boleh kosong',
 };
 
 export default LoginbyEmail;

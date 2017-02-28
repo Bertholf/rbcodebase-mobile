@@ -6,6 +6,8 @@ import {
   Text,
   ScrollView,
   Alert,
+  ToastAndroid,
+  Keyboard
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
@@ -50,33 +52,40 @@ export default class ChangeUsername extends Component {
     const onSave = () => {
     if (validRegex && validUsername) {
         saveProfile(id, name_first, name_last, newUsernames, phone, birthday)
-        Alert.alert('Success', 'Your Username has been Changed');
         this.clearText('textInput')
         auth.profile ()
-        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .then (response => {
+          this.setState({profile:response.data, loading:false}, () => {
+            this.props.reRender();
+          })
+          Keyboard.dismiss();
+          ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
+        })
         .catch(Err=> console.log('err', Err))
+        Actions.pop();
       } else {
         Alert.alert("Error", "invalid username");
       }
     }
+
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => alert('successfully!'),
+    handler: () => onSave(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
-    handler: () => Actions.pop(),
+    handler: () => {Actions.pop}
   };
 
   const titleConfig = {
     title: 'Edit Username',
   };
-    const saveUsername = () => {
-      const newUsername = this.state.newUsername;
-      console.log(newUsername);
-      saveProfile(newUsername);
-      Alert.alert('Success', 'Your Username has been Changed');
-    };
+    // const saveUsername = () => {
+    //   const newUsername = this.state.newUsername;
+    //   console.log(newUsername);
+    //   saveProfile(newUsername);
+    //   Alert.alert('Success', 'Your Username has been Changed');
+    // };
     return (
       <View style={styles.OuterView}>
       <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
@@ -88,7 +97,7 @@ export default class ChangeUsername extends Component {
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              {strings.changeUname.oldname}
+              {strings.changeUname.current_name}
             </Text>
             <TextInput
               style={styles.TextInput1}
@@ -100,7 +109,7 @@ export default class ChangeUsername extends Component {
               editable={false}
             />
             <Text style={styles.Text2}>
-              {strings.changeUname.newname}
+              {strings.changeUname.new_name}
             </Text>
             <TextInput
               ref={'textInput'}
