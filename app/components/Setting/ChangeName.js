@@ -135,7 +135,7 @@ export default class NameEdit extends Component{
             </Text>
             <TextInput
               ref={'textInput2'}
-              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
+              style={styles.TextInput1} underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.last_name}
               maxLength={25}
