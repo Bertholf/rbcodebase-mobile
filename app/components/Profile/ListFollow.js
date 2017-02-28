@@ -188,14 +188,22 @@ export default class ListFollow extends Component {
     }
 
     // this state for disable button follow if privacy_follow = 'none'
-      let setting = this.props.rowData.setting;
-      let privacy_follow;
-      if (setting !== null){
-       privacy_follow = setting.privacy_follow;
-      }else{
-        console.log('this nul setting');
-      }
-    console.log('nin ada oo====', privacy_follow);
+    let data = this.props.rowData;
+    let setting;
+    if (this.props.rowData.type === 'follower' ) {
+      setting = data.follower.setting;
+    } else if (this.props.rowData.type === 'following') {
+      setting = data.leader.setting;
+    } else {
+      setting = data.setting;
+    }
+
+    if (setting === null) {
+      setting = {
+        privacy_follow: "everyone"
+      };
+    }
+  console.log('nin ada oo====', setting);
     return (
       <View style={styles.container}>
       <TouchableOpacity
@@ -214,7 +222,7 @@ export default class ListFollow extends Component {
           </View>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity disabled={ privacy_follow !== 'none' ? false : true } onPress={() => {
+      <TouchableOpacity disabled={ setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
           }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
