@@ -10,6 +10,7 @@ import {
   Alert,
   ActivityIndicator,
   Timers,
+  AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -69,10 +70,19 @@ export default class Register extends Component {
   registerWithTwitter() {
     twitterModule.signIn()
     .then((res) => {
+      const twitterResponse = res;
       auth.checktwitter(res.token, res.provider, res.secret)
       .then((resL) => {
         if (resL.data.registered === false) {
-          Actions.registrationform({ firstName: resL.data.name.split(' ')[0], lastName: resL.data.name.split(' ')[1], username: resL.data.nickname, email: resL.data.email });
+          Actions.registrationform({
+            firstName: resL.data.name.split(' ')[0],
+            lastName: resL.data.name.split(' ')[1],
+            username: resL.data.nickname,
+            email: resL.data.email,
+            provider: 'twitter',
+            secret: twitterResponse.secret,
+            accessToken: twitterResponse.token,
+          });
         } else {
           this.registered();
         }

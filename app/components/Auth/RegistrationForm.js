@@ -10,11 +10,13 @@ import {
      StyleSheet,
      ActivityIndicator,
      Alert,
+     AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
+import auth from '../../services/auth';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -99,6 +101,9 @@ export default class RegistrationForm extends Component {
       lastname: this.props.lastName || '',
       email: this.props.email || '',
       username: this.props.username || '',
+      secret: this.props.secret || '',
+      provider: this.props.provider || '',
+      accessToken: this.props.accessToken || '',
       password: '',
       confirmPassword: '',
       valid: false,
@@ -107,8 +112,35 @@ export default class RegistrationForm extends Component {
       failMsg: '',
     };
   }
+  loginAfterRegister(username, password) {
+    auth.login(username, password)
+    .then((loginRes) => {
+      AsyncStorage.setItem('accessToken', loginRes.access_token)
+      .then(() => Actions.actionswiper())
+      .catch(err => console.log('FAIL LOGIN AFTER REGISTER'));
+    })
+    .catch(err => console.log('FAIL LOGIN AFTER REGISTER', err));
+  }
 
+  onSubmit() {
+    const { firstname, lastname, username, email, password, confirmPassword } = this.state;
+    const { provider, accessToken, secret } = this.state;
+    if (provider && accessToken && secret) {
+      this.setState({ submitting: true });
+      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken)
+      .then(res => this.setState({ submitting: false }, () =>
+        this.loginAfterRegister(username, password)
+      ))
+      .catch(err => console.log('FAIL TO REGISTER SSO', err));
+    } else {
+      this.setState({ submitting: true });
+      submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
+        this.setState({ failregister: true, failMsg: msg, submitting: false });
+      });
+    }
+  }
   render() {
+    console.log('REGISTRATIONFORM STATE', this.state);
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
     const usernameRegex = /^[a-zA-Z0-9_-]{5,25}$/;
     const nameRegex = /^[a-zA-Z]+$/;
@@ -127,12 +159,7 @@ export default class RegistrationForm extends Component {
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
-        const {firstname, lastname, username, email, password, confirmPassword } = this.state;
-        this.setState({ submitting: true });
-        submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
-          this.setState({ failregister: true, failMsg: msg, submitting: false }, () =>
-        console.log('FINAL State : ', this.state));
-        });
+        this.onSubmit();
       } else {
         Alert.alert(strings.register.error_failed);
       }
