@@ -5,7 +5,6 @@ import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
 import auth from './../../services/auth';
 import Logout from '../../services/logout';
-
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {
@@ -180,7 +179,17 @@ export default class Setting extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Logout} >
+          <TouchableOpacity onPress=
+             {() => Alert.alert(
+            '',
+            strings.logoutLocalization.AreYouSure,
+            [
+              { text: strings.logoutLocalization.cancel, onPress:() => console.log('cancelled Pressed')},
+              { text: 'OK', onPress:  () => { Logout() ;
+              console.log('OK Pressed')}},
+            ]
+          ) }
+          >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.log_out}</Text>
