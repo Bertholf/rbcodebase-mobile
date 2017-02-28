@@ -24,6 +24,7 @@ const register = {
   Privacy_policy: 'Privacy Policy',
   alert_invalid_email: 'Invalid email',
   alert_username_taken: 'The username already taken',
+  alert_username_length: 'The username must be at least 5 charachters or numbers',
   alert_password: 'Password does not match',
   alert_first_name: 'Invalid first name',
   alert_last_name: 'Invalid last name',

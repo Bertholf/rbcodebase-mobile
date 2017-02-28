@@ -24,6 +24,7 @@ const register = {
   Privacy_policy: 'Aturan Privasi',
   alert_invalid_email: 'Email tidak valid',
   alert_username_taken: 'Nama pengguna sudah ada',
+  alert_username_length: 'Nama pengguna minimal 5 karakter',
   alert_password: 'Kata sandi tidak cocok',
   alert_first_name: 'Nama depan salah',
   alert_last_name: 'Nama belakang salah',
