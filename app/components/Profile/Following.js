@@ -27,7 +27,7 @@ export default class Friendlist extends React.Component {
         .then((res) => {
           this.changeState(res);
         })
-        .catch(err => this.showError(err));
+        .catch(err => this.showError('Error!!!!', err));
       })
       .catch(err => console.log('fail to get user id from asyncStorege', err));
     } else {
