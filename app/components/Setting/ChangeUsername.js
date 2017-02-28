@@ -44,12 +44,12 @@ export default class ChangeUsername extends Component {
     const birthday = this.state.profile.birthday;
     const emptyUsername = this.state.newUsername;
     const newUsernames = this.state.newUsername;
-    const regex = /^[a-zA-Z0-9_.-]{5,25}$/;
+    const regex = /^[a-zA-Z0-9_.-]{6,25}$/;
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
-    if (validRegex && validUsername) {
-        saveProfile(id, name_first, name_last, newUsernames, phone, birthday)
+      if (validRegex && validUsername) {
+        saveProfile(id, name_first, name_last, newUsernames, phone, birthday);
         Alert.alert('Success', 'Your Username has been Changed');
         this.clearText('textInput')
         auth.profile ()
@@ -62,11 +62,7 @@ export default class ChangeUsername extends Component {
     const rightButtonConfig = {
     title: 'Save',
     handler: () => onSave(),
-  };
-    const leftButtonConfig = {
-    title: 'Cancel',
-    handler: () => Actions.pop(),
-  };
+    };
 
   const titleConfig = {
     title: 'Edit Username',
