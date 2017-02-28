@@ -91,40 +91,40 @@ export default class PassEdit extends Component {
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              {strings.PassEditLoc.enterYourPassword}
+              {strings.PassEditLoc.enter_old_password}
             </Text>
             {/* @TODO we need to delete this current password later, thanks!!! */}
             <Text style={styles.Text2}>
               {currentPassword}
             </Text>
             <TextInput
-              style={styles.TextInput1} placeholder={strings.PassEditLoc.inputEnterOldPassword} underlineColorAndroid={'transparent'}
+              style={styles.TextInput1} placeholder={strings.PassEditLoc.input_old_password} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} onChangeText={password => this.setState({ password })}
               numberOfLines={4}
             />
             {validPassword || !usedPassword ?
-              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_wrongPassword}</Text>}
+              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_wrong_password}</Text>}
             <Text style={styles.Text2}>
-              {strings.PassEditLoc.enterYourNewPassword}
+              {strings.PassEditLoc.enter_new_password}
             </Text>
             <TextInput
               ref={'textInput1'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.inputEnterYourPassword} onChangeText={newPassword => this.setState({ newPassword })} multiline
+              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
+              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.input_new_password} onChangeText={newPassword => this.setState({ newPassword })} multiline
               numberOfLines={4}
             />
             {passwordLength || !passwordInput ? <Text /> :
-            <Text style={styles.invalid}>{strings.PassEditLoc.error_passwordLength}</Text>}
+            <Text style={styles.invalid}>{strings.PassEditLoc.error_password_length}</Text>}
             <Text style={styles.Text2}>
-              {strings.PassEditLoc.confirmChange}
+              {strings.PassEditLoc.confirm_new_password}
             </Text>
             <TextInput
               ref={'textInput2'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.confirmInputChange} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
+              style={styles.TextInput1} underlineColorAndroid={'#2196f3'}
+              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.input_confirm_password} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
               numberOfLines={4}
             />
-            {combinePassword ? <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_passwordCombination}</Text>}
+            {combinePassword ? <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_password_combination}</Text>}
           </View>
         </ScrollView>
       </View>

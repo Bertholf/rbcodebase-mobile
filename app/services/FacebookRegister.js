@@ -1,8 +1,9 @@
 import { LoginManager, AccessToken, GraphRequestManager, GraphRequest } from 'react-native-fbsdk';
 import { Actions } from 'react-native-router-flux';
+import { Alert } from 'react-native';
 import auth from './auth';
 
-const facebookRegister = () => {
+const facebookRegister = (callback) => {
   LoginManager.logInWithReadPermissions(['public_profile'])
    .then((result) => {
      if (result.isCancelled) {
@@ -25,7 +26,7 @@ const facebookRegister = () => {
          Actions.pop();
          Actions.registrationform(props);
        } else {
-         Actions.login();
+         callback();
         console.log('Success fetching data ', result);
        }
      const profileRequestParams = {
