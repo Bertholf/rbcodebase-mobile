@@ -81,11 +81,14 @@ export default class NameEdit extends Component{
           this.clearText('textInput1');
           this.clearText('textInput2');
           auth.profile ()
-        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          this.props.reRender();
+        }))
         .catch(Err=> console.log('err', Err))
           ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
         Keyboard.dismiss();
-        Actions.actionswiper({ type: 'reset' });
+        Actions.refresh();
+        Actions.pop();
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');

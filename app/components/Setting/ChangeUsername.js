@@ -62,7 +62,7 @@ export default class ChangeUsername extends Component {
         // );
         })
         .catch(Err=> console.log('err', Err))
-        Actions.actionswiper({ type: 'reset' });
+        Actions.setting();
       } else {
         Alert.alert("Error", "invalid username");
       }

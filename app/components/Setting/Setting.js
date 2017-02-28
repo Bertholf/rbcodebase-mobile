@@ -21,21 +21,17 @@ export default class Setting extends Component {
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
     .catch(Err => console.log('err,Err'));
   }
-
-  componentWillReceiveProps() {
-    console.log('HELLO MY PROPS',this.props);
-    if (this.props.trigger) {
-      this.componentDidMount();
-    }
+  reRender() {
+    this.componentDidMount();
+    console.log('RERENDER TRIGGERD');
   }
-
   render() {
     return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.titleText}>{strings.settings.account}</Text>
-          <TouchableOpacity onPress={Actions.nameEdit} >
+          <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })} >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>
                 <Text style={styles.text}>{strings.settings.name}</Text>
