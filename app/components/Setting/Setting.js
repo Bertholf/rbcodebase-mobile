@@ -59,7 +59,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.birthday}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>1 Jan 2017</Text>
+                <Text style={{ alignSelf: 'center'}}>{this.state.profile.date_birth}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
