@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage, ActivityIndicator } from 'react-native';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 
@@ -77,7 +77,7 @@ export default class ListFollow extends Component {
       statusFollow: [],
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.rowData.status === 'request') {
       this.setState({ clicked: false });
     }
@@ -111,6 +111,7 @@ export default class ListFollow extends Component {
     follows.unfollow(this.props.rowData.id)
       .then(result => {
         console.log(result.id, 'UNFOLLOWED');
+        this.props.rowData.rerender();
       }).catch(err => console.log(err))
   }
 
@@ -141,6 +142,7 @@ export default class ListFollow extends Component {
   }
 
   render() {
+    console.log('list props',this.props);
     let rowData;
     if (this.props.rowData.type === 'follower') {
       rowData = this.props.rowData.follower;
@@ -150,12 +152,23 @@ export default class ListFollow extends Component {
       // this section will call when add friend call use this this component
       rowData = this.props.rowData;
     }
+
+    // this state for disable button follow if privacy_follow = 'none'
+      let setting = this.props.rowData.setting;
+      let privacy_follow;
+      if (setting !== null){
+       privacy_follow = setting.privacy_follow;
+      }else{
+        console.log('this nul setting');
+      }
+    console.log('nin ada oo====', privacy_follow);
     return (
+      <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => Actions.profile({ profile: rowData })}
+        onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
         activeOpacity={0.7}
       >
-        <View style={styles.container}>
+        <View>
           <View style={{ flexDirection: 'row' }}>
             <Image source={{ uri: rowData.picture }} style={styles.photo} />
             <View style={styles.account}>
@@ -165,14 +178,15 @@ export default class ListFollow extends Component {
               <Text style={styles.detail}>{rowData.name_slug}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => {
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity disabled={ privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
           }}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
               {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 

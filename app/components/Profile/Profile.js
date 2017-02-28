@@ -17,6 +17,7 @@ import styles from './ProfileStyle';
 import MapMain from '../Timeline/TimelineComp';
 import auth from './../../services/auth';
 import follows from '../../services/follows';
+import strings from '../../localizations';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -27,8 +28,10 @@ export default class Profile extends Component {
     this.state = {
       loading: true,
       profile: this.props.profile,
-      followed: false,
+      leaderId: this.props.profile.id,
+      followed: true,
       countFollow: 0,
+      id: this.props.idFollow,
       friend: false,
       edit: false,
       button: false,
@@ -55,11 +58,32 @@ export default class Profile extends Component {
       });
     })
     .catch(err => console.log('FAIL TO ASYNC', err));
+  }
 
-
+  unfollowUser() {
+    console.log('UNFOLLOW FROM PROFILE', this.state.id);
+    follows.unfollow(this.state.id)
+      .then(result => {
+        this.setState({ followed: true });
+      }).catch(err => console.log(err))
   }
   pressScroll() {
     this.scrollView.scrollTo({x:0, y: 400, animated: true});
+  }
+
+  follow() {
+    console.log('THIS.PROPS.PROFILE', this.state.profile);
+    AsyncStorage.getItem('userId')
+    .then((followerId) => {
+      let idFollower = followerId;
+      follows.followsomeone(idFollower, this.state.leaderId)
+      .then((res) => {
+        console.log('FOLLOW RES', res);
+        this.setState({ followed: false, id: res.data.id, followId: res.data.leader_id });
+      })
+      .catch(err => console.log('FAIL FOLLLOW', err));
+    })
+    .catch(err => console.log('fail ASYNC follow', err));
   }
 
   selectPhotoTapped() {
@@ -97,8 +121,17 @@ export default class Profile extends Component {
     });
   }
 
+  checkFollow(){
+    if(this.state.leaderId !== idFollower){
+
+    }else{
+
+    }
+  }
+
   render() {
     if (this.state.loading === false) {
+      console.log('INI ORANG: ',this.state.profile);
       return (
         <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
           <View style={styles.container} >
@@ -115,20 +148,29 @@ export default class Profile extends Component {
               </View>
               <View style={styles.textInform} >
                 <TouchableOpacity onPress={() => this.pressScroll()}>
-                  <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
+                  <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
-                  <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
+                  <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                   <Text style={{ marginLeft: 8 }}>{this.state.countFollow}</Text>
                 </TouchableOpacity>
                 {this.state.me ? (
                   <TouchableOpacity onPress={Actions.setting} >
                     <Text  style= {styles.button} >
-                      EDIT
+                      {strings.profileLocalization.edit}
                     </Text>
                   </TouchableOpacity>
                 ) : (
+                  !this.state.me ? (
+                    <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                      <TouchableOpacity onPress={() => this.toggleSwitchFollow()}>
+                        <Text style = {this.state.followed ? styles.button : styles.buttonUnfollow}>
+                           {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
+                        </TouchableOpacity>
+                    </View>
+                  ) : (
                   <Text />
+                  )
                 ) }
               </View>
             </View>
@@ -143,37 +185,37 @@ export default class Profile extends Component {
             </View>
               <View style={styles.biodata}>
                 <TouchableOpacity onPress= {Actions.about}>
-                <Text style={styles.bio}>Bio</Text>
+                <Text style={styles.bio}>{strings.profileLocalization.bio}</Text>
                 </TouchableOpacity>
                 <Text style={styles.isi}>{this.state.profile.about}</Text>
-                <Text style={styles.bio}>Last Hiking</Text>
+                <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.icon} source={require('./../../images/jarak.png')}
                   />
-                  <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
+                  <Text style={styles.isi}> {strings.profileLocalization.km} :</Text>
                 </View>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.icon} source={require('./../../images/mountain.png')}
                   />
-                  <Text style={styles.isi}>from: {this.state.profile.from}</Text>
+                  <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
                 </View>
                 <View style={styles.posisi}>
                   <Image
                     style={styles.location} source={require('./../../images/live.png')}
                   />
-                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
+                  <Text style={styles.isi}>{strings.profileLocalization.live} : {this.state.profile.live}</Text>
                 </View>
                 {!this.state.me ? (
                   <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <TouchableOpacity onPress={() =>this.toggleSwitchFollow()}>
                       <Text style = {styles.button}>
-                         {this.state.followed ? 'Follow' : 'Unfollow' }</Text>
+                         {this.state.followed ? strings.profileLocalization.follow : strings.profileLocalization.unfollow }</Text>
                       </TouchableOpacity>
                       <TouchableOpacity onPress={() =>this.toggleSwitchFriend()}>
                         <Text style = {styles.button}>
-                           {this.state.friend ? 'Add Friend' : 'Delete Friend' }</Text>
+                           {this.state.friend ? strings.profileLocalization.addFriend : strings.profileLocalization.deleteFriend }</Text>
                         </TouchableOpacity>
                   </View>
                 ) : (
@@ -182,45 +224,33 @@ export default class Profile extends Component {
 
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                   <TouchableOpacity>
-                    <Text style={styles.isi2}>View More</Text>
+                    <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
                   </TouchableOpacity>
                 </View>
               </View>
-            <View style={styles.mapmain}>
+            {/* <View style={styles.mapmain}>
               <MapMain />
-            </View>
+            </View> */}
           </View>
         </ScrollView>
       );
     } else {
       return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size={'large'}/>
         </View>
       );
     }
   }
   toggleSwitchFollow() {
-    if (!this.state.followed) {
+    if (this.state.followed === false) {
       Alert.alert('Confirmation',
                'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ followed: this.state.followed }) },
-                { text: 'Yes', onPress: () => this.setState({ followed: !this.state.followed }) },
+                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
+                { text: 'Yes', onPress: () => this.unfollowUser() },
                ]);
     } else {
-      this.setState({ followed: !this.state.followed });
-    }
-  }
-
-  toggleSwitchFriend() {
-    if (!this.state.friend) {
-      Alert.alert('Confirmation',
-               'Are you sure to Delete this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ friend: this.state.friend }) },
-                { text: 'Yes', onPress: () => this.setState({ friend: !this.state.friend }) },
-               ]);
-    } else {
-      this.setState({ friend: !this.state.friend });
+      this.follow();
     }
   }
 }

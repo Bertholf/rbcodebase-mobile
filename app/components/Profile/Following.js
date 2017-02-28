@@ -54,14 +54,19 @@ export default class Friendlist extends React.Component {
       }
     });
   }
-
+  rerender() {
+    this.setState({ loading: true }, () => {
+      this.componentDidMount();
+      console.log('RE RENDER TRIGGERD');
+    })
+  }
   render() {
     const { loading, nodata } = this.state;
     if (loading === false && nodata === false) {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.following)}
-          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following' }} />}
+          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following', rerender: () => this.rerender()  }} />}
         />
       );
     } else if (nodata === true) {

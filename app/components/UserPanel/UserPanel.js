@@ -83,18 +83,18 @@ class userPanel extends React.Component {
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.follower}
+                  onPress={Actions.following}
                 >
                   <Image source={followIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.following} </Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.followers} </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}
                   style={styles.imgLinksContainer}
-                  onPress={Actions.following}
+                  onPress={Actions.follower}
                 >
                   <Image source={contactIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>{strings.userpanel.followers}</Text>
+                  <Text style={styles.textLinks}>{strings.userpanel.following}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   activeOpacity={0.7}

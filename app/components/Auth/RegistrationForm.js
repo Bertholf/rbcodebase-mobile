@@ -10,11 +10,13 @@ import {
      StyleSheet,
      ActivityIndicator,
      Alert,
+     AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
+import auth from '../../services/auth';
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -99,13 +101,45 @@ export default class RegistrationForm extends Component {
       lastname: this.props.lastName || '',
       email: this.props.email || '',
       username: this.props.username || '',
+      secret: this.props.secret || '',
+      provider: this.props.provider || '',
+      accessToken: this.props.accessToken || '',
       password: '',
       confirmPassword: '',
       valid: false,
       submitting: false,
       failregister: false,
       failMsg: '',
+      loading: true,
     };
+  }
+  loginAfterRegister(username, password) {
+    auth.login(username, password)
+    .then((loginRes) => {
+      AsyncStorage.setItem('accessToken', loginRes.access_token)
+      .then(() => Actions.actionswiper())
+      .catch(err => console.log('FAIL LOGIN AFTER REGISTER'));
+    })
+    .catch(err => console.log('FAIL LOGIN AFTER REGISTER', err));
+  }
+
+
+  onSubmit() {
+    const { firstname, lastname, username, email, password, confirmPassword } = this.state;
+    const { provider, accessToken, secret } = this.state;
+    if (provider && accessToken && secret) {
+      this.setState({ submitting: true });
+      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken)
+      .then(res => this.setState({ submitting: false }, () =>
+        this.loginAfterRegister(username, password)
+      ))
+      .catch(err => console.log('FAIL TO REGISTER SSO', err));
+    } else {
+      this.setState({ submitting: true });
+      submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
+        this.setState({ failregister: true, failMsg: msg, submitting: false });
+      });
+    }
   }
 
   render() {
@@ -127,30 +161,26 @@ export default class RegistrationForm extends Component {
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
-        const {firstname, lastname, username, email, password, confirmPassword } = this.state;
-        this.setState({ submitting: true });
-        submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
-          this.setState({ failregister: true, failMsg: msg, submitting: false }, () =>
-        console.log('FINAL State : ', this.state));
-        });
+        this.onSubmit();
       } else {
         Alert.alert(strings.register.error_failed);
       }
     };
     // strings.setLanguage('en');
+    if (this.state.loading === false) {
+      console.log("false");
     return (
       <View style={{flex: 1}}>
            <KeyboardAwareView animated={true}>
       <View style={styles.container} >
         <ScrollView
-          ref={(view) => {this.scrollView = view; }}
-          style={[{ flex: 1, alignSelf: 'stretch'}]}
-          keyboardShouldPersistTaps
-          automaticallyAdjustContentInsets={false}
-          onScroll={this.onScroll}
-          scrollEventThrottle={200}
-          onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}
-        >
+        ref={(view) => {this.scrollView = view; }}
+                  style={[{flex: 1, alignSelf: 'stretch'}]}
+                  keyboardShouldPersistTaps="always"
+                  automaticallyAdjustContentInsets={false}
+                  onScroll={this.onScroll}
+                  scrollEventThrottle={200}
+                  onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}>
           <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
             <View style={styles.textinputWrapperStyle}>
               <TextInput
@@ -301,5 +331,9 @@ export default class RegistrationForm extends Component {
       </KeyboardAwareView>
       </View>
     );
+    }else{
+      console.log("true")
+      return (<ActivityIndicator />)
+    }
   }
 }

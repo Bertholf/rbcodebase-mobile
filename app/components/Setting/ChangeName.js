@@ -6,6 +6,8 @@ import {
   TextInput,
   Alert,
   TouchableOpacity,
+  Keyboard,
+  ToastAndroid,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import NavigationBar from 'react-native-navbar';
@@ -16,7 +18,8 @@ import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
-export default class NameEdit extends Component {
+
+export default class NameEdit extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +41,7 @@ export default class NameEdit extends Component {
   render() {
     const rightButtonConfig = {
     title: 'Save',
-    handler: () => validateName() ,
+    handler: () => validateName(),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -75,12 +78,17 @@ export default class NameEdit extends Component {
         } else {
           console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
-          Alert.alert('Success', 'Your name has been Changed');
           this.clearText('textInput1');
           this.clearText('textInput2');
           auth.profile ()
-        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+        .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          this.props.reRender();
+        }))
         .catch(Err=> console.log('err', Err))
+          ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
+        Keyboard.dismiss();
+        Actions.refresh();
+        Actions.pop();
         }
       } else {
         Alert.alert('Error', 'You have invalid input or You have no input');

@@ -33,9 +33,40 @@ export default {
     client_secret: config.client_secret,
     grant_type: config.GRANT_TYPE,
   },
+  ),
+  updateSetting: (privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply) =>
+  api.patch('/api/me/settings/', {
+    privacy_follow,
+    privacy_follow_confirm,
+    privacy_comment,
+    privacy_post,
+    privacy_timeline_post,
+    privacy_message,
+    email_follow,
+    email_post_like,
+    email_post_share,
+    email_comment_post,
+    email_comment_like,
+    email_comment_reply,
+    client_id: config.CLIENT_ID,
+    client_secret: config.client_secret,
+    grant_type: config.GRANT_TYPE,
+  },
 ),
-  followers: ()=> api.get('api/follows?leader_id='+id,
-  {client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE, follower}
-),
+  registerSSO: (name_first, name_last, name_slug, email, password, password_confirmation, provider, secret, access_token) =>
+    api.post('/api/users/register', {
+      name_first,
+      name_last,
+      name_slug,
+      email,
+      password,
+      password_confirmation,
+      provider,
+      access_token,
+      secret,
+      client_id: config.CLIENT_ID,
+      client_secret: config.CLIENT_SECRET,
+      grant_type: config.GRANT_TYPE,
+    }),
 };
 // app /services

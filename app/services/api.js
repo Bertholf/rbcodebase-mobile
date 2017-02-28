@@ -37,6 +37,9 @@ class Api {
   post(url, form, qs = {}, config = {}) {
     return this.sendRequest('POST', url, { qs, form, config });
   }
+  patch(url, form, qs = {}, config = {}) {
+    return this.sendRequest('PATCH', url, { qs, form, config });
+  }
   delete(url, qs = {}, config = {}) {
     return this.sendRequest('DELETE', url, { qs, config });
   }
