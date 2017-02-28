@@ -15,6 +15,7 @@ import addfriend from './AddFriend';
 import listfollow from './ListFollow';
 import profileLocalization from './profile';
 import logoutLocalization from './logout';
+import mobilephone from './MobilePhone';
 
 const en = {
   listfollow,
@@ -33,6 +34,7 @@ const en = {
   ChangeName,
   profileLocalization,
   logoutLocalization,
+  mobilephone,
 };
 
 export default en;
