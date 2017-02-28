@@ -168,7 +168,7 @@ export default class RegistrationForm extends Component {
       }
     };
     // strings.setLanguage('en');
-    if (this.state.loading === false) {
+    if (this.state.submitting === false) {
       console.log("false");
     return (
       <View style={{flex: 1}}>
