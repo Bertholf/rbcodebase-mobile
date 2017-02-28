@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import auth from './../../services/auth';
 import updatePref from '../../services/updatePref';
+import {Actions} from 'react-native-router-flux';
 
 
 export default class AdPreference extends Component {
@@ -30,12 +31,18 @@ export default class AdPreference extends Component {
   componentDidMount() {
     auth.adprefe()
     .then(response => this.setState({
-      privacy_follow: response.data[0].privacy_follow ,
+      privacy_follow: response.data[0].privacy_follow,
       privacy_follow_confirm: response.data[0].privacy_follow_confirm,
       privacy_comment: response.data[0].privacy_comment,
       privacy_post: response.data[0].privacy_post,
       privacy_timeline_post: response.data[0].privacy_timeline_post,
       privacy_message: response.data[0].privacy_message,
+      email_follow: response.data[0].email_follow,
+      email_post_like: response.data[0].email_post_like,
+      email_post_share: response.data[0].email_post_share,
+      email_comment_post: response.data[0].email_comment_post,
+      email_comment_like: response.data[0].email_comment_like,
+      email_comment_reply: response.data[0].email_comment_reply,
     }) )
     .catch(Err => console.log('err', Err));
   }
@@ -84,10 +91,8 @@ export default class AdPreference extends Component {
   // }
 
   render() {
-    const id = this.state.id;
-    const user_id = this.state.user_id;
-    const privacy_follow = this.state.privacy_follow;
-    const privacy_follow_confirm =this.state.follow_confirm;
+    const privacy_follow = this.state.language;
+    const privacy_follow_confirm =this.state.privacy_follow_confirm;
     const privacy_comment = this.state.privacy_comment;
     const privacy_post = this.state.privacy_post;
     const privacy_timeline_post= this.state.privacy_timeline_post;
@@ -100,10 +105,10 @@ export default class AdPreference extends Component {
     const email_comment_reply= this.state.email_comment_reply;
     const saveUpdate = () => {
       // console.log(id, user_id, privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply);
-      auth.updateSetting(id, user_id, privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply)
-      auth.adprefe()
-      .then (response => this.setState({adprefe:response.data, loading:false}, () => console.log(this.state)))
+      auth.updateSetting(privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply)
+      .then (response => this.setState({updateSetting:response.data, loading:false}, () => console.log(this.state)))
       .catch(Err=> console.log('err',Err))
+      Actions.pop();
     }
     return (
       <View style={{ flex: 1 }}>

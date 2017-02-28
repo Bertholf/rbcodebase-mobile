@@ -32,12 +32,10 @@ export default {
     client_id: config.CLIENT_ID,
     client_secret: config.client_secret,
     grant_type: config.GRANT_TYPE,
-  }
+  },
   ),
-  updateSetting: (id, user_id, privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply) =>
+  updateSetting: (privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply) =>
   api.patch('/api/me/settings/', {
-    id,
-    user_id,
     privacy_follow,
     privacy_follow_confirm,
     privacy_comment,
