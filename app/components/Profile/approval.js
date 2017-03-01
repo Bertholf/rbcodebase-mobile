@@ -20,19 +20,17 @@ export default class Approval extends React.Component {
      * if this screen called by profile, it must be receive props user id
      *  if called called by user panel, it will use user id from asyncStorege
     */
-
-      AsyncStorage.getItem('userId')
-      .then((myId) => {
-        follows.showApproval(myId)
-        .then((res) => {
-          console.log('proses hhhhhh');
-          this.changeState(res);
-        })
-        .catch(err => console.log(err));
+    AsyncStorage.getItem('userId')
+    .then((myId) => {
+      follows.showApproval(myId)
+      .then((res) => {
+        console.log('proses hhhhhh');
+        this.changeState(res);
       })
-      .catch(err => console.log('fail to get user id from asyncStorege', err));
-      }
-
+      .catch(err => console.log(err));
+    })
+    .catch(err => console.log('fail to get user id from asyncStorege', err));
+  }
 
   changeState(res) {
     this.setState({ follower: res.data }, () => {
@@ -46,8 +44,7 @@ export default class Approval extends React.Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-      console.log('RE RENDER TRIGGERD');
-    })
+    });
   }
   render() {
     const { loading, nodata } = this.state;
@@ -55,8 +52,12 @@ export default class Approval extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
-          enableEmptySections = {true}
-          renderRow={rowData => <ListApproval rowData={{ ...rowData, type: 'follower', rerender: ()=> this.rerender()  }} />}
+          enableEmptySections={'true'}
+          renderRow={rowData => <ListApproval
+            rowData={{ ...rowData,
+              type: 'follower',
+              rerender: () => this.rerender() }}
+          />}
         />
       );
     } else if (nodata === true) {

@@ -75,7 +75,7 @@ export default class Follow extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={() => Actions.profile({ profile:this.props.rowData })}>
+      <TouchableOpacity onPress={() => Actions.profile({ profile: this.props.rowData })}>
         <View style={styles.container}>
           <View style={{ flexDirection: 'row' }}>
             <Image source={{ uri: this.props.rowData.picture }} style={styles.photo} />
