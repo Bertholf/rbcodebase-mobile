@@ -29,7 +29,7 @@ export default class Profile extends Component {
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.profile.id,
-      followed: false,
+      followed: true,
       countFollow: 0,
       id: this.props.idFollow,
       friend: false,
@@ -81,7 +81,7 @@ export default class Profile extends Component {
       follows.followsomeone(idFollower, this.state.leaderId)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ followed: false, id: res.data.id, followId: res.data.leader_id });
+        this.setState({ followed: true, id: res.data.id, followId: res.data.leader_id });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
@@ -133,6 +133,9 @@ export default class Profile extends Component {
     console.log(err);
   })
   }
+ // rerender(){
+ //   gfdg
+ // },
 
   render() {
     if (this.state.loading === false) {
