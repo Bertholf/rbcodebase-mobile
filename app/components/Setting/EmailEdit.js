@@ -33,7 +33,7 @@ export default class EmailEdit extends Component {
   }
   render() {
     const rightButtonConfig = {
-    title: 'Save',
+    title: strings.settings.save,
     handler: () => validEmail(),
   };
     const leftButtonConfig = {
@@ -42,7 +42,7 @@ export default class EmailEdit extends Component {
   };
 
   const titleConfig = {
-    title: 'Edit Email',
+    title: strings.EditEmail.title,
   };
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.newEmail);

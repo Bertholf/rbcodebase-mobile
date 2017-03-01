@@ -40,7 +40,7 @@ export default class NameEdit extends Component{
 
   render() {
     const rightButtonConfig = {
-    title: 'Save',
+    title: strings.settings.save,
     handler: () => validateName(),
   };
     const leftButtonConfig = {
@@ -49,7 +49,7 @@ export default class NameEdit extends Component{
   };
 
   const titleConfig = {
-    title: 'Edit Name',
+    title: strings.ChangeName.title,
   };
 
     const value = /^[a-zA-Z ]+$/
@@ -85,13 +85,13 @@ export default class NameEdit extends Component{
           this.props.reRender();
         }))
         .catch(Err=> console.log('err', Err))
-          ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
+          ToastAndroid.show(strings.settings.toast, ToastAndroid.SHORT)
         Keyboard.dismiss();
         Actions.refresh();
         Actions.pop();
         }
       } else {
-        Alert.alert('Error', 'You have invalid input or You have no input');
+        Alert.alert(strings.settings.alerNoInput);
       }
     };
     return (

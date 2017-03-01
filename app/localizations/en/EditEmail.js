@@ -1,4 +1,5 @@
 const EditEmail = {
+  title: 'Edit Email',
   enter_new_email: 'Enter your new email',
   confirm_change: 'Confirm change',
   confirm_code: 'Enter your recieved code',

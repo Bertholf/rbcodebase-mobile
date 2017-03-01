@@ -1,4 +1,5 @@
 const ChangeName = {
+  title: 'Edit Name',
   current_name: 'Your current name',
   first_name: 'Enter your first name',
   last_name: 'Enter your last name',

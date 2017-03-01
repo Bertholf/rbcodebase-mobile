@@ -1,4 +1,5 @@
 const EditEmail = {
+  title: 'Ubah Email',
   enter_new_email: 'Masukkan email baru anda',
   confirm_change: 'Konfirmasi perubahan',
   confirm_code: 'Masukkan kode yang anda terima',

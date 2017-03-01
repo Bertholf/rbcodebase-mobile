@@ -1,4 +1,5 @@
 const ChangeUname = {
+  title: 'Change Username',
   current_name: 'Your current username',
   new_name: 'Enter your new username',
   uniquename: 'Your username should be unique.',
@@ -6,6 +7,7 @@ const ChangeUname = {
   error_same_username: 'Your new username should be different with current username',
   store: 'SAVE',
   placeholder: 'New Username',
+  alertError: '"Error", "invalid username"',
 };
 
 export default ChangeUname;

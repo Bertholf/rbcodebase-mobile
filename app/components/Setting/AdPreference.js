@@ -132,13 +132,13 @@ export default class AdPreference extends Component {
     }
 
       const rightButtonConfig = {
-      title: 'Save',
+      title: strings.settings.save,
       handler: () => saveUpdate(),
       // handler: () => Actions.pop(),
     };
 
     const titleConfig = {
-      title: 'Ad Preference',
+      title: strings.settings.ad_Preference,
     };
 
     return (

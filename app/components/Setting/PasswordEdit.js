@@ -66,12 +66,12 @@ export default class PassEdit extends Component {
     };
 
     const rightButtonConfig = {
-      title: 'Save',
+      title: strings.settings.save,
       handler: () => onSave(),
     };
 
     const titleConfig = {
-      title: 'Edit Password',
+      title: strings.PassEditLoc.title,
     };
     // strings.setLanguage('en');
     return (
