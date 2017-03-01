@@ -14,7 +14,6 @@ import {Actions} from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
 
-
 export default class AdPreference extends Component {
   constructor(props) {
     super(props)
@@ -128,7 +127,7 @@ export default class AdPreference extends Component {
       auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
       .then (response => this.setState({updateSetting:response.data, loading:false}, () =>   Actions.pop()))
       .catch(Err=> console.log('err',Err))
-    
+
     }
 
       const rightButtonConfig = {
@@ -568,7 +567,6 @@ export default class AdPreference extends Component {
         </View>
       </ScrollView>
       </View>
-
     );
   }
 }
@@ -582,7 +580,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#2196F3',
-    borderRadius: 2,
+    borderRadius: 5,
     elevation: 2,
     paddingTop: 14,
     paddingBottom: 14,
@@ -596,12 +594,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
     borderWidth: 0.8,
-    borderRadius: 2,
+    borderRadius: 3,
     height: 40,
     alignItems: 'center',
+    marginBottom: 6,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   text: {
     color: '#000000',
-    fontSize: 16,
+    fontSize: 14,
+    marginLeft: 10,
   },
 });
