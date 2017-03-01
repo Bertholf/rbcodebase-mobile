@@ -36,6 +36,7 @@ export default class Profile extends Component {
       edit: false,
       button: false,
       me: false,
+      status: this.props.status.status,
     };
   }
 
@@ -168,9 +169,9 @@ export default class Profile extends Component {
                 ) : (
                   !this.state.me ? (
                     <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                      <TouchableOpacity onPress={() => this.toggleSwitchFollow()}>
+                      <TouchableOpacity disabled={this.state.status === 'request' ? true : false} onPress={() => this.toggleSwitchFollow()}>
                         <Text style = {this.state.followed ? styles.buttonUnfollow  : styles.button }>
-                           {this.state.followed ? strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
+                           {this.state.followed ? this.state.status === 'request' ? 'Requested' : strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
                         </TouchableOpacity>
                     </View>
                   ) : (

@@ -83,6 +83,7 @@ export default class ListFollow extends Component {
       this.setState({ clicked: false });
     }
     if (this.props.rowData.type === 'following') {
+      console.log('INI DATA FOLLOWING', this.props.rowData);
       const idFol = this.props.rowData.follower_id;
       const idLed = this.props.rowData.leader_id;
       follows.showFollowing2(idLed, idFol)
@@ -226,7 +227,7 @@ export default class ListFollow extends Component {
     return (
       <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
+        onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id, status: this.props.rowData })}
         activeOpacity={0.7}
       >
         <View>
@@ -241,11 +242,11 @@ export default class ListFollow extends Component {
           </View>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity disabled={ setting.privacy_follow !== 'none' ? false : true } onPress={() => {
+      <TouchableOpacity disabled={this.props.rowData.status === 'request' ? true : setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
           }}>
             <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.props.rowData.type === 'follower' ? '' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
+              {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
           </TouchableOpacity>
       </View>
     );
