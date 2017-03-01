@@ -16,6 +16,9 @@ const profileLocalization = {
   viewMore: 'View More',
   areYouFollow: 'Are you sure to unfollow this user?',
   yes: 'YES',
+  enterBio: 'Enter Your New Bio',
+  save: 'save',
+  successfully: 'successfully',
 };
 
 export default profileLocalization;

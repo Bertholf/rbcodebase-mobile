@@ -131,11 +131,8 @@ export default class Profile extends Component {
     this.setState({followed:(typeof res.data.id) !==  'undefined'})
   }).catch((err)=>{
     console.log(err);
-  })
+  });
   }
- // rerender(){
- //   gfdg
- // },
 
   render() {
     if (this.state.loading === false) {
@@ -173,7 +170,7 @@ export default class Profile extends Component {
                     <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                       <TouchableOpacity onPress={() => this.toggleSwitchFollow()}>
                         <Text style = {this.state.followed ? styles.buttonUnfollow  : styles.button }>
-                           {this.state.followed ? 'Unfollow' : 'Follow' }</Text>
+                           {this.state.followed ? strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
                         </TouchableOpacity>
                     </View>
                   ) : (
@@ -238,9 +235,9 @@ export default class Profile extends Component {
   toggleSwitchFollow() {
     if (this.state.followed === true) {
       Alert.alert('Confirmation',
-               'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
-                { text: 'Yes', onPress: () => this.unfollowUser() },
+               strings.profileLocalization.areYouFollow, [
+                { text: strings.logoutLocalization.cancel, onPress: () => this.setState({ clicked: this.state.followed }) },
+                { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
       this.follow();
