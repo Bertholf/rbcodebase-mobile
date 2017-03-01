@@ -30,6 +30,7 @@ const settings = {
   register: 'Register',
   forgotpass: 'Forgot Password',
   profile: 'User Profile',
+  approval: 'Approval',
 };
 
 export default settings;

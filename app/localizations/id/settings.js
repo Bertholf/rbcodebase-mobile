@@ -30,5 +30,6 @@ const settings = {
   register: 'Daftar',
   forgotpass: 'Lupa Kata Sandi',
   profile: 'Profil Pengguna',
+  approval: 'Persetujuan',
 };
 export default settings;

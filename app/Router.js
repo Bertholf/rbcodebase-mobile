@@ -219,7 +219,7 @@ const Routing = (props) => (
             key={'follower'} component={Follower} title={strings.settings.follower}
           />
         <Scene
-          key={'approval'} component={Approval} title={'Approval'}
+          key={'approval'} component={Approval} title={strings.settings.approval}
         />
           <Scene
             key={'addfriendscreen'} component={AddFriendScreen} title={strings.settings.adduser}
