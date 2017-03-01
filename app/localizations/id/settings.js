@@ -22,6 +22,12 @@ const settings = {
   save: 'Simpan',
   alerSuccess: 'Successfully!',
   alerNoInput: "'Kesalahan', 'Masukkan salah atau Tidak ada masukkan'",
-  toast: 'Pengaturan disimpan'
+  toast: 'Pengaturan disimpan',
+  following: 'Mengikuti',
+  follower: 'Pengikut',
+  adduser: 'Pencarian Teman',
+  signin: 'Masuk',
+  register: 'Daftar',
+  forgotpass: 'Lupa Kata Sandi',
 };
 export default settings;

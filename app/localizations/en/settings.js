@@ -20,9 +20,15 @@ const settings = {
   clear_cache: 'Clear cache',
   log_out: 'Log out',
   save: 'Save',
-  alertSuccess: 'Sukses!',
+  alertSuccess: 'Success!',
   alerNoInput: "'Error', 'You have invalid input or You have no input'",
   toast: 'Setting saved',
+  following: 'Following',
+  follower: 'Follower',
+  adduser: 'Search Friend',
+  signin: 'Sign In',
+  register: 'Register',
+  forgotpass: 'Forgot Password',
 };
 
 export default settings;

@@ -54,7 +54,26 @@ import AddFriendScreen from './components/Profile/AddFriend';
 import LoaderView from './views/Loader';
 import Approval from './components/Profile/approval';
 
+
+const lang = strings.getInterfaceLanguage();
+let setlang;
+switch (lang) {
+  case 'in-ID':
+    console.log('Bahasa');
+    setlang = 'id';
+    break;
+  case 'en-US':
+    console.log('Language');
+    setlang = 'en';
+    break;
+  default:
+    setlang = 'en';
+    break;
+}
+strings.setLanguage(setlang);
+
 const Routing = (props) => (
+
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
@@ -100,10 +119,10 @@ const Routing = (props) => (
             key={'chatlist'} component={ChatListFriendView} title={'Chat List'} direction={'vertically'}
           />
           <Scene
-            key={'following'} component={Following} title={'Following'}
+            key={'following'} component={Following} title={strings.settings.following}
           />
           <Scene
-            key={'loginscreenemail'} component={LoginScreenEmail} title={'Sign in'}
+            key={'loginscreenemail'} component={LoginScreenEmail} title={strings.settings.signin}
           />
           <Scene
             key={'account'} component={Account} title={'Account'}
@@ -139,10 +158,10 @@ const Routing = (props) => (
             key={'login'} component={Login} hideNavBar title={'Login Screen'}
           />
           <Scene
-            key={'register'} component={Register} title={'Register Screen'} hideNavBar
+            key={'register'} component={Register} title={strings.settings.register} hideNavBar
           />
           <Scene
-            key={'forgotPassword'} component={ForgotPassword} title={'Forgot Password'}
+            key={'forgotPassword'} component={ForgotPassword} title={strings.settings.forgotpass}
           />
           <Scene
             key={'timelineDetail'} component={TimelineDetail} title={'Timeline Detial'}
@@ -172,7 +191,7 @@ const Routing = (props) => (
             key={'createLocation'} component={Location} title={'Location'}
           />
           <Scene
-            key={'registrationform'} component={RegistrationForm} title={'Register'}
+            key={'registrationform'} component={RegistrationForm} title={strings.settings.register}
           />
           <Scene
             key={'adpref'} component={AdPref} hideNavBar title={'Ad Preference'}
@@ -197,13 +216,13 @@ const Routing = (props) => (
             key={'mobilephone'} hideNavBar component={MobilePhone} title={'Mobile Phone'}
           />
           <Scene
-            key={'follower'} component={Follower} title={'Follower'}
+            key={'follower'} component={Follower} title={strings.settings.follower}
           />
         <Scene
           key={'approval'} component={Approval} title={'Approval'}
         />
           <Scene
-            key={'addfriendscreen'} component={AddFriendScreen} title={'Add Friends'}
+            key={'addfriendscreen'} component={AddFriendScreen} title={strings.settings.adduser}
           />
           <Scene key={'loaderview'} component={LoaderView} hideNavBar />
           <Scene key={'tos'} hideNavBar component={TOSContainer} />

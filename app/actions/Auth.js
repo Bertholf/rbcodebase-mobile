@@ -6,7 +6,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
-
+import strings from '../localizations';
 import config from '../config';
 import { AsyncStorage } from 'react-native';
 
@@ -48,20 +48,22 @@ const registered = (token, provider) => {
   AsyncStorage.setItem('provider', provider);
   AsyncStorage.setItem('accessToken', token)
   .then(() => {
-    Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
+    Actions.loaderview({
+      message: strings.loader.registered,
+      onPress: () => Actions.actionswiper({ type: 'reset' }),
+    });
     setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
   });
-}
+};
 
 export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
-    AsyncStorage.setItem('accessToken', response.accessToken);
     if (response.provider === 'twitter') {
       auth.checktwitter(response.accessToken, response.provider, response.secret)
       .then((resL) => {
         console.log('RESPONSE RBCODEBASE TWITTER', resL);
-        if (resL.data.registered === false ) {
+        if (resL.data.registered === false) {
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],
@@ -71,11 +73,33 @@ export function doneLogin(response = {}) {
             secret: response.secret,
             provider: response.provider,
           });
-          AsyncStorage.removeItem('accessToken');
         } else {
           registered(resL.data.access_token, 'twitter');
         }
+      });
+    } else if (response.provider === 'facebook') {
+      auth.check(response.accessToken, 'facebook', response.userID)
+      .then((resL) => {
+        console.log('RESPONSE RBCODEBASE FB ', resL);
+        if (resL.data.registered === false) {
+          const props = {
+            firstName: resL.data.name.split(' ')[0],
+            lastName: resL.data.name.split(' ')[1],
+            email: resL.data.email,
+            username: '',
+            provider: 'facebook',
+            accessToken: response.accessToken,
+            oauthProviderId: response.userID,
+          };
+          Actions.pop();
+          Actions.registrationform(props);
+        } else {
+          console.log('PROCESS GOES HERE');
+          Actions.pop();
+          registered(resL.data.access_token, 'facebook');
+        }
       })
+      .catch(err => console.log('FAIL LOGIN FACEBOOK ', err));
     } else {
       Actions.pop();
       Actions.actionswiper({ type: 'reset' });
@@ -158,7 +182,7 @@ export function loginWithFacebook() {
         return Promise.reject(result);
       }
       return AccessToken.getCurrentAccessToken();
-    }).then(({ accessToken }) => dispatch(doneLogin({ provider: 'facebook', accessToken })))
+    }).then(response => dispatch(doneLogin({ provider: 'facebook', ...response })))
     .catch(err => errorLogin(err));
   };
 }

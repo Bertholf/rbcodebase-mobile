@@ -19,6 +19,7 @@ const mapStateToProps = () => ({
 export class Splash extends Component {
   constructor(props) {
     const lang = strings.getInterfaceLanguage();
+    let setlang;
     switch (lang) {
       case 'in-ID':
         console.log('Bahasa');
