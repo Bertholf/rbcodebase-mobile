@@ -89,7 +89,7 @@ export default class Register extends Component {
         }
       }).catch(err => console.log(err));
     })
-    .catch(err => console.log("ERROR TWITTER", err));
+    .catch(err => console.log('ERROR TWITTER', err));
   }
 
   registered(token, provider) {
