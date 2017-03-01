@@ -86,12 +86,11 @@ export default class Friendlist extends React.Component {
           </TouchableOpacity>
         </View>
       );
-    } else {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size={'large'} />
-        </View>
-      );
     }
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
   }
 }
