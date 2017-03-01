@@ -60,7 +60,7 @@ const Routing = (props) => (
           <Scene key={'navbar'} component={NavBar}>
         <Scene key={'root'}>
           <Scene
-            key="setting" component={Setting} title={strings.settings.clear_cache}
+            key="setting" component={Setting} title={strings.settings.title}
           />
           <Scene
             key={'walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
@@ -84,7 +84,7 @@ const Routing = (props) => (
             key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
-            key={'notifications'} component={Notifications} title={'Notifications'}
+            key={'notifications'} component={Notifications} title={strings.settings.notification}
           />
           <Scene
             key={'dashboard'} component={Dashboard} title={'Dashboard'}
@@ -129,7 +129,7 @@ const Routing = (props) => (
             key={'usernameEdit'} component={UsernameEdit} hideNavBar title={'Edit Username'}
           />
           <Scene
-            key={'nameEdit'} component={NameEdit} hideNavBar title={'Edit Name'}
+            key={'nameEdit'} component={NameEdit} hideNavBar title={strings.ChangeName.title}
           />
           <Scene
             key={'welcome'} component={Welcome} title={'Welcome'}

@@ -19,6 +19,10 @@ const settings = {
   account_action: 'Account Actions',
   clear_cache: 'Clear cache',
   log_out: 'Log out',
+  save: 'Save',
+  alertSuccess: 'Sukses!',
+  alerNoInput: "'Error', 'You have invalid input or You have no input'",
+  toast: 'Setting saved',
 };
 
 export default settings;

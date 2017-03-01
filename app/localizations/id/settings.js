@@ -19,5 +19,9 @@ const settings = {
   account_action: 'Aksi akun',
   clear_cache: 'Hapus cache',
   log_out: 'Keluar',
+  save: 'Simpan',
+  alerSuccess: 'Successfully!',
+  alerNoInput: "'Kesalahan', 'Masukkan salah atau Tidak ada masukkan'",
+  toast: 'Pengaturan disimpan'
 };
 export default settings;

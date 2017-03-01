@@ -13,6 +13,7 @@ import updatePref from '../../services/updatePref';
 import {Actions} from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
+import strings from '../../localizations';
 
 
 export default class AdPreference extends Component {
@@ -132,13 +133,13 @@ export default class AdPreference extends Component {
     }
 
       const rightButtonConfig = {
-      title: 'Save',
+      title: strings.settings.save,
       handler: () => saveUpdate(),
       handler: () => Actions.pop(),
     };
 
     const titleConfig = {
-      title: 'Ad Preference',
+      title: strings.settings.ad_Preference,
     };
 
     return (

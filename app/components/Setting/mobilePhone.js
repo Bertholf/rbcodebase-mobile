@@ -95,7 +95,7 @@ export default class MobilePhone extends Component {
   };
 
   const titleConfig = {
-    title: 'Edit Phone',
+    title: strings.mobilephone.titleEditPhone,
   };
     const savePhone = () => {
       const id = this.state.profile.id;
