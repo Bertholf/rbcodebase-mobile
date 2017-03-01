@@ -25,6 +25,7 @@ export default class Approval extends React.Component {
       .then((myId) => {
         follows.showApproval(myId)
         .then((res) => {
+          console.log('proses hhhhhh');
           this.changeState(res);
         })
         .catch(err => console.log(err));
@@ -36,7 +37,7 @@ export default class Approval extends React.Component {
   changeState(res) {
     this.setState({ follower: res.data }, () => {
       if (typeof this.state.follower[0] === 'undefined') {
-        this.setState({ nodata: false, loading: false });
+        this.setState({ nodata: true, loading: false });
       } else {
         this.setState({ loading: false });
       }
@@ -55,7 +56,7 @@ export default class Approval extends React.Component {
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
           enableEmptySections = {true}
-          renderRow={rowData => <ListApproval rowData={{ ...rowData, type: 'follower'  }} />}
+          renderRow={rowData => <ListApproval rowData={{ ...rowData, type: 'follower', rerender: ()=> this.rerender()  }} />}
         />
       );
     } else if (nodata === true) {

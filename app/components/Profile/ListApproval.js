@@ -100,18 +100,17 @@ export default class ListFollow extends Component {
       const status = 'approved';
       follows.showFollowing2(idFol, idLed)
         .then((resp) => { console.log('DAPETIN NO ID', resp.data.id); follows.reqApproval(idFol, idLed, status, resp.data.id)
-          .then((resp) => { console.log('RESPON AFTER APPROVE', resp); })
+          .then((resp) => { console.log('RESPON AFTER APPROVE', resp); this.props.rowData.rerender(); })
           .catch((err) => { console.log('ERROR', err); }); })
         .catch((err) => { console.log('Error', err); });
     }
   }
 
   rerender() {
-    this.setState({ loading: true }, () => {
       this.componentDidMount();
       console.log('RE RENDER TRIGGERD');
-    })
   }
+
   render() {
     let rowData = this.props.rowData;
     if (this.props.rowData.type === 'follower') {
@@ -138,7 +137,7 @@ export default class ListFollow extends Component {
           </View>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { this.approve(); this.rerender(); }}>
+      <TouchableOpacity onPress={() => { this.approve(); }}>
             <Text style={styles.buttonFollow}>
               {strings.listfollow.approve}</Text>
           </TouchableOpacity>
