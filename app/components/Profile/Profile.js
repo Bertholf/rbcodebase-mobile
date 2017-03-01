@@ -7,22 +7,18 @@ import {
      ScrollView,
      ActivityIndicator,
      Alert,
-     PixelRatio,
-     Dimensions,
      AsyncStorage,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import styles from './ProfileStyle';
-import MapMain from '../Timeline/TimelineComp';
-import auth from './../../services/auth';
 import follows from '../../services/follows';
 import strings from '../../localizations';
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    state ={
+    state = {
       avatarSource: null,
     };
     this.state = {
@@ -36,15 +32,12 @@ export default class Profile extends Component {
       edit: false,
       button: false,
       me: false,
-      status: this.props.status.status,
     };
   }
 
   componentDidMount() {
-    console.log('this.state.profile', this.state.profile.id);
     AsyncStorage.getItem('userId')
     .then((id) => {
-      console.log(' AsyncStorage id', id);
       if (id === this.state.profile.id.toString()) {
         this.setState({ me: true });
       }
@@ -54,39 +47,34 @@ export default class Profile extends Component {
         const count = res.data.length;
         this.setState({ countFollow: count, loading: false });
       })
-      .catch(err => {
-        Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }])
-        console.log('FAIL TO COUNT FOLLOWER', err);
+      .catch(() => {
+        Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
       });
     })
-    .catch(err => console.log('FAIL TO ASYNC', err));
+    .catch();
   }
 
   unfollowUser() {
-    console.log('UNFOLLOW FROM PROFILE', this.state.id);
     follows.unfollow(this.state.id)
-      .then(result => {
+      .then(() => {
         this.setState({ followed: false });
-        console.log('===============success unfollow======', this.state.id );
-      }).catch(err => console.log(err))
+      }).catch();
   }
   pressScroll() {
-    this.scrollView.scrollTo({x:0, y: 400, animated: true});
+    this.scrollView.scrollTo({ x: 0, y: 400, animated: true });
   }
 
   follow() {
-    console.log('THIS.PROPS.PROFILE', this.state.profile);
     AsyncStorage.getItem('userId')
     .then((followerId) => {
-      let idFollower = followerId;
+      const idFollower = followerId;
       follows.followsomeone(idFollower, this.state.leaderId)
       .then((res) => {
-        console.log('FOLLOW RES', res);
         this.setState({ followed: true, id: res.data.id, followId: res.data.leader_id });
       })
-      .catch(err => console.log('FAIL FOLLLOW', err));
+      .catch();
     })
-    .catch(err => console.log('fail ASYNC follow', err));
+    .catch();
   }
 
   selectPhotoTapped() {
@@ -95,51 +83,41 @@ export default class Profile extends Component {
       maxWidth: 500,
       maxHeight: 500,
       storageOptions: {
-        skipBackup: true
-      }
+        skipBackup: true,
+      },
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
-      }
-      else if (response.error) {
+      } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
+      } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
+      } else {
         let source = { uri: response.uri };
 
       // You can also display the image using data:
       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source
+          avatarSource: source,
         });
       }
     });
   }
 
-  followHasSomeone(followerId, leaderId){
-    console.log('FOLLOW RES==========================|||');
+  followHasSomeone(followerId, leaderId) {
     follows.checkFollowing(followerId, leaderId)
-    .then((res)=> {
-      console.log("Landing here=====================", res.data);
-    this.setState({followed:(typeof res.data.id) !==  'undefined'})
-  }).catch((err)=>{
-    console.log(err);
-  });
+    .then((res) => {
+      this.setState({ followed: (typeof res.data.id) !== 'undefined' });
+    }).catch();
   }
 
   render() {
     if (this.state.loading === false) {
-      console.log('INI ORANG: ',this.state.profile);
       return (
-        <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
+        <ScrollView ref={(scroll) => { this.scrollView = scroll; }}>
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
@@ -168,14 +146,19 @@ export default class Profile extends Component {
                   </TouchableOpacity>
                 ) : (
                   !this.state.me ? (
-                    <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                      <TouchableOpacity disabled={this.state.status === 'request' ? true : false} onPress={() => this.toggleSwitchFollow()}>
-                        <Text style = {this.state.followed ? styles.buttonUnfollow  : styles.button }>
-                           {this.state.followed ? this.state.status === 'request' ? 'Requested' : strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
-                        </TouchableOpacity>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                      <TouchableOpacity
+                        disabled={this.props.status.status === 'request'}
+                        onPress={() => this.toggleSwitchFollow()}
+                      >
+                        <Text
+                          style={this.state.followed ? styles.buttonUnfollow : styles.button}
+                        >
+                          {this.state.followed ? this.props.status.status === 'request' ? 'Requested' : strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
+                      </TouchableOpacity>
                     </View>
                   ) : (
-                  <Text />
+                    <Text />
                   )
                 ) }
               </View>
@@ -189,37 +172,44 @@ export default class Profile extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-              <View style={styles.biodata}>
-                <TouchableOpacity onPress= {Actions.about}>
+            <View style={styles.biodata}>
+              <TouchableOpacity onPress={Actions.about}>
                 <Text style={styles.bio}>{strings.profileLocalization.bio}</Text>
-                </TouchableOpacity>
-                <Text style={styles.isi}>{this.state.profile.about}</Text>
-                <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
-                <View style={styles.posisi}>
-                  <Image
-                    style={styles.icon} source={require('./../../images/jarak.png')}
-                  />
-                  <Text style={styles.isi}> {strings.profileLocalization.km} :</Text>
-                </View>
-                <View style={styles.posisi}>
-                  <Image
-                    style={styles.icon} source={require('./../../images/mountain.png')}
-                  />
-                  <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
-                </View>
-                <View style={styles.posisi}>
-                  <Image
-                    style={styles.location} source={require('./../../images/live.png')}
-                  />
-                  <Text style={styles.isi}>{strings.profileLocalization.live} : {this.state.profile.live}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                  {/* <TouchableOpacity>
-                    <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
-                  </TouchableOpacity> */}
-                </View>
+              </TouchableOpacity>
+              <Text style={styles.isi}>{this.state.profile.about}</Text>
+              <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
+              <View style={styles.posisi}>
+                <Image
+                  style={styles.icon} source={require('./../../images/jarak.png')}
+                />
+                <Text style={styles.isi}> {strings.profileLocalization.km} :</Text>
               </View>
-            {/* <View style={styles.mapmain}>
+              <View style={styles.posisi}>
+                <Image
+                  style={styles.icon} source={require('./../../images/mountain.png')}
+                />
+                <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
+              </View>
+              <View style={styles.posisi}>
+                <Image
+                  style={styles.location} source={require('./../../images/live.png')}
+                />
+                <Text style={styles.isi}>{strings.profileLocalization.live} :
+                  {this.state.profile.live}</Text>
+              </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                {/*
+                  This is will be used later
+                  ===============================
+                  <TouchableOpacity>
+                  <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
+                </TouchableOpacity> */}
+              </View>
+            </View>
+            {/*
+              This is will be used later
+              ===============================
+              <View style={styles.mapmain}>
               <MapMain />
             </View> */}
           </View>
@@ -228,7 +218,7 @@ export default class Profile extends Component {
     } else {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size={'large'}/>
+          <ActivityIndicator size={'large'} />
         </View>
       );
     }
@@ -237,7 +227,9 @@ export default class Profile extends Component {
     if (this.state.followed === true) {
       Alert.alert('Confirmation',
                strings.profileLocalization.areYouFollow, [
-                { text: strings.logoutLocalization.cancel, onPress: () => this.setState({ clicked: this.state.followed }) },
+                 { text: strings.logoutLocalization.cancel,
+                   onPress: () => this.setState({ clicked: this.state.followed }),
+                 },
                 { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
