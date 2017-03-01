@@ -57,7 +57,7 @@ export default class FollowingMe extends React.Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-      console.log('RE RENDER TRIGGERD');
+      console.log('RE RENDER TRIGGERD FOLLOWER');
     })
   }
   render() {
@@ -66,7 +66,7 @@ export default class FollowingMe extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
-          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower', rerender: () => this.rerender() }} />}
+          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
         />
       );
     } else if (nodata === true) {

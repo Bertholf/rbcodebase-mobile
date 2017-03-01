@@ -75,13 +75,14 @@ export default class ListFollow extends Component {
       loading: true,
       friendlist: {},
       statusFollow: [],
+      followTableID: '',
     };
   }
   componentDidMount() {
     if (this.props.rowData.status === 'request') {
       this.setState({ clicked: false });
     }
-    if (this.props.rowData.type === 'follower') {
+    if (this.props.rowData.type === 'following') {
       const idFol = this.props.rowData.follower_id;
       const idLed = this.props.rowData.leader_id;
       follows.showFollowing2(idLed, idFol)
@@ -89,6 +90,9 @@ export default class ListFollow extends Component {
         .catch((err) => { console.log('GA DAPAT ID', err); this.setState({ clicked: true }); console.log(this.state.clicked); });
     } else if (this.props.rowData.type === 'following') {
       this.setState({clicked: false});
+    }
+    if (this.props.rowData.type === 'follower') {
+
     }
   }
   updateFollowData(targetID) {
@@ -129,17 +133,31 @@ export default class ListFollow extends Component {
       const idLed = this.props.rowData.leader_id;
       console.log('ID LEADER', idFol, idLed);
       follows.showFollowing2(idLed, idFol)
-        .then((resp) => { console.log('DAPETIN NO ID', resp.data.id); follows.unfollow(resp.data.id)
-          .then((resp) => { console.log('RESPON DELETE UNFOLLOW', resp); this.setState({ clicked: false }); this.rerender(); })
+        .then((resp) => { console.log('DAPETIN NO ID', resp); follows.unfollow(this.state.followTableID)
+          .then((resp) => { console.log('RESPON DELETE UNFOLLOW', resp); this.setState({ clicked: true }); this.rerender(); })
           .catch((err) => { console.log('ERROR', err); }); })
         .catch((err) => { console.log('Error', err); });
 
-    } else {
-      follows.unfollow(this.props.rowData.id)
+    } else if(this.props.rowData.type === 'search') {
+      follows.unfollow(this.state.followTableID)
         .then((result) => {
           console.log(result.id, 'UNFOLLOWED');
-          this.props.rowData.rerender();
-        }).catch(err => console.log(err))
+          this.setState({ clicked: true })
+        }).catch(err => console.log(err));
+    } else {
+      if (this.state.followTableID === '') {
+        follows.unfollow(this.props.rowData.id)
+          .then((result) => {
+            console.log(result.id, 'UNFOLLOWED');
+            this.setState({ clicked: true })
+          }).catch(err => console.log(err));
+      } else {
+      follows.unfollow(this.state.followTableID)
+        .then((result) => {
+          console.log(result.id, 'UNFOLLOWED');
+          this.setState({ clicked: true })
+        }).catch(err => console.log(err));
+      }
     }
   }
 
@@ -156,13 +174,14 @@ export default class ListFollow extends Component {
       this.follow(id);
     }
   }
+
   follow(leaderId) {
     AsyncStorage.getItem('userId')
     .then((followerId) => {
       follows.followsomeone(followerId, leaderId)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ clicked: false });
+        this.setState({ clicked: false, followTableID: res.data.id });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
@@ -225,8 +244,8 @@ export default class ListFollow extends Component {
       <TouchableOpacity disabled={ setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
           }}>
-            <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
+            <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
+              {this.props.rowData.type === 'follower' ? '' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow }</Text>
           </TouchableOpacity>
       </View>
     );
