@@ -8,4 +8,6 @@ export default {
   nofollower: 'Anda tidak memiliki pengikut, klik cari teman untuk mengikuti',
   nofollowing: 'Anda tidak mengikuti siapapun, klik cari teman untuk mengikuti',
   findfriend: 'Cari Teman',
+  approve: 'Diterima',
+  request: 'Permintaan',
 };

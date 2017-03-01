@@ -104,6 +104,14 @@ class userPanel extends React.Component {
                   <Image source={addFriendIcon} style={styles.imgLinks} />
                   <Text style={styles.textLinks}>{strings.userpanel.search_friend} </Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={styles.imgLinksContainer}
+                  onPress={Actions.approval}
+                >
+                  <Image source={contactIcon} style={styles.imgLinks} />
+                  <Text style={styles.textLinks}>{strings.userpanel.request}</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </ScrollView>
@@ -111,6 +119,7 @@ class userPanel extends React.Component {
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.props.goCenter()}>
               <Image source={bottomArrowIcon} style={styles.swapImage} />
             </TouchableOpacity>
+
           </View>
         </View>
     );
