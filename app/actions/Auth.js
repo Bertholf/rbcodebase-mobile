@@ -47,24 +47,51 @@ export function submitLogin(username, password, okCallback, failCallback) {
 export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
-    AsyncStorage.setItem('accessToken', response.accessToken);
-    if(response.provider === 'twitter') {
+    if (response.provider === 'twitter') {
       auth.checktwitter(response.accessToken, response.provider, response.secret)
       .then((resL) => {
         console.log('RESPONSE RBCODEBASE TWITTER', resL);
-        if (resL.data.registered === false ) {
+        if (resL.data.registered === false) {
           const props = {
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],
             username: resL.data.nickname,
             email: resL.data.email,
-          }
+          };
           Actions.registrationform(props);
           AsyncStorage.removeItem('accessToken');
         } else {
           Actions.actionswiper({ type: 'reset' });
         }
+      });
+    } else if (response.provider === 'facebook') {
+      auth.check(response.accessToken, 'facebook', response.userID)
+      .then((resL) => {
+        console.log('RESPONSE RBCODEBASE FB ', resL);
+        if (resL.data.registered === false) {
+          const props = {
+            firstName: resL.data.name.split(' ')[0],
+            lastName: resL.data.name.split(' ')[1],
+            email: resL.data.email,
+            username: '',
+            provider: 'facebook',
+            accessToken: response.accessToken,
+            oauthProviderId: response.userID,
+          };
+          Actions.pop();
+          Actions.registrationform(props);
+        } else {
+          console.log('PROCESS GOES HERE');
+          AsyncStorage.setItem('accessToken', resL.data.access_token)
+          .then(() => {
+            console.log('success to save accessToken');
+            Actions.pop();
+            Actions.actionswiper({ type: 'reset' });
+          })
+          .catch(err => console.log('FAIL TO SAVE ACCESS TOKEN', err))
+        }
       })
+      .catch(err => console.log('FAIL LOGIN FACEBOOK ', err));
     } else {
       Actions.pop();
       Actions.actionswiper({ type: 'reset' });
@@ -147,7 +174,7 @@ export function loginWithFacebook() {
         return Promise.reject(result);
       }
       return AccessToken.getCurrentAccessToken();
-    }).then(({ accessToken }) => dispatch(doneLogin({ provider: 'facebook', accessToken })))
+    }).then(response => dispatch(doneLogin({ provider: 'facebook', ...response })))
     .catch(err => errorLogin(err));
   };
 }
