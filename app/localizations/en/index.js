@@ -16,9 +16,11 @@ import listfollow from './ListFollow';
 import profileLocalization from './profile';
 import logoutLocalization from './logout';
 import mobilephone from './MobilePhone';
+import loader from './loader';
 import adpreference from './adpreference';
 
 const en = {
+  loader,
   listfollow,
   addfriend,
   ForgotPass,

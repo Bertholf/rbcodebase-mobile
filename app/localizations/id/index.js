@@ -15,10 +15,12 @@ import addfriend from './AddFriend';
 import listfollow from './ListFollow';
 import profileLocalization from './profile';
 import logoutLocalization from './logout';
-import mobilephone from './MobilePhone'
+import loader from './loader';
+import mobilephone from './MobilePhone';
 import adpreference from './adpreference';
 
 const id = {
+  loader,
   listfollow,
   addfriend,
   settings,
