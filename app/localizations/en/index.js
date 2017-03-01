@@ -17,6 +17,7 @@ import profileLocalization from './profile';
 import logoutLocalization from './logout';
 import mobilephone from './MobilePhone';
 import loader from './loader';
+import adpreference from './adpreference';
 
 const en = {
   loader,
@@ -37,6 +38,7 @@ const en = {
   profileLocalization,
   logoutLocalization,
   mobilephone,
+  adpreference,
 };
 
 export default en;
