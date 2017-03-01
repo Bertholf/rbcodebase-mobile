@@ -15,7 +15,6 @@ import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
 
-
 export default class AdPreference extends Component {
   constructor(props) {
     super(props);
@@ -569,7 +568,6 @@ export default class AdPreference extends Component {
         </View>
       </ScrollView>
       </View>
-
     );
   }
 }
@@ -583,7 +581,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#2196F3',
-    borderRadius: 2,
+    borderRadius: 5,
     elevation: 2,
     paddingTop: 14,
     paddingBottom: 14,
@@ -597,12 +595,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
     borderWidth: 0.8,
-    borderRadius: 2,
+    borderRadius: 3,
     height: 40,
     alignItems: 'center',
+    marginBottom: 6,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
   text: {
     color: '#000000',
-    fontSize: 16,
+    fontSize: 14,
+    marginLeft: 10,
   },
 });
