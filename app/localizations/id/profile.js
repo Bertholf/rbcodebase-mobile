@@ -9,13 +9,16 @@ const profileLocalization = {
   km: 'Km',
   from: 'Dari',
   live: 'langsung',
-  unfollow: 'Tidak Ikuti',
+  unfollow: 'Berhenti Ikuti',
   follow: 'Ikuti',
   deleteFriend: 'Hapus Teman',
   addFriend: 'Tambah Teman',
   viewMore: 'Lihat Selengkapnya',
   areYouFollow: 'Apakah Anda yakin tidak mengiktui User ini?',
   yes: 'IYA',
+  enterBio: 'Masukkan Bio Barumu',
+  save: 'Simpan',
+  successfully: 'SUKSES',
 };
 
 export default profileLocalization;

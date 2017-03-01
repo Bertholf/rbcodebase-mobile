@@ -29,7 +29,7 @@ export default class Profile extends Component {
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.profile.id,
-      followed: false,
+      followed: true,
       countFollow: 0,
       id: this.props.idFollow,
       friend: false,
@@ -81,7 +81,7 @@ export default class Profile extends Component {
       follows.followsomeone(idFollower, this.state.leaderId)
       .then((res) => {
         console.log('FOLLOW RES', res);
-        this.setState({ followed: false, id: res.data.id, followId: res.data.leader_id });
+        this.setState({ followed: true, id: res.data.id, followId: res.data.leader_id });
       })
       .catch(err => console.log('FAIL FOLLLOW', err));
     })
@@ -131,7 +131,7 @@ export default class Profile extends Component {
     this.setState({followed:(typeof res.data.id) !==  'undefined'})
   }).catch((err)=>{
     console.log(err);
-  })
+  });
   }
 
   render() {
@@ -170,7 +170,7 @@ export default class Profile extends Component {
                     <View style ={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                       <TouchableOpacity onPress={() => this.toggleSwitchFollow()}>
                         <Text style = {this.state.followed ? styles.buttonUnfollow  : styles.button }>
-                           {this.state.followed ? 'Unfollow' : 'Follow' }</Text>
+                           {this.state.followed ? strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
                         </TouchableOpacity>
                     </View>
                   ) : (
@@ -235,9 +235,9 @@ export default class Profile extends Component {
   toggleSwitchFollow() {
     if (this.state.followed === true) {
       Alert.alert('Confirmation',
-               'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.followed }) },
-                { text: 'Yes', onPress: () => this.unfollowUser() },
+               strings.profileLocalization.areYouFollow, [
+                { text: strings.logoutLocalization.cancel, onPress: () => this.setState({ clicked: this.state.followed }) },
+                { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
       this.follow();

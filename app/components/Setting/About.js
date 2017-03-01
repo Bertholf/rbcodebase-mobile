@@ -12,6 +12,7 @@ import NavigationBar from 'react-native-navbar';
 import {Actions} from 'react-native-router-flux';
 import IconClose from './../../layouts/IconClose';
 const { width, height } = Dimensions.get('window');
+import strings from '../../localizations';
 
 export default class ChatView extends Component {
   constructor(props) {
@@ -22,8 +23,8 @@ export default class ChatView extends Component {
   }
   render() {
     const rightButtonConfig = {
-    title: 'Save',
-    handler: () => alert('successfully!'),
+    title: strings.profileLocalization.save,
+    handler: () => alert(strings.profileLocalization.successfully),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -33,8 +34,9 @@ export default class ChatView extends Component {
   const titleConfig = {
     title: 'Edit Bio',
   };
-
+  
   return (
+
     <View>
       <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
         <NavigationBar
@@ -58,7 +60,7 @@ export default class ChatView extends Component {
                    paddingBottom: 20,
                  }}
                >
-               Enter your new bio
+               {strings.profileLocalization.enterBio}
                </Text>
                <TextInput
                  style={{
