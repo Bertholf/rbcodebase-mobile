@@ -52,6 +52,7 @@ import AdPref from './components/Setting/AdPreference';
 import Follower from './components/Profile/Follower';
 import AddFriendScreen from './components/Profile/AddFriend';
 import LoaderView from './views/Loader';
+import Approval from './components/Profile/approval';
 
 
 const lang = strings.getInterfaceLanguage();
@@ -217,6 +218,9 @@ const Routing = (props) => (
           <Scene
             key={'follower'} component={Follower} title={strings.settings.follower}
           />
+        <Scene
+          key={'approval'} component={Approval} title={'Approval'}
+        />
           <Scene
             key={'addfriendscreen'} component={AddFriendScreen} title={strings.settings.adduser}
           />

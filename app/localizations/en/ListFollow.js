@@ -8,4 +8,6 @@ export default {
   nofollower: 'You have no follower, click search friend button to follow someone',
   nofollowing: 'You are not following friend, click search friend button to follow someone',
   findfriend: 'Search Friend',
+  approve: 'Approved',
+  request: 'Request',
 };

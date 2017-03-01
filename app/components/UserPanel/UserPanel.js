@@ -21,6 +21,7 @@ const followIcon = require('./../../images/people.png');
 const contactIcon = require('./../../images/ic_contacts_black_24dp.png');
 const addFriendIcon = require('./../../images/ic_person_add_black_24dp.png');
 const bottomArrowIcon = require('./../../images/ic_expand_more_black_24dp.png');
+const searchFriend = require('./../../images/search.png');
 
 const alertMessage = 'Press OK';
 
@@ -101,8 +102,16 @@ class userPanel extends React.Component {
                   style={styles.imgLinksContainer}
                   onPress={Actions.addfriendscreen}
                 >
-                  <Image source={addFriendIcon} style={styles.imgLinks} />
+                  <Image source={searchFriend} style={[styles.imgLinks, { tintColor: '#000' }]} />
                   <Text style={styles.textLinks}>{strings.userpanel.search_friend} </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={styles.imgLinksContainer}
+                  onPress={Actions.approval}
+                >
+                  <Image source={addFriendIcon} style={styles.imgLinks} />
+                  <Text style={styles.textLinks}>{strings.userpanel.request}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -111,6 +120,7 @@ class userPanel extends React.Component {
             <TouchableOpacity activeOpacity={0.7} onPress={() => this.props.goCenter()}>
               <Image source={bottomArrowIcon} style={styles.swapImage} />
             </TouchableOpacity>
+
           </View>
         </View>
     );
