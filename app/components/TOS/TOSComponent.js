@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, WebView, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
 const ic_close = require('./../../images/ic_close.png');
+import strings from '../../localizations';
 
 const TOSComponent = ({ tosUrl, onClose }) => (
   <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -9,7 +10,7 @@ const TOSComponent = ({ tosUrl, onClose }) => (
         <Image source={ic_close} style={{ resizeMode: 'cover', width: 30, height: 30 }} />
       </TouchableOpacity>
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 20 }}>Terms of Service</Text>
+        <Text style={{ fontSize: 20 }}>{strings.settings.tos}</Text>
       </View>
     </View>
     <WebView

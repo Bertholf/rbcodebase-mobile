@@ -1,4 +1,5 @@
 const ChangeName = {
+  title: 'Ubah Nama',
   current_name: 'Nama anda saat ini',
   first_name: 'Masukan nama depan Anda',
   last_name: 'Masukan nama akhir Anda',

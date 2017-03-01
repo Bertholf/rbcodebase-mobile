@@ -41,8 +41,8 @@ export default class editBirthday extends Component {
 
   render() {
     const rightButtonConfig = {
-    title: 'Save',
-    handler: () => alert('successfully!'),
+    title: strings.settings.save,
+    handler: () => alert(strings.settings.alertSuccess),
   };
     const leftButtonConfig = {
     title: 'Cancel',
@@ -50,7 +50,7 @@ export default class editBirthday extends Component {
   };
 
   const titleConfig = {
-    title: 'Edit Birthday',
+    title: strings.editBirthday.title,
   };
     const updateBirthday = () => {
       const id = this.state.profile.id;

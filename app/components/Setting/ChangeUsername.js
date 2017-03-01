@@ -59,22 +59,22 @@ export default class ChangeUsername extends Component {
             this.props.reRender();
           })
           Keyboard.dismiss();
-          ToastAndroid.show('Setting saved', ToastAndroid.SHORT)
+          ToastAndroid.show(strings.settings.toast, ToastAndroid.SHORT)
         })
         .catch(Err=> console.log('err', Err))
         Actions.pop();
       } else {
-        Alert.alert("Error", "invalid username");
+        Alert.alert(strings.changeUname.alertError);
       }
     }
 
     const rightButtonConfig = {
-    title: 'Save',
+    title: strings.settings.save,
     handler: () => onSave(),
     };
 
   const titleConfig = {
-    title: 'Edit Username',
+    title: strings.changeUname.title,
   };
     // const saveUsername = () => {
     //   const newUsername = this.state.newUsername;
