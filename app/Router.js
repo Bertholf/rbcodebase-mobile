@@ -175,7 +175,7 @@ const Routing = (props) => (
             key={'timelineshare'} component={TimelineShare} title={'Timeline Share'}
           />
           <Scene
-            key={'profile'} component={Profile} title={'Profile'} direction={'vertical'}
+            key={'profile'} component={Profile} title={strings.settings.profile} direction={'vertical'}
           />
           <Scene
             key={'addfriendscreen'} component={AddFriend} title={'Search Friend'} direction={'vertical'}

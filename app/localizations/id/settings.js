@@ -29,5 +29,6 @@ const settings = {
   signin: 'Masuk',
   register: 'Daftar',
   forgotpass: 'Lupa Kata Sandi',
+  profile: 'Profil Pengguna',
 };
 export default settings;

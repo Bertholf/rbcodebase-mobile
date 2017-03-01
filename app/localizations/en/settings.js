@@ -29,6 +29,7 @@ const settings = {
   signin: 'Sign In',
   register: 'Register',
   forgotpass: 'Forgot Password',
+  profile: 'User Profile',
 };
 
 export default settings;
