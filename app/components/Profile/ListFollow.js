@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage, ActivityIndicator } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 
@@ -83,12 +83,11 @@ export default class ListFollow extends Component {
       this.setState({ clicked: false });
     }
     if (this.props.rowData.type === 'following') {
-      console.log('INI DATA FOLLOWING', this.props.rowData);
       const idFol = this.props.rowData.follower_id;
       const idLed = this.props.rowData.leader_id;
       follows.showFollowing2(idLed, idFol)
-        .then((resp) => { console.log('TES INPUT', resp.data.id); this.setState({ clicked: false }); console.log(this.state.clicked); })
-        .catch((err) => { console.log('GA DAPAT ID', err); this.setState({ clicked: true }); console.log(this.state.clicked); });
+        .then(() => { this.setState({ clicked: false }); })
+        .catch(() => { this.setState({ clicked: true }); });
     } else if (this.props.rowData.type === 'following') {
       this.setState({clicked: false});
     }
@@ -97,67 +96,51 @@ export default class ListFollow extends Component {
     }
   }
   updateFollowData(targetID) {
-    console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++', targetID);
     AsyncStorage.getItem('userId')
     .then((id) => {
-      console.log('-----------USER ID From asyn-----------', id);
       const status = 'request';
       follows.updatefollow(id, targetID, status)
       .then((response) => {
         if (response.data.status === 'request') {
           this.setState({ clicked: false });
-          console.log('TRUE');
         } else if (response.data.status === 'approved') {
           this.setState({ clicked: false });
-          console.log('FALSE');
         } else {
-          console.log();
+          return;
         }
         this.setState({ statusFollow: response.data });
         // console.log(this.state.statusFollow);
-        console.log('-------------DATA LIST STATUS BUTTON FOLLOW DI FOLLOWING --------------', response);
       })
       .catch((Err) => {console.log('err', Err); });
     });
   }
-  // findFolloworUnFollow() {
-  //   const idFol = this.props.rowData.follower_id;
-  //   const idLed = this.props.rowData.leader_id;
-  //   follows.showFollowing2(idLed, idFol)
-  //     .then((resp) => { console.log('DAPETIN NO ID', resp.data.id); })
-  //     .catch((err) => { console.log('GA DAPAT ID', err); this.setState({ clicked: false })});
-  // }
 
   unfollowUser() {
     if (this.props.rowData.type === 'follower') {
       const idFol = this.props.rowData.follower_id;
       const idLed = this.props.rowData.leader_id;
-      console.log('ID LEADER', idFol, idLed);
       follows.showFollowing2(idLed, idFol)
-        .then((resp) => { console.log('DAPETIN NO ID', resp); follows.unfollow(this.state.followTableID)
-          .then((resp) => { console.log('RESPON DELETE UNFOLLOW', resp); this.setState({ clicked: true }); this.rerender(); })
+        .then(() => { follows.unfollow(this.state.followTableID)
+          .then(() => { this.setState({ clicked: true }); this.rerender(); })
           .catch((err) => { console.log('ERROR', err); }); })
         .catch((err) => { console.log('Error', err); });
 
     } else if(this.props.rowData.type === 'search') {
       follows.unfollow(this.state.followTableID)
         .then((result) => {
-          console.log(result.id, 'UNFOLLOWED');
           this.setState({ clicked: true })
-        }).catch(err => console.log(err));
+        }).catch(err => err);
     } else {
       if (this.state.followTableID === '') {
         follows.unfollow(this.props.rowData.id)
           .then((result) => {
-            console.log(result.id, 'UNFOLLOWED');
             this.setState({ clicked: true })
           }).catch(err => console.log(err));
       } else {
-      follows.unfollow(this.state.followTableID)
-        .then((result) => {
-          console.log(result.id, 'UNFOLLOWED');
+        follows.unfollow(this.state.followTableID)
+        .then(() => {
           this.setState({ clicked: true })
-        }).catch(err => console.log(err));
+        }).catch(err => err);
       }
     }
   }
@@ -181,17 +164,15 @@ export default class ListFollow extends Component {
     .then((followerId) => {
       follows.followsomeone(followerId, leaderId)
       .then((res) => {
-        console.log('FOLLOW RES', res);
         this.setState({ clicked: false, followTableID: res.data.id });
       })
-      .catch(err => console.log('FAIL FOLLLOW', err));
+      .catch(err => err);
     })
-    .catch(err => console.log('fail ASYNC follow', err));
+    .catch(err => err);
   }
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-      console.log('RE RENDER TRIGGERD');
     })
   }
 
@@ -220,16 +201,20 @@ export default class ListFollow extends Component {
 
     if (setting === null) {
       setting = {
-        privacy_follow: "everyone"
+        privacy_follow: 'everyone'
       };
     }
-  console.log('nin ada oo====', setting);
     return (
       <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id, status: this.props.rowData })}
-        activeOpacity={0.7}
-      >
+        <TouchableOpacity
+          onPress={() =>
+            Actions.profile({
+              profile: rowData,
+              idFollow: this.props.rowData.id,
+              status: this.props.rowData,
+            })}
+          activeOpacity={0.7}
+        >
         <View>
           <View style={{ flexDirection: 'row' }}>
             <Image source={{ uri: rowData.picture }} style={styles.photo} />
@@ -241,13 +226,15 @@ export default class ListFollow extends Component {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity disabled={this.props.rowData.status === 'request' ? true : setting.privacy_follow !== 'none' ? false : true } onPress={() => {
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={this.props.rowData.status === 'request' ? true : setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
-          }}>
-            <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
-          </TouchableOpacity>
+          }}
+        >
+          <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
+            {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
+        </TouchableOpacity>
       </View>
     );
   }
