@@ -140,7 +140,7 @@ export default class Profile extends Component {
                 </TouchableOpacity>
                 {this.state.me ? (
                   <TouchableOpacity onPress={Actions.setting} >
-                    <Text  style= {styles.button} >
+                    <Text style={styles.button} >
                       {strings.profileLocalization.edit}
                     </Text>
                   </TouchableOpacity>
