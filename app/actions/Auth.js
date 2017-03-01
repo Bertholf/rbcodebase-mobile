@@ -44,25 +44,36 @@ export function submitLogin(username, password, okCallback, failCallback) {
    .catch(err => failCallback());
   }
 }
+const registered = (token, provider) => {
+  AsyncStorage.setItem('provider', provider);
+  AsyncStorage.setItem('accessToken', token)
+  .then(() => {
+    Actions.loaderview({message: 'You are already registered', onPress: () => Actions.actionswiper({type: 'reset'})});
+    setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
+  });
+}
+
 export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     AsyncStorage.setItem('accessToken', response.accessToken);
-    if(response.provider === 'twitter') {
+    if (response.provider === 'twitter') {
       auth.checktwitter(response.accessToken, response.provider, response.secret)
       .then((resL) => {
         console.log('RESPONSE RBCODEBASE TWITTER', resL);
         if (resL.data.registered === false ) {
-          const props = {
+          Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],
             username: resL.data.nickname,
             email: resL.data.email,
-          }
-          Actions.registrationform(props);
+            accessToken: resL.data.access_token,
+            secret: response.secret,
+            provider: response.provider,
+          });
           AsyncStorage.removeItem('accessToken');
         } else {
-          Actions.actionswiper({ type: 'reset' });
+          registered(resL.data.access_token, 'twitter');
         }
       })
     } else {
