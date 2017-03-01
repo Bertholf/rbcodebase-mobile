@@ -6,7 +6,7 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
-
+import strings from '../localizations';
 import config from '../config';
 import { AsyncStorage } from 'react-native';
 
@@ -44,6 +44,18 @@ export function submitLogin(username, password, okCallback, failCallback) {
    .catch(err => failCallback());
   }
 }
+const registered = (token, provider) => {
+  AsyncStorage.setItem('provider', provider);
+  AsyncStorage.setItem('accessToken', token)
+  .then(() => {
+    Actions.loaderview({
+      message: strings.loader.registered,
+      onPress: () => Actions.actionswiper({ type: 'reset' }),
+    });
+    setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
+  });
+};
+
 export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
@@ -52,16 +64,17 @@ export function doneLogin(response = {}) {
       .then((resL) => {
         console.log('RESPONSE RBCODEBASE TWITTER', resL);
         if (resL.data.registered === false) {
-          const props = {
+          Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],
             username: resL.data.nickname,
             email: resL.data.email,
-          };
-          Actions.registrationform(props);
-          AsyncStorage.removeItem('accessToken');
+            accessToken: resL.data.access_token,
+            secret: response.secret,
+            provider: response.provider,
+          });
         } else {
-          Actions.actionswiper({ type: 'reset' });
+          registered(resL.data.access_token, 'twitter');
         }
       });
     } else if (response.provider === 'facebook') {
@@ -82,13 +95,8 @@ export function doneLogin(response = {}) {
           Actions.registrationform(props);
         } else {
           console.log('PROCESS GOES HERE');
-          AsyncStorage.setItem('accessToken', resL.data.access_token)
-          .then(() => {
-            console.log('success to save accessToken');
-            Actions.pop();
-            Actions.actionswiper({ type: 'reset' });
-          })
-          .catch(err => console.log('FAIL TO SAVE ACCESS TOKEN', err))
+          Actions.pop();
+          registered(resL.data.access_token, 'facebook');
         }
       })
       .catch(err => console.log('FAIL LOGIN FACEBOOK ', err));
