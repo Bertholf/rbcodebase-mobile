@@ -57,7 +57,7 @@ export default class FollowingMe extends React.Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-      console.log('RE RENDER TRIGGERD');
+      console.log('RE RENDER TRIGGERD FOLLOWER');
     })
   }
   render() {

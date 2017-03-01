@@ -50,6 +50,13 @@ export default class AddFriendScreen extends React.Component {
     });
   }
 
+  rerender() {
+    this.setState({ loading: true }, () => {
+      this.componentDidMount();
+      console.log('RE RENDER TRIGGERD');
+    })
+  }
+
   render() {
     if (this.state.loading === false) {
       return (
@@ -75,7 +82,7 @@ export default class AddFriendScreen extends React.Component {
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
-              renderRow={rowData => <ListFollow rowData={{ ...rowData }} />}
+              renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
             />
           </View>
         </View>
