@@ -16,6 +16,7 @@ import listfollow from './ListFollow';
 import profileLocalization from './profile';
 import logoutLocalization from './logout';
 import mobilephone from './MobilePhone';
+import adpreference from './adpreference';
 
 const en = {
   listfollow,
@@ -35,6 +36,7 @@ const en = {
   profileLocalization,
   logoutLocalization,
   mobilephone,
+  adpreference,
 };
 
 export default en;
