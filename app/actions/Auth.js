@@ -147,7 +147,7 @@ export function loginWithFacebook() {
         return Promise.reject(result);
       }
       return AccessToken.getCurrentAccessToken();
-    }).then(({ accessToken }) => dispatch(doneLogin({ provider: 'facebook', accessToken })))
+    }).then((response) => dispatch(doneLogin({ provider: 'facebook', response })))
     .catch(err => errorLogin(err));
   };
 }
