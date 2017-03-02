@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 import strings from '../../localizations';
 import style from './../../style/StyleGlobal';
 import  me from '../../services/me';
@@ -72,7 +73,7 @@ export default class ForgotPassword extends Component {
           <Text /> : <Text style={styles.invalid}>{strings.ForgotPass.alert_invalid_email}</Text>}
         <TouchableHighlight
           style={styles.button}
-          onPress={validateEmail}
+          onPress={() => Actions.resetresult()}
           underlayColor="#99d9f4"
         >
           <Text style={style.buttonText}>{strings.ForgotPass.send}</Text>
