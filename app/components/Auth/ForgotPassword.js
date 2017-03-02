@@ -63,7 +63,7 @@ export default class ForgotPassword extends Component {
         <Text>{this.state.profile.email}</Text>
         <TextInput
           style={style.textInput}
-          placeholderTextColor={'#2196f3'}
+          placeholderTextColor={'silver'}
           onChangeText={email => this.setState({ email })}
           placeholder="Email"
           underlineColorAndroid='rgba(0,0,0,0)'
