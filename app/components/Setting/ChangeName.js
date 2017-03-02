@@ -17,7 +17,7 @@ import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
 
-export default class NameEdit extends Component{
+export default class NameEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,9 +96,10 @@ export default class NameEdit extends Component{
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}/>
+            leftButton={<IconClose onPress={Actions.pop} />}
+          />
         </View>
-        <View style={{ alignItems: 'center',flexDirection: 'row', justifyContent: 'center' }}>
+        <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>
         </View>
         <ScrollView>
