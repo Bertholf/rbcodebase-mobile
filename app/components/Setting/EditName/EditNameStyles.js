@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     marginRight: 16,
     paddingLeft: 14,
     paddingRight: 14,
-    // justifyContent: 'flex-start',
   },
   titleButton: {
     fontSize: 15,
