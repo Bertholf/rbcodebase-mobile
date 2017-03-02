@@ -23,7 +23,6 @@ export default class Setting extends Component {
   }
   reRender() {
     this.componentDidMount();
-    console.log('RERENDER TRIGGERD');
   }
   render() {
     return (
@@ -77,18 +76,18 @@ export default class Setting extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.emailEdit} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>{this.state.profile.email}</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ alignSelf: 'center' }}>{this.state.profile.email}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.passEdit}>
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.password}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
@@ -100,7 +99,7 @@ export default class Setting extends Component {
           <Text style={styles.titleText}>{strings.settings.preference}</Text>
           <TouchableOpacity onPress={Actions.pp} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.privacy}</Text>
               </View>
               <View style={{flexDirection: 'row'}}>
@@ -110,20 +109,20 @@ export default class Setting extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.notifications} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.notification}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.adpref} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.ad_Preference}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -131,40 +130,40 @@ export default class Setting extends Component {
           <Text style={styles.titleText}>{strings.settings.more_info}</Text>
           <TouchableOpacity onPress={Actions.support} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.support}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.pp} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.Privacy_policy}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.tos} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.tos}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection : 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.license} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.licence}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -172,10 +171,10 @@ export default class Setting extends Component {
           <Text style={styles.titleText}>{strings.settings.account_action}</Text>
           <TouchableOpacity onPress={Actions.account} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.clear_cache}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -184,12 +183,12 @@ export default class Setting extends Component {
              {() => Alert.alert(
             '',
             strings.logoutLocalization.AreYouSure,
-            [
-              { text: strings.logoutLocalization.cancel, onPress:() => console.log('cancelled Pressed')},
-              { text: 'OK', onPress:  () => { Logout() ;
-              console.log('OK Pressed')}},
-            ]
-          ) }
+               [
+                 { text: strings.logoutLocalization.cancel, onPress:() => console.log('cancelled Pressed')},
+                 { text: 'OK', onPress:  () => { Logout() ;
+                 } },
+               ]
+          )}
           >
             <View style={styles.list}>
               <View style={{alignSelf: 'center'}}>

@@ -5,19 +5,21 @@ import {
   ScrollView,
   TextInput,
   Alert,
+  TouchableOpacity,
   Keyboard,
   ToastAndroid,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import NavigationBar from 'react-native-navbar';
 import styles from './ChangeSetting/ChangeStyles';
+import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
+import {Actions} from 'react-native-router-flux';
+import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
 
-export default class NameEdit extends Component {
+export default class NameEdit extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +30,8 @@ export default class NameEdit extends Component {
   }
   componentDidMount() {
     auth.profile()
-    .then(response => this.setState({ profile: response.data }))
-    .catch(Err => Err);
+    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
+    .catch(Err => console.log('err,Err'));
   }
 
   clearText(fieldName) {
@@ -38,19 +40,19 @@ export default class NameEdit extends Component {
 
   render() {
     const rightButtonConfig = {
-      title: strings.settings.save,
-      handler: () => validateName(),
-    };
+    title: strings.settings.save,
+    handler: () => validateName(),
+  };
     const leftButtonConfig = {
-      title: 'Cancel',
-      handler: () => Actions.pop(),
-    };
+    title: 'Cancel',
+    handler: () => Actions.pop(),
+  };
 
-    const titleConfig = {
-      title: strings.ChangeName.title,
-    };
+  const titleConfig = {
+    title: strings.ChangeName.title,
+  };
 
-    const value = /^[a-zA-Z ]+$/;
+    const value = /^[a-zA-Z ]+$/
     const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);
     const lastNameValidator = value.test(this.state.lastName);
@@ -59,6 +61,7 @@ export default class NameEdit extends Component {
     const currentFirstName = this.state.profile.first_name;
     const currentLastName = this.state.profile.last_name;
     const slug = this.state.profile.name_slug;
+    const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
 
@@ -73,18 +76,19 @@ export default class NameEdit extends Component {
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
           Alert.alert('Success', 'Your First Name has been Changed');
         } else {
+          console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
           this.clearText('textInput1');
           this.clearText('textInput2');
-          auth.profile()
+          auth.profile ()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
           this.props.reRender();
         }))
-        .catch(Err => Err);
-          ToastAndroid.show(strings.settings.toast, ToastAndroid.SHORT);
-          Keyboard.dismiss();
-          Actions.refresh();
-          Actions.pop();
+        .catch(Err=> console.log('err', Err))
+          ToastAndroid.show(strings.settings.toast, ToastAndroid.SHORT)
+        Keyboard.dismiss();
+        Actions.refresh();
+        Actions.pop();
         }
       } else {
         Alert.alert(strings.settings.alerNoInput);
@@ -92,21 +96,20 @@ export default class NameEdit extends Component {
     };
     return (
       <View style={styles.OuterView}>
-        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
-          />
-        </View>
-        <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}/>
+      </View>
+        <View style={{alignItems: 'center',flexDirection: 'row',justifyContent: 'center'}}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>
         </View>
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-              {strings.ChangeName.current_name}
-            </Text>
+          <Text style={styles.Text2}>
+            {strings.ChangeName.current_name}
+          </Text>
             <View style={styles.currentName}>
               <Text style={{ color: '#2196f3', fontSize: 14 }}>
                 {this.state.profile.name_first} {this.state.profile.name_last}
@@ -140,8 +143,7 @@ export default class NameEdit extends Component {
               maxLength={25}
               onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
-              numberOfLines={1}
-              editable={'true'}
+              numberOfLines={1} editable={true}
               value={this.state.lastName}
             />
             {lastNameValidator || !lastNameInput ?
@@ -159,14 +161,14 @@ export default class NameEdit extends Component {
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.display_name}
               numberOfLines={1}
-              editable={'true'}
+              editable={true}
               multiline={false}
-              autoCorrect={'true'}
+              autoCorrect={true}
             />
           </View>
-          <View>
-            <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
-          </View>
+        <View>
+          <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
+        </View>
         </ScrollView>
       </View>
     );
