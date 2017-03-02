@@ -28,7 +28,7 @@ export default class ForgotPassword extends Component {
     .then(() => console.log(this.state.profile))
   };
 
-  static propTypes = { url: React.PropTypes.string };
+  static propTypes ={ url: React.PropTypes.string };
 
   render() {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -50,15 +50,6 @@ export default class ForgotPassword extends Component {
 
     return (
       <View style={styles.container}>
-        {/* <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center' }}
-        >
-          <Image
-            source={logo} style={styles.image}
-          />
-        </View> */}
         <Text>{this.state.profile.email}</Text>
         <TextInput
           style={styles.textInput}
