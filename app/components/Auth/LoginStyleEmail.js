@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     color: 'white',
-    textAlign:'center'
+    textAlign: 'center',
   },
   button: {
     height: 36,
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     marginBottom: 20,
     borderColor: '#2196f3',
-  }
+  },
 });
 export default styles;

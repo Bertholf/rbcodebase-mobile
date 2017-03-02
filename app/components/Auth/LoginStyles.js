@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 7,
     marginLeft: 7,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   logoTwitter: {
     tintColor: '#fff',
@@ -129,6 +129,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     fontSize: 20,
-  }
+  },
 });
 export default styles;
