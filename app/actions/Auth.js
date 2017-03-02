@@ -1,5 +1,4 @@
-
-//app/actions
+import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import OAuthManager from 'react-native-oauth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
@@ -8,7 +7,7 @@ import twitter from './../modules/twitter';
 import auth from '../services/auth';
 import strings from '../localizations';
 import config from '../config';
-import { AsyncStorage } from 'react-native';
+
 
 const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';

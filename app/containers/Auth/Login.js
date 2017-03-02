@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginScreen from '../../components/Auth/LoginScreen';
 import { errorLogin, updateUsername, updatePassword, submitLogin, loginWithGoogle, loginWithFacebook, loginWithTwitter } from '../../actions/Auth';
-import AuthLoginService from '../../services/AuthLogin';
 
 
 const mapStateToProps = ({ app }) => ({
@@ -28,6 +27,6 @@ const mapDispatchToProps = dispatch => ({
   },
   errorLogin: () => {
     Action.errorLogin();
-  }
+  },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

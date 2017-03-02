@@ -5,7 +5,6 @@ import {
   ListView,
   ScrollView,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -48,7 +47,7 @@ export default class test extends Component {
       <ScrollView>
         <TouchableOpacity>
           <View style={styles.container}>
-            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight:50 }}>
+            <View style={{ flexDirection: 'column', marginLeft: 6, marginRight: 50 }}>
               <Text style={styles.user}>{rowData}</Text>
             </View>
           </View>
@@ -58,10 +57,10 @@ export default class test extends Component {
   }
   render() {
     return (
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={rowData => this.renderRow(rowData)}
-        />
-  );
-  };
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={rowData => this.renderRow(rowData)}
+      />
+    );
+  }
 }
