@@ -4,7 +4,7 @@ import { View, Text, Image, ActivityIndicator } from 'react-native';
 
 const SplashScreen = () => (
   <Image  source={require('./../../images/splash.jpg')} style={{ 	width: null,
-		height: null,
+		  height: null,
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',

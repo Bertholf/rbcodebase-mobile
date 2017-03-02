@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
   },
-  image:{
+  image: {
     height: 30,
     width: 30,
     alignSelf: 'center',
-  }
+  },
 });
 
 module.exports = styles;

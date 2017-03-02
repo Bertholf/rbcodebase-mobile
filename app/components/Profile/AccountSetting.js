@@ -16,19 +16,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  textHeader: {
-    paddingTop: 10,
-    fontSize: 24,
-    fontFamily: 'Arial',
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  imgMenu: {
-    width: 30,
-    height: 30,
-    top: 15,
-    left: 10,
-  },
   title: {
     fontSize: 13,
     paddingLeft: 10,
@@ -51,20 +38,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 25,
     height: 25,
-  },
-  setlist: {
-    height: 1,
-    backgroundColor: '#000000',
-    opacity: 0.3,
-    margin: 5,
-  },
-  Text1: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    alignItems: 'flex-start',
-    paddingTop: 16,
-    paddingBottom: 10,
   },
 });
 
