@@ -12,56 +12,32 @@ import {Actions} from 'react-native-router-flux';
 import strings from '../../localizations';
 import style from './../../style/StyleGlobal';
 import  me from '../../services/me';
+import auth from '../../services/auth';
 const logo = require('./../../images/logo.png');
 
 export default class ForgotPassword extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       email: '',
-      profile: {},
-      alertS: '',
-      alertF: '',
     }
   }
-  componentDidMount() {
-    me.getMe(1234)
-    .then(data => this.setState({ profile: data }))
-    .then(() => console.log(this.state.profile))
-  };
 
-  static propTypes = { url: React.PropTypes.string };
+  verifyEmail() {
+    auth.verify(this.state.email)
+    .then((res) => {
+      console.log('RESPONSE VERIFY EMAIL=====',res);
+      Actions.resetresult({ name: res.data.name_first + ' ' + res.data.name_last, email: res.data.email });
+    }).catch(err => Alert.alert('Warning', err.message));
+  }
 
   render() {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;
-    const currentEmail = this.state.profile.email;
-    const validateEmail = () => {
-      if (emailValidator && emailInput) {
-        // Need action here, please fix it later, thanks!!!
-        if (currentEmail == emailInput) {
-          Alert.alert(strings.ForgotPass.valid_email);
-        } else {
-          Alert.alert(strings.ForgotPass.invalid_email);
-        }
-      } else {
-        return;
-      }
-    };
 
     return (
       <View style={styles.container}>
-        {/* <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center' }}
-        >
-          <Image
-            source={logo} style={styles.image}
-          />
-        </View> */}
-        <Text>{this.state.profile.email}</Text>
         <TextInput
           style={style.textInput}
           placeholderTextColor={'silver'}
@@ -73,7 +49,7 @@ export default class ForgotPassword extends Component {
           <Text /> : <Text style={styles.invalid}>{strings.ForgotPass.alert_invalid_email}</Text>}
         <TouchableHighlight
           style={styles.button}
-          onPress={() => Actions.resetresult()}
+          onPress={() => this.verifyEmail()}
           underlayColor="#99d9f4"
         >
           <Text style={style.buttonText}>{strings.ForgotPass.send}</Text>
