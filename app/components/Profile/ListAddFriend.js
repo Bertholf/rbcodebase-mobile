@@ -59,11 +59,6 @@ const styles = StyleSheet.create({
     marginTop: 7,
     borderRadius: 2,
   },
-  time: {
-    fontSize: 12,
-    color: '#f5f5f5',
-    fontWeight: 'bold',
-  },
 });
 
 export default class ListAddFriend extends Component {
@@ -105,7 +100,7 @@ export default class ListAddFriend extends Component {
               <Text style={styles.detail}>{this.props.rowData.name_slug}</Text>
             </View>
           </View>
-          
+
         </View>
       </TouchableOpacity>
       <TouchableOpacity  onPress={() => this.toggleSwitch()}>

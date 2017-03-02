@@ -1,11 +1,7 @@
-'use strict';
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  Image,
-  TextInput,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -29,7 +25,7 @@ const styles = StyleSheet.create({
   },
   OuterLayer3: {
     flexDirection: 'column',
-    paddingTop:8,
+    paddingTop: 8,
   },
   OuterLayer4: {
     flexDirection: 'row',
@@ -57,19 +53,18 @@ const styles = StyleSheet.create({
   CommentText: {
     color: '#000000',
     paddingLeft: 5,
-    paddingRight:10,
+    paddingRight: 10,
   },
 
 });
 export default class TimelineTextComp extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = { text: '' };
   }
   render() {
     return (
       <View style={styles.OuterView}>
-
       </View>
     );
   }

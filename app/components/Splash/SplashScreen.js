@@ -3,17 +3,14 @@ import { View, Text, Image, ActivityIndicator } from 'react-native';
 
 
 const SplashScreen = () => (
-  <Image
-    source={require('./../../images/splash.jpg')}
-    style={{
-      width: null,
-		  height: null,
-  		flex: 1,
-  		justifyContent: 'center',
-  		alignItems: 'center',
-  		backgroundColor: 'rgba(0,0,0,0)',
-    }}
-  >
+  <Image  source={require('./../../images/splash.jpg')} style={{
+    width: null,
+	  height: null,
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'rgba(0,0,0,0)',
+  }}>
     <Image
       source={require('./../../images/logo.png')}
       style={{

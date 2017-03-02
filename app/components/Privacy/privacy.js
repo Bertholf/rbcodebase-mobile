@@ -27,13 +27,7 @@ export default class privacy extends Component {
   }
 
   saveButton(json) {
-    settingService.updateSetting({ privacy: json })
-    .then(Alert.alert('Saved'))
-    .catch(err => console.log(err));
-  }
-
-  render() {
-    return (
+    settingService.updateSetting(
       <View style={styles.styleBackground}>
         <View style={{ height: 50, backgroundColor: '#2196F3', borderBottomWidth: 1, borderColor: 'white', justifyContent: 'center' }}>
           <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Privacy</Text>

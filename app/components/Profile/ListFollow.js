@@ -60,11 +60,6 @@ const styles = StyleSheet.create({
     marginTop: 7,
     borderRadius: 2,
   },
-  time: {
-    fontSize: 12,
-    color: '#f5f5f5',
-    fontWeight: 'bold',
-  },
 });
 
 export default class ListFollow extends Component {

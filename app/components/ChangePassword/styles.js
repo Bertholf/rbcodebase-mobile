@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Dimensions
-} from 'react-native';
-const { width, height } = Dimensions.get('window');
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   box: {
     marginTop: 70,
-    width: width * 0.9
+    width: width * 0.9,
   },
   title: {
     alignItems: 'center',

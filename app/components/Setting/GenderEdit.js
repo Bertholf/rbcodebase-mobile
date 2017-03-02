@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     elevation: 2,
     alignItems: 'center',
-    elevation: 2,
     backgroundColor: '#2196f3',
     marginLeft: 16,
     marginRight: 16,
