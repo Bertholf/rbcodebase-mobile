@@ -4,7 +4,6 @@ import {
   Image,
   Text,
   TextInput,
-  StyleSheet,
   ActivityIndicator,
   TouchableOpacity,
   ScrollView,
@@ -63,11 +62,10 @@ export default class ChatView extends Component {
             }
             </View>
           </ScrollView>
-          <View style={{ backgroundColor: '#fff', borderColor: '#2196f3', borderWidth: 0.5, margin:5, flexDirection: 'row' }}>
+          <View style={{ backgroundColor: '#fff', borderColor: '#2196f3', borderWidth: 0.5, margin: 5, flexDirection: 'row' }}>
             <View style={{ flex: 4 }}>
               <TextInput
                 style={styles.TextInput}
-                multiline={true}
                 numberOfLines={2}
                 placeholder="Type a message..."
                 underlineColorAndroid="#2196f3"
