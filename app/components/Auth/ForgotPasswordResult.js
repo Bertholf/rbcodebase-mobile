@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, Text, Dimensions, Alert } from 'react-native';
 import styles from '../../style/StyleGlobal';
+import auth from '../../services/auth';
+import { Actions } from 'react-native-router-flux';
 
 const width = Dimensions.get('window').width;
 const image = require('../../../app/images/user.png');
@@ -38,7 +40,16 @@ export default class ResultForgot extends Component {
     this.state = {
       name: this.props.name,
       email: this.props.email,
+      loading: 'true',
     };
+  }
+
+  sendLink() {
+    auth.sendlink(this.state.email)
+    .then((res) => {
+      Alert.alert('Success', res.message);
+      Actions.loginscreenemail();
+    }).catch(err => err);
   }
 
   render() {
@@ -59,7 +70,7 @@ export default class ResultForgot extends Component {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1.5, backgroundColor: '#039be5', width: width, justifyContent: 'center' }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.sendLink()}>
             <Text style={styles.buttonText}>Send Reset Password Link</Text>
           </TouchableOpacity>
         </View>

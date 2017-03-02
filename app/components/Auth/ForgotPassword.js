@@ -26,9 +26,9 @@ export default class ForgotPassword extends Component {
   verifyEmail() {
     auth.verify(this.state.email)
     .then((res) => {
-      console.log('RESPONSE VERIFY EMAIL=====',res);
+      console.log('RESPONSE VERIFY EMAIL=====', res);
       Actions.resetresult({ name: res.data.name_first + ' ' + res.data.name_last, email: res.data.email });
-    }).catch(err => Alert.alert('Warning', err.message));
+    }).catch(err => Alert.alert('Warning', 'Your email is not found'));
   }
 
   render() {
