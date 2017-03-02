@@ -5,10 +5,8 @@ import {
    TextInput,
    TouchableOpacity,
    Alert,
-   Dimensions,
 } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
 const styles = require('./styles');
 
 export default class ChangePassword extends Component {
