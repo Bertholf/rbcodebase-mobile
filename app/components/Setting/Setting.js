@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, AsyncStorage, Alert, alertMessage} from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
 import auth from './../../services/auth';
 import Logout from '../../services/logout';
+
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {
@@ -17,8 +18,8 @@ export default class Setting extends Component {
   }
   componentDidMount() {
     auth.profile()
-    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
-    .catch(Err => console.log('err,Err'));
+    .then(response => this.setState({ profile: response.data }))
+    .catch(Err => Err);
   }
   reRender() {
     this.componentDidMount();
@@ -32,10 +33,10 @@ export default class Setting extends Component {
           <Text style={styles.titleText}>{strings.settings.account}</Text>
           <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Text style={{ alignSelf: 'center'}}>{this.state.profile.name_first} {this.state.profile.name_last}</Text>
                 <Image style={styles.image} source={next} />
               </View>
@@ -43,10 +44,10 @@ export default class Setting extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress={() => Actions.usernameEdit({ reRender: () => this.reRender() })}>
             <View style={styles.list}>
-              <View style={{alignSelf: 'center' }}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.user_name}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row'}}>
                 <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_slug}</Text>
                 <Image style={styles.image} source={next} />
               </View>
@@ -57,18 +58,18 @@ export default class Setting extends Component {
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.birthday}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center'}}>{this.state.profile.date_birth}</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ alignSelf: 'center' }}>{this.state.profile.date_birth}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Actions.mobilephone} >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.mobile}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Text style={{ alignSelf: 'center'}}>+621293823</Text>
                 <Image style={styles.image} source={next} />
               </View>
