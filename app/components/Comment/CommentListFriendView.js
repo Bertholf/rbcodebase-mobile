@@ -93,6 +93,11 @@ export default class CommentListFriendView extends Component {
     })
     .catch(err => console.log(err));
   }
+  toggleSwitch() {
+    this.setState({
+      clicked: !this.state.clicked,
+    });
+  }
   render() {
     if (this.state.loading === false) {
       return (
@@ -129,10 +134,5 @@ export default class CommentListFriendView extends Component {
         <ActivityIndicator />
       );
     }
-  }
-  toggleSwitch() {
-    this.setState({
-      clicked: !this.state.clicked,
-    });
   }
   }
