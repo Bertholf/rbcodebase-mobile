@@ -346,7 +346,7 @@ export default class AdPreference extends Component {
           { this.state.email_follow == 0 ?
               <Picker
                 selectedValue={this.state.email_follow}
-                onValueChange={(lang7) => this.setState({email_follow: lang7})}>
+                onValueChange={(value) => this.setState({email_follow: value})}>
                 <Picker.Item label={strings.adpreference.no} value="0" />
                 <Picker.Item label={strings.adpreference.yes} value="1" />
              </Picker> :
@@ -355,7 +355,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_follow}
-              onValueChange={(lang7) => this.setState({email_follow: lang7})}>
+              onValueChange={(value) => this.setState({email_follow: value})}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker>
@@ -375,7 +375,7 @@ export default class AdPreference extends Component {
           { this.state.email_post_like == 0 ?
               <Picker
                 selectedValue={this.state.email_post_like}
-                onValueChange={(lang7) => this.setState({email_post_like: lang7})}>
+                onValueChange={(value) => this.setState({email_post_like: value})}>
                 <Picker.Item label={strings.adpreference.no} value="0" />
                 <Picker.Item label={strings.adpreference.yes} value="1" />
              </Picker> :
@@ -384,7 +384,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_post_like}
-              onValueChange={(lang7) => this.setState({email_post_like: lang7})}>
+              onValueChange={(value) => this.setState({email_post_like: value})}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker>
@@ -404,7 +404,7 @@ export default class AdPreference extends Component {
           { this.state.email_post_share == 0 ?
               <Picker
                 selectedValue={this.state.email_post_share}
-                onValueChange={(lang7) => this.setState({email_post_share: lang7})}>
+                onValueChange={(value) => this.setState({email_post_share: value})}>
                 <Picker.Item label={strings.adpreference.no} value="0" />
                 <Picker.Item label={strings.adpreference.yes} value="1" />
              </Picker> :
@@ -413,7 +413,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_post_share}
-              onValueChange={(lang7) => this.setState({email_post_share: lang7})}>
+              onValueChange={(value) => this.setState({email_post_share: value})}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker>
@@ -433,7 +433,7 @@ export default class AdPreference extends Component {
           { this.state.email_comment_post == 0 ?
               <Picker
                 selectedValue={this.state.email_comment_post}
-                onValueChange={(lang7) => this.setState({email_comment_post: lang7})}>
+                onValueChange={(value) => this.setState({email_comment_post: value})}>
                 <Picker.Item label={strings.adpreference.no} value="0" />
                 <Picker.Item label={strings.adpreference.yes} value="1" />
              </Picker> :
@@ -442,7 +442,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_comment_post}
-              onValueChange={(lang7) => this.setState({email_comment_post: lang7})}>
+              onValueChange={(value) => this.setState({email_comment_post: value})}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker>
@@ -462,7 +462,7 @@ export default class AdPreference extends Component {
           { this.state.email_comment_like == 0 ?
               <Picker
                 selectedValue={this.state.email_comment_like}
-                onValueChange={(lang7) => this.setState({email_comment_like: lang7})}>
+                onValueChange={(value) => this.setState({email_comment_like: value})}>
                 <Picker.Item label={strings.adpreference.no} value="0" />
                 <Picker.Item label={strings.adpreference.yes} value="1" />
              </Picker> :
@@ -471,7 +471,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_comment_like}
-              onValueChange={(lang7) => this.setState({email_comment_like: lang7})}>
+              onValueChange={(value) => this.setState({email_comment_like: value})}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker>
@@ -491,7 +491,7 @@ export default class AdPreference extends Component {
           { this.state.email_comment_reply == 0 ?
               <Picker
                 selectedValue={this.state.email_comment_reply}
-                onValueChange={(lang7) => this.setState({email_comment_reply: lang7})}>
+                onValueChange={(value) => this.setState({email_comment_reply: value})}>
                 <Picker.Item label={strings.adpreference.no} value="0" />
                 <Picker.Item label={strings.adpreference.yes} value="1" />
              </Picker> :
@@ -500,7 +500,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_comment_reply}
-              onValueChange={(lang7) => this.setState({email_comment_reply: lang7})}>
+              onValueChange={(value) => this.setState({email_comment_reply: value})}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker>
