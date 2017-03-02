@@ -14,6 +14,9 @@ export default {
   checktwitter: (access_token, provider, secret) => api.post('/api/after-oauth',
       { access_token, provider, secret }
   ),
+  resetpass: (email) => api.post('/api/password/email',
+    { email }
+  ),
   profile: ()=> api.get('/api/me',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
