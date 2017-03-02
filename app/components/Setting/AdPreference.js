@@ -3,17 +3,15 @@ import {
   Picker,
   View,
   Text,
-  TouchableOpacity,
-  Image,
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import auth from './../../services/auth';
-import updatePref from '../../services/updatePref';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
+import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
+import updatePref from '../../services/updatePref';
 
 export default class AdPreference extends Component {
   constructor(props) {
@@ -33,17 +31,6 @@ export default class AdPreference extends Component {
       email_comment_post: '',
       email_post_like: '',
       email_comment_reply: '',
-      // language: '',
-      // languages: '',
-      // language3: '',
-      // language4: '',
-      // language5: '',
-      // language6: '',
-      // language7: '',
-      // language8: '',
-      // language9: '',
-      // language10: '',
-      // language11: '',
     };
   }
 
@@ -63,75 +50,30 @@ export default class AdPreference extends Component {
       email_comment_like: response.data[0].email_comment_like,
       email_comment_reply: response.data[0].email_comment_reply,
     }) )
-    .catch(Err => console.log('err', Err));
+    .catch(Err => Err);
   }
-
-  // privacyfollow() {
-  //   auth.adprefe()
-  //   .then(response => this.setState({
-  //     privacy_follow: response.data[0].privacy_follow,
-  //   }))
-  //   .catch(Err => console.log('err', Err));
-  // }
-  // privacyfoloconfirm() {
-  //   auth.adprefe()
-  //   .then(response => this.setState({
-  //     privacy_follow: response.data[0].privacy_follow_confirm,
-  //   }))
-  //   .catch(Err => console.log('err', Err));
-  // }
-  // privacycommen() {
-  //   auth.adprefe()
-  //   .then(response => this.setState({
-  //     privacy_follow: response.data[0].privacy_comment,
-  //   }) )
-  //   .catch(Err => console.log('err', Err));
-  // }
-  // privacypost() {
-  //   auth.adprefe()
-  //   .then(response => this.setState({
-  //     privacy_follow: response.data[0].privacy_post,
-  //   }) )
-  //   .catch(Err => console.log('err', Err));
-  // }
-  // privacytimelane() {
-  //   auth.adprefe()
-  //   .then(response => this.setState({
-  //     privacy_follow: response.data[0].privacy_timeline_post,
-  //   }) )
-  //   .catch(Err => console.log('err', Err));
-  // }
-  // privacymessg() {
-  //   auth.adprefe()
-  //   .then(response => this.setState({
-  //     privacy_follow: response.data[0].privacy_message,
-  //   }) )
-  //   .catch(Err => console.log('err', Err));
-  // }
-
   render() {
     const privacy_follow = this.state.privacy_follow;
-    const privacy_follow_confirm =this.state.privacy_follow_confirm;
+    const privacy_follow_confirm = this.state.privacy_follow_confirm;
     const privacy_comment = this.state.language3;
     const privacy_post = this.state.language4;
-    const privacy_timeline_post= this.state.language5;
-    const privacy_message= this.state.language6;
+    const privacy_timeline_post = this.state.language5;
+    const privacy_message = this.state.language6;
     const email_follow = this.state.language7;
     const email_post_like = this.state.language8;
     const email_post_share = this.state.language9;
     const email_comment_post = this.state.language10;
-    const email_comment_like= this.state.language11;
-    const email_comment_reply= this.state.language12;
+    const email_comment_like = this.state.language11;
+    const email_comment_reply = this.state.language12;
 
     const saveUpdate = () => {
-      // console.log(id, user_id, privacy_follow, privacy_follow_confirm, privacy_comment, privacy_post, privacy_timeline_post, privacy_message, email_follow, email_post_like, email_post_share, email_comment_post, email_comment_like, email_comment_reply);
       auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
-      .then (response => this.setState({updateSetting:response.data, loading:false}, () =>   Actions.pop()))
-      .catch(Err=> console.log('err',Err))
+      .then(response =>
+        this.setState({ updateSetting: response.data, loading: false }, () => Actions.pop()))
+      .catch(err => err)
+    };
 
-    }
-
-      const rightButtonConfig = {
+    const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => saveUpdate(),
       // handler: () => Actions.pop(),
@@ -143,163 +85,167 @@ export default class AdPreference extends Component {
 
     return (
       <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
-        <NavigationBar
-          title={titleConfig}
-          rightButton={rightButtonConfig}
-          leftButton={<IconClose onPress={Actions.pop} />} />
-      </View>
+        <View
+          style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}
+        >
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig}
+            leftButton={<IconClose onPress={Actions.pop} />} />
+        </View>
         <ScrollView>
-        <View>
-          <View style={styles.styleView}>
-            <View>
-              <Text style={styles.text}>{strings.adpreference.privacyfollow}</Text>
-            </View>
-            <View style={{ width: 115, justifyContent: 'center' }}>
-              { this.state.privacy_follow == 'only friend' ?
+          <View>
+            <View style={styles.styleView}>
+              <View>
+                <Text style={styles.text}>{strings.adpreference.privacyfollow}</Text>
+              </View>
+              <View style={{ width: 115, justifyContent: 'center' }}>
+                { this.state.privacy_follow === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_follow}
-                    onValueChange={(lang) => this.setState({privacy_follow: lang})}>
+                    onValueChange={lang => this.setState({ privacy_follow: lang })}
+                  >
                     <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
                     <Picker.Item label={strings.adpreference.all} value="all" />
                     <Picker.Item label={strings.adpreference.none} value="none" />
-                 </Picker> :
+                  </Picker> :
+                   this.state.privacy_follow == 'all' ?
+                     <Picker
+                       selectedValue={this.state.privacy_follow}
+                       onValueChange={(lang) => this.setState({privacy_follow: lang})}>
+                       <Picker.Item label={strings.adpreference.all} value="all" />
+                       <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                       <Picker.Item label={strings.adpreference.none} value="none" />
+                     </Picker> :
 
-                 this.state.privacy_follow == 'all' ?
+                   this.state.privacy_follow == 'none' ?
+                   <Picker
+                     selectedValue={this.state.privacy_follow}
+                     onValueChange={value => this.setState({ privacy_follow: value })}>
+                     <Picker.Item label={strings.adpreference.none} value="none" />
+                     <Picker.Item label={strings.adpreference.all} value="all" />
+                     <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                  </Picker>
 
-                <Picker
-                  selectedValue={this.state.privacy_follow}
-                  onValueChange={(lang) => this.setState({privacy_follow: lang})}>
-                  <Picker.Item label={strings.adpreference.all} value="all" />
-                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-                  <Picker.Item label={strings.adpreference.none} value="none" />
-               </Picker> :
+                  : <Text>{strings.adpreference.loading}</Text>
 
-                 this.state.privacy_follow == 'none' ?
-                 <Picker
-                   selectedValue={this.state.privacy_follow}
-                   onValueChange={(lang) => this.setState({privacy_follow: lang})}>
-                   <Picker.Item label={strings.adpreference.none} value="none" />
-                   <Picker.Item label={strings.adpreference.all} value="all" />
-                   <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-                </Picker>
-
-                : <Text>{strings.adpreference.loading}</Text>
-
-              }
+                }
+              </View>
             </View>
           </View>
-
-        </View>
-        <View>
-          <View style={styles.styleView}>
-            <View>
-              <Text style={styles.text}>{strings.adpreference.privacyfollowconfirm}</Text>
-            </View>
-            <View style={{ width: 115, justifyContent: 'center' }}>
-          { this.state.privacy_follow_confirm == 'only friend' ?
-          <Picker
-            selectedValue={this.state.privacy_follow_confirm}
-            onValueChange={(langs) => this.setState({privacy_follow_confirm: langs})}>
-            <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-            <Picker.Item label={strings.adpreference.all} value="all" />
-            <Picker.Item label={strings.adpreference.none} value="none" />
-          </Picker> :
-
-          this.state.privacy_follow_confirm == 'all' ?
-
-          <Picker
-            selectedValue={this.state.privacy_follow_confirm}
-            onValueChange={(langs) => this.setState({privacy_follow_confirm: langs})}>
-            <Picker.Item label={strings.adpreference.all} value="all" />
-            <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-            <Picker.Item label={strings.adpreference.none} value="none" />
-          </Picker> :
-
-          this.state.privacy_follow_confirm == 'none' ?
-          <Picker
-            selectedValue={this.state.privacy_follow_confirm}
-            onValueChange={(langs) => this.setState({privacy_follow_confirm: langs})}>
-            <Picker.Item label={strings.adpreference.none} value="none" />
-            <Picker.Item label={strings.adpreference.all} value="all" />
-            <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-          </Picker>
-
-          : <Text>{strings.adpreference.loading}</Text>
-
-        }
-      </View>
-      </View>
-      </View>
-      <View>
-        <View style={styles.styleView}>
           <View>
-            <Text style={styles.text}>{strings.adpreference.privacycomment}</Text>
+            <View style={styles.styleView}>
+              <View>
+                <Text style={styles.text}>{strings.adpreference.privacyfollowconfirm}</Text>
+              </View>
+              <View style={{ width: 115, justifyContent: 'center' }}>
+                {this.state.privacy_follow_confirm === 'only friend' ?
+                  <Picker
+                    selectedValue={this.state.privacy_follow_confirm}
+                    onValueChange={value => this.setState({ privacy_follow_confirm: value })}
+                  >
+                    <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                    <Picker.Item label={strings.adpreference.all} value="all" />
+                    <Picker.Item label={strings.adpreference.none} value="none" />
+                  </Picker> :
+
+                  this.state.privacy_follow_confirm == 'all' ?
+
+                    <Picker
+                      selectedValue={this.state.privacy_follow_confirm}
+                      onValueChange={value => this.setState({ privacy_follow_confirm: value })}
+                    >
+                      <Picker.Item label={strings.adpreference.all} value="all" />
+                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                      <Picker.Item label={strings.adpreference.none} value="none" />
+                    </Picker> :
+
+                  this.state.privacy_follow_confirm == 'none' ?
+                    <Picker
+                      selectedValue={this.state.privacy_follow_confirm}
+                      onValueChange={value => this.setState({ privacy_follow_confirm: value })}>
+                      <Picker.Item label={strings.adpreference.none} value="none" />
+                      <Picker.Item label={strings.adpreference.all} value="all" />
+                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                    </Picker>
+
+                    : <Text>{strings.adpreference.loading}</Text>
+
+                }
+              </View>
+            </View>
           </View>
-          <View style={{ width: 115, justifyContent: 'center' }}>
-          { this.state.privacy_comment == 'only friend' ?
-              <Picker
-                selectedValue={this.state.privacy_comment}
-                onValueChange={(lang3) => this.setState({privacy_comment: lang3})}>
-                <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-                <Picker.Item label={strings.adpreference.all} value="all" />
-                <Picker.Item label={strings.adpreference.none} value="none" />
-             </Picker> :
+          <View>
+            <View style={styles.styleView}>
+              <View>
+                <Text style={styles.text}>{strings.adpreference.privacycomment}</Text>
+              </View>
+              <View style={{ width: 115, justifyContent: 'center' }}>
+                {this.state.privacy_comment == 'only friend' ?
+                  <Picker
+                    selectedValue={this.state.privacy_comment}
+                    onValueChange={value => this.setState({ privacy_comment: value })}
+                  >
+                    <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                    <Picker.Item label={strings.adpreference.all} value="all" />
+                    <Picker.Item label={strings.adpreference.none} value="none" />
+                  </Picker> :
 
-             this.state.privacy_comment == 'all' ?
+                   this.state.privacy_comment === 'all' ?
 
-            <Picker
-              selectedValue={this.state.privacy_comment}
-              onValueChange={(lang3) => this.setState({privacy_comment: lang3})}>
-              <Picker.Item label={strings.adpreference.all} value="all" />
-              <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-              <Picker.Item label={strings.adpreference.none} value="none" />
-           </Picker> :
+                     <Picker
+                       selectedValue={this.state.privacy_comment}
+                       onValueChange={value => this.setState({ privacy_comment: value })}>
+                       <Picker.Item label={strings.adpreference.all} value="all" />
+                       <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                       <Picker.Item label={strings.adpreference.none} value="none" />
+                     </Picker> :
 
-             this.state.privacy_comment == 'none' ?
-             <Picker
-               selectedValue={this.state.privacy_comment}
-               onValueChange={(lang3) => this.setState({privacy_comment: lang3})}>
-               <Picker.Item label={strings.adpreference.none} value="none" />
-               <Picker.Item label={strings.adpreference.all} value="all" />
-               <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-            </Picker>
+                 this.state.privacy_comment == 'none' ?
+                   <Picker
+                     selectedValue={this.state.privacy_comment}
+                     onValueChange={(value) => this.setState({ privacy_comment: value })}>
+                     <Picker.Item label={strings.adpreference.none} value="none" />
+                     <Picker.Item label={strings.adpreference.all} value="all" />
+                     <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                   </Picker>
 
             : <Text>{strings.adpreference.loading}</Text>
 
           }
-        </View>
-        </View>
-        </View>
-        <View>
-          <View style={styles.styleView}>
-            <View>
-              <Text style={styles.text}>{strings.adpreference.privacypost}</Text>
+              </View>
             </View>
-            <View style={{ width: 115, justifyContent: 'center' }}>
-          { this.state.privacy_post == 'only friend' ?
-              <Picker
-                selectedValue={this.state.privacy_post}
-                onValueChange={(lang4) => this.setState({privacy_post: lang4})}>
-                <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-                <Picker.Item label={strings.adpreference.all} value="all" />
-                <Picker.Item label={strings.adpreference.none} value="none" />
-             </Picker> :
+          </View>
+          <View>
+            <View style={styles.styleView}>
+              <View>
+                <Text style={styles.text}>{strings.adpreference.privacypost}</Text>
+              </View>
+              <View style={{ width: 115, justifyContent: 'center' }}>
+                { this.state.privacy_post == 'only friend' ?
+                  <Picker
+                    selectedValue={this.state.privacy_post}
+                    onValueChange={(lang4) => this.setState({privacy_post: lang4})}>
+                    <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                    <Picker.Item label={strings.adpreference.all} value="all" />
+                    <Picker.Item label={strings.adpreference.none} value="none" />
+                  </Picker> :
 
-             this.state.privacy_post == 'all' ?
+                  this.state.privacy_post === 'all' ?
 
-            <Picker
-              selectedValue={this.state.privacy_post}
-              onValueChange={(lang4) => this.setState({privacy_post: lang4})}>
-              <Picker.Item label={strings.adpreference.all} value="all" />
-              <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-              <Picker.Item label={strings.adpreference.none} value="none" />
-           </Picker> :
+                    <Picker
+                      selectedValue={this.state.privacy_post}
+                      onValueChange={(value) => this.setState({ privacy_post: value })}
+                    >
+                      <Picker.Item label={strings.adpreference.all} value="all" />
+                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                      <Picker.Item label={strings.adpreference.none} value="none" />
+                    </Picker> :
 
              this.state.privacy_post == 'none' ?
              <Picker
                selectedValue={this.state.privacy_post}
-               onValueChange={(lang4) => this.setState({privacy_post: lang4})}>
+               onValueChange={value => this.setState({ privacy_post: value })}>
                <Picker.Item label={strings.adpreference.none} value="none" />
                <Picker.Item label={strings.adpreference.all} value="all" />
                <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -308,25 +254,25 @@ export default class AdPreference extends Component {
             : <Text>{strings.adpreference.loading}</Text>
 
           }
-        </View>
-        </View>
-        </View>
-        <View>
-          <View style={styles.styleView}>
-            <View>
-              <Text style={styles.text}>{strings.adpreference.privacytimelinepost}</Text>
+              </View>
             </View>
-            <View style={{ width: 115, justifyContent: 'center' }}>
-          { this.state.privacy_timeline_post == 'only friend' ?
-              <Picker
-                selectedValue={this.state.privacy_timeline_post}
-                onValueChange={(lang5) => this.setState({privacy_timeline_post: lang5})}>
-                <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
-                <Picker.Item label={strings.adpreference.all} value="all" />
-                <Picker.Item label={strings.adpreference.none} value="none" />
-             </Picker> :
+          </View>
+          <View>
+            <View style={styles.styleView}>
+              <View>
+                <Text style={styles.text}>{strings.adpreference.privacytimelinepost}</Text>
+              </View>
+              <View style={{ width: 115, justifyContent: 'center' }}>
+                { this.state.privacy_timeline_post == 'only friend' ?
+                  <Picker
+                    selectedValue={this.state.privacy_timeline_post}
+                    onValueChange={(value) => this.setState({privacy_timeline_post: value})}>
+                    <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
+                    <Picker.Item label={strings.adpreference.all} value="all" />
+                    <Picker.Item label={strings.adpreference.none} value="none" />
+                  </Picker> :
 
-             this.state.privacy_timeline_post == 'all' ?
+             this.state.privacy_timeline_post === 'all' ?
 
             <Picker
               selectedValue={this.state.privacy_timeline_post}
