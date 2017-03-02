@@ -3,17 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#FFFFFF',
-  },
-  touchable: {
-    borderRadius: 100,
-  },
   backgroundContainer: {
-    // position: 'absolute',
     height: height * 0.28,
   },
   backgroundname: {
@@ -54,11 +44,6 @@ const styles = StyleSheet.create({
     width,
     backgroundColor: 'hsla(20,100%,100%,0.3)',
   },
-  overlay: {
-    opacity: 0.5,
-    backgroundColor: '#000000',
-  },
-
   button: {
     flexDirection: 'row',
     padding: 8,
@@ -86,11 +71,6 @@ const styles = StyleSheet.create({
     marginTop: 7,
     borderRadius: 2,
   },
-  images: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-  },
   icon: {
     height: 20,
     width: 20,
@@ -101,23 +81,6 @@ const styles = StyleSheet.create({
     width: 20,
     borderRadius: 50,
     marginBottom: 12,
-  },
-  profile: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: 40,
-  },
-  foto: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 2,
-  },
-  gambar: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 6,
   },
   pos: {
     flexDirection: 'row',
@@ -154,13 +117,6 @@ const styles = StyleSheet.create({
     color: 'blue',
     marginLeft: 100,
   },
-  nama: {
-    alignSelf: 'center',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginLeft: 10,
-  },
   textInform: {
     marginLeft: 120,
     flexDirection: 'row',
@@ -181,15 +137,6 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     paddingTop: height * 0.01,
-  },
-  imgCameraContainer: {
-    position: 'absolute',
-    bottom: 60,
-    right: 10,
-    borderRadius: 80,
-    width: 100,
-    height: 100,
-    backgroundColor: '#004D40',
   },
 });
 

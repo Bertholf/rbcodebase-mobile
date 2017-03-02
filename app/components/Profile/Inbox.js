@@ -34,16 +34,6 @@ const rows =
   ];
 
 const styles = StyleSheet.create({
-  image2: {
-    height: 100,
-  },
-  title: {
-    fontSize: 16,
-    padding: 5,
-  },
-  sinopsis: {
-    paddingLeft: 5,
-  },
   conteiner: {
     flex: 1,
     flexDirection: 'column',
