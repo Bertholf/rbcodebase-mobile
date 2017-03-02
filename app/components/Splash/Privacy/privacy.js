@@ -1,64 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   Button,
   Alert,
-  Image,
   Picker,
 } from 'react-native';
-import styles from './../../components/Privacy/style.js';
+import styles from './style';
+
 const onButtonPress = () => {
   Alert.alert('Button has been pressed!');
 };
+
 const privacy = () => {
   return (
-    <View style= {styles.styleBackground}>
-      <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
+    <View style={styles.styleBackground}>
+      <View style={{ flexDirection: 'row',justifyContent: 'space-between' }}>
         <Text style={styles.styleText}>
           Comfirm request when someone follow
         </Text>
-        <Picker style= {{width: 70}}>
-          <Picker.Item label = "Yes" value="ys"/>
-          <Picker.Item label = "No" value= "no"/>
+        <Picker style={{ width: 70 }}>
+          <Picker.Item label="Yes" value="ys" />
+          <Picker.Item labe="No" value="no" />
         </Picker>
       </View>
-      <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.styleText}>
           Who can follow you
         </Text>
-        <Picker style = {{width: 70}}>
-          <Picker.Item label = "Yes" value="ys"/>
-          <Picker.Item label = "No" value= "no"/>
+        <Picker style={{ width: 70 }}>
+          <Picker.Item label="Yes" value="ys" />
+          <Picker.Item label="No" value="no" />
         </Picker>
       </View>
-      <View style ={{flexDirection: 'row',justifyContent: 'space-between'}}>
+      <View style ={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.styleText}>
           Who can comment on your posts
         </Text>
-        <Picker style = {{width: 70}}>
-          <Picker.Item label = "Yes" value="ys"/>
-          <Picker.Item label = "No" value= "no"/>
+        <Picker style={{ width: 70 }}>
+          <Picker.Item label="Yes" value="ys" />
+          <Picker.Item label="No" value="no" />
         </Picker>
       </View>
-      <View style= {{flexDirection: 'row',justifyContent: 'space-between'}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.styleText}>
           Who can post on your timeline
         </Text>
-        <Picker style = {{width: 70}}>
-          <Picker.Item label = "Yes" value="ys"/>
-          <Picker.Item label = "No" value= "no"/>
+        <Picker style={{ width: 70 }}>
+          <Picker.Item label="Yes" value="ys" />
+          <Picker.Item label="No" value="no" />
         </Picker>
       </View>
-      <View style={{flexDirection: 'row',justifyContent: 'space-between'}}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.styleText}>
           Comfirm request when someone follow
         </Text>
-        <Picker style= {{width: 70}}>
-          <Picker.Item label = "Yes" value="ys"/>
-          <Picker.Item label = "No" value= "no"/>
+        <Picker style={{ width: 70 }}>
+          <Picker.Item label="Yes" value="ys" />
+          <Picker.Item label="No" value="no" />
         </Picker>
       </View>
       <View>

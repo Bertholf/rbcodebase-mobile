@@ -29,12 +29,11 @@ export default class FollowingMe extends React.Component {
         })
         .catch(err => this.showError(err));
       })
-      .catch(err => console.log('fail to get user id from asyncStorege', err));
+      .catch();
     } else {
       follows.showFollower(this.props.user_id)
       .then((res) => {
         this.changeState(res);
-        console.log('Other follower data response ', res);
       })
       .catch(err => this.showError(err));
     }
@@ -42,7 +41,6 @@ export default class FollowingMe extends React.Component {
 
   showError(err) {
     Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
-    console.log('fail to get follower', err);
   }
 
   changeState(res) {
@@ -57,8 +55,7 @@ export default class FollowingMe extends React.Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-      console.log('RE RENDER TRIGGERD FOLLOWER');
-    })
+    });
   }
   render() {
     const { loading, nodata } = this.state;
@@ -81,12 +78,11 @@ export default class FollowingMe extends React.Component {
           </TouchableOpacity>
         </View>
       );
-    } else {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size={'large'} />
-        </View>
-      );
     }
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
   }
 }

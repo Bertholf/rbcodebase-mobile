@@ -4,17 +4,16 @@ import {
   View,
   TextInput,
   ScrollView,
-  TouchableOpacity,
   Alert,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import NavigationBar from 'react-native-navbar';
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations/';
 import auth from './../../services/auth';
-import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
-import {Actions} from 'react-native-router-flux';
 
 export default class PassEdit extends Component {
   constructor(props) {
@@ -26,14 +25,11 @@ export default class PassEdit extends Component {
       profile: {},
     };
   }
-  // componentDidMount() {
-  //   me.getMe()
-  //   .then(data => this.setState({ profile: data }));
-  // }
+
   componentDidMount() {
     auth.profile()
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
-    .catch(Err => console.log('err,Err'));
+    .catch(Err => Err);
   }
 
   clearText(fieldName) {
@@ -54,14 +50,13 @@ export default class PassEdit extends Component {
     const birthday = this.state.profile.date;
     const onSave = () => {
       if (validPassword && passwordLength && combinePassword) {
-        console.log('new password==>', passwordInput, passwordConfirmation);
         saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, passwordConfirmation);
         Alert.alert('Success', 'Your password has been Changed');
         this.clearText('textInput1')
         this.clearText('textInput2')
-        auth.profile ()
-        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-        .catch(Err=> console.log('err', Err))
+        auth.profile()
+        .then(response => this.setState({ profile: response.data, loading: false }))
+        .catch(Err => Err);
       }
     };
 
@@ -73,15 +68,15 @@ export default class PassEdit extends Component {
     const titleConfig = {
       title: strings.PassEditLoc.title,
     };
-    // strings.setLanguage('en');
+
     return (
       <View style={styles.OuterView}>
-      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
-        <NavigationBar
-          title={titleConfig}
-          rightButton={rightButtonConfig}
-          leftButton={<IconClose onPress={Actions.pop} />}/>
-      </View>
+        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig}
+            leftButton={<IconClose onPress={Actions.pop} />}/>
+        </View>
         <ScrollView>
           <View style={styles.View1}>
             <Text style={styles.Text2}>
@@ -93,7 +88,8 @@ export default class PassEdit extends Component {
               numberOfLines={4}
             />
             {validPassword || !this.state.password ?
-              <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_wrong_password}</Text>}
+              <Text /> : <Text style={styles.invalid}>
+                {strings.PassEditLoc.error_wrong_password}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.enter_new_password}
             </Text>
@@ -114,7 +110,8 @@ export default class PassEdit extends Component {
               placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.input_confirm_password} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
               numberOfLines={4}
             />
-            {combinePassword ? <Text /> : <Text style={styles.invalid}>{strings.PassEditLoc.error_password_combination}</Text>}
+            {combinePassword ? <Text /> : <Text style={styles.invalid}>
+              {strings.PassEditLoc.error_password_combination}</Text>}
           </View>
         </ScrollView>
       </View>
