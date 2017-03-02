@@ -31,9 +31,7 @@
            android:name="com.facebook.sdk.ApplicationId"
            android:value="@string/facebook_app_id"/>
         <!--RBCodebase Fabric-->
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="cb67fe1b74fd28626b9d3d1ce0269fabe56e79b3" />
+        
         <!--Rangga Fabric-->
         <!--<meta-data-->
             <!--android:name="io.fabric.ApiKey"-->
