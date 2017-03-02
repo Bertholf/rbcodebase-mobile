@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import strings from '../../localizations';
+import style from './../../style/StyleGlobal';
 import  me from '../../services/me';
 const logo = require('./../../images/logo.png');
 
@@ -52,8 +53,8 @@ export default class ForgotPassword extends Component {
       <View style={styles.container}>
         <Text>{this.state.profile.email}</Text>
         <TextInput
-          style={styles.textInput}
-          placeholderTextColor={'#2196f3'}
+          style={style.textInput}
+          placeholderTextColor={'silver'}
           onChangeText={email => this.setState({ email })}
           placeholder="Email"
           underlineColorAndroid='rgba(0,0,0,0)'
@@ -65,7 +66,7 @@ export default class ForgotPassword extends Component {
           onPress={validateEmail}
           underlayColor="#99d9f4"
         >
-          <Text style={styles.buttonText}>{strings.ForgotPass.send}</Text>
+          <Text style={style.buttonText}>{strings.ForgotPass.send}</Text>
         </TouchableHighlight>
       </View>
     );

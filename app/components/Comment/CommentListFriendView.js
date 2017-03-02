@@ -62,16 +62,6 @@ const styles = StyleSheet.create({
   comment: {
     bottom: 5,
   },
-  heart: {
-    // paddingRight: 15,
-    width: 20,
-    height: 20,
-  },
-  button: {
-    flexDirection: 'row',
-    paddingTop: 5,
-    justifyContent: 'flex-end',
-  },
 });
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });

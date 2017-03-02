@@ -6,9 +6,9 @@ const adpreference = {
   privacytimelinepost: 'Kebebasan  Posting Beranda',
   privacymessage: 'Kebebasan Pesan',
   emailfollow: 'Surel Mengikuti',
-  emailpostlike: ' Surel  Posting Suka',
-  emailpostshare: ' Surel  Posting Berbagi',
-  emailcommentpost: 'Surel  Posting  Komentar',
+  emailpostlike: ' Surel Posting Suka',
+  emailpostshare: ' Surel Posting Berbagi',
+  emailcommentpost: 'Surel Posting Komentar',
   emailcommentlike: 'Surel Komentar Suka',
   emailcommentreplay: ' Surel Balas Komentar',
   onlyfriend: ' Hanya Teman',
@@ -17,7 +17,7 @@ const adpreference = {
   yes: 'Ya',
   no: 'Tidak',
   store: 'Simpan',
-  loading: 'Menunggu....'
+  loading: 'Menunggu....',
 };
 
 export default adpreference;

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    marginTop: 13,
+    marginTop: 16,
     height: 300 * 0.33,
     width: 300 * 0.33,
     alignItems: 'center',
@@ -18,25 +18,29 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0.5,
     borderRightWidth: 0.5,
     borderColor: '#000000',
+    marginBottom: 30,
   },
   logoGoogle: {
-    height: 30,
-    width: 30,
-    borderRadius: 7,
+    height: 23,
+    width: 35,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    borderRadius: 48,
+    marginRight: -5,
     marginLeft: 10,
-    marginRight: -7
   },
   facebookLogo: {
     height: 30,
     width: 30,
     borderRadius: 7,
-    marginLeft: 5,
+    marginLeft: 7,
+    justifyContent: 'center',
   },
   logoTwitter: {
     tintColor: '#fff',
     height: 24,
     width: 24,
-    marginLeft: 10,
+    marginLeft: 13,
   },
   otherlog: {
     flexDirection: 'row',
@@ -85,35 +89,56 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     elevation: 2,
   },
-  buttonGroup: {
-    top: 10,
-    width: width * 0.6,
-  },
   icon: {
-    height: 24,
-    width: 24,
-    marginLeft: 10,
-  },
-  picker: {
-    height: 50,
-    width: width * 0.9,
-    borderBottomWidth: 1,
-    borderColor: '#f0f0f0',
-  },
-  imgGender: {
-    height: 40,
-    width: 40,
-    marginRight: 10,
+    height: 30,
+    width: 30,
+    marginLeft: 7,
   },
   text: {
     fontSize: 18,
     color: 'white',
     marginLeft: 20,
   },
-  separatorText: {
-    marginTop: 20,
+  textfb: {
+    fontSize: 18,
+    color: 'white',
+    marginLeft: 22,
+  },
+  texttw: {
+    fontSize: 18,
+    color: 'white',
+    marginLeft: 21
+  },
+  textInput: {
+    height: 40,
+    borderWidth: 0.5,
+    borderRadius: 2,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderColor: '#2196f3',
     marginBottom: 20,
-    fontSize: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
+  },
+  button: {
+    height: 36,
+    backgroundColor: '#039be5',
+    borderColor: '#0288d1',
+    borderWidth: 1,
+    borderRadius: 3,
+    marginTop: 15,
+    marginBottom: 5,
+    elevation: 2,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+  },
+  invalid: {
+    color: 'red',
+    fontSize: 15,
+    alignSelf: 'center',
   },
 });
 export default styles;

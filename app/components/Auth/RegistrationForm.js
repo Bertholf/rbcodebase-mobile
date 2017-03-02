@@ -17,7 +17,7 @@ import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 import auth from '../../services/auth';
-
+import style from './../../style/StyleGlobal';
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#2196f3',
     width: 0.75 * width,
-    height: 60,
+    height: 40,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
     borderWidth: 0.8,
-    borderRadius: 6,
+    borderRadius: 2,
     flexDirection: 'column',
     paddingLeft: 16,
     paddingRight: 8,
@@ -69,9 +69,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   acceptImg: {
-    height: 30,
-    width: 30,
-    marginTop: 15,
+    height: 20,
+    width: 20,
+    marginTop: 10,
     marginLeft: -40,
   },
   policyStyle: {

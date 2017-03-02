@@ -40,29 +40,6 @@ const styles = StyleSheet.create({
   view: {
     height: 5,
   },
-  OuterLayer: {
-    backgroundColor: '#2196f3',
-    flexDirection: 'row',
-    elevation: 4,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  LayoutTextChat: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    borderColor: '#2196f3',
-    borderWidth: 0.7,
-    marginLeft: 4,
-    marginRight: 4,
-  },
-  LayoutInputText: {
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    paddingLeft: 12,
-    // marginLeft: 12,
-  },
   TextInput: {
     fontSize: 16,
     borderRadius: 3,

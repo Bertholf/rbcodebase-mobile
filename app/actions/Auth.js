@@ -40,7 +40,7 @@ export function submitLogin(username, password, okCallback, failCallback) {
      Actions.actionswiper({ type: 'reset' });
      okCallback();
    })
-   .catch(err => failCallback());
+   .catch(() => failCallback());
   }
 }
 const registered = (token, provider) => {
@@ -61,7 +61,6 @@ export function doneLogin(response = {}) {
     if (response.provider === 'twitter') {
       auth.checktwitter(response.accessToken, response.provider, response.secret)
       .then((resL) => {
-        console.log('RESPONSE RBCODEBASE TWITTER', resL);
         if (resL.data.registered === false) {
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
@@ -79,7 +78,6 @@ export function doneLogin(response = {}) {
     } else if (response.provider === 'facebook') {
       auth.check(response.accessToken, 'facebook', response.userID)
       .then((resL) => {
-        console.log('RESPONSE RBCODEBASE FB ', resL);
         if (resL.data.registered === false) {
           const props = {
             firstName: resL.data.name.split(' ')[0],
@@ -93,12 +91,11 @@ export function doneLogin(response = {}) {
           Actions.pop();
           Actions.registrationform(props);
         } else {
-          console.log('PROCESS GOES HERE');
           Actions.pop();
           registered(resL.data.access_token, 'facebook');
         }
       })
-      .catch(err => console.log('FAIL LOGIN FACEBOOK ', err));
+      .catch(err => err);
     } else {
       Actions.pop();
       Actions.actionswiper({ type: 'reset' });
@@ -107,36 +104,6 @@ export function doneLogin(response = {}) {
 
   return { type: DONE_LOGIN, response };
 }
-
-
-// Sutani Working Code
-// export function doneLogin(response = {}) {
-//   if (response) {
-//     console.log('RESPONSE FACEBOOK', response);
-//     AsyncStorage.setItem('provider', response.provider);
-//     AsyncStorage.setItem('accessToken', response.accessToken);
-//     AsyncStorage.setItem('oauthId', response.idToken);
-//     AsyncStorage.setItem('userInfo', response);
-//     auth.check(response.provider, response.accessToken, response.idToken)
-//     .then((resL) => {
-//         if(resL.data.registered === false) {
-//           const props = {
-//            firstName: resL.data.name.split(' ')[0],
-//            lastName: resL.data.name.split(' ')[1],
-//            email: resL.data.email,
-//          };
-//          Actions.registrationform(props);
-//         } else {
-//           Actions.pop();
-//           Actions.actionswiper();
-//             return { type: DONE_LOGIN, response };
-//         }
-//       }
-//     ).catch(err => console.log(err))
-//   }
-//   // Actions.pop();
-//   // Actions.actionswiper();
-// }
 
 export function errorLogin(error) {
   Actions.pop();
@@ -147,9 +114,9 @@ export function requestLogin(message) {
   return { type: REQUEST_LOGIN };
 }
 
-export function submitRegister(
-  name_first, name_last, name_slug, email, password, password_confirmation) {
-  return(dispatch)=> {
+//register
+export function submitRegister(name_first, name_last, name_slug, email, password, password_confirmation) {
+  return(dispatch) => {
     dispatch(requestLogin)
   }
   Actions.pop();
@@ -191,9 +158,9 @@ export const manager = new OAuthManager('RB Codebase');
 export function loginWithTwitter() {
   return (dispatch) => {
     return twitter.signIn()
-      .then(response => {
-        dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret }))
+      .then((response) => {
+        dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret }));
       })
-      .catch(err => console.log('TWITTER ERR', err));
+      .catch(err => err);
   };
 }

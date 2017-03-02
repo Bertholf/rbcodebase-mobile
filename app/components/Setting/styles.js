@@ -22,9 +22,6 @@ module.exports = StyleSheet.create({
     fontSize: 15,
     color: 'grey',
   },
-  container1: {
-    flex: 1,
-  },
   listNotifContainer: {
     flex: 1,
   },

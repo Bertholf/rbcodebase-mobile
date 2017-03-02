@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import styles from './styles';
+import styles from './../../style/StyleGlobal';
 // import {GoogleSigninButton} from 'react-native-google-signin';
 // import GoogleSignIn from './../../services/signingoogle';
 import FacebookLogin from './../../services/FacebookLogin';

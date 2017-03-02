@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import styles from './LoginStyles';
+import styles from './../../style/StyleGlobal';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
 

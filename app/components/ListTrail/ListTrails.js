@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#00BFA5',
     paddingLeft: 3,
     paddingRight: 3,
-    // marginRight: 5,
   },
   chart: {
     width: 200,
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
   },
   border: {
     flexDirection: 'row',
-    // borderWidth: 1,
     borderColor: '#00BFA5',
     elevation: 4,
   },

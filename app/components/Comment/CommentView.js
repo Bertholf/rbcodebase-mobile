@@ -33,23 +33,10 @@ const styles = StyleSheet.create({
     height: 50,
     bottom: 5,
   },
-  body: {
-    flexDirection: 'row',
-  },
-  bodyChat: {
-    marginLeft: 15,
-    padding: 5,
-    backgroundColor: '#fff',
-    borderRadius: 6,
-    elevation: 4,
-  },
   username: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#333',
-  },
-  txtChat: {
-    fontSize: 14,
   },
   date: {
     fontSize: 10,
