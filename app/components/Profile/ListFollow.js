@@ -150,7 +150,9 @@ export default class ListFollow extends Component {
       // this section will executed when button unFollow pressed
       Alert.alert(strings.listfollow.confirmation,
                strings.listfollow.question, [
-                { text: strings.listfollow.cancel, onPress: () => this.setState({ clicked: this.state.clicked }) },
+                 { text: strings.listfollow.cancel,
+                   onPress: () => this.setState({ clicked: this.state.clicked }),
+                 },
                 { text: strings.listfollow.yes, onPress: () => this.unfollowUser() },
                ]);
     } else {
@@ -177,7 +179,6 @@ export default class ListFollow extends Component {
   }
 
   render() {
-    console.log('list props',this.props);
     let rowData;
     if (this.props.rowData.type === 'follower') {
       rowData = this.props.rowData.follower;
@@ -201,7 +202,7 @@ export default class ListFollow extends Component {
 
     if (setting === null) {
       setting = {
-        privacy_follow: 'everyone'
+        privacy_follow: 'everyone',
       };
     }
     return (
@@ -215,23 +216,24 @@ export default class ListFollow extends Component {
             })}
           activeOpacity={0.7}
         >
-        <View>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={{ uri: rowData.picture }} style={styles.photo} />
-            <View style={styles.account}>
-              <Text style={styles.user}>
-                {rowData.name_first} {rowData.name_last}
-              </Text>
-              <Text style={styles.detail}>{rowData.name_slug}</Text>
+          <View>
+            <View style={{ flexDirection: 'row' }}>
+              <Image source={{ uri: rowData.picture }} style={styles.photo} />
+              <View style={styles.account}>
+                <Text style={styles.user}>
+                  {rowData.name_first} {rowData.name_last}
+                </Text>
+                <Text style={styles.detail}>{rowData.name_slug}</Text>
+              </View>
             </View>
           </View>
-        </View>
         </TouchableOpacity>
         <TouchableOpacity
           disabled={this.props.rowData.status === 'request' ? true : setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
           }}
         >
+          {/* This is condition for text change  */}
           <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
             {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
         </TouchableOpacity>
