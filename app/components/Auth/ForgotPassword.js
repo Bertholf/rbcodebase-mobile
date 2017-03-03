@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ActivityIndicator,
   TouchableHighlight,
   TextInput,
@@ -34,8 +33,9 @@ export default class ForgotPassword extends Component {
     auth.verify(this.state.email)
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
-      Actions.resetresult({ name: res.data.name_first, email: res.data.email });
-    });
+      Actions.resetresult({ name: res.data.name_first+ ' '+res.data.name_last, email: res.data.email })
+    })
+    .catch(() => Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message))
   }
 
 

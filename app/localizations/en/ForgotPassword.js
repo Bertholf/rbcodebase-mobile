@@ -9,6 +9,8 @@ const ForgotPass = {
   error_invalid_email: 'Sorry, we can\'t find your email!',
   sendLink: 'Send Reset Password Link',
   notme: 'Not Me!',
+  warning: 'Warning',
+  message: 'Error: Account Not Found',
 };
 
 export default ForgotPass;
