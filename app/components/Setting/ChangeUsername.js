@@ -7,6 +7,7 @@ import {
   Alert,
   ToastAndroid,
   Keyboard,
+  AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
@@ -23,9 +24,11 @@ export default class ChangeUsername extends Component {
       profile: {},
       newUsername: '',
       currentUserName: '',
+      namaslug: '',
     };
   }
   componentDidMount() {
+    AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data, loading: false }))
     .catch(Err => Err);
@@ -95,7 +98,7 @@ export default class ChangeUsername extends Component {
               // defaultValue={this.state.profile.name_slug}
               // onChangeText={(this.stat.profile.name_slug) => this.setState({ currentUserName })}
 
-              value={this.state.profile.name_slug}
+              value={this.state.profile.name_slug == null ? this.state.namaslug : this.state.profile.name_slug}
               editable={false}
             />
             <Text style={styles.Text2}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
@@ -14,13 +14,24 @@ export default class Setting extends Component {
     this.state = {
       profile: {},
       loading: true,
-    }
+      namaslug: '',
+      namef: '',
+      email: '',
+      namel: '',
+    };
   }
   componentDidMount() {
+    AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+    AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
+    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch((res) => console.log('error ambil namalengkap-----'));
+    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch((res) => console.log('error ambil namalengkap--- --'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
     .catch(Err => Err);
   }
+  // slugname() {
+  //   AsyncStorage.getItem('name_slug').then((res) => { this.setState({ name_slug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.name_slug); }).catch((res) => console.log('error ambil nama-----'));
+  // }
   reRender() {
     this.componentDidMount();
   }
@@ -36,18 +47,22 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center'}}>{this.state.profile.name_first} {this.state.profile.name_last}</Text>
+                {this.state.profile.name_first !== null && this.state.profile.name_last !== null ? <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text> : <Text>{this.state.profile.name_first}{this.state.profile.name_last}</Text> }
+                {/* {this.state.profile.name_first} {this.state.profile.name_last} */}
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.usernameEdit({ reRender: () => this.reRender() })}>
+          <TouchableOpacity
+            onPress={() => Actions.usernameEdit({ reRender: () => this.reRender() })}
+          >
             <View style={styles.list}>
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.user_name}</Text>
               </View>
               <View style={{ flexDirection: 'row'}}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_slug}</Text>
+                {this.state.profile.name_slug == null ? <Text style={{ alignSelf: 'center' }}>{this.state.namaslug}</Text> : <Text>{this.state.profile.name_slug}</Text>}
+                {/* {this.state.profile.name_slug} */}
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -80,7 +95,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.profile.email}</Text>
+                {this.state.profile.email == null ? <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text> : <Text>{this.state.profile.email}</Text>}
                 <Image style={styles.image} source={next} />
               </View>
             </View>

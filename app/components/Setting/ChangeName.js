@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Keyboard,
   ToastAndroid,
+  AsyncStorage,
 } from 'react-native';
 import styles from './ChangeSetting/ChangeStyles';
 import NavigationBar from 'react-native-navbar';
@@ -26,9 +27,13 @@ export default class NameEdit extends Component{
       firstName: '',
       lastName: '',
       profile: {},
+      namef: '',
+      namel: '',
     };
   }
   componentDidMount() {
+    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch((res) => console.log('error ambil namalengkap-----'));
+    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch((res) => console.log('error ambil namalengkap--- --'));
     auth.profile()
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
     .catch(Err => console.log('err,Err'));
@@ -111,10 +116,10 @@ export default class NameEdit extends Component{
             {strings.ChangeName.current_name}
           </Text>
             <View style={styles.currentName}>
-              <Text style={{ color: '#2196f3', fontSize: 14 }}>
-                {this.state.profile.name_first} {this.state.profile.name_last}
-              </Text>
-            </View>
+              {this.state.profile.name_first == null && this.state.profile.name_last == null ? <Text style={{ color: '#2196f3', fontSize: 14 }}>{this.state.namef}{this.state.namel}</Text> : <Text style={{ color: '#2196f3', fontSize: 14 }}>{this.state.profile.name_first} {this.state.profile.name_last}</Text>
+              }
+          </View>
+
             <Text style={styles.Text2}>
               {strings.ChangeName.first_name}
             </Text>
