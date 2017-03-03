@@ -3,11 +3,8 @@ import {
    ActivityIndicator,
    Text,
    View,
-   Image,
    TextInput,
    TouchableOpacity,
-   TouchableHighlight,
-   ScrollView,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
@@ -15,11 +12,6 @@ import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
 // import GoogleSignIn from './../../services/signingoogle';
-
-const google = require('./../../images/login/google.png');
-const facebook = require('./../../images/login/facebook.png');
-const twitter = require('./../../images/login/twitter.png');
-const logo = require('./../../images/logo.png');
 
 export default class LoginScreenEmail extends Component {
   constructor(props) {
@@ -98,14 +90,16 @@ export default class LoginScreenEmail extends Component {
               activeOpacity={1}
               style={styles.button}
             >
-              <ActivityIndicator size={'large'} color={'#fff'}/>
+              <ActivityIndicator
+                size={'large'} color={'#fff'}
+              />
             </TouchableOpacity>
           )}
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <TouchableOpacity onPress={() => Actions.forgotPassword()}>
               <Text style={{ color: '#2196F3', margin: 10, textAlign: 'right' }}>
-                  {strings.LoginbyEmail.forgot_password}
-                </Text>
+                {strings.LoginbyEmail.forgot_password}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

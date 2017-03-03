@@ -1,6 +1,4 @@
-//container/Auth
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 import RegistrationForm from '../../components/Auth/RegistrationForm';
 import { submitRegister, submitLogin } from '../../actions/Auth';
 import AuthRegisterService from '../../services/AuthRegistration';

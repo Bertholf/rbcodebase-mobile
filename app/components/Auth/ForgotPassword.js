@@ -21,23 +21,36 @@ export default class ForgotPassword extends Component {
     super();
     this.state = {
       email: '',
-      loading: 'false',
-    };
+      profile: {},
+      alertS: '',
+      alertF: '',
+      loading: true,
+    }
   }
 
+
   verifyEmail() {
-          this.setState({ loading: 'true' });
     auth.verify(this.state.email)
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
-      Actions.resetresult({ name: res.data.name_first + ' ' + res.data.name_last, email: res.data.email });
-    }).catch(err => Alert.alert('Warning', 'Your email is not found'));
+      Actions.resetresult({ name: res.data.name_first, email: res.data.email });
+    });
   }
+
+  static propTypes={ url: React.PropTypes.string };
 
   render() {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;
+    const validateEmail = () => {
+      if (emailValidator && emailInput) {
+        // Need action here, please fix it later, thanks!!!
+        this.verifyEmail();
+      } else {
+        return;
+      }
+    };
 
     return (
       <View style={styles.container}>
@@ -45,17 +58,21 @@ export default class ForgotPassword extends Component {
           style={style.textInput}
           placeholderTextColor={'silver'}
           onChangeText={email => this.setState({ email })}
-          placeholder="Email"
-          underlineColorAndroid='rgba(0,0,0,0)'
+          placeholder={"Email"}
+          underlineColorAndroid={'rgba(0,0,0,0)'}
         />
         {!emailInput || emailValidator ?
-          <Text /> : <Text style={styles.invalid}>{strings.ForgotPass.alert_invalid_email}</Text>}
+        <Text /> : <Text style={styles.invalid}>
+          {strings.ForgotPass.alert_invalid_email}
+        </Text>}
         <TouchableHighlight
           style={styles.button}
           onPress={() => this.verifyEmail()}
-          underlayColor="#99d9f4"
+          underlayColor={"#99d9f4"}
         >
-          {this.state.loading ? <ActivityIndicator /> : <Text style={style.buttonText}>{strings.ForgotPass.send}</Text>}
+          <Text style={style.buttonText}>
+            {strings.ForgotPass.send}
+          </Text>
         </TouchableHighlight>
       </View>
     );

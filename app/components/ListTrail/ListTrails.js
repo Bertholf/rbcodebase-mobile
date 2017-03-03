@@ -10,7 +10,6 @@ const search = require('./../../images/search.png');
 const morepert = require('./../../images/morepert.png');
 const arrow = require('./../../images/arrow.png');
 const image = require('./../../images/mountain.jpg');
-const rinjani = require('./../../images/rinjani.jpg');
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     top: 5,
     marginLeft: 5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   menupert: {
     width: 25,
@@ -95,8 +94,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class ListTrails extends Component {
-  render() {
+const ListTrails = () => {
     return (
       <View style={styles.container} >
         <View style={styles.header}>
@@ -167,5 +165,4 @@ export default class ListTrails extends Component {
         </ScrollView>
       </View>
     );
-  }
-}
+};

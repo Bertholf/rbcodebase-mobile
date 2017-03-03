@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, Text, Dimensions, Alert } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+  ActivityIndicator,
+  Alert } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import styles from '../../style/StyleGlobal';
 import auth from '../../services/auth';
-import { Actions } from 'react-native-router-flux';
 
 const width = Dimensions.get('window').width;
 const image = require('../../../app/images/user.png');
@@ -41,15 +49,19 @@ export default class ResultForgot extends Component {
       name: this.props.name,
       email: this.props.email,
       loading: 'false',
+      submit: 'true',
     };
   }
 
   sendLink() {
+    this.setState({ loading: 'true' });
     auth.sendlink(this.state.email)
     .then((res) => {
       Alert.alert('Success', res.message);
       Actions.loginscreenemail();
-    }).catch(err => err);
+    }).catch(err => {
+      this.setState({ fail: 'false' })
+    });
   }
 
   render() {
@@ -70,10 +82,10 @@ export default class ResultForgot extends Component {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1.5, backgroundColor: '#039be5', width: width, justifyContent: 'center' }}>
-          <TouchableOpacity onPress={() => this.sendLink()}>
-            {this.state.loading ? <ActivityIndicator /> :
-              <Text style={styles.buttonText}>Send Reset Password Link</Text>}
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.sendLink()}>
+                <Text style={styles.buttonText}>Send Reset Password Link</Text>
+            </TouchableOpacity>
+
         </View>
       </View>
     );
