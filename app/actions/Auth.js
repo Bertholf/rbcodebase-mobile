@@ -122,6 +122,7 @@ export function submitRegister(name_first, name_last, name_slug, email, password
   Actions.pop();
   return { type: SUBMIT_REGISTER, response };
 }
+
 export function doneRegister(response = '') {
   if (response) {
   }

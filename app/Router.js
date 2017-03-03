@@ -53,6 +53,7 @@ import Follower from './components/Profile/Follower';
 import AddFriendScreen from './components/Profile/AddFriend';
 import LoaderView from './views/Loader';
 import Approval from './components/Profile/approval';
+import ResultForgot from './components/Auth/ForgotPasswordResult';
 
 
 const lang = strings.getInterfaceLanguage();
@@ -81,6 +82,9 @@ const Routing = (props) => (
         <Scene key={'root'}>
           <Scene
             key="setting" component={Setting} title={strings.settings.title}
+          />
+          <Scene
+            key={'resetresult'} hideNavBar component={ResultForgot} title={'Walkthrough Screen'}
           />
           <Scene
             key={'walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}

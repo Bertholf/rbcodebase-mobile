@@ -6,16 +6,22 @@ export default {
     { username, password, client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE },
   ),
   check: (access_token, provider, oauth_provider_id) => api.post('/api/after-oauth',
-    { access_token, provider, oauth_provider_id }
+    { access_token, provider, oauth_provider_id },
   ),
   register: (name_first, name_last, name_slug, email, password, password_confirmation) => api.post('/api/users/register',
      { name_first, name_last, name_slug, email, password, password_confirmation, client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
   checktwitter: (access_token, provider, secret) => api.post('/api/after-oauth',
-      { access_token, provider, secret }
+      { access_token, provider, secret },
+  ),
+  verify: email => api.post('/api/password/verify',
+    { email },
   ),
   profile: ()=> api.get('/api/me',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
+  ),
+  sendlink: email => api.post('/api/password/email',
+    { email },
   ),
   adprefe: ()=> api.get('/api/me/settings',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
