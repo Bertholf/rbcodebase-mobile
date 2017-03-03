@@ -54,6 +54,7 @@ import AddFriendScreen from './components/Profile/AddFriend';
 import LoaderView from './views/Loader';
 import Approval from './components/Profile/approval';
 import ResultForgot from './components/Auth/ForgotPasswordResult';
+import Notification from './components/Notification/App';
 
 
 const lang = strings.getInterfaceLanguage();
@@ -89,6 +90,9 @@ const Routing = (props) => (
           <Scene
             key={'walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
           />
+          <Scene
+            key={'notification'} hideNavBar initial component={Notification} title={'notification'}
+          />
           {/* <Scene
             key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
           /> */}
@@ -105,7 +109,7 @@ const Routing = (props) => (
             key="inbox" component={Inbox} title={'Inbox'}
           />
           <Scene
-            key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
+            key={'launch'}  component={SplashScreen} hideNavBar title={'Launch'}
           />
           <Scene
             key={'notifications'} component={Notifications} title={strings.settings.notification}
