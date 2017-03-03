@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Image,
+  ActivityIndicator,
   TouchableHighlight,
   TextInput,
   Alert,
@@ -20,10 +21,12 @@ export default class ForgotPassword extends Component {
     super();
     this.state = {
       email: '',
-    }
+      loading: 'false',
+    };
   }
 
   verifyEmail() {
+          this.setState({ loading: 'true' });
     auth.verify(this.state.email)
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
@@ -52,7 +55,7 @@ export default class ForgotPassword extends Component {
           onPress={() => this.verifyEmail()}
           underlayColor="#99d9f4"
         >
-          <Text style={style.buttonText}>{strings.ForgotPass.send}</Text>
+          {this.state.loading ? <ActivityIndicator /> : <Text style={style.buttonText}>{strings.ForgotPass.send}</Text>}
         </TouchableHighlight>
       </View>
     );

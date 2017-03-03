@@ -40,7 +40,7 @@ export default class ResultForgot extends Component {
     this.state = {
       name: this.props.name,
       email: this.props.email,
-      loading: 'true',
+      loading: 'false',
     };
   }
 
@@ -71,7 +71,8 @@ export default class ResultForgot extends Component {
         </View>
         <View style={{ flex: 1.5, backgroundColor: '#039be5', width: width, justifyContent: 'center' }}>
           <TouchableOpacity onPress={() => this.sendLink()}>
-            <Text style={styles.buttonText}>Send Reset Password Link</Text>
+            {this.state.loading ? <ActivityIndicator /> :
+              <Text style={styles.buttonText}>Send Reset Password Link</Text>}
           </TouchableOpacity>
         </View>
       </View>
