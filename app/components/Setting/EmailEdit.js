@@ -5,6 +5,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
@@ -19,9 +20,11 @@ export default class EmailEdit extends Component {
     this.state = {
       newEmail: '',
       profile: {},
+      email: '',
     };
   }
   componentDidMount() {
+    AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
     .catch(Err => Err);
@@ -66,7 +69,7 @@ export default class EmailEdit extends Component {
             <Text style={styles.Text2}>
             </Text>
             <TextInput
-              style={styles.TextInput1} placeholder={currentEmail} underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1} placeholder={this.state.profile.email == null ? this.state.email : this.state.profile.email} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline
               numberOfLines={4} editable={false}
             />
