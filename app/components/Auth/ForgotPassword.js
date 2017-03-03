@@ -69,7 +69,7 @@ export default class ForgotPassword extends Component {
         <View>
           <TouchableHighlight
             style={styles.button}
-            onPress={() => this.verifyEmail()}
+            onPress={validateEmail}
             underlayColor={"#99d9f4"}
           >
             <View>
