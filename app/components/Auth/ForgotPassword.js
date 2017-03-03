@@ -24,12 +24,13 @@ export default class ForgotPassword extends Component {
       profile: {},
       alertS: '',
       alertF: '',
-      loading: true,
+      submit: false,
     }
   }
 
 
   verifyEmail() {
+    this.setState({ submit: 'true' })
     auth.verify(this.state.email)
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
@@ -37,7 +38,6 @@ export default class ForgotPassword extends Component {
     });
   }
 
-  static propTypes={ url: React.PropTypes.string };
 
   render() {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -65,15 +65,21 @@ export default class ForgotPassword extends Component {
         <Text /> : <Text style={styles.invalid}>
           {strings.ForgotPass.alert_invalid_email}
         </Text>}
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => this.verifyEmail()}
-          underlayColor={"#99d9f4"}
-        >
-          <Text style={style.buttonText}>
-            {strings.ForgotPass.send}
-          </Text>
-        </TouchableHighlight>
+
+        <View>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => this.verifyEmail()}
+            underlayColor={"#99d9f4"}
+          >
+            <View>
+              {this.state.submit ? <ActivityIndicator color={'#fff'}/>:
+                <Text style={style.buttonText}>
+                  {strings.ForgotPass.send}
+                </Text>}
+              </View>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
