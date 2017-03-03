@@ -11,6 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import styles from '../../style/StyleGlobal';
 import auth from '../../services/auth';
+import strings from '../../localizations';
 
 const width = Dimensions.get('window').width;
 const image = require('../../../app/images/user.png');
@@ -78,14 +79,14 @@ export default class ResultForgot extends Component {
         </View>
         <View style={{ marginTop: 20, justifyContent: 'center', flex: 1.5 }}>
           <TouchableOpacity>
-            <Text style={{ fontSize: 15, alignSelf: 'center' }}>Not me!</Text>
+            <Text style={{ fontSize: 15, alignSelf: 'center' }}>{strings.ForgotPass.notme}</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flex: 1.5, backgroundColor: '#039be5', width: width, justifyContent: 'center' }}>
             <TouchableOpacity onPress={() => this.sendLink()}>
               <View>
                 {this.state.loading ? <ActivityIndicator color={'#fff'}/> :
-                <Text style={styles.buttonText}>Send Reset Password Link</Text>}
+                <Text style={styles.buttonText}>{strings.ForgotPass.sendLink}</Text>}
               </View>
             </TouchableOpacity>
         </View>
