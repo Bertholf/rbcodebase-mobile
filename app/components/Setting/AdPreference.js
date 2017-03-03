@@ -126,7 +126,7 @@ export default class AdPreference extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View
-          style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}
+          style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         >
           <NavigationBar
             title={titleConfig}
