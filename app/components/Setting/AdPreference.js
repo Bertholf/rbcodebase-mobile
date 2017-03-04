@@ -91,22 +91,7 @@ export default class AdPreference extends Component {
     }))
     .catch();
   }
-
-
   render() {
-    const privacy_follow = this.state.privacy_follow;
-    const privacy_follow_confirm = this.state.privacy_follow_confirm;
-    const privacy_comment = this.state.language3;
-    const privacy_post = this.state.language4;
-    const privacy_timeline_post = this.state.language5;
-    const privacy_message = this.state.language6;
-    const email_follow = this.state.language7;
-    const email_post_like = this.state.language8;
-    const email_post_share = this.state.language9;
-    const email_comment_post = this.state.language10;
-    const email_comment_like = this.state.language11;
-    const email_comment_reply = this.state.language12;
-
     const saveUpdate = () => {
       auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
       .then(response =>
@@ -168,7 +153,7 @@ export default class AdPreference extends Component {
                    </Picker> :
                    <Picker
                      selectedValue={this.state.pick}
-                     onValueChange={value => this.setState({ pick: value })}>
+                     onValueChange={valuefollow => this.setState({ pick: valuefollow })}>
                      <Picker.Item label={strings.adpreference.none} value="none" />
                      <Picker.Item label={strings.adpreference.all} value="all" />
                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -215,7 +200,7 @@ export default class AdPreference extends Component {
                     </Picker> :
                     <Picker
                       selectedValue={this.state.pick}
-                      onValueChange={value => this.setState({ pick: value })}>
+                      onValueChange={valueconfirm => this.setState({ pick: valueconfirm })}>
                       <Picker.Item label={strings.adpreference.none} value="none" />
                       <Picker.Item label={strings.adpreference.all} value="all" />
                       <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -261,7 +246,7 @@ export default class AdPreference extends Component {
                    </Picker> :
                    <Picker
                      selectedValue={this.state.pick}
-                     onValueChange={value => this.setState({ pick: value })}>
+                     onValueChange={valuecomment => this.setState({ pick: valuecomment })}>
                      <Picker.Item label={strings.adpreference.none} value="none" />
                      <Picker.Item label={strings.adpreference.all} value="all" />
                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -306,7 +291,7 @@ export default class AdPreference extends Component {
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={value => this.setState({ pick: value })}>
+                 onValueChange={valuepost => this.setState({ pick: valuepost })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -351,7 +336,7 @@ export default class AdPreference extends Component {
             </Picker> :
              <Picker
                selectedValue={this.state.pick}
-               onValueChange={value => this.setState({ pick: value })}>
+               onValueChange={valuetimeline => this.setState({ pick: valuetimeline })}>
                <Picker.Item label={strings.adpreference.none} value="none" />
                <Picker.Item label={strings.adpreference.all} value="all" />
                <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -396,7 +381,7 @@ export default class AdPreference extends Component {
             </Picker> :
              <Picker
                selectedValue={this.state.pick}
-               onValueChange={value => this.setState({ pick: value })}>
+               onValueChange={valuemessage => this.setState({ pick: valuemessage })}>
                <Picker.Item label={strings.adpreference.none} value="none" />
                <Picker.Item label={strings.adpreference.all} value="all" />
                <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -431,7 +416,7 @@ export default class AdPreference extends Component {
            </Picker> :
            <Picker
              selectedValue={this.state.pick}
-             onValueChange={value => this.setState({ pick: value })}>
+             onValueChange={valueemail => this.setState({ pick: valueemail })}>
              <Picker.Item label={strings.adpreference.none} value="none" />
              <Picker.Item label={strings.adpreference.all} value="all" />
              <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -464,7 +449,7 @@ export default class AdPreference extends Component {
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={value => this.setState({ pick: value })}>
+                 onValueChange={valuelike => this.setState({ pick: valuelike })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -498,7 +483,7 @@ export default class AdPreference extends Component {
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={value => this.setState({ pick: value })}>
+                 onValueChange={valueshare => this.setState({ pick: valueshare })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -532,7 +517,7 @@ export default class AdPreference extends Component {
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={value => this.setState({ pick: value })}>
+                 onValueChange={valuecpost => this.setState({ pick: valuecpost })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -566,7 +551,7 @@ export default class AdPreference extends Component {
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={value => this.setState({ pick: value })}>
+                 onValueChange={valueclike => this.setState({ pick: valueclike })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -600,7 +585,7 @@ export default class AdPreference extends Component {
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={value => this.setState({ pick: value })}>
+                 onValueChange={valuecreplay => this.setState({ pick: valuecreplay })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
