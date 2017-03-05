@@ -149,7 +149,8 @@ export default class NameEdit extends Component {
               maxLength={25}
               onChangeText={lastName => this.setState({ lastName })}
               multiline={false}
-              numberOfLines={1} editable
+              numberOfLines={1}
+              editable
               value={this.state.lastName}
             />
             {lastNameValidator || !lastNameInput ?
