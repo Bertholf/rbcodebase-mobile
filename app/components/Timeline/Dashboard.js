@@ -6,6 +6,7 @@ import {
    TouchableOpacity,
    AsyncStorage,
 } from 'react-native';
+import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 
@@ -22,7 +23,7 @@ export default class Dashboard extends Component {
       loading: true,
       namafirst: '',
       namalast: '',
-
+      token: '',
     };
   }
 
@@ -56,6 +57,14 @@ export default class Dashboard extends Component {
        });
     })
     .catch(Err => console.log('err,Err'));
+    this.getFcmToken();
+  }
+
+  getFcmToken() {
+    FCM.getFCMToken().then(token => {
+      console.log('Token FCM======',token)
+      AsyncStorage.setItem('fcmToken', token);
+    });
   }
 
   render() {

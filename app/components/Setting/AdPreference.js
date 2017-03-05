@@ -294,7 +294,7 @@ export default class AdPreference extends Component {
                  <Picker.Item label={strings.adpreference.none} value="none" />
                </Picker> :
 
-             this.state.privacy_post == 'none' ?
+             this.state.privacy_post === 'none' ?
                <Picker
                  selectedValue={this.state.privacy_post}
                  onValueChange={value => this.setState({ privacy_post: value })}
