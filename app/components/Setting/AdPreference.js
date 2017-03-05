@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// Initial State of Setitng
 export default class AdPreference extends Component {
   constructor(props) {
     super(props);
@@ -73,6 +74,7 @@ export default class AdPreference extends Component {
     };
   }
 
+  // Get Settings Current User
   componentDidMount() {
     auth.adprefe()
     .then(response => this.setState({
@@ -129,24 +131,24 @@ export default class AdPreference extends Component {
                 { this.state.privacy_follow === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_follow}
-                    onValueChange={(lang) => this.setState({ privacy_follow: lang })}
+                    onValueChange={lang => this.setState({ privacy_follow: lang })}
                   >
                     <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
                     <Picker.Item label={strings.adpreference.all} value="all" />
                     <Picker.Item label={strings.adpreference.none} value="none" />
                   </Picker> :
-                   this.state.privacy_follow == 'all' ?
+                   this.state.privacy_follow === 'all' ?
                      <Picker
                        selectedValue={this.state.privacy_follow}
-                       onValueChange={(lang) => this.setState({privacy_follow: lang})}>
+                       onValueChange={lang => this.setState({privacy_follow: lang})}>
                        <Picker.Item label={strings.adpreference.all} value="all" />
                        <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
                        <Picker.Item label={strings.adpreference.none} value="none" />
                      </Picker> :
-                   this.state.privacy_follow == 'none' ?
+                   this.state.privacy_follow === 'none' ?
                    <Picker
                      selectedValue={this.state.privacy_follow}
-                     onValueChange={(value) => this.setState({ privacy_follow: value })}>
+                     onValueChange={value => this.setState({ privacy_follow: value })}>
                      <Picker.Item label={strings.adpreference.none} value="none" />
                      <Picker.Item label={strings.adpreference.all} value="all" />
                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
@@ -158,7 +160,6 @@ export default class AdPreference extends Component {
                      <Picker.Item label={strings.adpreference.all} value="all" />
                      <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
                    </Picker>
-
                 }
               </View>
             </View>
@@ -410,7 +411,7 @@ export default class AdPreference extends Component {
 
             <Picker
               selectedValue={this.state.email_follow}
-              onValueChange={(value) => this.setState({email_follow: value})}>
+              onValueChange={(value) => this.setState({ email_follow: value })}>
               <Picker.Item label={strings.adpreference.yes} value="1" />
               <Picker.Item label={strings.adpreference.no} value="0" />
            </Picker> :
@@ -423,39 +424,40 @@ export default class AdPreference extends Component {
            </Picker>
 
           }
-        </View>
-        </View>
-        </View>
-        <View>
-          <View style={styles.styleView}>
-            <View>
-              <Text style={styles.text}>{strings.adpreference.emailpostlike}</Text>
             </View>
-            <View style={{ width: 115, justifyContent: 'center' }}>
-          { this.state.email_post_like == 0 ?
-              <Picker
-                selectedValue={this.state.email_post_like}
-                onValueChange={(value) => this.setState({email_post_like: value})}>
-                <Picker.Item label={strings.adpreference.no} value="0" />
-                <Picker.Item label={strings.adpreference.yes} value="1" />
-             </Picker> :
+          </View>
+        </View>
+          <View>
+            <View style={styles.styleView}>
+              <View>
+                <Text style={styles.text}>{strings.adpreference.emailpostlike}</Text>
+              </View>
+              <View style={{ width: 115, justifyContent: 'center' }}>
+                {this.state.email_post_like === 0 ?
+                  <Picker
+                    selectedValue={this.state.email_post_like}
+                    onValueChange={(value) => this.setState({email_post_like: value})}>
+                    <Picker.Item label={strings.adpreference.no} value="0" />
+                    <Picker.Item label={strings.adpreference.yes} value="1" />
+                 </Picker> :
 
-             this.state.email_post_like == 1 ?
+                 this.state.email_post_like == 1 ?
 
-               <Picker
-                 selectedValue={this.state.email_post_like}
-                 onValueChange={(value) => this.setState({email_post_like: value})}>
-                 <Picker.Item label={strings.adpreference.no} value="0" />
+                <Picker
+                  selectedValue={this.state.email_post_like}
+                  onValueChange={(value) => this.setState({ email_post_like: value })}>
+                  <Picker.Item label={strings.adpreference.yes} value="1" />
+                  <Picker.Item label={strings.adpreference.no} value="0" />
                </Picker> :
                <Picker
                  selectedValue={this.state.pick}
-                 onValueChange={valuelike => this.setState({ pick: valuelike })}>
+                 onValueChange={valueemail => this.setState({ pick: valueemail })}>
                  <Picker.Item label={strings.adpreference.none} value="none" />
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
                </Picker>
+             }
 
-          }
             </View>
           </View>
         </View>
@@ -465,7 +467,7 @@ export default class AdPreference extends Component {
                 <Text style={styles.text}>{strings.adpreference.emailpostshare}</Text>
               </View>
               <View style={{ width: 115, justifyContent: 'center' }}>
-                { this.state.email_post_share == 0 ?
+                { this.state.email_post_share === 0 ?
                   <Picker
                     selectedValue={this.state.email_post_share}
                     onValueChange={(value) => this.setState({email_post_share: value})}>
