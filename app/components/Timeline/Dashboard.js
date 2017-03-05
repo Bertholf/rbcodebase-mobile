@@ -62,7 +62,6 @@ export default class Dashboard extends Component {
 
   getFcmToken() {
     FCM.getFCMToken().then(token => {
-      console.log('Token FCM======',token)
       AsyncStorage.setItem('fcmToken', token);
     });
   }
