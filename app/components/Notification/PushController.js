@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AsyncStorage, Platform } from 'react-native';
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
 import firebaseClient from './FirebaseClient';
-import notif from '../../services/notification';
+import notif from '../../services/notif';
 
 export default class PushController extends Component {
   constructor(props) {
@@ -14,7 +14,8 @@ export default class PushController extends Component {
 
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
-      notif.notification(res);
+      notif.sendToken(res);
+      // this.props.onChangeToken(res);
     }).catch(() => {
       FCM.getFCMToken()
           .then((token) => {
@@ -26,10 +27,11 @@ export default class PushController extends Component {
               .then((res) => {
                 this.setState({ token: res })
                 .then(() => {
-                  notif.notification(this.state.token);
-                });
+                  notif.sendToken(this.state.token)
+                  .then((res) => console.log('TOKEN SAVED IN SERVER', res));
+                }).catch(err => ('Fail Save token', err));
               }).catch();
-            });
+            }).catch();
             // this.props.onChangeToken(token); Temporary Comment
           }).catch();
     });

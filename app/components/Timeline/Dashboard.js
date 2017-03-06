@@ -72,7 +72,6 @@ export default class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <PushController />
         <TouchableOpacity onPress={() => this.props.goUp()}>
           <View style={{ justifyContent: 'flex-end' }}>
             {this.state.profile.picture == null ?
@@ -107,6 +106,7 @@ export default class Dashboard extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        <PushController />
       </View>
     );
   }
