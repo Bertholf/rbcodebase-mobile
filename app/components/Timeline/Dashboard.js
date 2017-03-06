@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
+import PushController from '../Notification/PushController';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -96,6 +97,7 @@ export default class Dashboard extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        <PushController />
       </View>
     );
   }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { Platform, AsyncStorage } from 'react-native';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import firebaseClient from  './FirebaseClient';
+import notif from '../../services/notif';
 
 export default class PushController extends Component {
   constructor(props) {
@@ -11,9 +12,29 @@ export default class PushController extends Component {
   componentDidMount() {
     FCM.requestPermissions();
 
-    FCM.getFCMToken().then(token => {
-      console.log('TOKEN (getFCMToken)', token);
-      this.props.onChangeToken(token);
+    AsyncStorage.getItem('FcmToken')
+    .then((res) => {
+      notif.sendToken(res);
+      // this.props.onChangeToken(res);
+    }).catch(() => {
+      FCM.getFCMToken()
+          .then((token) => {
+            console.log('FCM INITIAL TOKEN', token);
+            let fcm = token;
+            // Save token in AsyncStorage
+            AsyncStorage.setItem('FcmToken', token)
+            .then(() => {
+              AsyncStorage.getItem('FcmToken')
+              .then((res) => {
+                this.setState({ token: fcm })
+                .then(() => {
+                  notif.sendToken(this.state.token)
+                  .then((res) => console.log('TOKEN SAVED IN SERVER', res));
+                }).catch(err => ('Fail Save token in device', err));
+              }).catch();
+            }).catch();
+            // this.props.onChangeToken(token); Temporary Comment
+          }).catch();
     });
 
     FCM.getInitialNotification().then(notif => {
