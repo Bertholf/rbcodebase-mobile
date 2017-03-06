@@ -45,11 +45,12 @@ export default class ForgotPassword extends Component {
     auth.verify(this.state.email)
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
-      Actions.resetresult({ name: res.data.name_first+ ' '+res.data.name_last, email: res.data.email, submit:false })
+      Actions.resetresult({ name: res.data.name_first+ ' '+res.data.name_last, email: res.data.email })
       this.setState({submit: false});
     })
-    .catch(() => Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message))
-
+    .catch(() => { Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message)
+      this.setState({submit: false});
+    });
   }
 
 

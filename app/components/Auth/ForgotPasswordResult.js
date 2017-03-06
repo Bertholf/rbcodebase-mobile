@@ -60,9 +60,9 @@ export default class ResultForgot extends Component {
     .then((res) => {
       Alert.alert('Success', res.message);
       Actions.loginscreenemail();
-      this.setState({loading: false});
+      this.setState({ loading: false});
     }).catch(err => {
-      this.setState({ fail: 'false' })
+      this.setState({ fail: false, loading: false })
     });
   }
 
