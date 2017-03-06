@@ -29,13 +29,30 @@ export default class ForgotPassword extends Component {
 
 
   verifyEmail() {
-    this.setState({ submit: 'true' })
+    // if (this.state.email === ''){
+    //   this.setState({ validEmail:false, loading:false});
+    // }
+    // this.setState({loading: true}, () => {
+    //   if (this.state.email !== '' ){
+    //     this.props.resetresult(this.state.email, () => {
+    //       this.setState({loading:false});
+    //     }, () => {
+    //       this.setState({loading:false, isFail: true});
+    //     } );
+    //   }
+    // });
+    this.setState({ submit: true})
     auth.verify(this.state.email)
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
       Actions.resetresult({ name: res.data.name_first+ ' '+res.data.name_last, email: res.data.email })
+      //loading will stop when succes submit forgot password
+      this.setState({submit: false});
     })
-    .catch(() => Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message))
+    .catch(() => { Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message)
+      //loading will stop when error email
+      this.setState({submit: false});
+    });
   }
 
 

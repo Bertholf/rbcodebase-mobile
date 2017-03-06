@@ -55,13 +55,15 @@ export default class ResultForgot extends Component {
   }
 
   sendLink() {
-    this.setState({ loading: 'true' });
+    this.setState({ loading: true });
     auth.sendlink(this.state.email)
     .then((res) => {
       Alert.alert('Success', res.message);
       Actions.loginscreenemail();
+      //loading will stop when succes sendlink email
+      this.setState({ loading: false});
     }).catch(err => {
-      this.setState({ fail: 'false' })
+      this.setState({ fail: false, loading: false })
     });
   }
 
