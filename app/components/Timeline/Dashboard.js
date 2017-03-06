@@ -9,6 +9,7 @@ import {
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
+import PushController from '../../components/Notification/PushController';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -58,19 +59,20 @@ export default class Dashboard extends Component {
        });
     })
     .catch(Err => console.log('err,Err'));
-    this.getFcmToken(); // Call getFcmToken() to generate the Token
   }
 
-  getFcmToken() {
-    // Generate FCM Token and save in AsyncStorage
-    FCM.getFCMToken().then(token => {
-      AsyncStorage.setItem('fcmToken', token);
-    });
-  }
+  // getFcmToken() {
+  //   // Generate FCM Token and save in AsyncStorage
+  //   FCM.getFCMToken().then(token => {
+  //     console.log('THIS IS FCM TOKEN', token);
+  //     AsyncStorage.setItem('fcmToken', token);
+  //   });
+  // }
 
   render() {
     return (
       <View style={styles.container}>
+        <PushController />
         <TouchableOpacity onPress={() => this.props.goUp()}>
           <View style={{ justifyContent: 'flex-end' }}>
             {this.state.profile.picture == null ?
