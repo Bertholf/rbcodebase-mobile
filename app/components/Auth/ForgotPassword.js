@@ -46,9 +46,11 @@ export default class ForgotPassword extends Component {
     .then((res) => {
       console.log('RESPONSE VERIFY EMAIL=====', res);
       Actions.resetresult({ name: res.data.name_first+ ' '+res.data.name_last, email: res.data.email })
+      //loading will stop when succes submit forgot password
       this.setState({submit: false});
     })
     .catch(() => { Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message)
+      //loading will stop when error email
       this.setState({submit: false});
     });
   }
