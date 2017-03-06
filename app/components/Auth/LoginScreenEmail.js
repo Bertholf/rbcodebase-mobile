@@ -8,10 +8,7 @@ import {
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
-import loginService from '../../services/AuthLogin';
-import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
-// import GoogleSignIn from './../../services/signingoogle';
 
 export default class LoginScreenEmail extends Component {
   constructor(props) {
@@ -22,7 +19,6 @@ export default class LoginScreenEmail extends Component {
       validUsername: true,
       validPassword: true,
       isFail: false,
-      // loading: false,
     };
     this.validate = this.validate.bind(this);
   }
@@ -34,6 +30,7 @@ export default class LoginScreenEmail extends Component {
       this.setState({ validPassword: false, loading: false });
     }
     this.setState({ loading: true }, () => {
+      // go to login process
       if (this.state.username !== '' && this.state.password !== '') {
         this.props.login(this.state.username, this.state.password, () => {
           this.setState({ loading: false });

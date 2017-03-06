@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
-import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
-import firebaseClient from  './FirebaseClient';
+import { AsyncStorage, Platform } from 'react-native';
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
+import firebaseClient from './FirebaseClient';
+import notif from '../../services/notif';
 
 export default class PushController extends Component {
   constructor(props) {
@@ -11,55 +12,76 @@ export default class PushController extends Component {
   componentDidMount() {
     FCM.requestPermissions();
 
-    FCM.getFCMToken().then(token => {
-      console.log('TOKEN (getFCMToken)', token);
-      this.props.onChangeToken(token);
+    AsyncStorage.getItem('FcmToken')
+    .then((res) => {
+      notif.sendToken(res);
+      // this.props.onChangeToken(res);
+    }).catch(() => {
+      FCM.getFCMToken()
+          .then((token) => {
+            console.log('FCM INITIAL TOKEN', token);
+            // Save token in AsyncStorage
+            AsyncStorage.setItem('FcmToken', token)
+            .then(() => {
+              AsyncStorage.getItem('FcmToken')
+              .then((res) => {
+                this.setState({ token: res })
+                .then(() => {
+                  notif.sendToken(this.state.token)
+                  .then((res) => console.log('TOKEN SAVED IN SERVER', res));
+                }).catch(err => ('Fail Save token', err));
+              }).catch();
+            }).catch();
+            // this.props.onChangeToken(token); Temporary Comment
+          }).catch();
     });
 
-    FCM.getInitialNotification().then(notif => {
-      console.log('INITIAL NOTIFICATION', notif)
-    });
+
+    FCM.getInitialNotification().then((notif) => {
+      console.log('INITIAL NOTIFICATION', notif);
+    }).catch();
 
     this.notificationListner = FCM.on(FCMEvent.Notification, (notif) => {
       console.log('Notification', notif);
-      if(notif.local_notification){
+      if (notif.local_notification) {
         return;
       }
-      if(notif.opened_from_tray){
+      if (notif.opened_from_tray) {
         return;
       }
 
-      if (Platform.OS ==='ios') {
-              switch(notif._notificationType){
-                case NotificationType.Remote:
-                  notif.finish(RemoteNotificationResult.NewData)
-                  break;
-                case NotificationType.NotificationResponse:
-                  notif.finish();
-                  break;
-                case NotificationType.WillPresent:
-                  notif.finish(WillPresentNotificationResult.All)
-                  break;
-              }
-              } else {
-              switch(notif._notificationType){
-              case NotificationType.Remote:
-                notif.finish(RemoteNotificationResult.NewData)
-                break;
-              case NotificationType.NotificationResponse:
-                notif.finish();
-                break;
-              case NotificationType.WillPresent:
-              notif.finish(WillPresentNotificationResult.All)
-                break;
-            }
-          }
+      if (Platform.OS === 'ios') {
+        switch (notif._notificationType) {
+          case NotificationType.Remote:
+            notif.finish(RemoteNotificationResult.NewData);
+            break;
+          case NotificationType.NotificationResponse:
+            notif.finish();
+            break;
+          case NotificationType.WillPresent:
+            notif.finish(WillPresentNotificationResult.All);
+            break;
+        }
+      } else {
+        switch (notif._notificationType) {
+          case NotificationType.Remote:
+            notif.finish(RemoteNotificationResult.NewData);
+            break;
+          case NotificationType.NotificationResponse:
+            notif.finish();
+            break;
+          case NotificationType.WillPresent:
+            notif.finish(WillPresentNotificationResult.All);
+            break;
+        }
+      }
       this.showLocalNotification(notif);
     });
 
-    this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
+    this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, (token) => {
       console.log('TOKEN (refreshUnsubscribe)', token);
-      this.props.onChangeToken(token);
+      AsyncStorage.setItem('FcmToken', token);
+      // this.props.onChangeToken(token); Temporary Comment
     });
   }
 
@@ -70,7 +92,7 @@ export default class PushController extends Component {
       priority: 'high',
       click_action: notif.click_action,
       show_in_foreground: true,
-      local: true
+      local: true,
     });
   }
 

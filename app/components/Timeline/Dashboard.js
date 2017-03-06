@@ -6,8 +6,10 @@ import {
    TouchableOpacity,
    AsyncStorage,
 } from 'react-native';
+import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
+import PushController from '../../components/Notification/PushController';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -22,7 +24,7 @@ export default class Dashboard extends Component {
       loading: true,
       namafirst: '',
       namalast: '',
-
+      token: '',
     };
   }
 
@@ -41,6 +43,7 @@ export default class Dashboard extends Component {
          ['img_avatar', JSON.stringify(response.data.img_avatar)], ['img_background', JSON.stringify(response.data.img_background)],
         ['referring_user_id', JSON.stringify(response.data.referring_user_id)], ['created_at', JSON.stringify(response.data.created_at)],
         ['updated_at', JSON.stringify(response.data.updated_at)], ['deleted_at', JSON.stringify(response.data.deleted_at)],
+        // For reserve if team code is useable... 
         // ['current_team_id', JSON.stringify(response.data.current_team_id)],
         ['picture', JSON.stringify(response.data.picture)], ['registered', JSON.stringify(response.data.registered)], ['message', (response.message)]
          ])
@@ -58,8 +61,15 @@ export default class Dashboard extends Component {
     .catch(Err => console.log('err,Err'));
   }
 
+  // getFcmToken() {
+  //   // Generate FCM Token and save in AsyncStorage
+  //   FCM.getFCMToken().then(token => {
+  //     console.log('THIS IS FCM TOKEN', token);
+  //     AsyncStorage.setItem('fcmToken', token);
+  //   });
+  // }
+
   render() {
-    // {this.nama(); }
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.props.goUp()}>
@@ -96,6 +106,7 @@ export default class Dashboard extends Component {
             </TouchableOpacity>
           </View>
         </View>
+        <PushController />
       </View>
     );
   }
