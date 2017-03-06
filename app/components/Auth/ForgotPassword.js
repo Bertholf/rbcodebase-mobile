@@ -49,6 +49,7 @@ export default class ForgotPassword extends Component {
       this.setState({submit: false});
     })
     .catch(() => Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message))
+
   }
 
 
