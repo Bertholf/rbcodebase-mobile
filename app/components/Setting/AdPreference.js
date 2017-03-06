@@ -447,7 +447,6 @@ export default class AdPreference extends Component {
                  <Picker.Item label={strings.adpreference.all} value="all" />
                  <Picker.Item label={strings.adpreference.onlyfriend} value="only friend" />
                </Picker>
-
           }
               </View>
             </View>
