@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import {
-  Picker,
   View,
   Text,
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
-import updatePref from '../../services/updatePref';
 
 
 const styles = StyleSheet.create({
@@ -141,6 +140,8 @@ export default class AdPreference extends Component {
               <View>
                 <Text style={styles.text}>{strings.adpreference.privacyfollow}</Text>
               </View>
+
+
               <View style={{ width: 115, justifyContent: 'center' }}>
                 { this.state.privacy_follow === 'only friend' ?
                   <Picker
@@ -297,7 +298,7 @@ export default class AdPreference extends Component {
 
                   this.state.privacy_post === 'all' ?
 
-               <Picker
+                    <Picker
                  selectedValue={this.state.privacy_post}
                  onValueChange={value => this.setState({ privacy_post: value })}
                >
