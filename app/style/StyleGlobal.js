@@ -9,6 +9,29 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
+  pickerstyle: {
+    ...Platform.select({
+      ios: {
+        width: 130,
+        justifyContent: 'center',
+        alignSelf: 'center',
+      },
+      android: {
+        width: 115,
+        justifyContent: 'center',
+      },
+    }),
+  },
+  picker: {
+    ...Platform.select({
+      ios: {
+        maxHeight: 20,
+      },
+      android: {
+        maxHeight: 14,
+      },
+    }),
+  },
   logo: {
     marginTop: 16,
     height: 300 * 0.33,

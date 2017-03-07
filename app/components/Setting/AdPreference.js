@@ -8,12 +8,13 @@ import {
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
+import styles from '../../style/StyleGlobal';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
 
 
-const styles = StyleSheet.create({
+const stylesAdpref = StyleSheet.create({
   titleButton: {
     fontSize: 15,
     color: '#ffffff',
@@ -95,12 +96,12 @@ export default class AdPreference extends Component {
       privacy_post: response.data[0].privacy_post,
       privacy_timeline_post: response.data[0].privacy_timeline_post,
       privacy_message: response.data[0].privacy_message,
-      email_follow: response.data[0].email_follow,
-      email_post_like: response.data[0].email_post_like,
-      email_post_share: response.data[0].email_post_share,
-      email_comment_post: response.data[0].email_comment_post,
-      email_comment_like: response.data[0].email_comment_like,
-      email_comment_reply: response.data[0].email_comment_reply,
+      email_follow: response.data[0].email_follow.toString(),
+      email_post_like: response.data[0].email_post_like.toString(),
+      email_post_share: response.data[0].email_post_share.toString(),
+      email_comment_post: response.data[0].email_comment_post.toString(),
+      email_comment_like: response.data[0].email_comment_like.toString(),
+      email_comment_reply: response.data[0].email_comment_reply.toString(),
     }))
     .catch();
   }
@@ -136,13 +137,13 @@ export default class AdPreference extends Component {
         </View>
         <ScrollView>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.privacyfollow}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollow}</Text>
               </View>
 
 
-              <View style={{ width: 115, justifyContent: 'center' }}>
+              <View style={styles.pickerstyle}>
                 { this.state.privacy_follow === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_follow}
@@ -183,11 +184,11 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.privacyfollowconfirm}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollowconfirm}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
+              <View style={styles.pickerstyle}>
                 {this.state.privacy_follow_confirm === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_follow_confirm}
@@ -232,11 +233,11 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.privacycomment}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.privacycomment}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
+              <View style={styles.pickerstyle}>
                 {this.state.privacy_comment == 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_comment}
@@ -281,11 +282,11 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.privacypost}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.privacypost}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
+              <View style={styles.pickerstyle}>
                 { this.state.privacy_post === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_post}
@@ -330,11 +331,11 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.privacytimelinepost}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.privacytimelinepost}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
+              <View style={styles.pickerstyle}>
                 { this.state.privacy_timeline_post === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_timeline_post}
@@ -379,11 +380,11 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.privacymessage}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.privacymessage}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
+              <View style={styles.pickerstyle}>
                 { this.state.privacy_message === 'only friend' ?
                   <Picker
                     selectedValue={this.state.privacy_message}
@@ -429,12 +430,12 @@ export default class AdPreference extends Component {
           </View>
 
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.emailfollow}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.emailfollow}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
-                { this.state.email_follow == 0 ?
+              <View style={styles.pickerstyle}>
+                { this.state.email_follow == "0" ?
                   <Picker
                     selectedValue={this.state.email_follow}
                     onValueChange={value => this.setState({ email_follow: value })}
@@ -443,7 +444,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_follow == 1 ?
+             this.state.email_follow == "1" ?
 
                <Picker
                  selectedValue={this.state.email_follow}
@@ -464,12 +465,12 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.emailpostlike}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.emailpostlike}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
-                {this.state.email_post_like == 0 ?
+              <View style={styles.pickerstyle}>
+                {this.state.email_post_like == "0" ?
                   <Picker
                     selectedValue={this.state.email_post_like}
                     onValueChange={value => this.setState({ email_post_like: value })}
@@ -478,7 +479,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-                 this.state.email_post_like == 1 ?
+                 this.state.email_post_like == "1" ?
 
                    <Picker
                      selectedValue={this.state.email_post_like}
@@ -500,12 +501,12 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.emailpostshare}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.emailpostshare}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
-                { this.state.email_post_share == 0 ?
+              <View style={styles.pickerstyle}>
+                { this.state.email_post_share == "0" ?
                   <Picker
                     selectedValue={this.state.email_post_share}
                     onValueChange={value => this.setState({ email_post_share: value })}
@@ -514,7 +515,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_post_share == 1 ?
+             this.state.email_post_share == "1" ?
 
                <Picker
                  selectedValue={this.state.email_post_share}
@@ -536,12 +537,12 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.emailcommentpost}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentpost}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
-                { this.state.email_comment_post == 0 ?
+              <View style={styles.pickerstyle}>
+                { this.state.email_comment_post == "0" ?
                   <Picker
                     selectedValue={this.state.email_comment_post}
                     onValueChange={value => this.setState({ email_comment_post: value })}
@@ -550,7 +551,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_comment_post == 1 ?
+             this.state.email_comment_post == "1" ?
 
                <Picker
                  selectedValue={this.state.email_comment_post}
@@ -572,12 +573,12 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.emailcommentlike}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentlike}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
-                {this.state.email_comment_like == 0 ?
+              <View style={styles.pickerstyle}>
+                {this.state.email_comment_like === "0" ?
                   <Picker
                     selectedValue={this.state.email_comment_like}
                     onValueChange={value => this.setState({ email_comment_like: value })}
@@ -586,7 +587,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_comment_like == 1 ?
+             this.state.email_comment_like === "1" ?
 
                <Picker
                  selectedValue={this.state.email_comment_like}
@@ -608,12 +609,12 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={styles.styleView}>
+            <View style={stylesAdpref.styleView}>
               <View>
-                <Text style={styles.text}>{strings.adpreference.emailcommentreplay}</Text>
+                <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentreplay}</Text>
               </View>
-              <View style={{ width: 115, justifyContent: 'center' }}>
-                { this.state.email_comment_reply == 0 ?
+              <View style={styles.pickerstyle}>
+                { this.state.email_comment_reply === "0" ?
                   <Picker
                     selectedValue={this.state.email_comment_reply}
                     onValueChange={value => this.setState({ email_comment_reply: value })}
@@ -622,7 +623,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_comment_reply == 1 ?
+             this.state.email_comment_reply == "1" ?
 
                <Picker
                  selectedValue={this.state.email_comment_reply}
