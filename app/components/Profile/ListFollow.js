@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { Content, ListItem, Body, Right } from 'native-base';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     marginLeft: 2,
     marginTop: 6,
     marginBottom: 6,
-    borderRadius: 50,
+    borderRadius: 20,
   },
   detail: {
     fontSize: 11,
@@ -201,7 +202,7 @@ export default class ListFollow extends Component {
       };
     }
     return (
-      <View style={styles.container}>
+      <ListItem style={styles.container}>
         <TouchableOpacity
           onPress={() =>
             Actions.profile({
@@ -211,7 +212,7 @@ export default class ListFollow extends Component {
             })}
           activeOpacity={0.7}
         >
-          <View>
+          <Body>
             <View style={{ flexDirection: 'row' }}>
               <Image source={{ uri: rowData.picture }} style={styles.photo} />
               <View style={styles.account}>
@@ -221,8 +222,9 @@ export default class ListFollow extends Component {
                 <Text style={styles.detail}>{rowData.name_slug}</Text>
               </View>
             </View>
-          </View>
+          </Body>
         </TouchableOpacity>
+        <Right>
         <TouchableOpacity
           disabled={this.props.rowData.status === 'request' ? true : setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
@@ -232,7 +234,8 @@ export default class ListFollow extends Component {
           <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
             {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
         </TouchableOpacity>
-      </View>
+        </Right>
+      </ListItem>
     );
   }
 

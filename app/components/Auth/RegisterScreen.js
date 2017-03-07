@@ -94,6 +94,7 @@ export default class Register extends Component {
       setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
     });
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -113,6 +114,7 @@ export default class Register extends Component {
                 </View>
               </TouchableOpacity>
             </View>
+
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonGoogle}
@@ -125,6 +127,7 @@ export default class Register extends Component {
                 </View>
               </TouchableOpacity>
             </View>
+
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonTwitter}
@@ -155,17 +158,19 @@ export default class Register extends Component {
                 </View>
               </TouchableOpacity>
             </View>
+
             <View style={{ paddingTop: 8, paddingBottom: 10 }}>
               <TouchableOpacity onPress={Actions.loginscreen}>
                 <Text style={{ fontSize: 14, color: 'black' }}>{strings.register.Sign_in}</Text>
               </TouchableOpacity>
             </View>
-            <View style={{ marginTop: 10, alignItems: 'center' }}>
+
+            <View style={{ alignItems: 'center' }}>
               <View style={{ alignItems: 'center' }}>
-                <Text style={{ justifyContent: 'center' }}>{strings.register.sign_agreement}</Text>
-                <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.register.tos}
-                  <Text style={{ color: 'grey' }}> {strings.register.and}
-                    <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.register.Privacy_policy}</Text>
+                <Text style={{ textAlign: 'center' }}>{strings.LoginScreen.agreement}</Text>
+                <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.LoginScreen.tos}
+                  <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
+                    <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.privacy_policy}</Text>
                   </Text>
                 </Text>
               </View>
