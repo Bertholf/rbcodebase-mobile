@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+    <string>ca-app-pub-3940256099942544/2934735716</string>
+    <key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+    <string>ca-app-pub-3940256099942544/4411468910</string>
+    <key>CLIENT_ID</key>
+    <string>173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe.apps.googleusercontent.com</string>
+    <key>REVERSED_CLIENT_ID</key>
+    <string>com.googleusercontent.apps.173115952010-gsrn8acu05vuvcnsajaaoo3c5dkvjmfe</string>
+    <key>API_KEY</key>
+    <string>AIzaSyDtxKh2jej3uPXRTzp5ewQj7QOkVVOegAs</string>
+    <key>GCM_SENDER_ID</key>
+    <string>173115952010</string>
+    <key>PLIST_VERSION</key>
+    <string>1</string>
+    <key>BUNDLE_ID</key>
+    <string>com.rbcodebase.app</string>
+    <key>PROJECT_ID</key>
+    <string>rbcodebase</string>
+    <key>STORAGE_BUCKET</key>
+    <string>rbcodebase.appspot.com</string>
+    <key>IS_ADS_ENABLED</key>
+    <true/>
+    <key>IS_ANALYTICS_ENABLED</key>
+    <false/>
+    <key>IS_APPINVITE_ENABLED</key>
+    <false/>
+    <key>IS_GCM_ENABLED</key>
+    <true/>
+    <key>IS_SIGNIN_ENABLED</key>
+    <true/>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:173115952010:ios:3a944f0bb2d12128</string>
+    <key>DATABASE_URL</key>
+    <string>https://rbcodebase.firebaseio.com</string>
+    <key>CodePushDeploymentKey</key>
+    <string>deployment-key-here</string>
+  </dict>
+</plist>
