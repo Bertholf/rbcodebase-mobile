@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -21,14 +21,25 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   logoGoogle: {
-    height: 24,
-    width: 32,
-    tintColor: '#fff',
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    // borderRadius: 48,
-    marginRight: -5,
-    marginLeft: 10,
+    height: 23,
+    width: 35,
+    ...Platform.select({
+      ios: {
+        tintColor: '#fff',
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        marginRight: -5,
+        marginLeft: 10
+      },
+      android: {
+        tintColor: '#fff',
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        borderRadius: 48,
+        marginRight: -5,
+        marginLeft: 10
+      }
+    })
   },
   facebookLogo: {
     height: 30,
