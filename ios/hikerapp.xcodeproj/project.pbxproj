@@ -384,6 +384,7 @@
 		7E7308C80AAD4876AAFC9787 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		83858F01B6DE44ED8DEBE2C5 /* RCTMapboxGL.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTMapboxGL.xcodeproj; path = "../node_modules/react-native-mapbox-gl/ios/RCTMapboxGL.xcodeproj"; sourceTree = "<group>"; };
+		879C1A471E6EDC3600B83E71 /* hikerapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = hikerapp.entitlements; path = hikerapp/hikerapp.entitlements; sourceTree = "<group>"; };
 		88DFB7ED5274483AB8DBCF17 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		95EDFAB9916442A8877959ED /* RCTMaterialKit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTMaterialKit.xcodeproj; path = "../node_modules/react-native-material-kit/iOS/RCTMaterialKit.xcodeproj"; sourceTree = "<group>"; };
 		9B4A9DD1199240D395E724CD /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
@@ -559,6 +560,7 @@
 		13B07FAE1A68108700A75B9A /* hikerapp */ = {
 			isa = PBXGroup;
 			children = (
+				879C1A471E6EDC3600B83E71 /* hikerapp.entitlements */,
 				9CFDD52D1E4AEFE10082B51C /* GoogleService-Info.plist */,
 				9CFDD4FC1E4AE1830082B51C /* modules */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -893,6 +895,17 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 8RM68JA526;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1533,6 +1546,7 @@
 			baseConfigurationReference = B6513DBFB0BDB0AEBBBA0F6E /* Pods-hikerapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hikerapp/hikerapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 8RM68JA526;
@@ -1551,6 +1565,7 @@
 					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = hikerapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1572,6 +1587,7 @@
 			baseConfigurationReference = 357E11807EE13E1113B707BA /* Pods-hikerapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hikerapp/hikerapp.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RM68JA526;
@@ -1590,6 +1606,7 @@
 					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
 				);
 				INFOPLIST_FILE = hikerapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
