@@ -10,12 +10,12 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-import Menu, {
-  MenuContext,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger,
-} from 'react-native-menu';
+// import Menu, {
+//   MenuContext,
+//   MenuOptions,
+//   MenuOption,
+//   MenuTrigger,
+// } from 'react-native-menu';
 import timelineList from '../../services/timelineList';
 import PostCard from './../Timeline/StatusPostCard/StatusCard';
 import TimelineList from './../Timeline/TimelineList';
@@ -129,22 +129,21 @@ export default class MapMain extends Component {
     );
   }
   render() {
-    if (this.state.loading === false) {
+    if (this.state.loading === true) {
       return (
-        <MenuContext>
-          <ScrollView>
-            <View>
-              <PostCard />
-              <ListView
-                dataSource={ds.cloneWithRows(this.state.list)}
-                renderRow={dataPost => this.renderRow(dataPost)}
-              />
-            </View>
-          </ScrollView>
-        </MenuContext>
+        <ScrollView>
+          <View>
+            <PostCard />
+            <ListView
+              dataSource={ds.cloneWithRows(this.state.list)}
+              renderRow={dataPost => this.renderRow(dataPost)}
+            />
+            <TimelineList />
+          </View>
+        </ScrollView>
       );
     } else {
-      return(
+      return (
         <Text>No Content Display</Text>
       );
     }
