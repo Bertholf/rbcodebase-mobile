@@ -12,6 +12,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
 import ListFollow from './ListFollow';
+import follows from '../../services/follows';
 import strings from '../../localizations';
 
 const styles = StyleSheet.create({
@@ -50,19 +51,37 @@ export default class AddFriendScreen extends React.Component {
     });
   }
 
+  SearchF() {
+    follows.searchFriend()
+    .then((response) => {
+      this.setState({ search: response.data, loading: false }, () => console.log('ini response SEARCHING===', this.state));
+    }).catch((err) => {
+      console.log('SEARCHING ERROR', err);
+      Alert.alert('Cannot Connect to server', '', [{ text: 'OK' }]);
+    });
+  }
+
+//   setSearchText(action){
+//     const filterFriend = this.state.seac.filter(this.state.seachFriend);
+//
+//     this.setState({
+//         dataSource: this.state.dataSource.cloneWithRows(friendlist)
+//     });
+// }
+
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
       console.log('RE RENDER TRIGGERD');
-    })
+    });
   }
 
   render() {
     if (this.state.loading === false) {
       return (
         <View style={styles.container}>
-          {/* <View
-             style={styles.searchRow}
+          <View
+            style={styles.searchRow}
           >
             <TextInput
               style={styles.searchText}
@@ -70,15 +89,14 @@ export default class AddFriendScreen extends React.Component {
               placeholderTextColor="silver"
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
-              editable
-              onChangeText={search => this.setState({ search })}
+              onChangeText={value => this.setState({ searchFriend: value })}
             />
-            <TouchableOpacity >
+            <TouchableOpacity onPress={() => this.SearchF()}>
               <View style={styles.searchBtn} >
                 <Text style={{ color: '#fff' }}>{strings.addfriend.search}</Text>
               </View>
             </TouchableOpacity>
-          </View> */}
+          </View>
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}

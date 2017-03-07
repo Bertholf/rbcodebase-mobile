@@ -9,7 +9,7 @@ import Logout from '../../services/logout';
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       profile: {},

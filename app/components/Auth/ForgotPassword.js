@@ -75,7 +75,7 @@ export default class ForgotPassword extends Component {
           style={style.textInput}
           placeholderTextColor={'silver'}
           onChangeText={email => this.setState({ email })}
-          placeholder={"Email"}
+          placeholder={'Email'}
           underlineColorAndroid={'rgba(0,0,0,0)'}
         />
         {!emailInput || emailValidator ?

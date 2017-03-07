@@ -5,7 +5,6 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
@@ -52,7 +51,7 @@ class userPanel extends React.Component {
   }
 
 
-  componentDidMount(){
+  componentDidMount() {
     auth.profile ()
     .then (response => this.setState({ profile: response.data, loading: false }, () => console.log(this.state)))
     .catch(Err => console.log('err', Err));
