@@ -131,7 +131,7 @@ export default class Profile extends Component {
                 </Text>
               </View>
               <View style={styles.textInform} >
-                <TouchableOpacity onPress={Actions.timelineList}>
+                <TouchableOpacity onPress={() => this.pressScroll()}>
                   <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>

@@ -15,7 +15,7 @@ import Register from './components/Auth/RegisterScreen';
 import LoginScreenEmail from './components/Auth/LoginScreenEmail';
 import Inbox from './components/Profile/Inbox';
 import ForgotPassword from './components/Auth/ForgotPassword';
-import TimelineList from './components/Timeline/TimelineList';
+import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/Profile';
 import AddFriend from './components/Profile/AddFriend';
