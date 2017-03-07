@@ -16,12 +16,12 @@ const NavBar = (props) => {
     <View style={{ flex: 1 }}>
       <StatusBar
         backgroundColor="#c0c0c0"
-        barStyle="light-content"
+        barStyle="dark-content"
       />
       {scenes.length > 0 ? <Animated.View style={{ flex: 1 }}>
         {scenes[scenes.length - 1].hideNavBar ? <View /> : <NavigationBar
           leftButton={<IconClose onPress={Actions.pop} />}
-          statusBar={{ hidden: false }}
+          statusBar={{ hidden: true }}
           title={{ title: scenes[scenes.length - 1].title }}
           style={{ height: 55, backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         />}

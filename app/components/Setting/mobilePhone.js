@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     height: 40,
   },
+  textinputStyle: {
+    height: 40,
+  },
   loginInput: {
     height: 50,
     marginTop: 10,

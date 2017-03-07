@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
   texttw: {
     fontSize: 18,
     color: 'white',
-    marginLeft: 21
+    marginLeft: 21,
   },
   textInput: {
     height: 40,
