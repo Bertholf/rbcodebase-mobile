@@ -11,7 +11,7 @@ export default class IconClose extends Component {
       <TouchableOpacity onPress={this.props.onPress}>
         <Image
           source={icon}
-          style={{ width: 25, height: 25, marginTop: 10, marginLeft: 5 }}
+          style={{ width: 25, height: 25, marginTop: 16, marginLeft: 5 }}
         />
       </TouchableOpacity>
     );
