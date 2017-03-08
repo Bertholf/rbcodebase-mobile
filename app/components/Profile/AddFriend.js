@@ -90,7 +90,7 @@ export default class AddFriendScreen extends React.Component {
               placeholderTextColor="silver"
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
-              onChangeText={value => this.setState({ searchFriend: value })}
+              onChangeText={value => this.setState({ searchFrisend: value })}
             />
             <TouchableOpacity onPress={() => this.SearchF()}>
               <View style={styles.searchBtn} >
