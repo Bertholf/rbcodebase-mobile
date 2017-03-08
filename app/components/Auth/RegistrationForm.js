@@ -313,7 +313,7 @@ export default class RegistrationForm extends Component {
                 </TouchableOpacity>
                 <View style={styles.policyStyle} >
                   <Text>
-                    {strings.register.register_agreement} {this.state.app}
+                    {strings.register.register_agreement}
                   </Text>
                 </View>
                 <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>

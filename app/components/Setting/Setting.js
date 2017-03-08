@@ -47,7 +47,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                {this.state.profile.name_first !== null && this.state.profile.name_last !== null ? <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text> : <Text>{this.state.profile.name_first}{this.state.profile.name_last}</Text> }
+                {this.state.profile.name_first !== null && this.state.profile.name_last !== null ? <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text> : <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_first}{this.state.profile.name_last}</Text> }
                 {/* {this.state.profile.name_first} {this.state.profile.name_last} */}
                 <Image style={styles.image} source={next} />
               </View>
@@ -61,7 +61,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.user_name}</Text>
               </View>
               <View style={{ flexDirection: 'row'}}>
-                {this.state.profile.name_slug == null ? <Text style={{ alignSelf: 'center' }}>{this.state.namaslug}</Text> : <Text>{this.state.profile.name_slug}</Text>}
+                {this.state.profile.name_slug == null ? <Text style={{ alignSelf: 'center' }}>{this.state.namaslug}</Text> : <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_slug}</Text>}
                 {/* {this.state.profile.name_slug} */}
                 <Image style={styles.image} source={next} />
               </View>
@@ -95,7 +95,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                {this.state.profile.email == null ? <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text> : <Text>{this.state.profile.email}</Text>}
+                {this.state.profile.email == null ? <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text> : <Text style={{ alignSelf: 'center' }}>{this.state.profile.email}</Text>}
                 <Image style={styles.image} source={next} />
               </View>
             </View>

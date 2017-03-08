@@ -62,6 +62,7 @@ export default class EmailEdit extends Component {
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55 }}
           />
         </View>
         <ScrollView>

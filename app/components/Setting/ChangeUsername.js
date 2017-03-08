@@ -85,6 +85,7 @@ export default class ChangeUsername extends Component {
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55 }}
           />
         </View>
         <ScrollView>

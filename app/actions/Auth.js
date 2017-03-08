@@ -59,7 +59,7 @@ export function doneLogin(response = {}) {
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     if (response.provider === 'twitter') {
-      auth.checktwitter(response.accessToken, response.provider, response.secret)
+      auth.checktwitter(response.accessToken, response.provider, response.secret, response.oauth_provider_id)
       .then((resL) => {
         if (resL.data.registered === false) {
           Actions.registrationform({
@@ -72,7 +72,7 @@ export function doneLogin(response = {}) {
             provider: response.provider,
           });
         } else {
-          registered(resL.data.access_token, 'twitter');
+          registered(resL.data.access_token, 'twitter')
         }
       });
     } else if (response.provider === 'facebook') {
@@ -160,7 +160,14 @@ export function loginWithTwitter() {
   return (dispatch) => {
     return twitter.signIn()
       .then((response) => {
-        dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret }));
+        const secretCode = response.secret;
+        if (secretCode === undefined) {
+          console.log('THIS IS TWTITTER======', response);
+          dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secretToken, oauth_provider_id: response.userId }));
+        } else {
+          console.log('THIS IS TWTITTER======', response);
+          dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret, oauth_provider_id: response.userId }));
+        }
       })
       .catch(err => err);
   };

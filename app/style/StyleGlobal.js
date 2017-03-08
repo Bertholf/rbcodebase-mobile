@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -8,6 +8,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#fff',
+  },
+  pickerstyle: {
+    ...Platform.select({
+      ios: {
+        width: 130,
+        justifyContent: 'center',
+        alignSelf: 'center',
+      },
+      android: {
+        width: 115,
+        justifyContent: 'center',
+      },
+    }),
+  },
+  picker: {
+    ...Platform.select({
+      ios: {
+        maxHeight: 20,
+      },
+      android: {
+        maxHeight: 14,
+      },
+    }),
   },
   logo: {
     marginTop: 16,
@@ -23,11 +46,23 @@ const styles = StyleSheet.create({
   logoGoogle: {
     height: 23,
     width: 35,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    borderRadius: 48,
-    marginRight: -5,
-    marginLeft: 10,
+    ...Platform.select({
+      ios: {
+        tintColor: '#fff',
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        marginRight: -5,
+        marginLeft: 10
+      },
+      android: {
+        tintColor: '#fff',
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+        borderRadius: 48,
+        marginRight: -5,
+        marginLeft: 10
+      }
+    })
   },
   facebookLogo: {
     height: 30,
@@ -107,7 +142,7 @@ const styles = StyleSheet.create({
   texttw: {
     fontSize: 18,
     color: 'white',
-    marginLeft: 21
+    marginLeft: 21,
   },
   textInput: {
     height: 40,
