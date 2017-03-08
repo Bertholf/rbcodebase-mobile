@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Text,
 } from 'react-native';
+import SearchBar from 'react-native-material-design-searchbar';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
 import ListFollow from './ListFollow';
@@ -92,6 +93,14 @@ export default class AddFriendScreen extends React.Component {
               underlineColorAndroid="rgba(0,0,0,0)"
               onChangeText={value => this.setState({ searchFrisend: value })}
             />
+            {/* <SearchBar
+              onSearchChange={value => this.setState({ searchFrisend: value })}
+              height={50}
+              widht
+              onFocus={() => console.log('On Focus')}
+              onBlur={() => console.log('On Blur')}
+              placeholder={strings.addfriend.search}
+            /> */}
             <TouchableOpacity onPress={() => this.SearchF()}>
               <View style={styles.searchBtn} >
                 <Text style={{ color: '#fff' }}>{strings.addfriend.search}</Text>
@@ -99,6 +108,10 @@ export default class AddFriendScreen extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.listView}>
+            <ListView
+              dataSource={ds.cloneWithRows(this.state.friendlist)}
+              renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
+            />
             {this.SearchF == null ?
               <ListView
                 dataSource={ds.cloneWithRows(this.state.friendlist)}
