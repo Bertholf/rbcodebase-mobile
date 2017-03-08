@@ -28,14 +28,10 @@ const Logout = () => {
         google.signOut();
         Actions.login({ type: 'reset' });
       } else if (temp[1] === 'twitter' && temp[0] !== '') {
-        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        AsyncStorage.multiRemove(['accessToken', 'name_first','userId', 'name_first', 'name_last', 'name_slug', 'email',
+          'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
+          'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });
-        manager.configure({
-          twitter: {
-            consumer_key: TWITTER_CONSUMER_KEY,
-            consumer_secret: TWITTER_CONSUMER_SECRET,
-          },
-        });
         manager.deauthorize('twitter');
         console.log('TWITTER LOG');
         // OAuthManager().deauthorize('twitter');
