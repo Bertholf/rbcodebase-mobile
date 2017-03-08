@@ -8,7 +8,9 @@ import manager from '../actions/Auth';
 const google = NativeModules.GoogleSignInModule;
 const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 const Logout = () => {
-  AsyncStorage.getItem('accessToken')
+  AsyncStorage.multiGet(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
+          'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
+          'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message'])
   .then((accessToken) => {
     let temp1 = [];
     temp1.push(accessToken);
@@ -20,15 +22,19 @@ const Logout = () => {
     })
     .then((temp) => {
       if (temp[1] === 'facebook' && temp[0] !== null) {
-        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON FACEBOOK', response); }, (error) => { console.log(error); });
+        AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
+          'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
+          'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON FACEBOOK', response); }, (error) => { console.log(error); });
         LoginManager.logOut();
         Actions.login({ type: 'reset'});
       } else if (temp[1] === 'google' && temp[0] !== '') {
-        AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
+        AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
+          'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
+          'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         google.signOut();
         Actions.login({ type: 'reset' });
       } else if (temp[1] === 'twitter' && temp[0] !== '') {
-        AsyncStorage.multiRemove(['accessToken', 'name_first','userId', 'name_first', 'name_last', 'name_slug', 'email',
+        AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });

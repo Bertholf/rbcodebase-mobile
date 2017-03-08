@@ -28,35 +28,38 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namafirst);}).catch((res) => console.log('error ambil nama-----'));
-    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namalast);}).catch((res) => console.log('error ambil nama-----'));
+    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
+    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
     auth.profile()
     .then((response) => {
-       this.setState({ profile: response.data }, () => {
-         console.log('profile', this.state.profile);
-         AsyncStorage.multiSet([['userId', JSON.stringify(response.data.id)], ['name_first', (response.data.name_first)],
-         ['name_last', (response.data.name_last)], ['name_slug', (response.data.name_slug)], ['email', (response.data.email)],
-         ['status', JSON.stringify(response.data.status)], ['confirmed', JSON.stringify(response.data.confirmed)],
-         ['verified', JSON.stringify(response.data.verified)], ['language', (response.data.language)],
-         ['timezone', (response.data.timezone)], ['timeline_id', JSON.stringify(response.data.timeline_id)],
-         ['img_avatar', JSON.stringify(response.data.img_avatar)], ['img_background', JSON.stringify(response.data.img_background)],
-        ['referring_user_id', JSON.stringify(response.data.referring_user_id)], ['created_at', JSON.stringify(response.data.created_at)],
-        ['updated_at', JSON.stringify(response.data.updated_at)], ['deleted_at', JSON.stringify(response.data.deleted_at)],
-        // ['current_team_id', JSON.stringify(response.data.current_team_id)],
-        ['picture', JSON.stringify(response.data.picture)], ['registered', JSON.stringify(response.data.registered)], ['message', (response.message)]
-         ])
+      this.setState({ profile: response.data }, () => {
+        console.log('===== profile result =====', this.state.profile);
+        console.log('========== RESPONSE SERVER =========', response);
+        AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
+         ['name_last', response.data.name_last.toString()], ['name_slug', response.data.name_slug.toString()], ['email', (response.data.email)],
+         ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
+         ['verified', response.data.verified.toString()],
+         ['timeline_id', response.data.timeline_id.toString()],
+        //  ['img_avatar', response.data.img_avatar.toString()],
+        // ['referring_user_id', response.data.referring_user_id.toString()],
+        // ['current_team_id', response.data.current_team_id.toString()],
+        ['picture', response.data.picture.toString()],
+        ])
          .then(() => {
+           console.log('SAVE USERDATA 1');
+          //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
-             'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
-             'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message'
+             'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
+             'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
-
-        .then((id) => console.log('==USER ID==', id));
-           console.log('SAVE USERDATA SUKSES')})
-         .catch((err) => console.log('SAVE FAILED', err));
-       });
+        .then(res => console.log('==RESPONSE STORAGE==', res))
+          .catch(err => console.log('ERROR SAVE 1', err));
+           console.log('SAVE USERDATA 2 ');
+         })
+         .catch(err => console.log('SAVE FAILED', err));
+      });
     })
-    .catch(Err => console.log('err,Err'));
+    .catch(Err => console.log('err,Err', Err));
   }
 
   render() {
@@ -70,7 +73,13 @@ export default class Dashboard extends Component {
           }
           </View>
         </TouchableOpacity>
-        {this.state.profile.name_first !== null && this.state.profile.name_last !== null ? <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >{this.state.namafirst} {this.state.namalast} </Text> : <Text>{this.state.profile.name_first} {this.state.profile.name_last} </Text> }
+        {this.state.profile.name_first !== null && this.state.profile.name_last !== null ?
+          <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >
+            {this.state.namafirst} {this.state.namalast}
+          </Text> :
+          <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }}>
+            {this.state.profile.name_first} {this.state.profile.name_last}
+          </Text> }
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>
