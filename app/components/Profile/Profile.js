@@ -27,11 +27,12 @@ export default class Profile extends Component {
       leaderId: this.props.profile.id,
       followed: true,
       countFollow: 0,
-      id: this.props.idFollow,
+      id: '',
       friend: false,
       edit: false,
       button: false,
       me: false,
+      request: false,
     };
   }
 
@@ -70,7 +71,7 @@ export default class Profile extends Component {
       const idFollower = followerId;
       follows.followsomeone(idFollower, this.state.leaderId)
       .then((res) => {
-        this.setState({ followed: true, id: res.data.id, followId: res.data.leader_id });
+        this.setState({ followed: true, request: true, id: res.data.id, followId: res.data.leader_id });
       })
       .catch();
     })
@@ -148,7 +149,7 @@ export default class Profile extends Component {
                   !this.state.me ? (
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                       <TouchableOpacity
-                        disabled={this.props.status.status === 'request'}
+                        disabled={this.props.status.status === 'request' && this.state.request}
                         onPress={() => this.toggleSwitchFollow()}
                       >
                         <Text
@@ -165,7 +166,9 @@ export default class Profile extends Component {
             </View>
             <View style={{ position: 'absolute' }}>
               <View style={styles.viewImgpp}>
-                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                <TouchableOpacity
+                  disabled={this.state.request}
+                  onPress={this.selectPhotoTapped.bind(this)}>
                   { this.state.avatarSource === null ? <Text>change Photo</Text> :
                   <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
                   }
