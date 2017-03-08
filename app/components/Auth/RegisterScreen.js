@@ -64,8 +64,9 @@ export default class Register extends Component {
   registerWithTwitter() {
     twitterModule.signIn()
     .then((res) => {
+      console.log('RESPON TWITTER REGISTER===', res);
       const twitterResponse = res;
-      auth.checktwitter(res.token, res.provider, res.secret)
+      auth.checktwitter(res.token, 'twitter', res.tokenSecret, res.userId)
       .then((resL) => {
         console.log('resL', resL);
         if (resL.data.registered === false) {
