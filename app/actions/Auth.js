@@ -73,7 +73,6 @@ export function doneLogin(response = {}) {
           });
         } else {
           registered(resL.data.access_token, 'twitter')
-          .then(() => this.manager.deauthorize(''));
         }
       });
     } else if (response.provider === 'facebook') {
