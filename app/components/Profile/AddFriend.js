@@ -36,7 +36,7 @@ export default class AddFriendScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: '',
+      search: {},
       loading: true,
       friendlist: {},
     };
@@ -98,10 +98,16 @@ export default class AddFriendScreen extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.listView}>
-            <ListView
-              dataSource={ds.cloneWithRows(this.state.friendlist)}
-              renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
-            />
+            {this.state.friendlist == null ?
+              <ListView
+                dataSource={ds.cloneWithRows(this.state.friendlist)}
+                renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
+              /> :
+              <ListView
+                dataSource={ds.cloneWithRows(this.state.search)}
+                renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
+              />
+            }
           </View>
         </View>
       );
