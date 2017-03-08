@@ -11,8 +11,8 @@ export default {
   register: (name_first, name_last, name_slug, email, password, password_confirmation) => api.post('/api/users/register',
      { name_first, name_last, name_slug, email, password, password_confirmation, client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
-  checktwitter: (access_token, provider, secret) => api.post('/api/after-oauth',
-      { access_token, provider, secret },
+  checktwitter: (access_token, provider, secret, oauth_provider_id) => api.post('/api/after-oauth',
+      { access_token, provider, secret, oauth_provider_id },
   ),
   verify: email => api.post('/api/password/verify',
     { email },
