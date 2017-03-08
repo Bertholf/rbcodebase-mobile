@@ -62,7 +62,7 @@ export default class AddFriendScreen extends React.Component {
   }
 
 //   setSearchText(action){
-//     const filterFriend = this.state.seac.filter(this.state.seachFriend);
+//     const filterFriend = this.state.seac.filter(this .state.seachFriend);
 //
 //     this.setState({
 //         dataSource: this.state.dataSource.cloneWithRows(friendlist)
@@ -75,6 +75,7 @@ export default class AddFriendScreen extends React.Component {
       console.log('RE RENDER TRIGGERD');
     });
   }
+
 
   render() {
     if (this.state.loading === false) {
@@ -98,7 +99,7 @@ export default class AddFriendScreen extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.listView}>
-            {this.state.friendlist == null ?
+            {this.SearchF == null ?
               <ListView
                 dataSource={ds.cloneWithRows(this.state.friendlist)}
                 renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
