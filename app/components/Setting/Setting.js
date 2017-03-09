@@ -14,7 +14,7 @@ export default class Setting extends Component {
     this.state = {
       profile: {},
       loading: true,
-      namaslug: '',
+      nameslug: '',
       namef: '',
       email: '',
       namel: '',
@@ -22,16 +22,34 @@ export default class Setting extends Component {
   }
   componentDidMount() {
     auth.profile()
-    .then(response => this.setState({ profile: response.data }))
-    .catch(Err => Err);
-    AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
-    AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
+    .then((response) => {
+      this.setState({ namef: response.data.name_first, namel: response.data.name_last, nameslug: response.data.name_slug, email: response.data.email }, () => {
+        AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
+         ['name_last', response.data.name_last.toString()], ['name_slug', response.data.name_slug.toString()], ['email', (response.data.email)],
+         ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
+         ['verified', response.data.verified.toString()],
+         ['timeline_id', response.data.timeline_id.toString()],
+        ['picture', response.data.picture.toString()],
+        ])
+         .then(() => {
+           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
+             'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
+             'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
+           ])
+        .then(res => console.log('==RESPONSE STORAGE==', res))
+          .catch(err => console.log('ERROR SAVE 1', err));
+           console.log('SAVE USERDATA 2 ');
+         })
+         .catch(err => console.log('SAVE FAILED', err));
+      });
+    })
+    .catch(Err => {AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+    AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
     AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch((res) => console.log('error ambil namalengkap-----'));
     AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch((res) => console.log('error ambil namalengkap--- --'));
+  });
   }
-  // slugname() {
-  //   AsyncStorage.getItem('name_slug').then((res) => { this.setState({ name_slug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.name_slug); }).catch((res) => console.log('error ambil nama-----'));
-  // }
+
   reRender() {
     this.componentDidMount();
   }
@@ -47,7 +65,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.name}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                {this.state.profile.name_first == null && this.state.profile.name_last !== null  ? <Text style={{ alignSelf: 'center' }}>{this.state.namef}{this.state.namel}</Text> : <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_first} {this.state.profile.name_last}</Text>}
+                <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text>
                 {/* {this.state.profile.name_first} {this.state.profile.name_last} */}
                 <Image style={styles.image} source={next} />
               </View>
@@ -60,8 +78,8 @@ export default class Setting extends Component {
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.user_name}</Text>
               </View>
-              <View style={{ flexDirection: 'row'}}>
-                {this.state.profile.name_slug == null ? <Text style={{ alignSelf: 'center' }}>{this.state.namaslug}</Text> : <Text style={{ alignSelf: 'center' }}>{this.state.profile.name_slug}</Text>}
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ alignSelf: 'center' }}>{this.state.nameslug}</Text>
                 {/* {this.state.profile.name_slug} */}
                 <Image style={styles.image} source={next} />
               </View>
@@ -95,7 +113,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                {this.state.profile.email == null ? <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text> : <Text style={{ alignSelf: 'center' }}>{this.state.profile.email}</Text>}
+              <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
