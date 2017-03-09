@@ -9,6 +9,8 @@ import {
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
+import { Actions } from 'react-native-router-flux';
+import Logout from '../../services/logout';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -28,11 +30,9 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
-    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
     auth.profile()
     .then((response) => {
-      this.setState({ profile: response.data }, () => {
+        this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
         console.log('===== profile result =====', this.state.profile);
         console.log('========== RESPONSE SERVER =========', response);
         AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
@@ -42,7 +42,7 @@ export default class Dashboard extends Component {
          ['timeline_id', response.data.timeline_id.toString()],
         //  ['img_avatar', response.data.img_avatar.toString()],
         // ['referring_user_id', response.data.referring_user_id.toString()],
-        // ['current_team_id', response.data.current_team_id.toString()],
+        // ['current_team_id', response.data.curresnt_team_id.toString()],
         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
@@ -59,7 +59,18 @@ export default class Dashboard extends Component {
          .catch(err => console.log('SAVE FAILED', err));
       });
     })
-    .catch(Err => console.log('err,Err', Err));
+    .catch((err) =>{
+      if (err.response.data.error === 'Unauthenticated'){
+        Logout()
+      } else{
+        AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
+        AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
+      }
+      });
+  }
+
+  reRender() {
+    this.componentDidMount();
   }
 
   render() {
