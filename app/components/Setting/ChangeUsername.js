@@ -4,8 +4,6 @@ import {
   TextInput,
   Text,
   ScrollView,
-  Alert,
-  ToastAndroid,
   Keyboard,
   AsyncStorage,
 } from 'react-native';
@@ -60,13 +58,11 @@ export default class ChangeUsername extends Component {
           this.setState({ profile: response.data, loading: false }, () => {
             this.props.reRender();
           });
-          Keyboard.dismiss();
-          ToastAndroid.show(strings.settings.toast, ToastAndroid.SHORT);
         })
         .catch(Err => Err);
+        Keyboard.dismiss();
         Actions.pop();
       } else {
-        Alert.alert(strings.changeUname.alertError);
       }
     };
 

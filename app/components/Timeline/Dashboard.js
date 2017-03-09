@@ -84,11 +84,9 @@ export default class Dashboard extends Component {
           }
           </View>
         </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.dashboard()} >
-          <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }}>
-                  {this.state.namefirst} {this.state.namelast}
-          </Text>
-          </TouchableOpacity>
+        <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >
+          {this.state.namafirst} {this.state.namalast}
+        </Text>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>

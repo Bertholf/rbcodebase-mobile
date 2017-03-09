@@ -5,7 +5,7 @@ const Loader = ({ message, onPress }) => (
   <View style={{ flex: 1 }}>
     <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={onPress}>
       <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 20 }}>
-        <ActivityIndicator style={{ marginRight: 10 }} />
+        <ActivityIndicator />
         <Text>{message}</Text>
       </View>
     </TouchableOpacity>

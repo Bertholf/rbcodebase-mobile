@@ -57,16 +57,20 @@ export default class Register extends Component {
     Alert.alert('Button Pressed');
   }
 
+  // Register with Google
   registerWithGoogle() {
     google.signIn()
-    .then(({ user }) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }))
+    .then(({ user }) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }));
   }
+  // Register with twitter
   registerWithTwitter() {
     twitterModule.signIn()
     .then((res) => {
       console.log('RESPON TWITTER REGISTER===', res);
       const twitterResponse = res;
-      auth.checktwitter(res.token, 'twitter', res.tokenSecret, res.userId)
+      if (twitterResponse.secret === undefined) {
+        Actions.loaderview();
+        auth.checktwitter(res.token, 'twitter', res.tokenSecret, res.userId)
       .then((resL) => {
         console.log('resL', resL);
         if (resL.data.registered === false) {
@@ -76,13 +80,35 @@ export default class Register extends Component {
             username: resL.data.nickname,
             email: resL.data.email,
             provider: 'twitter',
-            secret: twitterResponse.secret,
+            secret: twitterResponse.tokenSecret,
             accessToken: twitterResponse.token,
+            oauthProviderId: twitterResponse.userId,
           });
         } else {
           this.registered(resL.data.access_token, 'twitter');
         }
       }).catch(err => console.log(err));
+      } else {
+        Actions.loaderview();
+        auth.checktwitter(res.token, 'twitter', res.secret, res.userId)
+        .then((resL) => {
+          console.log('resL', resL);
+          if (resL.data.registered === false) {
+            Actions.registrationform({
+              firstName: resL.data.name.split(' ')[0],
+              lastName: resL.data.name.split(' ')[1],
+              username: resL.data.nickname,
+              email: resL.data.email,
+              provider: 'twitter',
+              secret: twitterResponse.secret,
+              accessToken: twitterResponse.token,
+              oauthProviderId: twitterResponse.userId,
+            });
+          } else {
+            this.registered(resL.data.access_token, 'twitter');
+          }
+        }).catch(err => console.log(err));
+      }
     })
     .catch(err => console.log('ERROR TWITTER', err));
   }
@@ -107,9 +133,9 @@ export default class Register extends Component {
               <TouchableOpacity
                 style={styles.buttonFacebook}
                 activeOpacity={0.7}
-                onPress={() => facebookRegister((token) => this.registered(token, 'facebook'))}
+                onPress={() => facebookRegister(token => this.registered(token, 'facebook'))}
               >
-                <View style={{ flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                   <Image source={facebookLogo} style={styles.facebookLogo} />
                   <Text style={styles.text}>{strings.register.Register_facebook}</Text>
                 </View>

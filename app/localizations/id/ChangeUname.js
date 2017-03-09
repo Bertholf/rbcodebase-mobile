@@ -7,7 +7,7 @@ const ChangeUname = {
   error_same_username: 'Nama Pengguna baru harus berbeda dengan Nama Pengguna lama Anda',
   store: 'SIMPAN',
   placeholder: 'Nama Pengguna baru',
-  alertError: '"Kesalahan", "Nama pengguna tidak sah"'
+  alertError: 'Nama pengguna tidak sah'
 };
 
 export default ChangeUname;

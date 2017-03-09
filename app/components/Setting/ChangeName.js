@@ -4,16 +4,13 @@ import {
   View,
   ScrollView,
   TextInput,
-  Alert,
-  TouchableOpacity,
   Keyboard,
-  ToastAndroid,
   AsyncStorage,
 } from 'react-native';
-import styles from './ChangeSetting/ChangeStyles';
 import NavigationBar from 'react-native-navbar';
-import IconClose from './../../layouts/IconClose';
 import { Actions } from 'react-native-router-flux';
+import styles from './ChangeSetting/ChangeStyles';
+import IconClose from './../../layouts/IconClose';
 import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
@@ -48,10 +45,6 @@ export default class NameEdit extends Component {
       title: strings.settings.save,
       handler: () => validateName(),
     };
-    const leftButtonConfig = {
-      title: 'Cancel',
-      handler: () => Actions.pop(),
-    };
 
     const titleConfig = {
       title: strings.ChangeName.title,
@@ -66,7 +59,6 @@ export default class NameEdit extends Component {
     const currentFirstName = this.state.profile.first_name;
     const currentLastName = this.state.profile.last_name;
     const slug = this.state.profile.name_slug;
-    const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
 
@@ -74,12 +66,9 @@ export default class NameEdit extends Component {
       if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
         if (firstNameInput === currentFirstName) {
           if (lastNameInput === currentLastName) {
-            Alert.alert('Nothing Changed!', 'Your name is same as current :)');
           } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
-            Alert.alert('Success', 'Your Last Name has been Changed');
           }
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
-          Alert.alert('Success', 'Your First Name has been Changed');
         } else {
           console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
@@ -90,13 +79,11 @@ export default class NameEdit extends Component {
           this.props.reRender();
         }))
         .catch(Err => console.log('err', Err));
-          ToastAndroid.show(strings.settings.toast, ToastAndroid.SHORT);
           Keyboard.dismiss();
           Actions.refresh();
           Actions.pop();
         }
       } else {
-        Alert.alert(strings.settings.alerNoInput);
       }
     };
     return (

@@ -72,6 +72,7 @@ export default class ListFollow extends Component {
       friendlist: {},
       statusFollow: [],
       followTableID: '',
+      request: '',
     };
   }
   componentDidMount() {
@@ -162,12 +163,14 @@ export default class ListFollow extends Component {
     .then((followerId) => {
       follows.followsomeone(followerId, leaderId)
       .then((res) => {
-        this.setState({ clicked: false, followTableID: res.data.id });
+        console.log('THIS IS FOLLOW', res);
+        this.setState({ clicked: false, followTableID: res.data.id, request: res.data.status });
       })
       .catch(err => err);
     })
     .catch(err => err);
   }
+
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
@@ -209,6 +212,7 @@ export default class ListFollow extends Component {
               profile: rowData,
               idFollow: this.props.rowData.id,
               status: this.props.rowData,
+              request: this.props.rowData.status,
             })}
           activeOpacity={0.7}
         >
