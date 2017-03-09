@@ -178,11 +178,11 @@ export default class ListFollow extends Component {
     });
   }
 
-  hidebutton() {
-    this.setState({ wait: false }, () => {
-      this.props.data.id;
-    });
-  }
+  // hidebutton() {
+  //   this.setState({ wait: false }, () => {
+  //     this.props.data.id;
+  //   });
+  // }
 
   render() {
     let rowData;
