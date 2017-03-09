@@ -56,6 +56,7 @@ const registered = (token, provider) => {
 };
 
 export function doneLogin(response = {}) {
+  Actions.loaderview();
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     if (response.provider === 'twitter') {
@@ -74,7 +75,7 @@ export function doneLogin(response = {}) {
         } else {
           registered(resL.data.access_token, 'twitter')
         }
-      });
+      }).catch(err => err)
     } else if (response.provider === 'facebook') {
       auth.check(response.accessToken, 'facebook', response.userID)
       .then((resL) => {
@@ -140,6 +141,7 @@ export function loginWithGoogle() {
     .catch(err => dispatch(errorLogin(err)));
   };
 }
+
 export function loginWithFacebook() {
   return (dispatch) => {
     dispatch(requestLogin('Login with Facebook'));
@@ -149,7 +151,10 @@ export function loginWithFacebook() {
         return Promise.reject(result);
       }
       return AccessToken.getCurrentAccessToken();
-    }).then(response => dispatch(doneLogin({ provider: 'facebook', ...response })))
+    }).then(response => {
+      dispatch(requestLogin('Login With Facebook'));
+      dispatch(doneLogin({ provider: 'facebook', ...response }))
+    })
     .catch(err => errorLogin(err));
   };
 }
@@ -158,11 +163,13 @@ export const manager = new OAuthManager('RB Codebase');
 
 export function loginWithTwitter() {
   return (dispatch) => {
+    dispatch(requestLogin('Loging in With Twitter'));
     return twitter.signIn()
       .then((response) => {
         const secretCode = response.secret;
         if (secretCode === undefined) {
           console.log('THIS IS TWTITTER======', response);
+          dispatch(Login)
           dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secretToken, oauth_provider_id: response.userId }));
         } else {
           console.log('THIS IS TWTITTER======', response);

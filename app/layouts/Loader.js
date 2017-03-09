@@ -5,6 +5,7 @@ import {
   TouchableHighlight,
   View,
   Dimensions,
+  Text,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Loader = () => {
+const Loader = (message) => {
   const dismissModal = () => {
     Actions.pop();
   };
@@ -27,7 +28,9 @@ const Loader = () => {
   return (
     <View style={styles.container} >
       <TouchableHighlight style={styles.container} onPress={() => dismissModal()}>
-        <View><ActivityIndicator size={'large'} /></View>
+        <View><ActivityIndicator size={'large'} />
+        <Text>{message}</Text>
+        </View>
       </TouchableHighlight>
     </View>
   );
