@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   Alert,
+  Keyboard,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker';
@@ -51,14 +52,14 @@ export default class editBirthday extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: '2016-01-01',
+      date: '',
       profile: {},
     };
   }
 
   componentDidMount() {
     auth.profile()
-     .then(response => this.setState({ profile: response.data }))
+     .then(response => this.setState({ profile: response.data, date: response.data.date_birth }))
      .catch(Err => Err);
   }
 
@@ -69,7 +70,7 @@ export default class editBirthday extends Component {
   render() {
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => alert(strings.settings.alertSuccess),
+      handler: () => updateBirthday(),
     };
     const leftButtonConfig = {
       title: 'Cancel',
@@ -79,18 +80,21 @@ export default class editBirthday extends Component {
   const titleConfig = {
     title: strings.editBirthday.title,
   };
+    const id = this.state.profile.id;
+    const name_first = this.state.profile.name_first;
+    const name_last = this.state.profile.name_last;
+    const name_slug = this.state.profile.name_slug;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.date_birth;
+    const dateBirth = this.state.date;
     const updateBirthday = () => {
-      const id = this.state.profile.id;
-      const name_first = this.state.profile.name_first;
-      const name_last = this.state.profile.name_last;
-      const name_slug = this.state.profile.name_slug;
-      const phone = this.state.profile.phone;
-      const birthday = this.state.date;
-      saveProfile(id, name_first, name_last, name_slug, phone, birthday);
-      Alert.alert('Success', 'Your birthday has been Changed');
+      saveProfile(id, name_first, name_last, name_slug, phone, dateBirth);
+      // Alert.alert('Success', 'Your birthday has been Changed');
       auth.profile()
-        .then(response => this.setState({ profile:response.data, loading:false }))
+        .then(response => this.setState({ profile: response.data, loading:false }, () => console.log("landing here", dateBirth, birthday)))
         .catch(Err => Err)
+      Keyboard.dismiss();
+      Actions.pop();
     };
     return (
       <View style={{ flex: 1}}>
@@ -107,14 +111,14 @@ export default class editBirthday extends Component {
               <Text style={styles.text}>{strings.editBirthday.birthday}</Text>
             </View>
             <DatePicker
-              date={this.state.date}
+              date={dateBirth}
               placeholder={strings.editBirthday.placeholder}
               format="YYYY-MM-DD"
               minDate="1990-05-01"
               maxDate={this.getDate()}
               confirmBtnText={strings.editBirthday.confirm}
               cancelBtnText={strings.editBirthday.cancel}
-              onDateChange={(date) => { this.setState({ date: date }); }}
+              onDateChange={(dateBirth) => { this.setState({ date: dateBirth }); }}
               customStyles={{
                 dateInput: {
                   borderColor: 'rgba(0,0,0,0)',

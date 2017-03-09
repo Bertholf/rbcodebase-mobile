@@ -18,21 +18,26 @@ export default class Setting extends Component {
       namef: '',
       email: '',
       namel: '',
+      birthday: '',
     };
   }
   componentDidMount() {
     auth.profile()
     .then((response) => {
-      this.setState({ namef: response.data.name_first, namel: response.data.name_last, nameslug: response.data.name_slug, email: response.data.email }, () => {
-        AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
-         ['name_last', response.data.name_last.toString()], ['name_slug', response.data.name_slug.toString()], ['email', (response.data.email)],
+      this.setState({ namef: response.data.name_first, namel: response.data.name_last, nameslug: response.data.name_slug, email: response.data.email, birthday: response.data.date_birth }, () => {
+        AsyncStorage.multiSet([['userId', response.data.id.toString()],
+         ['name_first', response.data.name_first.toString()],
+         ['name_last', response.data.name_last.toString()],
+         ['name_slug', response.data.name_slug.toString()],
+         ['email', (response.data.email)],
+         ['date_birth', (response.data.date_birth)],
          ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
          ['verified', response.data.verified.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
-           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
+           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email', 'date_birth',
              'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
@@ -47,6 +52,7 @@ export default class Setting extends Component {
     AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
     AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch((res) => console.log('error ambil namalengkap-----'));
     AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch((res) => console.log('error ambil namalengkap--- --'));
+    AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res }); console.log('BIRTHDAY KAMUUUUU=====', this.state.birthday); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
   });
   }
 
@@ -91,7 +97,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.birthday}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.profile.date_birth}</Text>
+                <Text style={{ alignSelf: 'center' }}>{this.state.birthday}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>

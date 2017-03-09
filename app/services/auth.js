@@ -26,13 +26,13 @@ export default {
   adprefe: ()=> api.get('/api/me/settings',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
-  updateProfile: (id, name_first, name_last, name_slug, phone, birthday, password, password_confirmation) =>
+  updateProfile: (id, name_first, name_last, name_slug, phone, date_birth, password, password_confirmation) =>
   api.put('/api/users/' + id, {
     name_first,
     name_last,
     name_slug,
     phone,
-    birthday,
+    date_birth,
     password,
     password_confirmation,
     client_id: config.CLIENT_ID,
