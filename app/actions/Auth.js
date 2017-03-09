@@ -163,13 +163,12 @@ export const manager = new OAuthManager('RB Codebase');
 
 export function loginWithTwitter() {
   return (dispatch) => {
-    dispatch(requestLogin('Loging in With Twitter'));
     return twitter.signIn()
       .then((response) => {
         const secretCode = response.secret;
         if (secretCode === undefined) {
           console.log('THIS IS TWTITTER======', response);
-          dispatch(Login)
+          dispatch(requestLogin);
           dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secretToken, oauth_provider_id: response.userId }));
         } else {
           console.log('THIS IS TWTITTER======', response);
