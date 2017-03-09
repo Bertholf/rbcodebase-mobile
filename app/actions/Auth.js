@@ -56,7 +56,6 @@ const registered = (token, provider) => {
 };
 
 export function doneLogin(response = {}) {
-  Actions.loader();
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     if (response.provider === 'twitter') {
