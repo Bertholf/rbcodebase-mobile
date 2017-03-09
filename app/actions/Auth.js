@@ -80,7 +80,7 @@ export function doneLogin(response = {}) {
       auth.check(response.accessToken, 'facebook', response.userID)
       .then((resL) => {
         if (resL.data.registered === false) {
-          const props = {
+          Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],
             email: resL.data.email,
@@ -88,11 +88,8 @@ export function doneLogin(response = {}) {
             provider: 'facebook',
             accessToken: response.accessToken,
             oauthProviderId: response.userID,
-          };
-          Actions.pop();
-          Actions.registrationform(props);
+          });
         } else {
-          Actions.pop();
           registered(resL.data.access_token, 'facebook');
         }
       })
@@ -144,7 +141,6 @@ export function loginWithGoogle() {
 
 export function loginWithFacebook() {
   return (dispatch) => {
-    dispatch(requestLogin('Login with Facebook'));
     return LoginManager.logInWithReadPermissions(['public_profile'])
     .then((result) => {
       if (result.isCancelled) {
@@ -152,7 +148,6 @@ export function loginWithFacebook() {
       }
       return AccessToken.getCurrentAccessToken();
     }).then(response => {
-      dispatch(requestLogin('Login With Facebook'));
       dispatch(doneLogin({ provider: 'facebook', ...response }))
     })
     .catch(err => errorLogin(err));
