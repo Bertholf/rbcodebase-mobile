@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Alert, ListView, ActivityIndicator, AsyncStorage, Text, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Content, ListItem, Body, Right } from 'native-base';
 import follows from '../../services/follows';
 import ListApproval from './ListApproval';
 import strings from '../../localizations';
