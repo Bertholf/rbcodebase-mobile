@@ -236,7 +236,7 @@ export default class ListFollow extends Component {
         >
           {/* This is condition for text change  */}
           <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-            {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
+            {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Pending' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
         </TouchableOpacity>
         </Right>
       </ListItem>
