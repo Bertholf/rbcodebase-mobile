@@ -164,7 +164,7 @@ export function loginWithTwitter() {
         if (secretCode === undefined) {
           console.log('THIS IS TWTITTER======', response);
           dispatch(requestLogin);
-          dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secretToken, oauth_provider_id: response.userId }));
+          dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.tokenSecret, oauth_provider_id: response.userId }));
         } else {
           console.log('THIS IS TWTITTER======', response);
           dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret, oauth_provider_id: response.userId }));
