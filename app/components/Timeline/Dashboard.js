@@ -9,6 +9,8 @@ import {
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
+import { Actions } from 'react-native-router-flux';
+import Logout from '../../services/logout';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -30,10 +32,6 @@ export default class Dashboard extends Component {
   componentDidMount() {
     auth.profile()
     .then((response) => {
-      if (response ==='Unauthenticated') {
-        console.log(response, "RESPON LOGOUT");
-        Actions.logout()
-      } else {
         this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
         console.log('===== profile result =====', this.state.profile);
         console.log('========== RESPONSE SERVER =========', response);
@@ -60,10 +58,14 @@ export default class Dashboard extends Component {
          })
          .catch(err => console.log('SAVE FAILED', err));
       });
-    }
     })
-    .catch(Err =>{  AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
-      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
+    .catch((err) =>{
+      if (err.response.data.error === 'Unauthenticated'){
+        Logout()
+      } else{
+        AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
+        AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
+      }
       });
   }
 
