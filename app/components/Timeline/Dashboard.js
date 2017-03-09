@@ -28,11 +28,13 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
-    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
     auth.profile()
     .then((response) => {
-      this.setState({ profile: response.data }, () => {
+      if (response ==='Unauthenticated') {
+        console.log(response, "RESPON LOGOUT");
+        Actions.logout()
+      } else {
+        this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
         console.log('===== profile result =====', this.state.profile);
         console.log('========== RESPONSE SERVER =========', response);
         AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
@@ -42,7 +44,7 @@ export default class Dashboard extends Component {
          ['timeline_id', response.data.timeline_id.toString()],
         //  ['img_avatar', response.data.img_avatar.toString()],
         // ['referring_user_id', response.data.referring_user_id.toString()],
-        // ['current_team_id', response.data.current_team_id.toString()],
+        // ['current_team_id', response.data.curresnt_team_id.toString()],
         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
@@ -58,8 +60,15 @@ export default class Dashboard extends Component {
          })
          .catch(err => console.log('SAVE FAILED', err));
       });
+    }
     })
-    .catch(Err => console.log('err,Err', Err));
+    .catch(Err =>{  AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
+      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
+      });
+  }
+
+  reRender() {
+    this.componentDidMount();
   }
 
   render() {
@@ -73,13 +82,11 @@ export default class Dashboard extends Component {
           }
           </View>
         </TouchableOpacity>
-        {this.state.profile.name_first !== null && this.state.profile.name_last !== null ?
-          <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >
-            {this.state.namafirst} {this.state.namalast}
-          </Text> :
+          <TouchableOpacity onPress={() => Actions.dashboard()} >
           <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }}>
-            {this.state.profile.name_first} {this.state.profile.name_last}
-          </Text> }
+                  {this.state.namefirst} {this.state.namelast}
+          </Text>
+          </TouchableOpacity>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <View style={{ justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
             <View style={{ justifyContent: 'flex-end' }}>
