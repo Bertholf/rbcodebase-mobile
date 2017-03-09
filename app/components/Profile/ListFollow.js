@@ -73,6 +73,7 @@ export default class ListFollow extends Component {
       statusFollow: [],
       followTableID: '',
       request: '',
+      wait: false,
     };
   }
   componentDidMount() {
@@ -174,7 +175,13 @@ export default class ListFollow extends Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-    })
+    });
+  }
+
+  hidebutton() {
+    this.setState({ wait: false }, () => {
+      this.props.data.id;
+    });
   }
 
   render() {

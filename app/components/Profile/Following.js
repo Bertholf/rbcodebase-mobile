@@ -20,6 +20,7 @@ export default class Friendlist extends React.Component {
       loading: true,
       nodata: false,
       following: [],
+      wait: '',
     };
   }
 
