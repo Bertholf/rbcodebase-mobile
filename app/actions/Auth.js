@@ -56,7 +56,7 @@ const registered = (token, provider) => {
 };
 
 export function doneLogin(response = {}) {
-  Actions.loaderview();
+  Actions.loader();
   if (response) {
     AsyncStorage.setItem('provider', response.provider);
     if (response.provider === 'twitter') {
@@ -148,7 +148,6 @@ export function loginWithFacebook() {
       }
       return AccessToken.getCurrentAccessToken();
     }).then(response => {
-      dispatch(requestLogin);
       dispatch(doneLogin({ provider: 'facebook', ...response }))
     })
     .catch(err => errorLogin(err));
