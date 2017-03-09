@@ -68,7 +68,7 @@ export default class Register extends Component {
     .then((res) => {
       console.log('RESPON TWITTER REGISTER===', res);
       const twitterResponse = res;
-      if (twitterResponse.secret === 'undefined') {
+      if (twitterResponse.secret === undefined) {
         Actions.loaderview();
         auth.checktwitter(res.token, 'twitter', res.tokenSecret, res.userId)
       .then((resL) => {

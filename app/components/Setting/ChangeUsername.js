@@ -7,7 +7,6 @@ import {
   Keyboard,
   AsyncStorage,
 } from 'react-native';
-import Toast from 'react-native-simple-toast';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
 import styles from './ChangeSetting/ChangeStyles';
@@ -59,13 +58,11 @@ export default class ChangeUsername extends Component {
           this.setState({ profile: response.data, loading: false }, () => {
             this.props.reRender();
           });
-          Toast.show(strings.settings.saved);
         })
         .catch(Err => Err);
         Keyboard.dismiss();
         Actions.pop();
       } else {
-        Toast.show(strings.changeUname.alertError);
       }
     };
 

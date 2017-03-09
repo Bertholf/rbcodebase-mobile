@@ -7,7 +7,6 @@ import {
   Keyboard,
   AsyncStorage,
 } from 'react-native';
-import Toast from 'react-native-simple-toast';
 import NavigationBar from 'react-native-navbar';
 import { Actions } from 'react-native-router-flux';
 import styles from './ChangeSetting/ChangeStyles';
@@ -67,12 +66,9 @@ export default class NameEdit extends Component {
       if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
         if (firstNameInput === currentFirstName) {
           if (lastNameInput === currentLastName) {
-            Toast.show(strings.settings.noChange);
           } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
-            Toast.show(strings.settings.lastnameChange);
           }
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
-          Toast.show(strings.settings.firstnameChange);
         } else {
           console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
@@ -81,7 +77,6 @@ export default class NameEdit extends Component {
           auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
           this.props.reRender();
-          Toast.show(strings.settings.saved);
         }))
         .catch(Err => console.log('err', Err));
           Keyboard.dismiss();
@@ -89,7 +84,6 @@ export default class NameEdit extends Component {
           Actions.pop();
         }
       } else {
-        Toast.show(strings.settings.alertNoInput);
       }
     };
     return (
