@@ -975,6 +975,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				EC8F099215B4900302E2A606 /* [CP] Embed Pods Frameworks */,
 				914CF91DD78A9E31898D24CE /* [CP] Copy Pods Resources */,
+				8728F66E1E71B81900DEC4B6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1502,6 +1503,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		8728F66E1E71B81900DEC4B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 		8F37B87F6DA5C46D7688A36E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1760,8 +1774,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "1086ca9c-cc75-4228-9c46-d4e462a67986";
 				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Release";
+=======
+				PROVISIONING_PROFILE = "92c9b5b0-5885-4833-8b5e-86ce8d0a99d9";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Dev";
+>>>>>>> project
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
