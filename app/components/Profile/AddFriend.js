@@ -12,6 +12,7 @@ import {
 import SearchBar from 'react-native-material-design-searchbar';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
+import follow from '../../services/follows';
 import ListFollow from './ListFollow';
 import follows from '../../services/follows';
 import strings from '../../localizations';
@@ -43,7 +44,7 @@ export default class AddFriendScreen extends React.Component {
     };
   }
   componentDidMount() {
-    friend.getFriend()
+    follow.search(this.props.name)
     .then((response) => {
       this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
@@ -52,24 +53,15 @@ export default class AddFriendScreen extends React.Component {
     });
   }
 
-  SearchF() {
-    follows.searchFriend()
+  followRequest() {
+    follow.search(this.state.search)
     .then((response) => {
-      this.setState({ search: response.data, loading: false }, () => console.log('ini response SEARCHING===', this.state));
+      this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
-      console.log('SEARCHING ERROR', err);
-      Alert.alert('Cannot Connect to server', '', [{ text: 'OK' }]);
+      console.log('ADD FRIEND ERROR', err);
+      Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
     });
   }
-
-//   setSearchText(action){
-//     const filterFriend = this.state.seac.filter(this .state.seachFriend);
-//
-//     this.setState({
-//         dataSource: this.state.dataSource.cloneWithRows(friendlist)
-//     });
-// }
-
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();

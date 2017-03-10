@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
@@ -52,6 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
               new MainReactPackage(),
+            new ReactNativeLocalizationPackage(),
             new FIRMessagingPackage(),
               new ReactNativeLocalizationPackage(),
               new RCTSplashScreenPackage(),
