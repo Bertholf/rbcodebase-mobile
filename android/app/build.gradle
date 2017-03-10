@@ -142,7 +142,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-localization')
     compile project(':react-native-fcm')
     compile 'com.google.firebase:firebase-core:10.2.0'
     compile project(':react-native-smart-splash-screen')
