@@ -110,7 +110,7 @@ export default class MobilePhone extends Component {
       const savePhone = () => {
       if (phone != null) {
         saveProfile(id, name_first, name_last, name_slug, phone, birthday);
-        Toast.show(strings.mobilephone.phoneChanged);
+        //Toast.show(strings.mobilephone.phoneChanged);
         this.clearText('textInput')
         auth.profile ()
           .then(response => {
@@ -122,7 +122,7 @@ export default class MobilePhone extends Component {
           Keyboard.dismiss();
           Actions.pop();
       } else {
-        Toast.show(strings.mobilephone.alert_input);
+      //  Toast.show(strings.mobilephone.alert_input);
       }
     };
     return (

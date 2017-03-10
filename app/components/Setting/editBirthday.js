@@ -90,7 +90,7 @@ export default class editBirthday extends Component {
     const dateBirth = this.state.date;
     const updateBirthday = () => {
       saveProfile(id, name_first, name_last, name_slug, phone, dateBirth, birthday);
-        Toast.show(strings.mobilephone.phoneChanged);
+      //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
       .then(response => {
         this.setState({ profile: response.data, loading: false }, () => {
