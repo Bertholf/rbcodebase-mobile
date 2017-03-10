@@ -80,14 +80,13 @@ export default class AddFriendScreen extends React.Component {
             style={styles.searchRow}
           >
             <Container>
-              <Item>
+              <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
                 <Icon name="search" />
-                <Input 
+                <Input
                   placeholder="Search People"
                   onSubmitEditing={() => this.rerender()}
                   onChangeText={value => this.setState({ name: value })}
                 />
-                <Icon name="people" />
               </Item>
             </Container>
           </View>
@@ -95,7 +94,7 @@ export default class AddFriendScreen extends React.Component {
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
-            />
+          />
           </View>
         </View>
       );
