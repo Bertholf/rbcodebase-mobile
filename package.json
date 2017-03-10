@@ -52,7 +52,6 @@
     "react-native-redux-router": "^1.0.7",
     "react-native-router-flux": "^3.37.0",
     "react-native-simple-gesture": "0.0.2",
-    "react-native-simple-toast": "0.0.5",
     "react-native-sliding-up-panel": "^1.1.11",
     "react-native-smart-splash-screen": "^2.3.3",
     "react-native-stateless-form": "^0.2.2",

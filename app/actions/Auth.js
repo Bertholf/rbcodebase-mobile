@@ -74,12 +74,12 @@ export function doneLogin(response = {}) {
         } else {
           registered(resL.data.access_token, 'twitter')
         }
-      });
+      }).catch(err => err)
     } else if (response.provider === 'facebook') {
       auth.check(response.accessToken, 'facebook', response.userID)
       .then((resL) => {
         if (resL.data.registered === false) {
-          const props = {
+          Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],
             email: resL.data.email,
@@ -87,11 +87,8 @@ export function doneLogin(response = {}) {
             provider: 'facebook',
             accessToken: response.accessToken,
             oauthProviderId: response.userID,
-          };
-          Actions.pop();
-          Actions.registrationform(props);
+          });
         } else {
-          Actions.pop();
           registered(resL.data.access_token, 'facebook');
         }
       })
@@ -140,16 +137,18 @@ export function loginWithGoogle() {
     .catch(err => dispatch(errorLogin(err)));
   };
 }
+
 export function loginWithFacebook() {
   return (dispatch) => {
-    dispatch(requestLogin('Login with Facebook'));
     return LoginManager.logInWithReadPermissions(['public_profile'])
     .then((result) => {
       if (result.isCancelled) {
         return Promise.reject(result);
       }
       return AccessToken.getCurrentAccessToken();
-    }).then(response => dispatch(doneLogin({ provider: 'facebook', ...response })))
+    }).then(response => {
+      dispatch(doneLogin({ provider: 'facebook', ...response }))
+    })
     .catch(err => errorLogin(err));
   };
 }
@@ -163,7 +162,8 @@ export function loginWithTwitter() {
         const secretCode = response.secret;
         if (secretCode === undefined) {
           console.log('THIS IS TWTITTER======', response);
-          dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secretToken, oauth_provider_id: response.userId }));
+          Actions.pop();
+          dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.tokenSecret, oauth_provider_id: response.userId }));
         } else {
           console.log('THIS IS TWTITTER======', response);
           dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret, oauth_provider_id: response.userId }));
