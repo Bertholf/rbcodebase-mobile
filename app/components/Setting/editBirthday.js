@@ -88,14 +88,20 @@ export default class editBirthday extends Component {
     const birthday = this.state.profile.date_birth;
     const dateBirth = this.state.date;
     const updateBirthday = () => {
-      saveProfile(id, name_first, name_last, name_slug, phone, dateBirth);
+      saveProfile(id, name_first, name_last, name_slug, phone, dateBirth, birthday);
       // Alert.alert('Success', 'Your birthday has been Changed');
       auth.profile()
-        .then(response => this.setState({ profile: response.data, loading:false }, () => console.log("landing here", dateBirth, birthday)))
-        .catch(Err => Err)
+      .then(response => {
+        this.setState({ profile: response.data, loading: false }, () => {
+          this.props.reRender();
+        });
+      })
+      .catch(Err => Err);
       Keyboard.dismiss();
       Actions.pop();
-    };
+  };
+
+
     return (
       <View style={{ flex: 1}}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
