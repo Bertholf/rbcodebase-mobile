@@ -31,7 +31,7 @@ export default class Setting extends Component {
          ['name_last', response.data.name_last.toString()],
          ['name_slug', response.data.name_slug.toString()],
          ['email', (response.data.email)],
-         ['date_birth', (response.data.date_birth)],
+         ['date_birth', response.data.date_birth.toString()],
          ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
          ['verified', response.data.verified.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
