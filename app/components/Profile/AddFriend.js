@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
+import follow from '../../services/follows';
 import ListFollow from './ListFollow';
 import strings from '../../localizations';
 
@@ -41,7 +42,7 @@ export default class AddFriendScreen extends React.Component {
     };
   }
   componentDidMount() {
-    friend.getFriend()
+    follow.search(this.props.name)
     .then((response) => {
       this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
@@ -50,6 +51,16 @@ export default class AddFriendScreen extends React.Component {
     });
   }
 
+  followRequest() {
+    follow.search(this.state.search)
+    .then((response) => {
+      this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
+    }).catch((err) => {
+      console.log('ADD FRIEND ERROR', err);
+      Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
+    });
+  }
+  
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
