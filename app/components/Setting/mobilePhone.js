@@ -4,6 +4,7 @@ import {
    View,
    TextInput,
    StyleSheet,
+   Keyboard,
  } from 'react-native';
 import Toast from 'react-native-simple-toast';
 import saveProfile from '../../services/updateProfile';
@@ -70,8 +71,8 @@ export default class MobilePhone extends Component {
   }
   componentDidMount() {
     auth.profile ()
-    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-    .catch(Err=> console.log('err', Err))
+    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
+    .catch(Err=> Err)
   }
   onChanged(text) {
     let newText = '';
@@ -81,7 +82,7 @@ export default class MobilePhone extends Component {
       if (numbers.indexOf(text[i] >-1)) {
           newText = newText + text[i];
       }
-      this.setState({ myNumber: newText });
+      this.setState({ phone: newText });
     }
   }
 
@@ -97,22 +98,29 @@ export default class MobilePhone extends Component {
     const titleConfig = {
       title: strings.mobilephone.titleEditPhone,
     };
-    const savePhone = () => {
+
       const id = this.state.profile.id;
       const name_first = this.state.profile.name_first;
       const name_last = this.state.profile.name_last;
       const name_slug = this.state.profile.name_slug;
       const email = this.state.profile.email;
       const birthday = this.state.profile.birthday;
-      const phone = this.state.myNumber;
-      console.log('Phone Nubmer==>', phone);
+      const numberphone = this.state.profile.cell_number;
+      const phone = this.state.phone;
+      const savePhone = () => {
       if (phone != null) {
         saveProfile(id, name_first, name_last, name_slug, phone, birthday);
         Toast.show(strings.mobilephone.phoneChanged);
         this.clearText('textInput')
         auth.profile ()
-          .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
+          .then(response => {
+            this.setState({ profile: response.data, loading: false }, () => {
+              this.props.reRender();
+            });
+          })
           .catch(Err=> console.log('err', Err))
+          Keyboard.dismiss();
+          Actions.pop();
       } else {
         Toast.show(strings.mobilephone.alert_input);
       }
@@ -135,8 +143,8 @@ export default class MobilePhone extends Component {
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
               style={styles.textinputStyle}
-              keyboardType="numeric"
-              onChangeText={text => this.onChanged(text)}
+              value={this.state.profile.cell_number}
+              editable={false}
               maxLength={12}
             />
           </View>
@@ -149,7 +157,7 @@ export default class MobilePhone extends Component {
               underlineColorAndroid="rgba(0,0,0,0)"
               style={styles.textinputStyle}
               keyboardType="numeric"
-              onChangeText={text => this.onChanged(text)}
+              onChangeText={numberphone => this.setState({ phone: numberphone })}
               maxLength={12}
             />
           </View>
