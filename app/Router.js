@@ -233,7 +233,7 @@ const Routing = (props) => (
             <Scene
               key={'addfriendscreen'} component={AddFriendScreen} title={strings.settings.adduser}
             />
-            <Scene key={'searchpage'} component={SearchPage} />
+            <Scene key={'searchpage'} component={SearchPage} title={'Search'} />
             <Scene key={'loaderview'} component={LoaderView} hideNavBar />
             <Scene key={'tos'} hideNavBar component={TOSContainer} />
             <Scene key={'pp'} hideNavBar component={PPContainer} />
