@@ -64,6 +64,8 @@ export default class MobilePhone extends Component {
     super(props);
     this.state = {
       profile: {},
+      phone: '',
+
     };
   }
   componentDidMount() {
