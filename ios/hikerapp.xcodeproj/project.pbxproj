@@ -1000,7 +1000,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 8RM68JA526;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1692,7 +1692,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8RM68JA526;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1719,8 +1719,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "92c9b5b0-5885-4833-8b5e-86ce8d0a99d9";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1731,9 +1731,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = hikerapp/hikerapp.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8RM68JA526;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1760,8 +1760,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rbcodebase.app;
 				PRODUCT_NAME = hikerapp;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "1086ca9c-cc75-4228-9c46-d4e462a67986";
+				PROVISIONING_PROFILE_SPECIFIER = "RBCodebase Release";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
