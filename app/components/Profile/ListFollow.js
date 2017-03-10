@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage, ActivityIndicator } from 'react-native';
 import { Content, ListItem, Body, Right } from 'native-base';
 import strings from '../../localizations';
 import follows from '../../services/follows';
@@ -72,24 +72,28 @@ export default class ListFollow extends Component {
       friendlist: {},
       statusFollow: [],
       followTableID: '',
-      request: '',
+      request: false,
+      wait: false,
     };
   }
   componentDidMount() {
     if (this.props.rowData.status === 'request') {
-      this.setState({ clicked: false });
+      this.setState({ clicked: false, request: true, loading: false });
     }
     if (this.props.rowData.type === 'following') {
       const idFol = this.props.rowData.follower_id;
       const idLed = this.props.rowData.leader_id;
       follows.showFollowing2(idLed, idFol)
-        .then(() => { this.setState({ clicked: false }); })
+        .then(() => { this.setState({ clicked: false, request: true, loading: false }); })
         .catch(() => { this.setState({ clicked: true }); });
     } else if (this.props.rowData.type === 'following') {
-      this.setState({clicked: false});
+      this.setState({ clicked: false, loading: false });
     }
     if (this.props.rowData.type === 'follower') {
-
+      this.setState({ loading: false });
+    }
+    else if (this.props.rowData.type === 'search'){
+        this.setState({ loading: false });
     }
   }
   updateFollowData(targetID) {
@@ -174,8 +178,14 @@ export default class ListFollow extends Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
-    })
+    });
   }
+
+  // hidebutton() {
+  //   this.setState({ wait: false }, () => {
+  //     this.props.data.id;
+  //   });
+  // }
 
   render() {
     let rowData;
@@ -229,6 +239,7 @@ export default class ListFollow extends Component {
           </Body>
         </TouchableOpacity>
         <Right>
+          {this.state.loading ? <ActivityIndicator /> :
         <TouchableOpacity
           disabled={this.props.rowData.status === 'request' ? true : setting.privacy_follow !== 'none' ? false : true } onPress={() => {
             this.toggleSwitch(rowData.id);
@@ -236,8 +247,8 @@ export default class ListFollow extends Component {
         >
           {/* This is condition for text change  */}
           <Text style={this.props.rowData.type === 'follower' ? '' : this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-            {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Requested' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
-        </TouchableOpacity>
+            {this.props.rowData.type === 'follower' ? '' : this.props.rowData.status === 'request' ? 'Pending' : this.state.clicked ? strings.listfollow.follow : strings.listfollow.unfollow} </Text>
+        </TouchableOpacity>}
         </Right>
       </ListItem>
     );

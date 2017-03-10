@@ -20,6 +20,7 @@ export default class Friendlist extends React.Component {
       loading: true,
       nodata: false,
       following: [],
+      wait: '',
     };
   }
 
@@ -34,6 +35,7 @@ export default class Friendlist extends React.Component {
         follows.showFollowing(myId)
         .then((res) => {
           this.changeState(res);
+          console.log('ini ================== hasil', res);
         })
         .catch();
       })

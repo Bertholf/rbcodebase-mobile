@@ -9,10 +9,12 @@ import {
   ActivityIndicator,
   Text,
 } from 'react-native';
+import SearchBar from 'react-native-material-design-searchbar';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
 import follow from '../../services/follows';
 import ListFollow from './ListFollow';
+import follows from '../../services/follows';
 import strings from '../../localizations';
 
 const styles = StyleSheet.create({
@@ -36,7 +38,7 @@ export default class AddFriendScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: '',
+      search: {},
       loading: true,
       friendlist: {},
     };
@@ -60,20 +62,20 @@ export default class AddFriendScreen extends React.Component {
       Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
     });
   }
-  
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
       console.log('RE RENDER TRIGGERD');
-    })
+    });
   }
+
 
   render() {
     if (this.state.loading === false) {
       return (
         <View style={styles.container}>
-          {/* <View
-             style={styles.searchRow}
+          <View
+            style={styles.searchRow}
           >
             <TextInput
               style={styles.searchText}
@@ -81,20 +83,37 @@ export default class AddFriendScreen extends React.Component {
               placeholderTextColor="silver"
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
-              editable
-              onChangeText={search => this.setState({ search })}
+              onChangeText={value => this.setState({ searchFrisend: value })}
             />
-            <TouchableOpacity >
+            {/* <SearchBar
+              onSearchChange={value => this.setState({ searchFrisend: value })}
+              height={50}
+              widht
+              onFocus={() => console.log('On Focus')}
+              onBlur={() => console.log('On Blur')}
+              placeholder={strings.addfriend.search}
+            /> */}
+            <TouchableOpacity onPress={() => this.SearchF()}>
               <View style={styles.searchBtn} >
                 <Text style={{ color: '#fff' }}>{strings.addfriend.search}</Text>
               </View>
             </TouchableOpacity>
-          </View> */}
+          </View>
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
             />
+            {this.SearchF == null ?
+              <ListView
+                dataSource={ds.cloneWithRows(this.state.friendlist)}
+                renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
+              /> :
+              <ListView
+                dataSource={ds.cloneWithRows(this.state.search)}
+                renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
+              />
+            }
           </View>
         </View>
       );
