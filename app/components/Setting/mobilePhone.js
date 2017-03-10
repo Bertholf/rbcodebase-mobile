@@ -3,10 +3,10 @@ import {
    Text,
    View,
    TextInput,
-   TouchableOpacity,
    StyleSheet,
-   Alert,
+   Keyboard,
  } from 'react-native';
+import Toast from 'react-native-simple-toast';
 import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
 import NavigationBar from 'react-native-navbar';
@@ -65,12 +65,14 @@ export default class MobilePhone extends Component {
     super(props);
     this.state = {
       profile: {},
+      phone: '',
+
     };
   }
   componentDidMount() {
     auth.profile ()
-    .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-    .catch(Err=> console.log('err', Err))
+    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
+    .catch(Err=> Err)
   }
   onChanged(text) {
     let newText = '';
@@ -80,7 +82,7 @@ export default class MobilePhone extends Component {
       if (numbers.indexOf(text[i] >-1)) {
           newText = newText + text[i];
       }
-      this.setState({ myNumber: newText });
+      this.setState({ phone: newText });
     }
   }
 
@@ -89,70 +91,78 @@ export default class MobilePhone extends Component {
   }
   render() {
     const rightButtonConfig = {
-    title: strings.mobilephone.titleSave,
-    handler: () => alert(strings.mobilephone.allertSuccess),
-  };
-    const leftButtonConfig = {
-    title: strings.mobilephone.titleCancel,
-    handler: () => Actions.pop(),
-  };
+      title: strings.mobilephone.titleSave,
+      handler: () => savePhone(),
+    };
 
-  const titleConfig = {
-    title: strings.mobilephone.titleEditPhone,
-  };
-    const savePhone = () => {
+    const titleConfig = {
+      title: strings.mobilephone.titleEditPhone,
+    };
+
       const id = this.state.profile.id;
       const name_first = this.state.profile.name_first;
       const name_last = this.state.profile.name_last;
       const name_slug = this.state.profile.name_slug;
       const email = this.state.profile.email;
       const birthday = this.state.profile.birthday;
-      const phone = this.state.myNumber;
-      console.log('Phone Nubmer==>', phone);
-      saveProfile(id, name_first, name_last, name_slug, phone, birthday);
-      Alert.alert(strings.mobilephone.alertTitleSuccess, strings.mobilephone.alertBodySuccess);
-      this.clearText('textInput')
-      auth.profile ()
-        .then (response => this.setState({profile:response.data, loading:false}, () => console.log(this.state)))
-        .catch(Err=> console.log('err', Err))
+      const numberphone = this.state.profile.cell_number;
+      const phone = this.state.phone;
+      const savePhone = () => {
+      if (phone != null) {
+        saveProfile(id, name_first, name_last, name_slug, phone, birthday);
+        //Toast.show(strings.mobilephone.phoneChanged);
+        this.clearText('textInput')
+        auth.profile ()
+          .then(response => {
+            this.setState({ profile: response.data, loading: false }, () => {
+              this.props.reRender();
+            });
+          })
+          .catch(Err=> console.log('err', Err))
+          Keyboard.dismiss();
+          Actions.pop();
+      } else {
+      //  Toast.show(strings.mobilephone.alert_input);
+      }
     };
     return (
       <View>
-      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
-        <NavigationBar
-          title={titleConfig}
-          rightButton={rightButtonConfig}
-          leftButton={<IconClose onPress={Actions.pop} />}/>
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.heading}></Text>
-        <View style={styles.textinputWrapperStyle}>
-          <TextInput
-            placeholder={strings.mobilephone.placeholderOldNumber}
-            placeholderTextColor="silver"
-            selectionColor="silver"
-            underlineColorAndroid="rgba(0,0,0,0)"
-            style={styles.textinputStyle}
-            keyboardType="numeric"
-            onChangeText={text => this.onChanged(text)}
-            maxLength={12}
-            />
+        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig}
+            leftButton={<IconClose onPress={Actions.pop} />}
+          />
         </View>
-        <View style={styles.textinputWrapperStyle}>
-          <TextInput
-            ref={'textInput'}
-            placeholder={strings.mobilephone.placeholderNewPhoneNumber}
-            placeholderTextColor="silver"
-            selectionColor="silver"
-            underlineColorAndroid="rgba(0,0,0,0)"
-            style={styles.textinputStyle}
-            keyboardType="numeric"
-            onChangeText={text => this.onChanged(text)}
-            maxLength={12}
+        <View style={styles.container}>
+          <Text style={styles.heading}></Text>
+          <View style={styles.textinputWrapperStyle}>
+            <TextInput
+              placeholder={strings.mobilephone.placeholderOldNumber}
+              placeholderTextColor="silver"
+              selectionColor="silver"
+              underlineColorAndroid="rgba(0,0,0,0)"
+              style={styles.textinputStyle}
+              value={this.state.profile.cell_number}
+              editable={false}
+              maxLength={12}
             />
+          </View>
+          <View style={styles.textinputWrapperStyle}>
+            <TextInput
+              ref={'textInput'}
+              placeholder={strings.mobilephone.placeholderNewPhoneNumber}
+              placeholderTextColor="silver"
+              selectionColor="silver"
+              underlineColorAndroid="rgba(0,0,0,0)"
+              style={styles.textinputStyle}
+              keyboardType="numeric"
+              onChangeText={numberphone => this.setState({ phone: numberphone })}
+              maxLength={12}
+            />
+          </View>
         </View>
       </View>
-      </View>
-       );
-     }
+    );
+  }
 }

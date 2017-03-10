@@ -1,12 +1,11 @@
 const mobilephone = {
-  alertSuccess: 'Successfull!',
   titleSave: 'Save',
   titleCancel: 'Cancel',
-  titleEditPhone: 'Edit Phone',
-  alerTitleSuccess: 'Success',
-  alerBody: 'Your Phone Number has been Changed',
-  placeholderOldNumber: 'Old Phone Number',
-  placeholderNewPhoneNumber: 'New Phone Number',
+  titleEditPhone: 'Edit phone',
+  phoneChanged: 'Your phone number has been changed',
+  alert_input: 'Please input your phone number',
+  placeholderOldNumber: 'Old phone number',
+  placeholderNewPhoneNumber: 'New phone number',
 };
 
 export default mobilephone;
