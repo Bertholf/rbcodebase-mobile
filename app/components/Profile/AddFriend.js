@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
+import follow from '../../services/follows';
 import ListFollow from './ListFollow';
 import strings from '../../localizations';
 
@@ -41,7 +42,7 @@ export default class AddFriendScreen extends React.Component {
     };
   }
   componentDidMount() {
-    friend.getFriend()
+    follow.search('rangga')
     .then((response) => {
       this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {

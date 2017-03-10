@@ -103,7 +103,7 @@ class userPanel extends React.Component {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.imgLinksContainer}
-                onPress={Actions.addfriendscreen}
+                onPress={Actions.searchpage}
               >
                 <Image source={searchFriend} style={[styles.imgLinks, { tintColor: '#000' }]} />
                 <Text style={styles.textLinks}>{strings.userpanel.search_friend} </Text>

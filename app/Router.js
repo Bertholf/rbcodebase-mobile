@@ -55,6 +55,7 @@ import LoaderView from './views/Loader';
 import Approval from './components/Profile/approval';
 import ResultForgot from './components/Auth/ForgotPasswordResult';
 import Notification from './components/Notification/App';
+import SearchPage from './components/Profile/search';
 
 
 const lang = strings.getInterfaceLanguage();
@@ -232,6 +233,7 @@ const Routing = (props) => (
             <Scene
               key={'addfriendscreen'} component={AddFriendScreen} title={strings.settings.adduser}
             />
+            <Scene key={'searchpage'} component={SearchPage} />
             <Scene key={'loaderview'} component={LoaderView} hideNavBar />
             <Scene key={'tos'} hideNavBar component={TOSContainer} />
             <Scene key={'pp'} hideNavBar component={PPContainer} />
