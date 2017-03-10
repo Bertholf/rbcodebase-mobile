@@ -16,12 +16,12 @@ export default class SearchPage extends Component {
       <Container>
         <Item>
           <Icon name="search" />
-          <Input placeholder="Search People" onChangeText={value => this.setState({ name: value })} />
+          <Input
+            placeholder="Search People"
+            onSubmitEditing={() => Actions.addfriendscreen({ name: this.state.name })}
+            onChangeText={value => this.setState({ name: value })} />
           <Icon name="people" />
         </Item>
-        <Button full onPress={() => Actions.addfriendscreen({ name: this.state.name })}>
-          <Text>Search</Text>
-        </Button>
       </Container>
     );
   }

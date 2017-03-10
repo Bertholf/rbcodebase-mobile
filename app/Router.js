@@ -188,7 +188,7 @@ const Routing = (props) => (
               key={'profile'} component={Profile} title={strings.settings.profile} direction={'vertical'}
             />
             <Scene
-              key={'addfriendscreen'} component={AddFriend} title={'Search Friend'} direction={'vertical'}
+              key={'addfriendscreen'} component={AddFriend} hideNavBar title={'Search Friend'} direction={'vertical'}
             />
             <Scene
               key={'chat'} component={Chat} title={'Chat'}

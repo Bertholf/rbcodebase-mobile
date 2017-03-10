@@ -10,6 +10,7 @@ import {
   Text,
 } from 'react-native';
 import SearchBar from 'react-native-material-design-searchbar';
+import { Container, Header, Item, Input, Icon, Button } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import friend from '../../services/friend';
 import follow from '../../services/follows';
@@ -41,10 +42,11 @@ export default class AddFriendScreen extends React.Component {
       search: {},
       loading: true,
       friendlist: {},
+      name: this.props.name || '',
     };
   }
   componentDidMount() {
-    follow.search(this.props.name)
+    follow.search(this.state.name)
     .then((response) => {
       this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
@@ -77,43 +79,23 @@ export default class AddFriendScreen extends React.Component {
           <View
             style={styles.searchRow}
           >
-            <TextInput
-              style={styles.searchText}
-              placeholder={strings.addfriend.search}
-              placeholderTextColor="silver"
-              selectionColor="silver"
-              underlineColorAndroid="rgba(0,0,0,0)"
-              onChangeText={value => this.setState({ searchFrisend: value })}
-            />
-            {/* <SearchBar
-              onSearchChange={value => this.setState({ searchFrisend: value })}
-              height={50}
-              widht
-              onFocus={() => console.log('On Focus')}
-              onBlur={() => console.log('On Blur')}
-              placeholder={strings.addfriend.search}
-            /> */}
-            <TouchableOpacity onPress={() => this.SearchF()}>
-              <View style={styles.searchBtn} >
-                <Text style={{ color: '#fff' }}>{strings.addfriend.search}</Text>
-              </View>
-            </TouchableOpacity>
+            <Container>
+              <Item>
+                <Icon name="search" />
+                <Input 
+                  placeholder="Search People"
+                  onSubmitEditing={() => this.rerender()}
+                  onChangeText={value => this.setState({ name: value })}
+                />
+                <Icon name="people" />
+              </Item>
+            </Container>
           </View>
           <View style={styles.listView}>
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
             />
-            {this.SearchF == null ?
-              <ListView
-                dataSource={ds.cloneWithRows(this.state.friendlist)}
-                renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
-              /> :
-              <ListView
-                dataSource={ds.cloneWithRows(this.state.search)}
-                renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
-              />
-            }
           </View>
         </View>
       );
