@@ -19,9 +19,9 @@ export default class SearchPage extends Component {
           <Input placeholder="Search People" onChangeText={value => this.setState({ name: value })} />
           <Icon name="people" />
         </Item>
-        <TouchableOpacity onPress={() => Actions.addfriendscreen({ name: this.state.name })}>
+        <Button full onPress={() => Actions.addfriendscreen({ name: this.state.name })}>
           <Text>Search</Text>
-        </TouchableOpacity>
+        </Button>
       </Container>
     );
   }
