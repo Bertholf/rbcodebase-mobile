@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import DatePicker from 'react-native-datepicker';
+import Toast from 'react-native-simple-toast';
 import NavigationBar from 'react-native-navbar';
 import strings from '../../localizations';
 import auth from './../../services/auth';
@@ -89,7 +90,7 @@ export default class editBirthday extends Component {
     const dateBirth = this.state.date;
     const updateBirthday = () => {
       saveProfile(id, name_first, name_last, name_slug, phone, dateBirth, birthday);
-      // Alert.alert('Success', 'Your birthday has been Changed');
+        Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
       .then(response => {
         this.setState({ profile: response.data, loading: false }, () => {
