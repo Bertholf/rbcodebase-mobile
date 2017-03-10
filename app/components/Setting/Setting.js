@@ -91,7 +91,7 @@ export default class Setting extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.editbirthday}>
+          <TouchableOpacity onPress={Actions.editbirthday({ reRender: () => this.reRender() })}>
             <View style={styles.list}>
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.birthday}</Text>
