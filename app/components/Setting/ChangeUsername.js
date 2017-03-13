@@ -30,32 +30,31 @@ export default class ChangeUsername extends Component {
     };
   }
 
-  onClick(text, position, duration,withStyle) {
-    this.setState({
-       position: position,
-        })
-       if(withStyle){
-           this.refs.toastWithStyle.show(text, duration);
-       }else {
-           this.refs.toast.show(text, duration);
-       }
-  }
-
-  getButton(text, position, duration, withStyle) {
-        return(
-            <Text
-                style={{padding:0}}
-                onPress={()=>this.onClick(text, position, duration, withStyle)}>
-                <Text>{text}</Text>
-            </Text>
-        )
-    }
-
   componentDidMount() {
     AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data, loading: false }))
     .catch(Err => Err);
+  }
+
+  onClick(text, position, duration, withStyle) {
+    this.setState({
+     position: position,
+    });
+    if (withStyle){
+      this.refs.toastWithStyle.show(text, duration);
+    } else {
+      this.refs.toast.show(text, duration);
+    }
+  }
+
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        <Text>{text}</Text>
+      </Text>
+    )
   }
 
   clearText(fieldName) {
@@ -82,7 +81,7 @@ export default class ChangeUsername extends Component {
         auth.profile()
         .then(response => {
           this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.changeUname.success, 'bottom', DURATION.LENGTH_SHORT)
+            this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
           });
         })
         .catch(Err => Err);
@@ -90,8 +89,7 @@ export default class ChangeUsername extends Component {
         this.props.reRender();
         // Actions.pop();
       } else {
-        {this.onClick(strings.changeUname.alertError, 'bottom', DURATION.LENGTH_SHORT)}
-        <Toast ref="toast" position={this.state.position}/>
+        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 
@@ -105,10 +103,6 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
-        <View>
-                {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-                <Toast ref="toast" position={this.state.position}/>
-        </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
           <NavigationBar
             title={titleConfig}
@@ -152,7 +146,12 @@ export default class ChangeUsername extends Component {
           </Text>
 
         </ScrollView>
-              <Toast ref="toast" />
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }

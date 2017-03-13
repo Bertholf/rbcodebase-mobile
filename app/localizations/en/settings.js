@@ -26,6 +26,7 @@ const settings = {
   lastnameChange: 'Success, your last name has been changed',
   firstnameChange: 'Success, your first name has been changed',
   saved: 'Setting saved',
+  error: 'Failed to save setting',
   following: 'Following',
   follower: 'Follower',
   adduser: 'Search Friend',

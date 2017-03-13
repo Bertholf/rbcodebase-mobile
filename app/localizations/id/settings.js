@@ -23,6 +23,7 @@ const settings = {
   alerSuccess: 'Sukses!',
   alertNoInput: "'Kesalahan', 'Masukkan salah atau Tidak ada masukkan'",
   saved: 'Pengaturan disimpan',
+  error: 'Gagal menyimpan',
   firstnameChange: 'Sukses, nama depan Anda sudah tersimpan',
   lastnameChange: 'Sukses, nama belakang Anda sudah tersimpan',
   noChange: 'Tidak ada perubahan!',

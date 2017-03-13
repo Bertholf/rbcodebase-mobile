@@ -72,31 +72,23 @@ export default class MobilePhone extends Component {
     };
   }
 
-  onClick(text, position, duration,withStyle) {
-    this.setState({
-       position: position,
-        })
-       if(withStyle){
-           this.refs.toastWithStyle.show(text, duration);
-       }else {
-           this.refs.toast.show(text, duration);
-       }
+  componentDidMount() {
+    auth.profile()
+    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
+    .catch(Err => Err)
   }
 
-  getButton(text, position, duration, withStyle) {
-        return(
-            <Text
-                style={{padding:0}}
-                onPress={()=>this.onClick(text, position, duration, withStyle)}>
-                <Text>{text}</Text>
-            </Text>
-        )
+  onClick(text, position, duration,withStyle) {
+    this.setState({
+     position: position,
+    })
+    if (withStyle) {
+      this.refs.toastWithStyle.show(text, duration);
+    } else {
+      this.refs.toast.show(text, duration);
     }
-  componentDidMount() {
-    auth.profile ()
-    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
-    .catch(Err=> Err)
   }
+
   onChanged(text) {
     let newText = '';
     const numbers = '^[0-9]';
@@ -107,6 +99,15 @@ export default class MobilePhone extends Component {
       }
       this.setState({ phone: newText });
     }
+  }
+
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        <Text>{text}</Text>
+      </Text>
+    )
   }
 
   clearText(fieldName) {
@@ -133,32 +134,22 @@ export default class MobilePhone extends Component {
       const savePhone = () => {
       if (phone != null) {
         saveProfile(id, name_first, name_last, name_slug, phone, birthday);
-        //Toast.show(strings.mobilephone.phoneChanged);
         this.clearText('textInput')
         auth.profile ()
           .then(response => {
             this.setState({ profile: response.data, loading: false }, () => {
-              this.props.reRender();
-              {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
-              <Toast ref="toast" position={this.state.position}/>
-
+              this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
             });
           })
           .catch(Err=> console.log('err', Err))
-          Keyboard.dismiss();
-
+        Keyboard.dismiss();
+        this.props.reRender();
       } else {
-        {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
-        <Toast ref="toast" position={this.state.position}/>
-      //  Toast.show(strings.mobilephone.alert_input);
+        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
       <View>
-      <View>
-              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-              <Toast ref="toast" position={this.state.position}/>
-      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -194,7 +185,12 @@ export default class MobilePhone extends Component {
             />
           </View>
         </View>
-        <Toast ref="toast" />
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
 
     );

@@ -60,31 +60,29 @@ export default class editBirthday extends Component {
     };
   }
 
-
-  onClick(text, position, duration,withStyle) {
-    this.setState({
-       position: position,
-        })
-       if(withStyle){
-           this.refs.toastWithStyle.show(text, duration);
-       }else {
-           this.refs.toast.show(text, duration);
-       }
-  }
-
-  getButton(text, position, duration, withStyle) {
-        return(
-            <Text
-                style={{padding:0}}
-                onPress={()=>this.onClick(text, position, duration, withStyle)}>
-                <Text>{text}</Text>
-            </Text>
-        )
-    }
   componentDidMount() {
     auth.profile()
      .then(response => this.setState({ profile: response.data, date: response.data.date_birth }))
      .catch(Err => Err);
+  }
+  onClick(text, position, duration, withStyle) {
+    this.setState({
+      position: position,
+    });
+    if (withStyle){
+       this.refs.toastWithStyle.show(text, duration);
+    } else {
+       this.refs.toast.show(text, duration);
+    }
+  }
+
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        <Text>{text}</Text>
+      </Text>
+    )
   }
 
   getDate() {
@@ -117,22 +115,17 @@ export default class editBirthday extends Component {
       auth.profile()
       .then(response => {
         this.setState({ profile: response.data, loading: false }, () => {
-          this.props.reRender();
-          {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
-          <Toast ref="toast" position={this.state.position}/>
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
         });
       })
       .catch(Err => Err);
+      this.props.reRender();
       Keyboard.dismiss();
   };
 
 
     return (
       <View style={{ flex: 1}}>
-      <View>
-              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-              <Toast ref="toast" position={this.state.position}/>
-      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -162,7 +155,12 @@ export default class editBirthday extends Component {
             />
           </View>
         </View>
-              <Toast ref="toast" />
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }
