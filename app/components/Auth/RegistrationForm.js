@@ -22,14 +22,14 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: 14,
-    paddingRight: 14,
   },
   scrollContent: {
     flex: 3,
     marginLeft: 16,
     marginRight: 16,
     paddingTop: 10,
+    paddingLeft: 14,
+    paddingRight: 14,
   },
   textinputStyle: {
     fontSize: 16,
@@ -319,26 +319,29 @@ export default class RegistrationForm extends Component {
                     </Text>}
                   </View>
                 </TouchableOpacity>
-                <View style={styles.policyStyle} >
-                  <Text>
-                    {strings.register.register_agreement}
-                  </Text>
-                </View>
-                <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
-                  <TouchableOpacity onPress={Actions.tos}>
-                    <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                      {strings.register.tou}
+                {/*
+                    LICENSE AND POLICY PRIVACY TEXT VIEW
+                */}
+                <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+                  <View style={styles.policyStyle} >
+                    <Text>
+                      {strings.register.register_agreement}
                     </Text>
-                  </TouchableOpacity>
-                  <Text />
-                  <Text>
-                    {strings.register.and}
-                  </Text>
-                  <TouchableOpacity onPress={Actions.pp}>
-                    <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                      {strings.register.Privacy_policy}
-                    </Text>
-                  </TouchableOpacity>
+                  </View>
+                  <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
+                    <TouchableOpacity onPress={Actions.tos}> 
+                      <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
+                        {strings.register.tou}
+                      </Text>
+                    </TouchableOpacity>
+                    <Text />
+                    <Text> {strings.register.and} </Text>
+                    <TouchableOpacity onPress={Actions.pp}>
+                      <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
+                        {strings.register.Privacy_policy} 
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </ScrollView>
             </View>
