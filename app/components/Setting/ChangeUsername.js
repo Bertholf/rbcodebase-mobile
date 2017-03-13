@@ -43,11 +43,11 @@ export default class ChangeUsername extends Component {
 
   getButton(text, position, duration, withStyle) {
         return(
-            <TouchableHighlight
-                style={{padding: 10}}
+            <Text
+                style={{padding:0}}
                 onPress={()=>this.onClick(text, position, duration, withStyle)}>
                 <Text>{text}</Text>
-            </TouchableHighlight>
+            </Text>
         )
     }
 
@@ -107,8 +107,8 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
-        <View style={styles.container}>
-                {this.getButton('Succes', 'bottom', DURATION.LENGTH_SHORT)}
+        <View>
+                {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
                 <Toast ref="toast" position={this.state.position}/>
         </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
@@ -147,8 +147,7 @@ export default class ChangeUsername extends Component {
             />
             {validRegex || !emptyUsername ? <Text /> :
             <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
-            {validUsername ? <Text /> :
-            <Text style={styles.invalid}>{strings.changeUname.error_same_username}</Text>}
+
           </View>
           <Text style={{ marginLeft: 20, marginTop: 10 }}>
             {strings.changeUname.uniquename}
