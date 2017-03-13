@@ -12,6 +12,7 @@ export default class FollowingMe extends React.Component {
     this.state = {
       loading: true,
       nodata: false,
+      name: '',
       follower: [],
     };
   }
@@ -23,11 +24,12 @@ export default class FollowingMe extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-        follows.showFollower(myId)
+        follows.searchFollower('', myId)
         .then((res) => {
+          console.log('INI Response=====>', res);
           this.changeState(res);
         })
-        .catch(err => this.showError(err));
+        .catch(err => this.showError('ERROR KAKAK====>', err));
       })
       .catch();
     } else {
