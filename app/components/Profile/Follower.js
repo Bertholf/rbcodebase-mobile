@@ -48,11 +48,12 @@ export default class FollowingMe extends React.Component {
   }
 
   changeState(res) {
+    // to change fill data follower and change state in loading, nodata, and name
     this.setState({ follower: res.data }, () => {
       if (typeof this.state.follower[0] === 'undefined') {
-        this.setState({ nodata: true, loading: false });
+        this.setState({ nodata: true, loading: false, name: '' });
       } else {
-        this.setState({ loading: false, nodata: false });
+        this.setState({ loading: false, nodata: false, name: '' });
       }
     });
   }
