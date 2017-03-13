@@ -106,10 +106,6 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
-        <View>
-                {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-                <Toast ref="toast" position={this.state.position}/>
-        </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
           <NavigationBar
             title={titleConfig}
@@ -151,8 +147,8 @@ export default class ChangeUsername extends Component {
           <Text style={{ marginLeft: 20, marginTop: 10 }}>
             {strings.changeUname.uniquename}
           </Text>
-
         </ScrollView>
+              <Toast ref="toast" />
       </View>
     );
   }

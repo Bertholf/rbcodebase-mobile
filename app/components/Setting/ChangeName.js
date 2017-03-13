@@ -28,11 +28,11 @@ export default class NameEdit extends Component {
       namef: '',
       namel: '',
       style: {},
-      position:'botto',
+      position: 'bottom',
     };
   }
 
-  onClick(text, position, duration,withStyle) {
+  onClick(text, position, duration, withStyle) {
     this.setState({
        position: position,
         })
@@ -46,7 +46,7 @@ export default class NameEdit extends Component {
   getButton(text, position, duration, withStyle) {
         return(
             <Text
-                style={{padding:0}}
+                style={{padding:10}}
                 onPress={()=>this.onClick(text, position, duration, withStyle)}>
                 <Text>{text}</Text>
             </Text>
@@ -102,24 +102,18 @@ export default class NameEdit extends Component {
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
           this.props.reRender();
           {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
-          <Toast ref="toast" position={this.state.position}/>
         }))
         .catch(Err => console.log('err', Err));
           Keyboard.dismiss();
           Actions.refresh();
-          
+
         }
       } else {
         {this.onClick('Error', 'bottom', DURATION.LENGTH_SHORT)}
-        <Toast ref="toast" position={this.state.position}/>
       }
     };
     return (
       <View style={styles.OuterView}>
-      <View>
-              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-              <Toast ref="toast" position={this.state.position}/>
-      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -193,10 +187,11 @@ export default class NameEdit extends Component {
               autoCorrect
             />
           </View>
-          <View>
+          <View style={{elevation:5}}>
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
+      <Toast ref="toast" />
       </View>
     );
   }

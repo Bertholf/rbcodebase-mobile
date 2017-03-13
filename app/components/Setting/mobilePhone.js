@@ -155,10 +155,6 @@ export default class MobilePhone extends Component {
     };
     return (
       <View>
-      <View>
-              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-              <Toast ref="toast" position={this.state.position}/>
-      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -194,7 +190,9 @@ export default class MobilePhone extends Component {
             />
           </View>
         </View>
+        <Toast ref="toast" />
       </View>
+
     );
   }
 }
