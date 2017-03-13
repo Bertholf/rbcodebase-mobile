@@ -26,12 +26,11 @@ export default class FollowingMe extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-        follows.searchFollower('', myId)
+        follows.searchFollower(this.state.name, myId)
         .then((res) => {
-          console.log('INI Response=====>', res);
           this.changeState(res);
         })
-        .catch(err => this.showError('ERROR KAKAK====>', err));
+        .catch(err => this.showError(err));
       })
       .catch();
     } else {
@@ -73,7 +72,7 @@ export default class FollowingMe extends React.Component {
           <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
             <Icon name="search" />
             <Input
-              placeholder="Search People"
+              placeholder={strings.listfollow.searchFollower}
               onSubmitEditing={() => this.rerender()}
               onChangeText={value => this.setState({ name: value })}
             />

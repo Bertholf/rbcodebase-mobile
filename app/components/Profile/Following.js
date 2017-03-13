@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Container, Item, Icon, Input } from 'native-base';
 import follows from '../../services/follows';
 import ListFollow from './ListFollow';
 import strings from '../../localizations';
@@ -18,6 +19,7 @@ export default class Friendlist extends React.Component {
     super(props);
     this.state = {
       loading: true,
+      name: '',
       nodata: false,
       following: [],
       wait: '',
@@ -32,7 +34,7 @@ export default class Friendlist extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-        follows.showFollowing(myId)
+        follows.searchFollowing(this.state.name, myId)
         .then((res) => {
           this.changeState(res);
           console.log('ini ================== hasil', res);
@@ -48,7 +50,7 @@ export default class Friendlist extends React.Component {
       .catch(err => this.showError(err));
     }
   }
-
+  // This function is running if there is an Error
   showError(err) {
     Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
   }
@@ -62,21 +64,35 @@ export default class Friendlist extends React.Component {
       }
     });
   }
+  // To re-render the component
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
     });
   }
+
   render() {
     const { loading, nodata } = this.state;
     if (loading === false && nodata === false) {
+      // load this if not loading or Loading === false
       return (
-        <ListView
-          dataSource={ds.cloneWithRows(this.state.following)}
-          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following', rerender: () => this.rerender() }} />}
-        />
+        <Container>
+          <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
+            <Icon name="search" />
+            <Input
+              placeholder={strings.listfollow.searchFollower}
+              onSubmitEditing={() => this.rerender()}
+              onChangeText={value => this.setState({ name: value })}
+            />
+          </Item>
+          <ListView
+            dataSource={ds.cloneWithRows(this.state.following)}
+            renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following', rerender: () => this.rerender() }} />}
+          />
+        </Container>
       );
     } else if (nodata === true) {
+      // Load this if there is no data is Showed
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
           <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>
