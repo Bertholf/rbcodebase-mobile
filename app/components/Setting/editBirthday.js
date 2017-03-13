@@ -124,7 +124,7 @@ export default class editBirthday extends Component {
       })
       .catch(Err => Err);
       Keyboard.dismiss();
-      Actions.pop();
+    
   };
 
 
