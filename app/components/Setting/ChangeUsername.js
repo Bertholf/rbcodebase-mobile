@@ -83,14 +83,17 @@ export default class ChangeUsername extends Component {
         .then(response => {
           this.setState({ profile: response.data, loading: false }, () => {
           this.props.reRender();
+          {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
+          <Toast ref="toast" position={this.state.position}/>
           });
+
         })
         .catch(Err => Err);
-        {this.getButton('Succes', 'bottom', DURATION.LENGTH_SHORT)}
-        <Toast ref="toast" position={this.state.position}/>
         Keyboard.dismiss();
-        Actions.pop();
+        // Actions.pop();
       } else {
+        {this.onClick('Error', 'bottom', DURATION.LENGTH_SHORT)}
+        <Toast ref="toast" position={this.state.position}/>
       }
     };
 
