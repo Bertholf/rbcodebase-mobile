@@ -37,7 +37,6 @@ export default class Friendlist extends React.Component {
         follows.searchFollowing(this.state.name, myId)
         .then((res) => {
           this.changeState(res);
-          console.log('ini ================== hasil', res);
         })
         .catch();
       })
@@ -45,7 +44,6 @@ export default class Friendlist extends React.Component {
     } else {
       follows.showFollowing(this.props.user_id)
       .then((res) => {
-        console.log('THIS IS REQUEST ELSE ', res);
         this.changeState(res);
       })
       .catch(err => this.showError(err));
