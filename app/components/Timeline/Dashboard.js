@@ -25,11 +25,21 @@ export default class Dashboard extends Component {
       loading: true,
       namafirst: '',
       namalast: '',
-
+      email: '',
     };
-  }
 
+  }
   componentDidMount() {
+    // auth.changeemail()
+    // then((response) => {
+    //   this.setState({ changeemail: response.data}, () => {
+    //     console.log('=====emailnew endpoint=======', this.state.changeemail);
+    //     console.log('========== RESPONSE SERVER =========', response);
+    //     AsyncStorage.setItem('email', response.data.email())
+    //   })
+    //   .then(() => {
+    //     console.log('SAVE email');
+    // })
     auth.profile()
     .then((response) => {
         this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {

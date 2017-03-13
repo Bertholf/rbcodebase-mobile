@@ -20,11 +20,11 @@ export default class emailVarification extends Component {
     this.state = {
       newEmail: '',
       profile: {},
-      email: '',
+      emailnew: '',
     };
   }
   componentDidMount() {
-    AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+    AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); console.log('email set AsyncStorage',this.state.emailnew); }).catch((res) => console.log('error ambil email new-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
     .catch(Err => Err);
@@ -32,7 +32,7 @@ export default class emailVarification extends Component {
   render() {
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => Actions.emailcodevarification(),
+      handler: () => Actions.saveemail1(),
     };
     const leftButtonConfig = {
       title: 'Cancel',
@@ -47,12 +47,12 @@ export default class emailVarification extends Component {
     const currentEmail = this.state.profile.email;
     const emailInput = this.state.newEmail;
     const sameEmail = currentEmail !== emailInput;
-    const validEmail = () => {
-      if (emailValidator && emailInput && sameEmail) {
+    const saveemail1 = () => {
+      if (emailInput !== null) {
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
-        Alert.alert('Success', 'Your email has been Changed');
+        Alert.alert('Success', 'Your email has response');
       }
     };
     return (
@@ -81,7 +81,7 @@ export default class emailVarification extends Component {
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.EditEmail.confirm_code}
-              onChangeText={() => console.log('dummy')}
+              onChangeText={emailnew => this.setState({ emailnew })}
               multiline
               numberOfLines={4}
             />

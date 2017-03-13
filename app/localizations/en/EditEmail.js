@@ -1,5 +1,5 @@
 const EditEmail = {
-  title: 'Edit Email',
+  title: 'Change Email',
   titleVarification: 'Code Varification',
   enter_new_email: 'Enter your new email',
   confirm_change: 'Confirm change',
