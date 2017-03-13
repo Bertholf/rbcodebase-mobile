@@ -14,7 +14,7 @@ import auth from './../../services/auth';
 import strings from '../../localizations';
 import IconClose from './../../layouts/IconClose';
 
-export default class EmailEdit extends Component {
+export default class emailVarification extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +29,10 @@ export default class EmailEdit extends Component {
     .then(response => this.setState({ profile: response.data }))
     .catch(Err => Err);
   }
-
-  sendEmail
   render() {
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => Actions.emailVarification(),
+      handler: () => Actions.emailcodevarification(),
     };
     const leftButtonConfig = {
       title: 'Cancel',
@@ -42,7 +40,7 @@ export default class EmailEdit extends Component {
     };
 
     const titleConfig = {
-      title: strings.EditEmail.title,
+      title: strings.EditEmail.titleVarification,
     };
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.newEmail);
@@ -79,17 +77,23 @@ export default class EmailEdit extends Component {
             <Text style={styles.Text2}>
               {strings.EditEmail.enter_new_mail}
             </Text>
-            <TextInput
-              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.enter_new_email} onChangeText={newEmail => this.setState({ newEmail })} multiline
-              numberOfLines={4}
-            />
             {emailValidator || !emailInput ?
               <Text /> : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}
             {sameEmail ?
               <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}
+            <Text style={styles.Text2}>
+              {strings.EditEmail.confirm_change}
+            </Text>
+            <TextInput
+              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
+              placeholderTextColor={'#2196f3'}
+              placeholder={strings.EditEmail.confirm_code}
+              onChangeText={() => console.log('dummy')}
+              multiline
+              numberOfLines={4}
+            />
           </View>
         </ScrollView>
       </View>

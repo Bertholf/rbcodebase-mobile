@@ -34,5 +34,6 @@ const settings = {
   forgotpass: 'Lupa Kata Sandi',
   profile: 'Profil Pengguna',
   approval: 'Persetujuan',
+  emailVarification: 'konfirmasi email'
 };
 export default settings;

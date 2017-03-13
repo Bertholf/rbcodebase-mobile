@@ -56,6 +56,7 @@ import Approval from './components/Profile/approval';
 import ResultForgot from './components/Auth/ForgotPasswordResult';
 import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
+import emailVarification from './components/Setting/emailVarification';
 
 
 const lang = strings.getInterfaceLanguage();
@@ -84,6 +85,9 @@ const Routing = (props) => (
           <Scene key={'root'}>
             <Scene
               key="setting" component={Setting} title={strings.settings.title}
+            />
+            <Scene
+              key="emailVarification" hideNavBar component={emailVarification} title={strings.settings.emailVarification}
             />
             <Scene
               key={'resetresult'} hideNavBar component={ResultForgot} title={'Walkthrough Screen'}

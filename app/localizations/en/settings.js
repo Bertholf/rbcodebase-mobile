@@ -34,6 +34,7 @@ const settings = {
   forgotpass: 'Forgot Password',
   profile: 'User Profile',
   approval: 'Approval',
+  emailVarification: 'emailVarification'
 };
 
 export default settings;
