@@ -82,17 +82,15 @@ export default class ChangeUsername extends Component {
         auth.profile()
         .then(response => {
           this.setState({ profile: response.data, loading: false }, () => {
-          this.props.reRender();
-          {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
-          <Toast ref="toast" position={this.state.position}/>
+          this.onClick(strings.changeUname.success, 'bottom', DURATION.LENGTH_SHORT)
           });
-
         })
         .catch(Err => Err);
         Keyboard.dismiss();
+        this.props.reRender();
         // Actions.pop();
       } else {
-        {this.onClick('Error', 'bottom', DURATION.LENGTH_SHORT)}
+        {this.onClick(strings.changeUname.alertError, 'bottom', DURATION.LENGTH_SHORT)}
         <Toast ref="toast" position={this.state.position}/>
       }
     };
