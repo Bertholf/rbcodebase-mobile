@@ -6,8 +6,10 @@ import {
   ScrollView,
   Keyboard,
   AsyncStorage,
+  TouchableHighlight,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
@@ -23,8 +25,32 @@ export default class ChangeUsername extends Component {
       newUsername: '',
       currentUserName: '',
       namaslug: '',
+      position: 'bottom',
+      style:{},
     };
   }
+
+  onClick(text, position, duration,withStyle) {
+    this.setState({
+       position: position,
+        })
+       if(withStyle){
+           this.refs.toastWithStyle.show(text, duration);
+       }else {
+           this.refs.toast.show(text, duration);
+       }
+  }
+
+  getButton(text, position, duration, withStyle) {
+        return(
+            <Text
+                style={{padding:0}}
+                onPress={()=>this.onClick(text, position, duration, withStyle)}>
+                <Text>{text}</Text>
+            </Text>
+        )
+    }
+
   componentDidMount() {
     AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
     auth.profile()
@@ -56,13 +82,18 @@ export default class ChangeUsername extends Component {
         auth.profile()
         .then(response => {
           this.setState({ profile: response.data, loading: false }, () => {
-            this.props.reRender();
+          this.props.reRender();
+          {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
+          <Toast ref="toast" position={this.state.position}/>
           });
+
         })
         .catch(Err => Err);
         Keyboard.dismiss();
-        Actions.pop();
+        // Actions.pop();
       } else {
+        {this.onClick('Error', 'bottom', DURATION.LENGTH_SHORT)}
+        <Toast ref="toast" position={this.state.position}/>
       }
     };
 
@@ -76,6 +107,10 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
+        <View>
+                {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
+                <Toast ref="toast" position={this.state.position}/>
+        </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
           <NavigationBar
             title={titleConfig}
@@ -92,9 +127,6 @@ export default class ChangeUsername extends Component {
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid="rgba(0,0,0,0)"
-              // defaultValue={this.state.profile.name_slug}
-              // onChangeText={(this.stat.profile.name_slug) => this.setState({ currentUserName })}
-
               value={this.state.profile.name_slug == null ? this.state.namaslug : this.state.profile.name_slug}
               editable={false}
             />
@@ -115,13 +147,14 @@ export default class ChangeUsername extends Component {
             />
             {validRegex || !emptyUsername ? <Text /> :
             <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
-            {validUsername ? <Text /> :
-            <Text style={styles.invalid}>{strings.changeUname.error_same_username}</Text>}
+
           </View>
           <Text style={{ marginLeft: 20, marginTop: 10 }}>
             {strings.changeUname.uniquename}
           </Text>
+
         </ScrollView>
+              <Toast ref="toast" />
       </View>
     );
   }

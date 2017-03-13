@@ -6,7 +6,7 @@ import {
    StyleSheet,
    Keyboard,
  } from 'react-native';
-import Toast from 'react-native-simple-toast';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
 import NavigationBar from 'react-native-navbar';
@@ -66,9 +66,32 @@ export default class MobilePhone extends Component {
     this.state = {
       profile: {},
       phone: '',
+      style: {},
+      position: 'bottom',
 
     };
   }
+
+  onClick(text, position, duration,withStyle) {
+    this.setState({
+       position: position,
+        })
+       if(withStyle){
+           this.refs.toastWithStyle.show(text, duration);
+       }else {
+           this.refs.toast.show(text, duration);
+       }
+  }
+
+  getButton(text, position, duration, withStyle) {
+        return(
+            <Text
+                style={{padding:0}}
+                onPress={()=>this.onClick(text, position, duration, withStyle)}>
+                <Text>{text}</Text>
+            </Text>
+        )
+    }
   componentDidMount() {
     auth.profile ()
     .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
@@ -116,17 +139,26 @@ export default class MobilePhone extends Component {
           .then(response => {
             this.setState({ profile: response.data, loading: false }, () => {
               this.props.reRender();
+              {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
+              <Toast ref="toast" position={this.state.position}/>
+
             });
           })
           .catch(Err=> console.log('err', Err))
           Keyboard.dismiss();
-          Actions.pop();
+
       } else {
+        {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
+        <Toast ref="toast" position={this.state.position}/>
       //  Toast.show(strings.mobilephone.alert_input);
       }
     };
     return (
       <View>
+      <View>
+              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
+              <Toast ref="toast" position={this.state.position}/>
+      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -162,7 +194,9 @@ export default class MobilePhone extends Component {
             />
           </View>
         </View>
+        <Toast ref="toast" />
       </View>
+
     );
   }
 }
