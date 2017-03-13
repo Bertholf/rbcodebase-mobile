@@ -188,7 +188,7 @@ const Routing = (props) => (
               key={'profile'} component={Profile} title={strings.settings.profile} direction={'vertical'}
             />
             <Scene
-              key={'addfriendscreen'} component={AddFriend} hideNavBar title={'Search Friend'} direction={'vertical'}
+              key={'addfriendscreen'} component={AddFriend} hideNavBar title={strings.listfollow.searchResult} direction={'vertical'}
             />
             <Scene
               key={'chat'} component={Chat} title={'Chat'}
@@ -233,7 +233,7 @@ const Routing = (props) => (
             <Scene
               key={'addfriendscreen'} component={AddFriendScreen} title={strings.settings.adduser}
             />
-            <Scene key={'searchpage'} component={SearchPage} title={'Search'} />
+            <Scene key={'searchpage'} component={SearchPage} title={strings.listfollow.search} />
             <Scene key={'loaderview'} component={LoaderView} hideNavBar />
             <Scene key={'tos'} hideNavBar component={TOSContainer} />
             <Scene key={'pp'} hideNavBar component={PPContainer} />

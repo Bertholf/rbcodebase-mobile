@@ -10,4 +10,9 @@ export default {
   findfriend: 'Search Friend',
   approve: 'Approve',
   request: 'Request',
+  search: 'Search',
+  searchResult: 'Search Result',
+  searchFollower: 'Search Your Follower',
+  searchPeople: 'Search People',
+  searchFollowing: 'Search Your Following',
 };

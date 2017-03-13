@@ -10,4 +10,9 @@ export default {
   findfriend: 'Cari Teman',
   approve: 'Diterima',
   request: 'Permintaan',
+  search: 'Pencarian',
+  searchResult: 'Hasil Pencarian',
+  searchFollower: 'Cari Pengikut',
+  searchPeople: 'Cari Orang Yang Ingin Diikuti ',
+  searchFollowing: 'Cari Orang yang Kamu Ikuti',
 };

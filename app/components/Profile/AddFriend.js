@@ -83,7 +83,7 @@ export default class AddFriendScreen extends React.Component {
               <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
                 <Icon name="search" />
                 <Input
-                  placeholder="Search People"
+                  placeholder={strings.listfollow.searchPeople}
                   onSubmitEditing={() => this.rerender()}
                   onChangeText={value => this.setState({ name: value })}
                 />

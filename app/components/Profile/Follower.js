@@ -1,17 +1,20 @@
 import React from 'react';
 import { View, Alert, ListView, ActivityIndicator, AsyncStorage, Text, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Container, Item, Icon, Input } from 'native-base';
 import follows from '../../services/follows';
 import ListFollow from './ListFollow';
 import strings from '../../localizations';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class FollowingMe extends React.Component {
+  // Initial state
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       nodata: false,
+      name: '',
       follower: [],
     };
   }
@@ -23,7 +26,7 @@ export default class FollowingMe extends React.Component {
     if (typeof this.props.user_id === 'undefined') {
       AsyncStorage.getItem('userId')
       .then((myId) => {
-        follows.showFollower(myId)
+        follows.searchFollower(this.state.name, myId)
         .then((res) => {
           this.changeState(res);
         })
@@ -52,21 +55,37 @@ export default class FollowingMe extends React.Component {
       }
     });
   }
+  // To re-render the component
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
     });
   }
+
   render() {
+    // show content in component if no data or has data
     const { loading, nodata } = this.state;
     if (loading === false && nodata === false) {
       return (
-        <ListView
-          dataSource={ds.cloneWithRows(this.state.follower)}
-          renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
-        />
+        <Container>
+          {/* Search Bar in Follower Screen*/}
+          <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
+            <Icon name="search" />
+            <Input
+              placeholder={strings.listfollow.searchFollower}
+              onSubmitEditing={() => this.rerender()}
+              onChangeText={value => this.setState({ name: value })}
+            />
+          </Item>
+          {/* Show listView of follower */}
+          <ListView
+            dataSource={ds.cloneWithRows(this.state.follower)}
+            renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
+          />
+        </Container>
       );
     } else if (nodata === true) {
+      // Return this View if there is no Data Showed
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
           <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
