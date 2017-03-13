@@ -32,7 +32,7 @@ export default class NameEdit extends Component {
     };
   }
 
-  onClick(text, position, duration, withStyle) {
+  onClick(text, position, duration,withStyle) {
     this.setState({
        position: position,
         })
@@ -102,6 +102,7 @@ export default class NameEdit extends Component {
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
           this.props.reRender();
           {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
+          <Toast ref="toast" position={this.state.position}/>
         }))
         .catch(Err => console.log('err', Err));
           Keyboard.dismiss();
@@ -110,10 +111,15 @@ export default class NameEdit extends Component {
         }
       } else {
         {this.onClick('Error', 'bottom', DURATION.LENGTH_SHORT)}
+        <Toast ref="toast" position={this.state.position}/>
       }
     };
     return (
       <View style={styles.OuterView}>
+      <View>
+              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
+              <Toast ref="toast" position={this.state.position}/>
+      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
