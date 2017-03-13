@@ -44,8 +44,8 @@ export default class emailVarification extends Component {
     };
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.newEmail);
-    const emailInput = this.state.newEmail;
     const currentEmail = this.state.profile.email;
+    const emailInput = this.state.newEmail;
     const sameEmail = currentEmail !== emailInput;
     const validEmail = () => {
       if (emailValidator && emailInput && sameEmail) {
@@ -70,19 +70,10 @@ export default class emailVarification extends Component {
             <Text style={styles.Text2}>
             </Text>
             <TextInput
-              style={styles.TextInput1} placeholder={this.state.profile.email == null ? this.state.email : this.state.profile.email} underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1} placeholder='New Email Changed' underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline
               numberOfLines={4} editable={false}
             />
-            <Text style={styles.Text2}>
-              {strings.EditEmail.enter_new_mail}
-            </Text>
-            {emailValidator || !emailInput ?
-              <Text /> : <Text style={styles.invalid}>
-                {strings.EditEmail.error_invalid_email}
-              </Text>}
-            {sameEmail ?
-              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}
             <Text style={styles.Text2}>
               {strings.EditEmail.confirm_change}
             </Text>
