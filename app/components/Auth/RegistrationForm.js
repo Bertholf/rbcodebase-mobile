@@ -21,8 +21,15 @@ import style from './../../style/StyleGlobal';
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
     flex: 1,
+    paddingLeft: 14,
+    paddingRight: 14,
+  },
+  scrollContent: {
+    flex: 3,
+    marginLeft: 16,
+    marginRight: 16,
+    paddingTop: 10,
   },
   textinputStyle: {
     fontSize: 16,
@@ -121,9 +128,9 @@ export default class RegistrationForm extends Component {
       this.setState({ submitting: true });
       auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
-      this.loginAfterRegister(username, password)
+      this.loginAfterRegister(username, password),
     ))
-    .catch(err => {
+    .catch((err) => {
       this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
       console.log('error register', err);
     });
@@ -139,12 +146,12 @@ export default class RegistrationForm extends Component {
     .then((loginRes) => {
       AsyncStorage.setItem('accessToken', loginRes.access_token)
       .then(() => Actions.actionswiper())
-      .catch(err => {
+      .catch((err) => {
         console.log('FAIL LOGIN AFTER REGISTER');
-        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false  });
+        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
       });
     })
-    .catch(err => this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false  }));
+    .catch(err => this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false }));
   }
   render() {
     const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
@@ -173,20 +180,21 @@ export default class RegistrationForm extends Component {
     };
     // strings.setLanguage('en');
     if (this.state.submitting === false) {
-      console.log("false");
+      console.log('false');
       return (
         <View style={{ flex: 1 }}>
-          <KeyboardAwareView animated={true}>
+          <KeyboardAwareView animated>
             <View style={styles.container} >
               <ScrollView
-                ref={(view) => {this.scrollView = view; }}
+                ref={(view) => { this.scrollView = view; }}
                 style={[{ flex: 1, alignSelf: 'stretch' }]}
                 keyboardShouldPersistTaps="always"
                 automaticallyAdjustContentInsets={false}
                 onScroll={this.onScroll}
                 scrollEventThrottle={200}
-                onLayout={(e) => {var {x, y, width, height} = e.nativeEvent.layout; console.log(height); }}>
-                <View style={{ flex: 3, marginLeft: 16, marginRight: 16 }} >
+                onLayout={(e) => { let { x, y, width, height } = e.nativeEvent.layout; console.log(height); }}
+              >
+                <View style={styles.scrollContent} >
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.first_name}
@@ -230,8 +238,8 @@ export default class RegistrationForm extends Component {
                     : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
                   }
 
-                </View>
-                  {usernameLength || emptyUName? (<Text />) : (<Text style={styles.fail}>
+                  </View>
+                  {usernameLength || emptyUName ? (<Text />) : (<Text style={styles.fail}>
                     { strings.register.alert_username_length}</Text>)
                   }
                   <View style={styles.textinputWrapperStyle}>
@@ -322,8 +330,7 @@ export default class RegistrationForm extends Component {
                       {strings.register.tou}
                     </Text>
                   </TouchableOpacity>
-                  <Text>
-                  </Text>
+                  <Text />
                   <Text>
                     {strings.register.and}
                   </Text>
@@ -338,9 +345,8 @@ export default class RegistrationForm extends Component {
           </KeyboardAwareView>
         </View>
       );
-    } else {
-      console.log("true")
-      return (<ActivityIndicator />)
     }
+    console.log('true');
+    return (<ActivityIndicator />);
   }
 }
