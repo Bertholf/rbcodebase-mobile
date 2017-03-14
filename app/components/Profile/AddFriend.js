@@ -45,6 +45,7 @@ export default class AddFriendScreen extends React.Component {
       friendlist: {},
       name: this.props.name || '',
     };
+    this.timer = null;
   }
   componentDidMount() {
     follow.search(this.state.name)
@@ -80,6 +81,16 @@ export default class AddFriendScreen extends React.Component {
       });
   }
 
+  cancelRequest(value) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+    // if (this.state.requesting) {
+    //   follows.cancelCaller().cancel('Cancel this operation');
+    //   this.searchUpdate(value);
+    // }
+    // this.searchUpdate(value);
+  }
+
   render() {
     if (this.state.loading === false) {
       return (
@@ -92,8 +103,7 @@ export default class AddFriendScreen extends React.Component {
                 <Icon name="search" />
                 <Input
                   placeholder={strings.listfollow.searchPeople}
-                  onSubmitEditing={() => this.searchUpdate()}
-                  onChangeText={value => this.searchUpdate(value)}
+                  onChangeText={value => this.cancelRequest(value)}
                 />
               </Item>
             </Container>

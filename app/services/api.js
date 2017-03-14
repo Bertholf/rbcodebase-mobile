@@ -16,7 +16,8 @@ import { AsyncStorage } from 'react-native';
 class Api {
   constructor(baseUrl, middleware = () => {}) {
     this.baseUrl = baseUrl;
-    this.client = axios.create();
+    this.axiosObj = axios;
+    this.client = this.axiosObj.create();
     middleware(this.client);
     this.client.interceptors.request.use(config =>
       // console.log(config);
@@ -26,6 +27,8 @@ class Api {
       console.log(response);
       return response;
     });
+
+    this.source = this.axiosObj.CancelToken.source();
   }
   put(url, json, qs = {}, config) {
     return this.sendRequest('PUT', url, { qs, json, config });
@@ -41,6 +44,13 @@ class Api {
   }
   delete(url, qs = {}, config = {}) {
     return this.sendRequest('DELETE', url, { qs, config });
+  }
+  getCancelCaller() {
+    return this.source;
+  }
+
+  getClient() {
+    return this.axiosObj;
   }
   sendRequest(requestMethod, url, data = {}) {
     return AsyncStorage.getItem('accessToken')
@@ -61,6 +71,7 @@ class Api {
        headers: Object.assign(headers, data.json ? { 'Content-type': 'application/json' } : (data.form ? { 'Content-Type': 'application/x-www-form-urlencoded' } : { 'Content-Type': 'multipart/form' })),
        timeout: 60 * 1000,
        paramsSerializer: params => querystring.stringify(params),
+       cancelToken: this.getCancelCaller().token
      }, data.config);
      return request;
    })

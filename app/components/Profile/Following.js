@@ -9,7 +9,6 @@ import {
   AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Item, Icon, Input } from 'native-base';
-import axios from 'axios';
 import follows from '../../services/follows';
 import ListFollow from './ListFollow';
 import strings from '../../localizations';
@@ -24,7 +23,9 @@ export default class Friendlist extends React.Component {
       nodata: false,
       following: [],
       wait: true,
+      requesting: false,
     };
+    this.timer = null;
   }
 
   componentDidMount() {
@@ -59,9 +60,9 @@ export default class Friendlist extends React.Component {
     // to change fill data follower and change state in loading, nodata, and name
     this.setState({ following: res.data }, () => {
       if (typeof this.state.following[0] === 'undefined') {
-        this.setState({ nodata: true, loading: false, name: '', wait: false });
+        this.setState({ nodata: true, loading: false, name: '', wait: false, requesting: false });
       } else {
-        this.setState({ loading: false, nodata: false, name: '', wait: false });
+        this.setState({ loading: false, nodata: false, name: '', wait: false, requesting: false });
       }
     });
   }
@@ -73,12 +74,34 @@ export default class Friendlist extends React.Component {
   }
 
   // Change State listfollowing
-  searchUpdate(val) {
-    this.setState({ name: val, wait: true });
-    follows.searchFollowing(this.state.name)
-      .then((response) => {
-        this.setState({ friendlist: response.data, wait: false });
-      });
+  searchUpdate(val) {    
+    AsyncStorage.getItem('userId')
+      .then((myId) => {
+        this.setState({ name: val, wait: true });
+        follows.searchFollowing(this.state.name, myId)
+        .then((res) => {
+          this.changeState(res);
+        })
+        .catch((thrown) => {
+          this.setState({ requesting: false });
+          if (follows.client().isCancel(thrown)) {
+            console.log('Request is canceled', thrown.message);
+          } else {
+            console.log('ERROR', thrown);
+          }
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  cancelRequest(value) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+    // if (this.state.requesting) {
+    //   follows.cancelCaller().cancel('Cancel this operation');
+    //   this.searchUpdate(value);
+    // }
+    // this.searchUpdate(value);
   }
 
   render() {
@@ -91,11 +114,10 @@ export default class Friendlist extends React.Component {
             <Icon name="search" />
             <Input
               placeholder={strings.listfollow.searchFollower}
-              onSubmitEditing={() => this.searchUpdate()}
-              onChangeText={value => this.searchUpdate(value)}
+              onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
-          {this.state.wait ? <ActivityIndicator /> : 
+          {this.state.wait ? <ActivityIndicator /> :
           <ListView
             dataSource={ds.cloneWithRows(this.state.following)}
             renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following', rerender: () => this.rerender() }} />}
@@ -111,8 +133,7 @@ export default class Friendlist extends React.Component {
             <Icon name="search" />
             <Input
               placeholder={strings.listfollow.searchFollowing}
-              onSubmitEditing={() => this.rerender()}
-              onChangeText={value => this.setState({ name: value })}
+              onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
