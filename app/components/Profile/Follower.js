@@ -16,7 +16,9 @@ export default class FollowingMe extends React.Component {
       nodata: false,
       name: '',
       follower: [],
+      wait: true,
     };
+    this.timer = null;
   }
   componentDidMount() {
     /*
@@ -51,9 +53,9 @@ export default class FollowingMe extends React.Component {
     // to change fill data follower and change state in loading, nodata, and name
     this.setState({ follower: res.data }, () => {
       if (typeof this.state.follower[0] === 'undefined') {
-        this.setState({ nodata: true, loading: false, name: '' });
+        this.setState({ nodata: true, loading: false, name: '', wait: false });
       } else {
-        this.setState({ loading: false, nodata: false, name: '' });
+        this.setState({ loading: false, nodata: false, name: '', wait: false });
       }
     });
   }
@@ -63,6 +65,39 @@ export default class FollowingMe extends React.Component {
       this.componentDidMount();
     });
   }
+
+  // Change State listfollowing
+  searchUpdate(val) {    
+    AsyncStorage.getItem('userId')
+      .then((myId) => {
+        this.setState({ name: val, wait: true });
+        follows.searchFollower(this.state.name, myId)
+        .then((res) => {
+          this.changeState(res);
+        })
+        .catch((thrown) => {
+          this.setState({ requesting: false });
+          if (follows.client().isCancel(thrown)) {
+            console.log('Request is canceled', thrown.message);
+          } else {
+            console.log('ERROR', thrown);
+          }
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+
+  cancelRequest(value) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+        // if (this.state.requesting) {
+        //   follows.cancelCaller().cancel('Cancel this operation');
+        //   this.searchUpdate(value);
+        // }
+        // this.searchUpdate(value);
+  }
+
 
   render() {
     // show content in component if no data or has data
@@ -75,15 +110,19 @@ export default class FollowingMe extends React.Component {
             <Icon name="search" />
             <Input
               placeholder={strings.listfollow.searchFollower}
-              onSubmitEditing={() => this.rerender()}
-              onChangeText={value => this.setState({ name: value })}
+              onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
           {/* Show listView of follower */}
+          {/*
+            *Loading if data in requesting
+          */}
+          {this.state.wait ? <ActivityIndicator /> : 
           <ListView
             dataSource={ds.cloneWithRows(this.state.follower)}
             renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
           />
+          }
         </Container>
       );
     } else if (nodata === true && loading === false) {
@@ -95,8 +134,7 @@ export default class FollowingMe extends React.Component {
             <Icon name="search" />
             <Input
               placeholder={strings.listfollow.searchFollower}
-              onSubmitEditing={() => this.rerender()}
-              onChangeText={value => this.setState({ name: value })}
+              onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>

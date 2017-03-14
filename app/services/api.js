@@ -11,22 +11,24 @@ import registerFactory from '../factories/AuthRegister';
 import friendlistFactory from '../factories/friendlist';
 import listTimeline from '../factories/listTimeline';
 import chatFactory from '../factories/listChat';
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 class Api {
   constructor(baseUrl, middleware = () => {}) {
     this.baseUrl = baseUrl;
-    this.client = axios.create();
+    this.axiosObj = axios;
+    this.client = this.axiosObj.create();
     middleware(this.client);
-    this.client.interceptors.request.use(config => {
+    this.client.interceptors.request.use(config =>
       // console.log(config);
-      return config;
-    });
+       config);
 
-    this.client.interceptors.response.use(response => {
+    this.client.interceptors.response.use((response) => {
       console.log(response);
       return response;
     });
+
+    this.source = this.axiosObj.CancelToken.source();
   }
   put(url, json, qs = {}, config) {
     return this.sendRequest('PUT', url, { qs, json, config });
@@ -43,8 +45,15 @@ class Api {
   delete(url, qs = {}, config = {}) {
     return this.sendRequest('DELETE', url, { qs, config });
   }
+  getCancelCaller() {
+    return this.source;
+  }
+
+  getClient() {
+    return this.axiosObj;
+  }
   sendRequest(requestMethod, url, data = {}) {
-   return AsyncStorage.getItem('accessToken')
+    return AsyncStorage.getItem('accessToken')
    .then((token) => {
      console.log('requesting');
      const headers = data.config ? (data.config.headers || {}) : {};
@@ -52,25 +61,25 @@ class Api {
        headers.Authorization = `Bearer ${token}`;
      }
     //  headers.Authorization = token !== null ? `Bearer ${token}`: null;
-   this.client.defaults.headers.common = headers;
-   const request = this.client.request({
-     method: requestMethod,
-     url,
-     baseURL: this.baseUrl,
-     params: data.qs,
-     data: data.json || querystring.stringify(data.form) || data.formData,
-     headers: Object.assign(headers, data.json ? {'Content-type':'application/json'} : (data.form ? {'Content-Type': 'application/x-www-form-urlencoded'} : {'Content-Type': 'multipart/form'}) ),
-     timeout: 60 * 1000,
-     paramsSerializer: params => querystring.stringify(params),
-   }, data.config);
-   return request
+     this.client.defaults.headers.common = headers;
+     const request = this.client.request({
+       method: requestMethod,
+       url,
+       baseURL: this.baseUrl,
+       params: data.qs,
+       data: data.json || querystring.stringify(data.form) || data.formData,
+       headers: Object.assign(headers, data.json ? { 'Content-type': 'application/json' } : (data.form ? { 'Content-Type': 'application/x-www-form-urlencoded' } : { 'Content-Type': 'multipart/form' })),
+       timeout: 60 * 1000,
+       paramsSerializer: params => querystring.stringify(params),
+       cancelToken: this.getCancelCaller().token
+     }, data.config);
+     return request;
    })
    .then(json => Promise.resolve(json.data))
-   .catch(error => {
-     console.log(error)
-     return Promise.reject(error)
-   })
-
+   .catch((error) => {
+     console.log(error);
+     return Promise.reject(error);
+   });
   }
 }
 

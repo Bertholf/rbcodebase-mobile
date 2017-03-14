@@ -1,6 +1,8 @@
 import api from './api';
 
 export default {
+  cancelCaller: () => api.getCancelCaller(),
+  client: () => api.getClient(),
   followsomeone: (follower_id, leader_id) => api.post('/api/follows', { follower_id, leader_id, status: 'request' }),
   showFollower: id => api.get(`/api/follows?leader_id=${id}&status=approved`),
   showFollowing: id => api.get(`/api/follows?follower_id=${id}`),
