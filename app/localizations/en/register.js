@@ -26,6 +26,7 @@ const register = {
   alert_username_taken: 'The username already taken',
   alert_username_length: 'The username must be at least 5 charachters or numbers',
   alert_password: 'Password does not match',
+  alert_min_password: 'The password must be at least 6 charachters',
   alert_first_name: 'Invalid first name',
   alert_last_name: 'Invalid last name',
   error_failed: 'FAILED',

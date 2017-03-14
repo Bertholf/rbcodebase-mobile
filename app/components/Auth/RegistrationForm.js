@@ -279,7 +279,8 @@ export default class RegistrationForm extends Component {
                       secureTextEntry
                     />
                   </View>
-                  {(validPass && validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
+                  {(validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
+                  {(validPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.line} />
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
@@ -329,7 +330,7 @@ export default class RegistrationForm extends Component {
                     </Text>
                   </View>
                   <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
-                    <TouchableOpacity onPress={Actions.tos}> 
+                    <TouchableOpacity onPress={Actions.tos}>
                       <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
                         {strings.register.tou}
                       </Text>
@@ -338,7 +339,7 @@ export default class RegistrationForm extends Component {
                     <Text> {strings.register.and} </Text>
                     <TouchableOpacity onPress={Actions.pp}>
                       <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
-                        {strings.register.Privacy_policy} 
+                        {strings.register.Privacy_policy}
                       </Text>
                     </TouchableOpacity>
                   </View>
