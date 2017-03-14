@@ -38,6 +38,7 @@ const settings = {
   emailVarification: 'emailVarification',
   privacysetting: 'Privacy Setting',
   emailsetting: 'Email Setting',
+  gender: 'Gender',
 
 };
 
