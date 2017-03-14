@@ -121,7 +121,7 @@ export default class AdPreference extends Component {
     };
 
     const titleConfig = {
-      title: strings.settings.ad_Preference,
+      title: strings.settings.privacysetting,
     };
 
     return (
