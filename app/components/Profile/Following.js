@@ -75,10 +75,10 @@ export default class Friendlist extends React.Component {
   // Change State listfollowing
   searchUpdate(val) {
     this.setState({ name: val, wait: true });
-    follows.search(this.state.name)
-    .then((response) => {
-      this.setState({ friendlist: response.data, wait: false });
-    });
+    follows.searchFollowing(this.state.name)
+      .then((response) => {
+        this.setState({ friendlist: response.data, wait: false });
+      });
   }
 
   render() {
