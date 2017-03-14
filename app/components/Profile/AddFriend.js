@@ -75,9 +75,9 @@ export default class AddFriendScreen extends React.Component {
   searchUpdate(val) {
     this.setState({ name: val, wait: true });
     follow.search(this.state.name)
-    .then((response) => {
-      this.setState({ friendlist: response.data, wait: false });
-    });
+      .then((response) => {
+        this.setState({ friendlist: response.data, wait: false });
+      });
   }
 
   render() {
@@ -110,9 +110,9 @@ export default class AddFriendScreen extends React.Component {
       );
     }
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size={'large'} />
         </View>
-      );
+    );
   }
 }

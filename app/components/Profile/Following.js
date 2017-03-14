@@ -9,6 +9,7 @@ import {
   AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Item, Icon, Input } from 'native-base';
+import axios from 'axios';
 import follows from '../../services/follows';
 import ListFollow from './ListFollow';
 import strings from '../../localizations';
@@ -22,7 +23,7 @@ export default class Friendlist extends React.Component {
       name: '',
       nodata: false,
       following: [],
-      wait: '',
+      wait: true,
     };
   }
 
@@ -58,9 +59,9 @@ export default class Friendlist extends React.Component {
     // to change fill data follower and change state in loading, nodata, and name
     this.setState({ following: res.data }, () => {
       if (typeof this.state.following[0] === 'undefined') {
-        this.setState({ nodata: true, loading: false, name: '' });
+        this.setState({ nodata: true, loading: false, name: '', wait: false });
       } else {
-        this.setState({ loading: false, nodata: false, name: '' });
+        this.setState({ loading: false, nodata: false, name: '', wait: false });
       }
     });
   }
@@ -68,6 +69,15 @@ export default class Friendlist extends React.Component {
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
+    });
+  }
+
+  // Change State listfollowing
+  searchUpdate(val) {
+    this.setState({ name: val, wait: true });
+    follows.search(this.state.name)
+    .then((response) => {
+      this.setState({ friendlist: response.data, wait: false });
     });
   }
 
@@ -81,14 +91,16 @@ export default class Friendlist extends React.Component {
             <Icon name="search" />
             <Input
               placeholder={strings.listfollow.searchFollower}
-              onSubmitEditing={() => this.rerender()}
-              onChangeText={value => this.setState({ name: value })}
+              onSubmitEditing={() => this.searchUpdate()}
+              onChangeText={value => this.searchUpdate(value)}
             />
           </Item>
+          {this.state.wait ? <ActivityIndicator /> : 
           <ListView
             dataSource={ds.cloneWithRows(this.state.following)}
             renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following', rerender: () => this.rerender() }} />}
           />
+          }
         </Container>
       );
     } else if (nodata === true && loading === false) {
