@@ -143,7 +143,6 @@ export default class AdPreference extends Component {
                 <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollow}</Text>
               </View>
 
-
               <View style={styles.pickerstyle}>
                 { this.state.privacy_follow === 'only friend' ?
                   <Picker
@@ -429,224 +428,152 @@ export default class AdPreference extends Component {
               </View>
             </View>
           </View>
-
-          <View>
-            <View style={stylesAdpref.styleView}>
-              <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.emailfollow}</Text>
-              </View>
-              <View style={styles.pickerstyle}>
-                { this.state.email_follow == "0" ?
-                  <Picker
-                    selectedValue={this.state.email_follow}
-                    onValueChange={value => this.setState({ email_follow: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
-
-             this.state.email_follow == "1" ?
-
-               <Picker
-                 selectedValue={this.state.email_follow}
-                 onValueChange={value => this.setState({ email_follow: value })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker> :
-               <Picker
-                 selectedValue={this.state.pick}
-                 onValueChange={valueemail => this.setState({ pick: valueemail })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker>
-          }
-              </View>
-            </View>
+          </ScrollView>
           </View>
-          <View>
-            <View style={stylesAdpref.styleView}>
-              <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.emailpostlike}</Text>
-              </View>
-              <View style={styles.pickerstyle}>
-                {this.state.email_post_like == "0" ?
-                  <Picker
-                    selectedValue={this.state.email_post_like}
-                    onValueChange={value => this.setState({ email_post_like: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
-
-                 this.state.email_post_like == "1" ?
-
-                   <Picker
-                     selectedValue={this.state.email_post_like}
-                     onValueChange={value => this.setState({ email_post_like: value })}
-                   >
-                     <Picker.Item label={strings.adpreference.yes} value="1" />
-                     <Picker.Item label={strings.adpreference.no} value="0" />
-                   </Picker> :
-                   <Picker
-                     selectedValue={this.state.pickpostlike}
-                     onValueChange={valueemail => this.setState({ pickpostlike: valueemail })}
-                   >
-                     <Picker.Item label={strings.adpreference.yes} value="1" />
-                     <Picker.Item label={strings.adpreference.no} value="0" />
-                   </Picker>
-             }
-
-              </View>
-            </View>
-          </View>
-          <View>
-            <View style={stylesAdpref.styleView}>
-              <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.emailpostshare}</Text>
-              </View>
-              <View style={styles.pickerstyle}>
-                { this.state.email_post_share == "0" ?
-                  <Picker
-                    selectedValue={this.state.email_post_share}
-                    onValueChange={value => this.setState({ email_post_share: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
-
-             this.state.email_post_share == "1" ?
-
-               <Picker
-                 selectedValue={this.state.email_post_share}
-                 onValueChange={value => this.setState({ email_post_share: value })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker> :
-               <Picker
-                 selectedValue={this.state.pickpostshare}
-                 onValueChange={valueshare => this.setState({ pickpostshare: valueshare })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker>
-
-          }
-              </View>
-            </View>
-          </View>
-          <View>
-            <View style={stylesAdpref.styleView}>
-              <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentpost}</Text>
-              </View>
-              <View style={styles.pickerstyle}>
-                { this.state.email_comment_post == "0" ?
-                  <Picker
-                    selectedValue={this.state.email_comment_post}
-                    onValueChange={value => this.setState({ email_comment_post: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
-
-             this.state.email_comment_post == "1" ?
-
-               <Picker
-                 selectedValue={this.state.email_comment_post}
-                 onValueChange={value => this.setState({ email_comment_post: value })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker> :
-               <Picker
-                 selectedValue={this.state.pickcommentpost}
-                 onValueChange={valuecpost => this.setState({ pickcommentpost: valuecpost })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker>
-
-          }
-              </View>
-            </View>
-          </View>
-          <View>
-            <View style={stylesAdpref.styleView}>
-              <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentlike}</Text>
-              </View>
-              <View style={styles.pickerstyle}>
-                {this.state.email_comment_like === "0" ?
-                  <Picker
-                    selectedValue={this.state.email_comment_like}
-                    onValueChange={value => this.setState({ email_comment_like: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
-
-             this.state.email_comment_like === "1" ?
-
-               <Picker
-                 selectedValue={this.state.email_comment_like}
-                 onValueChange={value => this.setState({ email_comment_like: value })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker> :
-               <Picker
-                 selectedValue={this.state.pickcommentlike}
-                 onValueChange={valueclike => this.setState({ pickcommentlike: valueclike })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker>
-
-          }
-              </View>
-            </View>
-          </View>
-          <View>
-            <View style={stylesAdpref.styleView}>
-              <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentreplay}</Text>
-              </View>
-              <View style={styles.pickerstyle}>
-                { this.state.email_comment_reply === "0" ?
-                  <Picker
-                    selectedValue={this.state.email_comment_reply}
-                    onValueChange={value => this.setState({ email_comment_reply: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
-
-             this.state.email_comment_reply == "1" ?
-
-               <Picker
-                 selectedValue={this.state.email_comment_reply}
-                 onValueChange={value => this.setState({ email_comment_reply: value })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker> :
-               <Picker
-                 selectedValue={this.state.pickreplay}
-                 onValueChange={valuecreplay => this.setState({ pickreplay: valuecreplay })}
-               >
-                 <Picker.Item label={strings.adpreference.yes} value="1" />
-                 <Picker.Item label={strings.adpreference.no} value="0" />
-               </Picker>
-
-          }
-              </View>
-            </View>
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
-}
+        );
+      }
+    }
+          // <View>
+          //   <View style={stylesAdpref.styleView}>
+          //     <View>
+          //       <Text style={stylesAdpref.text}>{strings.adpreference.emailpostshare}</Text>
+          //     </View>
+          //     <View style={styles.pickerstyle}>
+          //       { this.state.email_post_share == "0" ?
+          //         <Picker
+          //           selectedValue={this.state.email_post_share}
+          //           onValueChange={value => this.setState({ email_post_share: value })}
+          //         >
+          //           <Picker.Item label={strings.adpreference.no} value="0" />
+          //           <Picker.Item label={strings.adpreference.yes} value="1" />
+          //         </Picker> :
+          //
+          //    this.state.email_post_share == "1" ?
+          //
+          //      <Picker
+          //        selectedValue={this.state.email_post_share}
+          //        onValueChange={value => this.setState({ email_post_share: value })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker> :
+          //      <Picker
+          //        selectedValue={this.state.pickpostshare}
+          //        onValueChange={valueshare => this.setState({ pickpostshare: valueshare })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker>
+          //
+          // }
+          //     </View>
+          //   </View>
+          // </View>
+          // <View>
+          //   <View style={stylesAdpref.styleView}>
+          //     <View>
+          //       <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentpost}</Text>
+          //     </View>
+          //     <View style={styles.pickerstyle}>
+          //       { this.state.email_comment_post == "0" ?
+          //         <Picker
+          //           selectedValue={this.state.email_comment_post}
+          //           onValueChange={value => this.setState({ email_comment_post: value })}
+          //         >
+          //           <Picker.Item label={strings.adpreference.no} value="0" />
+          //           <Picker.Item label={strings.adpreference.yes} value="1" />
+          //         </Picker> :
+          //
+          //    this.state.email_comment_post == "1" ?
+          //
+          //      <Picker
+          //        selectedValue={this.state.email_comment_post}
+          //        onValueChange={value => this.setState({ email_comment_post: value })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker> :
+          //      <Picker
+          //        selectedValue={this.state.pickcommentpost}
+          //        onValueChange={valuecpost => this.setState({ pickcommentpost: valuecpost })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker>
+          //
+          // }
+          //     </View>
+          //   </View>
+          // </View>
+          // <View>
+          //   <View style={stylesAdpref.styleView}>
+          //     <View>
+          //       <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentlike}</Text>
+          //     </View>
+          //     <View style={styles.pickerstyle}>
+          //       {this.state.email_comment_like === "0" ?
+          //         <Picker
+          //           selectedValue={this.state.email_comment_like}
+          //           onValueChange={value => this.setState({ email_comment_like: value })}
+          //         >
+          //           <Picker.Item label={strings.adpreference.no} value="0" />
+          //           <Picker.Item label={strings.adpreference.yes} value="1" />
+          //         </Picker> :
+          //
+          //    this.state.email_comment_like === "1" ?
+          //
+          //      <Picker
+          //        selectedValue={this.state.email_comment_like}
+          //        onValueChange={value => this.setState({ email_comment_like: value })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker> :
+          //      <Picker
+          //        selectedValue={this.state.pickcommentlike}
+          //        onValueChange={valueclike => this.setState({ pickcommentlike: valueclike })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker>
+          //
+          // }
+          //     </View>
+          //   </View>
+          // </View>
+          // <View>
+          //   <View style={stylesAdpref.styleView}>
+          //     <View>
+          //       <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentreplay}</Text>
+          //     </View>
+          //     <View style={styles.pickerstyle}>
+          //       { this.state.email_comment_reply === "0" ?
+          //         <Picker
+          //           selectedValue={this.state.email_comment_reply}
+          //           onValueChange={value => this.setState({ email_comment_reply: value })}
+          //         >
+          //           <Picker.Item label={strings.adpreference.no} value="0" />
+          //           <Picker.Item label={strings.adpreference.yes} value="1" />
+          //         </Picker> :
+          //
+          //    this.state.email_comment_reply == "1" ?
+          //
+          //      <Picker
+          //        selectedValue={this.state.email_comment_reply}
+          //        onValueChange={value => this.setState({ email_comment_reply: value })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker> :
+          //      <Picker
+          //        selectedValue={this.state.pickreplay}
+          //        onValueChange={valuecreplay => this.setState({ pickreplay: valuecreplay })}
+          //      >
+          //        <Picker.Item label={strings.adpreference.yes} value="1" />
+          //        <Picker.Item label={strings.adpreference.no} value="0" />
+          //      </Picker>
+          //
+          // }
+          //     </View>
+          //   </View>
+          // </View>

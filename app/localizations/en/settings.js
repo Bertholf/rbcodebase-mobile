@@ -7,7 +7,7 @@ const settings = {
   mobile: 'Mobile number',
   email: 'Email',
   password: 'Password',
-  privacy: 'Privacy',
+  privacy: 'Privacy Policy',
   notification: 'Notification',
   preference: 'Preference',
   ad_Preference: 'Ad Preference',

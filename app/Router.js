@@ -49,6 +49,7 @@ import AppListing from './components/Listing/listing';
 import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
+import EmailSetting from './components/Setting/EmailSetting';
 import Follower from './components/Profile/Follower';
 import AddFriendScreen from './components/Profile/AddFriend';
 import LoaderView from './views/Loader';
@@ -208,6 +209,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'adpref'} component={AdPref} hideNavBar title={'Ad Preference'}
+            />
+            <Scene
+              key={'EmailSetting'} component={EmailSetting} hideNavBar title={'EmailSetting'}
             />
             <Scene
               key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
