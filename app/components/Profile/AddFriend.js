@@ -73,12 +73,11 @@ export default class AddFriendScreen extends React.Component {
   }
 
   searchUpdate(val) {
-    this.setState({ name: val });
-    follow.search(this.state.name)
-    .then((response) => {
-      this.setState({ friendlist: response.data, wait: false })
-      .then(() => this.setState({ wait: true }));
-    });
+      this.setState({ name: val, wait: true });
+      follow.search(this.state.name)
+      .then((response) => {
+        this.setState({ friendlist: response.data, wait: false });
+      });
   }
 
   render() {
