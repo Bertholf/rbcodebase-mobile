@@ -7,8 +7,8 @@ import {
   Keyboard,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import DatePicker from 'react-native-datepicker';
-import Toast from 'react-native-simple-toast';
+import Toast, {DURATION} from 'react-native-easy-toast';
+import DatePicker from 'react-native-datepicker'
 import NavigationBar from 'react-native-navbar';
 import strings from '../../localizations';
 import auth from './../../services/auth';
@@ -55,6 +55,8 @@ export default class editBirthday extends Component {
     this.state = {
       date: '',
       profile: {},
+      position:'bottom',
+      style: {},
     };
   }
 
@@ -62,6 +64,25 @@ export default class editBirthday extends Component {
     auth.profile()
      .then(response => this.setState({ profile: response.data, date: response.data.date_birth }))
      .catch(Err => Err);
+  }
+  onClick(text, position, duration, withStyle) {
+    this.setState({
+      position: position,
+    });
+    if (withStyle){
+       this.refs.toastWithStyle.show(text, duration);
+    } else {
+       this.refs.toast.show(text, duration);
+    }
+  }
+
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        <Text>{text}</Text>
+      </Text>
+    )
   }
 
   getDate() {
@@ -94,12 +115,12 @@ export default class editBirthday extends Component {
       auth.profile()
       .then(response => {
         this.setState({ profile: response.data, loading: false }, () => {
-          this.props.reRender();
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
         });
       })
       .catch(Err => Err);
+      this.props.reRender();
       Keyboard.dismiss();
-      Actions.pop();
   };
 
 
@@ -134,6 +155,12 @@ export default class editBirthday extends Component {
             />
           </View>
         </View>
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }

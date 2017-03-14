@@ -4,9 +4,10 @@ import {
   View,
   TextInput,
   ScrollView,
-  Alert,
+  Keyboard,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
@@ -32,6 +33,26 @@ export default class PassEdit extends Component {
     .catch(Err => Err);
   }
 
+  onClick(text, position, duration, withStyle) {
+    this.setState({
+     position: position,
+    });
+    if (withStyle){
+      this.refs.toastWithStyle.show(text, duration);
+    } else {
+      this.refs.toast.show(text, duration);
+    }
+  }
+
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        <Text>{text}</Text>
+      </Text>
+    )
+  }
+
   clearText(fieldName) {
     this.refs[fieldName].setNativeProps({ text: '' });
   }
@@ -51,12 +72,17 @@ export default class PassEdit extends Component {
     const onSave = () => {
       if (validPassword && passwordLength && combinePassword) {
         saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, passwordConfirmation);
-        Alert.alert('Success', 'Your password has been Changed');
         this.clearText('textInput1')
         this.clearText('textInput2')
         auth.profile()
-        .then(response => this.setState({ profile: response.data, loading: false }))
+        .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+        }))
         .catch(Err => Err);
+        this.props.reRender();
+        Keyboard.dismiss();
+      } else {
+        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 
@@ -116,6 +142,12 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.error_password_combination}</Text>}
           </View>
         </ScrollView>
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }

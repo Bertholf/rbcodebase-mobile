@@ -23,6 +23,7 @@ const settings = {
   alerSuccess: 'Sukses!',
   alertNoInput: "'Kesalahan', 'Masukkan salah atau Tidak ada masukkan'",
   saved: 'Pengaturan disimpan',
+  error: 'Gagal menyimpan',
   firstnameChange: 'Sukses, nama depan Anda sudah tersimpan',
   lastnameChange: 'Sukses, nama belakang Anda sudah tersimpan',
   noChange: 'Tidak ada perubahan!',
@@ -35,5 +36,7 @@ const settings = {
   profile: 'Profil Pengguna',
   approval: 'Persetujuan',
   emailVarification: 'konfirmasi email'
+  privacysetting: 'Pengaturan Privasi',
+  emailsetting: 'Pengaturan Surel',
 };
 export default settings;

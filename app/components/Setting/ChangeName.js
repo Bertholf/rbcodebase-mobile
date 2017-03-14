@@ -7,6 +7,7 @@ import {
   Keyboard,
   AsyncStorage,
 } from 'react-native';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import { Actions } from 'react-native-router-flux';
 import styles from './ChangeSetting/ChangeStyles';
@@ -26,8 +27,30 @@ export default class NameEdit extends Component {
       profile: {},
       namef: '',
       namel: '',
+      style: {},
+      position: 'bottom',
     };
   }
+
+  onClick(text, position, duration,withStyle) {
+    this.setState({
+       position: position,
+        })
+       if(withStyle){
+           this.refs.toastWithStyle.show(text, duration);
+       }else {
+           this.refs.toast.show(text, duration);
+       }
+  }
+
+  getButton(text, position, duration, withStyle) {
+        return(
+            <Text
+                onPress={()=>this.onClick(text, position, duration, withStyle)}>
+                <Text>{text}</Text>
+            </Text>
+        )
+    }
   componentDidMount() {
     AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
     AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(res => console.log('error ambil namalengkap--- --'));
@@ -76,14 +99,15 @@ export default class NameEdit extends Component {
           this.clearText('textInput2');
           auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.props.reRender();
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));
+          this.props.reRender();
           Keyboard.dismiss();
           Actions.refresh();
-          Actions.pop();
         }
       } else {
+        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
@@ -161,10 +185,16 @@ export default class NameEdit extends Component {
               autoCorrect
             />
           </View>
-          <View>
+          <View style={{elevation:5}}>
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }

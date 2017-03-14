@@ -43,15 +43,17 @@ export default class FollowingMe extends React.Component {
   }
 
   showError(err) {
+    console.log(err);
     Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
   }
 
   changeState(res) {
+    // to change fill data follower and change state in loading, nodata, and name
     this.setState({ follower: res.data }, () => {
       if (typeof this.state.follower[0] === 'undefined') {
-        this.setState({ nodata: true, loading: false });
+        this.setState({ nodata: true, loading: false, name: '' });
       } else {
-        this.setState({ loading: false });
+        this.setState({ loading: false, nodata: false, name: '' });
       }
     });
   }
@@ -84,18 +86,29 @@ export default class FollowingMe extends React.Component {
           />
         </Container>
       );
-    } else if (nodata === true) {
+    } else if (nodata === true && loading === false) {
       // Return this View if there is no Data Showed
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-          <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
-          <TouchableOpacity
-            onPress={() => Actions.addfriendscreen()}
-            style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
-          >
-            <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
-          </TouchableOpacity>
-        </View>
+        // Search Bar
+        <Container>
+          <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
+            <Icon name="search" />
+            <Input
+              placeholder={strings.listfollow.searchFollower}
+              onSubmitEditing={() => this.rerender()}
+              onChangeText={value => this.setState({ name: value })}
+            />
+          </Item>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+            <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
+            <TouchableOpacity
+              onPress={() => Actions.addfriendscreen()}
+              style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
+            >
+              <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
+            </TouchableOpacity>
+          </View>
+        </Container>
       );
     }
     return (
