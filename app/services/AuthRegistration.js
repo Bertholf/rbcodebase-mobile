@@ -5,8 +5,8 @@ import me from './me';
 import submitLogin from './AuthLogin'
 
 
-const submitRegister = (name_first, name_last, name_slug, email, password, password_confirmation, callback) => {
-  auth.register(name_first, name_last, name_slug, email, password, password_confirmation)
+const submitRegister = (name_first, name_last, name_slug, gender, email, password, password_confirmation, callback) => {
+  auth.register(name_first, name_last, name_slug, gender,email, password, password_confirmation)
   .then((resp) => {
     auth.login(name_slug, password)
     .then((respL) => {

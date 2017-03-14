@@ -20,6 +20,7 @@ export default class Setting extends Component {
       namel: '',
       birthday: '',
       phone: '',
+      gender: '',
     };
   }
   componentDidMount() {
@@ -91,6 +92,17 @@ export default class Setting extends Component {
               <View style={{ flexDirection: 'row' }}>
                 <Text style={{ alignSelf: 'center' }}>{this.state.nameslug}</Text>
                 {/* {this.state.profile.name_slug} */}
+                <Image style={styles.image} source={next} />
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.genderEdit({ reRender: () => this.reRender() })}>
+            <View style={styles.list}>
+              <View style={{ alignSelf: 'center' }}>
+                <Text style={styles.text}>{strings.settings.gender}</Text>
+              </View>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ alignSelf: 'center' }}>{this.state.gender}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>

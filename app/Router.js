@@ -151,7 +151,7 @@ const Routing = (props) => (
               key={'emailEdit'} component={EmailEdit} hideNavBar title={'Edit Email'}
             />
             <Scene
-              key={'genderEdit'} component={Gender} title={'Edit Gender'}
+              key={'genderEdit'} hideNavBar component={Gender} title={'Edit Gender'}
             />
             <Scene
               key={'passEdit'} component={PassEdit} hideNavBar  title={'Edit Password'}

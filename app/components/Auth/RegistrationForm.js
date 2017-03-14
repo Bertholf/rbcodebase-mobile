@@ -13,6 +13,7 @@ import {
      AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Container, Content, Picker } from 'native-base';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
   },
   textinputStyle: {
     fontSize: 16,
-    color: '#2196f3',
+    color: 'black',
     width: 0.75 * width,
     height: 40,
   },
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   },
   line: {
     borderBottomWidth: 0.8,
-    borderColor: 'silver',
+    borderColor: 'black',
     marginTop: 20,
     marginBottom: 20,
   },
@@ -107,6 +108,7 @@ export default class RegistrationForm extends Component {
       firstname: this.props.firstName || '',
       lastname: this.props.lastName || '',
       email: this.props.email || '',
+      gender: this.props.gender || '',
       username: this.props.username || '',
       secret: this.props.secret || '',
       provider: this.props.provider || '',
@@ -122,11 +124,11 @@ export default class RegistrationForm extends Component {
     };
   }
   onSubmit() {
-    const { firstname, lastname, username, email, password, confirmPassword } = this.state;
+    const { firstname, lastname, username, gender, email, password, confirmPassword } = this.state;
     const { provider, accessToken, secret, oauthProviderId } = this.state;
     if (provider && accessToken) {
       this.setState({ submitting: true });
-      auth.registerSSO(firstname, lastname, username, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
+      auth.registerSSO(firstname, lastname, username, gender, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
       this.loginAfterRegister(username, password),
     ))
@@ -136,7 +138,7 @@ export default class RegistrationForm extends Component {
     });
     } else {
       this.setState({ submitting: true });
-      submitRegister(firstname, lastname, username, email, password, confirmPassword, (msg) => {
+      submitRegister(firstname, lastname, username, gender, email, password, confirmPassword, (msg) => {
         this.setState({ failregister: true, failMsg: msg, submitting: false });
       });
     }
@@ -164,6 +166,7 @@ export default class RegistrationForm extends Component {
     const emptyFName = this.state.firstname === '';
     const emptyLName = this.state.lastname === '';
     const emptyUName = this.state.username === '';
+    const emptyGender = this.state.gender === '';
     const emptyEmail = this.state.email === '' || !this.state.email;
     const validEmail = emailRegex.test(this.state.email);
     const validPass = (this.state.password === this.state.confirmPassword);
@@ -198,8 +201,8 @@ export default class RegistrationForm extends Component {
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.first_name}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={firstname => this.setState({ firstname, failregister: false })}
@@ -210,8 +213,8 @@ export default class RegistrationForm extends Component {
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.last_name}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       editable
@@ -226,8 +229,8 @@ export default class RegistrationForm extends Component {
                   <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
                     <TextInput
                       placeholder={strings.register.user_name}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={username => this.setState({ username, failregister: false })}
@@ -245,8 +248,8 @@ export default class RegistrationForm extends Component {
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.email}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       editable
@@ -258,10 +261,19 @@ export default class RegistrationForm extends Component {
                     : (<Text style={styles.fail}>{strings.register.alert_invalid_email}</Text>)
                   }
                   <View style={styles.textinputWrapperStyle}>
+                  <Picker
+                    selectedValue={this.state.gender}
+                    onValueChange={valuecreplay => this.setState({ gender: valuecreplay, failregister: false })}
+                  >
+                    <Picker.Item label='Male' value="male" />
+                    <Picker.Item label='Female' value="female" />
+                  </Picker>
+                  </View>
+                  <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.password}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={password => this.setState({ password, failregister: false })}
@@ -274,8 +286,8 @@ export default class RegistrationForm extends Component {
 
                     <TextInput
                       placeholder={strings.register.confirm_password}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={confirmPassword => this.setState({ confirmPassword, failregister: false })}
@@ -286,8 +298,8 @@ export default class RegistrationForm extends Component {
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.custom_field}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                     />
@@ -295,8 +307,8 @@ export default class RegistrationForm extends Component {
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.custom_field}
-                      placeholderTextColor="silver"
-                      selectionColor="silver"
+                      placeholderTextColor="black"
+                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                     />

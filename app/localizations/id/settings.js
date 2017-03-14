@@ -38,5 +38,7 @@ const settings = {
   emailVarification: 'konfirmasi email',
   privacysetting: 'Pengaturan Privasi',
   emailsetting: 'Pengaturan Surel',
+  gender: 'Jenis Kelamin',
+  changegender: 'Perubahan Jenis Kelamin',
 };
 export default settings;

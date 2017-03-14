@@ -7,8 +7,17 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  AsyncStorage,
 } from 'react-native';
 
+import auth from './../../services/auth';
+import me from '../../services/me';
+import { Actions } from 'react-native-router-flux';
+import Toast, {DURATION} from 'react-native-easy-toast'
+import NavigationBar from 'react-native-navbar';
+import strings from '../../localizations';
+import saveProfile from '../../services/updateProfile';
+import IconClose from './../../layouts/IconClose';
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
 
@@ -81,20 +90,65 @@ const styles = StyleSheet.create({
 export default class Gender extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      male: true,
-      female: false,
+      this.state = {
+      newgender: '',
+      genderansyc: '',
+      profile: {},
+
     };
   }
+  componentDidMount() {
+    AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====',this.state.genderansyc); }).catch((res) => console.log('error AsyncStorage-----'));
+    auth.profile()
+    .then(response => this.setState({ profile: response.data, loading: false }))
+    .catch(Err => Err);
+  }
   render() {
+    const id = this.state.profile.id;
+    const name_first = this.state.profile.name_first;
+    const name_last = this.state.profile.name_last;
+    const name_slug = this.state.profile.name_slug;
+    const email = this.state.profile.email;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.birthday;
+    const gender = this.state.profile.gender;
+    const newgender = this.state.newgender;
+    const rightButtonConfig = {
+      title: strings.settings.save,
+      handler: () => updategender(),
+    };
+
+    const titleConfig = {
+      title: strings.settings.changegender,
+    };
+    const updategender = () => {
+      saveProfile(id, name_first, name_last, name_slug, newgender, phone, birthday);
+      //  Toast.show(strings.mobilephone.phoneChanged);
+      auth.profile()
+      .then(response => {
+        this.setState({ profile: response.data, loading: false }, () => {
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+        });
+      })
+      .catch(Err => Err);
+      this.props.reRender();
+  };
     return (
       <View style={styles.OuterView}>
+      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <NavigationBar
+          title={titleConfig}
+          rightButton={rightButtonConfig}
+          leftButton={<IconClose onPress={Actions.pop} />}
+          style={{ height: 55 }}
+        />
+      </View>
         <ScrollView>
           <View style={styles.genderRow} >
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.male && styles.active]}
-              onPress={() => this.setState({ male: true, female: false })}
+              style={[styles.btnGender, this.state.newgender === 'Male' && styles.active]}
+              onPress={() => this.setState({ newgender: 'Male' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Image source={imgmale} style={[styles.imgGender, { tintColor: '#1565c0' }]} />
@@ -103,8 +157,8 @@ export default class Gender extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.female && styles.active2]}
-              onPress={() => this.setState({ female: true, male: false })}
+              style={[styles.btnGender, this.state.newgender === 'Female' && styles.active2]}
+              onPress={() => this.setState({ newgender: 'Female' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Image source={imgfemale} style={[styles.imgGender, { tintColor: '#DF2668' }]} />
@@ -113,13 +167,6 @@ export default class Gender extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        <TouchableOpacity onPress={() => console.log('dummy')}>
-          <View style={styles.View2}>
-            <Text style={styles.Button}>
-              SAVE
-            </Text>
-          </View>
-        </TouchableOpacity>
       </View>
     );
   }
