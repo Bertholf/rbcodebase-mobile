@@ -49,6 +49,7 @@ export default class Dashboard extends Component {
          ['name_last', response.data.name_last.toString()], ['name_slug', response.data.name_slug.toString()], ['email', (response.data.email)],
          ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
          ['verified', response.data.verified.toString()],
+         ['gender', response.data.gender.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
         //  ['img_avatar', response.data.img_avatar.toString()],
         // ['referring_user_id', response.data.referring_user_id.toString()],
@@ -59,7 +60,7 @@ export default class Dashboard extends Component {
            console.log('SAVE USERDATA 1');
           //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
-             'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
+             'status', 'confirmed', 'gender','verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
         .then(res => console.log('==RESPONSE STORAGE==', res))

@@ -39,5 +39,6 @@ const settings = {
   privacysetting: 'Pengaturan Privasi',
   emailsetting: 'Pengaturan Surel',
   gender: 'Jenis Kelamin',
+  changegender: 'Perubahan Jenis Kelamin',
 };
 export default settings;
