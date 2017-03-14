@@ -21,16 +21,18 @@ export default class Setting extends Component {
       birthday: '',
       phone: '',
       gender: '',
+      gendersncy: '',
     };
   }
   componentDidMount() {
     auth.profile()
     .then((response) => {
-      this.setState({ namef: response.data.name_first, namel: response.data.name_last, nameslug: response.data.name_slug, email: response.data.email, birthday: response.data.date_birth, phone: response.data.cell_number },  () => {
+      this.setState({ namef: response.data.name_first, namel: response.data.name_last, nameslug: response.data.name_slug, email: response.data.email,gender: response.data.gender, birthday: response.data.date_birth, phone: response.data.cell_number },  () => {
         AsyncStorage.multiSet([['userId', response.data.id.toString()],
          ['name_first', response.data.name_first.toString()],
          ['name_last', response.data.name_last.toString()],
          ['name_slug', response.data.name_slug.toString()],
+         ['gender', response.data.gender.toString()],
          ['email', (response.data.email)],
          ['date_birth', response.data.date_birth.toString()],
          ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
@@ -40,7 +42,7 @@ export default class Setting extends Component {
          ['cell_number', response.data.cell_number.toString()],
         ])
          .then(() => {
-           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email', 'date_birth',
+           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug','gender', 'email', 'date_birth',
              'cell_number', 'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
@@ -57,6 +59,7 @@ export default class Setting extends Component {
     AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch((res) => console.log('error ambil namalengkap--- --'));
     AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res }); console.log('BIRTHDAY KAMUUUUU=====', this.state.birthday); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
     AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('PHONE KAMUUUUU=====', this.state.phone); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
+    AsyncStorage.getItem('gender').then((res) => { this.setState({ gendersncy: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
 
   });
   }
