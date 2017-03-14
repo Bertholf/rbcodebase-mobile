@@ -41,6 +41,7 @@ export default class AddFriendScreen extends React.Component {
     this.state = {
       search: {},
       loading: true,
+      wait: true,
       friendlist: {},
       name: this.props.name || '',
     };
@@ -48,7 +49,7 @@ export default class AddFriendScreen extends React.Component {
   componentDidMount() {
     follow.search(this.state.name)
     .then((response) => {
-      this.setState({ friendlist: response.data, loading: false }, () => console.log('ini response===', this.state));
+      this.setState({ friendlist: response.data, loading: false, wait: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
       console.log('ADD FRIEND ERROR', err);
       Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
@@ -71,6 +72,14 @@ export default class AddFriendScreen extends React.Component {
     });
   }
 
+  searchUpdate(val) {
+    this.setState({ name: val });
+    follow.search(this.state.name)
+    .then((response) => {
+      this.setState({ friendlist: response.data, wait: false })
+      .then(() => this.setState({ wait: true }));
+    });
+  }
 
   render() {
     if (this.state.loading === false) {
@@ -84,26 +93,27 @@ export default class AddFriendScreen extends React.Component {
                 <Icon name="search" />
                 <Input
                   placeholder={strings.listfollow.searchPeople}
-                  onSubmitEditing={() => this.rerender()}
-                  onChangeText={value => this.setState({ name: value })}
+                  onSubmitEditing={() => this.searchUpdate()}
+                  onChangeText={value => this.searchUpdate(value)}
                 />
               </Item>
             </Container>
           </View>
           <View style={styles.listView}>
+            {this.state.wait === true ? <ActivityIndicator /> :
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
-          />
+            />
+            }
           </View>
         </View>
       );
-    } else {
-      return (
+    }
+    return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size={'large'} />
         </View>
       );
-    }
   }
 }
