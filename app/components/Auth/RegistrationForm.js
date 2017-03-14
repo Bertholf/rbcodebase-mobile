@@ -268,7 +268,10 @@ export default class RegistrationForm extends Component {
                       secureTextEntry
                     />
                   </View>
+                    { validLPass|| emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
+                    { validPass || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.textinputWrapperStyle}>
+
                     <TextInput
                       placeholder={strings.register.confirm_password}
                       placeholderTextColor="silver"
@@ -279,8 +282,6 @@ export default class RegistrationForm extends Component {
                       secureTextEntry
                     />
                   </View>
-                  {(validLPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
-                  {(validPass) || emptyPass ? <Text /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.line} />
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
