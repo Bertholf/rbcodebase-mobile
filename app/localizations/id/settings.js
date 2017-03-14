@@ -7,7 +7,7 @@ const settings = {
   mobile: 'Nomor ponsel',
   email: 'Email',
   password: 'Kata sandi',
-  privacy: 'Privasi',
+  privacy: 'Kebijakan pribadi',
   notification: 'Notifikasi',
   preference: 'Preferensi',
   ad_Preference: 'Preferensi iklan',
@@ -35,5 +35,8 @@ const settings = {
   forgotpass: 'Lupa Kata Sandi',
   profile: 'Profil Pengguna',
   approval: 'Persetujuan',
+  emailVarification: 'konfirmasi email',
+  privacysetting: 'Pengaturan Privasi',
+  emailsetting: 'Pengaturan Surel',
 };
 export default settings;
