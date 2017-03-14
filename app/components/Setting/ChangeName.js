@@ -46,7 +46,6 @@ export default class NameEdit extends Component {
   getButton(text, position, duration, withStyle) {
         return(
             <Text
-                style={{padding:10}}
                 onPress={()=>this.onClick(text, position, duration, withStyle)}>
                 <Text>{text}</Text>
             </Text>
@@ -100,26 +99,19 @@ export default class NameEdit extends Component {
           this.clearText('textInput2');
           auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.props.reRender();
-          {this.onClick('Succes update data ', 'bottom', DURATION.LENGTH_SHORT)}
-          <Toast ref="toast" position={this.state.position}/>
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));
+          this.props.reRender();
           Keyboard.dismiss();
           Actions.refresh();
-
         }
       } else {
-        {this.onClick('Error', 'bottom', DURATION.LENGTH_SHORT)}
-        <Toast ref="toast" position={this.state.position}/>
+        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
       <View style={styles.OuterView}>
-      <View>
-              {this.getButton('', 'center', DURATION.LENGTH_SHORT)}
-              <Toast ref="toast" position={this.state.position}/>
-      </View>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -197,7 +189,12 @@ export default class NameEdit extends Component {
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
-      <Toast ref="toast" />
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }
