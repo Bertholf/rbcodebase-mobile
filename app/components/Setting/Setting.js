@@ -163,9 +163,19 @@ export default class Setting extends Component {
           <TouchableOpacity onPress={Actions.adpref} >
             <View style={styles.list}>
               <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.ad_Preference}</Text>
+                <Text style={styles.text}>{strings.settings.privacysetting}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
+                <Image style={styles.image} source={next} />
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.EmailSetting} >
+            <View style={styles.list}>
+              <View style={{ alignSelf: 'center' }}>
+                <Text style={styles.text}>{strings.settings.emailsetting}</Text>
+              </View>
+              <View style={{flexDirection: 'row'}}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>

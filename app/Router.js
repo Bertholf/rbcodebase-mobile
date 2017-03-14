@@ -49,6 +49,7 @@ import AppListing from './components/Listing/listing';
 import License from './containers/License/LicenseContainer';
 import MobilePhone from './components/Setting/mobilePhone';
 import AdPref from './components/Setting/AdPreference';
+import EmailSetting from './components/Setting/EmailSetting';
 import Follower from './components/Profile/Follower';
 import AddFriendScreen from './components/Profile/AddFriend';
 import LoaderView from './views/Loader';
@@ -56,6 +57,7 @@ import Approval from './components/Profile/approval';
 import ResultForgot from './components/Auth/ForgotPasswordResult';
 import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
+import emailVarification from './components/Setting/emailVarification';
 
 
 const lang = strings.getInterfaceLanguage();
@@ -84,6 +86,9 @@ const Routing = (props) => (
           <Scene key={'root'}>
             <Scene
               key="setting" component={Setting} title={strings.settings.title}
+            />
+            <Scene
+              key="emailVarification" hideNavBar component={emailVarification} title={strings.settings.emailVarification}
             />
             <Scene
               key={'resetresult'} hideNavBar component={ResultForgot} title={'Walkthrough Screen'}
@@ -204,6 +209,9 @@ const Routing = (props) => (
             />
             <Scene
               key={'adpref'} component={AdPref} hideNavBar title={'Ad Preference'}
+            />
+            <Scene
+              key={'EmailSetting'} component={EmailSetting} hideNavBar title={'EmailSetting'}
             />
             <Scene
               key={'loginscreen'} component={LoginScreen} hideNavBar title={'Login'}
