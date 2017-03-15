@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Text,
+  Keyboard,
 } from 'react-native';
 import SearchBar from 'react-native-material-design-searchbar';
 import { Container, Header, Item, Input, Icon, Button } from 'native-base';
@@ -78,12 +79,14 @@ export default class AddFriendScreen extends React.Component {
     follow.search(this.state.name)
       .then((response) => {
         this.setState({ friendlist: response.data, wait: false });
+        Keyboard.dismiss();
       });
   }
 
   cancelRequest(value) {
     clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+    this.setState({ wait: true })
+    this.timer = setTimeout(() => this.searchUpdate(value), 1200);
     // if (this.state.requesting) {
     //   follows.cancelCaller().cancel('Cancel this operation');
     //   this.searchUpdate(value);
@@ -92,7 +95,7 @@ export default class AddFriendScreen extends React.Component {
   }
 
   render() {
-    const { loading, nodata } = this.state;
+    const { loading } = this.state;
     if (loading === false) {
       return (
         <View style={styles.container}>
