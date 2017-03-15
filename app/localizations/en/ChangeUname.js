@@ -10,7 +10,7 @@ const ChangeUname = {
   alertError: 'Invalid username',
   success: 'Change saved',
   saved: 'Name has been succesfully updated',
-  error: 'Invalid change name',
+  error: 'Error change username',
 };
 
 export default ChangeUname;
