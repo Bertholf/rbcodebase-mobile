@@ -91,7 +91,7 @@ export default class FollowingMe extends React.Component {
   cancelRequest(value) {
     clearTimeout(this.timer);
     this.setState({ wait: true });
-    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+    this.timer = setTimeout(() => this.searchUpdate(value), 1250);
         // if (this.state.requesting) {
         //   follows.cancelCaller().cancel('Cancel this operation');
         //   this.searchUpdate(value);
