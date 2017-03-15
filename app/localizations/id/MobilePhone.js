@@ -6,6 +6,8 @@ const mobilephone = {
   alert_input: 'Tolong isi nomor telepon Anda',
   placeholderOldNumber: 'Nomor telepon lama',
   placeholderNewPhoneNumber: 'Nomor telepon baru',
+  saved: 'Nomor telepon telah di perbaharui',
+  error: 'Gagal memperbaharui nomer telepon',
 };
 
 export default mobilephone;
