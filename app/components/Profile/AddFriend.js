@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Text,
+  Keyboard,
 } from 'react-native';
 import SearchBar from 'react-native-material-design-searchbar';
 import { Container, Header, Item, Input, Icon, Button } from 'native-base';
@@ -78,13 +79,14 @@ export default class AddFriendScreen extends React.Component {
     follow.search(this.state.name)
       .then((response) => {
         this.setState({ friendlist: response.data, wait: false });
+        Keyboard.dismiss();
       });
   }
 
   cancelRequest(value) {
     clearTimeout(this.timer);
-    this.setState({ wait: true });
-    this.timer = setTimeout(() => this.searchUpdate(value), 1250);
+    this.setState({ wait: true })
+    this.timer = setTimeout(() => this.searchUpdate(value), 1200);
     // if (this.state.requesting) {
     //   follows.cancelCaller().cancel('Cancel this operation');
     //   this.searchUpdate(value);
@@ -93,7 +95,8 @@ export default class AddFriendScreen extends React.Component {
   }
 
   render() {
-    if (this.state.loading === false) {
+    const { loading } = this.state;
+    if (loading === false) {
       return (
         <View style={styles.container}>
           <View
@@ -110,7 +113,7 @@ export default class AddFriendScreen extends React.Component {
             </Container>
           </View>
           <View style={styles.listView}>
-            {this.state.wait === true ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
+            {this.state.wait === true ? <ActivityIndicator /> :
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
@@ -122,8 +125,8 @@ export default class AddFriendScreen extends React.Component {
     }
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size={'large'} />
-        </View>
+        <ActivityIndicator size={'large'} />
+      </View>
     );
   }
 }
