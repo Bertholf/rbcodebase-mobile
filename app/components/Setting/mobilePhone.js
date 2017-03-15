@@ -125,6 +125,7 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
+    const regex = /^[0-9\-\+]{9,15}$/;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -134,8 +135,9 @@ export default class MobilePhone extends Component {
     const birthday = this.state.profile.birthday;
     const numberphone = this.state.profile.cell_number;
     const phone = this.state.phone;
+    const validPhone = regex.test(this.state.phone);
     const savePhone = () => {
-      if (phone != null) {
+      if (phone != null && validPhone) {
         saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
         auth.profile()
           .then((response) => {
@@ -147,7 +149,7 @@ export default class MobilePhone extends Component {
         Keyboard.dismiss();
         this.props.reRender();
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.mobilephone.error_invalid_number, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
@@ -164,14 +166,14 @@ export default class MobilePhone extends Component {
           <View style={styles.textinputWrapperStyle}>
             <TextInput
               ref={'textInput'}
-              placeholder={strings.mobilephone.placeholderNewPhoneNumber}
+              placeholder={this.state.profile.cell_number}
               placeholderTextColor="silver"
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
               style={styles.textinputStyle}
               keyboardType="numeric"
               onChangeText={value => this.setState({ phone: value })}
-              maxLength={12}
+              maxLength={15}
               value={this.state.phone}
             />
           </View>
