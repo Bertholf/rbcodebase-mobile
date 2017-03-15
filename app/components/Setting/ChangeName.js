@@ -54,8 +54,6 @@ export default class NameEdit extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(resp => console.log('error ambil namalengkap-----'));
-    AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(resp => console.log('error ambil namalengkap--- --'));
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last }, () => console.log(this.state)))
     .catch(() => {
@@ -108,7 +106,6 @@ export default class NameEdit extends Component {
           this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
         }))
         .catch(Err => console.log('err', Err));
-          this.props.reRender();
           Keyboard.dismiss();
           Actions.refresh();
         }
@@ -123,7 +120,7 @@ export default class NameEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
             style={{ height: 55 }}
           />
         </View>
