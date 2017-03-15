@@ -27,7 +27,14 @@ export default class Setting extends Component {
   componentDidMount() {
     auth.profile()
     .then((response) => {
-      this.setState({ namef: response.data.name_first, namel: response.data.name_last, nameslug: response.data.name_slug, email: response.data.email,gender: response.data.gender, birthday: response.data.date_birth, phone: response.data.cell_number },  () => {
+      this.setState({
+        namef: response.data.name_first,
+        namel: response.data.name_last,
+        nameslug: response.data.name_slug,
+        email: response.data.email,
+        gender: response.data.gender,
+        birthday: response.data.date_birth,
+        phone: response.data.cell_number }, () => {
         AsyncStorage.multiSet([['userId', response.data.id.toString()],
          ['name_first', response.data.name_first.toString()],
          ['name_last', response.data.name_last.toString()],
@@ -42,7 +49,7 @@ export default class Setting extends Component {
          ['cell_number', response.data.cell_number.toString()],
         ])
          .then(() => {
-           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug','gender', 'email', 'date_birth',
+           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'gender', 'email', 'date_birth',
              'cell_number', 'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
@@ -53,24 +60,25 @@ export default class Setting extends Component {
          .catch(err => console.log('SAVE FAILED', err));
       });
     })
-    .catch(Err => {AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
-    AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
-    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch((res) => console.log('error ambil namalengkap-----'));
-    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch((res) => console.log('error ambil namalengkap--- --'));
-    AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res }); console.log('BIRTHDAY KAMUUUUU=====', this.state.birthday); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
-    AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('PHONE KAMUUUUU=====', this.state.phone); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
-    AsyncStorage.getItem('gender').then((res) => { this.setState({ gendersncy: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch((res) => console.log('error ambil tanggal lahir--- --'));
-
-  });
+    .catch((Err) => {
+      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
+      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(res => console.log('error ambil nama username-----'));
+      AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
+      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(res => console.log('error ambil namalengkap--- --'));
+      AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res }); console.log('BIRTHDAY KAMUUUUU=====', this.state.birthday); }).catch(res => console.log('error ambil tanggal lahir--- --'));
+      AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('PHONE KAMUUUUU=====', this.state.phone); }).catch(res => console.log('error ambil tanggal lahir--- --'));
+      AsyncStorage.getItem('gender').then((res) => { this.setState({ gendersncy: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch(res => console.log('error ambil tanggal lahir--- --'));
+    });
   }
 
   reRender() {
     this.componentDidMount();
   }
+
   render() {
     return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
-      <ScrollView>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <ScrollView>
         <View style={styles.container}>
           <Text style={styles.titleText}>{strings.settings.account}</Text>
           <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })} >
@@ -127,7 +135,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.mobile}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center'}}>{this.state.phone}</Text>
+                <Text style={{ alignSelf: 'center' }}>{this.state.phone}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -138,7 +146,7 @@ export default class Setting extends Component {
                 <Text style={styles.text}>{strings.settings.email}</Text>
               </View>
               <View style={{ flexDirection: 'row' }}>
-              <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text>
+                <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -160,7 +168,7 @@ export default class Setting extends Component {
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.privacy}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -190,7 +198,7 @@ export default class Setting extends Component {
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.emailsetting}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -221,7 +229,7 @@ export default class Setting extends Component {
               <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.tos}</Text>
               </View>
-              <View style={{ flexDirection : 'row' }}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
@@ -247,29 +255,31 @@ export default class Setting extends Component {
               </View>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress=
-             {() => Alert.alert(
+          <TouchableOpacity
+            onPress={() => Alert.alert(
             '',
             strings.logoutLocalization.AreYouSure,
-               [
-                 { text: strings.logoutLocalization.cancel, onPress:() => console.log('cancelled Pressed')},
-                 { text: 'OK', onPress:  () => { Logout() ;
-                 } },
-               ]
+  [
+                 { text: strings.logoutLocalization.cancel, onPress: () => console.log('cancelled Pressed') },
+                 { text: 'OK',
+                   onPress: () => {
+  Logout();
+} },
+  ],
           )}
           >
             <View style={styles.list}>
-              <View style={{alignSelf: 'center'}}>
+              <View style={{ alignSelf: 'center' }}>
                 <Text style={styles.text}>{strings.settings.log_out}</Text>
               </View>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{ flexDirection: 'row' }}>
                 <Image style={styles.image} source={next} />
               </View>
             </View>
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
-  );
+      </View>
+    );
   }
 }

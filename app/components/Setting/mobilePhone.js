@@ -6,13 +6,13 @@ import {
    StyleSheet,
    Keyboard,
  } from 'react-native';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import Toast, { DURATION } from 'react-native-easy-toast';
+import { Actions } from 'react-native-router-flux';
+import NavigationBar from 'react-native-navbar';
 import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
-import NavigationBar from 'react-native-navbar';
 import IconClose from './../../layouts/IconClose';
-import {Actions} from 'react-native-router-flux';
-import strings from '../../localizations'
+import strings from '../../localizations';
 
 const styles = StyleSheet.create({
   container: {
@@ -75,13 +75,13 @@ export default class MobilePhone extends Component {
   componentDidMount() {
     auth.profile()
     .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
-    .catch(Err => Err)
+    .catch(Err => Err);
   }
 
-  onClick(text, position, duration,withStyle) {
+  onClick(text, position, duration, withStyle) {
     this.setState({
-     position: position,
-    })
+      position,
+    });
     if (withStyle) {
       this.refs.toastWithStyle.show(text, duration);
     } else {
@@ -93,9 +93,9 @@ export default class MobilePhone extends Component {
     let newText = '';
     const numbers = '^[0-9]';
 
-    for (let i=0; i < text.length; i++) {
-      if (numbers.indexOf(text[i] >-1)) {
-          newText = newText + text[i];
+    for (let i = 0; i < text.length; i++) {
+      if (numbers.indexOf(text[i] > -1)) {
+        newText += text[i];
       }
       this.setState({ phone: newText });
     }
@@ -104,15 +104,17 @@ export default class MobilePhone extends Component {
   getButton(text, position, duration, withStyle) {
     return (
       <Text
-        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
         <Text>{text}</Text>
       </Text>
-    )
+    );
   }
 
   clearText(fieldName) {
     this.refs[fieldName].setNativeProps({ text: '' });
   }
+
   render() {
     const rightButtonConfig = {
       title: strings.mobilephone.titleSave,
@@ -123,25 +125,25 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
-      const id = this.state.profile.id;
-      const name_first = this.state.profile.name_first;
-      const name_last = this.state.profile.name_last;
-      const name_slug = this.state.profile.name_slug;
-      const email = this.state.profile.email;
-      const birthday = this.state.profile.birthday;
-      const numberphone = this.state.profile.cell_number;
-      const phone = this.state.phone;
-      const savePhone = () => {
+    const id = this.state.profile.id;
+    const name_first = this.state.profile.name_first;
+    const name_last = this.state.profile.name_last;
+    const name_slug = this.state.profile.name_slug;
+    const email = this.state.profile.email;
+    const gender = this.state.profile.gender;
+    const birthday = this.state.profile.birthday;
+    const numberphone = this.state.profile.cell_number;
+    const phone = this.state.phone;
+    const savePhone = () => {
       if (phone != null) {
-        saveProfile(id, name_first, name_last, name_slug, phone, birthday);
-        this.clearText('textInput')
-        auth.profile ()
-          .then(response => {
+        saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
+        auth.profile()
+          .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
-              this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+              this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
             });
           })
-          .catch(Err=> console.log('err', Err))
+          .catch(Err => console.log('err', Err));
         Keyboard.dismiss();
         this.props.reRender();
       } else {
@@ -154,23 +156,11 @@ export default class MobilePhone extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
+            leftButton={<IconClose onPress={() => Actions.pop({ type: 'refresh' })} />}
           />
         </View>
         <View style={styles.container}>
-          <Text style={styles.heading}></Text>
-          <View style={styles.textinputWrapperStyle}>
-            <TextInput
-              placeholder={strings.mobilephone.placeholderOldNumber}
-              placeholderTextColor="silver"
-              selectionColor="silver"
-              underlineColorAndroid="rgba(0,0,0,0)"
-              style={styles.textinputStyle}
-              value={this.state.profile.cell_number}
-              editable={false}
-              maxLength={12}
-            />
-          </View>
+          <Text style={styles.heading} />
           <View style={styles.textinputWrapperStyle}>
             <TextInput
               ref={'textInput'}
@@ -180,8 +170,9 @@ export default class MobilePhone extends Component {
               underlineColorAndroid="rgba(0,0,0,0)"
               style={styles.textinputStyle}
               keyboardType="numeric"
-              onChangeText={numberphone => this.setState({ phone: numberphone })}
+              onChangeText={value => this.setState({ phone: value })}
               maxLength={12}
+              value={this.state.phone}
             />
           </View>
         </View>
