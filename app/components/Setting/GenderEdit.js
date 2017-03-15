@@ -101,7 +101,7 @@ export default class Gender extends Component {
   componentDidMount() {
     AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
     auth.profile()
-    .then(response => this.setState({ profile: response.data, loading: false }))
+    .then(response => this.setState({ profile: response.data, loading: false, gender: response.data.gender }))
     .catch(() => {
       AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
     });
@@ -114,7 +114,7 @@ export default class Gender extends Component {
     const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
-    const gender = this.state.profile.gender;
+    const gender = this.state.gender;
     const newgender = this.state.newgender;
     const rightButtonConfig = {
       title: strings.settings.save,
@@ -125,7 +125,7 @@ export default class Gender extends Component {
       title: strings.settings.changegender,
     };
     const updategender = () => {
-      saveProfile(id, name_first, name_last, name_slug, newgender, phone, birthday);
+      saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
       //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
       .then((response) => {
@@ -169,8 +169,8 @@ export default class Gender extends Component {
           * --------------------------------------------------------- */}
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.newgender === 'Male' && styles.active]}
-              onPress={() => this.setState({ newgender: 'Male' })}
+              style={[styles.btnGender, this.state.gender === 'male' && styles.active]}
+              onPress={() => this.setState({ gender: 'male' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Image source={imgmale} style={[styles.imgGender, { tintColor: '#1565c0' }]} />
@@ -179,8 +179,8 @@ export default class Gender extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.newgender === 'Female' && styles.active2]}
-              onPress={() => this.setState({ newgender: 'Female' })}
+              style={[styles.btnGender, this.state.gender === 'female' && styles.active2]}
+              onPress={() => this.setState({ gender: 'female' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Image source={imgfemale} style={[styles.imgGender, { tintColor: '#DF2668' }]} />
