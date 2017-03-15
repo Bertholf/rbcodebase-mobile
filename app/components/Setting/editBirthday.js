@@ -7,8 +7,8 @@ import {
   Keyboard,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Toast, {DURATION} from 'react-native-easy-toast';
-import DatePicker from 'react-native-datepicker'
+import Toast, { DURATION } from 'react-native-easy-toast';
+import DatePicker from 'react-native-datepicker';
 import NavigationBar from 'react-native-navbar';
 import strings from '../../localizations';
 import auth from './../../services/auth';
@@ -55,7 +55,7 @@ export default class editBirthday extends Component {
     this.state = {
       date: '',
       profile: {},
-      position:'bottom',
+      position: 'bottom',
       style: {},
     };
   }
@@ -67,22 +67,23 @@ export default class editBirthday extends Component {
   }
   onClick(text, position, duration, withStyle) {
     this.setState({
-      position: position,
+      position,
     });
-    if (withStyle){
-       this.refs.toastWithStyle.show(text, duration);
+    if (withStyle) {
+      this.refs.toastWithStyle.show(text, duration);
     } else {
-       this.refs.toast.show(text, duration);
+      this.refs.toast.show(text, duration);
     }
   }
 
   getButton(text, position, duration, withStyle) {
     return (
       <Text
-        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
         <Text>{text}</Text>
       </Text>
-    )
+    );
   }
 
   getDate() {
@@ -96,10 +97,10 @@ export default class editBirthday extends Component {
     };
     const leftButtonConfig = {
       title: 'Cancel',
-      handler: () => Actions.pop(),
+      handler: () => Actions.pop({ type: 'refresh' }),
     };
 
-  const titleConfig = {
+    const titleConfig = {
     title: strings.editBirthday.title,
   };
     const id = this.state.profile.id;
@@ -107,13 +108,14 @@ export default class editBirthday extends Component {
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
-    const birthday = this.state.profile.date_birth;
+    const birthday = this.state.date;
+    const gender = this.state.profile.gender;
     const dateBirth = this.state.date;
     const updateBirthday = () => {
-      saveProfile(id, name_first, name_last, name_slug, phone, dateBirth, birthday);
+      saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
       //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
-      .then(response => {
+      .then((response) => {
         this.setState({ profile: response.data, loading: false }, () => {
           this.onClick(strings.editBirthday.saved, 'bottom', DURATION.LENGTH_LONG)
         });
@@ -121,11 +123,11 @@ export default class editBirthday extends Component {
       .catch(Err => Err);
       this.props.reRender();
       Keyboard.dismiss();
-  };
+    };
 
 
     return (
-      <View style={{ flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
@@ -146,7 +148,7 @@ export default class editBirthday extends Component {
               maxDate={this.getDate()}
               confirmBtnText={strings.editBirthday.confirm}
               cancelBtnText={strings.editBirthday.cancel}
-              onDateChange={(dateBirth) => { this.setState({ date: dateBirth }); }}
+              onDateChange={(value) => { this.setState({ date: value }); }}
               customStyles={{
                 dateInput: {
                   borderColor: 'rgba(0,0,0,0)',

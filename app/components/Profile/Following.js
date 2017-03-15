@@ -95,8 +95,9 @@ export default class Friendlist extends React.Component {
   }
 
   cancelRequest(value) {
+    this.setState({ wait: true })
     clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+    this.timer = setTimeout(() => this.searchUpdate(value), 1250);
     // if (this.state.requesting) {
     //   follows.cancelCaller().cancel('Cancel this operation');
     //   this.searchUpdate(value);
@@ -117,7 +118,7 @@ export default class Friendlist extends React.Component {
               onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
-          {this.state.wait ? <ActivityIndicator /> :
+          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <ListView
             dataSource={ds.cloneWithRows(this.state.following)}
             renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'following', rerender: () => this.rerender() }} />}
@@ -136,6 +137,7 @@ export default class Friendlist extends React.Component {
               onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
+          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
             <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>
             <TouchableOpacity
@@ -144,7 +146,7 @@ export default class Friendlist extends React.Component {
             >
               <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
             </TouchableOpacity>
-          </View>
+          </View>}
         </Container>
       );
     }

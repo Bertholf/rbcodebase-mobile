@@ -90,7 +90,8 @@ export default class FollowingMe extends React.Component {
 
   cancelRequest(value) {
     clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.searchUpdate(value), 1750);
+    this.setState({ wait: true });
+    this.timer = setTimeout(() => this.searchUpdate(value), 1250);
         // if (this.state.requesting) {
         //   follows.cancelCaller().cancel('Cancel this operation');
         //   this.searchUpdate(value);
@@ -113,16 +114,18 @@ export default class FollowingMe extends React.Component {
               onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
+
           {/* Show listView of follower */}
           {/*
             *Loading if data in requesting
           */}
-          {this.state.wait ? <ActivityIndicator /> : 
+
+          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> : 
           <ListView
             dataSource={ds.cloneWithRows(this.state.follower)}
             renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}
-          />
-          }
+          />}
+
         </Container>
       );
     } else if (nodata === true && loading === false) {
@@ -137,6 +140,8 @@ export default class FollowingMe extends React.Component {
               onChangeText={value => this.cancelRequest(value)}
             />
           </Item>
+
+          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
             <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
             <TouchableOpacity
@@ -145,7 +150,8 @@ export default class FollowingMe extends React.Component {
             >
               <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
             </TouchableOpacity>
-          </View>
+          </View>}
+
         </Container>
       );
     }
