@@ -95,6 +95,7 @@ export default class Gender extends Component {
       genderansyc: '',
       currentGender: '',
       profile: {},
+      position: 'bottom',
 
     };
   }
@@ -105,6 +106,25 @@ export default class Gender extends Component {
     .catch(() => {
       AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
     });
+  }
+  onClick(text, position, duration, withStyle) {
+    this.setState({
+      position,
+    });
+    if (withStyle) {
+      this.refs.toastWithStyle.show(text, duration);
+    } else {
+      this.refs.toast.show(text, duration);
+    }
+  }
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
+        <Text>{text}</Text>
+      </Text>
+    );
   }
   render() {
     const id = this.state.profile.id;
@@ -189,6 +209,12 @@ export default class Gender extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }

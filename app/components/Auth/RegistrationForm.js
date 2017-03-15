@@ -19,6 +19,8 @@ import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 import auth from '../../services/auth';
 import style from './../../style/StyleGlobal';
+const imgmale = require('./../../images/male.png');
+const imgfemale = require('./../../images/female.png');
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
@@ -85,6 +87,25 @@ const styles = StyleSheet.create({
   policyStyle: {
     flexDirection: 'row',
     alignSelf: 'center',
+  },
+  btnGender: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 2,
+    height: 65,
+    width: (width * 0.85) / 2,
+    borderWidth: 1,
+    borderColor: 'silver',
+    paddingTop: 5,
+  },
+  active: {
+    borderWidth: 2,
+    borderColor: '#2196F3',
+  },
+  active2: {
+    borderWidth: 2,
+    borderColor: '#f2003d',
   },
   errBox: {
     margin: 10,
@@ -295,15 +316,27 @@ export default class RegistrationForm extends Component {
                   {validEmail || emptyEmail ? (<View />)
                     : (<Text style={styles.fail}>{strings.register.alert_invalid_email}</Text>)
                   }
-                  <View style={styles.textinputWrapperStyle}>
-                    <Picker
-                      selectedValue={this.state.gender}
-                      onValueChange={valuecreplay => this.setState({ gender: valuecreplay, failregister: false })}
-                    >
-                      <Picker.Item label="Select gender" value={null} />
-                      <Picker.Item label="Male" value="male" />
-                      <Picker.Item label="Female" value="female" />
-                    </Picker>
+                  <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={[styles.btnGender, this.state.gender === 'male' && styles.active]}
+                    onPress={() => this.setState({ gender: 'male' })}
+                  >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                      <Image source={imgmale} style={[styles.imgGender, { tintColor: '#1565c0' }]} />
+                      <Text style={{ color: '#1565c0' }}>Male</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={[styles.btnGender, this.state.gender === 'female' && styles.active2]}
+                    onPress={() => this.setState({ gender: 'female' })}
+                  >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                      <Image source={imgfemale} style={[styles.imgGender, { tintColor: '#DF2668' }]} />
+                      <Text style={{ color: '#DF2668' }}>Female</Text>
+                    </View>
+                  </TouchableOpacity>
                   </View>
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
