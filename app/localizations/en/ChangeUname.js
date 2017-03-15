@@ -8,7 +8,9 @@ const ChangeUname = {
   store: 'SAVE',
   placeholder: 'New Username',
   alertError: 'Invalid username',
-  success: 'Change saved'
+  success: 'Change saved',
+  saved: 'Name has been succesfully updated',
+  error: 'Invalid change name',
 };
 
 export default ChangeUname;
