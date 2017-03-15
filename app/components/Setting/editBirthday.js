@@ -121,7 +121,6 @@ export default class editBirthday extends Component {
         });
       })
       .catch(Err => Err);
-      this.props.reRender();
       Keyboard.dismiss();
     };
 
@@ -132,7 +131,7 @@ export default class editBirthday extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
           />
         </View>
         <View style={{ padding: 16 }}>
