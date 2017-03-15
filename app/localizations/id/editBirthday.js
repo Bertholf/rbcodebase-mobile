@@ -5,6 +5,8 @@ const editBirthday = {
   cancel: 'Batal',
   placeholder: 'Pilih Tanggal',
   save: 'SIMPAN',
+  saved: 'Tanggal lahir berhasil di perbaharui',
+  error: 'Gagal memperbaharui tanggal lahir',
 };
 
 export default editBirthday;
