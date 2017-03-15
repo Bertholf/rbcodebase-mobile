@@ -29,8 +29,12 @@ const register = {
   alert_min_password: 'The password must be at least 6 charachters',
   alert_first_name: 'Invalid first name',
   alert_last_name: 'Invalid last name',
-  error_failed: 'FAILED',
-  Success: 'SUCCESS',
+  error_name: 'Failed, please check your name field',
+  error_username: 'Failed, please check your username field',
+  error_email: 'Failed, please check your email field',
+  error_password: 'Failed, please check your password field',
+  error_gender: 'Failed, please check your gender field',
+  error_connection: 'Failed, no internet connection',
 };
 
 export default register;

@@ -28,8 +28,12 @@ const register = {
   alert_password: 'Kata sandi tidak cocok',
   alert_first_name: 'Nama depan salah',
   alert_last_name: 'Nama belakang salah',
-  error_failed: 'GAGAL',
-  Success: 'SUKSES',
+  error_name: 'Gagal, tolong periksa kolom nama Anda',
+  error_username: 'Gagal, tolong periksa kolom nama pengguna Anda',
+  error_email: 'Gagal, tolong periksa kolom email Anda',
+  error_password: 'Gagal, tolong periksa kolom sandi Anda',
+  error_gender: 'Gagal, tolong periksa kolom jenis kelamin Anda',
+  error_connection: 'Gagal, tidak ada koneksi internet',
 };
 
 export default register;
