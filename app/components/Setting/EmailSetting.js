@@ -11,6 +11,7 @@ import NavigationBar from 'react-native-navbar';
 import styles from '../../style/StyleGlobal';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import strings from '../../localizations';
 
 
@@ -83,6 +84,7 @@ export default class AdPreference extends Component {
       pickcommentpost: '',
       pickpostlike: '',
       pickcommentreplay: '',
+      position: 'bottom',
     };
   }
 
@@ -105,11 +107,30 @@ export default class AdPreference extends Component {
     }))
     .catch();
   }
+  onClick(text, position, duration, withStyle) {
+    this.setState({
+      position,
+    });
+    if (withStyle) {
+      this.refs.toastWithStyle.show(text, duration);
+    } else {
+      this.refs.toast.show(text, duration);
+    }
+  }
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
+        <Text>{text}</Text>
+      </Text>
+    );
+  }
   render() {
     const saveUpdate = () => {
       auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
       .then(response =>
-        this.setState({ updateSetting: response.data, loading: false }, () => Actions.pop()))
+        this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
       .catch(err => err);
     };
 
@@ -353,6 +374,12 @@ export default class AdPreference extends Component {
             </View>
           </View>
         </ScrollView>
+        <Toast
+          ref="toast"
+          style={{ backgroundColor: 'grey' }}
+          fadeInDuration={300}
+          fadeOutDuration={1000}
+        />
       </View>
     );
   }
