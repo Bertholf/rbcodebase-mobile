@@ -99,7 +99,7 @@ export default class NameEdit extends Component {
           this.clearText('textInput2');
           auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+          this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));
           this.props.reRender();
@@ -107,7 +107,7 @@ export default class NameEdit extends Component {
           Actions.refresh();
         }
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (

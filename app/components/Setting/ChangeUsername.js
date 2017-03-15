@@ -81,7 +81,7 @@ export default class ChangeUsername extends Component {
         auth.profile()
         .then(response => {
           this.setState({ profile: response.data, loading: false }, () => {
-            this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+            this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG)
           });
         })
         .catch(Err => Err);
@@ -89,7 +89,7 @@ export default class ChangeUsername extends Component {
         this.props.reRender();
         // Actions.pop();
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 

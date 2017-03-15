@@ -8,6 +8,8 @@ const ChangeName = {
   text1: 'Enter your first and last name',
   text2: 'Any value put here will be what is seen in the app by those who are not friends or assicated to public data',
   store: 'SAVE',
+  saved: 'Name has been succesfully updated',
+  error: 'Error update Name',
 };
 
 export default ChangeName;

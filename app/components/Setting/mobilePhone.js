@@ -138,14 +138,14 @@ export default class MobilePhone extends Component {
         auth.profile ()
           .then(response => {
             this.setState({ profile: response.data, loading: false }, () => {
-              this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+              this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG)
             });
           })
           .catch(Err=> console.log('err', Err))
         Keyboard.dismiss();
         this.props.reRender();
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.mobilephone.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
