@@ -83,6 +83,7 @@ export default class AddFriendScreen extends React.Component {
 
   cancelRequest(value) {
     clearTimeout(this.timer);
+    this.setState({ wait: true });
     this.timer = setTimeout(() => this.searchUpdate(value), 1750);
     // if (this.state.requesting) {
     //   follows.cancelCaller().cancel('Cancel this operation');
@@ -109,7 +110,7 @@ export default class AddFriendScreen extends React.Component {
             </Container>
           </View>
           <View style={styles.listView}>
-            {this.state.wait === true ? <ActivityIndicator /> :
+            {this.state.wait === true ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
