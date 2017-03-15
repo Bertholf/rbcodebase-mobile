@@ -153,6 +153,7 @@ export default class RegistrationForm extends Component {
       this.setState({ submitting: true });
       submitRegister(firstname, lastname, username, gender, email, password, confirmPassword, (msg) => {
         this.setState({ failregister: true, failMsg: msg, submitting: false });
+        this.onClick();
       });
     }
   }
@@ -164,6 +165,11 @@ export default class RegistrationForm extends Component {
         <Text>{text}</Text>
       </Text>
     )
+  }
+  rerender() {
+    this.setState({ loading: true }, () => {
+      this.componentDidMount();
+    });
   }
 
   loginAfterRegister(username, password) {

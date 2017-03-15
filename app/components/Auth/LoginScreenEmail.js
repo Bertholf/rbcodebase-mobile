@@ -26,6 +26,7 @@ export default class LoginScreenEmail extends Component {
     };
     this.validate = this.validate.bind(this);
   }
+
   validate() {
     if (this.state.username === '') {
       this.setState({ validUsername: false, loading: false });
