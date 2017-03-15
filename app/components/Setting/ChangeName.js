@@ -7,7 +7,7 @@ import {
   Keyboard,
   AsyncStorage,
 } from 'react-native';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import { Actions } from 'react-native-router-flux';
 import styles from './ChangeSetting/ChangeStyles';
@@ -32,31 +32,34 @@ export default class NameEdit extends Component {
     };
   }
 
-  onClick(text, position, duration,withStyle) {
+  onClick(text, position, duration, withStyle) {
     this.setState({
-       position: position,
-        })
-       if(withStyle){
-           this.refs.toastWithStyle.show(text, duration);
-       }else {
-           this.refs.toast.show(text, duration);
-       }
+      position,
+    });
+    if (withStyle) {
+      this.refs.toastWithStyle.show(text, duration);
+    } else {
+      this.refs.toast.show(text, duration);
+    }
   }
 
   getButton(text, position, duration, withStyle) {
-        return(
-            <Text
-                onPress={()=>this.onClick(text, position, duration, withStyle)}>
-                <Text>{text}</Text>
-            </Text>
-        )
-    }
+    return (
+      <Text
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
+        <Text>{text}</Text>
+      </Text>
+    );
+  }
+
   componentDidMount() {
-    AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
-    AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(res => console.log('error ambil namalengkap--- --'));
     auth.profile()
-    .then(response => this.setState({ profile: response.data }, () => console.log(this.state)))
-    .catch(Err => console.log('err,Err'));
+    .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last }, () => console.log(this.state)))
+    .catch(() => {
+      AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(resp => console.log('error ambil namalengkap-----'));
+      AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(resp => console.log('error ambil namalengkap--- --'));
+    });
   }
 
   clearText(fieldName) {
@@ -64,11 +67,13 @@ export default class NameEdit extends Component {
   }
 
   render() {
+    // Create Save Button on Navigation
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => validateName(),
     };
 
+    // title of screen
     const titleConfig = {
       title: strings.ChangeName.title,
     };
@@ -84,7 +89,7 @@ export default class NameEdit extends Component {
     const slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
-
+    // Validate Name Input
     const validateName = () => {
       if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
         if (firstNameInput === currentFirstName) {
@@ -99,7 +104,7 @@ export default class NameEdit extends Component {
           this.clearText('textInput2');
           auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
         }))
         .catch(Err => console.log('err', Err));
           this.props.reRender();
@@ -110,6 +115,7 @@ export default class NameEdit extends Component {
         this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
+
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
@@ -125,14 +131,7 @@ export default class NameEdit extends Component {
         </View>
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-              {strings.ChangeName.current_name}
-            </Text>
-            <View style={styles.currentName}>
-              {this.state.profile.name_first == null && this.state.profile.name_last == null ? <Text style={{ color: '#2196f3', fontSize: 14 }}>{this.state.namef}{this.state.namel}</Text> : <Text style={{ color: '#2196f3', fontSize: 14 }}>{this.state.profile.name_first} {this.state.profile.name_last}</Text>
-              }
-            </View>
-
+            {/* Chance name Screen */}
             <Text style={styles.Text2}>
               {strings.ChangeName.first_name}
             </Text>
@@ -150,9 +149,11 @@ export default class NameEdit extends Component {
             />
             {firstNameValidator || !firstNameInput ?
               <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
+
             <Text style={styles.Text2}>
               {strings.ChangeName.last_name}
             </Text>
+            {/* ---- Text Input for Last Name ----*/}
             <TextInput
               ref={'textInput2'}
               style={styles.TextInput1} underlineColorAndroid={'transparent'}
@@ -171,9 +172,11 @@ export default class NameEdit extends Component {
               <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
               <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
             </View>
+
             <Text style={styles.Text2}>
               {strings.ChangeName.display_name}
             </Text>
+
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid={'transparent'}
@@ -185,7 +188,7 @@ export default class NameEdit extends Component {
               autoCorrect
             />
           </View>
-          <View style={{elevation:5}}>
+          <View style={{ elevation: 5 }}>
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
