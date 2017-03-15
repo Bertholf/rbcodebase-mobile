@@ -54,6 +54,8 @@ export default class NameEdit extends Component {
   }
 
   componentDidMount() {
+    AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(resp => console.log('error ambil namalengkap-----'));
+    AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(resp => console.log('error ambil namalengkap--- --'));
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last }, () => console.log(this.state)))
     .catch(() => {
