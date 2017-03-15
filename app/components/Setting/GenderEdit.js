@@ -13,7 +13,7 @@ import {
 import auth from './../../services/auth';
 import me from '../../services/me';
 import { Actions } from 'react-native-router-flux';
-import Toast, {DURATION} from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
@@ -90,18 +90,21 @@ const styles = StyleSheet.create({
 export default class Gender extends Component {
   constructor(props) {
     super(props);
-      this.state = {
+    this.state = {
       newgender: '',
       genderansyc: '',
+      currentGender: '',
       profile: {},
 
     };
   }
   componentDidMount() {
-    AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====',this.state.genderansyc); }).catch((res) => console.log('error AsyncStorage-----'));
+    AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
     auth.profile()
-    .then(response => this.setState({ profile: response.data, loading: false }))
-    .catch(Err => Err);
+    .then(response => this.setState({ profile: response.data, loading: false, gender: response.data.gender }))
+    .catch(() => {
+      AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
+    });
   }
   render() {
     const id = this.state.profile.id;
@@ -111,7 +114,7 @@ export default class Gender extends Component {
     const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
-    const gender = this.state.profile.gender;
+    const gender = this.state.gender;
     const newgender = this.state.newgender;
     const rightButtonConfig = {
       title: strings.settings.save,
@@ -122,33 +125,52 @@ export default class Gender extends Component {
       title: strings.settings.changegender,
     };
     const updategender = () => {
-      saveProfile(id, name_first, name_last, name_slug, newgender, phone, birthday);
+      saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
       //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
-      .then(response => {
+      .then((response) => {
         this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
         });
       })
       .catch(Err => Err);
       this.props.reRender();
-  };
+    };
     return (
       <View style={styles.OuterView}>
-      <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
-        <NavigationBar
-          title={titleConfig}
-          rightButton={rightButtonConfig}
-          leftButton={<IconClose onPress={Actions.pop} />}
-          style={{ height: 55 }}
-        />
-      </View>
+
+        {/* ---------------------------------------------------------
+          *
+          * Add NavigationBar with Save Button
+          *
+          * --------------------------------------------------------- */}
+
+        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig}
+            leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55 }}
+          />
+        </View>
+
+        {/* ---------------------------------------------------------
+          *
+          * Body of Component
+          *
+          * --------------------------------------------------------- */}
+
         <ScrollView>
           <View style={styles.genderRow} >
+        {/* ---------------------------------------------------------
+          *
+          * Select / Picker for Gender View
+          *
+          * --------------------------------------------------------- */}
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.newgender === 'Male' && styles.active]}
-              onPress={() => this.setState({ newgender: 'Male' })}
+              style={[styles.btnGender, this.state.gender === 'male' && styles.active]}
+              onPress={() => this.setState({ gender: 'male' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Image source={imgmale} style={[styles.imgGender, { tintColor: '#1565c0' }]} />
@@ -157,8 +179,8 @@ export default class Gender extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.newgender === 'Female' && styles.active2]}
-              onPress={() => this.setState({ newgender: 'Female' })}
+              style={[styles.btnGender, this.state.gender === 'female' && styles.active2]}
+              onPress={() => this.setState({ gender: 'female' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                 <Image source={imgfemale} style={[styles.imgGender, { tintColor: '#DF2668' }]} />
