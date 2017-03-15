@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
@@ -26,22 +26,26 @@ export default class ChangeUsername extends Component {
       currentUserName: '',
       namaslug: '',
       position: 'bottom',
-      style:{},
+      style: {},
     };
   }
 
+  // Mount Component with Value in auth.profile
   componentDidMount() {
-    AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.namaslug); }).catch((res) => console.log('error ambil nama username-----'));
+    // @TODO When get profile request is failed
+    // make it load value from AsyncStorage
     auth.profile()
-    .then(response => this.setState({ profile: response.data, loading: false }))
-    .catch(Err => Err);
+    .then(response => this.setState({ newUsername: response.data.name_slug, profile: response.data, loading: false }))
+    .catch(() => {
+      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
+    });
   }
 
   onClick(text, position, duration, withStyle) {
     this.setState({
-     position: position,
+      position,
     });
-    if (withStyle){
+    if (withStyle) {
       this.refs.toastWithStyle.show(text, duration);
     } else {
       this.refs.toast.show(text, duration);
@@ -51,10 +55,11 @@ export default class ChangeUsername extends Component {
   getButton(text, position, duration, withStyle) {
     return (
       <Text
-        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
         <Text>{text}</Text>
       </Text>
-    )
+    );
   }
 
   clearText(fieldName) {
@@ -77,11 +82,10 @@ export default class ChangeUsername extends Component {
     const onSave = () => {
       if (validRegex && validUsername) {
         saveProfile(id, name_first, name_last, newUsernames, phone, birthday);
-        this.clearText('textInput');
         auth.profile()
-        .then(response => {
+        .then((response) => {
           this.setState({ profile: response.data, loading: false }, () => {
-            this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+            this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
           });
         })
         .catch(Err => Err);
@@ -103,7 +107,13 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
-        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2}}>
+        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+
+          {/* ---------------------------------------------------------
+            *
+            * Add Custom NavigationBar With Save Button
+            *
+            * --------------------------------------------------------- */}
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
@@ -111,20 +121,21 @@ export default class ChangeUsername extends Component {
             style={{ height: 55 }}
           />
         </View>
+
+        {/* ---- ScrollView Screen ----*/}
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-              {strings.changeUname.current_name}
-            </Text>
-            <TextInput
-              style={styles.TextInput1}
-              underlineColorAndroid="rgba(0,0,0,0)"
-              value={this.state.profile.name_slug == null ? this.state.namaslug : this.state.profile.name_slug}
-              editable={false}
-            />
+
+            {/* ----- Add Title textInput ----- */}
             <Text style={styles.Text2}>
               {strings.changeUname.new_name}
             </Text>
+
+            {/* ---------------------------------------------------------
+              *
+              * Add textInput that have default value is current username / name_slug
+              *
+              * --------------------------------------------------------- */}
             <TextInput
               ref={'textInput'}
               style={styles.TextInput1}
@@ -137,15 +148,28 @@ export default class ChangeUsername extends Component {
               numberOfLines={4} editable
               value={this.state.newUsername}
             />
+            {/* ---------------------------------------------------------
+              *
+              * Give Validation if Regex is valid or username is not empty or not
+              *
+              * --------------------------------------------------------- */}
             {validRegex || !emptyUsername ? <Text /> :
             <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
 
           </View>
+
+          {/* ----- Add Note About change username -----*/}
           <Text style={{ marginLeft: 20, marginTop: 10 }}>
             {strings.changeUname.uniquename}
           </Text>
 
         </ScrollView>
+
+        {/* ---------------------------------------------------------
+          *
+          * Give Toast message
+          *
+          * --------------------------------------------------------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}

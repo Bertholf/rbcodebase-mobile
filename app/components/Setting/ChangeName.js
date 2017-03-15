@@ -100,8 +100,7 @@ export default class NameEdit extends Component {
         } else {
           console.log('name===', firstNameInput, lastNameInput);
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
-          this.clearText('textInput1');
-          this.clearText('textInput2');
+          Keyboard.dismiss();
           auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
           this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
