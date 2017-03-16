@@ -13,6 +13,7 @@ import {
   PagerDotIndicator,
 } from 'rn-viewpager';
 import { Actions } from 'react-native-router-flux';
+import Walk from './Walk.json';
 import strings from '../../localizations';
 
 const { width } = Dimensions.get('window');
@@ -94,12 +95,12 @@ export default class walkthrough extends Component {
       <View style={[styles.page, { backgroundColor: screen.bg }]}>
         <View style={{ flex: 5 }}>
           <Image
-            style={{ height: 270, width: width * 1 }} source={screen.imageurl}
+            style={{ height: 270, width: width * 1 }} source={{ uri: Walk.data.Image }}
           />
         </View>
         <View style={styles.page2}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{screen.title}</Text>
-          <Text>{screen.description}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{Walk.data.tittle}</Text>
+          <Text>{Walk.data.description}</Text>
         </View>
       </View>);
   }
