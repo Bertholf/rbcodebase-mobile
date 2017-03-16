@@ -145,7 +145,7 @@ export default class MobilePhone extends Component {
         auth.profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
-              this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
+              this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG)
             });
           })
           .catch(Err => console.log('err', Err));
@@ -153,7 +153,7 @@ export default class MobilePhone extends Component {
         this.props.reRender();
         // Actions.pop();
       } else {
-        this.onClick(strings.mobilephone.error_invalid_number, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.mobilephone.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (

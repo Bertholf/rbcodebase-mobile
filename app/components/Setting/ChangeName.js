@@ -102,15 +102,15 @@ export default class NameEdit extends Component {
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
           Keyboard.dismiss();
           auth.profile()
-        .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
+        .then(response => this.setState({ profile: response.data, loading: false }, () => {a
+          this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));
           Keyboard.dismiss();
           Actions.refresh();
         }
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 
