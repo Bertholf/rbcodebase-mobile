@@ -78,7 +78,6 @@ export default class MobilePhone extends Component {
     .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
     .catch(Err => Err);
     AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
-    
   }
 
   onClick(text, position, duration, withStyle) {
@@ -145,7 +144,7 @@ export default class MobilePhone extends Component {
         auth.profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
-              this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG)
+              this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG);
             });
           })
           .catch(Err => console.log('err', Err));
@@ -182,7 +181,9 @@ export default class MobilePhone extends Component {
           </View>
         </View>
         <View style={{ marginTop: 40, paddingLeft: 20 }}>
-          {validPhone && phone !== '' ? <Text /> : <Text style={{ fontSize: 14, color: 'red' }}>{strings.mobilephone.error_invalid_number}</Text>}
+          {
+          validPhone || phone === null ? <Text /> : <Text style={{ fontSize: 14, color: 'red' }}>{strings.mobilephone.error_invalid_number}</Text>
+          }
         </View>
         <Toast
           ref="toast"
