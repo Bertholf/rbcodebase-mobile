@@ -128,7 +128,7 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
-    const regex = /^[0-9\-\+]{9,15}$/;
+    const regex = /^[0-9]{9,15}$/;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -175,11 +175,13 @@ export default class MobilePhone extends Component {
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
               style={styles.textinputStyle}
-              keyboardType="numeric"
               onChangeText={value => this.setState({ phone: value })}
               maxLength={15}
               value={this.state.phone}
             />
+          </View>
+          <View>
+          {validPhone && phone !== null ? <Text /> : <Text style={{ fontSize: 30 }}>ERror</Text>}
           </View>
         </View>
         <Toast

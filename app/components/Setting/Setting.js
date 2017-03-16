@@ -6,6 +6,8 @@ import styles from './../../components/Setting/Style';
 import auth from './../../services/auth';
 import Logout from '../../services/logout';
 
+const moment = require('moment');
+
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {
@@ -33,7 +35,7 @@ export default class Setting extends Component {
         nameslug: response.data.name_slug,
         email: response.data.email,
         gender: response.data.gender,
-        birthday: response.data.date_birth,
+        birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
         phone: response.data.cell_number }, () => {
         AsyncStorage.multiSet([['userId', response.data.id.toString()],
          ['name_first', response.data.name_first.toString()],

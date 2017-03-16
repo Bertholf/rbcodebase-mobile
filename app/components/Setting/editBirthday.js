@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     justifyContent: 'space-between',
     marginBottom: 8,
-    height: 40,
+    height: 50,
   },
   text: {
     color: '#000000',
@@ -62,7 +62,7 @@ export default class editBirthday extends Component {
 
   componentDidMount() {
     auth.profile()
-     .then(response => this.setState({ profile: response.data, date: response.data.date_birth }))
+     .then(response => this.setState({ profile: response.data, date: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMMM Do YYYY') }))
      .catch(Err => Err);
   }
   onClick(text, position, duration, withStyle) {
@@ -108,7 +108,7 @@ export default class editBirthday extends Component {
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
-    const birthday = this.state.date;
+    const birthday = moment(this.state.date, 'MMM Do YYYY').format('YYYY-MM-DD');
     const gender = this.state.profile.gender;
     const dateBirth = this.state.date;
     const updateBirthday = () => {
@@ -139,21 +139,23 @@ export default class editBirthday extends Component {
             <View style={{ alignSelf: 'center' }}>
               <Text style={styles.text}>{strings.editBirthday.birthday}</Text>
             </View>
-            <DatePicker
-              date={dateBirth}
-              placeholder={strings.editBirthday.placeholder}
-              format="MMMM Do YYYY"
-              minDate="1990-05-01"
-              maxDate={this.getDate()}
-              confirmBtnText={strings.editBirthday.confirm}
-              cancelBtnText={strings.editBirthday.cancel}
-              onDateChange={(value) => { this.setState({ date: value }); }}
-              customStyles={{
-                dateInput: {
-                  borderColor: 'rgba(0,0,0,0)',
-                },
-              }}
-            />
+            <View style={{ alignSelf: 'center' }}>
+              <DatePicker
+                date={dateBirth}
+                placeholder={strings.editBirthday.placeholder}
+                format="MMM Do YYYY"
+                minDate="1990-05-01"
+                maxDate={this.getDate()}
+                confirmBtnText={strings.editBirthday.confirm}
+                cancelBtnText={strings.editBirthday.cancel}
+                onDateChange={(value) => { this.setState({ date: value }); }}
+                customStyles={{
+                  dateInput: {
+                    borderColor: 'rgba(0,0,0,0)',
+                  },
+                }}
+              />
+            </View>
           </View>
         </View>
         <Toast
