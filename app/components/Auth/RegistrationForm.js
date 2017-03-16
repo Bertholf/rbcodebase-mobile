@@ -142,7 +142,7 @@ export default class RegistrationForm extends Component {
       firstname: this.props.firstName || '',
       lastname: this.props.lastName || '',
       email: this.props.email || '',
-      gender: this.props.gender || null,
+      gender: '',
       username: this.props.username || '',
       secret: this.props.secret || '',
       provider: this.props.provider || '',
@@ -351,10 +351,10 @@ export default class RegistrationForm extends Component {
                     </View>
                     <View>
                       <Picker
-                        style={{ width: 100, height: 30 }}
+                        style={{ width: 120, height: 30 }}
                         iosHeader="Pick Your Gender"
                         mode="dropdown"
-                        selectedValue="male"
+                        selectedValue={this.state.gender}
                         onValueChange={value => this.setState({ gender: value })}
                       >
                         <Picker.Item label={strings.register.male} value="male" />
