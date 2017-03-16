@@ -128,7 +128,7 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
-    const regex = /^[0-9]{9,15}$/;
+    const regex = /^[0-9]+$/;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -180,9 +180,9 @@ export default class MobilePhone extends Component {
               value={this.state.phone}
             />
           </View>
-          <View>
-          {validPhone && phone !== null ? <Text /> : <Text style={{ fontSize: 30 }}>ERror</Text>}
-          </View>
+        </View>
+        <View style={{ marginTop: 40, paddingLeft: 20 }}>
+          {validPhone && phone !== '' ? <Text /> : <Text style={{ fontSize: 14, color: 'red' }}>{strings.mobilephone.error_invalid_number}</Text>}
         </View>
         <Toast
           ref="toast"
