@@ -10,8 +10,8 @@ import {
      StyleSheet,
      ActivityIndicator,
      AsyncStorage,
-     Picker,
 } from 'react-native';
+import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import strings from './../../localizations/';
@@ -353,6 +353,7 @@ export default class RegistrationForm extends Component {
                       <Picker
                         style={{ width: 100, height: 30 }}
                         iosHeader="Pick Your Gender"
+                        mode="dropdown"
                         selectedValue="male"
                         onValueChange={value => this.setState({ gender: value })}
                       >
