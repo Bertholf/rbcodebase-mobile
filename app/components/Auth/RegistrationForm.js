@@ -13,7 +13,7 @@ import {
      Picker,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
@@ -118,6 +118,19 @@ const styles = StyleSheet.create({
     height: 60,
     padding: 10,
   },
+  genderStyle: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+    height: 40,
+  },
 });
 
 export default class RegistrationForm extends Component {
@@ -148,7 +161,7 @@ export default class RegistrationForm extends Component {
 
   onClick(text, position, duration, withStyle) {
     this.setState({
-     position: position,
+      position,
     });
     if (withStyle) {
       this.refs.toastWithStyle.show(text, duration);
@@ -182,10 +195,11 @@ export default class RegistrationForm extends Component {
   getButton(text, position, duration, withStyle) {
     return (
       <Text
-        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
         <Text>{text}</Text>
       </Text>
-    )
+    );
   }
   rerender() {
     this.setState({ loading: true }, () => {
@@ -227,20 +241,18 @@ export default class RegistrationForm extends Component {
     const validate = () => {
       if (available && notEmpty) {
         this.onSubmit();
+      } else if (!validFName || !validLName || emptyFName || emptyLName) {
+        this.onClick(strings.register.error_name, 'bottom', DURATION.LENGTH_LONG);
+      } else if (!validUsername || emptyUName) {
+        this.onClick(strings.register.error_username, 'bottom', DURATION.LENGTH_LONG);
+      } else if (!validEmail || emptyEmail) {
+        this.onClick(strings.register.error_email, 'bottom', DURATION.LENGTH_LONG);
+      } else if (!validPass || !validLPass || emptyPass) {
+        this.onClick(strings.register.error_password, 'bottom', DURATION.LENGTH_LONG);
+      } else if (!validGender) {
+        this.onClick(strings.register.error_gender, 'bottom', DURATION.LENGTH_LONG);
       } else {
-        if (!validFName || !validLName || emptyFName || emptyLName) {
-          this.onClick(strings.register.error_name, 'bottom', DURATION.LENGTH_LONG);
-        } else if (!validUsername || emptyUName) {
-          this.onClick(strings.register.error_username, 'bottom', DURATION.LENGTH_LONG);
-        } else if (!validEmail || emptyEmail) {
-          this.onClick(strings.register.error_email, 'bottom', DURATION.LENGTH_LONG);
-        } else if (!validPass || !validLPass || emptyPass) {
-          this.onClick(strings.register.error_password, 'bottom', DURATION.LENGTH_LONG);
-        } else if (!validGender) {
-          this.onClick(strings.register.error_gender, 'bottom', DURATION.LENGTH_LONG);
-        } else {
-          this.onClick(strings.register.error_connection, 'bottom', DURATION.LENGTH_LONG);
-        }
+        this.onClick(strings.register.error_connection, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     // strings.setLanguage('en');
@@ -257,7 +269,7 @@ export default class RegistrationForm extends Component {
                 automaticallyAdjustContentInsets={false}
                 onScroll={this.onScroll}
                 scrollEventThrottle={200}
-                onLayout={(e) => { let { x, y, width, height } = e.nativeEvent.layout; console.log(height); }}
+                onLayout={(e) => { const { x, y, width, height } = e.nativeEvent.layout; console.log(height); }}
               >
                 <View style={styles.scrollContent} >
                   {this.state.failregister ? (
@@ -329,28 +341,27 @@ export default class RegistrationForm extends Component {
                   {validEmail || emptyEmail ? (<View />)
                     : (<Text style={styles.fail}>{strings.register.alert_invalid_email}</Text>)
                   }
-                  <View style={{flexDirection: 'row'}}>
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    style={[styles.btnGender, this.state.gender === 'male' && styles.active]}
-                    onPress={() => this.setState({ gender: 'male' })}
-                  >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                      <Image source={imgmale} style={[styles.imgGender, { tintColor: '#1565c0' }]} />
-                      <Text style={{ color: '#1565c0' }}>Male</Text>
+
+                  {/*
+                      Show picker gender
+                  */}
+                  <View style={styles.genderStyle}>
+                    <View>
+                      <Text style={{ color: '#000', fontSize: 16 }}>{strings.register.gender}</Text>
                     </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    style={[styles.btnGender, this.state.gender === 'female' && styles.active2]}
-                    onPress={() => this.setState({ gender: 'female' })}
-                  >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                      <Image source={imgfemale} style={[styles.imgGender, { tintColor: '#DF2668' }]} />
-                      <Text style={{ color: '#DF2668' }}>Female</Text>
+                    <View>
+                      <Picker
+                        style={{ width: 100, height: 30 }}
+                        iosHeader="Pick Your Gender"
+                        selectedValue="male"
+                        onValueChange={value => this.setState({ gender: value })}
+                      >
+                        <Picker.Item label={strings.register.male} value="male" />
+                        <Picker.Item label={strings.register.female} value="female" />
+                      </Picker>
                     </View>
-                  </TouchableOpacity>
                   </View>
+
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.password}
@@ -362,7 +373,7 @@ export default class RegistrationForm extends Component {
                       secureTextEntry
                     />
                   </View>
-                    { validLPass|| emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
+                  { validLPass || emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.confirm_password}
