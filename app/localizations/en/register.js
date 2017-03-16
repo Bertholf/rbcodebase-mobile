@@ -35,6 +35,10 @@ const register = {
   error_password: 'Failed, please check your password field',
   error_gender: 'Failed, please check your gender field',
   error_connection: 'Failed, no internet connection',
+  gender: 'Gender',
+  male: 'Male',
+  female: 'Female',
+  selectGenderTitle: 'Pick one',
 };
 
 export default register;

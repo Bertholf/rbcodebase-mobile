@@ -8,6 +8,7 @@ const mobilephone = {
   placeholderNewPhoneNumber: 'Nomor telepon baru',
   saved: 'Nomor telepon telah di perbaharui',
   error: 'Gagal memperbaharui nomer telepon',
+  error_invalid_number: 'Gagal, tolong periksa nomor telepon Anda',
 };
 
 export default mobilephone;

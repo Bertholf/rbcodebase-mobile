@@ -8,6 +8,7 @@ const mobilephone = {
   placeholderNewPhoneNumber: 'New phone number',
   saved: 'Cell number has been succesfully updated',
   error: 'Error update cell number',
+  error_invalid_number: 'Failed, please check your phone number',
 };
 
 export default mobilephone;

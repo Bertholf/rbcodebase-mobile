@@ -5,6 +5,7 @@ import {
    TextInput,
    StyleSheet,
    Keyboard,
+   AsyncStorage,
  } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { Actions } from 'react-native-router-flux';
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     flex: 1,
-    marginTop: 50,
+    marginTop: 5,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
@@ -28,11 +29,10 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 4,
     marginBottom: 10,
-    marginTop: 10,
-    height: 40,
+    height: 55,
   },
   textinputStyle: {
-    height: 40,
+    height: 55,
   },
   loginInput: {
     height: 50,
@@ -73,9 +73,12 @@ export default class MobilePhone extends Component {
   }
 
   componentDidMount() {
+    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
     .catch(Err => Err);
+    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
+    
   }
 
   onClick(text, position, duration, withStyle) {
@@ -125,6 +128,7 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
+    const regex = /^[0-9\-\+]{9,15}$/;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -134,8 +138,9 @@ export default class MobilePhone extends Component {
     const birthday = this.state.profile.birthday;
     const numberphone = this.state.profile.cell_number;
     const phone = this.state.phone;
+    const validPhone = regex.test(this.state.phone);
     const savePhone = () => {
-      if (phone != null) {
+      if (phone != null && validPhone) {
         saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
         auth.profile()
           .then((response) => {
@@ -146,6 +151,7 @@ export default class MobilePhone extends Component {
           .catch(Err => console.log('err', Err));
         Keyboard.dismiss();
         this.props.reRender();
+        // Actions.pop();
       } else {
         this.onClick(strings.mobilephone.error, 'bottom', DURATION.LENGTH_LONG);
       }
@@ -156,7 +162,7 @@ export default class MobilePhone extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop({ type: 'refresh' })} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
           />
         </View>
         <View style={styles.container}>
@@ -164,14 +170,14 @@ export default class MobilePhone extends Component {
           <View style={styles.textinputWrapperStyle}>
             <TextInput
               ref={'textInput'}
-              placeholder={strings.mobilephone.placeholderNewPhoneNumber}
+              placeholder={this.state.profile.cell_number}
               placeholderTextColor="silver"
               selectionColor="silver"
               underlineColorAndroid="rgba(0,0,0,0)"
               style={styles.textinputStyle}
               keyboardType="numeric"
               onChangeText={value => this.setState({ phone: value })}
-              maxLength={12}
+              maxLength={15}
               value={this.state.phone}
             />
           </View>

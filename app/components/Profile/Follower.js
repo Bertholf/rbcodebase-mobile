@@ -59,6 +59,7 @@ export default class FollowingMe extends React.Component {
       }
     });
   }
+
   // To re-render the component
   rerender() {
     this.setState({ loading: true }, () => {

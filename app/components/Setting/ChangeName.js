@@ -106,7 +106,6 @@ export default class NameEdit extends Component {
           this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));
-          this.props.reRender();
           Keyboard.dismiss();
           Actions.refresh();
         }
@@ -121,7 +120,7 @@ export default class NameEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
             style={{ height: 55 }}
           />
         </View>

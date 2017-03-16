@@ -24,11 +24,14 @@ export default class EmailEdit extends Component {
       email: '',
     };
   }
+
   componentDidMount() {
-    AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+    // AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
     auth.profile()
-    .then(response => this.setState({ profile: response.data }))
-    .catch(Err => Err);
+    .then(response => this.setState({ profile: response.data, email: response.data.email }))
+    .catch(() => {
+      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+    });
   }
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -63,8 +66,8 @@ export default class EmailEdit extends Component {
       title: strings.EditEmail.title,
     };
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const emailValidator = value.test(this.state.newEmail);
-    const emailInput = this.state.newEmail;
+    const emailValidator = value.test(this.state.email);
+    const emailInput = this.state.email;
     const currentEmail = this.state.profile.email;
     const sameEmail = currentEmail !== emailInput;
     const validEmail = () => {
@@ -88,28 +91,27 @@ export default class EmailEdit extends Component {
           />
         </View>
         <ScrollView>
+          
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-            </Text>
-            <TextInput
-              style={styles.TextInput1} placeholder={this.state.profile.email == null ? this.state.email : this.state.profile.email} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline
-              numberOfLines={4} editable={false}
-            />
             <Text style={styles.Text2}>
               {strings.EditEmail.enter_new_mail}
             </Text>
             <TextInput
-              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.EditEmail.enter_new_email} onChangeText={newEmail => this.setState({ newEmail })} multiline
+              style={styles.TextInput1}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
+              placeholderTextColor={'#2196f3'}
+              placeholder={strings.EditEmail.enter_new_email}
+              onChangeText={newEmail => this.setState({ email: newEmail })}
+              multiline
               numberOfLines={4}
+              value={this.state.email}
             />
-            {emailValidator || !emailInput ?
+            {emailValidator && emailInput ?
               <Text /> : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}
-            {sameEmail ?
-              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}
+            {/*{sameEmail ?
+              <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}*/}
           </View>
         </ScrollView>
         <Toast

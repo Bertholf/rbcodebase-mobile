@@ -117,7 +117,7 @@ export default class ChangeUsername extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
             style={{ height: 55 }}
           />
         </View>
