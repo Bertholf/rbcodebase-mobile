@@ -7,6 +7,8 @@ const EditEmail = {
   alert_same_email: 'Seems your email is same as before',
   error_invalid_email: 'Invalid email input',
   save: 'SAVE',
+  saved: 'Privacy Setting has been succesfully updated',
+  error: 'Error change email',
 };
 
 module.exports = EditEmail;
