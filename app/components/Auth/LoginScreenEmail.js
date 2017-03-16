@@ -36,7 +36,7 @@ export default class LoginScreenEmail extends Component {
     }
     this.setState({ loading: true }, () => {
       if (this.state.username !== '' && this.state.password !== '') {
-        this.props.login(this.state.username, this.state.password, () => {
+        loginService(this.state.username, this.state.password, () => {
           this.setState({ loading: false });
         }, () => {
           this.setState({ loading: false, isFail: true });

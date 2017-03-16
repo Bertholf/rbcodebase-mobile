@@ -17,12 +17,15 @@ const secondRequest = (token) => {
 };
 
 const submitLogin = (username, password, callback) => {
+  let tokenizer
   auth.login(username, password)
   .then((token) => {
-    console.log('TOKEN : ', token.data.accessToken);
-    saveToken(token.data.accessToken);
-    secondRequest(token.data.accessToken);
-    Actions.actionswiper();
+    tokenizer = token.access_token
+    saveToken(token.access_token)
+  })
+  .then(() => {
+    secondRequest(tokenizer)
+    Actions.actionswiper()
   })
   .catch((err) => {
     console.log('ERORbroo', err);
