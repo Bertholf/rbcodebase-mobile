@@ -42,16 +42,18 @@ export default class AddFriendScreen extends React.Component {
     this.state = {
       search: {},
       loading: true,
+      nodata: false,
       wait: true,
       friendlist: {},
-      name: this.props.name || '',
+      name: '',
     };
     this.timer = null;
   }
   componentDidMount() {
     follow.search(this.state.name)
     .then((response) => {
-      this.setState({ friendlist: response.data, loading: false, wait: false }, () => console.log('ini response===', this.state));
+      this.changeState(response);
+      // this.setState({ friendlist: response.data, loading: false, wait: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
       console.log('ADD FRIEND ERROR', err);
       Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
@@ -78,11 +80,25 @@ export default class AddFriendScreen extends React.Component {
     this.setState({ name: val, wait: true });
     follow.search(this.state.name)
       .then((response) => {
-        this.setState({ friendlist: response.data, wait: false });
+        this.changeState(response);
         Keyboard.dismiss();
       });
   }
 
+  changeState(response) {
+    // to change fill data follower and change state in loading, nodata, and name
+    this.setState({ friendlist: response.data }, () => {
+      if (typeof this.state.friendlist[0] === 'undefined') {
+        this.setState({ nodata: true, loading: false, name: '', wait: false });
+        console.log('MASUK TRUEE');
+      } else {
+        this.setState({ loading: false, nodata: false, name: '', wait: false });
+        console.log('MASUK FALSEEEE');
+      }
+    });
+  }
+
+  // Cancel Request
   cancelRequest(value) {
     clearTimeout(this.timer);
     this.setState({ wait: true })
@@ -95,8 +111,8 @@ export default class AddFriendScreen extends React.Component {
   }
 
   render() {
-    const { loading } = this.state;
-    if (loading === false) {
+    const { loading, nodata, wait } = this.state;
+    if (loading === false && nodata === false) {
       return (
         <View style={styles.container}>
           <View
@@ -113,7 +129,7 @@ export default class AddFriendScreen extends React.Component {
             </Container>
           </View>
           <View style={styles.listView}>
-            {this.state.wait === true ? <ActivityIndicator /> :
+            {wait === true ? <ActivityIndicator /> :
             <ListView
               dataSource={ds.cloneWithRows(this.state.friendlist)}
               renderRow={rowData => <ListFollow rowData={{ ...rowData, rerender: () => this.rerender(), type: 'search' }} />}
@@ -121,6 +137,26 @@ export default class AddFriendScreen extends React.Component {
             }
           </View>
         </View>
+      );
+    } else if (nodata === true && loading === false) {
+      // Return this View if there is no Data Showed
+      return (
+        // Search Bar
+        <Container>
+          <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
+            <Icon name="search" />
+            <Input
+              placeholder={strings.listfollow.searchPeople}
+              onChangeText={value => this.cancelRequest(value)}
+            />
+          </Item>
+
+          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
+            <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>No data</Text>
+          </View>}
+
+        </Container>
       );
     }
     return (
