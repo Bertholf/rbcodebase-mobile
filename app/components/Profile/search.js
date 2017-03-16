@@ -9,6 +9,12 @@ export default class SearchPage extends Component {
     this.state = {
       name: '',
     };
+    this.timer = null;
+  }
+  // Go to AddFriend.js
+  goToSearch(value) {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => Actions.addfriendscreen({ name: value }), 1100);
   }
 
   render() {
@@ -19,8 +25,8 @@ export default class SearchPage extends Component {
             <Icon name="search" />
             <Input
               placeholder="Search People"
-              onSubmitEditing={() => Actions.addfriendscreen({ name: this.state.name })}
-              onChangeText={value => this.setState({ name: value })} />
+              onChangeText={value => this.goToSearch(value)}
+            />
           </Item>
         </Container>
         <View style={{ flex: 16, justifyContent: 'center', alignItems: 'center' }}>
