@@ -239,6 +239,13 @@ export default class RegistrationForm extends Component {
                 onLayout={(e) => { let { x, y, width, height } = e.nativeEvent.layout; console.log(height); }}
               >
                 <View style={styles.scrollContent} >
+                  {this.state.failregister ? (
+                    <View style={styles.errBox}>
+                      <Text style={{ color: '#fff' }}>{this.state.failMsg}</Text>
+                    </View>
+                  ) : (
+                    <Text />
+                  )}
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.first_name}
@@ -356,15 +363,6 @@ export default class RegistrationForm extends Component {
                   </View>
                 </View>
                 <View style={styles.line} />
-
-                {this.state.failregister ? (
-                  <View style={styles.errBox}>
-                    <Text style={{ color: '#fff' }}>{this.state.failMsg}</Text>
-                  </View>
-          ) : (
-            <Text />
-          )}
-
                 <TouchableOpacity
                   onPress={validate}
                 >
