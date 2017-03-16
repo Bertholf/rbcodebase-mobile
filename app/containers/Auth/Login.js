@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   loginWithFacebook: () => dispatch(loginWithFacebook()),
   loginWithTwitter: () => dispatch(loginWithTwitter()),
   submitLogin: (username, password, okCallback, failCallback) => {
-    dispatch(submitLogin(username, password, okCallback, failCallback));
+    return dispatch(submitLogin(username, password, okCallback, failCallback));
   },
   forgotPassword: () => {
     Actions.forgotPassword();

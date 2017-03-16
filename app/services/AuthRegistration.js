@@ -8,14 +8,14 @@ import submitLogin from './AuthLogin'
 const submitRegister = (name_first, name_last, name_slug, gender, email, password, password_confirmation, callback) => {
   auth.register(name_first, name_last, name_slug, gender, email, password, password_confirmation)
   .then((resp) => {
-    auth.login(name_slug, password)
-    .then((respL) => {
-      AsyncStorage.setItem('accessToken', respL.access_token)
-      .then(() => Actions.loginscreen())
-      .catch(err => console.log('FAIL TO SAVE ACCESS TOKEN', err));
-    })
-    .catch(err => console.log('LOGIN ERR', err));
+    console.log('++++++++++++++', resp);
+    // auth.login(name_slug, password)
+    // .then((respL) => {
+      AsyncStorage.setItem('accessToken', resp.access_token)
+    //})
+    //.catch(err => console.log('LOGIN ERR', err));
   })
+  .then(() => Actions.loginscreenemail())
   .catch((err) => {
     callback(err.response.data.message);
   });

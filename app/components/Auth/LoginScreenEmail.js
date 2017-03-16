@@ -11,6 +11,8 @@ import styles from './LoginStyleEmail';
 import loginService from '../../services/AuthLogin';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
+import submitLogin from './../../services/AuthLogin';
+import { connect } from 'react-redux';
 // import GoogleSignIn from './../../services/signingoogle';
 
 export default class LoginScreenEmail extends Component {
@@ -27,23 +29,19 @@ export default class LoginScreenEmail extends Component {
     this.validate = this.validate.bind(this);
   }
 
-  validate() {
-    if (this.state.username === '') {
+  validate(done) {
+    if (this.state.username === '' && this.state.password === '') {
       this.setState({ validUsername: false, loading: false });
     }
-    if (this.state.password === '') {
-      this.setState({ validPassword: false, loading: false });
-    }
-    this.setState({ loading: true }, () => {
-      if (this.state.username !== '' && this.state.password !== '') {
-        loginService(this.state.username, this.state.password, () => {
-          this.setState({ loading: false });
-        }, () => {
-          this.setState({ loading: false, isFail: true });
-        });
-      }
-    });
+
+  dispatch(submitLogin(
+      this.state.username,
+      this.state.password,
+      () => { this.setState({ loading: false }) },
+      () => { this.setState({ loading: false, isFail: true }) })
+)
   }
+
   render() {
     return (
       <View style={styles.container}>

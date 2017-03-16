@@ -187,7 +187,7 @@ export default class Register extends Component {
             </View>
 
             <View style={{ paddingTop: 8, paddingBottom: 10 }}>
-              <TouchableOpacity onPress={Actions.loginscreen}>
+              <TouchableOpacity onPress={Actions.loginscreenemail}>
                 <Text style={{ fontSize: 14, color: 'black' }}>{strings.register.Sign_in}</Text>
               </TouchableOpacity>
             </View>

@@ -366,7 +366,7 @@ export default class RegistrationForm extends Component {
           )}
 
                 <TouchableOpacity
-                  onPress={validate ? Actions.loginscreenemail : Actions.registrationform}
+                  onPress={validate}
                 >
                   <View style={styles.btnReg} >
                     {this.state.submitting ? <ActivityIndicator size={'large'} color={'#fff'} /> : <Text style={styles.textReg} >
