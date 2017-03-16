@@ -89,10 +89,10 @@ export default class AddFriendScreen extends React.Component {
     // to change fill data follower and change state in loading, nodata, and name
     this.setState({ friendlist: response.data }, () => {
       if (typeof this.state.friendlist[0] === 'undefined') {
-        this.setState({ nodata: true, loading: false, name: '', wait: false });
+        this.setState({ nodata: true, loading: false, name: this.state.name, wait: false });
         console.log('MASUK TRUEE');
       } else {
-        this.setState({ loading: false, nodata: false, name: '', wait: false });
+        this.setState({ loading: false, nodata: false, name: this.state.name, wait: false });
         console.log('MASUK FALSEEEE');
       }
     });
@@ -153,7 +153,7 @@ export default class AddFriendScreen extends React.Component {
 
           {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-            <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>No data</Text>
+            <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.addfriend.noUser} "{this.state.name}"</Text>
           </View>}
 
         </Container>

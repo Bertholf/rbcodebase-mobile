@@ -7,4 +7,5 @@ export default {
   noUserNamed: 'There is no user called ',
   yes: 'Yes',
   cancel: 'Cancel',
+  noUser: 'There is no user named ',
 };

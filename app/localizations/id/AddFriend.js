@@ -7,4 +7,5 @@ export default {
   noUserNamed: 'Tidak ada pengguna bernama ',
   yes: 'Ya',
   cancel: 'Batal',
+  noUser: 'Tidak ada pengguna bernama ',
 };
