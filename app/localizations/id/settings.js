@@ -22,7 +22,6 @@ const settings = {
   save: 'Simpan',
   alerSuccess: 'Sukses!',
   alertNoInput: "'Kesalahan', 'Masukkan salah atau Tidak ada masukkan'",
-  saved: 'Pengaturan disimpan',
   error: 'Gagal menyimpan',
   firstnameChange: 'Sukses, nama depan Anda sudah tersimpan',
   lastnameChange: 'Sukses, nama belakang Anda sudah tersimpan',
@@ -40,5 +39,6 @@ const settings = {
   emailsetting: 'Pengaturan Surel',
   gender: 'Jenis Kelamin',
   changegender: 'Perubahan Jenis Kelamin',
+  saved: 'Pengaturan email telah di perbaharui',
 };
 export default settings;
