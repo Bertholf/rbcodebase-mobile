@@ -34,6 +34,10 @@ const register = {
   error_password: 'Gagal, tolong periksa kolom sandi Anda',
   error_gender: 'Gagal, tolong periksa kolom jenis kelamin Anda',
   error_connection: 'Gagal, tidak ada koneksi internet',
+  gender: 'Jenis Kelamin',
+  male: 'Pria',
+  female: 'Wanita',
+  selectGenderTitle: 'Pilih Salah Satu',
 };
 
 export default register;
