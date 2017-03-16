@@ -142,7 +142,7 @@ export default class editBirthday extends Component {
             <DatePicker
               date={dateBirth}
               placeholder={strings.editBirthday.placeholder}
-              format="YYYY-MM-DD"
+              format="MMMM Do YYYY"
               minDate="1990-05-01"
               maxDate={this.getDate()}
               confirmBtnText={strings.editBirthday.confirm}

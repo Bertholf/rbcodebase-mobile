@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
     flex: 1,
-    marginTop: 50,
+    marginTop: 5,
   },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
@@ -29,11 +29,10 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 4,
     marginBottom: 10,
-    marginTop: 10,
-    height: 40,
+    height: 55,
   },
   textinputStyle: {
-    height: 40,
+    height: 55,
   },
   loginInput: {
     height: 50,
