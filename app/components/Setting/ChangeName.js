@@ -102,7 +102,7 @@ export default class NameEdit extends Component {
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
           Keyboard.dismiss();
           auth.profile()
-        .then(response => this.setState({ profile: response.data, loading: false }, () => {a
+            .then(response => this.setState({ profile: response.data, loading: false }, () => {
           this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));

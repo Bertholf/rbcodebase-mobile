@@ -9,7 +9,7 @@ const ChangeUname = {
   placeholder: 'New Username',
   alertError: 'Invalid username',
   success: 'Change saved',
-  saved: 'Name has been succesfully updated',
+  saved: 'Username has been succesfully updated',
   error: 'Error change username',
 };
 
