@@ -5,6 +5,7 @@ import {
    TextInput,
    StyleSheet,
    Keyboard,
+   AsyncStorage,
  } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { Actions } from 'react-native-router-flux';
@@ -73,9 +74,12 @@ export default class MobilePhone extends Component {
   }
 
   componentDidMount() {
+    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
     .catch(Err => Err);
+    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
+    
   }
 
   onClick(text, position, duration, withStyle) {
@@ -146,6 +150,7 @@ export default class MobilePhone extends Component {
           .catch(Err => console.log('err', Err));
         Keyboard.dismiss();
         this.props.reRender();
+        // Actions.pop();
       } else {
         this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
@@ -156,7 +161,7 @@ export default class MobilePhone extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop({ type: 'refresh' })} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
           />
         </View>
         <View style={styles.container}>
