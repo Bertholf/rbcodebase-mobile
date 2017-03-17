@@ -24,6 +24,8 @@ export default class Friendlist extends React.Component {
       following: [],
       wait: true,
       requesting: false,
+      named: '',
+      search: 0,
     };
     this.timer = null;
   }
