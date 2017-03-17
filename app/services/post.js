@@ -1,12 +1,12 @@
 import api from './api';
 
 const post = {
-  getPosts: () => api.get('/posts'),
-  updatePost: (id, data) => api.put('/posts/'+id, data),
-  deletePost: (id) => api.delete('/posts'),
-  newPost: (data) => api.post('/posts', data),
-  likePost: (id) => api.put('/posts/'+id+'/like'),
-  unlikePost: (id) => api.put('/posts/'+id+'/unlike')
+  getPosts: () => api.get(),
+  updatePost: (id, data) => api.put(),
+  deletePost: (id) => api.delete(),
+  newPost: (data) => api.post(),
+  likePost: (id) => api.put(),
+  unlikePost: (id) => api.put()
 }
 
 export default post

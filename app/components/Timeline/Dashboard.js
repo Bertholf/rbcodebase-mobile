@@ -27,7 +27,6 @@ export default class Dashboard extends Component {
       namalast: '',
       email: '',
     };
-
   }
   componentDidMount() {
     // auth.changeemail()
@@ -42,7 +41,7 @@ export default class Dashboard extends Component {
     // })
     auth.profile()
     .then((response) => {
-        this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
+      this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
         console.log('===== profile result =====', this.state.profile);
         console.log('========== RESPONSE SERVER =========', response);
         AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
@@ -60,7 +59,7 @@ export default class Dashboard extends Component {
            console.log('SAVE USERDATA 1');
           //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
-             'status', 'confirmed', 'gender','verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
+             'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
         .then(res => console.log('==RESPONSE STORAGE==', res))
@@ -70,14 +69,14 @@ export default class Dashboard extends Component {
          .catch(err => console.log('SAVE FAILED', err));
       });
     })
-    .catch((err) =>{
-      if (err.response.data.error === 'Unauthenticated'){
-        Logout()
-      } else{
+    .catch((err) => {
+      if (err.response.data.error === 'Unauthenticated') {
+        Logout();
+      } else {
         AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
         AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
       }
-      });
+    });
   }
 
   reRender() {
