@@ -150,7 +150,6 @@ export default class RegistrationForm extends Component {
       console.log('error register', err);
     });
     } else {
-      this.setState({ submitting: true });
       submitRegister(firstname, lastname, username, gender, email, password, confirmPassword, (msg) => {
         this.setState({ failregister: true, failMsg: msg, submitting: false });
         this.onClick();
