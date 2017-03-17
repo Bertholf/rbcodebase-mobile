@@ -29,7 +29,7 @@ export function updatePassword(password) {
   return { type: UPDATE_PASSWORD_TEXT, password };
 }
 export function submitLogin(username, password, okCallback, failCallback) {
-  return () => {
+  return (dispatch) => {
     return auth.login(username, password).then((data) => {
       return AsyncStorage.setItem('accessToken', data.access_token);
     })
@@ -37,6 +37,7 @@ export function submitLogin(username, password, okCallback, failCallback) {
       return AsyncStorage.getItem('accessToken');
     })
    .then((token) => {
+     console.log("TOKEN DALAM ACTION", token);
      Actions.actionswiper();
      okCallback();
    })

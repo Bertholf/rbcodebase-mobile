@@ -8,9 +8,10 @@ import {
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
-import loginService from '../../services/AuthLogin';
+import auth from '../../services/auth';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
+import { AsyncStorage } from 'react-native';
 // import GoogleSignIn from './../../services/signingoogle';
 
 export default class LoginScreenEmail extends Component {
@@ -31,18 +32,16 @@ export default class LoginScreenEmail extends Component {
     if (this.state.username === '' && this.state.password === '') {
       this.setState({ validUsername: false, loading: false });
     }
-
-
-    this.setState({ loading: true }, () => {
-    if (this.state.username !== '' && this.state.password !== '') {
-      this.props.login(this.state.username, this.state.password, () => {
-        this.setState({ loading: false });
-      }, () => {
-        this.setState({ loading: false, isFail: true });
-      });
-    }
-  });
-}
+    return auth.login(this.state.username, this.state.password)
+        .then((data) => {
+          return AsyncStorage.setItem('accessToken', data.access_token);
+        })
+        .then(() => { return AsyncStorage.getItem('accessToken') })
+        .then((token) => {
+            Actions.actionswiper();
+          })
+         .catch((err) => console.log(err));
+  }
 
 
 
