@@ -29,25 +29,31 @@ export default class LoginScreenEmail extends Component {
   }
 
   validate() {
+    console.log(this.state.username, this.state.password);
+    console.log('JALANIN VALIDATE');
     if (this.state.username === '') {
+      console.log('MASUK KONDISI PERTAMA');
       this.setState({ validUsername: false, loading: false });
     }
     if (this.state.password === '') {
+      console.log('MASUK KONDISI keyboardShouldPersistTaps');
       this.setState({ validPassword: false, loading: false });
     }
-    return
       this.setState({ loading: true }, () => {
+        console.log('MASUK KE KONDISI TERAKHIR');
        if (this.state.username !== '' && this.state.password !== '') {
          auth.login(this.state.username, this.state.password)
         .then((data) => {
-          return AsyncStorage.setItem('accessToken', data.access_token);
+          console.log('HASIL LOGIN', data);
+          AsyncStorage.setItem('accessToken', data.access_token);
         })
-        .then(() => { return AsyncStorage.getItem('accessToken') })
+        .then(() => { AsyncStorage.getItem('accessToken') })
         .then((token) => {
             this.setState({ loading: false });
             Actions.actionswiper({ type : 'reset'});
+            return token;
           })
-         .catch((err) => console.log(err));
+         .catch((err) => this.setState({ loading: false, isFail: true }));
       }
     })
   }
@@ -78,8 +84,8 @@ export default class LoginScreenEmail extends Component {
             secureTextEntry
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
-            onChangeText={password =>
-              this.setState({ password, validPassword: true, isFail: false })
+            onChangeText={value =>
+              this.setState({ password: value, validPassword: true, isFail: false })
             }
             placeholderTextColor={'silver'}
             placeholder={strings.LoginbyEmail.password}
