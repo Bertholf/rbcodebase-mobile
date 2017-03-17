@@ -53,7 +53,6 @@ export default class Approval extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
-          enableEmptySections={'true'}
           renderRow={rowData => <ListApproval
             rowData={{ ...rowData,
               type: 'follower',

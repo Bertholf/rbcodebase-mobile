@@ -25,7 +25,7 @@ const settings = {
   noChange: 'Nothing Changed!',
   lastnameChange: 'Success, your last name has been changed',
   firstnameChange: 'Success, your first name has been changed',
-  saved: 'Setting saved',
+  saved: 'Email setting has been succesfully updated',
   error: 'Failed to save setting',
   following: 'Following',
   follower: 'Follower',
@@ -38,6 +38,7 @@ const settings = {
   emailVarification: 'emailVarification',
   privacysetting: 'Privacy Setting',
   emailsetting: 'Email Setting',
+  successGender: 'Gender has been succesfully updated',
   gender: 'Gender',
   changegender: 'Change Gender',
 

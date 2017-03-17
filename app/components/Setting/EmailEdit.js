@@ -75,9 +75,9 @@ export default class EmailEdit extends Component {
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
-        this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+        this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG)
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.EditEmail.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
@@ -87,11 +87,11 @@ export default class EmailEdit extends Component {
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
-            style={{ height: 55 }}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <ScrollView>
-          
+
           <View style={styles.View1}>
             <Text style={styles.Text2}>
               {strings.EditEmail.enter_new_mail}

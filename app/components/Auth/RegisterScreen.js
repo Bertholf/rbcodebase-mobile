@@ -60,7 +60,8 @@ export default class Register extends Component {
   // Register with Google
   registerWithGoogle() {
     google.signIn()
-    .then(({ user }) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }));
+    .then(({ user }) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }))
+    .catch();
   }
   // Register with twitter
   registerWithTwitter() {
@@ -119,7 +120,7 @@ export default class Register extends Component {
     .then(() => {
       Actions.loaderview({ message: 'You are already registered', onPress: () => Actions.actionswiper({ type: 'reset' }) });
       setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
-    });
+    }).catch(err => err);
   }
 
   render() {

@@ -17,20 +17,20 @@ export default {
   verify: email => api.post('/api/password/verify',
     { email },
   ),
-  profile: ()=> api.get('/api/me',
+  profile: () => api.get('/api/me',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
   sendlink: email => api.post('/api/password/email',
     { email },
   ),
-  adprefe: ()=> api.get('/api/me/settings',
+  adprefe: () => api.get('/api/me/settings',
       { client_id: config.CLIENT_ID, client_secret: config.CLIENT_SECRET, grant_type: config.GRANT_TYPE }
   ),
   changeemail: changeemailuser => api.post('/api/change-email',
     { email },
   ),
   updateProfile: (id, name_first, name_last, name_slug, gender, cell_number, date_birth, password, password_confirmation) =>
-  api.put('/api/users/' + id, {
+  api.put(`/api/users/${id}`, {
     name_first,
     name_last,
     name_slug,

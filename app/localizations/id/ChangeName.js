@@ -8,6 +8,8 @@ const ChangeName = {
   text1: 'Masukan nama awal dan akhir anda',
   text2: 'Setiap nilai dimasukkan di sini akan apa yang dilihat di aplikasi oleh mereka yang bukan teman atau assicated data publik',
   store: 'SIMPAN',
+  saved: 'Nama telah berhasil di perbaharui',
+  error: 'Gagal memperbaharui nama',
 };
 
 export default ChangeName;

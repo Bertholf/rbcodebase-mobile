@@ -102,16 +102,15 @@ export default class NameEdit extends Component {
           saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
           Keyboard.dismiss();
           auth.profile()
-        .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
+            .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => console.log('err', Err));
-          this.props.reRender();
           Keyboard.dismiss();
           Actions.refresh();
         }
       } else {
-        this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
+        this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 
@@ -121,8 +120,8 @@ export default class NameEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
-            style={{ height: 55 }}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
