@@ -63,6 +63,7 @@ export default class Setting extends Component {
       });
     })
     .catch((Err) => {
+      console.log('ERROR', Err);
       AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
       AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(res => console.log('error ambil nama username-----'));
       AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));

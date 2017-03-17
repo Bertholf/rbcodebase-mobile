@@ -21,12 +21,12 @@ export default class ChatView extends Component {
     };
   }
   componentDidMount() {
-    chatServices.getChat()
-    .then((data) => {
-      this.setState({ chat: data, loading: false });
-      console.log(this.state);
-    })
-    .catch(err => console.log(err));
+    // chatServices.getChat()
+    // .then((data) => {
+    //   this.setState({ chat: data, loading: false });
+    //   console.log(this.state);
+    // })
+    // .catch(err => console.log(err));
   }
   render() {
     if (this.state.loading === false) {

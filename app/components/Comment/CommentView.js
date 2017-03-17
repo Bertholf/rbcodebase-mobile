@@ -100,12 +100,12 @@ export default class CommentView extends Component {
     };
   }
   componentDidMount() {
-    comment.getComment()
-    .then((data) => {
-      this.setState({ comment: data, loading: false });
-      console.log(this.state);
-    })
-    .catch(err => console.log(err));
+    // comment.getComment()
+    // .then((data) => {
+    //   this.setState({ comment: data, loading: false });
+    //   console.log(this.state);
+    // })
+    // .catch(err => console.log(err));
   }
   render() {
     if (this.state.loading === false) {

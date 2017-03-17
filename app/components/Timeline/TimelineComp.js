@@ -110,10 +110,10 @@ export default class MapMain extends Component {
     };
   }
   componentDidMount() {
-    timelineList.getTimeline()
-    .then((data) => {
-      this.setState({ list: data, loading: false });
-    }).catch(err => console.log(err));
+    // timelineList.getTimeline()
+    // .then((data) => {
+    //   this.setState({ list: data, loading: false });
+    // }).catch(err => console.log(err));
   }
   onChangeImg() {
     this.setState({
