@@ -24,6 +24,8 @@ export default class Friendlist extends React.Component {
       following: [],
       wait: true,
       requesting: false,
+      someone: '',
+      search: 0,
     };
     this.timer = null;
   }
@@ -77,7 +79,13 @@ export default class Friendlist extends React.Component {
   searchUpdate(val) {    
     AsyncStorage.getItem('userId')
       .then((myId) => {
-        this.setState({ name: val, wait: true });
+        if (val !== '') {
+          console.log('TRUE================================');
+          this.setState({ name: val, wait: true, someone: `${strings.listfollow.named} "${val}"`, search: 1 });
+        } else {
+          console.log('FALSE=================================');
+          this.setState({ name: val, wait: true, someone: '', search: 0 });
+        }
         follows.searchFollowing(this.state.name, myId)
         .then((res) => {
           this.changeState(res);
@@ -139,7 +147,12 @@ export default class Friendlist extends React.Component {
           </Item>
           {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-            <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>
+            {/*
+                Should show different message when user has no one following and didn't have following named!!
+            */}
+            {this.state.someone !== '' && this.state.search === 1 ?
+              <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing} {this.state.someone}</Text>
+            : <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>}
             <TouchableOpacity
               onPress={() => Actions.addfriendscreen()}
               style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
