@@ -23,7 +23,7 @@ export default class LoginScreenEmail extends Component {
       validUsername: true,
       validPassword: true,
       isFail: false,
-      // loading: false,
+      loading: false,
     };
     this.validate = this.validate.bind(this);
   }
@@ -35,18 +35,22 @@ export default class LoginScreenEmail extends Component {
     if (this.state.password === '') {
       this.setState({ validPassword: false, loading: false });
     }
-    return auth.login(this.state.username, this.state.password)
+    return
+      this.setState({ loading: true }, () => {
+       if (this.state.username !== '' && this.state.password !== '') {
+         auth.login(this.state.username, this.state.password)
         .then((data) => {
           return AsyncStorage.setItem('accessToken', data.access_token);
         })
         .then(() => { return AsyncStorage.getItem('accessToken') })
         .then((token) => {
+            this.setState({ loading: false });
             Actions.actionswiper({ type : 'reset'});
-            this.setState({ loading: false, isFail: true });
           })
          .catch((err) => console.log(err));
+      }
+    })
   }
-
 
 
   render() {
