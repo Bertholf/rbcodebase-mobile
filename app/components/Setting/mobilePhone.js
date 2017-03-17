@@ -8,6 +8,8 @@ import {
    AsyncStorage,
  } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import PhoneInput from 'react-native-phone-input'
+import ModalPickerImage from './ModalPickerImage'
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
 import saveProfile from '../../services/updateProfile';
@@ -63,9 +65,12 @@ const styles = StyleSheet.create({
 export default class MobilePhone extends Component {
   constructor(props) {
     super(props);
+    this.onPressFlag = this.onPressFlag.bind(this)
+    this.selectCountry = this.selectCountry.bind(this)
     this.state = {
       profile: {},
       phone: '',
+      pickerData: '',
       style: {},
       position: 'bottom',
 
@@ -73,11 +78,13 @@ export default class MobilePhone extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
-    auth.profile()
-    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
+    this.setState({
+            pickerData: this.refs.phone.getPickerData()
+        })
+    AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
+     auth.profile()
+    .then(response => {this.setState({ profile: response.data, phone: response.data.cell_number }); console.log('CHECK HERE', this.state.phone); })
     .catch(Err => Err);
-    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
   }
 
   onClick(text, position, duration, withStyle) {
@@ -90,7 +97,12 @@ export default class MobilePhone extends Component {
       this.refs.toast.show(text, duration);
     }
   }
-
+  onPressFlag(){
+      this.refs.myCountryPicker.open()
+  }
+  selectCountry(country){
+        this.refs.phone.selectCountry(country.iso2)
+    }
   onChanged(text) {
     let newText = '';
     const numbers = '^[0-9]';
@@ -118,6 +130,7 @@ export default class MobilePhone extends Component {
   }
 
   render() {
+    const numb = this.state.phone;
     const rightButtonConfig = {
       title: strings.mobilephone.titleSave,
       handler: () => savePhone(),
@@ -127,7 +140,7 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
-    const regex = /^[0-9]+$/;
+    const regex = /^\+[1-9]{1}[0-9]{3,14}$/;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -136,11 +149,11 @@ export default class MobilePhone extends Component {
     const gender = this.state.profile.gender;
     const birthday = this.state.profile.birthday;
     const numberphone = this.state.profile.cell_number;
-    const phone = this.state.phone;
+    const number = this.state.phone;
     const validPhone = regex.test(this.state.phone);
     const savePhone = () => {
-      if (phone != null && validPhone) {
-        saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
+      if (number != null && validPhone) {
+        saveProfile(id, name_first, name_last, name_slug, gender, number, birthday);
         auth.profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
@@ -168,7 +181,7 @@ export default class MobilePhone extends Component {
         <View style={styles.container}>
           <Text style={styles.heading} />
           <View style={styles.textinputWrapperStyle}>
-            <TextInput
+            {/* <TextInput
               ref={'textInput'}
               placeholder={this.state.profile.cell_number}
               placeholderTextColor="silver"
@@ -178,13 +191,29 @@ export default class MobilePhone extends Component {
               onChangeText={value => this.setState({ phone: value })}
               maxLength={15}
               value={this.state.phone}
+            /> */}
+            <PhoneInput
+              ref='phone'
+              style={{padding: 10, marginTop: 7}}
+              onPressFlag={this.onPressFlag}
+              initialCountry={(country) => {this.selectCountry(country)}}
+              offset={10}
+              textProps={{placeholder: this.state.phone}}
+              onChangePhoneNumber={(phone) => {this.setState({phone: phone})}}
+              onSelectCountry={(country) => {this.selectCountry(country)}}
+            />
+            <ModalPickerImage
+              ref='myCountryPicker'
+              data={this.state.pickerData}
+              onChange={(country)=>{ this.selectCountry(country) }}
+              cancelText='Cancel'
             />
           </View>
         </View>
         <View style={{ marginTop: 40, paddingLeft: 20 }}>
-          {
+          {/* {
           validPhone || phone === null ? <Text /> : <Text style={{ fontSize: 14, color: 'red' }}>{strings.mobilephone.error_invalid_number}</Text>
-          }
+          } */}
         </View>
         <Toast
           ref="toast"
