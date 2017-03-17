@@ -63,6 +63,7 @@ export default class Setting extends Component {
       });
     })
     .catch((Err) => {
+      console.log('ERROR', Err);
       AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
       AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(res => console.log('error ambil nama username-----'));
       AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
@@ -81,186 +82,186 @@ export default class Setting extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <ScrollView>
-        <View style={styles.container}>
-          <Text style={styles.titleText}>{strings.settings.account}</Text>
-          <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.name}</Text>
+          <View style={styles.container}>
+            <Text style={styles.titleText}>{strings.settings.account}</Text>
+            <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.name}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text>
+                  {/* {this.state.profile.name_first} {this.state.profile.name_last} */}
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text>
-                {/* {this.state.profile.name_first} {this.state.profile.name_last} */}
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => Actions.usernameEdit({ reRender: () => this.reRender() })}
+            >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.user_name}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.nameslug}</Text>
+                  {/* {this.state.profile.name_slug} */}
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => Actions.usernameEdit({ reRender: () => this.reRender() })}
-          >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.user_name}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.genderEdit({ reRender: () => this.reRender() })}>
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.gender}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.gender}</Text>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.nameslug}</Text>
-                {/* {this.state.profile.name_slug} */}
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.editbirthday({ reRender: () => this.reRender() })}>
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.birthday}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.birthday}</Text>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.genderEdit({ reRender: () => this.reRender() })}>
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.gender}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => Actions.mobilephone({ reRender: () => this.reRender() })}>
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.mobile}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.phone}</Text>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.gender}</Text>
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={Actions.emailEdit} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.email}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.editbirthday({ reRender: () => this.reRender() })}>
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.birthday}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={Actions.passEdit}>
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.password}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Text style={{ alignSelf: 'center' }}>********</Text>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.birthday}</Text>
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <Text style={styles.titleText}>{strings.settings.preference}</Text>
+            <TouchableOpacity onPress={Actions.adpref} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.privacysetting}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Actions.mobilephone({ reRender: () => this.reRender() })}>
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.mobile}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={Actions.EmailSetting} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.emailsetting}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.phone}</Text>
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <Text style={styles.titleText}>{strings.settings.more_info}</Text>
+            <TouchableOpacity onPress={Actions.support} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.support}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.emailEdit} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.email}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={Actions.pp} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.Privacy_policy}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>{this.state.email}</Text>
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={Actions.tos} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.tos}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.passEdit}>
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.password}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={Actions.license} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.licence}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ alignSelf: 'center' }}>********</Text>
-                <Image style={styles.image} source={next} />
+            </TouchableOpacity>
+            <Text style={styles.titleText}>{strings.settings.account_action}</Text>
+            <TouchableOpacity onPress={Actions.account} >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.clear_cache}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-          <Text style={styles.titleText}>{strings.settings.preference}</Text>
-          <TouchableOpacity onPress={Actions.adpref} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.privacysetting}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.EmailSetting} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.emailsetting}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <Text style={styles.titleText}>{strings.settings.more_info}</Text>
-          <TouchableOpacity onPress={Actions.support} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.support}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.pp} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.Privacy_policy}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.tos} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.tos}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.license} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.licence}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <Text style={styles.titleText}>{strings.settings.account_action}</Text>
-          <TouchableOpacity onPress={Actions.account} >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.clear_cache}</Text>
-              </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => Alert.alert(
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => Alert.alert(
             '',
             strings.logoutLocalization.AreYouSure,
-  [
+                [
                  { text: strings.logoutLocalization.cancel, onPress: () => console.log('cancelled Pressed') },
-                 { text: 'OK',
-                   onPress: () => {
-  Logout();
-} },
-  ],
+                  { text: 'OK',
+                    onPress: () => {
+                    Logout();
+                  } },
+                ],
           )}
-          >
-            <View style={styles.list}>
-              <View style={{ alignSelf: 'center' }}>
-                <Text style={styles.text}>{strings.settings.log_out}</Text>
+            >
+              <View style={styles.list}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text style={styles.text}>{strings.settings.log_out}</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image style={styles.image} source={next} />
+                </View>
               </View>
-              <View style={{ flexDirection: 'row' }}>
-                <Image style={styles.image} source={next} />
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     );
   }

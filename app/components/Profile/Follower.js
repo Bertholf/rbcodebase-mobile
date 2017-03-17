@@ -134,7 +134,7 @@ export default class FollowingMe extends React.Component {
       return (
         // Search Bar
         <Container>
-          <Item style={{ paddingLeft: 14, paddingRight: 14 }}>
+          <Item>
             <Icon name="search" />
             <Input
               placeholder={strings.listfollow.searchFollower}
