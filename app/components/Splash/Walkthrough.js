@@ -78,7 +78,8 @@ export default class walkthrough extends Component {
     strings.setLanguage(setlang);
     super(props);
     this.state = {
-      screen: strings.walkthrought.screen.information,
+      // initialization data json
+      screen: Walk.screen.information,
     };
   }
   componentDidMount() {
@@ -86,31 +87,29 @@ export default class walkthrough extends Component {
     .then((response) => { console.log(response); },
      (error) => { console.log(error); });
   }
+
+  // sum of page in walktrough
   renderDotIndicator() {
     return <PagerDotIndicator pageCount={4} />;
   }
 
+
+ // loader data json to walktrough screen
   renderItem(screen) {
     return (
       <View style={[styles.page, { backgroundColor: screen.bg }]}>
         <View style={{ flex: 5 }}>
           <Image
-            style={{ height: 270, width: width * 1 }} source={{ uri: Walk.data.Image }}
+            style={{ height: 270, width: width * 1 }} source={{ uri: screen.Image }}
           />
         </View>
         <View style={styles.page2}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{Walk.data.tittle}</Text>
-          <Text>{Walk.data.description}</Text>
+          <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{screen.title}</Text>
+          <Text>{screen.description}</Text>
         </View>
       </View>);
   }
-  // componentDidMount() {
-  //   AsyncStorage.setItem('loadingWalk', 'true')
-  //     .then(() => {
-  //       const isiWalk = AsyncStorage.getItem('loadingWalk');
-  //       console.log('----------ISI walkthrough -----------------', isiWalk);
-  //     }).catch((err) => { console.log(err); })
-  // }
+  
   render() {
     return (
       <View style={{ backgroundColor: '#2196F3', flex: 1 }}>
