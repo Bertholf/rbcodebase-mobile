@@ -37,7 +37,7 @@ export function submitLogin(username, password, okCallback, failCallback) {
       return AsyncStorage.getItem('accessToken');
     })
    .then((token) => {
-     Actions.actionswiper({ type: 'reset' });
+     Actions.actionswiper();
      okCallback();
    })
    .catch(() => failCallback());

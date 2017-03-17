@@ -5,7 +5,9 @@ import {
    Image,
    TouchableOpacity,
    AsyncStorage,
+   BackAndroid,
 } from 'react-native';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';

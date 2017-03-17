@@ -19,9 +19,9 @@ const secondRequest = (token) => {
 const submitLogin = (username, password, callback) => {
   auth.login(username, password)
   .then((token) => {
-    console.log('TOKEN : ', token.data.accessToken);
-    saveToken(token.data.accessToken);
-    secondRequest(token.data.accessToken);
+    console.log('TOKEN : ', token.access_token);
+    saveToken(token.access_token);
+    secondRequest(token.access_token);
     Actions.actionswiper();
   })
   .catch((err) => {

@@ -8,9 +8,10 @@ import {
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
-import loginService from '../../services/AuthLogin';
+import auth from '../../services/auth';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
+import { AsyncStorage } from 'react-native';
 // import GoogleSignIn from './../../services/signingoogle';
 
 export default class LoginScreenEmail extends Component {
@@ -22,28 +23,42 @@ export default class LoginScreenEmail extends Component {
       validUsername: true,
       validPassword: true,
       isFail: false,
-      // loading: false,
+      loading: false,
     };
     this.validate = this.validate.bind(this);
   }
 
   validate() {
+    console.log(this.state.username, this.state.password);
+    console.log('JALANIN VALIDATE');
     if (this.state.username === '') {
+      console.log('MASUK KONDISI PERTAMA');
       this.setState({ validUsername: false, loading: false });
     }
     if (this.state.password === '') {
+      console.log('MASUK KONDISI keyboardShouldPersistTaps');
       this.setState({ validPassword: false, loading: false });
     }
-    this.setState({ loading: true }, () => {
-      if (this.state.username !== '' && this.state.password !== '') {
-        this.props.login(this.state.username, this.state.password, () => {
-          this.setState({ loading: false });
-        }, () => {
-          this.setState({ loading: false, isFail: true });
-        });
+      this.setState({ loading: true }, () => {
+        console.log('MASUK KE KONDISI TERAKHIR');
+       if (this.state.username !== '' && this.state.password !== '') {
+         auth.login(this.state.username, this.state.password)
+        .then((data) => {
+          console.log('HASIL LOGIN', data);
+          AsyncStorage.setItem('accessToken', data.access_token);
+        })
+        .then(() => { AsyncStorage.getItem('accessToken') })
+        .then((token) => {
+            this.setState({ loading: false });
+            Actions.actionswiper({ type : 'reset'});
+            return token;
+          })
+         .catch((err) => this.setState({ loading: false, isFail: true }));
       }
-    });
+    })
   }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -69,8 +84,8 @@ export default class LoginScreenEmail extends Component {
             secureTextEntry
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
-            onChangeText={password =>
-              this.setState({ password, validPassword: true, isFail: false })
+            onChangeText={value =>
+              this.setState({ password: value, validPassword: true, isFail: false })
             }
             placeholderTextColor={'silver'}
             placeholder={strings.LoginbyEmail.password}
