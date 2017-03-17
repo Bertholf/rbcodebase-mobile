@@ -5,6 +5,7 @@ export default {
   question: 'Are you sure to unfollow this user?',
   yes: 'Yes',
   cancel: 'Cancel',
+  named: 'named',
   nofollower: 'You are not have follower ',
   nofollowing: 'You are not following friend, click search friend button to follow',
   findfriend: 'Search Friend',

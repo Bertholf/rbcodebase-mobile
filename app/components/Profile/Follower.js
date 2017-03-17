@@ -74,7 +74,7 @@ export default class FollowingMe extends React.Component {
     AsyncStorage.getItem('userId')
       .then((myId) => {
         if (val !== '') {
-          this.setState({ name: val, wait: true, someone: `named "${val}"`, search: 1 });
+          this.setState({ name: val, wait: true, someone: `${strings.listfollow.named} "${val}"`, search: 1 });
         } else {
           this.setState({ name: val, wait: true, someone: '', search: 0 });
         }

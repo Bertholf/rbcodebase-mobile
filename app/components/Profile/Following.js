@@ -79,7 +79,7 @@ export default class Friendlist extends React.Component {
   searchUpdate(val) {    
     AsyncStorage.getItem('userId')
       .then((myId) => {
-        this.setState({ name: val, wait: true });
+        this.setState({ name: val, wait: true, someone: val });
         follows.searchFollowing(this.state.name, myId)
         .then((res) => {
           this.changeState(res);
@@ -141,7 +141,10 @@ export default class Friendlist extends React.Component {
           </Item>
           {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-            <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>
+            {this.state.search === 1 && this.state.someone !== '' ?
+              <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>
+            : <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollowing}</Text>}
+            
             <TouchableOpacity
               onPress={() => Actions.addfriendscreen()}
               style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
