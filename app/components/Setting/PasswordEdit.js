@@ -101,7 +101,7 @@ export default class PassEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            style={{ height: 55 }}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
             leftButton={<IconClose onPress={Actions.pop} />}
             />
         </View>

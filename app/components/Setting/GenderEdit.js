@@ -169,8 +169,8 @@ export default class Gender extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={Actions.pop} />}
-            style={{ height: 55 }}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
 

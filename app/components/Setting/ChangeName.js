@@ -120,8 +120,8 @@ export default class NameEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
-            style={{ height: 55 }}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>

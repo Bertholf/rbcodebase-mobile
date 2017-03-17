@@ -157,11 +157,12 @@ export default class MobilePhone extends Component {
     };
     return (
       <View>
-        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        <View style={{ backgroundColor: 'red', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View style={styles.container}>

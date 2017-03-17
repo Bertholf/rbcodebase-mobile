@@ -131,7 +131,8 @@ export default class editBirthday extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender())} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View style={{ padding: 16 }}>
