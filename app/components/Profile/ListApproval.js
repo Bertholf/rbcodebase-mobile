@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Alert, StyleSheet, Text, TouchableOpacity, Image, AsyncStorage, ActivityIndicator } from 'react-native';
-import { Content, ListItem, Body, Right } from 'native-base';
+import { Content, ListItem, Body, Right, Container } from 'native-base';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginLeft: 2,
     marginTop: 6,
     marginBottom: 6,
-    borderRadius: 40/2,
+    borderRadius: 40 / 2,
   },
   detail: {
     fontSize: 11,
@@ -73,13 +73,14 @@ export default class ListFollow extends Component {
       statusFollow: [],
     };
   }
-  componentDidMount(){
-      AsyncStorage.getItem('userId')
+  componentDidMount() {
+    AsyncStorage.getItem('userId')
       .then((myId) => {
-        console.log('This is My ID=================', myId );
+        console.log('This is My ID=================', myId);
         follows.showApproval(myId)
         .then((res) => {
-          console.log('DI SINI');        })
+          console.log('DI SINI');
+        })
         .catch(err => console.log('Error!!!!', err));
       })
       .catch(err => console.log('fail to get user id from asyncStorege', err));
@@ -89,22 +90,24 @@ export default class ListFollow extends Component {
     Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
     console.log('fail to get approval', err);
   }
-  approve(){
+  approve() {
     if (this.props.rowData.type === 'follower') {
       const idFol = this.props.rowData.follower_id;
       const idLed = this.props.rowData.leader_id;
       const status = 'approved';
       follows.showFollowing2(idFol, idLed)
-        .then((resp) => { console.log('DAPETIN NO ID', resp.data.id); follows.reqApproval(idFol, idLed, status, resp.data.id)
+        .then((resp) => {
+          console.log('DAPETIN NO ID', resp.data.id); follows.reqApproval(idFol, idLed, status, resp.data.id)
           .then((resp) => { console.log('RESPON AFTER APPROVE', resp); this.props.rowData.rerender(); })
-          .catch((err) => { console.log('ERROR', err); }); })
+          .catch((err) => { console.log('ERROR', err); });
+        })
         .catch((err) => { console.log('Error', err); });
     }
   }
 
   rerender() {
-      this.componentDidMount();
-      console.log('RE RENDER TRIGGERD');
+    this.componentDidMount();
+    console.log('RE RENDER TRIGGERD');
   }
 
   render() {
@@ -116,30 +119,32 @@ export default class ListFollow extends Component {
       rowData = this.props.rowData;
     }
     return (
-      <ListItem style={styles.container}>
-      <TouchableOpacity
-        onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
-        activeOpacity={0.7}
-      >
-        <Body>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={{ uri: rowData.picture }} style={styles.photo} />
-            <View style={styles.account}>
-              <Text style={styles.user}>
-                {rowData.name_first} {rowData.name_last}
-              </Text>
-              <Text style={styles.detail}>{rowData.name_slug}</Text>
-            </View>
-          </View>
-        </Body>
-      </TouchableOpacity>
-      <Right>
-      <TouchableOpacity onPress={() => { this.approve(); }}>
-            <Text style={styles.buttonFollow}>
-              {strings.listfollow.approve}</Text>
+      <Container>
+        <ListItem>
+          <TouchableOpacity
+            onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
+            activeOpacity={0.7}
+          >
+            <Body>
+              <View style={{ flexDirection: 'row' }}>
+                <Image source={{ uri: rowData.picture }} style={styles.photo} />
+                <View style={styles.account}>
+                  <Text style={styles.user}>
+                    {rowData.name_first} {rowData.name_last}
+                  </Text>
+                  <Text style={styles.detail}>{rowData.name_slug}</Text>
+                </View>
+              </View>
+            </Body>
           </TouchableOpacity>
+          <Right>
+            <TouchableOpacity onPress={() => { this.approve(); }}>
+              <Text style={styles.buttonFollow}>
+                {strings.listfollow.approve}</Text>
+            </TouchableOpacity>
           </Right>
-      </ListItem>
+        </ListItem>
+      </Container>
     );
   }
 
