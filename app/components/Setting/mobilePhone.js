@@ -14,7 +14,6 @@ import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
-import PhoneInput from 'react-native-phone-input'
 
 const styles = StyleSheet.create({
   container: {
@@ -64,14 +63,11 @@ const styles = StyleSheet.create({
 export default class MobilePhone extends Component {
   constructor(props) {
     super(props);
-    this.onPressFlag = this.onPressFlag.bind(this)
-    this.selectCountry = this.selectCountry.bind(this)
     this.state = {
       profile: {},
       phone: '',
       style: {},
       position: 'bottom',
-      pickerData: null,
 
     };
   }
@@ -79,8 +75,9 @@ export default class MobilePhone extends Component {
   componentDidMount() {
     AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
     auth.profile()
-    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number.toString() }))
+    .then(response => this.setState({ profile: response.data, phone: response.data.cell_number }))
     .catch(Err => Err);
+    AsyncStorage.getItem('phone').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
   }
 
   onClick(text, position, duration, withStyle) {
@@ -93,13 +90,6 @@ export default class MobilePhone extends Component {
       this.refs.toast.show(text, duration);
     }
   }
-  onPressFlag(){
-    this.refs.myCountryPicker.open()
-}
-
-selectCountry(country){
-    this.refs.phone.selectCountry(country.iso2)
-}
 
   onChanged(text) {
     let newText = '';
@@ -149,7 +139,7 @@ selectCountry(country){
     const phone = this.state.phone;
     const validPhone = regex.test(this.state.phone);
     const savePhone = () => {
-      if (phone != null) {
+      if (phone != null && validPhone) {
         saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
         auth.profile()
           .then((response) => {
@@ -178,16 +168,17 @@ selectCountry(country){
         <View style={styles.container}>
           <Text style={styles.heading} />
           <View style={styles.textinputWrapperStyle}>
-              <PhoneInput
-                  ref='phone'
-                  onChangePhoneNumber={value => this.setState({ phone: value })}
-                  flagStyle={{width: 50, height: 40}}
-                  offset={25}
-                  initialCountry= {'this.state.phone'}
-                  textProps={{placeholder:this.state.phone}}
-                  pickerItemStyle={{fontSize: 90}}
-                  value={this.state.phone}
-                />
+            <TextInput
+              ref={'textInput'}
+              placeholder={this.state.profile.cell_number}
+              placeholderTextColor="silver"
+              selectionColor="silver"
+              underlineColorAndroid="rgba(0,0,0,0)"
+              style={styles.textinputStyle}
+              onChangeText={value => this.setState({ phone: value })}
+              maxLength={15}
+              value={this.state.phone}
+            />
           </View>
         </View>
         <View style={{ marginTop: 40, paddingLeft: 20 }}>
