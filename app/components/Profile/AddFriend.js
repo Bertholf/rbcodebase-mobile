@@ -82,7 +82,7 @@ export default class AddFriendScreen extends React.Component {
       .then((response) => {
         this.changeState(response);
         Keyboard.dismiss();
-      });
+      }).catch(err => err);
   }
 
   changeState(response) {

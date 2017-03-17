@@ -64,7 +64,7 @@ export default class ResultForgot extends Component {
       this.setState({ loading: false});
     }).catch(err => {
       this.setState({ fail: false, loading: false })
-    });
+    }).catch();
   }
 
   render() {

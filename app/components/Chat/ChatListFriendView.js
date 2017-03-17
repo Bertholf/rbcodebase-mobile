@@ -24,8 +24,9 @@ componentDidMount() {
   .then((data) => {
     this.setState({ list: data, loading: false });
     console.log('hello message', this.state.notif);
-  });
+  }).catch(err => err);
 }
+
 _handleChangeTab (index) {
   this.setState({ index });
 };
