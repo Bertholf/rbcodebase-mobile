@@ -7,7 +7,7 @@ export default {
   cancel: 'Cancel',
   named: 'named',
   nofollower: 'You are not have follower ',
-  nofollowing: 'You are not following friend, click search friend button to follow',
+  nofollowing: 'You are not following someone',
   findfriend: 'Search Friend',
   approve: 'Approve',
   request: 'Request',

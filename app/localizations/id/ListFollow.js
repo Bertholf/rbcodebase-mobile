@@ -7,7 +7,7 @@ export default {
   cancel: 'Batal',
   named: 'bernama',
   nofollower: 'Anda tidak memiliki pengikut ',
-  nofollowing: 'Anda tidak mengikuti siapapun, klik cari teman untuk mengikuti',
+  nofollowing: 'Anda tidak mengikuti siapapun ',
   findfriend: 'Cari Teman',
   approve: 'Diterima',
   request: 'Permintaan',
