@@ -5,7 +5,9 @@ import {
    Image,
    TouchableOpacity,
    AsyncStorage,
+   BackAndroid,
 } from 'react-native';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
@@ -40,6 +42,7 @@ export default class Dashboard extends Component {
     //   .then(() => {
     //     console.log('SAVE email');
     // })
+    // BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
     auth.profile()
     .then((response) => {
         this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {

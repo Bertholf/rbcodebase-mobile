@@ -176,7 +176,7 @@ export default class RegistrationForm extends Component {
     auth.login(username, password)
     .then((loginRes) => {
       AsyncStorage.setItem('accessToken', loginRes.access_token)
-      .then(() => Actions.actionswiper({type: 'reset'}))
+      .then(() => Actions.actionswiper())
       .catch((err) => {
         console.log('FAIL LOGIN AFTER REGISTER');
         this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });

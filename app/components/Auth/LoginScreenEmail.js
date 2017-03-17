@@ -29,8 +29,11 @@ export default class LoginScreenEmail extends Component {
   }
 
   validate() {
-    if (this.state.username === '' && this.state.password === '') {
+    if (this.state.username === '') {
       this.setState({ validUsername: false, loading: false });
+    }
+    if (this.state.password === '') {
+      this.setState({ validPassword: false, loading: false });
     }
     return auth.login(this.state.username, this.state.password)
         .then((data) => {
@@ -38,7 +41,8 @@ export default class LoginScreenEmail extends Component {
         })
         .then(() => { return AsyncStorage.getItem('accessToken') })
         .then((token) => {
-            Actions.actionswiper();
+            Actions.actionswiper({ type : 'reset'});
+            this.setState({ loading: false, isFail: true });
           })
          .catch((err) => console.log(err));
   }
