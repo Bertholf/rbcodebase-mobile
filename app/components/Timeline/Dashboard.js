@@ -29,18 +29,10 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    // auth.changeemail()
-    // then((response) => {
-    //   this.setState({ changeemail: response.data}, () => {
-    //     console.log('=====emailnew endpoint=======', this.state.changeemail);
-    //     console.log('========== RESPONSE SERVER =========', response);
-    //     AsyncStorage.setItem('email', response.data.email())
-    //   })
-    //   .then(() => {
-    //     console.log('SAVE email');
-    // })
+    // Get Profile Data From server
     auth.profile()
     .then((response) => {
+      // All response Should Saved into AsyncStorage
       this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
         console.log('===== profile result =====', this.state.profile);
         console.log('========== RESPONSE SERVER =========', response);
@@ -80,6 +72,7 @@ export default class Dashboard extends Component {
   }
 
   reRender() {
+    // This is going to re-run componentDidMount()
     this.componentDidMount();
   }
 

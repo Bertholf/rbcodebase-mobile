@@ -87,7 +87,9 @@ export default class editBirthday extends Component {
   }
 
   getDate() {
-    return moment().local();
+    const dateNow = moment().local().format('MMMM Do YYYY');
+    console.log('TANGGAL HARI INI', dateNow);
+    return dateNow;
   }
 
   render() {
