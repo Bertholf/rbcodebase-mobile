@@ -80,7 +80,7 @@ export default class ResultForgot extends Component {
           </Text>
         </View>
         <View style={{ marginTop: 20, justifyContent: 'center', flex: 1.5 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.pop()}>
             <Text style={{ fontSize: 15, alignSelf: 'center' }}>{strings.ForgotPass.notme}</Text>
           </TouchableOpacity>
         </View>

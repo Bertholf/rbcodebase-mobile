@@ -38,6 +38,7 @@ const settings = {
   emailVarification: 'emailVarification',
   privacysetting: 'Privacy Setting',
   emailsetting: 'Email Setting',
+  successGender: 'Gender has been succesfully updated',
   gender: 'Gender',
   changegender: 'Change Gender',
 

@@ -150,7 +150,7 @@ export default class Gender extends Component {
       auth.profile()
       .then((response) => {
         this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG);
+          this.onClick(strings.settings.successGender, 'bottom', DURATION.LENGTH_LONG);
         });
       })
       .catch(Err => Err);

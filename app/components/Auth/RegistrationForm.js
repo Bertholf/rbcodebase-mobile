@@ -142,7 +142,7 @@ export default class RegistrationForm extends Component {
       firstname: this.props.firstName || '',
       lastname: this.props.lastName || '',
       email: this.props.email || '',
-      gender: '',
+      gender: 'male',
       username: this.props.username || '',
       secret: this.props.secret || '',
       provider: this.props.provider || '',

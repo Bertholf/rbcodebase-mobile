@@ -38,6 +38,7 @@ const settings = {
   privacysetting: 'Pengaturan Privasi',
   emailsetting: 'Pengaturan Surel',
   gender: 'Jenis Kelamin',
+  successGender: 'Sukses pembaharuan gender',
   changegender: 'Perubahan Jenis Kelamin',
   saved: 'Pengaturan email telah di perbaharui',
 };

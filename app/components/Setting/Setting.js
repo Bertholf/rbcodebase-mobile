@@ -116,7 +116,7 @@ export default class Setting extends Component {
                   <Text style={styles.text}>{strings.settings.gender}</Text>
                 </View>
                 <View style={{ flexDirection: 'row' }}>
-                  <Text style={{ alignSelf: 'center' }}>{this.state.gender}</Text>
+                  <Text style={{ alignSelf: 'center' }}>{this.state.gendersncy}</Text>
                   <Image style={styles.image} source={next} />
                 </View>
               </View>
