@@ -14,28 +14,30 @@ export default class PushController extends Component {
 
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
+      if(res === 'null') {
+        FCM.getFCMToken()
+        .then((token) => {
+          notif.sendToken(token);
+          console.log('FCM INITIAL TOKEN', token);
+          let fcm = token;
+          // Save token in AsyncStorage
+          AsyncStorage.setItem('FcmToken', token)
+          .then(() => {
+            AsyncStorage.getItem('FcmToken')
+            .then((resL) => {
+              this.setState({ token: fcm })
+              .then(() => {
+                notif.sendToken(this.state.token)
+                .then((resL) => console.log('TOKEN SAVED IN SERVER', res));
+              }).catch(err => ('Fail Save token in device', err));
+            }).catch();
+          }).catch();
+          // this.props.onChangeToken(token); Temporary Comment
+        }).catch();
+      }
       notif.sendToken(res);
       // this.props.onChangeToken(res);
-    }).catch(() => {
-      FCM.getFCMToken()
-          .then((token) => {
-            console.log('FCM INITIAL TOKEN', token);
-            let fcm = token;
-            // Save token in AsyncStorage
-            AsyncStorage.setItem('FcmToken', token)
-            .then(() => {
-              AsyncStorage.getItem('FcmToken')
-              .then((res) => {
-                this.setState({ token: fcm })
-                .then(() => {
-                  notif.sendToken(this.state.token)
-                  .then((res) => console.log('TOKEN SAVED IN SERVER', res));
-                }).catch(err => ('Fail Save token in device', err));
-              }).catch();
-            }).catch();
-            // this.props.onChangeToken(token); Temporary Comment
-          }).catch();
-    });
+    }).catch();
 
     FCM.getInitialNotification().then(notif => {
       console.log('INITIAL NOTIFICATION', notif)
