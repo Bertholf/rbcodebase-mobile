@@ -109,7 +109,7 @@ export default class walkthrough extends Component {
         </View>
       </View>);
   }
-  
+
   render() {
     return (
       <View style={{ backgroundColor: '#2196F3', flex: 1 }}>
