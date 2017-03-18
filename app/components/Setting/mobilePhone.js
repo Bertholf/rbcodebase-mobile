@@ -72,8 +72,7 @@ export default class MobilePhone extends Component {
       phone: '',
       pickerData: '',
       style: {},
-      position: 'bottom',
-
+      position: 'bottom'
     };
   }
 
@@ -81,9 +80,16 @@ export default class MobilePhone extends Component {
     this.setState({
             pickerData: this.refs.phone.getPickerData()
         })
-    AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
+    AsyncStorage.getItem('cell_number').then((res) => {
+      this.setState({ phone: res });
+      this.refs.phone.onChangePhoneNumber(res)
+
+    }).catch(() => console.log('error ambil nama username-----'));
      auth.profile()
-    .then(response => {this.setState({ profile: response.data, phone: response.data.cell_number }); console.log('CHECK HERE', this.state.phone); })
+    .then(response => {
+      this.setState({ profile: response.data, phone: response.data.cell_number });
+      this.refs.phone.onChangePhoneNumber(response.data.cell_number)
+    })
     .catch(Err => Err);
   }
 
@@ -102,6 +108,10 @@ export default class MobilePhone extends Component {
   }
   selectCountry(country){
         this.refs.phone.selectCountry(country.iso2)
+        if (typeof country.dialCode !== "undefined") {
+          this.refs.phone.onChangePhoneNumber(country.dialCode)
+        }
+
     }
   onChanged(text) {
     let newText = '';
@@ -181,24 +191,13 @@ export default class MobilePhone extends Component {
         <View style={styles.container}>
           <Text style={styles.heading} />
           <View style={styles.textinputWrapperStyle}>
-            {/* <TextInput
-              ref={'textInput'}
-              placeholder={this.state.profile.cell_number}
-              placeholderTextColor="silver"
-              selectionColor="silver"
-              underlineColorAndroid="rgba(0,0,0,0)"
-              style={styles.textinputStyle}
-              onChangeText={value => this.setState({ phone: value })}
-              maxLength={15}
-              value={this.state.phone}
-            /> */}
+
             <PhoneInput
               ref='phone'
               style={{padding: 10, marginTop: 7}}
               onPressFlag={this.onPressFlag}
-              initialCountry={(country) => {this.selectCountry(country)}}
               offset={10}
-              textProps={{placeholder: this.state.phone}}
+              textProps={{value: this.state.phone}}
               onChangePhoneNumber={(phone) => {this.setState({phone: phone})}}
               onSelectCountry={(country) => {this.selectCountry(country)}}
             />
@@ -211,9 +210,6 @@ export default class MobilePhone extends Component {
           </View>
         </View>
         <View style={{ marginTop: 40, paddingLeft: 20 }}>
-          {/* {
-          validPhone || phone === null ? <Text /> : <Text style={{ fontSize: 14, color: 'red' }}>{strings.mobilephone.error_invalid_number}</Text>
-          } */}
         </View>
         <Toast
           ref="toast"
