@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   swapContainer: {
     flex: 1,
-    marginTop: 90,
+    marginTop: 40,
     alignItems: 'center',
   },
   swapImage: {

@@ -8,10 +8,10 @@ import {
    AsyncStorage,
  } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import PhoneInput from 'react-native-phone-input'
-import ModalPickerImage from './ModalPickerImage'
+import PhoneInput from 'react-native-phone-input';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
+import ModalPickerImage from './ModalPickerImage';
 import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
@@ -65,30 +65,35 @@ const styles = StyleSheet.create({
 export default class MobilePhone extends Component {
   constructor(props) {
     super(props);
-    this.onPressFlag = this.onPressFlag.bind(this)
-    this.selectCountry = this.selectCountry.bind(this)
+    this.onPressFlag = this.onPressFlag.bind(this);
+    this.selectCountry = this.selectCountry.bind(this);
     this.state = {
       profile: {},
       phone: '',
       pickerData: '',
       style: {},
-      position: 'bottom'
+      position: 'bottom',
     };
   }
 
   componentDidMount() {
+    /**
+     *
+     * Immediately mount auth.profile to Component render
+     * get mobilephone from AsyncStorage
+     *
+     */
     this.setState({
-            pickerData: this.refs.phone.getPickerData()
-        })
+      pickerData: this.refs.phone.getPickerData(),
+    });
     AsyncStorage.getItem('cell_number').then((res) => {
       this.setState({ phone: res });
-      this.refs.phone.onChangePhoneNumber(res)
-
+      this.refs.phone.onChangePhoneNumber(res);
     }).catch(() => console.log('error ambil nama username-----'));
-     auth.profile()
-    .then(response => {
+    auth.profile()
+    .then((response) => {
       this.setState({ profile: response.data, phone: response.data.cell_number });
-      this.refs.phone.onChangePhoneNumber(response.data.cell_number)
+      this.refs.phone.onChangePhoneNumber(response.data.cell_number);
     })
     .catch(Err => Err);
   }
@@ -103,16 +108,18 @@ export default class MobilePhone extends Component {
       this.refs.toast.show(text, duration);
     }
   }
-  onPressFlag(){
-      this.refs.myCountryPicker.open()
+  onPressFlag() {
+    /**
+     * Show flag picker with onPressFlag()
+     */
+    this.refs.myCountryPicker.open();
   }
-  selectCountry(country){
-        this.refs.phone.selectCountry(country.iso2)
-        if (typeof country.dialCode !== "undefined") {
-          this.refs.phone.onChangePhoneNumber(country.dialCode)
-        }
-
+  selectCountry(country) {
+    this.refs.phone.selectCountry(country.iso2);
+    if (typeof country.dialCode !== 'undefined') {
+      this.refs.phone.onChangePhoneNumber(country.dialCode);
     }
+  }
   onChanged(text) {
     let newText = '';
     const numbers = '^[0-9]';
@@ -163,6 +170,9 @@ export default class MobilePhone extends Component {
     const validPhone = regex.test(this.state.phone);
     const savePhone = () => {
       if (number != null && validPhone) {
+        /**
+         * Give the action if mobilephone number pass the validation
+         */
         saveProfile(id, name_first, name_last, name_slug, gender, number, birthday);
         auth.profile()
           .then((response) => {
@@ -170,7 +180,7 @@ export default class MobilePhone extends Component {
               this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG);
             });
           })
-          .catch(Err => console.log('err', Err));
+          .catch();
         Keyboard.dismiss();
         this.props.reRender();
         // Actions.pop();
@@ -184,33 +194,34 @@ export default class MobilePhone extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View style={styles.container}>
           <Text style={styles.heading} />
           <View style={styles.textinputWrapperStyle}>
-
             <PhoneInput
-              ref='phone'
-              style={{padding: 10, marginTop: 7}}
+              ref="phone"
+              style={{ padding: 10, marginTop: 7 }}
               onPressFlag={this.onPressFlag}
               offset={10}
-              textProps={{value: this.state.phone}}
-              onChangePhoneNumber={(phone) => {this.setState({phone: phone})}}
-              onSelectCountry={(country) => {this.selectCountry(country)}}
+              textProps={{ value: this.state.phone }}
+              onChangePhoneNumber={(phone) => { this.setState({ phone }); }}
+              onSelectCountry={(country) => { this.selectCountry(country); }}
             />
+            {/**
+             *  Show modal FlagPicker Component
+             */}
             <ModalPickerImage
-              ref='myCountryPicker'
+              ref="myCountryPicker"
               data={this.state.pickerData}
-              onChange={(country)=>{ this.selectCountry(country) }}
-              cancelText='Cancel'
+              onChange={(country) => { this.selectCountry(country); }}
+              cancelText="Cancel"
             />
           </View>
         </View>
-        <View style={{ marginTop: 40, paddingLeft: 20 }}>
-        </View>
+        <View style={{ marginTop: 40, paddingLeft: 20 }} />
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}

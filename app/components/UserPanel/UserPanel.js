@@ -53,7 +53,7 @@ class userPanel extends React.Component {
 
   componentDidMount() {
     auth.profile ()
-    .then (response => this.setState({ profile: response.data, loading: false }, () => console.log(this.state)))
+    .then(response => this.setState({ profile: response.data, loading: false }, () => console.log(this.state)))
     .catch(Err => console.log('err', Err));
   }
 
