@@ -14,7 +14,7 @@ import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import { Actions } from 'react-native-router-flux';
 import Logout from '../../services/logout';
-
+import notif from '../../services/notif';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -53,15 +53,20 @@ export default class Dashboard extends Component {
         ])
          .then(() => {
            console.log('SAVE USERDATA 1');
-           console.log("Device Unique ID", DeviceInfo.getUniqueID());
           //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
              'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
         .then(res => console.log('==RESPONSE STORAGE==', res))
+        .then((device_id)=>{
+          notif.sendToken(device_id);
+          console.log('This is ID Device', device_id, DeviceInfo.getUniqueID());
+        })
           .catch(err => console.log('ERROR SAVE 1', err));
            console.log('SAVE USERDATA 2 ');
+           console.log("Device Manufacturer", DeviceInfo.getManufacturer());
+           console.log("Device Model", DeviceInfo.getModel());
          })
          .catch(err => console.log('SAVE FAILED', err));
       });
