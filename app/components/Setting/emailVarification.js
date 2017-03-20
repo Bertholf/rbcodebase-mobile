@@ -28,6 +28,7 @@ export default class emailVarification extends Component {
     };
   }
   componentDidMount() {
+    // Save dan get Item AsyncStorage from Api/change-email
     AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); console.log('email set AsyncStorage',this.state.emailnew); }).catch((res) => console.log('error ambil email new-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
@@ -43,12 +44,17 @@ export default class emailVarification extends Component {
       this.refs.toast.show(text, duration);
     }
   }
+
+  // method validation email with  /api/change-email-validation
+
   validationEmail() {
   auth.emailValidation(this.state.newEmail, this.state.token)
   .then((res) => {
     console.log('RESPONSE CHANGE EMAIL=====', res);
     Actions.setting()
+
     //loading will stop when succes submit forgot password
+
   })
 }
   render() {

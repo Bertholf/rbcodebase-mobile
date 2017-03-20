@@ -27,7 +27,7 @@ export default class EmailEdit extends Component {
   }
 
   componentDidMount() {
-    // AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+    // respon data profile
     auth.profile()
     .then(response => this.setState({ profile: response.data, email: response.data.email }))
     .catch(() => {
@@ -128,6 +128,11 @@ export default class EmailEdit extends Component {
               <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}*/}
           </View>
         </ScrollView>
+        {/* ---------------------------------------------------------
+          *
+          * Give Toast message
+          *
+          * --------------------------------------------------------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}

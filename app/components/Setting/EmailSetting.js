@@ -59,12 +59,6 @@ export default class AdPreference extends Component {
     this.state = {
       adprefe: {},
       updateSetting: {},
-      privacy_follow: '',
-      privacy_follow_confirm: '',
-      privacy_comment: '',
-      privacy_post: '',
-      privacy_timeline_post: '',
-      privacy_message: '',
       email_follow: '',
       email_comment_like: '',
       email_post_share: '',
