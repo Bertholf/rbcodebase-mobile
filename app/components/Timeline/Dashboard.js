@@ -61,7 +61,7 @@ export default class Dashboard extends Component {
         .then(res => console.log('==RESPONSE STORAGE==', res))
         .then((device_id)=>{
           notif.sendToken(device_id);
-          console.log('This is ID Device', device_id, DeviceInfo.getUniqueID());
+          console.log('This is ID Device', DeviceInfo.getUniqueID());
         })
           .catch(err => console.log('ERROR SAVE 1', err));
            console.log('SAVE USERDATA 2 ');
