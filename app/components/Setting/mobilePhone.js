@@ -9,9 +9,9 @@ import {
  } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import PhoneInput from 'react-native-phone-input';
-import ModalPickerImage from './ModalPickerImage';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
+import ModalPickerImage from './ModalPickerImage';
 import saveProfile from '../../services/updateProfile';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
@@ -170,6 +170,9 @@ export default class MobilePhone extends Component {
     const validPhone = regex.test(this.state.phone);
     const savePhone = () => {
       if (number != null && validPhone) {
+        /**
+         * Give the action if mobilephone number pass the validation
+         */
         saveProfile(id, name_first, name_last, name_slug, gender, number, birthday);
         auth.profile()
           .then((response) => {
@@ -177,7 +180,7 @@ export default class MobilePhone extends Component {
               this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG);
             });
           })
-          .catch(Err => console.log('err', Err));
+          .catch();
         Keyboard.dismiss();
         this.props.reRender();
         // Actions.pop();
@@ -198,7 +201,6 @@ export default class MobilePhone extends Component {
         <View style={styles.container}>
           <Text style={styles.heading} />
           <View style={styles.textinputWrapperStyle}>
-
             <PhoneInput
               ref="phone"
               style={{ padding: 10, marginTop: 7 }}

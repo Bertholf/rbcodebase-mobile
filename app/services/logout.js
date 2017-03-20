@@ -1,57 +1,63 @@
 import { AsyncStorage, NativeModules } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
-import OAuthManager from 'react-native-oauth';
-import config from '../config';
 import manager from '../actions/Auth';
 
+// Load native google SSO native module
 const google = NativeModules.GoogleSignInModule;
-const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 const Logout = () => {
+  /**
+   * Initialize by load all current info
+   */
   AsyncStorage.multiGet(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
-          'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
-          'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message'])
+    'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
+    'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message'])
   .then((accessToken) => {
-    let temp1 = [];
+    const temp1 = [];
     temp1.push(accessToken);
     AsyncStorage.getItem('provider')
     .then((provider) => {
       temp1.push(provider);
-      console.log('my TEMP', temp1);
       return temp1;
     })
     .then((temp) => {
       if (temp[1] === 'facebook' && temp[0] !== null) {
+        /**
+         * Logout Method for Facebook Provider
+         */
         AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON FACEBOOK', response); }, (error) => { console.log(error); });
         LoginManager.logOut();
-        Actions.login({ type: 'reset'});
+        Actions.login({ type: 'reset' });
       } else if (temp[1] === 'google' && temp[0] !== '') {
+        /**
+         * Logout Method for Google Provider
+         */
         AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         google.signOut();
+        // GoogleSignOut()
         Actions.login({ type: 'reset' });
       } else if (temp[1] === 'twitter' && temp[0] !== '') {
+        /**
+         * Logout Method for Twitter Provider
+         */
         AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });
         manager.deauthorize('twitter');
-        console.log('TWITTER LOG');
-        // OAuthManager().deauthorize('twitter');
       } else {
+        /**
+         * Logout Method for login by Email
+         */
         AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });
       }
-
-  })
+    });
   }).catch(err => console.log(err));
-
-  // } catch (err) {
-  //   console.log('logOut error : ', err);
-  // }
-
 };
+
 export default Logout;
