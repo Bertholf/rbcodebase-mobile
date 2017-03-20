@@ -18,6 +18,7 @@ const mapStateToProps = () => ({
 
 export class Splash extends Component {
   constructor(props) {
+    // Initialize the Localization File
     const lang = strings.getInterfaceLanguage();
     let setlang;
     switch (lang) {
@@ -36,7 +37,7 @@ export class Splash extends Component {
     strings.setLanguage(setlang);
     super(props);
     this.state = {
-      screen: strings.walkthrought.screen.information,
+      screen: strings.walkthrought.screen,
     };
   }
   componentWillMount() {

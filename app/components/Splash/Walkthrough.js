@@ -13,7 +13,7 @@ import {
   PagerDotIndicator,
 } from 'rn-viewpager';
 import { Actions } from 'react-native-router-flux';
-import Walk from './Walk.json';
+// import Walk from './Walk.json';
 import strings from '../../localizations';
 
 const { width } = Dimensions.get('window');
@@ -61,6 +61,7 @@ let setlang = '';
 
 export default class walkthrough extends Component {
   constructor(props) {
+    // Will initialize Localization to Default language from user Device
     const lang = strings.getInterfaceLanguage();
     switch (lang) {
       case 'in-ID':
@@ -75,11 +76,11 @@ export default class walkthrough extends Component {
         setlang = 'en';
         break;
     }
-    strings.setLanguage(setlang);
+    strings.setLanguage('id');
     super(props);
     this.state = {
       // initialization data json
-      screen: Walk.screen.information,
+      screen: strings.walkthrought.screen,
     };
   }
   componentDidMount() {
@@ -90,6 +91,9 @@ export default class walkthrough extends Component {
 
   // sum of page in walktrough
   renderDotIndicator() {
+    /**
+     * This will return to render dot Indicator
+     */
     return <PagerDotIndicator pageCount={4} />;
   }
 
@@ -112,8 +116,12 @@ export default class walkthrough extends Component {
 
   render() {
     return (
+      // The View Component
       <View style={{ backgroundColor: '#2196F3', flex: 1 }}>
         <IndicatorViewPager
+        /*
+         *This will show indicator in ViewPager
+         */
           style={{ flex: 1 }}
           indicator={this.renderDotIndicator()}
         >
@@ -129,7 +137,7 @@ export default class walkthrough extends Component {
             onPress={Actions.login}
             style={styles.btn}
           >
-            <Text style={styles.btnText}> {strings.walkthrought.buttonText}</Text>
+            <Text style={styles.btnText}> {strings.walkthrought.button}</Text>
           </TouchableOpacity>
         </View>
       </View>
