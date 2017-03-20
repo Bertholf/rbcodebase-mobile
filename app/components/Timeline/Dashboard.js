@@ -8,11 +8,13 @@ import {
    BackAndroid,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import DeviceInfo from 'react-native-device-info';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import { Actions } from 'react-native-router-flux';
 import Logout from '../../services/logout';
+
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -51,6 +53,7 @@ export default class Dashboard extends Component {
         ])
          .then(() => {
            console.log('SAVE USERDATA 1');
+           console.log("Device Unique ID", DeviceInfo.getUniqueID());
           //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
              'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
