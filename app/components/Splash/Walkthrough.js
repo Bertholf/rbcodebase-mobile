@@ -79,9 +79,10 @@ export default class walkthrough extends Component {
     super(props);
     this.state = {
       // initialization data json
-      screen: Walk.screen.information,
+      screen: strings.walkthrought.screen.information,
     };
   }
+
   componentDidMount() {
     AsyncStorage.setItem('loadingWalk', 'true')
     .then((response) => { console.log(response); },
