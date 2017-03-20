@@ -22,6 +22,7 @@ export default class EmailEdit extends Component {
       newEmail: '',
       profile: {},
       email: '',
+      submit: false,
     };
   }
 
@@ -52,10 +53,20 @@ export default class EmailEdit extends Component {
       </Text>
     )
   }
+    validation() {
+    auth.changeemail(this.state.email)
+    .then((res) => {
+      console.log('RESPONSE CHANGE EMAIL=====', res);
+      Actions.emailVarification()
+      //loading will stop when succes submit forgot password
+      this.setState({submit: false});
+    })
+  }
+
   render() {
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => Actions.emailVarification(),
+      handler: () => validEmail(),
     };
     const leftButtonConfig = {
       title: 'Cancel',
@@ -65,13 +76,16 @@ export default class EmailEdit extends Component {
     const titleConfig = {
       title: strings.EditEmail.title,
     };
+
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;
     const currentEmail = this.state.profile.email;
     const sameEmail = currentEmail !== emailInput;
     const validEmail = () => {
-      if (emailValidator && emailInput && sameEmail) {
+      if (emailValidator === emailInput === sameEmail) {
+        this.validation();
+
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
@@ -104,7 +118,7 @@ export default class EmailEdit extends Component {
               onChangeText={newEmail => this.setState({ email: newEmail })}
               multiline
               numberOfLines={4}
-              value={this.state.email}
+              // value={this.state.email}
             />
             {emailValidator && emailInput ?
               <Text /> : <Text style={styles.invalid}>

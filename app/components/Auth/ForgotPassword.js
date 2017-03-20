@@ -28,7 +28,6 @@ export default class ForgotPassword extends Component {
   }
 
 
-  verifyEmail() {
     // if (this.state.email === ''){
     //   this.setState({ validEmail:false, loading:false});
     // }
@@ -41,6 +40,7 @@ export default class ForgotPassword extends Component {
     //     } );
     //   }
     // });
+    verifyEmail() {
     this.setState({ submit: true})
     auth.verify(this.state.email)
     .then((res) => {

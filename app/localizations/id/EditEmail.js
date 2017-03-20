@@ -5,7 +5,7 @@ const EditEmail = {
   confirm_change: 'Konfirmasi perubahan',
   confirm_code: 'Masukkan kode yang anda terima',
   alert_same_email: 'Email anda masih sama dengan sebelumnya',
-  error_invalid_email: 'Email tidak valid',
+  error_invalid_email: 'Email Has not sent',
   save: 'SIMPAN',
 };
 
