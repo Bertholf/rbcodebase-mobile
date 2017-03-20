@@ -9,6 +9,7 @@ const EditEmail = {
   save: 'SAVE',
   saved: 'Email has Sent',
   error: 'Error change email',
+  savedvalidation: 'Email has been succefully changed',
 };
 
 module.exports = EditEmail;
