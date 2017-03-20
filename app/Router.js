@@ -94,7 +94,7 @@ const Routing = (props) => (
               key={'resetresult'} hideNavBar component={ResultForgot} title={'Walkthrough Screen'}
             />
             <Scene
-              key={'walkthrough'} initial hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
+              key={'walkthrough'} hideNavBar component={Walkthrough} title={'Walkthrough Screen'}
             />
             <Scene
               key={'notification'} hideNavBar component={Notification} title={'notification'}
@@ -115,7 +115,7 @@ const Routing = (props) => (
               key="inbox" component={Inbox} title={'Inbox'}
             />
             <Scene
-              key={'launch'} component={SplashScreen} hideNavBar title={'Launch'}
+              key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
             />
             <Scene
               key={'notifications'} component={Notifications} title={strings.settings.notification}
