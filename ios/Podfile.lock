@@ -131,6 +131,11 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - GTMSessionFetcher/Full (1.1.8):
     - GTMSessionFetcher/Core (= 1.1.8)
+  - React (0.11.0):
+    - React/Core (= 0.11.0)
+  - React/Core (0.11.0)
+  - RNDeviceInfo (0.9.3):
+    - React
   - TwitterCore (2.8.0):
     - Fabric
   - TwitterKit (2.8.0):
@@ -144,11 +149,14 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Google/SignIn
   - GoogleToolboxForMac (= 2.1.0)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - TwitterKit
 
 EXTERNAL SOURCES:
   DCTAuth:
     :git: https://github.com/danielctull/DCTAuth.git
+  RNDeviceInfo:
+    :path: ../node_modules/react-native-device-info
 
 CHECKOUT OPTIONS:
   DCTAuth:
@@ -172,9 +180,11 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  React: ab1a2e21deb34965c38328d5ec40cc7d12c6050a
+  RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: 4c02ef83a86bf700d97fc5bfdb983e83fafc4fb1
+PODFILE CHECKSUM: 5188b6cd49ae124baec20137b5dea76fe1b1d56e
 
 COCOAPODS: 1.2.0
