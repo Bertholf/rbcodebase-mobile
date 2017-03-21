@@ -11,7 +11,6 @@ target 'hikerapp' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
-  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
   pod 'Google/SignIn'
   pod 'Fabric'
   pod 'Crashlytics'
