@@ -28,6 +28,7 @@ export default class NameEdit extends Component {
       profile: {},
       namef: '',
       namel: '',
+      gender: '',
       named: '',
       style: {},
       position: 'bottom',
@@ -90,6 +91,7 @@ export default class NameEdit extends Component {
     const namedisplayInput = this.state.namedisplay;
     const currentFirstName = this.state.profile.first_name;
     const currentLastName = this.state.profile.last_name;
+    const gender = this.state.profile.gender;
     const slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
@@ -103,7 +105,7 @@ export default class NameEdit extends Component {
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
         } else {
           console.log('name===', firstNameInput, lastNameInput);
-           saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, phone, birthday);
+           saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
           Keyboard.dismiss();
           auth.profile()
             .then(response => this.setState({ profile: response.data, loading: false }, () => {

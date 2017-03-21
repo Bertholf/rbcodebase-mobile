@@ -70,7 +70,9 @@ export default class ChangeUsername extends Component {
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
+    const displayName = this.state.profile.name_display;
     const name_slug = this.state.profile.name_slug;
+    const gender = this.state.profile.gender;
     const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
@@ -81,7 +83,7 @@ export default class ChangeUsername extends Component {
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
       if (validRegex && validUsername) {
-        saveProfile(id, name_first, name_last, newUsernames, phone, birthday);
+        saveProfile(id, name_first, name_last, displayName, newUsernames, gender, phone, birthday);
         auth.profile()
         .then((response) => {
           this.setState({ profile: response.data, loading: false }, () => {

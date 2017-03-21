@@ -109,12 +109,14 @@ export default class editBirthday extends Component {
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
+    const email = this.state.profile.email;
+    const displayName = this.state.profile.name_display;
     const phone = this.state.profile.phone;
     const birthday = moment(this.state.date, 'MMM Do YYYY').format('YYYY-MM-DD');
     const gender = this.state.profile.gender;
     const dateBirth = this.state.date;
     const updateBirthday = () => {
-      saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
+      saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
       //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
       .then((response) => {

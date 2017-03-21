@@ -44,8 +44,6 @@ export default class Dashboard extends Component {
         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
-           console.log('SAVE USERDATA 1');
-          //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
              'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',

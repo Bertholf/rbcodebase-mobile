@@ -131,6 +131,7 @@ export default class Gender extends Component {
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
+    const displayName = this.state.profile.name_display;
     const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
@@ -145,7 +146,7 @@ export default class Gender extends Component {
       title: strings.settings.changegender,
     };
     const updategender = () => {
-      saveProfile(id, name_first, name_last, name_slug, gender, phone, birthday);
+      saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
       //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
       .then((response) => {
