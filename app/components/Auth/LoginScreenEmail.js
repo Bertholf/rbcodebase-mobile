@@ -12,7 +12,6 @@ import auth from '../../services/auth';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
 import { AsyncStorage } from 'react-native';
-// import GoogleSignIn from './../../services/signingoogle';
 
 export default class LoginScreenEmail extends Component {
   constructor(props) {
@@ -29,22 +28,16 @@ export default class LoginScreenEmail extends Component {
   }
 
   validate() {
-    console.log(this.state.username, this.state.password);
-    console.log('JALANIN VALIDATE');
     if (this.state.username === '') {
-      console.log('MASUK KONDISI PERTAMA');
       this.setState({ validUsername: false, loading: false });
     }
     if (this.state.password === '') {
-      console.log('MASUK KONDISI keyboardShouldPersistTaps');
       this.setState({ validPassword: false, loading: false });
     }
       this.setState({ loading: true }, () => {
-        console.log('MASUK KE KONDISI TERAKHIR');
        if (this.state.username !== '' && this.state.password !== '') {
          auth.login(this.state.username, this.state.password)
         .then((data) => {
-          console.log('HASIL LOGIN', data);
           AsyncStorage.setItem('accessToken', data.access_token);
         })
         .then(() => { AsyncStorage.getItem('accessToken') })

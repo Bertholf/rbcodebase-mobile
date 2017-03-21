@@ -26,20 +26,7 @@ export default class ForgotPassword extends Component {
       submit: false,
     }
   }
-
-
-    // if (this.state.email === ''){
-    //   this.setState({ validEmail:false, loading:false});
-    // }
-    // this.setState({loading: true}, () => {
-    //   if (this.state.email !== '' ){
-    //     this.props.resetresult(this.state.email, () => {
-    //       this.setState({loading:false});
-    //     }, () => {
-    //       this.setState({loading:false, isFail: true});
-    //     } );
-    //   }
-    // });
+    // endpoint verify email to submit forgot password
     verifyEmail() {
     this.setState({ submit: true})
     auth.verify(this.state.email)
@@ -57,6 +44,7 @@ export default class ForgotPassword extends Component {
 
 
   render() {
+    // validation varify email if wrong email
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;

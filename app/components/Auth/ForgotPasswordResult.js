@@ -16,33 +16,6 @@ import strings from '../../localizations';
 const width = Dimensions.get('window').width;
 const image = require('../../../app/images/user.png');
 
-const stylescomp = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  topContent:{
-    flex: 12,
-    width: width,
-    padding: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profileImage: {
-    borderRadius: 50,
-  },
-  image: {
-    height: 200,
-    width: 200,
-  },
-  name: {
-    fontSize: 25,
-    marginTop: 40,
-  },
-  email: {
-    fontSize: 15,
-  },
-});
-
 export default class ResultForgot extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +26,6 @@ export default class ResultForgot extends Component {
       submit: false,
     };
   }
-
   sendLink() {
     this.setState({ loading: true });
     auth.sendlink(this.state.email)
@@ -96,3 +68,30 @@ export default class ResultForgot extends Component {
     );
   }
 }
+
+const stylescomp = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  topContent:{
+    flex: 12,
+    width: width,
+    padding: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileImage: {
+    borderRadius: 50,
+  },
+  image: {
+    height: 200,
+    width: 200,
+  },
+  name: {
+    fontSize: 25,
+    marginTop: 40,
+  },
+  email: {
+    fontSize: 15,
+  },
+});
