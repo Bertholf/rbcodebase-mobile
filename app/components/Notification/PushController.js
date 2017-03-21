@@ -28,8 +28,6 @@ export default class PushController extends Component {
      * }
      */
 
-              console.log('Device ID=======================', this.state.device_id);
-
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
         FCM.getFCMToken()
