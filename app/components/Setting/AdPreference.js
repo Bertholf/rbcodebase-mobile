@@ -65,25 +65,12 @@ export default class AdPreference extends Component {
       privacy_post: '',
       privacy_timeline_post: '',
       privacy_message: '',
-      email_follow: '',
-      email_comment_like: '',
-      email_post_share: '',
-      email_comment_post: '',
-      email_post_like: '',
-      email_comment_reply: '',
       pickfollo: '',
       pickfollconfirm: '',
       pickcomment: '',
       pickpost: '',
       picktimpost: '',
       pickmessage: '',
-      pickfollow: '',
-      pickcommentlike: '',
-      pickpostshare: '',
-      pickcommentshare: '',
-      pickcommentpost: '',
-      pickpostlike: '',
-      pickcommentreplay: '',
       position: 'bottom',
     };
   }
@@ -130,7 +117,7 @@ export default class AdPreference extends Component {
     const saveUpdate = () => {
       auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
       .then(response =>
-        this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG)))
+        this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.EditEmail.privacysetting, 'bottom', DURATION.LENGTH_LONG)))
       .catch(err => err);
     };
 
@@ -138,7 +125,6 @@ export default class AdPreference extends Component {
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => saveUpdate(),
-      // handler: () => Actions.pop(),
     };
 
     const titleConfig = {

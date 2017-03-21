@@ -20,11 +20,15 @@ export default class emailVarification extends Component {
     super(props);
     this.state = {
       newEmail: '',
+      email: '',
       profile: {},
       emailnew: '',
+      token: '',
+      loading: true,
     };
   }
   componentDidMount() {
+    // Save dan get Item AsyncStorage from Api/change-email
     AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); console.log('email set AsyncStorage',this.state.emailnew); }).catch((res) => console.log('error ambil email new-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
@@ -40,10 +44,23 @@ export default class emailVarification extends Component {
       this.refs.toast.show(text, duration);
     }
   }
+
+  // method validation email with  /api/change-email-validation
+
+  validationEmail() {
+  auth.emailValidation(this.state.newEmail, this.state.token)
+  .then((res) => {
+    console.log('RESPONSE CHANGE EMAIL=====', res);
+    Actions.setting()
+
+    //loading will stop when succes submit forgot password
+
+  })
+}
   render() {
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => Actions.saveemail1(),
+      handler: () => saveemail1(),
     };
     const leftButtonConfig = {
       title: 'Cancel',
@@ -56,14 +73,18 @@ export default class emailVarification extends Component {
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.newEmail);
     const currentEmail = this.state.profile.email;
-    const emailInput = this.state.newEmail;
     const sameEmail = currentEmail !== emailInput;
+    const emailInput = this.state.newEmail;
+    const tokenInput = this.state.token;
     const saveemail1 = () => {
-      if (emailInput !== null) {
+      if (emailInput) {
+        this.validationEmail();
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
-        Alert.alert('Success', 'Your email has response');
+        this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG)
+      } else {
+        this.onClick(strings.EditEmail.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
     return (
@@ -82,9 +103,15 @@ export default class emailVarification extends Component {
             </Text>
             <TextInput
               style={styles.TextInput1} placeholder='New Email Changed' underlineColorAndroid={'rgba(0,0,0,0)'}
-              placeholderTextColor={'#2196f3'} onChangeText={() => console.log('dummy')} multiline
-              numberOfLines={4} editable={false}
+              placeholderTextColor={'#2196f3'}
+              onChangeText={newEmail => this.setState({ newEmail: newEmail })}
+              multiline
+              numberOfLines={4} editable={true}
             />
+            {emailValidator && emailInput ?
+              <Text /> : <Text style={styles.invalid}>
+                {strings.EditEmail.error_invalid_email}
+            </Text>}
             <Text style={styles.Text2}>
               {strings.EditEmail.confirm_change}
             </Text>
@@ -92,7 +119,7 @@ export default class emailVarification extends Component {
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.EditEmail.confirm_code}
-              onChangeText={emailnew => this.setState({ emailnew })}
+              onChangeText={token => this.setState({token: token })}
               multiline
               numberOfLines={4}
             />
