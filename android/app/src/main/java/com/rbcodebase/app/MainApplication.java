@@ -22,7 +22,7 @@ import com.facebook.soloader.SoLoader;
 import io.fabric.sdk.android.Fabric;
 import java.util.Arrays;
 import java.util.List;
-
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.rbcodebase.app.modules.google.GoogleSignInPackage;
@@ -62,6 +62,7 @@ public class MainApplication extends Application implements ReactApplication {
               new ReactMaterialKitPackage(),
               new ReactNativeMapboxGLPackage(),
               new TwitterAuthPackage(),
+              new RNDeviceInfo(),
               new FBSDKPackage(mCallbackManager),
               new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
       );

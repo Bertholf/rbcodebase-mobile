@@ -155,6 +155,7 @@ dependencies {
     compile project(':react-native-mapbox-gl')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile project(':ReactNativeLocalization')
+    compile project(':RNDeviceInfo')
     // From node_modules
 
     compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
