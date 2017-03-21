@@ -24,11 +24,9 @@ export default class NameEdit extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      namedisplay: '',
       profile: {},
       namef: '',
       namel: '',
-      named: '',
       style: {},
       position: 'bottom',
     };
@@ -56,14 +54,12 @@ export default class NameEdit extends Component {
   }
 
   componentDidMount() {
-    
     auth.profile()
-    .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
+    .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last }, () => console.log(this.state)))
     .catch(() => {
       AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(resp => console.log('error ambil namalengkap-----'));
       AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(resp => console.log('error ambil namalengkap--- --'));
-      AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.named); }).catch(resp => console.log('error ambil namalengkap--- --'));
-  });
+    });
   }
 
   clearText(fieldName) {
@@ -88,7 +84,6 @@ export default class NameEdit extends Component {
     const lastNameValidator = value.test(this.state.lastName);
     const firstNameInput = this.state.firstName;
     const lastNameInput = this.state.lastName;
-    const namedisplayInput = this.state.namedisplay;
     const currentFirstName = this.state.profile.first_name;
     const currentLastName = this.state.profile.last_name;
     const slug = this.state.profile.name_slug;
@@ -96,7 +91,6 @@ export default class NameEdit extends Component {
     const birthday = this.state.profile.birthday;
     // Validate Name Input
     const validateName = () => {
-      console.log('name================================================', firstNameInput, lastNameInput, namedisplayInput);
       if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
         if (firstNameInput === currentFirstName) {
           if (lastNameInput === currentLastName) {
@@ -104,8 +98,8 @@ export default class NameEdit extends Component {
           }
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
         } else {
-          console.log('name===', firstNameInput, lastNameInput, namedisplayInput);
-          saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, phone, birthday);
+          console.log('name===', firstNameInput, lastNameInput);
+          saveProfile(id, firstNameInput, lastNameInput, slug, phone, birthday);
           Keyboard.dismiss();
           auth.profile()
             .then(response => this.setState({ profile: response.data, loading: false }, () => {
@@ -186,12 +180,10 @@ export default class NameEdit extends Component {
               underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.display_name}
-              onChangeText={namedisplay => this.setState({ namedisplay })}
               numberOfLines={1}
               editable
               multiline={false}
               autoCorrect
-              value={this.state.namedisplay}
             />
           </View>
           <View style={{ elevation: 5 }}>
