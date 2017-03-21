@@ -12,6 +12,16 @@ export default class PushController extends Component {
   componentDidMount() {
     FCM.requestPermissions();
 
+    /**
+     * @TODO
+     * Should check if in AsyncStorage has the FcmToken
+     * and generate device unique ID
+     *
+     * if AsyncStorage.getItem === null {
+     *   FCM.getFCMToken()
+     *    .then(() => notif.sendToken(token, deviceId) )
+     * }
+     */
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
       if(res === 'null') {

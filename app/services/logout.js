@@ -25,7 +25,7 @@ const Logout = () => {
         /**
          * Logout Method for Facebook Provider
          */
-        AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
+        AsyncStorage.multiRemove(['accessToken', 'FcmToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON FACEBOOK', response); }, (error) => { console.log(error); });
         LoginManager.logOut();
@@ -34,7 +34,7 @@ const Logout = () => {
         /**
          * Logout Method for Google Provider
          */
-        AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
+        AsyncStorage.multiRemove(['accessToken', 'userId', 'FcmToken', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         google.signOut();
@@ -44,7 +44,7 @@ const Logout = () => {
         /**
          * Logout Method for Twitter Provider
          */
-        AsyncStorage.multiRemove(['accessToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
+        AsyncStorage.multiRemove(['accessToken', 'userId', 'FcmToken', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });
