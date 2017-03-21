@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DeviceInfo from 'react-native-device-info';
 import { Platform, AsyncStorage } from 'react-native';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import firebaseClient from  './FirebaseClient';
@@ -7,6 +8,10 @@ import notif from '../../services/notif';
 export default class PushController extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      device_id: DeviceInfo.getUniqueID(),
+
+    };
   }
 
   componentDidMount() {
@@ -22,12 +27,14 @@ export default class PushController extends Component {
      *    .then(() => notif.sendToken(token, deviceId) )
      * }
      */
+
+              console.log('Device ID=======================', this.state.device_id);
+
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
-      if(res === 'null') {
         FCM.getFCMToken()
         .then((token) => {
-          notif.sendToken(token);
+          notif.sendToken(token, this.state.device_id);
           console.log('FCM INITIAL TOKEN', token);
           let fcm = token;
           // Save token in AsyncStorage
@@ -44,7 +51,6 @@ export default class PushController extends Component {
           }).catch();
           // this.props.onChangeToken(token); Temporary Comment
         }).catch();
-      }
       notif.sendToken(res);
       // this.props.onChangeToken(res);
     }).catch();
