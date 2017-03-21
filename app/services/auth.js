@@ -32,11 +32,10 @@ export default {
   emailValidation: (email, token) => api.post('/api/validate-change-email',
     { email, token },
   ),
-  updateProfile: (id, name_first, name_last, name_display, name_slug, gender, cell_number, date_birth, password, password_confirmation) =>
+  updateProfile: (id, name_first, name_last, name_slug, gender, cell_number, date_birth, password, password_confirmation) =>
   api.put(`/api/users/${id}`, {
     name_first,
     name_last,
-    name_display,
     name_slug,
     gender,
     cell_number,
