@@ -44,14 +44,9 @@ export default class Dashboard extends Component {
          ['verified', response.data.verified.toString()],
          ['gender', response.data.gender.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
-        //  ['img_avatar', response.data.img_avatar.toString()],
-        // ['referring_user_id', response.data.referring_user_id.toString()],
-        // ['current_team_id', response.data.curresnt_team_id.toString()],
         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
-           console.log('SAVE USERDATA 1');
-          //  AsyncStorage.multiGet(['name_first', 'name_last'])
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
              'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',

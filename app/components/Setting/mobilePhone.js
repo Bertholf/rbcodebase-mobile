@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {
-   Text,
-   View,
-   TextInput,
-   StyleSheet,
-   Keyboard,
-   AsyncStorage,
- } from 'react-native';
+  Text,
+  View,
+  TextInput,
+  StyleSheet,
+  Keyboard,
+  AsyncStorage,
+} from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import PhoneInput from 'react-native-phone-input';
 import { Actions } from 'react-native-router-flux';
@@ -91,11 +91,11 @@ export default class MobilePhone extends Component {
       this.refs.phone.onChangePhoneNumber(res);
     }).catch(() => console.log('error ambil nama username-----'));
     auth.profile()
-    .then((response) => {
-      this.setState({ profile: response.data, phone: response.data.cell_number });
-      this.refs.phone.onChangePhoneNumber(response.data.cell_number);
-    })
-    .catch(Err => Err);
+      .then((response) => {
+        this.setState({ profile: response.data, phone: response.data.cell_number });
+        this.refs.phone.onChangePhoneNumber(response.data.cell_number);
+      })
+      .catch(Err => Err);
   }
 
   onClick(text, position, duration, withStyle) {
@@ -157,11 +157,12 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleEditPhone,
     };
 
-    const regex = /^\+[1-9]{1}[0-9]{3,14}$/;
+    const regex = /^\+[1-9]{1}[0-9]{3,15}$/;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
+    const display_name = this.state.profile.name_display;
     const email = this.state.profile.email;
     const gender = this.state.profile.gender;
     const birthday = this.state.profile.birthday;
@@ -173,7 +174,7 @@ export default class MobilePhone extends Component {
         /**
          * Give the action if mobilephone number pass the validation
          */
-        saveProfile(id, name_first, name_last, name_slug, gender, number, birthday);
+        saveProfile(id, name_first, name_last, display_name, name_slug, gender, number, birthday);
         auth.profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
