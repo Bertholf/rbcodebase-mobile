@@ -57,10 +57,29 @@ const registered = (token, provider) => {
 
 export function doneLogin(response = {}) {
   if (response) {
+    /**
+     * catch the response and do next step after
+     * Login request is success
+     *
+     * if(response from facebook) {
+     *  send token and take to after-oauth check
+     * } else if( response from twitter) {
+     *  send token and take to after-oauth check
+     * } else if (response from GOOGLE) {
+     *  ....@TODO need after-oauth check
+     * }
+     */
+
     AsyncStorage.setItem('provider', response.provider);
     if (response.provider === 'twitter') {
       auth.checktwitter(response.accessToken, response.provider, response.secret, response.oauth_provider_id)
       .then((resL) => {
+        /**
+         * if after-oauth checking = not registered,
+         * send user's data to registration form.
+         *
+         * else just login to dashboard
+         */
         if (resL.data.registered === false) {
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
@@ -78,6 +97,12 @@ export function doneLogin(response = {}) {
     } else if (response.provider === 'facebook') {
       auth.check(response.accessToken, 'facebook', response.userID)
       .then((resL) => {
+        /**
+         * if after-oauth checking = not registered,
+         * send user's data to registration form.
+         *
+         * else just login to dashboard
+         */
         if (resL.data.registered === false) {
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
@@ -130,6 +155,9 @@ export function doneRegister(response = '') {
 
 
 export function loginWithGoogle() {
+  /**
+   * App authorize with Google SSO Provider
+   */
   return (dispatch) => {
     dispatch(requestLogin('Login With Google'));
     return google.signIn()
@@ -139,6 +167,9 @@ export function loginWithGoogle() {
 }
 
 export function loginWithFacebook() {
+  /**
+   * App authorize with Facebook SSO provider
+   */
   return (dispatch) => {
     return LoginManager.logInWithReadPermissions(['public_profile'])
     .then((result) => {
@@ -156,6 +187,9 @@ export function loginWithFacebook() {
 export const manager = new OAuthManager('RB Codebase');
 
 export function loginWithTwitter() {
+  /**
+   * Authorize SSO Twitter with the app
+   */
   return (dispatch) => {
     return twitter.signIn()
       .then((response) => {
