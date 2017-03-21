@@ -10,6 +10,7 @@ import {
      StyleSheet,
      ActivityIndicator,
      AsyncStorage,
+     ListView,
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
 export default class RegistrationForm extends Component {
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       availableUser: false,
       app: 'RBCodeBase',
@@ -156,6 +158,7 @@ export default class RegistrationForm extends Component {
       failMsg: '',
       loading: true,
       position: 'bottom',
+      customField: ds.cloneWithRows([{ name: 'one' }, { name: 'two' }]),
     };
   }
 
@@ -396,15 +399,22 @@ export default class RegistrationForm extends Component {
                       style={styles.textinputStyle}
                     />
                   </View>
-                  <View style={styles.textinputWrapperStyle}>
-                    <TextInput
-                      placeholder={strings.register.custom_field}
-                      placeholderTextColor="black"
-                      selectionColor="black"
-                      underlineColorAndroid="rgba(0,0,0,0)"
-                      style={styles.textinputStyle}
-                    />
-                  </View>
+
+                  <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={rowData =>
+                      <View style={styles.textinputWrapperStyle}>
+                        <Text>{rowData.name}</Text>
+                        <TextInput
+                          placeholder={strings.register.custom_field}
+                          placeholderTextColor="black"
+                          selectionColor="black"
+                          underlineColorAndroid="rgba(0,0,0,0)"
+                          style={styles.textinputStyle}
+                        />
+                      </View>}
+                  />
+
                 </View>
                 <View style={styles.line} />
                 <TouchableOpacity
