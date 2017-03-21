@@ -33,7 +33,6 @@ const stylesAdpref = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // paddingLeft: 15,
     backgroundColor: '#ffffff',
     borderColor: '#2196F3',
     borderWidth: 0.8,

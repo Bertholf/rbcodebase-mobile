@@ -65,12 +65,6 @@ export default class AdPreference extends Component {
       email_comment_post: '',
       email_post_like: '',
       email_comment_reply: '',
-      pickfollo: '',
-      pickfollconfirm: '',
-      pickcomment: '',
-      pickpost: '',
-      picktimpost: '',
-      pickmessage: '',
       pickfollow: '',
       pickcommentlike: '',
       pickpostshare: '',
@@ -157,17 +151,17 @@ export default class AdPreference extends Component {
               <View>
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailfollow}</Text>
               </View>
-              <View style={styles.pickerstyle}>
-                { this.state.email_follow == "0" ?
-                  <Picker
-                    selectedValue={this.state.email_follow}
-                    onValueChange={value => this.setState({ email_follow: value })}
-                  >
-                    <Picker.Item label={strings.adpreference.no} value="0" />
-                    <Picker.Item label={strings.adpreference.yes} value="1" />
-                  </Picker> :
+                <View style={styles.pickerstyle}>
+                  { this.state.email_follow == "0" ?
+                    <Picker
+                      selectedValue={this.state.email_follow}
+                      onValueChange={value => this.setState({ email_follow: value })}
+                    >
+                      <Picker.Item label={strings.adpreference.no} value="0" />
+                      <Picker.Item label={strings.adpreference.yes} value="1" />
+                    </Picker> :
 
-             this.state.email_follow == "1" ?
+               this.state.email_follow == "1" ?
 
                <Picker
                  selectedValue={this.state.email_follow}
