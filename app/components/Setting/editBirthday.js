@@ -17,38 +17,6 @@ import IconClose from './../../layouts/IconClose';
 
 const moment = require('moment');
 
-const styles = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 2,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    marginTop: 10,
-    flexDirection: 'row',
-    paddingLeft: 15,
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    justifyContent: 'space-between',
-    marginBottom: 8,
-    height: 50,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 13,
-  },
-});
-
 export default class editBirthday extends Component {
   constructor(props) {
     super(props);
@@ -59,7 +27,7 @@ export default class editBirthday extends Component {
       style: {},
     };
   }
-
+  // Mount Component with Value in auth.profile (birthday)
   componentDidMount() {
     auth.profile()
      .then(response => this.setState({ profile: response.data, date: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMMM Do YYYY') }))
@@ -93,6 +61,7 @@ export default class editBirthday extends Component {
   }
 
   render() {
+    // Create Save Button on Navigation
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => updateBirthday(),
@@ -101,7 +70,7 @@ export default class editBirthday extends Component {
       title: 'Cancel',
       handler: () => Actions.pop({ type: 'refresh' }),
     };
-
+      // title of screen
     const titleConfig = {
     title: strings.editBirthday.title,
   };
@@ -161,6 +130,11 @@ export default class editBirthday extends Component {
             </View>
           </View>
         </View>
+        {/* ---------------------------------------------------------
+          *
+          * Give Toast message
+          *
+          * --------------------------------------------------------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}
@@ -171,3 +145,35 @@ export default class editBirthday extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  titleButton: {
+    fontSize: 15,
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    borderRadius: 2,
+    elevation: 2,
+    paddingTop: 14,
+    paddingBottom: 14,
+    alignItems: 'center',
+  },
+  styleView: {
+    marginTop: 10,
+    flexDirection: 'row',
+    paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    height: 50,
+  },
+  text: {
+    color: '#000000',
+    fontSize: 13,
+  },
+});
