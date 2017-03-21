@@ -29,7 +29,7 @@ export default class emailVarification extends Component {
   }
   componentDidMount() {
     // Save dan get Item AsyncStorage from Api/change-email
-    AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); console.log('email set AsyncStorage',this.state.emailnew); }).catch((res) => console.log('error ambil email new-----'));
+    AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); console.log('email set AsyncStorage', this.state.emailnew); }).catch(res => console.log('error ambil email new-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
     .catch(Err => Err);
@@ -48,15 +48,14 @@ export default class emailVarification extends Component {
   // method validation email with  /api/change-email-validation
 
   validationEmail() {
-  auth.emailValidation(this.state.newEmail, this.state.token)
-  .then((res) => {
-    console.log('RESPONSE CHANGE EMAIL=====', res);
-    Actions.setting()
+    auth.emailValidation(this.state.newEmail, this.state.token)
+    .then((res) => {
+      console.log('RESPONSE CHANGE EMAIL=====', res);
+      Actions.setting();
 
-    //loading will stop when succes submit forgot password
-
-  })
-}
+      // loading will stop when succes submit forgot password
+    }).catch(err => console.log('ERROR FOUND', err));
+  }
   render() {
     const rightButtonConfig = {
       title: strings.settings.save,
@@ -82,7 +81,7 @@ export default class emailVarification extends Component {
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
-        this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG)
+        this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);
       } else {
         this.onClick(strings.EditEmail.error, 'bottom', DURATION.LENGTH_LONG);
       }
@@ -99,19 +98,18 @@ export default class emailVarification extends Component {
         </View>
         <ScrollView>
           <View style={styles.View1}>
-            <Text style={styles.Text2}>
-            </Text>
+            <Text style={styles.Text2} />
             <TextInput
-              style={styles.TextInput1} placeholder='New Email Changed' underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1} placeholder="New Email Changed" underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
-              onChangeText={newEmail => this.setState({ newEmail: newEmail })}
+              onChangeText={newEmail => this.setState({ newEmail })}
               multiline
-              numberOfLines={4} editable={true}
+              numberOfLines={4} editable
             />
             {emailValidator && emailInput ?
               <Text /> : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
-            </Text>}
+              </Text>}
             <Text style={styles.Text2}>
               {strings.EditEmail.confirm_change}
             </Text>
@@ -119,7 +117,7 @@ export default class emailVarification extends Component {
               style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.EditEmail.confirm_code}
-              onChangeText={token => this.setState({token: token })}
+              onChangeText={token => this.setState({ token })}
               multiline
               numberOfLines={4}
             />

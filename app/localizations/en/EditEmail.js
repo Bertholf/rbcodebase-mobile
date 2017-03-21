@@ -11,6 +11,8 @@ const EditEmail = {
   error: 'Error change email',
   savedvalidation: 'Email has been succefully changed',
   privacysetting: 'Privacy Setting has been succefully changed',
+  currentEmail: 'Enter your current Email',
+  enter_email: 'Enter your email',
 };
 
 module.exports = EditEmail;

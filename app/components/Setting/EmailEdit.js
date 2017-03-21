@@ -8,7 +8,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import styles from './ChangeSetting/ChangeStyles';
 import auth from './../../services/auth';
@@ -31,14 +31,14 @@ export default class EmailEdit extends Component {
     auth.profile()
     .then(response => this.setState({ profile: response.data, email: response.data.email }))
     .catch(() => {
-      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====',this.state.email); }).catch((res) => console.log('error ambil email-----'));
+      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
     });
   }
   onClick(text, position, duration, withStyle) {
     this.setState({
-     position: position,
+      position,
     });
-    if (withStyle){
+    if (withStyle) {
       this.refs.toastWithStyle.show(text, duration);
     } else {
       this.refs.toast.show(text, duration);
@@ -48,19 +48,21 @@ export default class EmailEdit extends Component {
   getButton(text, position, duration, withStyle) {
     return (
       <Text
-        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
         <Text>{text}</Text>
       </Text>
-    )
+    );
   }
-    validation() {
+  validation() {
     auth.changeemail(this.state.email)
     .then((res) => {
       console.log('RESPONSE CHANGE EMAIL=====', res);
-      Actions.emailVarification()
-      //loading will stop when succes submit forgot password
-      this.setState({submit: false});
-    })
+      Actions.emailVarification();
+      // loading will stop when succes submit forgot password
+      this.setState({ submit: false });
+    });
+    this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG);
   }
 
   render() {
@@ -83,13 +85,12 @@ export default class EmailEdit extends Component {
     const currentEmail = this.state.profile.email;
     const sameEmail = currentEmail !== emailInput;
     const validEmail = () => {
-      if (emailValidator === emailInput === sameEmail) {
+      if (emailValidator && emailInput) {
         this.validation();
 
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
-        this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG)
       } else {
         this.onClick(strings.EditEmail.error, 'bottom', DURATION.LENGTH_LONG);
       }
@@ -108,13 +109,13 @@ export default class EmailEdit extends Component {
 
           <View style={styles.View1}>
             <Text style={styles.Text2}>
-              {strings.EditEmail.enter_new_mail}
+              {strings.EditEmail.currentEmail}
             </Text>
             <TextInput
               style={styles.TextInput1}
               underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
-              placeholder={strings.EditEmail.enter_new_email}
+              placeholder={strings.EditEmail.enter_email}
               onChangeText={newEmail => this.setState({ email: newEmail })}
               multiline
               numberOfLines={4}
@@ -124,7 +125,7 @@ export default class EmailEdit extends Component {
               <Text /> : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}
-            {/*{sameEmail ?
+            {/* {sameEmail ?
               <Text /> : <Text style={styles.invalid}>{strings.EditEmail.alert_same_email}</Text>}*/}
           </View>
         </ScrollView>
