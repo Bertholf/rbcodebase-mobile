@@ -42,14 +42,13 @@ export default class PushController extends Component {
             .then((resL) => {
               this.setState({ token: fcm })
               .then(() => {
-                notif.sendToken(this.state.token)
-                .then((resL) => console.log('TOKEN SAVED IN SERVER', res));
+                notif.sendToken(this.state.token, this.state.device_id)
+                .then((resL) => console.log('TOKEN AND DEVICE ID SAVED IN SERVER', res));
               }).catch(err => ('Fail Save token in device', err));
             }).catch();
           }).catch();
           // this.props.onChangeToken(token); Temporary Comment
         }).catch();
-      notif.sendToken(res);
       // this.props.onChangeToken(res);
     }).catch();
 
