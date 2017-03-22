@@ -176,7 +176,7 @@ export default class RegistrationForm extends Component {
   onSubmit() {
     const { firstname, lastname, username, gender, email, password, confirmPassword } = this.state;
     const { provider, accessToken, secret, oauthProviderId } = this.state;
-    if (provider && accessToken) {
+    if (provider !== 'null' && accessToken !== 'null') {
       this.setState({ submitting: true });
       auth.registerSSO(firstname, lastname, username, gender, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
