@@ -76,7 +76,7 @@ export default class walkthrough extends Component {
         setlang = 'en';
         break;
     }
-    strings.setLanguage('id');
+    strings.setLanguage(setlang);
     super(props);
     this.state = {
       // initialization data json
