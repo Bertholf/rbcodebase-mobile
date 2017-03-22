@@ -52,6 +52,14 @@ export default class ChangeUsername extends Component {
     }
   }
 
+  forceToLower() {
+    /**
+     * This function is force the username to LowerCase
+     * and called when onBlur
+     */
+    let val = this.state.newUsername;
+    this.setState({ newUsername: val.toLowerCase(), failregister: false });
+  }
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -77,7 +85,7 @@ export default class ChangeUsername extends Component {
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const emptyUsername = this.state.newUsername;
-    const newUsernames = this.state.newUsername;
+    const newUsernames = this.state.newUsername.toLowerCase();
     const regex = /^[a-zA-Z0-9_.-]{6,25}$/;
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
@@ -146,6 +154,7 @@ export default class ChangeUsername extends Component {
               placeholder={strings.changeUname.placeholder}
               maxLength={25}
               onChangeText={newUsername => this.setState({ newUsername })}
+              onBlur={() => this.forceToLower()}
               multiline={false}
               numberOfLines={4} editable
               value={this.state.newUsername}
