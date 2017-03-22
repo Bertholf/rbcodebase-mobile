@@ -85,7 +85,7 @@ export default class ChangeUsername extends Component {
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const emptyUsername = this.state.newUsername;
-    const newUsernames = this.state.newUsername;
+    const newUsernames = this.state.newUsername.toLowerCase();
     const regex = /^[a-zA-Z0-9_.-]{6,25}$/;
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;

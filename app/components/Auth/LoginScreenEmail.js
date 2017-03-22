@@ -43,8 +43,9 @@ export default class LoginScreenEmail extends Component {
       this.setState({ validPassword: false, loading: false });
     }
       this.setState({ loading: true }, () => {
+       let username = this.state.username.toLowerCase();
        if (this.state.username !== '' && this.state.password !== '') {
-         auth.login(this.state.username, this.state.password)
+         auth.login(username, this.state.password)
         .then((data) => {
           AsyncStorage.setItem('accessToken', data.access_token);
         })
