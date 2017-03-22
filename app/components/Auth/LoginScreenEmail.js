@@ -27,6 +27,10 @@ export default class LoginScreenEmail extends Component {
     this.validate = this.validate.bind(this);
   }
 
+  forceToLower() {
+    let val = this.state.username;
+    this.setState({ username: val.toLowerCase(), failregister: false });
+  }
   validate() {
     if (this.state.username === '') {
       this.setState({ validUsername: false, loading: false });
@@ -67,7 +71,9 @@ export default class LoginScreenEmail extends Component {
             onChangeText={username =>
               this.setState({ username, validUsername: true, isFail: false })}
             placeholderTextColor={'silver'}
+            onBlur={() => this.forceToLower()}
             placeholder={strings.LoginbyEmail.username}
+            value={this.state.username}
             required
           />
           {this.state.validUsername ? <Text /> : (
