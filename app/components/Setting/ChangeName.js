@@ -56,13 +56,14 @@ export default class NameEdit extends Component {
     );
   }
 
+  // Mount Component with Value in auth.profile
   componentDidMount() {
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
     .catch(() => {
-      AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(resp => console.log('error ambil namalengkap-----'));
-      AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(resp => console.log('error ambil namalengkap--- --'));
-      AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); console.log('NAMAAAA KAMUUUUU=====', this.state.named); }).catch(resp => console.log('error ambil namalengkap--- --'));
+      AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); }).catch(resp => console.log('error ambil namalengkap-----'));
+      AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
+      AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
   });
   }
 
@@ -82,6 +83,7 @@ export default class NameEdit extends Component {
       title: strings.ChangeName.title,
     };
 
+    // regex name validation
     const value = /^[a-zA-Z ]+$/;
     const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);

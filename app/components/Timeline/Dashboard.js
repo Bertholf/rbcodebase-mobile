@@ -5,7 +5,6 @@ import {
    Image,
    TouchableOpacity,
    AsyncStorage,
-   BackAndroid,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import auth from './../../services/auth';
@@ -36,8 +35,6 @@ export default class Dashboard extends Component {
     .then((response) => {
       // All response Should Saved into AsyncStorage
       this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
-        console.log('===== profile result =====', this.state.profile);
-        console.log('========== RESPONSE SERVER =========', response);
         AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
          ['name_last', response.data.name_last.toString()], ['name_slug', response.data.name_slug.toString()], ['email', (response.data.email)],
          ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
@@ -53,17 +50,15 @@ export default class Dashboard extends Component {
            ])
         .then(res => console.log('==RESPONSE STORAGE==', res))
           .catch(err => console.log('ERROR SAVE 1', err));
-           console.log('SAVE USERDATA 2 ');
          })
-         .catch(err => console.log('SAVE FAILED', err));
       });
     })
     .catch((err) => {
       if (err.response.data.error === 'Unauthenticated') {
         Logout();
       } else {
-        AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namafirst); }).catch(res => console.log('error ambil nama-----', res));
-        AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namalast); }).catch(res => console.log('error ambil nama-----', res));
+        AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); });
+        AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); });
       }
     });
   }
@@ -74,7 +69,6 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    // {this.nama(); }
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.props.goUp()}>

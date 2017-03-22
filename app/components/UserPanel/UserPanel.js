@@ -52,6 +52,7 @@ class userPanel extends React.Component {
 
 
   componentDidMount() {
+    // Get Profile Data From server
     auth.profile ()
     .then(response => this.setState({ profile: response.data, loading: false }, () => console.log(this.state)))
     .catch(Err => console.log('err', Err));
