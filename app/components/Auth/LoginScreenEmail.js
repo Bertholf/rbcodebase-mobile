@@ -5,13 +5,13 @@ import {
    View,
    TextInput,
    TouchableOpacity,
+   AsyncStorage,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
 import auth from '../../services/auth';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
-import { AsyncStorage } from 'react-native';
 
 export default class LoginScreenEmail extends Component {
   constructor(props) {

@@ -202,6 +202,12 @@ export default class RegistrationForm extends Component {
       </Text>
     );
   }
+
+  forceToLower() {
+    let val = this.state.username;
+    this.setState({ username: val.toLowerCase(), failregister: false });
+  }
+
   rerender() {
     this.setState({ loading: true }, () => {
       this.componentDidMount();
@@ -310,12 +316,14 @@ export default class RegistrationForm extends Component {
                   <View style={styles.line} />
                   <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
                     <TextInput
+                      ref="usernameInput"
                       placeholder={strings.register.user_name}
                       placeholderTextColor="black"
                       selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={username => this.setState({ username, failregister: false })}
+                      onBlur={() => this.forceToLower()}
                       value={this.state.username}
                       editable
                     />

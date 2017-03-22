@@ -52,6 +52,10 @@ export default class ChangeUsername extends Component {
     }
   }
 
+  forceToLower() {
+    let val = this.state.newUsername;
+    this.setState({ newUsername: val.toLowerCase(), failregister: false });
+  }
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -146,6 +150,7 @@ export default class ChangeUsername extends Component {
               placeholder={strings.changeUname.placeholder}
               maxLength={25}
               onChangeText={newUsername => this.setState({ newUsername })}
+              onBlur={() => this.forceToLower()}
               multiline={false}
               numberOfLines={4} editable
               value={this.state.newUsername}
