@@ -48,7 +48,14 @@ export default class RegistrationForm extends Component {
       loading: true,
       position: 'bottom',
       customField: ds.cloneWithRows([{ name: 'one' }, { name: 'two' }]),
+      customfield: {},
     };
+  }
+
+  componentDidMount() {
+    auth.costumField ()
+    .then(response => this.setState({ customfield: response, loading: false }, () => console.log(this.state)))
+    .catch(Err => console.log('err', Err));
   }
 
   onClick(text, position, duration, withStyle) {
@@ -291,6 +298,12 @@ export default class RegistrationForm extends Component {
                   </View>
                   { validPass || emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.line} />
+                  <View style={styles.textWrapperStyle}>
+                  <Text style={styles.textcustomfield}>{this.state.customfield.title}</Text>
+                  </View>
+                  <View style={styles.textWrapperStyle}>
+                  <Text style={styles.textinputStyle}></Text>
+                  </View>
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.custom_field}
@@ -300,21 +313,21 @@ export default class RegistrationForm extends Component {
                     />
                   </View>
 
-                  {
-                    /*<ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={rowData =>
-                      <View style={styles.textinputWrapperStyle}>
-                        <Text>{rowData.name}</Text>
-                        <TextInput
-                          placeholder={strings.register.custom_field}
-                          placeholderTextColor="black"
-                          underlineColorAndroid="rgba(0,0,0,0)"
-                          style={styles.textinputStyle}
-                        />
-                      </View>}
-                  />*/
-                }
+                {
+                // <ListView
+                //     dataSource={this.state.dataSource}
+                //     renderRow={rowData =>
+                //       <View style={styles.textinputWrapperStyle}>
+                //         <Text>{rowData.name}</Text>
+                //         <TextInput
+                //           placeholder={strings.register.custom_field}
+                //           placeholderTextColor="black"
+                //           underlineColorAndroid="rgba(0,0,0,0)"
+                //           style={styles.textinputStyle}
+                //         />
+                //       </View>}
+                //   />
+                 }
 
                 </View>
                 <View style={styles.line} />
@@ -392,10 +405,24 @@ const styles = StyleSheet.create({
     width: 0.75 * width,
     height: 40,
   },
+  textcustomfield: {
+    fontSize: 28,
+    color: 'black',
+    width: 0.75 * width,
+    height: 40,
+  },
   textinputWrapperStyle: {
     borderColor: '#2196F3',
     borderWidth: 0.8,
     borderRadius: 2,
+    flexDirection: 'column',
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+  },
+  textWrapperStyle: {
+    borderColor: '#2196F3',
     flexDirection: 'column',
     paddingLeft: 16,
     paddingRight: 8,
