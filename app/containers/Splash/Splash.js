@@ -51,11 +51,12 @@ export class Splash extends Component {
           } else {
             console.log('No TOKEN');
             if (response === 'true') {
-              Actions.login({ type: 'reset' });
-              console.log('----GOTO ACTIONSWIPER-----');
+              Actions.walkthrough({ type: 'reset' });
+              // Give Action if there is no Token found
+              //
+              // e.g Actions.login({ type: 'reset' });
             } else if (response === null) {
               Actions.walkthrough({ type: 'reset' });
-              console.log('----GOTO WALKTHROUGH-----');
             } else {
               console.log('ERRRRRR');
             }

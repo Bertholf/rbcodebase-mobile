@@ -146,7 +146,6 @@ export default class RegistrationForm extends Component {
       email: this.props.email || '',
       gender: 'male',
       username: this.props.username || '',
-      secret: this.props.secret || '',
       provider: this.props.provider || '',
       accessToken: this.props.accessToken || '',
       oauthProviderId: this.props.oauthProviderId || '',
@@ -176,9 +175,9 @@ export default class RegistrationForm extends Component {
   onSubmit() {
     const { firstname, lastname, username, gender, email, password, confirmPassword } = this.state;
     const { provider, accessToken, secret, oauthProviderId } = this.state;
-    if (provider && accessToken) {
+    if (provider !== 'null' && accessToken !== 'null') {
       this.setState({ submitting: true });
-      auth.registerSSO(firstname, lastname, username, gender, email, password, confirmPassword, provider, secret, accessToken, oauthProviderId)
+      auth.registerSSO(firstname, lastname, username, gender, email, password, confirmPassword, provider, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
       this.loginAfterRegister(username, password),
     ))
