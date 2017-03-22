@@ -53,6 +53,10 @@ export default class ChangeUsername extends Component {
   }
 
   forceToLower() {
+    /**
+     * This function is force the username to LowerCase
+     * and called when onBlur
+     */
     let val = this.state.newUsername;
     this.setState({ newUsername: val.toLowerCase(), failregister: false });
   }

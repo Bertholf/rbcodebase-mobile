@@ -204,11 +204,18 @@ export default class RegistrationForm extends Component {
   }
 
   forceToLower() {
+    /**
+     * This function is force the username to LowerCase
+     * and called when onBlur
+     */
     let val = this.state.username;
     this.setState({ username: val.toLowerCase(), failregister: false });
   }
 
   rerender() {
+    /**
+     * This function is for re-render ComponentDidMount()
+     */
     this.setState({ loading: true }, () => {
       this.componentDidMount();
     });
