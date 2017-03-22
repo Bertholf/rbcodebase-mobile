@@ -400,7 +400,7 @@ export default class RegistrationForm extends Component {
                     />
                   </View>
 
-                  <ListView
+                  {/*<ListView
                     dataSource={this.state.dataSource}
                     renderRow={rowData =>
                       <View style={styles.textinputWrapperStyle}>
@@ -413,7 +413,7 @@ export default class RegistrationForm extends Component {
                           style={styles.textinputStyle}
                         />
                       </View>}
-                  />
+                  />*/}
 
                 </View>
                 <View style={styles.line} />
