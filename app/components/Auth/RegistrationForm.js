@@ -175,18 +175,19 @@ export default class RegistrationForm extends Component {
   onSubmit() {
     const { firstname, lastname, username, gender, email, password, confirmPassword } = this.state;
     const { provider, accessToken, secret, oauthProviderId } = this.state;
+    const uname = username.toLowerCase();
     if (provider !== 'null' && accessToken !== 'null') {
       this.setState({ submitting: true });
-      auth.registerSSO(firstname, lastname, username, gender, email, password, confirmPassword, provider, accessToken, oauthProviderId)
+      auth.registerSSO(firstname, lastname, uname, gender, email, password, confirmPassword, provider, accessToken, oauthProviderId)
       .then(res => this.setState({ submitting: false }, () =>
-      this.loginAfterRegister(username, password),
+      this.loginAfterRegister(uname, password),
     ))
     .catch((err) => {
       this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
       console.log('error register', err);
     });
     } else {
-      submitRegister(firstname, lastname, username, gender, email, password, confirmPassword, (msg) => {
+      submitRegister(firstname, lastname, uname, gender, email, password, confirmPassword, (msg) => {
         this.setState({ failregister: true, failMsg: msg, submitting: false });
         this.onClick();
       });
@@ -202,7 +203,20 @@ export default class RegistrationForm extends Component {
       </Text>
     );
   }
+
+  forceToLower() {
+    /**
+     * This function is force the username to LowerCase
+     * and called when onBlur
+     */
+    let val = this.state.username;
+    this.setState({ username: val.toLowerCase(), failregister: false });
+  }
+
   rerender() {
+    /**
+     * This function is for re-render ComponentDidMount()
+     */
     this.setState({ loading: true }, () => {
       this.componentDidMount();
     });
@@ -310,12 +324,14 @@ export default class RegistrationForm extends Component {
                   <View style={styles.line} />
                   <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
                     <TextInput
+                      ref="usernameInput"
                       placeholder={strings.register.user_name}
                       placeholderTextColor="black"
                       selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={username => this.setState({ username, failregister: false })}
+                      onBlur={() => this.forceToLower()}
                       value={this.state.username}
                       editable
                     />

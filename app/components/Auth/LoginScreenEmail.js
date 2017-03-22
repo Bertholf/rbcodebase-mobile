@@ -5,13 +5,13 @@ import {
    View,
    TextInput,
    TouchableOpacity,
+   AsyncStorage,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
 import auth from '../../services/auth';
 import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
-import { AsyncStorage } from 'react-native';
 
 export default class LoginScreenEmail extends Component {
   constructor(props) {
@@ -27,6 +27,14 @@ export default class LoginScreenEmail extends Component {
     this.validate = this.validate.bind(this);
   }
 
+  forceToLower() {
+    /**
+     * This function is force the username to LowerCase
+     * and called when onBlur
+     */
+    let val = this.state.username;
+    this.setState({ username: val.toLowerCase(), failregister: false });
+  }
   validate() {
     if (this.state.username === '') {
       this.setState({ validUsername: false, loading: false });
@@ -35,8 +43,9 @@ export default class LoginScreenEmail extends Component {
       this.setState({ validPassword: false, loading: false });
     }
       this.setState({ loading: true }, () => {
+       let username = this.state.username.toLowerCase();
        if (this.state.username !== '' && this.state.password !== '') {
-         auth.login(this.state.username, this.state.password)
+         auth.login(username, this.state.password)
         .then((data) => {
           AsyncStorage.setItem('accessToken', data.access_token);
         })
@@ -67,7 +76,9 @@ export default class LoginScreenEmail extends Component {
             onChangeText={username =>
               this.setState({ username, validUsername: true, isFail: false })}
             placeholderTextColor={'silver'}
+            onBlur={() => this.forceToLower()}
             placeholder={strings.LoginbyEmail.username}
+            value={this.state.username}
             required
           />
           {this.state.validUsername ? <Text /> : (
