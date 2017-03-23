@@ -139,11 +139,11 @@ export function requestLogin(message) {
 
 //register
 export function submitRegister(name_first, name_last, name_slug, email, password, password_confirmation) {
-  return(dispatch) => {
-    dispatch(requestLogin)
-  }
   Actions.pop();
-  return { type: SUBMIT_REGISTER, response };
+  return (dispatch) => {
+    dispatch(requestLogin);
+    return { type: SUBMIT_REGISTER };
+  };
 }
 
 export function doneRegister(response = '') {
