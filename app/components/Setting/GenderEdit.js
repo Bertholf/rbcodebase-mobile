@@ -132,11 +132,9 @@ export default class Gender extends Component {
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
     const displayName = this.state.profile.name_display;
-    const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const gender = this.state.gender;
-    const newgender = this.state.newgender;
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => updategender(),
