@@ -15,16 +15,12 @@ import {
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import strings from './../../localizations/';
-import submitRegister from '../../services/AuthRegistration';
 import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 import auth from '../../services/auth';
-import style from './../../style/StyleGlobal';
-const imgmale = require('./../../images/male.png');
-const imgfemale = require('./../../images/female.png');
+import strings from './../../localizations/';
+import submitRegister from '../../services/AuthRegistration';
+
 const { width } = Dimensions.get('window');
-
-
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class RegistrationForm extends Component {
   constructor(props) {
@@ -54,8 +50,8 @@ export default class RegistrationForm extends Component {
   }
 
   componentDidMount() {
-    auth.costumField ()
-    .then(response => this.setState({ customfield: [response], loading: false }, () => console.log(this.state)))
+    auth.costumField()
+    .then(response => this.setState({ customfield: [response], loading: false }))
     .catch(Err => console.log('err', Err));
   }
 
@@ -107,7 +103,7 @@ export default class RegistrationForm extends Component {
      * This function is force the username to LowerCase
      * and called when onBlur
      */
-    let val = this.state.username;
+    const val = this.state.username;
     this.setState({ username: val.toLowerCase(), failregister: false });
   }
 
@@ -127,10 +123,14 @@ export default class RegistrationForm extends Component {
       .then(() => Actions.actionswiper())
       .catch((err) => {
         console.log('FAIL LOGIN AFTER REGISTER');
-        this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
+        this.setState({
+          failregister: true, failMsg: err.response.data.message, submitting: false,
+        });
       });
     })
-    .catch(err => this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false }));
+    .catch(err => this.setState({
+      failregister: true, failMsg: err.response.data.message, submitting: false,
+    }));
   }
   render() {
     const emailRegex =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
