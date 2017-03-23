@@ -57,8 +57,9 @@ export default class EmailEdit extends Component {
   validation() {
     auth.changeemail(this.state.email)
     .then((res) => {
-      console.log('RESPONSE CHANGE EMAIL=====', res);
       Actions.emailVarification();
+      // after get res (response) from auth.changeemail()
+      // user  will direct to Actions.emailVarification()
       // loading will stop when succes submit forgot password
       this.setState({ submit: false });
     });
@@ -83,7 +84,6 @@ export default class EmailEdit extends Component {
     const emailValidator = value.test(this.state.email);
     const emailInput = this.state.email;
     const currentEmail = this.state.profile.email;
-    const sameEmail = currentEmail !== emailInput;
     const validEmail = () => {
       if (emailValidator && emailInput) {
         this.validation();
