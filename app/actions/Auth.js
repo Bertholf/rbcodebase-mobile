@@ -36,7 +36,7 @@ export function submitLogin(username, password, okCallback, failCallback) {
     .then(() => {
       return AsyncStorage.getItem('accessToken');
     })
-   .then((token) => {
+   .then(() => {
      Actions.actionswiper();
      okCallback();
    })
@@ -104,6 +104,7 @@ export function doneLogin(response = {}) {
          * else just login to dashboard
          */
         if (resL.data.registered === false) {
+          console.log('Response from FACEBOOK ', resL);
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
             lastName: resL.data.name.split(' ')[1],

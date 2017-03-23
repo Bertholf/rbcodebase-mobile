@@ -1,16 +1,18 @@
 import axios from 'axios';
 import querystring from 'qs';
-import MockAdapter from 'axios-mock-adapter';
-import userFactory from '../factories/user';
-import timelineFactory from '../factories/timeline';
-import loginFactory from '../factories/AuthLogin';
-import settingfactory from '../factories/setting';
-import notifFactory from '../factories/notif';
-import commentFactory from '../factories/listcomment';
-import registerFactory from '../factories/AuthRegister';
-import friendlistFactory from '../factories/friendlist';
-import listTimeline from '../factories/listTimeline';
-import chatFactory from '../factories/listChat';
+// Disable Mockery
+//
+// import MockAdapter from 'axios-mock-adapter';
+// import userFactory from '../factories/user';
+// import timelineFactory from '../factories/timeline';
+// import loginFactory from '../factories/AuthLogin';
+// import settingfactory from '../factories/setting';
+// import notifFactory from '../factories/notif';
+// import commentFactory from '../factories/listcomment';
+// import registerFactory from '../factories/AuthRegister';
+// import friendlistFactory from '../factories/friendlist';
+// import listTimeline from '../factories/listTimeline';
+// import chatFactory from '../factories/listChat';
 import { AsyncStorage } from 'react-native';
 
 class Api {
@@ -19,11 +21,9 @@ class Api {
     this.client = axios.create();
     middleware(this.client);
     this.client.interceptors.request.use(config =>
-      // console.log(config);
        config);
 
     this.client.interceptors.response.use((response) => {
-      console.log(response);
       return response;
     });
   }
@@ -73,33 +73,5 @@ class Api {
   }
 }
 
-const api = new Api('http://rbcodebase.com/', (instance) => {
-  // const mockery = new MockAdapter(instance, { delayResponse: 2000 });
-  // mockery.onGet('/me').reply(200, userFactory());
-  // mockery.onPut('/me').reply(200);
-  // mockery.onGet('/timeline').reply(200, listTimeline());
-  // mockery.onGet('/timeline').reply(200, {
-  // });
-  //   data: timelineFactory(),
-  // mockery.onGet('/notifications').reply(200, {
-  //   data: notifFactory(),
-  // });
-  // mockery.onGet('/posts').reply(200, listTimeline());
-  // mockery.onPost('/posts').reply(200);
-  // mockery.onGet('/setting').reply(200, settingfactory());
-  // mockery.onPut('/setting').reply(200);
-  // mockery.onPost('/login').reply(200, {
-  //   data: loginFactory(),
-  // });
-  // mockery.onGet('/friendlist').reply(200, {
-  //   data: friendlistFactory(),
-  // });
-  // mockery.onGet('/setting').reply(200, settingfactory());
-  // mockery.onPut('/setting').reply(200);
-  // mockery.onGet('/comment').reply(200, commentFactory());
-  // mockery.onPost('/register').reply(200, registerFactory());
-  // mockery.onGet('/chat').reply(200, chatFactory());
-  // mockery.onPost('/chat').reply(200, chatFactory());
-
-});
+const api = new Api('http://rbcodebase.com/', () => {});
 export default api;

@@ -6,11 +6,9 @@ import {
    TouchableOpacity,
    AsyncStorage,
 } from 'react-native';
-import Toast, { DURATION } from 'react-native-easy-toast';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
-import { Actions } from 'react-native-router-flux';
 import Logout from '../../services/logout';
 
 const chat = require('../../images/dashboard/chat.png');
@@ -50,7 +48,7 @@ export default class Dashboard extends Component {
            ])
         .then(res => console.log('==RESPONSE STORAGE==', res))
           .catch(err => console.log('ERROR SAVE 1', err));
-         })
+         });
       });
     })
     .catch((err) => {

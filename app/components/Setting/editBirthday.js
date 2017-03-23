@@ -89,6 +89,14 @@ export default class editBirthday extends Component {
       //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
       .then((response) => {
+        /**
+         * Set response to profile
+         * profile = response.data
+         * loading = false
+         *
+         * and run callback to show Toast:
+         * this.onClick();
+         */
         this.setState({ profile: response.data, loading: false }, () => {
           this.onClick(strings.editBirthday.saved, 'bottom', DURATION.LENGTH_LONG)
         });

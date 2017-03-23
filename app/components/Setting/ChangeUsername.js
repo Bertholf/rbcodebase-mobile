@@ -6,7 +6,6 @@ import {
   ScrollView,
   Keyboard,
   AsyncStorage,
-  TouchableHighlight,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -35,9 +34,22 @@ export default class ChangeUsername extends Component {
     // @TODO When get profile request is failed
     // make it load value from AsyncStorage
     auth.profile()
-    .then(response => this.setState({ newUsername: response.data.name_slug, profile: response.data, loading: false }))
+    .then(response =>
+      this.setState({
+        newUsername: response.data.name_slug,
+        profile: response.data,
+        loading: false,
+        /**
+         * newUsername  = response.name_slug
+         * profile = response.profile
+         * loading = false
+         *
+         */
+      }))
     .catch(() => {
-      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ namaslug: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namaslug); }).catch(() => console.log('error ambil nama username-----'));
+      AsyncStorage.getItem('name_slug')
+      .then(res => this.setState({ namaslug: res }))
+      .catch();
     });
   }
 
@@ -57,7 +69,7 @@ export default class ChangeUsername extends Component {
      * This function is force the username to LowerCase
      * and called when onBlur
      */
-    let val = this.state.newUsername;
+    const val = this.state.newUsername;
     this.setState({ newUsername: val.toLowerCase(), failregister: false });
   }
   getButton(text, position, duration, withStyle) {
@@ -95,7 +107,7 @@ export default class ChangeUsername extends Component {
         auth.profile()
         .then((response) => {
           this.setState({ profile: response.data, loading: false }, () => {
-            this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG)
+            this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG);
           });
         })
         .catch(Err => Err);
@@ -127,7 +139,7 @@ export default class ChangeUsername extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>

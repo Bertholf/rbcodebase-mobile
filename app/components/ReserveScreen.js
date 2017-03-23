@@ -5,7 +5,7 @@ import { View, Image, TouchableOpacity } from 'react-native';
 export default class ReserveScreen extends Component {
     render() {
     return (
-        <View style={{ position:'absolute', paddingLeft: 150}}>
+        <View style={{ alignSelf: 'center' }}>
           <TouchableOpacity onPress={() => this.props.goCenter()}>
             <Image source={require('../images/arrowtop.png')}/>
           </TouchableOpacity>

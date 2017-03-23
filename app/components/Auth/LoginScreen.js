@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './../../style/StyleGlobal';
-import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
 
 const facebookLogo = require('../../images/facebook-square.png');

@@ -10,7 +10,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import styles from './LoginStyleEmail';
 import auth from '../../services/auth';
-import FacebookLogin from './../../services/FacebookLogin';
 import strings from '../../localizations';
 
 export default class LoginScreenEmail extends Component {
@@ -32,7 +31,7 @@ export default class LoginScreenEmail extends Component {
      * This function is force the username to LowerCase
      * and called when onBlur
      */
-    let val = this.state.username;
+    const val = this.state.username;
     this.setState({ username: val.toLowerCase(), failregister: false });
   }
   validate() {
@@ -42,22 +41,22 @@ export default class LoginScreenEmail extends Component {
     if (this.state.password === '') {
       this.setState({ validPassword: false, loading: false });
     }
-      this.setState({ loading: true }, () => {
-       let username = this.state.username.toLowerCase();
-       if (this.state.username !== '' && this.state.password !== '') {
-         auth.login(username, this.state.password)
+    this.setState({ loading: true }, () => {
+      const username = this.state.username.toLowerCase();
+      if (this.state.username !== '' && this.state.password !== '') {
+        auth.login(username, this.state.password)
         .then((data) => {
           AsyncStorage.setItem('accessToken', data.access_token);
         })
-        .then(() => { AsyncStorage.getItem('accessToken') })
+        .then(() => { AsyncStorage.getItem('accessToken'); })
         .then((token) => {
-            this.setState({ loading: false });
-            Actions.actionswiper({ type : 'reset'});
-            return token;
-          })
-         .catch((err) => this.setState({ loading: false, isFail: true }));
+          this.setState({ loading: false });
+          Actions.actionswiper({ type: 'reset' });
+          return token;
+        })
+         .catch(() => this.setState({ loading: false, isFail: true }));
       }
-    })
+    });
   }
 
 
@@ -70,6 +69,9 @@ export default class LoginScreenEmail extends Component {
               <Text style={{ color: '#fff' }} >{strings.LoginbyEmail.alert_invalid}</Text>
             </View>
           )}
+          {/**
+           * Text Input must be force all input to be LowerCase
+           */}
           <TextInput
             underlineColorAndroid={'rgba(0,0,0,0)'}
             style={styles.textInput}
