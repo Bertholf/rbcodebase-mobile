@@ -12,7 +12,6 @@ import NavigationBar from 'react-native-navbar';
 import { Actions } from 'react-native-router-flux';
 import styles from './ChangeSetting/ChangeStyles';
 import IconClose from './../../layouts/IconClose';
-import me from '../../services/me';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';

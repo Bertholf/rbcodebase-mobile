@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Router, Scene, Modal } from 'react-native-router-flux';
+
 // import your components below here
 import NavBar from './layouts/NavBar';
 import Chat from './components/Chat/ChatView';
@@ -78,7 +79,11 @@ switch (lang) {
 strings.setLanguage(setlang);
 
 const Routing = (props) => (
-
+  /**
+   * Register Your Component to Router here
+   * <Scene key={keyname} component={ComponentName} title={ScreenTitle} />
+   *
+   */
   <View style={{ flex: 1 }}>
     <Router>
       <Scene key={'modal'} component={Modal}>
@@ -99,9 +104,6 @@ const Routing = (props) => (
             <Scene
               key={'notification'} hideNavBar component={Notification} title={'notification'}
             />
-            {/* <Scene
-              key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
-            /> */}
             <Scene
               key="Walkthrough" component={Walkthrough} title={'Walkthrough Screen'}
             />

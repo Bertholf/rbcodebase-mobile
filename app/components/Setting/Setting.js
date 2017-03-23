@@ -57,7 +57,6 @@ export default class Setting extends Component {
            ])
         .then(res => console.log('==RESPONSE STORAGE==', res))
           .catch(err => console.log('ERROR SAVE 1', err));
-           console.log('SAVE USERDATA 2 ');
          })
          .catch(err => console.log('SAVE FAILED', err));
       });
