@@ -314,7 +314,7 @@ export default class RegistrationForm extends Component {
                       </View>
                       <View style={styles.textinputWrapperStyle}>
                         <TextInput
-                          placeholder={rowData.fields.name}
+                          placeholder={strings.register.custom_field}
                           placeholderTextColor="black"
                           underlineColorAndroid="rgba(0,0,0,0)"
                           style={styles.textinputStyle}
