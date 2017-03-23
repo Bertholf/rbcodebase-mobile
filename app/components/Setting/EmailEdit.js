@@ -83,6 +83,8 @@ export default class EmailEdit extends Component {
 
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.email);
+    const emailValidator1 = this.state.email.length == 0;
+    console.log('ERRRRORRR CUY',emailValidator1);
     const emailInput = this.state.email;
     const currentEmail = this.state.profile.email;
     const validEmail = () => {
@@ -122,8 +124,8 @@ export default class EmailEdit extends Component {
               numberOfLines={4}
               // value={this.state.email}
             />
-            {emailValidator && emailInput ?
-              <Text /> : <Text style={styles.invalid}>
+            {emailValidator || emailValidator1 ?
+              null : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}
             {/* {sameEmail ?

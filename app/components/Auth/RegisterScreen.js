@@ -116,7 +116,7 @@ export default class Register extends Component {
     .catch(err => console.log('ERROR TWITTER', err));
   }
 
-  registered(token, provider) {
+  registered(token, provider, idToken) {
     AsyncStorage.setItem('provider', provider);
     AsyncStorage.setItem('accessToken', token)
     .then(() => {
