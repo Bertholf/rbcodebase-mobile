@@ -6,10 +6,8 @@ import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
 import strings from '../localizations';
-import config from '../config';
 
 
-const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
 export const UPDATE_PASSWORD_TEXT = 'UPDATE_PASSWORD_TEXT';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
@@ -139,11 +137,11 @@ export function requestLogin(message) {
 
 //register
 export function submitRegister(name_first, name_last, name_slug, email, password, password_confirmation) {
-  return(dispatch) => {
-    dispatch(requestLogin)
-  }
   Actions.pop();
-  return { type: SUBMIT_REGISTER, response };
+  return (dispatch) => {
+    dispatch(requestLogin);
+    return { type: SUBMIT_REGISTER };
+  };
 }
 
 export function doneRegister(response = '') {
@@ -196,11 +194,9 @@ export function loginWithTwitter() {
       .then((response) => {
         const secretCode = response.secret;
         if (secretCode === undefined) {
-          console.log('THIS IS TWTITTER======', response);
           Actions.pop();
           dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.tokenSecret, oauth_provider_id: response.userId }));
         } else {
-          console.log('THIS IS TWTITTER======', response);
           dispatch(doneLogin({ accessToken: response.token, provider: 'twitter', secret: response.secret, oauth_provider_id: response.userId }));
         }
       })
