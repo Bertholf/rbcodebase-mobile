@@ -118,7 +118,8 @@ export default class Register extends Component {
 
   registered(token, provider, idToken) {
     AsyncStorage.setItem('provider', provider);
-    AsyncStorage.setItem('accessToken', token)
+    AsyncStorage.setItem('accessToken', token);
+     AsyncStorage.setItem('accessToken', idToken)
     .then(() => {
       Actions.loaderview({ message: 'You are already registered', onPress: () => Actions.actionswiper({ type: 'reset' }) });
       setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
