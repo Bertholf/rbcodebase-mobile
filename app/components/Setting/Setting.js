@@ -46,21 +46,13 @@ export default class Setting extends Component {
          ['gender', response.data.gender.toString()],
          ['email', (response.data.email)],
          ['date_birth', this.state.birthday],
-         ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
+         ['status', response.data.status.toString()],
+         ['confirmed', response.data.confirmed.toString()],
          ['verified', response.data.verified.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
          ['picture', response.data.picture.toString()],
          ['cell_number', this.state.phone.toString()],
-        ])
-         .then(() => {
-           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'gender', 'email', 'date_birth',
-             'cell_number', 'status', 'confirmed', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
-             'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
-           ])
-        .then(res => console.log('==RESPONSE STORAGE==', res))
-          .catch(err => console.log('ERROR SAVE 1', err));
-         })
-         .catch(err => console.log('SAVE FAILED', err));
+        ]);
       });
     })
     .catch(() => {
