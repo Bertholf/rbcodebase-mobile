@@ -31,29 +31,28 @@ export default class Setting extends Component {
   componentDidMount() {
     auth.profile()
     .then((response) => {
-      this.setState({
-        namef: response.data.name_first,
-        namel: response.data.name_last,
-        nameslug: response.data.name_slug,
-        email: response.data.email,
-        gender: response.data.gender,
-        birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
-        phone: response.data.cell_number }, () => {
-        AsyncStorage.multiSet([['userId', response.data.id.toString()],
-         ['name_first', response.data.name_first.toString()],
-         ['name_last', response.data.name_last.toString()],
-         ['name_slug', response.data.name_slug.toString()],
-         ['gender', response.data.gender.toString()],
-         ['email', (response.data.email)],
-         ['date_birth', this.state.birthday],
-         ['status', response.data.status.toString()],
-         ['confirmed', response.data.confirmed.toString()],
-         ['verified', response.data.verified.toString()],
-         ['timeline_id', response.data.timeline_id.toString()],
-         ['picture', response.data.picture.toString()],
-         ['cell_number', this.state.phone.toString()],
-        ]);
-      });
+      console.log('EMAIL CHANGE====', response);
+      if (response.data.date_birth === null) {
+        this.setState({
+          namef: response.data.name_first,
+          namel: response.data.name_last,
+          nameslug: response.data.name_slug,
+          email: response.data.email,
+          gender: response.data.gender,
+          phone: response.data.cell_number,
+          birthday: 'Jan 1st 1992',
+        });
+      } else {
+        this.setState({
+          namef: response.data.name_first,
+          namel: response.data.name_last,
+          nameslug: response.data.name_slug,
+          email: response.data.email,
+          gender: response.data.gender,
+          phone: response.data.cell_number,
+          birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
+        });
+      }
     })
     .catch(() => {
       AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
@@ -236,8 +235,8 @@ export default class Setting extends Component {
                  { text: strings.logoutLocalization.cancel, onPress: () => console.log('cancelled Pressed') },
                   { text: 'OK',
                     onPress: () => {
-                    Logout();
-                  } },
+                      Logout();
+                    } },
                 ],
           )}
             >

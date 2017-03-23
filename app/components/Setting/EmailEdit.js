@@ -57,6 +57,7 @@ export default class EmailEdit extends Component {
   validation() {
     auth.changeemail(this.state.email)
     .then((res) => {
+      console.log('EMAIL REQUEST=====', res);
       Actions.emailVarification();
       // after get res (response) from auth.changeemail()
       // user  will direct to Actions.emailVarification()

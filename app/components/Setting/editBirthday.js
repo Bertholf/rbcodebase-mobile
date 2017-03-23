@@ -30,7 +30,19 @@ export default class editBirthday extends Component {
   // Mount Component with Value in auth.profile (birthday)
   componentDidMount() {
     auth.profile()
-     .then(response => this.setState({ profile: response.data, date: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMMM Do YYYY') }))
+     .then((response) => {
+       if (response.data.date_birth === null) {
+         this.setState({
+           profile: response.data,
+           date: 'Jan 1st 1992',
+         });
+       } else {
+         this.setState({
+           profile: response.data,
+           date: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMMM Do YYYY'),
+         });
+       }
+     })
      .catch(Err => Err);
   }
   onClick(text, position, duration, withStyle) {
@@ -72,8 +84,8 @@ export default class editBirthday extends Component {
     };
       // title of screen
     const titleConfig = {
-    title: strings.editBirthday.title,
-  };
+      title: strings.editBirthday.title,
+    };
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -98,7 +110,7 @@ export default class editBirthday extends Component {
          * this.onClick();
          */
         this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.editBirthday.saved, 'bottom', DURATION.LENGTH_LONG)
+          this.onClick(strings.editBirthday.saved, 'bottom', DURATION.LENGTH_LONG);
         });
       })
       .catch(Err => Err);
@@ -112,7 +124,7 @@ export default class editBirthday extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
