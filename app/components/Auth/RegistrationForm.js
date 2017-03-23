@@ -133,7 +133,7 @@ export default class RegistrationForm extends Component {
     .catch(err => this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false }));
   }
   render() {
-    const emailRegex = /^[a-zA-Z0-9._]+@[a-zA-Z0-9_]+?\.[a-zA-Z]{2,3}$/;
+    const emailRegex =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const usernameRegex = /^[a-zA-Z0-9_-]/;
     const nameRegex = /^[a-zA-Z]+$/;
     const validFName = nameRegex.test(this.state.firstname);
