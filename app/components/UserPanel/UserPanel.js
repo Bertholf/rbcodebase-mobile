@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Swiper from 'react-native-swiper';
 import styles from './style';
 import auth from './../../services/auth';
 import strings from '../../localizations';
@@ -33,14 +32,6 @@ class TitleText extends React.Component {
 }
 
 class userPanel extends React.Component {
-  viewStyle() {
-    return {
-      flex: 1,
-      justifyContent: 'center',
-      backgroundColor: 'red',
-      alignItems: 'center',
-    };
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -53,11 +44,19 @@ class userPanel extends React.Component {
 
   componentDidMount() {
     // Get Profile Data From server
-    auth.profile ()
+    auth.profile()
     .then(response => this.setState({ profile: response.data, loading: false }, () => console.log(this.state)))
     .catch(Err => console.log('err', Err));
   }
 
+  viewStyle() {
+    return {
+      flex: 1,
+      justifyContent: 'center',
+      backgroundColor: 'red',
+      alignItems: 'center',
+    };
+  }
 
   render() {
     return (

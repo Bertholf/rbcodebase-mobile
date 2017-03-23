@@ -11,17 +11,10 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 import styles from './../../style/StyleGlobal';
-// import {GoogleSigninButton} from 'react-native-google-signin';
-// import GoogleSignIn from './../../services/signingoogle';
-import FacebookLogin from './../../services/FacebookLogin';
 import facebookRegister from '../../services/FacebookRegister';
-import registerService from '../../services/AuthRegister';
-import registerWithGoogle from '../../services/googleRegister';
 import google from '../../modules/google';
 import twitterModule from '../../modules/twitter';
-import twitterRegister from '../../services/TwitterRegister';
 import strings from './../../localizations/';
-import Loader from '../../views/Loader';
 import auth from '../../services/auth';
 
 const facebookLogo = require('../../images/facebook-square.png');
@@ -50,11 +43,6 @@ export default class Register extends Component {
       errMsg: '',
       loading: false,
     };
-  }
-
-  // dummy button action
-  register() {
-    Alert.alert('Button Pressed');
   }
 
   // Register with Google
