@@ -48,9 +48,23 @@ export default class Register extends Component {
   // Register with Google
   registerWithGoogle() {
     google.signIn()
-    .then(({ user }) => Actions.registrationform({ firstName: user.name.split(' ')[0], lastName: user.name.split(' ')[1], email: user.email, username: '' }))
-    .catch();
-  }
+     .then(res => {
+        console.log('response google after oauth', res);
+        if (res.data === null) {
+          Actions.registrationform({
+            firstName: res.user.name.split(' ')[0],
+            lastName: res.user.name.split(' ')[1],
+            email: res.user.email,
+            provider: 'google',
+            accessToken: response.idToken,
+            oauthProviderId: response.authCode,
+          });
+        } else {
+          this.registered(res.idToken, 'google');
+        }
+      })
+      .catch(err => console.log('error google done login', err))
+    }
   // Register with twitter
   registerWithTwitter() {
     twitterModule.signIn()
