@@ -23,121 +23,12 @@ import style from './../../style/StyleGlobal';
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
 const { width } = Dimensions.get('window');
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContent: {
-    flex: 3,
-    marginLeft: 16,
-    marginRight: 16,
-    paddingTop: 10,
-    paddingLeft: 14,
-    paddingRight: 14,
-  },
-  textinputStyle: {
-    fontSize: 16,
-    color: 'black',
-    width: 0.75 * width,
-    height: 40,
-  },
-  textinputWrapperStyle: {
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    flexDirection: 'column',
-    paddingLeft: 16,
-    paddingRight: 8,
-    marginBottom: 6,
-    marginTop: 6,
-  },
-  btnReg: {
-    backgroundColor: '#2196F3',
-    borderRadius: 2,
-    elevation: 2,
-    paddingTop: 10,
-    paddingBottom: 10,
-    height: 50,
-    marginBottom: 40,
-    marginRight: 16,
-    marginLeft: 16,
-  },
-  textReg: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
-  line: {
-    borderBottomWidth: 0.8,
-    borderColor: 'black',
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  fail: {
-    color: '#ff0000',
-    alignSelf: 'flex-start',
-  },
-  acceptImg: {
-    height: 20,
-    width: 20,
-    marginTop: 10,
-    marginLeft: -40,
-  },
-  policyStyle: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-  },
-  btnGender: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 2,
-    height: 65,
-    width: (width * 0.85) / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-    paddingTop: 5,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
-  },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
-  },
-  errBox: {
-    margin: 10,
-    borderRadius: 6,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,0,0,0.7)',
-    width: 0.75 * width,
-    height: 60,
-    padding: 10,
-  },
-  genderStyle: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    paddingLeft: 16,
-    paddingRight: 8,
-    marginBottom: 6,
-    marginTop: 6,
-    height: 40,
-  },
-});
 
+
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class RegistrationForm extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       availableUser: false,
       app: 'RBCodeBase',
@@ -157,8 +48,15 @@ export default class RegistrationForm extends Component {
       failMsg: '',
       loading: true,
       position: 'bottom',
-      customField: ds.cloneWithRows([{ name: 'one' }, { name: 'two' }]),
+      customField: ds.cloneWithRows([{ name: 'one' }, { name: 'two' }, { name: 'three' }]),
+      customfield: [],
     };
+  }
+
+  componentDidMount() {
+    auth.costumField ()
+    .then(response => this.setState({ customfield: [response], loading: false }, () => console.log(this.state)))
+    .catch(Err => console.log('err', Err));
   }
 
   onClick(text, position, duration, withStyle) {
@@ -298,7 +196,6 @@ export default class RegistrationForm extends Component {
                     <TextInput
                       placeholder={strings.register.first_name}
                       placeholderTextColor="black"
-                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={firstname => this.setState({ firstname, failregister: false })}
@@ -310,7 +207,6 @@ export default class RegistrationForm extends Component {
                     <TextInput
                       placeholder={strings.register.last_name}
                       placeholderTextColor="black"
-                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       editable
@@ -327,7 +223,6 @@ export default class RegistrationForm extends Component {
                       ref="usernameInput"
                       placeholder={strings.register.user_name}
                       placeholderTextColor="black"
-                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={username => this.setState({ username, failregister: false })}
@@ -347,7 +242,6 @@ export default class RegistrationForm extends Component {
                     <TextInput
                       placeholder={strings.register.email}
                       placeholderTextColor="black"
-                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       editable
@@ -359,9 +253,11 @@ export default class RegistrationForm extends Component {
                     : (<Text style={styles.fail}>{strings.register.alert_invalid_email}</Text>)
                   }
 
-                  {/*
+                  {
+                    /*
                       Show picker gender
-                  */}
+                  */
+                }
                   <View style={styles.genderStyle}>
                     <View>
                       <Text style={{ color: '#000', fontSize: 16 }}>{strings.register.gender}</Text>
@@ -384,7 +280,6 @@ export default class RegistrationForm extends Component {
                     <TextInput
                       placeholder={strings.register.password}
                       placeholderTextColor="black"
-                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={password => this.setState({ password, failregister: false })}
@@ -396,7 +291,6 @@ export default class RegistrationForm extends Component {
                     <TextInput
                       placeholder={strings.register.confirm_password}
                       placeholderTextColor="black"
-                      selectionColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       onChangeText={confirmPassword => this.setState({ confirmPassword, failregister: false })}
@@ -405,30 +299,30 @@ export default class RegistrationForm extends Component {
                   </View>
                   { validPass || emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.line} />
-                  <View style={styles.textinputWrapperStyle}>
-                    <TextInput
-                      placeholder={strings.register.custom_field}
-                      placeholderTextColor="black"
-                      selectionColor="black"
-                      underlineColorAndroid="rgba(0,0,0,0)"
-                      style={styles.textinputStyle}
-                    />
+                  <View style={styles.textWrapperStyle}>
                   </View>
-
-                  {/*<ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={rowData =>
+                {
+                <ListView
+                    dataSource={ds.cloneWithRows(this.state.customfield)}
+                    renderRow={(rowData) =>
+                      <View>
+                      <View style={styles.textWrapperStyle}>
+                      <Text style={styles.textcustomfield}>{rowData.title}</Text>
+                      </View>
+                      <View style={styles.textWrapperStyle}>
+                      <Text style={styles.textinputStyle}>{rowData.fields.title}</Text>
+                      </View>
                       <View style={styles.textinputWrapperStyle}>
-                        <Text>{rowData.name}</Text>
                         <TextInput
-                          placeholder={strings.register.custom_field}
+                          placeholder={rowData.fields.name}
                           placeholderTextColor="black"
-                          selectionColor="black"
                           underlineColorAndroid="rgba(0,0,0,0)"
                           style={styles.textinputStyle}
                         />
-                      </View>}
-                  />*/}
+                      </View>
+                    </View>}
+                  />
+                 }
 
                 </View>
                 <View style={styles.line} />
@@ -441,9 +335,11 @@ export default class RegistrationForm extends Component {
                     </Text>}
                   </View>
                 </TouchableOpacity>
-                {/*
+                {
+                  /*
                     LICENSE AND POLICY PRIVACY TEXT VIEW
-                */}
+                */
+              }
                 <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
                   <View style={styles.policyStyle} >
                     <Text>
@@ -483,3 +379,130 @@ export default class RegistrationForm extends Component {
     return (<ActivityIndicator />);
   }
 }
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContent: {
+    flex: 3,
+    marginLeft: 16,
+    marginRight: 16,
+    paddingTop: 10,
+    paddingLeft: 14,
+    paddingRight: 14,
+  },
+  textinputStyle: {
+    fontSize: 16,
+    color: 'black',
+    width: 0.75 * width,
+    height: 40,
+  },
+  textcustomfield: {
+    fontSize: 28,
+    color: 'black',
+    width: 0.75 * width,
+    height: 40,
+  },
+  textinputWrapperStyle: {
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    flexDirection: 'column',
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+  },
+  textWrapperStyle: {
+    borderColor: '#2196F3',
+    flexDirection: 'column',
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+  },
+  btnReg: {
+    backgroundColor: '#2196F3',
+    borderRadius: 2,
+    elevation: 2,
+    paddingTop: 10,
+    paddingBottom: 10,
+    height: 50,
+    marginBottom: 40,
+    marginRight: 16,
+    marginLeft: 16,
+  },
+  textReg: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  line: {
+    borderBottomWidth: 0.8,
+    borderColor: 'black',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  fail: {
+    color: '#ff0000',
+    alignSelf: 'flex-start',
+  },
+  acceptImg: {
+    height: 20,
+    width: 20,
+    marginTop: 10,
+    marginLeft: -40,
+  },
+  policyStyle: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  btnGender: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 2,
+    height: 65,
+    width: (width * 0.85) / 2,
+    borderWidth: 1,
+    borderColor: 'silver',
+    paddingTop: 5,
+  },
+  active: {
+    borderWidth: 2,
+    borderColor: '#2196F3',
+  },
+  active2: {
+    borderWidth: 2,
+    borderColor: '#f2003d',
+  },
+  errBox: {
+    margin: 10,
+    borderRadius: 6,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,0,0,0.7)',
+    width: 0.75 * width,
+    height: 60,
+    padding: 10,
+  },
+  genderStyle: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+    height: 40,
+  },
+});
