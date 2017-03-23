@@ -64,7 +64,7 @@ export default class NameEdit extends Component {
       AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); }).catch(resp => console.log('error ambil namalengkap-----'));
       AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
       AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
-  });
+    });
   }
 
   clearText(fieldName) {
@@ -106,14 +106,13 @@ export default class NameEdit extends Component {
           }
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
         } else {
-          console.log('name===', firstNameInput, lastNameInput);
-           saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
+          saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
           Keyboard.dismiss();
           auth.profile()
             .then(response => this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG)
-        }))
-        .catch(Err => console.log('err', Err));
+              this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
+            }))
+        .catch();
           Keyboard.dismiss();
           Actions.refresh();
         }
@@ -128,7 +127,7 @@ export default class NameEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>

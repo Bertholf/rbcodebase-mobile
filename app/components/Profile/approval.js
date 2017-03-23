@@ -50,6 +50,11 @@ export default class Approval extends React.Component {
   render() {
     const { loading, nodata } = this.state;
     if (loading === false && nodata === false) {
+      /**
+       * if response has data
+       * show it in ListView
+       *
+       */
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
@@ -61,6 +66,10 @@ export default class Approval extends React.Component {
         />
       );
     } else if (nodata === true) {
+      /**
+       * if response is === null or empty and loading is false
+       * show empty message
+       */
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
           <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
@@ -73,6 +82,10 @@ export default class Approval extends React.Component {
         </View>
       );
     } else {
+      /**
+       * Show ActivityIndicator
+       * if (nodata === true && loading === true)
+       */
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size={'large'} />

@@ -63,7 +63,6 @@ export default class Setting extends Component {
       });
     })
     .catch((Err) => {
-      console.log('ERROR', Err);
       AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
       AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('USERNAME KAMUUUUU=====', this.state.namaslug); }).catch(res => console.log('error ambil nama username-----'));
       AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
@@ -91,7 +90,6 @@ export default class Setting extends Component {
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                   <Text style={{ alignSelf: 'center' }}>{this.state.namef} {this.state.namel}</Text>
-                  {/* {this.state.profile.name_first} {this.state.profile.name_last} */}
                   <Image style={styles.image} source={next} />
                 </View>
               </View>
@@ -105,7 +103,6 @@ export default class Setting extends Component {
                 </View>
                 <View style={{ flexDirection: 'row' }}>
                   <Text style={{ alignSelf: 'center' }}>{this.state.nameslug}</Text>
-                  {/* {this.state.profile.name_slug} */}
                   <Image style={styles.image} source={next} />
                 </View>
               </View>
