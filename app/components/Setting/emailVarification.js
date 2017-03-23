@@ -29,7 +29,7 @@ export default class emailVarification extends Component {
   }
   componentDidMount() {
     // Save dan get Item AsyncStorage from Api/change-email
-    AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); console.log('email set AsyncStorage', this.state.emailnew); }).catch(res => console.log('error ambil email new-----'));
+    AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); }).catch(res => console.log('error take new email-----'));
     auth.profile()
     .then(response => this.setState({ profile: response.data }))
     .catch(Err => Err);
@@ -38,6 +38,7 @@ export default class emailVarification extends Component {
     this.setState({
       position,
     });
+
     if (withStyle) {
       this.refs.toastWithStyle.show(text, duration);
     } else {

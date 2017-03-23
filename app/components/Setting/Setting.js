@@ -26,6 +26,8 @@ export default class Setting extends Component {
       gendersncy: '',
     };
   }
+
+  // Save dan get Item AsyncStorage from Api/me
   componentDidMount() {
     auth.profile()
     .then((response) => {
@@ -61,7 +63,7 @@ export default class Setting extends Component {
          .catch(err => console.log('SAVE FAILED', err));
       });
     })
-    .catch((Err) => {
+    .catch(() => {
       AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
       AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('USERNAME KAMUUUUU=====', this.state.namaslug); }).catch(res => console.log('error ambil nama username-----'));
       AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
