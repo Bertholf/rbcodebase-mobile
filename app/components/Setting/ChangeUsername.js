@@ -39,6 +39,12 @@ export default class ChangeUsername extends Component {
         newUsername: response.data.name_slug,
         profile: response.data,
         loading: false,
+        /**
+         * newUsername  = response.name_slug
+         * profile = response.profile
+         * loading = false
+         *
+         */
       }))
     .catch(() => {
       AsyncStorage.getItem('name_slug')
