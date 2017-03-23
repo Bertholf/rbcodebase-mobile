@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Alert,
-  ScrollView,
 } from 'react-native';
 import settingService from '../../services/setting';
 import CheckBox from './CheckBox';
@@ -74,7 +73,7 @@ export default class EmailNotif extends Component {
             <TouchableOpacity
               style={styles.saveBtn}
               activeOpacity={0.8}
-              onPress={() => saveButton({ emailNotification: this.state})}
+              onPress={() => saveButton({ emailNotification: this.state })}
             >
               <Text style={styles.txtBtn}>SAVE</Text>
             </TouchableOpacity>

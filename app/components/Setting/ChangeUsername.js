@@ -113,7 +113,6 @@ export default class ChangeUsername extends Component {
         .catch(Err => Err);
         Keyboard.dismiss();
         this.props.reRender();
-        // Actions.pop();
       } else {
         this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
       }

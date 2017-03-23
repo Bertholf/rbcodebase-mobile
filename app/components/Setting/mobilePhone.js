@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  TextInput,
   StyleSheet,
   Keyboard,
   AsyncStorage,
@@ -114,12 +113,7 @@ export default class MobilePhone extends Component {
      */
     this.refs.myCountryPicker.open();
   }
-  selectCountry(country) {
-    this.refs.phone.selectCountry(country.iso2);
-    if (typeof country.dialCode !== 'undefined') {
-      this.refs.phone.onChangePhoneNumber(country.dialCode);
-    }
-  }
+
   onChanged(text) {
     let newText = '';
     const numbers = '^[0-9]';
@@ -140,6 +134,13 @@ export default class MobilePhone extends Component {
         <Text>{text}</Text>
       </Text>
     );
+  }
+
+  selectCountry(country) {
+    this.refs.phone.selectCountry(country.iso2);
+    if (typeof country.dialCode !== 'undefined') {
+      this.refs.phone.onChangePhoneNumber(country.dialCode);
+    }
   }
 
   clearText(fieldName) {

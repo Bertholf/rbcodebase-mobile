@@ -10,14 +10,14 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-import auth from './../../services/auth';
-import me from '../../services/me';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
+import auth from './../../services/auth';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
 import IconClose from './../../layouts/IconClose';
+
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
 
@@ -100,13 +100,15 @@ export default class Gender extends Component {
     };
   }
   componentDidMount() {
-    AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
-    auth.profile()
-    .then(response => this.setState({ profile: response.data, loading: false, gender: response.data.gender }))
+    AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); })
+    .then(response => this.setState({
+      profile: response.data, loading: false, gender: response.data.gender,
+    }))
     .catch(() => {
-      AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); console.log('GENDERRRRRRRRRRRRRRR=====', this.state.genderansyc); }).catch(res => console.log('error AsyncStorage-----'));
+      AsyncStorage.getItem('gender').then((res) => { this.setState({ genderansyc: res }); });
     });
   }
+
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,

@@ -7,11 +7,11 @@ import {
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import styles from '../../style/StyleGlobal';
 import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
-import Toast, { DURATION } from 'react-native-easy-toast';
 import strings from '../../localizations';
 
 
