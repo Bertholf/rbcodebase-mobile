@@ -26,6 +26,8 @@ export default class Setting extends Component {
       gendersncy: '',
     };
   }
+
+  // Save dan get Item AsyncStorage from Api/me
   componentDidMount() {
     auth.profile()
     .then((response) => {
@@ -64,13 +66,13 @@ export default class Setting extends Component {
     })
     .catch((Err) => {
       console.log('ERROR', Err);
-      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res });  }).catch(res => console.log('error ambil email-----'));
-      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res });  }).catch(res => console.log('error ambil nama username-----'));
-      AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res });  }).catch(res => console.log('error ambil namalengkap-----'));
-      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res });  }).catch(res => console.log('error ambil namalengkap--- --'));
-      AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res });  }).catch(res => console.log('error ambil tanggal lahir--- --'));
-      AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); }).catch(res => console.log('error ambil tanggal lahir--- --'));
-      AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); }).catch(res => console.log('error ambil tanggal lahir--- --'));
+      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res });  }).catch(res => console.log('error take email-----'));
+      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res });  }).catch(res => console.log('error take username-----'));
+      AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res });  }).catch(res => console.log('error take first name-----'));
+      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res });  }).catch(res => console.log('error take last name--- --'));
+      AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res });  }).catch(res => console.log('error taker birthday--- --'));
+      AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); }).catch(res => console.log('error take cell_number--- --'));
+      AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); }).catch(res => console.log('error take gender--- --'));
     });
   }
 

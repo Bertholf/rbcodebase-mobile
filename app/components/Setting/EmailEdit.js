@@ -31,7 +31,7 @@ export default class EmailEdit extends Component {
     auth.profile()
     .then(response => this.setState({ profile: response.data, email: response.data.email }))
     .catch(() => {
-      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
+      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); }).catch(res => console.log('error ambil email-----'));
     });
   }
   onClick(text, position, duration, withStyle) {
