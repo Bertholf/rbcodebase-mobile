@@ -22,70 +22,6 @@ const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
 
 const { width } = Dimensions.get('window');
-const styles = StyleSheet.create({
-  genderRow: {
-    paddingTop: 50,
-    paddingBottom: 90,
-    width: width * 0.9,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 7,
-    marginLeft: 18,
-    marginRight: 18,
-  },
-  btnGender: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 2,
-    height: 80,
-    width: (width * 0.85) / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-  },
-  OuterView: {
-    flexDirection: 'column',
-    flex: 1,
-  },
-  Text1: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-    alignItems: 'flex-start',
-    paddingTop: 16,
-    paddingBottom: 10,
-  },
-  imgGender: {
-    height: 80,
-    width: 80,
-    marginRight: 10,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
-  },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
-  },
-  View2: {
-    marginTop: 20,
-    marginBottom: 20,
-    elevation: 2,
-    alignItems: 'center',
-    backgroundColor: '#2196f3',
-    marginLeft: 16,
-    marginRight: 16,
-  },
-  Button: {
-    paddingTop: 6,
-    paddingBottom: 6,
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#ffffff',
-  },
-});
 
 export default class Gender extends Component {
   constructor(props) {
@@ -96,6 +32,7 @@ export default class Gender extends Component {
       currentGender: '',
       profile: {},
       position: 'bottom',
+      gender: '',
 
     };
   }
@@ -220,3 +157,69 @@ export default class Gender extends Component {
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  genderRow: {
+    paddingTop: 50,
+    paddingBottom: 90,
+    width: width * 0.9,
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 7,
+    marginLeft: 25,
+    marginRight: 25,
+  },
+  btnGender: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 2,
+    height: 80,
+    width: (width * 0.85) / 2,
+    borderWidth: 1,
+    borderColor: 'silver',
+  },
+  OuterView: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  Text1: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    alignItems: 'flex-start',
+    paddingTop: 16,
+    paddingBottom: 10,
+  },
+  imgGender: {
+    height: 80,
+    width: 80,
+    marginRight: 5,
+  },
+  active: {
+    borderWidth: 2,
+    borderColor: '#2196F3',
+  },
+  active2: {
+    borderWidth: 2,
+    borderColor: '#f2003d',
+  },
+  View2: {
+    marginTop: 20,
+    marginBottom: 20,
+    elevation: 2,
+    alignItems: 'center',
+    backgroundColor: '#2196f3',
+    marginLeft: 24,
+    marginRight: 24,
+  },
+  Button: {
+    paddingTop: 6,
+    paddingBottom: 6,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+});

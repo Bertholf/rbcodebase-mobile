@@ -13,7 +13,6 @@ import strings from '../../localizations';
 
 
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
-const verifyImage = require('./../../images/ic_check_circle_black_24dp.png');
 const followIcon = require('./../../images/people.png');
 const contactIcon = require('./../../images/ic_contacts_black_24dp.png');
 const addFriendIcon = require('./../../images/ic_person_add_black_24dp.png');
@@ -80,7 +79,6 @@ class userPanel extends React.Component {
                 <Image style={styles.userImage} source={require('../../images/user.png')} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.userImage} />
             }
             </TouchableOpacity>
-            <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
 
             <View style={styles.linksContainer}>
               <TouchableOpacity
