@@ -48,18 +48,23 @@ export default class Register extends Component {
   registerWithGoogle() {
     google.signIn()
      .then((res) => {
-       if (res.data === null) {
-         Actions.registrationform({
-           firstName: res.user.name.split(' ')[0],
-           lastName: res.user.name.split(' ')[1],
-           email: res.user.email,
-           provider: 'google',
-           accessToken: response.idToken,
-           oauthProviderId: response.authCode,
-         });
-       } else {
-         this.registered(res.idToken, 'google');
-       }
+       console.log('RESPONSE GOOGLE', res);
+       auth.check(res.idToken, 'google', res.authCode)
+       .then((resp) => {
+         console.log('GOOGLE AFTER OAUTH', resp)
+         if (resp.data === null) {
+           Actions.registrationform({
+             firstName: res.user.name.split(' ')[0],
+             lastName: res.user.name.split(' ')[1],
+             email: res.user.email,
+             provider: 'google',
+             accessToken: res.idToken,
+             oauthProviderId: res.authCode,
+           });
+         } else {
+           this.registered(res.idToken, 'google');
+         }
+       });
      })
       .catch(err => console.log('error google done login', err));
   }

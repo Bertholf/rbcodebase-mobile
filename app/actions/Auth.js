@@ -29,8 +29,7 @@ export function updatePassword(password) {
   return { type: UPDATE_PASSWORD_TEXT, password };
 }
 export function submitLogin(username, password, okCallback, failCallback) {
-  return () => {
-    return auth.login(username, password).then((data) => {
+  return () => auth.login(username, password).then((data) => {
       return AsyncStorage.setItem('accessToken', data.access_token);
     })
     .then(() => {
@@ -41,7 +40,6 @@ export function submitLogin(username, password, okCallback, failCallback) {
      okCallback();
    })
    .catch(() => failCallback());
-  }
 }
 const registered = (token, provider) => {
   AsyncStorage.setItem('provider', provider);
@@ -91,9 +89,9 @@ export function doneLogin(response = {}) {
             provider: response.provider,
           });
         } else {
-          registered(resL.data.access_token, 'twitter')
+          registered(resL.data.access_token, 'twitter');
         }
-      }).catch(err => err)
+      }).catch(err => err);
     } else if (response.provider === 'facebook') {
       auth.check(response.accessToken, 'facebook', response.userID)
       .then((resL) => {
@@ -118,9 +116,9 @@ export function doneLogin(response = {}) {
         }
       })
       .catch(err => err);
-    } else if(response.provider === 'google'){
-      auth.check(response.idToken, response.provider,response.authCode)
-      .then(res => {
+    } else if (response.provider === 'google') {
+      auth.check(response.idToken, 'google', response.authCode)
+      .then((res) => {
         console.log('response google after oauth', res);
         if (res.data === null) {
           Actions.registrationform({
@@ -132,7 +130,7 @@ export function doneLogin(response = {}) {
           registered(res.idToken, 'google');
         }
       })
-      .catch(err => console.log('error google done login', err))
+      .catch(err => console.log('error google done login', err));
     }
   }
 
@@ -148,11 +146,11 @@ export function requestLogin(message) {
   return { type: REQUEST_LOGIN };
 }
 
-//register
+// register
 export function submitRegister(name_first, name_last, name_slug, email, password, password_confirmation) {
-  return(dispatch) => {
-    dispatch(requestLogin)
-  }
+  return (dispatch) => {
+    dispatch(requestLogin);
+  };
   Actions.pop();
   return { type: SUBMIT_REGISTER, response };
 }
@@ -173,10 +171,10 @@ export function loginWithGoogle() {
   return (dispatch) => {
     dispatch(requestLogin('Login With Google'));
     return google.signIn()
-    .then(user => {
-      console.log('googel res', user)
+    .then((user) => {
+      console.log('googel res', user);
       Actions.pop();
-      dispatch(doneLogin({...user, provider: 'google' }))
+      dispatch(doneLogin({ ...user, provider: 'google' }));
     })
     .catch(err => dispatch(errorLogin(err)));
   };
@@ -186,8 +184,7 @@ export function loginWithFacebook() {
   /**
    * App authorize with Facebook SSO provider
    */
-  return (dispatch) => {
-    return LoginManager.logInWithReadPermissions(['public_profile'])
+  return (dispatch) => LoginManager.logInWithReadPermissions(['public_profile'])
     .then((result) => {
       if (result.isCancelled) {
         return Promise.reject(result);
@@ -197,7 +194,6 @@ export function loginWithFacebook() {
       dispatch(doneLogin({ provider: 'facebook', ...response }));
     })
     .catch(err => errorLogin(err));
-  };
 }
 
 export const manager = new OAuthManager('RB Codebase');
@@ -206,8 +202,7 @@ export function loginWithTwitter() {
   /**
    * Authorize SSO Twitter with the app
    */
-  return (dispatch) => {
-    return twitter.signIn()
+  return (dispatch) => twitter.signIn()
       .then((response) => {
         const secretCode = response.secret;
         if (secretCode === undefined) {
@@ -220,5 +215,4 @@ export function loginWithTwitter() {
         }
       })
       .catch(err => err);
-  };
 }

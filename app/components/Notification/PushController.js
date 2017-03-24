@@ -24,7 +24,7 @@ export default class PushController extends Component {
      */
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
-      if(res === 'null' || res === 'undefined') {
+      if (res === null || res === undefined) {
         FCM.getFCMToken()
         .then((token) => {
           notif.sendToken(token);
