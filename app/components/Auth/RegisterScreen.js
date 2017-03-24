@@ -50,20 +50,19 @@ export default class Register extends Component {
     google.signIn()
      .then((res) => {
        console.log('RESPONSE GOOGLE', res);
-       auth.check(res.idToken, 'google', res.authCode)
+       auth.checkgoogle('google', res.user.email)
        .then((resp) => {
-         console.log('GOOGLE AFTER OAUTH', resp)
+         console.log('GOOGLE AFTER OAUTH', resp);
          if (resp.data === null) {
            Actions.registrationform({
              firstName: res.user.name.split(' ')[0],
              lastName: res.user.name.split(' ')[1],
              email: res.user.email,
              provider: 'google',
-             accessToken: res.idToken,
-             oauthProviderId: res.authCode,
+             oauthProviderId: res.user.email,
            });
          } else {
-           this.registered(res.idToken, 'google');
+           this.registered(resp.data.access_token, 'google');
          }
        });
      })
@@ -117,10 +116,9 @@ export default class Register extends Component {
     .catch(err => console.log('ERROR TWITTER', err));
   }
 
-  registered(token, provider, idToken) {
+  registered(token, provider) {
     AsyncStorage.setItem('provider', provider);
-    AsyncStorage.setItem('accessToken', token);
-    AsyncStorage.setItem('accessToken', idToken)
+    AsyncStorage.setItem('accessToken', token)
     .then(() => {
       Actions.loaderview({ message: 'You are already registered', onPress: () => Actions.actionswiper({ type: 'reset' }) });
       setTimeout(() => Actions.actionswiper({ type: 'reset' }), 1000);
