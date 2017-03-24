@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#fff',
+    marginLeft: 20,
+    marginRight: 20,
   },
   pickerstyle: {
     ...Platform.select({
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center',
         marginRight: -5,
-        marginLeft: 10
+        marginLeft: 10,
       },
       android: {
         tintColor: '#fff',
@@ -59,9 +61,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 48,
         marginRight: -5,
-        marginLeft: 10
-      }
-    })
+        marginLeft: 10,
+      },
+    }),
   },
   facebookLogo: {
     height: 30,
