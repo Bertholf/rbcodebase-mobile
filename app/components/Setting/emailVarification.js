@@ -52,9 +52,9 @@ export default class emailVarification extends Component {
     .then((res) => {
       console.log('RESPONSE CHANGE EMAIL=====', res);
       Actions.setting();
-
+      this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);  
       // loading will stop when succes submit forgot password
-    }).catch(err => console.log('ERROR FOUND', err));
+    }).catch(() => this.onClick(strings.EditEmail.error, DURATION.LENGTH_LONG));
   }
   render() {
     const rightButtonConfig = {
@@ -76,7 +76,6 @@ export default class emailVarification extends Component {
         // @TODO We need to fix it later thanks!!!
         // console.log('New Email==>', emailInput);
         // saveProfile(firstName, lastName, slug, emailInput, phone, birthday);
-        this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);
       } else {
         this.onClick(strings.EditEmail.error, 'bottom', DURATION.LENGTH_LONG);
       }

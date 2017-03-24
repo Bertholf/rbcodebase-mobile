@@ -62,8 +62,8 @@ export default class EmailEdit extends Component {
       // user  will direct to Actions.emailVarification()
       // loading will stop when succes submit forgot password
       this.setState({ submit: false });
-    });
-    this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG);
+      this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG);
+    }).catch(() => this.onClick('Woops Error!! Please Try Again', 'bottom', DURATION.LENGTH_LONG));
   }
 
   render() {

@@ -8,7 +8,7 @@ const EditEmail = {
   error_invalid_email: 'Email Anda Tidak Benar',
   save: 'SIMPAN',
   saved: 'Email anda sukses tersimpen',
-  error: 'Gagal merubah email anda',
+  error: 'Woops, Error! Silahkan coba lagi',
   savedvalidation: 'Email sudah sukses diubah',
   privacysetting: 'Pengaturan Kebijakan anda sukses diubah',
   currentEmail: 'Masukan email lama anda',
