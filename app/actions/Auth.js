@@ -121,14 +121,24 @@ export function doneLogin(response = {}) {
       .then((res) => {
         console.log('response google after oauth', res);
         if (res.data === null) {
-          Actions.registrationform({
-            firstName: response.user.name.split(' ')[0],
-            lastName: response.user.name.split(' ')[1],
-            email: response.user.email,
-            provider: 'google',
-            oauthProviderId: response.user.email,
+          if (response.user.displayName === undefined) {
+            Actions.registrationform({
+              firstName: response.user.name.split(' ')[0],
+              lastName: response.user.name.split(' ')[1],
+              email: response.user.email,
+              provider: 'google',
+              oauthProviderId: response.user.email,
+            });
+          } else {
+            Actions.registrationform({
+              firstName: response.user.displayName.split(' ')[0],
+              lastName: response.user.displayName.split(' ')[1],
+              email: response.user.email,
+              provider: 'google',
+              oauthProviderId: response.user.email,
+            });
+          }
 
-          });
         } else {
           registered(res.data.access_token, 'google');
         }

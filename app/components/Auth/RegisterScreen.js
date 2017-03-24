@@ -53,13 +53,23 @@ export default class Register extends Component {
        .then((resp) => {
          console.log('GOOGLE AFTER OAUTH', resp);
          if (resp.data === null) {
-           Actions.registrationform({
-             firstName: res.user.name.split(' ')[0],
-             lastName: res.user.name.split(' ')[1],
-             email: res.user.email,
-             provider: 'google',
-             oauthProviderId: res.user.email,
-           });
+           if (res.user.displayName === undefined) {
+             Actions.registrationform({
+               firstName: res.user.name.split(' ')[0],
+               lastName: res.user.name.split(' ')[1],
+               email: res.user.email,
+               provider: 'google',
+               oauthProviderId: res.user.email,
+             });
+           } else {
+             Actions.registrationform({
+               firstName: res.user.displayName.split(' ')[0],
+               lastName: res.user.displayName.split(' ')[1],
+               email: res.user.email,
+               provider: 'google',
+               oauthProviderId: res.user.email,
+             });
+           }
          } else {
            this.registered(resp.data.access_token, 'google');
          }
