@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Alert,
   Keyboard,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -77,10 +76,6 @@ export default class editBirthday extends Component {
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => updateBirthday(),
-    };
-    const leftButtonConfig = {
-      title: 'Cancel',
-      handler: () => Actions.pop({ type: 'refresh' }),
     };
       // title of screen
     const titleConfig = {

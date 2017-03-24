@@ -6,10 +6,9 @@ import {
   ScrollView,
   Keyboard,
 } from 'react-native';
+import Toast, { DURATION } from 'react-native-easy-toast';
 import { Actions } from 'react-native-router-flux';
-import Toast, {DURATION} from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
-import me from '../../services/me';
 import styles from './ChangeSetting/ChangeStyles';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations/';
@@ -47,7 +46,8 @@ export default class PassEdit extends Component {
   getButton(text, position, duration, withStyle) {
     return (
       <Text
-        onPress={()=>this.onClick(text, position, duration, withStyle)}>
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
         <Text>{text}</Text>
       </Text>
     )
@@ -103,7 +103,7 @@ export default class PassEdit extends Component {
             rightButton={rightButtonConfig}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
             leftButton={<IconClose onPress={Actions.pop} />}
-            />
+          />
         </View>
         <ScrollView>
           <View style={styles.View1}>

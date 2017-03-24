@@ -14,7 +14,7 @@ class LoginFucntion extends Component {
 
 
   updateUsername(username) {
-    this.setState({ email: username })
+    this.setState({ email: username });
     console.log(this.state.email);
   }
 

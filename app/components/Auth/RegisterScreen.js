@@ -48,34 +48,31 @@ export default class Register extends Component {
   // Register with Google
   registerWithGoogle() {
     google.signIn()
-     .then(res => {
-        console.log('response google after oauth', res);
-        if (res.data === null) {
-          Actions.registrationform({
-            firstName: res.user.name.split(' ')[0],
-            lastName: res.user.name.split(' ')[1],
-            email: res.user.email,
-            provider: 'google',
-            accessToken: response.idToken,
-            oauthProviderId: response.authCode,
-          });
-        } else {
-          this.registered(res.idToken, 'google');
-        }
-      })
-      .catch(err => console.log('error google done login', err))
-    }
+     .then((res) => {
+       if (res.data === null) {
+         Actions.registrationform({
+           firstName: res.user.name.split(' ')[0],
+           lastName: res.user.name.split(' ')[1],
+           email: res.user.email,
+           provider: 'google',
+           accessToken: response.idToken,
+           oauthProviderId: response.authCode,
+         });
+       } else {
+         this.registered(res.idToken, 'google');
+       }
+     })
+      .catch(err => console.log('error google done login', err));
+  }
   // Register with twitter
   registerWithTwitter() {
     twitterModule.signIn()
     .then((res) => {
-      console.log('RESPON TWITTER REGISTER===', res);
       const twitterResponse = res;
       if (twitterResponse.secret === undefined) {
         Actions.loaderview();
         auth.checktwitter(res.token, 'twitter', res.tokenSecret, res.userId)
       .then((resL) => {
-        console.log('resL', resL);
         if (resL.data.registered === false) {
           Actions.registrationform({
             firstName: resL.data.name.split(' ')[0],
@@ -95,7 +92,6 @@ export default class Register extends Component {
         Actions.loaderview();
         auth.checktwitter(res.token, 'twitter', res.secret, res.userId)
         .then((resL) => {
-          console.log('resL', resL);
           if (resL.data.registered === false) {
             Actions.registrationform({
               firstName: resL.data.name.split(' ')[0],

@@ -4,7 +4,6 @@ import {
   View,
   TextInput,
   ScrollView,
-  Alert,
   AsyncStorage,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -62,21 +61,15 @@ export default class emailVarification extends Component {
       title: strings.settings.save,
       handler: () => saveemail1(),
     };
-    const leftButtonConfig = {
-      title: 'Cancel',
-      handler: () => Actions.pop(),
-    };
 
     const titleConfig = {
       title: strings.EditEmail.titleVarification,
     };
+
     const value = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailValidator = value.test(this.state.newEmail);
-    const emailValidatornull = this.state.newEmail == 0;
-    const currentEmail = this.state.profile.email;
-    const sameEmail = currentEmail !== emailInput;
+    const emailValidatornull = this.state.newEmail === 0;
     const emailInput = this.state.newEmail;
-    const tokenInput = this.state.token;
     const saveemail1 = () => {
       if (emailInput) {
         this.validationEmail();

@@ -45,16 +45,6 @@ export default class NameEdit extends Component {
     }
   }
 
-  getButton(text, position, duration, withStyle) {
-    return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
-        <Text>{text}</Text>
-      </Text>
-    );
-  }
-
   // Mount Component with Value in auth.profile
   componentDidMount() {
     auth.profile()
@@ -66,23 +56,22 @@ export default class NameEdit extends Component {
     });
   }
 
+  getButton(text, position, duration, withStyle) {
+    return (
+      <Text
+        onPress={() => this.onClick(text, position, duration, withStyle)}
+      >
+        <Text>{text}</Text>
+      </Text>
+    );
+  }
+
   clearText(fieldName) {
     this.refs[fieldName].setNativeProps({ text: '' });
   }
 
   render() {
-    // Create Save Button on Navigation
-    const rightButtonConfig = {
-      title: strings.settings.save,
-      handler: () => validateName(),
-    };
-
-    // title of screen
-    const titleConfig = {
-      title: strings.ChangeName.title,
-    };
-
-    // regex name validation
+        // regex name validation
     const value = /^[a-zA-Z ]+$/;
     const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);
@@ -118,6 +107,17 @@ export default class NameEdit extends Component {
       } else {
         this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
       }
+    };
+
+    // Create Save Button on Navigation
+    const rightButtonConfig = {
+      title: strings.settings.save,
+      handler: () => validateName(),
+    };
+
+    // title of screen
+    const titleConfig = {
+      title: strings.ChangeName.title,
     };
 
     return (
