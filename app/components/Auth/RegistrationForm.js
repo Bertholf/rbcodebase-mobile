@@ -68,7 +68,7 @@ export default class RegistrationForm extends Component {
 
   onSubmit() {
     const { firstname, lastname, username, gender, email, password, confirmPassword } = this.state;
-    const { provider, accessToken, secret, oauthProviderId } = this.state;
+    const { provider, accessToken, oauthProviderId } = this.state;
     const uname = username.toLowerCase();
     if (provider !== 'null' && accessToken !== 'null') {
       this.setState({ submitting: true });

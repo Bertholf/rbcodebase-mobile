@@ -117,17 +117,20 @@ export function doneLogin(response = {}) {
       })
       .catch(err => err);
     } else if (response.provider === 'google') {
-      auth.check(response.idToken, 'google', response.authCode)
+      auth.checkgoogle('google', response.user.email)
       .then((res) => {
         console.log('response google after oauth', res);
         if (res.data === null) {
           Actions.registrationform({
+            firstName: response.user.name.split(' ')[0],
+            lastName: response.user.name.split(' ')[1],
+            email: response.user.email,
             provider: 'google',
-            accessToken: response.idToken,
-            oauthProviderId: response.authCode,
+            oauthProviderId: response.user.email,
+
           });
         } else {
-          registered(res.idToken, 'google');
+          registered(res.data.access_token, 'google');
         }
       })
       .catch(err => console.log('error google done login', err));
