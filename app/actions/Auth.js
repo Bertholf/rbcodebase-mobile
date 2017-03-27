@@ -6,7 +6,10 @@ import google from './../modules/google';
 import twitter from './../modules/twitter';
 import auth from '../services/auth';
 import strings from '../localizations';
+import config from '../config';
 
+
+const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = config;
 export const UPDATE_USERNAME_TEXT = 'UPDATE_USERNAME_TEXT';
 export const UPDATE_PASSWORD_TEXT = 'UPDATE_PASSWORD_TEXT';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
