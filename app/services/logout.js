@@ -48,7 +48,7 @@ const Logout = () => {
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
           'referring_user_id', 'created_at', 'updated_at', 'deleted_at', 'current_team_id', 'picture', 'registered', 'message']).then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });
-        manager.deauthorize('twitter');
+        // manager.deauthorize('twitter'); It's caused unhandle promise
       } else {
         /**
          * Logout Method for login by Email
