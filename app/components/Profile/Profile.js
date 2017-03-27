@@ -122,10 +122,19 @@ export default class Profile extends Component {
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
-                source={{ uri: this.state.profile.picture }}
+                source={require('./../../images/bromo.jpg')}
                 resizeMode={'cover'}
                 style={styles.backdrop}
+              >
+              <TouchableOpacity onPress={Actions.userpanel}>
+              <Image 
+                source={require('./../../images/back.png')}
+                style={styles.back}
               />
+              </TouchableOpacity>
+              </Image>
+              
+           
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#000', 'transparent']} >
                   {this.state.profile.name_first} {this.state.profile.name_last}
