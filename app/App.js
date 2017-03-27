@@ -20,21 +20,21 @@ const store = createStore(combineReducers({ app: reducers }),
 /**
  * Sample from documentation
  */
-const realmTest = () => {
-  let realm = new Realm({
-      schema: [{ name: 'Dog', properties: { name: 'string' } }],
-    });
+// const realmTest = () => {
+//   let realm = new Realm({
+//       schema: [{ name: 'Dog', properties: { name: 'string' } }],
+//     });
 
-    realm.write(() => {
-      realm.create('Dog', { name: 'Rex' });
-    });
+//     realm.write(() => {
+//       realm.create('Dog', { name: 'Rex' });
+//     });
 
-    return realm.objects('Dog').length;
-}
+//     return realm.objects('Dog').length;
+// }
 export default class App extends Component {
   componentDidMount() {
     console.log('1234');
-    console.log('TESTING REALM', realmTest());
+    // console.log('TESTING REALM', realmTest()); return sample of realm
   }
   render() {
 
