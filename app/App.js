@@ -16,6 +16,10 @@ const store = createStore(combineReducers({ app: reducers }),
 // persistStore(store, {
 //   storage: AsyncStorage,
 // });
+
+/**
+ * Sample from documentation
+ */
 const realmTest = () => {
   let realm = new Realm({
       schema: [{ name: 'Dog', properties: { name: 'string' } }],
