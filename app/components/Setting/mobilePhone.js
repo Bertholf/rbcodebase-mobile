@@ -148,7 +148,6 @@ export default class MobilePhone extends Component {
   }
 
   render() {
-    const numb = this.state.phone;
     const rightButtonConfig = {
       title: strings.mobilephone.titleSave,
       handler: () => savePhone(),
@@ -164,7 +163,6 @@ export default class MobilePhone extends Component {
     const name_last = this.state.profile.name_last;
     const name_slug = this.state.profile.name_slug;
     const display_name = this.state.profile.name_display;
-    const email = this.state.profile.email;
     const gender = this.state.profile.gender;
     const birthday = this.state.profile.birthday;
     const numberphone = this.state.profile.cell_number;

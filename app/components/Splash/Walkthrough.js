@@ -101,7 +101,7 @@ export default class walkthrough extends Component {
  // loader data json to walktrough screen
   renderItem(screen) {
     return (
-      <View style={[styles.page, { backgroundColor: screen.bg }]}>
+      <View key={screen.bg} style={[styles.page, { backgroundColor: screen.bg }]}>
         <View style={{ flex: 5 }}>
           <Image
             style={{ height: 270, width: width * 1 }} source={{ uri: screen.Image }}
