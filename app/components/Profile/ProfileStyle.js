@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
   },
   headline: {
     fontSize: 20,
-    fontWeight:'bold',
     textAlign: 'left',
     color: 'white',
     marginTop: -28,
@@ -93,14 +92,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 6,
     padding: 6,
-    color: '#2196F3',
+    color: 'grey',
   },
   followers: {
     flexDirection: 'row',
     marginTop: 6,
     justifyContent: 'space-around',
     padding: 6,
-    color: '#2196F3',
+    color: 'grey',
   },
   bio: {
     flexDirection: 'row',
