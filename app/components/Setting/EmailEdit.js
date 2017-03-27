@@ -122,7 +122,7 @@ export default class EmailEdit extends Component {
               // value={this.state.email}
             />
 
-            {emailValidator || emailValidatornull ?
+            {emailValidator || !emailInput ?
               <Text /> : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}

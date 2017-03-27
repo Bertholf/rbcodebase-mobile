@@ -135,6 +135,7 @@ export default class MapMain extends Component {
           <View>
             <PostCard />
             <ListView
+              enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}
               renderRow={dataPost => this.renderRow(dataPost)}
             />

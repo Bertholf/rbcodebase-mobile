@@ -64,14 +64,6 @@ export default class ChangeUsername extends Component {
     }
   }
 
-  forceToLower() {
-    /**
-     * This function is force the username to LowerCase
-     * and called when onBlur
-     */
-    const val = this.state.newUsername;
-    this.setState({ newUsername: val.toLowerCase(), failregister: false });
-  }
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -80,6 +72,15 @@ export default class ChangeUsername extends Component {
         <Text>{text}</Text>
       </Text>
     );
+  }
+
+  forceToLower() {
+    /**
+     * This function is force the username to LowerCase
+     * and called when onBlur
+     */
+    const val = this.state.newUsername;
+    this.setState({ newUsername: val.toLowerCase(), failregister: false });
   }
 
   clearText(fieldName) {
@@ -93,7 +94,6 @@ export default class ChangeUsername extends Component {
     const displayName = this.state.profile.name_display;
     const name_slug = this.state.profile.name_slug;
     const gender = this.state.profile.gender;
-    const email = this.state.profile.email;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const emptyUsername = this.state.newUsername;

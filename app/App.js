@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import codePush from 'react-native-code-push';
-import { AsyncStorage } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
