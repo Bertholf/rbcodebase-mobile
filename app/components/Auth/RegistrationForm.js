@@ -133,7 +133,7 @@ export default class RegistrationForm extends Component {
     }));
   }
   render() {
-    const emailRegex =/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const usernameRegex = /^[a-zA-Z0-9_-]/;
     const nameRegex = /^[a-zA-Z]+$/;
     const validFName = nameRegex.test(this.state.firstname);
@@ -299,29 +299,29 @@ export default class RegistrationForm extends Component {
                   </View>
                   { validPass || emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.line} />
-                  <View style={styles.textWrapperStyle}>
-                  </View>
-                {
-                <ListView
-                    dataSource={ds.cloneWithRows(this.state.customfield)}
-                    renderRow={(rowData) =>
-                      <View>
-                      <View style={styles.textWrapperStyle}>
-                      <Text style={styles.textcustomfield}>{rowData.title}</Text>
-                      </View>
-                      <View style={styles.textWrapperStyle}>
-                      <Text style={styles.textinputStyle}>{rowData.fields.title}</Text>
-                      </View>
-                      <View style={styles.textinputWrapperStyle}>
-                        <TextInput
-                          placeholder={strings.register.custom_field}
-                          placeholderTextColor="black"
-                          underlineColorAndroid="rgba(0,0,0,0)"
-                          style={styles.textinputStyle}
-                        />
-                      </View>
-                    </View>}
-                  />
+                  <View style={styles.textWrapperStyle} />
+                  {
+                    <ListView
+                      enableEmptySections
+                      dataSource={ds.cloneWithRows(this.state.customfield)}
+                      renderRow={rowData =>
+                        <View>
+                          <View style={styles.textWrapperStyle}>
+                            <Text style={styles.textcustomfield}>{rowData.title}</Text>
+                          </View>
+                          <View style={styles.textWrapperStyle}>
+                            <Text style={styles.textinputStyle}>{rowData.fields.title}</Text>
+                          </View>
+                          <View style={styles.textinputWrapperStyle}>
+                            <TextInput
+                              placeholder={strings.register.custom_field}
+                              placeholderTextColor="black"
+                              underlineColorAndroid="rgba(0,0,0,0)"
+                              style={styles.textinputStyle}
+                            />
+                          </View>
+                        </View>}
+                    />
                  }
 
                 </View>
@@ -379,7 +379,6 @@ export default class RegistrationForm extends Component {
     return (<ActivityIndicator />);
   }
 }
-
 
 
 const styles = StyleSheet.create({
