@@ -1,18 +1,5 @@
 import axios from 'axios';
 import querystring from 'qs';
-// Disable Mockery
-//
-// import MockAdapter from 'axios-mock-adapter';
-// import userFactory from '../factories/user';
-// import timelineFactory from '../factories/timeline';
-// import loginFactory from '../factories/AuthLogin';
-// import settingfactory from '../factories/setting';
-// import notifFactory from '../factories/notif';
-// import commentFactory from '../factories/listcomment';
-// import registerFactory from '../factories/AuthRegister';
-// import friendlistFactory from '../factories/friendlist';
-// import listTimeline from '../factories/listTimeline';
-// import chatFactory from '../factories/listChat';
 import { AsyncStorage } from 'react-native';
 
 class Api {
