@@ -37,18 +37,20 @@ export default class AdPreference extends Component {
       pickpostlike: '',
       pickcommentreplay: '',
       position: 'bottom',
-      connectionInfo: null,
+      isConnected: null,
     };
   }
 
   // Get Settings Current User
   componentDidMount() {
-  NetInfo.addEventListener(
+  NetInfo.isConnected.addEventListener(
         'change',
-        this._handleConnectionInfoChange
+        this._handleConnectivityChange
     );
-    NetInfo.fetch().done(
-        (connectionInfo) => { this.setState({connectionInfo}); }
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+          console.log('CONNECTION', isConnected)
+          this.setState({isConnected}); }
     );
     auth.adprefe()
     .then(response => this.setState({
@@ -69,15 +71,16 @@ export default class AdPreference extends Component {
   }
 
   componentWillUnmount() {
-    NetInfo.removeEventListener(
+    NetInfo.isConnected.removeEventListener(
         'change',
-        this._handleConnectionInfoChange
+        this._handleConnectivityChange
     );
   }
 
+
   _handleConnectionInfoChange = (connectionInfo) => {
     this.setState({
-      connectionInfo,
+      isConnected,
     });
   };;
 
@@ -108,11 +111,18 @@ export default class AdPreference extends Component {
         this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
       .catch(err => err);
     };
-
+    // const noconection = () => {
+    //   if (this.state.connectionInfo === null) {
+    //     this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+    //   } else {
+    //
+    //   }
+    // };
     // Save Button on NavigationBar
     const rightButtonConfig = {
-      title: strings.settings.save,
-      handler: () => saveUpdate(),
+        title: strings.settings.save,
+        handler: () => saveUpdate(),
+        disabled: true,
       // handler: () => Actions.pop(),
     };
 
@@ -127,13 +137,14 @@ export default class AdPreference extends Component {
         >
           <NavigationBar
             title={titleConfig}
+            disabled={true}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View>
-          <Text>{this.state.connectionInfo}</Text>
+          <Text>{this.state.isConnected ? 'Online' : 'Offline'}</Text>
         </View>
         <ScrollView>
           <View>
