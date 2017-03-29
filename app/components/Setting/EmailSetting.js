@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  NetInfo,
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -14,43 +15,6 @@ import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
 
-
-const stylesAdpref = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 5,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    // paddingLeft: 15,
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 3,
-    height: 40,
-    alignItems: 'center',
-    marginBottom: 6,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 14,
-    marginLeft: 10,
-  },
-});
 
 // Initial State of Setitng
 export default class AdPreference extends Component {
@@ -73,11 +37,19 @@ export default class AdPreference extends Component {
       pickpostlike: '',
       pickcommentreplay: '',
       position: 'bottom',
+      connectionInfo: null,
     };
   }
 
   // Get Settings Current User
   componentDidMount() {
+  NetInfo.addEventListener(
+        'change',
+        this._handleConnectionInfoChange
+    );
+    NetInfo.fetch().done(
+        (connectionInfo) => { this.setState({connectionInfo}); }
+    );
     auth.adprefe()
     .then(response => this.setState({
       privacy_follow: response.data[0].privacy_follow,
@@ -95,6 +67,20 @@ export default class AdPreference extends Component {
     }))
     .catch();
   }
+
+  componentWillUnmount() {
+    NetInfo.removeEventListener(
+        'change',
+        this._handleConnectionInfoChange
+    );
+  }
+
+  _handleConnectionInfoChange = (connectionInfo) => {
+    this.setState({
+      connectionInfo,
+    });
+  };;
+
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -105,6 +91,7 @@ export default class AdPreference extends Component {
       this.refs.toast.show(text, duration);
     }
   }
+
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -144,6 +131,9 @@ export default class AdPreference extends Component {
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+        </View>
+        <View>
+          <Text>{this.state.connectionInfo}</Text>
         </View>
         <ScrollView>
           <View>
@@ -372,3 +362,40 @@ export default class AdPreference extends Component {
     );
   }
 }
+
+const stylesAdpref = StyleSheet.create({
+  titleButton: {
+    fontSize: 15,
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    borderRadius: 5,
+    elevation: 2,
+    paddingTop: 14,
+    paddingBottom: 14,
+    alignItems: 'center',
+  },
+  styleView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 3,
+    height: 40,
+    alignItems: 'center',
+    marginBottom: 6,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  text: {
+    color: '#000000',
+    fontSize: 14,
+    marginLeft: 10,
+  },
+});
