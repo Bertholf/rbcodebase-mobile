@@ -128,13 +128,12 @@ export default class ChangeUsername extends Component {
     };
     return (
       <View style={styles.OuterView}>
-        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-
-          {/* ---------------------------------------------------------
+        {/* ---------------------------------------------------------
             *
             * Add Custom NavigationBar With Save Button
             *
             * --------------------------------------------------------- */}
+        <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}

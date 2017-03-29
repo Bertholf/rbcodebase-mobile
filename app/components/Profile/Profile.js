@@ -122,10 +122,17 @@ export default class Profile extends Component {
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
-                source={{ uri: this.state.profile.picture }}
+                source={require('./../../images/bromo.jpg')}
                 resizeMode={'cover'}
                 style={styles.backdrop}
+              >
+              <TouchableOpacity onPress={Actions.userpanel}>
+              <Image 
+                source={require('./../../images/back.png')}
+                style={styles.back}
               />
+              </TouchableOpacity>
+              </Image>   
               <View style={styles.backgroundname} >
                 <Text style={styles.headline} colors={['#000', 'transparent']} >
                   {this.state.profile.name_first} {this.state.profile.name_last}
@@ -137,7 +144,7 @@ export default class Profile extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
                   <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
-                  <Text style={{ marginLeft: 8 }}>{this.state.countFollow}</Text>
+                  <Text style={{ marginLeft: 8, textAlign: 'center' }}>{this.state.countFollow}</Text>
                 </TouchableOpacity>
                 {this.state.me ? (
                   <TouchableOpacity onPress={Actions.setting} >
@@ -164,6 +171,8 @@ export default class Profile extends Component {
                 ) }
               </View>
             </View>
+             
+        {/*<View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
             <View style={{ position: 'absolute' }}>
               <View style={styles.viewImgpp}>
                 <TouchableOpacity
