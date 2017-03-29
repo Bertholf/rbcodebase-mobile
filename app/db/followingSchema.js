@@ -1,9 +1,10 @@
 import Realm from 'realm';
 
 const FollowingSchema = {
+  // define database schema based following response
   name: 'Following',
   primaryKey: 'relation_id',
-  data: {
+  properties: {
     relation_id: 'int',
     follower_id: 'int',
     leader_id: 'int',
@@ -98,6 +99,6 @@ const FollowingSchema = {
   },
 };
 
-let following = new Realm({ schema: [FollowingSchema] });
+// let following = new Realm({ schema: [FollowingSchema] });
 
-export default following;
+export default FollowingSchema;

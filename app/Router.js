@@ -60,7 +60,6 @@ import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
 import emailVarification from './components/Setting/emailVarification';
 
-
 const lang = strings.getInterfaceLanguage();
 let setlang;
 switch (lang) {
