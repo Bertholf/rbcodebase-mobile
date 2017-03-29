@@ -5,6 +5,7 @@ import {
    Image,
    TouchableOpacity,
    AsyncStorage,
+   NetInfo,
 } from 'react-native';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
@@ -25,9 +26,17 @@ export default class Dashboard extends Component {
       namafirst: '',
       namalast: '',
       email: '',
+       isConnected: null,
     };
   }
   componentDidMount() {
+     NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => { this.setState({isConnected}); }
+    );
     // Get Profile Data From server
     auth.profile()
     .then((response) => {
@@ -61,6 +70,18 @@ export default class Dashboard extends Component {
     });
   }
 
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
+
   reRender() {
     // This is going to re-run componentDidMount()
     this.componentDidMount();
@@ -76,6 +97,9 @@ export default class Dashboard extends Component {
           }
           </View>
         </TouchableOpacity>
+        <View>
+          <Text>{this.state.isConnected ? 'Online' : 'Offline'}</Text>
+        </View>
         <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >
           {this.state.namafirst} {this.state.namalast}
         </Text>
