@@ -59,6 +59,8 @@ import ResultForgot from './components/Auth/ForgotPasswordResult';
 import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
 import emailVarification from './components/Setting/emailVarification';
+import WarningDisconnect from './services/WarningDisconnet';
+
 
 
 const lang = strings.getInterfaceLanguage();
@@ -76,7 +78,7 @@ switch (lang) {
     setlang = 'en';
     break;
 }
-strings.setLanguage(setlang);
+strings.setLanguage(setlang);        
 
 const Routing = (props) => (
   /**
@@ -115,6 +117,9 @@ const Routing = (props) => (
             />
             <Scene
               key="inbox" component={Inbox} title={'Inbox'}
+            />
+             <Scene
+              key="warning" component={WarningDisconnect}  hideNavBar title={'WarningDisconnect'}
             />
             <Scene
               key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
