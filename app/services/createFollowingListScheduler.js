@@ -14,6 +14,8 @@ let listFollowing = [];
 const saveListData = (list) => {
   const followingDb = new Realm({ schema: [FollowingSchema] });
   console.log('Data SAVE');
+  let database = followingDb.objects('Following');
+  console.log(database);
   followingDb.write(() => {
     followingDb.create('Following', {
       relation_id: list.id,
@@ -107,7 +109,7 @@ const saveListData = (list) => {
         //   updated_at: list.leader.setting.updated_at,
         // },
       // },
-    });
+    }, true);
   });
 };
 
