@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -7,6 +8,7 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import Realm from 'realm';
 import reducers from './reducers';
 import Routing from './containers/Router';
+import Warning from './services/WarningDisconnect';
 
 const logger = createLogger();
 const store = createStore(combineReducers({ app: reducers }),
@@ -39,9 +41,13 @@ export default class App extends Component {
   render() {
 
     return (
+   
       <Provider store={store}>
         <Routing />
       </Provider>
+     
+  
+      
     );
   }
 }

@@ -5,11 +5,13 @@ import {
    Image,
    TouchableOpacity,
    AsyncStorage,
+   NetInfo,
 } from 'react-native';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
+import FollowingScheduler from '../../services/createFollowingListScheduler';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -25,9 +27,12 @@ export default class Dashboard extends Component {
       namafirst: '',
       namalast: '',
       email: '',
+       isConnected: null,
     };
   }
   componentDidMount() {
+    // Run FollowingScheduler
+    FollowingScheduler();
     // Get Profile Data From server
     auth.profile()
     .then((response) => {
@@ -61,6 +66,18 @@ export default class Dashboard extends Component {
     });
   }
 
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
+
   reRender() {
     // This is going to re-run componentDidMount()
     this.componentDidMount();
@@ -76,6 +93,9 @@ export default class Dashboard extends Component {
           }
           </View>
         </TouchableOpacity>
+        <View>
+          <Text>{this.state.isConnected ? 'Online' : 'Offline'}</Text>
+        </View>
         <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >
           {this.state.namafirst} {this.state.namalast}
         </Text>
