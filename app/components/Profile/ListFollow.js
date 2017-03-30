@@ -74,11 +74,9 @@ export default class ListFollow extends Component {
       followTableID: '',
       request: false,
       wait: false,
-      data: this.props.rowData,
     };
   }
   componentDidMount() {
-        this.showRowData();
     if (this.props.rowData.status === 'request') {
       this.setState({ clicked: false, request: true, loading: false });
     }
@@ -146,9 +144,6 @@ export default class ListFollow extends Component {
     }
   }
 
- showRowData() {
-   console.log('RESULT OF ROWDATA RENDER', this.state.data);
- }
   toggleSwitch(id) {
     if (!this.state.clicked) {
       // this section will executed when button unFollow pressed
