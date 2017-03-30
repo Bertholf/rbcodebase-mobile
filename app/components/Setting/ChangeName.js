@@ -70,7 +70,6 @@ export default class NameEdit extends Component {
     });
   }
   componentWillUnmount() {
-  //  MessageBarManager.unregisterMessageBar();
     NetInfo.isConnected.removeEventListener(
         'change',
         this._handleConnectivityChange
