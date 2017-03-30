@@ -102,9 +102,14 @@ export default class Gender extends Component {
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const gender = this.state.gender;
+
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => updategender(),
+    };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
     };
 
     const titleConfig = {
@@ -136,12 +141,21 @@ export default class Gender extends Component {
           * --------------------------------------------------------- */}
 
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          />
+        }
         </View>
 
         {/* ---------------------------------------------------------

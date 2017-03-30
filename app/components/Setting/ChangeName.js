@@ -143,6 +143,10 @@ export default class NameEdit extends Component {
       title: strings.settings.save,
       handler: () => validateName(),
     };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
+    };
 
     // title of screen
     const titleConfig = {
@@ -152,12 +156,21 @@ export default class NameEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          }
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>

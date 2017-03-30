@@ -152,6 +152,11 @@ export default class ChangeUsername extends Component {
       handler: () => onSave(),
     };
 
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
+    };
+
     const titleConfig = {
       title: strings.changeUname.title,
     };
@@ -163,12 +168,20 @@ export default class ChangeUsername extends Component {
             *
             * --------------------------------------------------------- */}
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-          <NavigationBar
+        {this.state.isConnected === true ?
+         <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+        }
         </View>
 
         {/* ---- ScrollView Screen ----*/}
