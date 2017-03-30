@@ -66,18 +66,6 @@ export default class Dashboard extends Component {
     });
   }
 
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-  }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
-  };
-
   reRender() {
     // This is going to re-run componentDidMount()
     this.componentDidMount();
@@ -93,9 +81,6 @@ export default class Dashboard extends Component {
           }
           </View>
         </TouchableOpacity>
-        <View>
-          <Text>{this.state.isConnected ? 'Online' : 'Offline'}</Text>
-        </View>
         <Text style={{ textAlign: 'center', marginTop: 100, fontSize: 18 }} >
           {this.state.namafirst} {this.state.namalast}
         </Text>
