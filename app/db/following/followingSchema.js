@@ -12,7 +12,7 @@ const FollowingSchema = {
     updated_at: 'string',
     deleted_at: 'string',
     follower: { type: 'Follower' },
-    // leader: 'Leader',
+    leader: { type: 'Leader' },
   },
 };
 

@@ -1,7 +1,7 @@
 
 const LeaderSchema = {
   // define leader schema
-  name: 'Following',
+  name: 'Leader',
   primary_key: 'id',
   properties: {
     id: 'int',
@@ -26,7 +26,7 @@ const LeaderSchema = {
     picture: 'string',
     access_token: { type: 'string', default: null },
     registered: { type: 'bool', default: null },
-    setting: 'string',
+    setting: { type: 'Setting' },
   },
 };
 
