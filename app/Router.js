@@ -59,6 +59,8 @@ import ResultForgot from './components/Auth/ForgotPasswordResult';
 import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
 import emailVarification from './components/Setting/emailVarification';
+import WarningDisconnect from './services/WarningDisconnect';
+
 
 const lang = strings.getInterfaceLanguage();
 let setlang;
@@ -75,7 +77,7 @@ switch (lang) {
     setlang = 'en';
     break;
 }
-strings.setLanguage(setlang);
+strings.setLanguage(setlang);        
 
 const Routing = (props) => (
   /**
@@ -252,6 +254,7 @@ const Routing = (props) => (
         </Scene>
       </Scene>
     </Router>
+    <WarningDisconnect />
   </View>
 );
 export default Routing;
