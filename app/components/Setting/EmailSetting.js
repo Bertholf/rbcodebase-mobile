@@ -43,14 +43,16 @@ export default class AdPreference extends Component {
 
   // Get Settings Current User
   componentDidMount() {
-  NetInfo.isConnected.addEventListener(
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
         'change',
         this._handleConnectivityChange
     );
     NetInfo.isConnected.fetch().done(
         (isConnected) => {
-          console.log('CONNECTION', isConnected)
-          this.setState({isConnected}); }
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
     );
     auth.adprefe()
     .then(response => this.setState({
@@ -76,13 +78,11 @@ export default class AdPreference extends Component {
         this._handleConnectivityChange
     );
   }
-
-
-  _handleConnectionInfoChange = (connectionInfo) => {
+  _handleConnectivityChange = (isConnected) => {
     this.setState({
       isConnected,
     });
-  };;
+  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -106,10 +106,14 @@ export default class AdPreference extends Component {
   }
   render() {
     const saveUpdate = () => {
-      auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
-      .then(response =>
-        this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
-      .catch(err => err);
+      if (this.state.isConnected === true) {
+        auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
+        .then(response =>
+          this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
+        .catch(err => err);
+      } else {
+        return;
+      }
     };
     // const noconection = () => {
     //   if (this.state.connectionInfo === null) {
@@ -122,8 +126,10 @@ export default class AdPreference extends Component {
     const rightButtonConfig = {
         title: strings.settings.save,
         handler: () => saveUpdate(),
-        disabled: true,
-      // handler: () => Actions.pop(),
+    };
+    const rightButtonConfig2 = {
+        title: strings.settings.save,
+        tintColor: 'grey',
     };
 
     const titleConfig = {
@@ -135,16 +141,21 @@ export default class AdPreference extends Component {
         <View
           style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         >
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
-            disabled={true}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
-        </View>
-        <View>
-          <Text>{this.state.isConnected ? 'Online' : 'Offline'}</Text>
+          }
         </View>
         <ScrollView>
           <View>
