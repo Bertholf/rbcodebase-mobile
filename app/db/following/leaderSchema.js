@@ -2,7 +2,7 @@
 const LeaderSchema = {
   // define leader schema
   name: 'Following',
-  primaryKey: 'relation_id',
+  primary_key: 'id',
   properties: {
     id: 'int',
     name_first: 'string',

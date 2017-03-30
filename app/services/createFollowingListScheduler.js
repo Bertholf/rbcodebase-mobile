@@ -5,6 +5,7 @@ import follows from './follows';
 import FollowingSchema from './../db/following/followingSchema';
 import FollowerSchema from './../db/following/followerSchema';
 import SettingSchema from './../db/following/settingSchema';
+import LeaderSchema from './../db/following/leaderSchema';
 
 /**
  * Save Following Data in Realm DB
@@ -15,11 +16,13 @@ const arraySample = [0, 1, 32, 432, 453, 23];
 let listFollowing = [];
 
 const saveListData = (list) => {
-  const followingDb = new Realm({ schema: [FollowingSchema, FollowerSchema] });
-  const database = followingDb.objects('Following');
-
+  // initiate new Realm object
+  const followingDb = new Realm({ schema: [FollowingSchema, FollowerSchema, SettingSchema] });
+  const database = followingDb.objects('Following'); // Retrieve all data into database variable
+  const setting = list.follower.setting;
 
   const nullValue = (val) => {
+    // return String 'null' or 'undefined'
     let emptyValue = 'null';
     if (val === null || typeof val === 'undefined') {
       emptyValue = 'null';
@@ -56,13 +59,31 @@ const saveListData = (list) => {
         timezone: list.follower.timezone,
         date_birth: moment(list.follower.date_birth, 'YYYY-MM-DD').toDate(),
         timeline_id: list.follower.timeline_id,
-        // img_avatar: { type: 'string', default: null },
-        // img_background: { type: 'string', default: null },
-        // gender: { type: 'string', default: 'male' },
-        // picture: 'string',
-        // access_token: { type: 'string', default: null },
-        // registered: { type: 'bool', default: null },
-        // setting: 'string',
+        img_avatar: nullValue(list.follower.img_avatar),
+        img_background: nullValue(list.follower.img_background),
+        reffering_id_user: nullValue(list.follower.reffering_id_user),
+        gender: list.follower.gender,
+        picture: nullValue(list.follower.picture),
+        access_token: nullValue(list.follower.access_token),
+        registered: Boolean(list.follower.registered),
+        setting: {
+          id: setting.id,
+          user_id: setting.user_id,
+          privacy_follow: setting.privacy_follow,
+          privacy_follow_confirm: setting.privacy_follow_confirm,
+          privacy_comment: setting.privacy_comment,
+          privacy_post: setting.privacy_post,
+          privacy_timeline_post: setting.privacy_timeline_post,
+          privacy_message: setting.privacy_message,
+          email_follow: setting.email_follow,
+          email_post_like: setting.email_post_like,
+          email_post_share: setting.email_post_share,
+          email_comment_post: setting.email_comment_post,
+          email_comment_like: setting.email_comment_like,
+          email_comment_reply: setting.email_comment_reply,
+          created_at: moment(setting.created_at, 'YYYY-MM-DD').toDate(),
+          updated_at: moment(setting.updated_at, 'YYYY-MM-DD').toDate(),
+        },
       },
       // leader: {},
     }, true);

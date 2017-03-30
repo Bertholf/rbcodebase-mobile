@@ -1,5 +1,6 @@
 
 const FollowerSchema = {
+  // define Follower schema
   name: 'Follower',
   primary_key: 'id',
   properties: {
@@ -21,11 +22,12 @@ const FollowerSchema = {
     timeline_id: 'int',
     img_avatar: { type: 'string', default: null },
     img_background: { type: 'string', default: null },
+    reffering_id_user: { type: 'string', default: null },
     gender: { type: 'string', default: 'male' },
     picture: 'string',
     access_token: { type: 'string', default: null },
     registered: { type: 'bool', default: null },
-    // setting: 'string',
+    setting: { type: 'Setting' },
   },
 };
 
