@@ -50,6 +50,7 @@ export default class NameEdit extends Component {
 
   // Mount Component with Value in auth.profile
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
     NetInfo.isConnected.addEventListener(
         'change',
         this._handleConnectivityChange
