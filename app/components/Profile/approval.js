@@ -28,9 +28,14 @@ export default class Approval extends React.Component {
         console.log('proses hhhhhh');
         this.changeState(res);
       })
-      .catch(err => console.log(err));
+      .catch(err => this.showError(err));
     })
     .catch(err => console.log('fail to get user id from asyncStorege', err));
+  }
+
+  showError(err) {
+    console.log(err);
+    Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
   }
 
   changeState(res) {

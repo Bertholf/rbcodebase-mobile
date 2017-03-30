@@ -42,7 +42,7 @@ export default class Friendlist extends React.Component {
         .then((res) => {
           this.changeState(res);
         })
-        .catch();
+        .catch(err => this.showError(err));
       })
       .catch();
     } else {
@@ -76,7 +76,7 @@ export default class Friendlist extends React.Component {
   }
 
   // Change State listfollowing
-  searchUpdate(val) {    
+  searchUpdate(val) {
     AsyncStorage.getItem('userId')
       .then((myId) => {
         if (val !== '') {
