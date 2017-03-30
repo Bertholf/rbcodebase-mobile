@@ -59,7 +59,7 @@ import ResultForgot from './components/Auth/ForgotPasswordResult';
 import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
 import emailVarification from './components/Setting/emailVarification';
-import WarningDisconnect from './services/WarningDisconnet';
+import WarningDisconnect from './services/WarningDisconnect';
 
 
 
@@ -117,9 +117,6 @@ const Routing = (props) => (
             />
             <Scene
               key="inbox" component={Inbox} title={'Inbox'}
-            />
-             <Scene
-              key="warning" component={WarningDisconnect}  hideNavBar title={'WarningDisconnect'}
             />
             <Scene
               key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'}
@@ -258,6 +255,7 @@ const Routing = (props) => (
         </Scene>
       </Scene>
     </Router>
+    <WarningDisconnect />
   </View>
 );
 export default Routing;
