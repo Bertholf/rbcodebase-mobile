@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { persistStore, autoRehydrate } from 'redux-persist';
+import Realm from 'realm';
 import reducers from './reducers';
 import Routing from './containers/Router';
 import Warning from './services/WarningDisconnect';
@@ -17,11 +18,28 @@ const store = createStore(combineReducers({ app: reducers }),
 // persistStore(store, {
 //   storage: AsyncStorage,
 // });
+
+/**
+ * Sample from documentation
+ */
+// const realmTest = () => {
+//   let realm = new Realm({
+//       schema: [{ name: 'Dog', properties: { name: 'string' } }],
+//     });
+
+//     realm.write(() => {
+//       realm.create('Dog', { name: 'Rex' });
+//     });
+
+//     return realm.objects('Dog').length;
+// }
 export default class App extends Component {
   componentDidMount() {
     console.log('1234');
+    // console.log('TESTING REALM', realmTest()); return sample of realm
   }
   render() {
+
     return (
    
       <Provider store={store}>

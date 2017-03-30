@@ -11,6 +11,7 @@ import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
+import FollowingScheduler from '../../services/createFollowingListScheduler';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -30,13 +31,8 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
-     NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => { this.setState({isConnected}); }
-    );
+    // Run FollowingScheduler
+    FollowingScheduler();
     // Get Profile Data From server
     auth.profile()
     .then((response) => {

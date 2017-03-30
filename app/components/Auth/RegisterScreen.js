@@ -83,7 +83,6 @@ export default class Register extends Component {
     .then((res) => {
       const twitterResponse = res;
       if (twitterResponse.secret === undefined) {
-        Actions.loaderview();
         auth.checktwitter(res.token, 'twitter', res.tokenSecret, res.userId)
       .then((resL) => {
         if (resL.data.registered === false) {
@@ -102,7 +101,6 @@ export default class Register extends Component {
         }
       }).catch(err => console.log(err));
       } else {
-        Actions.loaderview();
         auth.checktwitter(res.token, 'twitter', res.secret, res.userId)
         .then((resL) => {
           if (resL.data.registered === false) {

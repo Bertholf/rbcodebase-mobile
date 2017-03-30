@@ -62,7 +62,6 @@ import emailVarification from './components/Setting/emailVarification';
 import WarningDisconnect from './services/WarningDisconnect';
 
 
-
 const lang = strings.getInterfaceLanguage();
 let setlang;
 switch (lang) {
