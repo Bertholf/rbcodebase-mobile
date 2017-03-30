@@ -168,6 +168,7 @@ const FollowingScheduler = () => {
     setInterval(() => getFollowingList(), 3600000);
   });
   const database = followingDb.objects('Following'); // Retrieve all data into database variable
+  console.log('DATABASE VIEW', database);
 };
 
 module.exports = FollowingScheduler;
