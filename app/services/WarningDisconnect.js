@@ -15,6 +15,7 @@ export default class WarningDisconnect extends Component {
     super(props);
     this.state = {
       isConnected: null,
+      hide: false,
     };
   }
   componentDidMount() {
@@ -50,13 +51,21 @@ export default class WarningDisconnect extends Component {
 
 
   render() {
+    console.log('isConnected ', this.state.isConnected, 'hide ', this.state.hide);
     return (
 
-          <View  style={{    flex: 1, position:'absolute'}}>{!this.state.isConnected ?
-           <View style={{width: 400, height: 45, backgroundColor: '#ffa722'}} >
-              <Text style={{color:'white', textAlign:'center', fontSize: 14}}>Network Information</Text>
-              <Text style={{color:'white', textAlign:'center'}}>Device is not connected</Text>
-            </View> : <View />}
+          <View  style={{    flex: 1, position:'absolute'}}>
+            {this.state.isConnected == false && this.state.hide == false ?
+            (
+                <TouchableOpacity
+                  style={{width: 400, height: 45, backgroundColor: '#ffa722'}}
+                  onPress={()=> this.setState({ hide: true })}
+                >
+                <Text style={{color:'white', textAlign:'center', fontSize: 14}}>Network Information</Text>
+                <Text style={{color:'white', textAlign:'center'}}>Device is not connected</Text>
+                </TouchableOpacity> 
+            )
+           : null}
           </View>
     
     );
