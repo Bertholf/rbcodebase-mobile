@@ -55,7 +55,7 @@ export default class Friendlist extends React.Component {
   }
   // This function is running if there is an Error
   showError(err) {
-    Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
+    Alert.alert('Sorry!  You are Offline', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
   }
 
   changeState(res) {
