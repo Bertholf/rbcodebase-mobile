@@ -29,6 +29,7 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
+    // Run FollowingScheduler
     FollowingScheduler();
     // Get Profile Data From server
     auth.profile()
