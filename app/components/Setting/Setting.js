@@ -5,9 +5,9 @@ import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
 import auth from './../../services/auth';
 import Logout from '../../services/logout';
+import connectionInfo from '../../services/connectionInfo';
 
 const moment = require('moment');
-
 const next = require('./../../images/ic_navigate_next_2x.png');
 
 export default class Setting extends Component {
@@ -24,11 +24,14 @@ export default class Setting extends Component {
       phone: '',
       gender: '',
       gendersncy: '',
+      isConnected: true,
+      handler: '',
     };
   }
 
   // Save dan get Item AsyncStorage from Api/me
   componentDidMount() {
+    // connectionInfo.checkInfo();
     auth.profile()
     .then((response) => {
       console.log('EMAIL CHANGE====', response);

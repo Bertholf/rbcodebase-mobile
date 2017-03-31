@@ -31,9 +31,7 @@ export default class WarningDisconnect extends Component {
            }
     );
     // Get Profile Data From server
-  }
-
-   
+  }   
 
   componentWillUnmount() {
   //  MessageBarManager.unregisterMessageBar();
