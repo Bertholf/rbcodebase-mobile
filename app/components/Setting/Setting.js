@@ -10,9 +10,15 @@ import connectionInfo from '../../services/connectionInfo';
 const moment = require('moment');
 const next = require('./../../images/ic_navigate_next_2x.png');
 
+import { connect } from 'react-redux';
+import { getNetworkStatus } from '../../actions/networkStatus';
+
+
+
 export default class Setting extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props)
     this.state = {
       profile: {},
       loading: true,
@@ -25,12 +31,14 @@ export default class Setting extends Component {
       gender: '',
       gendersncy: '',
       isConnected: true,
-      handler: '',
+      handler: this.props.network,
     };
   }
 
   // Save dan get Item AsyncStorage from Api/me
   componentDidMount() {
+    this.props.networkAction();
+    console.log('STATE REDUX', this.state.handle);
     // connectionInfo.checkInfo();
     auth.profile()
     .then((response) => {

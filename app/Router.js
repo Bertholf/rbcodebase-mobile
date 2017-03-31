@@ -20,7 +20,7 @@ import TimelineList from './components/Timeline/TimelineComp';
 import TimelineDetail from './containers/Timeline/TimelineDetail';
 import Profile from './components/Profile/Profile';
 import AddFriend from './components/Profile/AddFriend';
-import Setting from './components/Setting/Setting';
+import Setting from './containers/networkContainer';
 import ChatListFriendView from './components/Chat/ChatListFriendView';
 import Privacy from './components/Privacy/privacy';
 import Email from './components/Setting/EmailNotif';

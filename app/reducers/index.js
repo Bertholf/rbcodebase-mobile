@@ -4,9 +4,14 @@ import auth from './auth';
 import tos from './tos';
 import support from './support';
 import license from './license';
+import networkState from './networkStatus';
 
 const currentState = (state = {}, action) => {
   return {};
 };
-const reducer = combineReducers({ currentState, splashState, auth, tos, license, support });
+// Combine Reducers
+const reducer = combineReducers({
+  currentState, splashState, auth, tos, license, support, networkState,
+});
+
 export default reducer;
