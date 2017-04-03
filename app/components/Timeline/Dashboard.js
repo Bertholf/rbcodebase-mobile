@@ -78,7 +78,7 @@ export default class Dashboard extends Component {
     const durationHours = duration.asHours();
 
     /** Check if durationHours >= 2 */
-    if (durationHours >= '2') {
+    if (durationHours >= 2) {
       // Save Last Syncronize Time
       AsyncStorage.setItem('lastSyncData', now);
 
