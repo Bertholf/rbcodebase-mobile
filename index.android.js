@@ -10,8 +10,9 @@ import {
 import codePush from 'react-native-code-push';
 import App from './app/App';
 
-let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
+const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
 
+// App can wrapped only by Codepush using class structure
 export default class HikerApp extends Component {
   render() {
     return (
@@ -20,7 +21,7 @@ export default class HikerApp extends Component {
   }
 }
 
+// Wrap the root of the application
+const appWraper = codePush(codePushOptions)(HikerApp);
 
-const appWrap = codePush(codePushOptions)(HikerApp);
-
-AppRegistry.registerComponent('hikerapp', () => appWrap);
+AppRegistry.registerComponent('hikerapp', () => appWraper);
