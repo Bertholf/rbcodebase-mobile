@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { getNetworkStatus, changeNetworkStatus, _handleConnectivityChange } from '../actions/networkStatus';
 import NameEdit from  '../components/Setting/ChangeName';
-import setting from  '../components/Setting/setting';
 
 const mapStateToProps = ({ app }) => ({
   network: app.networkState.network,

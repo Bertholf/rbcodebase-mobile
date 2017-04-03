@@ -14,5 +14,5 @@ const networkState = (state = { network: null }, action) => {
       return state;
   }
 };
-
-export default networkState;
+const network = combineReducers({ networkState });
+export default network;

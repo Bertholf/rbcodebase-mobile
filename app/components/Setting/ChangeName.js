@@ -18,6 +18,9 @@ import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
+import { bindActionsCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getNetworkStatus, changeNetworkStatus } from '../../actions/networkStatus';
 
 export default class NameEdit extends Component {
   constructor(props) {
@@ -51,16 +54,19 @@ export default class NameEdit extends Component {
   // Mount Component with Value in auth.profile
   componentDidMount() {
     // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
+    // NetInfo.isConnected.addEventListener(
+    //     'change',
+    //     this._handleConnectivityChange
+    // );
+    // NetInfo.isConnected.fetch().done(
+    //     (isConnected) => {
+    //         console.log('CONNECTION', isConnected),
+    //         this.setState({isConnected});
+    //        }
+    // );
+    // const {dispatch, networkState } = this.props
+    // dispatch(getNetworkStatus)
+    console.log("===============", this.props.network);
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
     .catch(() => {
@@ -70,15 +76,15 @@ export default class NameEdit extends Component {
     });
   }
   componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-  }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
+  //   NetInfo.isConnected.removeEventListener(
+  //       'change',
+  //       this._handleConnectivityChange
+  //   );
+  // }
+  // _handleConnectivityChange = (isConnected) => {
+  //   this.setState({
+  //     isConnected,
+  //   });
   };
 
   getButton(text, position, duration, withStyle) {
