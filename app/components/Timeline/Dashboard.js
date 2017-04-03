@@ -5,7 +5,6 @@ import {
    Image,
    TouchableOpacity,
    AsyncStorage,
-   NetInfo,
 } from 'react-native';
 import moment from 'moment';
 import auth from './../../services/auth';
@@ -80,8 +79,10 @@ export default class Dashboard extends Component {
 
     /** Check if durationHours >= 2 */
     if (durationHours >= '2') {
-      // Place all save data method Here
+      // Save Last Syncronize Time
+      AsyncStorage.setItem('lastSyncData', now);
 
+      // Place all save data method Here
       /**
        * getFollowingData();
        * getFollowerData();
@@ -102,8 +103,8 @@ export default class Dashboard extends Component {
     .then((res) => {
       if (res === 'null' || typeof res === 'undefined') {
         const now = moment(new Date());
-        AsyncStorage.setItem('lastSyncData', now.toString())
-        .then(resp => console.log('SAVED TIME', resp));
+        AsyncStorage.setItem('lastSyncData', now.toISOString());
+        this.syncWithServer(now.toISOString(), end);
       }
       console.log('TIME ==========', res);
       this.syncWithServer(res, end);
