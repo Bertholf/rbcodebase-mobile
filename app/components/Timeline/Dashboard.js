@@ -81,10 +81,16 @@ export default class Dashboard extends Component {
     /** Check if durationHours >= 2 */
     if (durationHours >= '2') {
       // Place all save data method Here
+
+      /**
+       * getFollowingData();
+       * getFollowerData();
+       */
       FollowingScheduler(); // Get and save Following data list
-      console.log('Data is udpated');
+
+      console.log('Data is udpated'); // Log all method has running
     } else {
-      console.log('Data up to date');
+      console.log('Data up to date'); // Log data is up to date
     }
   }
 
