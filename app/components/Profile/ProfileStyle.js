@@ -41,6 +41,14 @@ const styles = StyleSheet.create({
     marginTop:10,
     flexDirection: 'row',
   },
+  backsetting: {
+    width: 25,
+    height: 17,
+    marginLeft:13,
+    marginTop:10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
   headline: {
     fontSize: 25,
     color: 'black',
@@ -50,6 +58,13 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: '#2196F3',
     color: 'white',
+    alignItems: 'center',
+    marginTop: 70,
+    borderRadius: 2,
+  },
+  buttonEmpty: {
+    flexDirection: 'row',
+    padding: 8,
     alignItems: 'center',
     marginTop: 70,
     borderRadius: 2,
@@ -64,12 +79,12 @@ const styles = StyleSheet.create({
   },
   buttonUnfollow: {
     flexDirection: 'row',
-    padding: 6,
+    padding: 8,
     backgroundColor: '#ddd',
     justifyContent: 'space-between',
     color: '#333',
     alignItems: 'center',
-    marginTop: 7,
+    marginTop: 70,
     borderRadius: 2,
   },
   icon: {

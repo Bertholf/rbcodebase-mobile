@@ -133,6 +133,12 @@ export default class Profile extends Component {
                 style={styles.back}
               />
               </TouchableOpacity>
+              <TouchableOpacity onPress={Actions.setting}>
+              <Image
+                source={require('./../../images/ic_settings_black_24dp.png')}
+                style={styles.backsetting}
+              />
+              </TouchableOpacity>
               </Image>
             </View>
 
@@ -152,8 +158,7 @@ export default class Profile extends Component {
             <View style={{alignItems: 'center'}}>
             {this.state.me ? (
               <TouchableOpacity onPress={Actions.setting} >
-                <Text style={styles.button} >
-                  {strings.profileLocalization.edit}
+                <Text style={styles.buttonEmpty} >
                 </Text>
               </TouchableOpacity>
             ) : (
@@ -175,7 +180,7 @@ export default class Profile extends Component {
             ) }
             </View>
             <View style={styles.biodata}>
-            <View style={{backgroundColor: 'white', elevation: 6, margin: 5, }}>
+            <View style={{backgroundColor: 'white', elevation: 6, margin: 5,height: 150 }}>
               <View style={{ alignItems: 'center'}}>
               <TouchableOpacity onPress={Actions.about}>
                 <Text style={styles.headline} colors={['black']} >
