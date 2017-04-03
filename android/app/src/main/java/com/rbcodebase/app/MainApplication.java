@@ -65,7 +65,7 @@ public class MainApplication extends Application implements ReactApplication {
               new ReactNativeMapboxGLPackage(),
               new TwitterAuthPackage(),
               new FBSDKPackage(mCallbackManager),
-              new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
+              new CodePush("4h-aS_f7gtPEyNlpBeeL9LqAaRkVNkidNuy8f", MainApplication.this, BuildConfig.DEBUG)
       );
     }
   };
