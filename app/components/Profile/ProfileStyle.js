@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   biodata: {
     flexDirection: 'column',
     backgroundColor: 'rgba(0,0,0,0)',
-    marginTop: 10,
+    paddingTop: 65,
     borderBottomWidth: 1,
     borderColor: 'grey',
     marginLeft: 20,

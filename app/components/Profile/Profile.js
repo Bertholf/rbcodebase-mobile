@@ -137,8 +137,7 @@ export default class Profile extends Component {
 
 
         {/*<View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
-          <View style={{backgroundColor: 'white', elevation: 6, margin: 10}}>
-            <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', position: 'absolute', top: 130, Left: 50, right:130 }}>
               <View style={styles.viewImgpp}>
                 <TouchableOpacity
                   disabled={this.state.request}
@@ -150,6 +149,7 @@ export default class Profile extends Component {
               </View>
             </View>
             <View style={styles.biodata}>
+            <View style={{backgroundColor: 'white', elevation: 6, margin: 20}}>
               <View style={{ alignItems: 'center'}}>
               <TouchableOpacity onPress={Actions.about}>
                 <Text style={styles.headline} colors={['black']} >
@@ -190,7 +190,7 @@ export default class Profile extends Component {
               </View>
               </View>
               </View>
-              <Text style={styles.isi}>{this.state.profile.about}</Text>
+              <View style={{backgroundColor: 'white', elevation: 6, margin: 20}}>
               <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
               <View style={styles.posisi}>
                 <Image
@@ -219,6 +219,7 @@ export default class Profile extends Component {
                   <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
                 </TouchableOpacity> */}
               </View>
+            </View>
             </View>
             {/*
               This is will be used later
