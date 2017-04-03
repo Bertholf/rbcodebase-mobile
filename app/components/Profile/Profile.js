@@ -27,6 +27,7 @@ export default class Profile extends Component {
       leaderId: this.props.profile.id,
       followed: true,
       countFollow: 0,
+      countFollowing: 0,
       id: '',
       friend: false,
       edit: false,
@@ -137,7 +138,7 @@ export default class Profile extends Component {
 
 
         {/*<View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
-          <View style={{ alignItems: 'center', position: 'absolute', top: 130, Left: 50, right:130 }}>
+          <View style={{ alignItems: 'center', position: 'absolute', top: 125, Left: 50, right:120 }}>
               <View style={styles.viewImgpp}>
                 <TouchableOpacity
                   disabled={this.state.request}
@@ -147,6 +148,31 @@ export default class Profile extends Component {
                   }
                 </TouchableOpacity>
               </View>
+            </View>
+            <View style={{alignItems: 'center'}}>
+            {this.state.me ? (
+              <TouchableOpacity onPress={Actions.setting} >
+                <Text style={styles.button} >
+                  {strings.profileLocalization.edit}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              !this.state.me ? (
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                  <TouchableOpacity
+                    disabled={this.props.status.status === 'request' && this.state.request}
+                    onPress={() => this.toggleSwitchFollow()}
+                  >
+                    <Text
+                      style={this.state.followed ? styles.buttonUnfollow : styles.button}
+                    >
+                      {this.state.followed ? this.props.status.status === 'request' ? 'Requested' : strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <Text />
+              )
+            ) }
             </View>
             <View style={styles.biodata}>
             <View style={{backgroundColor: 'white', elevation: 6, margin: 5, }}>
@@ -164,29 +190,10 @@ export default class Profile extends Component {
                   <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                   <Text style={{ marginLeft: 8, textAlign: 'center' }}>{this.state.countFollow}</Text>
                 </TouchableOpacity>
-                {this.state.me ? (
-                  <TouchableOpacity onPress={Actions.setting} >
-                    <Text style={styles.button} >
-                      {strings.profileLocalization.edit}
-                    </Text>
-                  </TouchableOpacity>
-                ) : (
-                  !this.state.me ? (
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                      <TouchableOpacity
-                        disabled={this.props.status.status === 'request' && this.state.request}
-                        onPress={() => this.toggleSwitchFollow()}
-                      >
-                        <Text
-                          style={this.state.followed ? styles.buttonUnfollow : styles.button}
-                        >
-                          {this.state.followed ? this.props.status.status === 'request' ? 'Requested' : strings.profileLocalization.unfollow : strings.profileLocalization.follow }</Text>
-                      </TouchableOpacity>
-                    </View>
-                  ) : (
-                    <Text />
-                  )
-                ) }
+                <TouchableOpacity onPress={Actions.friendlist}>
+                  <Text style={styles.followers}>{strings.profileLocalization.following}</Text>
+                  <Text style={{ marginLeft: 8, textAlign: 'center' }}>{this.state.countFollow}</Text>
+                </TouchableOpacity>
               </View>
               </View>
               </View>

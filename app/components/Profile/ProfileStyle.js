@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     color: 'white',
     alignItems: 'center',
-    marginTop: 5,
+    marginTop: 70,
     borderRadius: 2,
   },
   follow: {
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   biodata: {
     flexDirection: 'column',
     backgroundColor: 'rgba(0,0,0,0)',
-    paddingTop: 65,
+    paddingTop: 5,
     borderBottomWidth: 1,
     borderColor: 'grey',
     marginLeft: 20,

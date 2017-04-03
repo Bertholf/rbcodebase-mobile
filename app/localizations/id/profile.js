@@ -3,6 +3,7 @@ import LocalizedStrings from 'react-native-localization';
 const profileLocalization = {
   post: 'Post',
   follower: 'Pengikut',
+  following: 'mengiktui',
   edit: 'Edit',
   bio: 'Bio',
   lastHiking: 'Pendakian Terakhir',
