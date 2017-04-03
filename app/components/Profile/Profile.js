@@ -127,19 +127,34 @@ export default class Profile extends Component {
                 style={styles.backdrop}
               >
               <TouchableOpacity onPress={Actions.userpanel}>
-              <Image 
+              <Image
                 source={require('./../../images/back.png')}
                 style={styles.back}
               />
               </TouchableOpacity>
-              </Image>   
-              <View style={styles.backgroundname} >
-                <Text style={styles.headline} colors={['#000', 'transparent']} >
+              </Image>
+            </View>
+
+        {/*<View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
+            <View style={{ position: 'absolute' }}>
+              <View style={styles.viewImgpp}>
+                <TouchableOpacity
+                  disabled={this.state.request}
+                  onPress={this.selectPhotoTapped.bind(this)}>
+                  { this.state.avatarSource === null ? <Text>change Photo</Text> :
+                  <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
+                  }
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.biodata}>
+              <TouchableOpacity onPress={Actions.about}>
+                <Text style={styles.headline} colors={['black']} >
                   {this.state.profile.name_first} {this.state.profile.name_last}
                 </Text>
-              </View>
+              </TouchableOpacity>
               <View style={styles.textInform} >
-                <TouchableOpacity onPress={() => this.pressScroll()}>
+                <TouchableOpacity>
                   <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={Actions.friendlist}>
@@ -170,24 +185,6 @@ export default class Profile extends Component {
                   )
                 ) }
               </View>
-            </View>
-             
-        {/*<View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
-            <View style={{ position: 'absolute' }}>
-              <View style={styles.viewImgpp}>
-                <TouchableOpacity
-                  disabled={this.state.request}
-                  onPress={this.selectPhotoTapped.bind(this)}>
-                  { this.state.avatarSource === null ? <Text>change Photo</Text> :
-                  <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
-                  }
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={styles.biodata}>
-              <TouchableOpacity onPress={Actions.about}>
-                <Text style={styles.bio}>{strings.profileLocalization.bio}</Text>
-              </TouchableOpacity>
               <Text style={styles.isi}>{this.state.profile.about}</Text>
               <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
               <View style={styles.posisi}>

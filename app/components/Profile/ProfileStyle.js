@@ -43,11 +43,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   headline: {
-    fontSize: 20,
-    textAlign: 'left',
-    color: 'white',
-    marginTop: -28,
-    marginLeft:110,
+    fontSize: 25,
+    color: 'black',
   },
   button: {
     flexDirection: 'row',
@@ -123,7 +120,6 @@ const styles = StyleSheet.create({
     marginLeft: 100,
   },
   textInform: {
-    marginLeft: 120,
     flexDirection: 'row',
     backgroundColor: 'rgba(0,0,0,0)',
   },
@@ -135,13 +131,13 @@ const styles = StyleSheet.create({
   },
   biodata: {
     flexDirection: 'column',
+    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
     marginTop: 20,
     borderBottomWidth: 1,
     borderColor: 'grey',
     marginLeft: 20,
     marginRight: 20,
-    paddingTop: height * 0.01,
   },
 });
 
