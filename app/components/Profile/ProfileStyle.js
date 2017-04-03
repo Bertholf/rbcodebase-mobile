@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     marginLeft: 20,
     marginRight: 20,
+    marginBottom: 30,
   },
 });
 

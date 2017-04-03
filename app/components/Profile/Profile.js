@@ -122,7 +122,7 @@ export default class Profile extends Component {
           <View style={styles.container} >
             <View style={styles.backgroundContainer}>
               <Image
-                source={require('./../../images/bromo.jpg')}
+                source={require('./../../images/gunung.jpg')}
                 resizeMode={'cover'}
                 style={styles.backdrop}
               >
@@ -137,7 +137,7 @@ export default class Profile extends Component {
 
 
         {/*<View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
-          <View style={{backgroundColor: 'white', elevation: 6, margin: 20}}>
+          <View style={{backgroundColor: 'white', elevation: 6, margin: 10}}>
             <View style={{ alignItems: 'center' }}>
               <View style={styles.viewImgpp}>
                 <TouchableOpacity
