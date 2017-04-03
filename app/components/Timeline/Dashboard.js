@@ -7,6 +7,7 @@ import {
    AsyncStorage,
    NetInfo,
 } from 'react-native';
+import moment from 'moment';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
@@ -27,12 +28,13 @@ export default class Dashboard extends Component {
       namafirst: '',
       namalast: '',
       email: '',
-       isConnected: null,
+      isConnected: null,
     };
   }
   componentDidMount() {
     // Run FollowingScheduler
     FollowingScheduler();
+    this.getTime();
     // Get Profile Data From server
     auth.profile()
     .then((response) => {
@@ -64,6 +66,42 @@ export default class Dashboard extends Component {
         AsyncStorage.getItem('name_last').then((res) => { this.setState({ namalast: res }); });
       }
     });
+  }
+
+  syncWithServer(lastSave, now) {
+    /** get Time Diff */
+    // const now = moment(new Date());
+    // const end = moment('2017-04-02');
+    // const duration = moment.duration(now.diff(end));
+    // const hours = duration.asHours();
+    // console.log('Difference Hours', hours);
+    const duration = moment.duration(moment(now).diff(lastSave));
+    const durationHours = duration.asHours();
+
+    /** Check if durationHours >= 2 */
+    if (durationHours >= '2') {
+      // Place all save data method Here
+      FollowingScheduler(); // Get and save Following data list
+      console.log('Data is udpated');
+    } else {
+      console.log('Data up to date');
+    }
+  }
+
+  getTime() {
+    // Get time Difference
+    // Check in AsyncStorage if there is a last sync data time
+    const end = moment(new Date()).toISOString();
+    AsyncStorage.getItem('lastSyncData')
+    .then((res) => {
+      if (res === 'null' || typeof res === 'undefined') {
+        const now = moment(new Date());
+        AsyncStorage.setItem('lastSyncData', now.toString())
+        .then(resp => console.log('SAVED TIME', resp));
+      }
+      console.log('TIME ==========', res);
+      this.syncWithServer(res, end);
+    }).catch(err => console.log('==== ERROR TIME =====', err));
   }
 
   reRender() {
