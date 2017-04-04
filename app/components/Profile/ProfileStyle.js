@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'whitesmoke',
+    backgroundColor: 'white',
   },
   backdrop: {
     resizeMode: 'cover',
@@ -92,10 +92,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   icon: {
-    height: 20,
-    width: 20,
+    height: 25,
+    width: 25,
     borderRadius: 50,
     paddingTop: 30,
+    alignItems: 'center',
   },
   location: {
     height: 20,
@@ -140,6 +141,7 @@ const styles = StyleSheet.create({
   },
   posisi: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     marginLeft: 8,
     backgroundColor: 'rgba(0,0,0,0)',
     marginVertical: 5,

@@ -150,7 +150,7 @@ export default class Profile extends Component {
                   <TouchableOpacity onPress={Actions.userpanel}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={Actions.userpanel}>
+                  <TouchableOpacity onPress={Actions.setting}>
                     <Image source={settingIcon} style={styles.backsetting} />
                   </TouchableOpacity>
                 </View>
@@ -236,11 +236,13 @@ export default class Profile extends Component {
                     <View style={{ flexDirection: 'column' }}>
                       <View style={styles.posisi}>
                         <Image style={styles.icon} source={require('./../../images/jarak.png')} />
-                        <Text style={styles.isi}> {strings.profileLocalization.km} :</Text>
                       </View>
-                      <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
-                        N/A
-                      </Text>
+                      <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                          N/A
+                        </Text>
+                      </View>
                     </View>
                     <View style={{ flexDirection: 'column' }}>
                       <View style={styles.posisi}>
@@ -248,23 +250,24 @@ export default class Profile extends Component {
                           style={styles.icon}
                           source={require('./../../images/mountain.png')}
                         />
-                        <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
                       </View>
-                      <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
-                        N/A
-                      </Text>
+                      <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                          N/A
+                        </Text>
+                      </View>
                     </View>
                     <View style={{ flexDirection: 'column' }}>
                       <View style={styles.posisi}>
                         <Image style={styles.icon} source={require('./../../images/live.png')} />
-                        <Text style={styles.isi}>
-                          {strings.profileLocalization.live} :
-                          {this.state.profile.live}
+                      </View>
+                      <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.isi}>{strings.profileLocalization.live} :</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                          N/A
                         </Text>
                       </View>
-                      <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
-                        N/A
-                      </Text>
                     </View>
                   </View>
                   <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
