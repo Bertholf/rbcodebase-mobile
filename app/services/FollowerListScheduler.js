@@ -2,7 +2,7 @@ import { InteractionManager, AsyncStorage } from 'react-native';
 import Realm from 'realm';
 import moment from 'moment';
 import follows from './follows';
-import FollowingSchema from './../db/follower/followersSchema';
+import FollowersSchema from './../db/follower/followersSchema';
 import FollowerSchema from './../db/follower/followerSchema';
 import SettingSchema from './../db/follower/settingSchema';
 import LeaderSchema from './../db/follower/leaderSchema';
@@ -14,7 +14,7 @@ import LeaderSchema from './../db/follower/leaderSchema';
 
 let listFollower = [];
 const followerDb = new Realm({
-  schemaFollower: [FollowerSchema, FollowerSchema, SettingSchema, LeaderSchema],
+  schemaFollower: [FollowersSchema, FollowerSchema, SettingSchema, LeaderSchema],
 });
 
 const saveListData = (list) => {
