@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   backdrop: {
     resizeMode: 'cover',
     height: height * 0.28,
+    width: width * 1,
   },
   mapmain: {
     paddingTop: height * 0.47,
@@ -43,6 +44,8 @@ const styles = StyleSheet.create({
   backsetting: {
     width: 25,
     height: 18,
+    marginTop: 10,
+    marginRight: 10,
   },
   headline: {
     fontSize: 25,

@@ -15,6 +15,7 @@ import { Actions } from 'react-native-router-flux';
 import styles from './ProfileStyle';
 import follows from '../../services/follows';
 import strings from '../../localizations';
+const settingIcon = require('./../../images/ic_settings_black_24dp.png');
 
 export default class Profile extends Component {
   constructor(props) {
@@ -145,9 +146,14 @@ export default class Profile extends Component {
                 resizeMode={'cover'}
                 style={styles.backdrop}
               >
-                <TouchableOpacity onPress={Actions.userpanel}>
-                  <Image source={require('./../../images/back.png')} style={styles.back} />
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <TouchableOpacity onPress={Actions.userpanel}>
+                    <Image source={require('./../../images/back.png')} style={styles.back} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={Actions.userpanel}>
+                    <Image source={settingIcon} style={styles.backsetting} />
+                  </TouchableOpacity>
+                </View>
               </Image>
             </View>
             {/* <View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
