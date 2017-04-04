@@ -10,7 +10,7 @@ const profileLocalization = {
   km: 'Km',
   from: 'Dari',
   live: 'langsung',
-  unfollow: 'Berhenti Ikuti',
+  unfollow: 'Mengikuti',
   follow: 'Ikuti',
   deleteFriend: 'Hapus Teman',
   addFriend: 'Tambah Teman',

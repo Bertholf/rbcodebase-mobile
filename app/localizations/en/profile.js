@@ -10,7 +10,7 @@ const profileLocalization = {
   km: 'Km',
   from: 'From',
   live: 'Live',
-  unfollow: 'Unfollow',
+  unfollow: 'Following',
   follow: 'Follow',
   deleteFriend: 'Delete Friend',
   addFriend: 'Add Friend',
