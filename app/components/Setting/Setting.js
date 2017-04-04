@@ -37,8 +37,7 @@ export default class Setting extends Component {
 
   // Save dan get Item AsyncStorage from Api/me
   componentDidMount() {
-    this.props.networkAction();
-    console.log('STATE REDUX', this.state.handle);
+    console.log('STATE REDUX', this.state.handler);
     // connectionInfo.checkInfo();
     auth.profile()
     .then((response) => {

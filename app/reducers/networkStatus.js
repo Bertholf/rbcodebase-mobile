@@ -1,15 +1,13 @@
 // import { combineReducers } from 'redux';
 // import { NetInfo } from 'react-native';
-import { GET_NETWORK_STATUS, CHANGE_NETWORK_STATUS, HANDLER } from '../actions/networkStatus';
+import { GET_NETWORK_STATUS, TESTING_NETWORK } from '../actions/networkStatus';
 
 const networkState = (state = { network: null }, action) => {
   switch (action.type) {
+    case TESTING_NETWORK:
+      return { ...state };
     case GET_NETWORK_STATUS:
-      return { network: true };
-    case CHANGE_NETWORK_STATUS:
-      return { ...state };
-    case HANDLER:
-      return { ...state };
+      return Object.assign({}, state, { network: action.network });
     default:
       return state;
   }

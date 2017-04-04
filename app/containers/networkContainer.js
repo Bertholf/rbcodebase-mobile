@@ -10,7 +10,6 @@ const mapStateToProps = ({ app }) => ({
 
 const mapDispatchToProps = dispatch => ({
   networkAction: () => {
-    // return true;
     dispatch(getNetworkStatus());
   },
   changeNetworkAction: () => {
