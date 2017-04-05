@@ -68,9 +68,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 10,
   },
-
-  // End Style Adpreference //
-  // ====================== //
+ //-------end style ---------
+   
+  // ------ Styles Edit Birthday ------------ //
   styleViewEditBirthday: {
     marginTop: 10,
     flexDirection: 'row',
@@ -87,10 +87,48 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 13,
   },    
-
-  // ------ Styles Edit Birthday ------------ //
-
   // ---------end----------//
+
+  // ---------Styles Gender Edit-------------
+  genderRow: {
+    paddingTop: 50,
+    paddingBottom: 90,
+    width: width * 0.91,
+    height: 65,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 7,
+    marginLeft: 13,
+    marginRight: 13,
+  },
+  btnGender: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    borderRadius: 2,
+    height: 80,
+    width: (width * 0.85) / 2,
+    borderWidth: 1,
+    borderColor: 'silver',
+  },
+  OuterView: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  imgGender: {
+    height: 80,
+    width: 80,
+    marginRight: 10,
+  },
+  active: {
+    borderWidth: 2,
+    borderColor: '#2196F3',
+  },
+  active2: {
+    borderWidth: 2,
+    borderColor: '#f2003d',
+  },
+
+  // --------end-------------
   logoGoogle: {
     height: 23,
     width: 35,
