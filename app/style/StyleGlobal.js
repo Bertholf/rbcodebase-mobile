@@ -44,6 +44,33 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     marginBottom: 30,
   },
+  // ================== //
+  // Style Adpreference //
+  // ================== //
+  styleView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 3,
+    height: 40,
+    alignItems: 'center',
+    marginBottom: 6,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+
+  textPreference: {
+    color: '#000000',
+    fontSize: 14,
+    marginLeft: 10,
+  },
+
+  // End Style Adpreference //
+  // ====================== //
   logoGoogle: {
     height: 23,
     width: 35,
