@@ -26,7 +26,7 @@ export default class PushController extends Component {
       if (res === null || typeof res === 'undefined') {
         FCM.getFCMToken()
         .then((token) => {
-          {token === null ? AsyncStorage.setItem('FcmToken', stringNull) : AsyncStorage.setItem('FcmToken', token); }
+          { token === null ? AsyncStorage.setItem('FcmToken', stringNull) : AsyncStorage.setItem('FcmToken', token); }
           notif.sendToken(token)
           .then(response => console.log('RESPONSE FCM SEND NOTIF', response))
           .catch();
