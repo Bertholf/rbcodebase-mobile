@@ -8,25 +8,18 @@ export const HANDLER = 'HANDLER';
 export function getNetworkStatus(connected) {
   let status;
   // Event Listener
-  NetInfo.isConnected.addEventListener(
-        'change',
-        connected,
-    );
-// get first NetInfo
-  NetInfo.isConnected.fetch().done(
-        (isConnected) => { status = isConnected; },
-    );
+  NetInfo.isConnected.addEventListener('change', connected);
+  // get first NetInfo
+  NetInfo.isConnected.fetch().done((isConnected) => {
+    status = isConnected;
+  });
   return { type: GET_NETWORK_STATUS, status };
 }
 
-
 export function changeNetworkStatus(connected) {
   let status;
-// Change network status event
-  NetInfo.isConnected.removeEventListener(
-        'change',
-        connected,
-  );
+  // Change network status event
+  NetInfo.isConnected.removeEventListener('change', connected);
   return { type: CHANGE_NETWORK_STATUS, status };
 }
 // Event handler

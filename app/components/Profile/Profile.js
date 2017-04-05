@@ -259,7 +259,7 @@ export default class Profile extends Component {
                         </Text>
                       </View>
                     </View>
-                    <View style={{ flexDirection: 'column'}}>
+                    <View style={{ flexDirection: 'column' }}>
                       <View style={styles.posisi}>
                         <Image style={styles.icon} source={require('./../../images/live.png')} />
                       </View>

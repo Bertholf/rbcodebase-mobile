@@ -7,7 +7,8 @@ import {
   Text,
   Dimensions,
   ActivityIndicator,
-  Alert } from 'react-native';
+  Alert,
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from '../../style/StyleGlobal';
 import auth from '../../services/auth';
@@ -28,15 +29,18 @@ export default class ResultForgot extends Component {
   }
   sendLink() {
     this.setState({ loading: true });
-    auth.sendlink(this.state.email)
-    .then((res) => {
-      Alert.alert('Success', res.message);
-      Actions.loginscreenemail();
-      //loading will stop when succes sendlink email
-      this.setState({ loading: false});
-    }).catch(err => {
-      this.setState({ fail: false, loading: false })
-    }).catch();
+    auth
+      .sendlink(this.state.email)
+      .then((res) => {
+        Alert.alert('Success', res.message);
+        Actions.loginscreenemail();
+        // loading will stop when succes sendlink email
+        this.setState({ loading: false });
+      })
+      .catch((err) => {
+        this.setState({ fail: false, loading: false });
+      })
+      .catch();
   }
 
   render() {
@@ -56,13 +60,14 @@ export default class ResultForgot extends Component {
             <Text style={{ fontSize: 15, alignSelf: 'center' }}>{strings.ForgotPass.notme}</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 1.5, backgroundColor: '#039be5', width: width, justifyContent: 'center' }}>
-            <TouchableOpacity onPress={() => this.sendLink()}>
-              <View>
-                {this.state.loading ? <ActivityIndicator color={'#fff'}/> :
-                <Text style={styles.buttonText}>{strings.ForgotPass.sendLink}</Text>}
-              </View>
-            </TouchableOpacity>
+        <View style={{ flex: 1.5, backgroundColor: '#039be5', width, justifyContent: 'center' }}>
+          <TouchableOpacity onPress={() => this.sendLink()}>
+            <View>
+              {this.state.loading
+                ? <ActivityIndicator color={'#fff'} />
+                : <Text style={styles.buttonText}>{strings.ForgotPass.sendLink}</Text>}
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -73,9 +78,9 @@ const stylescomp = StyleSheet.create({
   container: {
     flex: 1,
   },
-  topContent:{
+  topContent: {
     flex: 12,
-    width: width,
+    width,
     padding: 25,
     alignItems: 'center',
     justifyContent: 'center',
