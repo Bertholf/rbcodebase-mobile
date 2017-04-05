@@ -31,7 +31,7 @@ import EmailEdit from './components/Setting/EmailEdit';
 import NameEdit from './containers/Settings/changeNameContainer';
 import editBirthday from './components/Setting/editBirthday';
 import PassEdit from './components/Setting/PasswordEdit';
-import Gender from './components/Setting/GenderEdit';
+import Gender from './containers/Settings/genderContainer';
 import About from './components/Setting/About';
 import UsernameEdit from './containers/Settings/UsernameContainer';
 import Following from './components/Profile/Following';

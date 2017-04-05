@@ -158,12 +158,7 @@ export default class NameEdit extends Component {
     const rightButtonConfig = {
       title: strings.settings.save,
       tintColor: color,
-      handler: handlerState,
-      disabled: this.state.netstate ? 'false' : 'true',
-    };
-    const rightButtonConfig2 = {
-      title: strings.settings.save,
-      tintColor: 'grey',
+      handler: validateName(),
     };
 
     // title of screen
@@ -173,7 +168,7 @@ export default class NameEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-       {/* --- Declaration Navigation Bar ---- */}
+          {/* --- Declaration Navigation Bar ---- */}
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}

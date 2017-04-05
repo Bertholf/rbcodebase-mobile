@@ -35,22 +35,10 @@ export default class Gender extends Component {
       profile: {},
       position: 'bottom',
       gender: '',
-      isConnected: null,
-
+      netstate: this.props.network,
     };
   }
   componentDidMount() {
-    // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
     auth.profile()
     .then(response =>
       this.setState({
@@ -63,17 +51,11 @@ export default class Gender extends Component {
       .catch();
     });
   }
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
+
+  componentWillReceiveProps(NextProps) {
+    console.log('NETWORK IS...', NextProps.network);
+    this.setState({ netstate: NextProps.network });
   }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
-  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -104,33 +86,29 @@ export default class Gender extends Component {
     const birthday = this.state.profile.birthday;
     const gender = this.state.gender;
 
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => updategender() : () => console.log('Disabled');
+
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => updategender(),
-    };
-    const rightButtonConfig2 = {
-      title: strings.settings.save,
-      tintColor: 'grey',
+      tintColor: color,
+      handler: handlerState,
     };
 
     const titleConfig = {
       title: strings.settings.changegender,
     };
     const updategender = () => {
-      if (this.state.isConnected === true) {
-        saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
+      saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
         //  Toast.show(strings.mobilephone.phoneChanged);
-        auth.profile()
+      auth.profile()
         .then((response) => {
           this.setState({ profile: response.data, loading: false }, () => {
             this.onClick(strings.settings.successGender, 'bottom', DURATION.LENGTH_LONG);
           });
         })
         .catch(Err => Err);
-        this.props.reRender();
-      } else {
-        return;
-      }
+      this.props.reRender();
     };
     return (
       <View style={styles.OuterView}>
@@ -142,21 +120,12 @@ export default class Gender extends Component {
           * --------------------------------------------------------- */}
 
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
-          :
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          />
-        }
         </View>
 
         {/* ---------------------------------------------------------
@@ -167,7 +136,7 @@ export default class Gender extends Component {
 
         <ScrollView>
           <View style={styles.genderRow} >
-        {/* ---------------------------------------------------------
+            {/* ---------------------------------------------------------
           *
           * Select / Picker for Gender View
           *
@@ -184,7 +153,7 @@ export default class Gender extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              style={[styles.btnGender, this.state.gender === 'female'  && styles.active2]}
+              style={[styles.btnGender, this.state.gender === 'female' && styles.active2]}
               onPress={() => this.setState({ gender: 'female' })}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
