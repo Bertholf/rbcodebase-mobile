@@ -41,7 +41,7 @@ export default class NameEdit extends Component {
     };
   }
 
-// Add action of Toast 
+// Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -68,7 +68,7 @@ export default class NameEdit extends Component {
     // );
     // const {dispatch, networkState } = this.props
     // dispatch(getNetworkStatus)
-    console.log("===============", this.props.network);
+    console.log('===============', this.props.network);
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
     .catch(() => {
@@ -87,7 +87,7 @@ export default class NameEdit extends Component {
   //   this.setState({
   //     isConnected,
   //   });
-  };
+  }
 
   componentWillReceiveProps(NextProps) {
     console.log('NOW IS ONLINE = ', NextProps.network);
@@ -126,26 +126,26 @@ export default class NameEdit extends Component {
     const birthday = this.state.profile.birthday;
     // Validate Name Input
     const validateName = () => {
-        if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
-          if (firstNameInput === currentFirstName) {
-            if (lastNameInput === currentLastName) {
-            } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
-            }
-          } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
-          } else {
-            saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
-            Keyboard.dismiss();
-            auth.profile()
+      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
+        if (firstNameInput === currentFirstName) {
+          if (lastNameInput === currentLastName) {
+          } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
+          }
+        } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
+        } else {
+          saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
+          Keyboard.dismiss();
+          auth.profile()
               .then(response => this.setState({ profile: response.data, loading: false }, () => {
                 this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
               }))
           .catch();
-            Keyboard.dismiss();
-            Actions.refresh();
-          }
-        } else {
-          this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
+          Keyboard.dismiss();
+          Actions.refresh();
         }
+      } else {
+        this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
+      }
     };
 
     const color = this.state.netstate ? 'blue' : '#c0c0c0';
@@ -154,7 +154,7 @@ export default class NameEdit extends Component {
     const rightButtonConfig = {
       title: strings.settings.save,
       tintColor: color,
-      handler: validateName(),
+      handler: handlerState,
     };
 
     // title of screen

@@ -74,6 +74,9 @@ export default class Setting extends Component {
       AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch(res => console.log('error ambil tanggal lahir--- --'));
     });
   }
+  componentWillMount() {
+    return;
+  }
 
   componentWillReceiveProps(NextProps) {
     console.log('NETWORK STATE =', NextProps.network);
