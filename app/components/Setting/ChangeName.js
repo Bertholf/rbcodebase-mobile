@@ -31,6 +31,7 @@ export default class NameEdit extends Component {
       named: '',
       style: {},
       position: 'bottom',
+      netstate: this.props.network,
     };
   }
 
@@ -54,6 +55,11 @@ export default class NameEdit extends Component {
       AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
       AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
     });
+  }
+
+  componentWillReceiveProps(NextProps) {
+    console.log('NOW IS ONLINE = ', NextProps.network);
+    this.setState({ netstate: NextProps.network });
   }
 
   getButton(text, position, duration, withStyle) {
@@ -109,17 +115,20 @@ export default class NameEdit extends Component {
       }
     };
 
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => validateName() : () => console.log('Disable');
     // Create Save Button on Navigation
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => validateName(),
+      tintColor: color,
+      handler: handlerState,
+      disabled: this.state.netstate ? 'false' : 'true',
     };
 
     // title of screen
     const titleConfig = {
       title: strings.ChangeName.title,
     };
-
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
@@ -127,7 +136,7 @@ export default class NameEdit extends Component {
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
+            style={[{ height: 55, backgroundColor: '#f0f0f0' }]}
           />
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>

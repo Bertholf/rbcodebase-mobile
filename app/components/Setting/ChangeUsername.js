@@ -26,6 +26,7 @@ export default class ChangeUsername extends Component {
       namaslug: '',
       position: 'bottom',
       style: {},
+      netstate: this.props.network,
     };
   }
 
