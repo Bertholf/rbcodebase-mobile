@@ -53,6 +53,7 @@ export default class ChangeUsername extends Component {
     });
   }
 
+// Add action of Toast 
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -64,6 +65,7 @@ export default class ChangeUsername extends Component {
     }
   }
 
+  // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -88,6 +90,7 @@ export default class ChangeUsername extends Component {
   }
 
   render() {
+    // validation with regex
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -107,13 +110,15 @@ export default class ChangeUsername extends Component {
         auth.profile()
         .then((response) => {
           this.setState({ profile: response.data, loading: false }, () => {
-            this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG);
+          // --- show toast ----
+          this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG);
           });
         })
         .catch(Err => Err);
         Keyboard.dismiss();
         this.props.reRender();
       } else {
+        // ----- show toast -----
         this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
@@ -188,7 +193,7 @@ export default class ChangeUsername extends Component {
 
         {/* ---------------------------------------------------------
           *
-          * Give Toast message
+          * component's render method, use Toast, MUST add in Bottom of the root View
           *
           * --------------------------------------------------------- */}
         <Toast
