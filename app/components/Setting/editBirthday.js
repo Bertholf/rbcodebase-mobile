@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   Keyboard,
+  NetInfo,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -13,6 +14,7 @@ import strings from '../../localizations';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import IconClose from './../../layouts/IconClose';
+import styles from '../../style/StyleGlobal';
 
 const moment = require('moment');
 
@@ -24,10 +26,22 @@ export default class editBirthday extends Component {
       profile: {},
       position: 'bottom',
       style: {},
+      isConnected: null,
     };
   }
   // Mount Component with Value in auth.profile (birthday)
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     auth.profile()
      .then((response) => {
        if (response.data.date_birth === null) {
@@ -44,6 +58,17 @@ export default class editBirthday extends Component {
      })
      .catch(Err => Err);
   }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -76,6 +101,10 @@ export default class editBirthday extends Component {
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => updateBirthday(),
+    };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
     };
       // title of screen
     const titleConfig = {
@@ -116,17 +145,26 @@ export default class editBirthday extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          />
+        }
         </View>
         <View style={{ padding: 16 }}>
-          <View style={styles.styleView}>
+          <View style={styles.styleViewEditBirthday}>
             <View style={{ alignSelf: 'center' }}>
-              <Text style={styles.text}>{strings.editBirthday.birthday}</Text>
+              <Text style={styles.textEditBirthday}>{strings.editBirthday.birthday}</Text>
             </View>
             <View style={{ alignSelf: 'center' }}>
               <DatePicker
@@ -163,34 +201,3 @@ export default class editBirthday extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 2,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    marginTop: 10,
-    flexDirection: 'row',
-    paddingLeft: 15,
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    justifyContent: 'space-between',
-    marginBottom: 8,
-    height: 50,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 13,
-  },
-});

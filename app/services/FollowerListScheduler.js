@@ -2,19 +2,19 @@ import { InteractionManager, AsyncStorage } from 'react-native';
 import Realm from 'realm';
 import moment from 'moment';
 import follows from './follows';
-import FollowingSchema from './../db/following/followingSchema';
-import FollowerSchema from './../db/following/followerSchema';
-import SettingSchema from './../db/following/settingSchema';
-import LeaderSchema from './../db/following/leaderSchema';
+import FollowersSchema from './../db/follower/followersSchema';
+import FollowerSchema from './../db/follower/followerSchema';
+import SettingSchema from './../db/follower/settingSchema';
+import LeaderSchema from './../db/follower/leaderSchema';
 
 /**
  * Save Following Data in Realm DB
  */
 // let following = new Realm({ schema: [FollowingSchema] });
 
-let listFollowing = [];
-const followingDb = new Realm({
-  schema: [FollowingSchema, FollowerSchema, SettingSchema, LeaderSchema],
+let listFollower = [];
+const followerDb = new Realm({
+  schemaFollower: [FollowersSchema, FollowerSchema, SettingSchema, LeaderSchema],
 });
 
 const saveListData = (list) => {
@@ -48,7 +48,7 @@ const saveListData = (list) => {
    */
   followingDb.write(() => {
     // Writing the Database
-    followingDb.create('Following', {
+    followingDb.create('Followers', {
       // Create new object
       relation_id: list.id,
       follower_id: list.follower_id,
@@ -65,7 +65,7 @@ const saveListData = (list) => {
         name_display: nullValue(list.follower.name_display),
         name_slug: list.follower.name_slug.toString(),
         email: list.follower.email.toString(),
-        cell_number: nullValue(leader.cell_number),
+        cell_number: list.follower.cell_number.toString(),
         cell_carrier: nullValue(list.follower.cell_carrier),
         status: list.follower.status,
         confirmation_code: list.follower.confirmation_code.toString(),
@@ -149,23 +149,23 @@ const saveListData = (list) => {
   });
 };
 
-const getFollowingList = () => {
+const getFollowerList = () => {
   AsyncStorage.getItem('userId')
   .then((id) => {
-    follows.searchFollowing('', id)
+    follows.searchFollower('', id)
     .then((res) => {
-      console.log('Response SERVER ================', res);
-      listFollowing = res.data;
-      listFollowing.map(i => saveListData(i));
+      console.log('Response SERVER Follower ================', res);
+      listFollower = res.data;
+      listFollower.map(i => saveListData(i));
     }).catch(err => console.log('Error Fetching', err));
   }).catch();
 };
 
 
-const FollowingScheduler = () => {
-  getFollowingList();
-  const database = followingDb.objects('Following').filtered('leader.name_first = "" OR leader.name_last = "a" OR leader.email = ""'); // Retrieve all data into database variable
-  console.log('DATABASE VIEW FOLLOWING', database);
+const FollowerScheduler = () => {
+  getFollowerList();
+  const database = followerDb.objects('Follower'); // Retrieve all data into database variable
+  console.log('DATABASE VIEW Follower', database);
 };
 
-module.exports = FollowingScheduler;
+module.exports = FollowerScheduler;

@@ -6,6 +6,7 @@ import {
   ScrollView,
   Keyboard,
   AsyncStorage,
+  NetInfo,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -32,6 +33,17 @@ export default class ChangeUsername extends Component {
 
   // Mount Component with Value in auth.profile
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     // @TODO When get profile request is failed
     // make it load value from AsyncStorage
     auth.profile()
@@ -53,7 +65,20 @@ export default class ChangeUsername extends Component {
       .catch();
     });
   }
+  componentWillUnmount() {
+  //  MessageBarManager.unregisterMessageBar();
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
 
+// Add action of Toast 
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -65,6 +90,7 @@ export default class ChangeUsername extends Component {
     }
   }
 
+  // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -89,6 +115,7 @@ export default class ChangeUsername extends Component {
   }
 
   render() {
+    // validation with regex
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
@@ -103,25 +130,36 @@ export default class ChangeUsername extends Component {
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
-      if (validRegex && validUsername) {
-        saveProfile(id, name_first, name_last, displayName, newUsernames, gender, phone, birthday);
-        auth.profile()
-        .then((response) => {
-          this.setState({ profile: response.data, loading: false }, () => {
-            this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG);
-          });
-        })
-        .catch(Err => Err);
-        Keyboard.dismiss();
-        this.props.reRender();
+      if (this.state.isConnected === true) {
+        if (validRegex && validUsername) {
+          saveProfile(id, name_first, name_last, displayName, newUsernames, gender, phone, birthday);
+          auth.profile()
+          .then((response) => {
+            this.setState({ profile: response.data, loading: false }, () => {
+                // --- show toast ----
+              this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG);
+            });
+          })
+          .catch(Err => Err);
+          Keyboard.dismiss();
+          this.props.reRender();
+        } else {
+          // ----- show toast -----
+          this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
+        }
       } else {
-        this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
+        return;
       }
     };
 
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => onSave(),
+    };
+
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
     };
 
     const titleConfig = {
@@ -135,12 +173,20 @@ export default class ChangeUsername extends Component {
             *
             * --------------------------------------------------------- */}
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-          <NavigationBar
+        {this.state.isConnected === true ?
+         <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+        }
         </View>
 
         {/* ---- ScrollView Screen ----*/}
@@ -189,7 +235,7 @@ export default class ChangeUsername extends Component {
 
         {/* ---------------------------------------------------------
           *
-          * Give Toast message
+          * component's render method, use Toast, MUST add in Bottom of the root View
           *
           * --------------------------------------------------------- */}
         <Toast

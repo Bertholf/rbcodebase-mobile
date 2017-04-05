@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  NetInfo,
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -13,43 +14,6 @@ import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
 import Toast, { DURATION } from 'react-native-easy-toast';
-
-
-const stylesAdpref = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 5,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 3,
-    height: 40,
-    alignItems: 'center',
-    marginBottom: 6,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 14,
-    marginLeft: 10,
-  },
-});
 
 // Initial State of Setitng
 export default class AdPreference extends Component {
@@ -71,11 +35,23 @@ export default class AdPreference extends Component {
       picktimpost: '',
       pickmessage: '',
       position: 'bottom',
+      isConnected: null,
     };
   }
 
   // Get Settings Current User
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     auth.adprefe()
     .then(response => this.setState({
       privacy_follow: response.data[0].privacy_follow,
@@ -93,6 +69,17 @@ export default class AdPreference extends Component {
     }))
     .catch();
   }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -125,6 +112,10 @@ export default class AdPreference extends Component {
       title: strings.settings.save,
       handler: () => saveUpdate(),
     };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
+    };
 
     const titleConfig = {
       title: strings.settings.privacysetting,
@@ -135,18 +126,27 @@ export default class AdPreference extends Component {
         <View
           style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         >
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          }
         </View>
         <ScrollView>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollow}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacyfollow}</Text>
               </View>
 
               <View style={styles.pickerstyle}>
@@ -190,9 +190,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollowconfirm}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacyfollowconfirm}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 {this.state.privacy_follow_confirm === 'only friend' ?
@@ -239,9 +239,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacycomment}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacycomment}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 {this.state.privacy_comment == 'only friend' ?
@@ -288,9 +288,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacypost}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacypost}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 { this.state.privacy_post === 'only friend' ?
@@ -337,9 +337,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacytimelinepost}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacytimelinepost}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 { this.state.privacy_timeline_post === 'only friend' ?
@@ -386,9 +386,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacymessage}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacymessage}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 { this.state.privacy_message === 'only friend' ?

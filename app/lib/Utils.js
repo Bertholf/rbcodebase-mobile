@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 module.exports = {
-  axios: function() {
+  axios() {
     return axios.create({
-      baseURL: 'http://api.bixboxapptest.com'
+      baseURL: 'http://api.bixboxapptest.com',
     });
   },
-}
+};

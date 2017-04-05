@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  Text,
-} from 'react-native';
+import { View, ScrollView, TouchableOpacity, Image, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from './../../style/StyleGlobal';
 import strings from '../../localizations';
@@ -30,16 +24,17 @@ export default class LoginScreen extends Component {
                 activeOpacity={0.7}
                 onPress={() => this.props.loginWithFacebook()}
               >
-              <View style={{ flexDirection: 'row' }}>
-                <Image source={facebookLogo} style={styles.facebookLogo} />
-                <Text style={styles.textfb}>{strings.LoginScreen.facebook_sign_in}</Text>
-              </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Image source={facebookLogo} style={styles.facebookLogo} />
+                  <Text style={styles.textfb}>{strings.LoginScreen.facebook_sign_in}</Text>
+                </View>
               </TouchableOpacity>
             </View>
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonGoogle}
-                activeOpacity={0.7} onPress={() => this.props.loginWithGoogle()}
+                activeOpacity={0.7}
+                onPress={() => this.props.loginWithGoogle()}
               >
                 <View style={{ flexDirection: 'row' }}>
                   <Image source={google2} style={styles.logoGoogle} />
@@ -51,19 +46,43 @@ export default class LoginScreen extends Component {
               <TouchableOpacity
                 style={styles.buttonTwitter}
                 activeOpacity={0.7}
-                onPress={() => this.props.loginWithTwitter()}>
-                <View
-                  style={{ flexDirection: 'row' }}
-                >
+                onPress={() => this.props.loginWithTwitter()}
+              >
+                <View style={{ flexDirection: 'row' }}>
                   <Image source={twitter} style={styles.logoTwitter} />
                   <Text style={styles.texttw}>{strings.LoginScreen.twitter_sign_in}</Text>
                 </View>
               </TouchableOpacity>
             </View>
-            <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginTop: 10 }}>
-              <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginLeft: 5 }} />
-              <Text style={{ paddingLeft: 3, paddingRight: 3, color: 'rgba(0,0,0,0.8)' }}>{strings.LoginScreen.or}</Text>
-              <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 145, height: 1, marginRight: 5 }} />
+            <View
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                marginTop: 10,
+              }}
+            >
+              <View
+                style={{
+                  borderWidth: 0.5,
+                  borderColor: 'rgba(0,0,0,0.5)',
+                  width: 145,
+                  height: 1,
+                  marginLeft: 5,
+                }}
+              />
+              <Text style={{ paddingLeft: 3, paddingRight: 3, color: 'rgba(0,0,0,0.8)' }}>
+                {strings.LoginScreen.or}
+              </Text>
+              <View
+                style={{
+                  borderWidth: 0.5,
+                  borderColor: 'rgba(0,0,0,0.5)',
+                  width: 145,
+                  height: 1,
+                  marginRight: 5,
+                }}
+              />
             </View>
             <View style={styles.otherlog}>
               <TouchableOpacity
@@ -71,7 +90,7 @@ export default class LoginScreen extends Component {
                 activeOpacity={0.7}
                 onPress={() => Actions.loginscreenemail({ login: this.props.submitLogin })}
               >
-                <View style={{ flexDirection: 'row'}}>
+                <View style={{ flexDirection: 'row' }}>
                   <Image style={styles.icon} source={mail} />
                   <Text style={styles.text}>{strings.LoginScreen.email_sign_in}</Text>
                 </View>
@@ -87,9 +106,13 @@ export default class LoginScreen extends Component {
             <View style={{ alignItems: 'center' }}>
               <View style={{ alignItems: 'center' }}>
                 <Text style={{ textAlign: 'center' }}>{strings.LoginScreen.agreement}</Text>
-                <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}> {strings.LoginScreen.tos}
-                  <Text style={{ color: 'grey' }}> {strings.LoginScreen.and}
-                    <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}> {strings.LoginScreen.privacy_policy}</Text>
+                <Text style={{ color: '#2196F3' }} onPress={() => Actions.tos()}>
+                  {' '}{strings.LoginScreen.tos}
+                  <Text style={{ color: 'grey' }}>
+                    {' '}{strings.LoginScreen.and}
+                    <Text style={{ color: '#2196F3' }} onPress={() => Actions.pp()}>
+                      {' '}{strings.LoginScreen.privacy_policy}
+                    </Text>
                   </Text>
                 </Text>
               </View>

@@ -12,10 +12,12 @@ import Warning from './services/WarningDisconnect';
 import { getNetworkStatus } from './actions/networkStatus';
 
 const logger = createLogger();
-const store = createStore(combineReducers({ app: reducers }),
+const store = createStore(
+  combineReducers({ app: reducers }),
   applyMiddleware(logger, thunkMiddleware),
-  autoRehydrate());
-  // uncomment this when you build it
+  autoRehydrate(),
+);
+// uncomment this when you build it
 // persistStore(store, {
 //   storage: AsyncStorage,
 // });
@@ -38,19 +40,13 @@ store.dispatch(getNetworkStatus());
 
 export default class App extends Component {
   componentDidMount() {
-    console.log('1234');
     // console.log('TESTING REALM', realmTest()); return sample of realm
   }
   render() {
-
     return (
-   
       <Provider store={store}>
         <Routing />
       </Provider>
-     
-  
-      
     );
   }
 }

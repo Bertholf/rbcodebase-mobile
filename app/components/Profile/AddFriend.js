@@ -56,7 +56,7 @@ export default class AddFriendScreen extends React.Component {
       // this.setState({ friendlist: response.data, loading: false, wait: false }, () => console.log('ini response===', this.state));
     }).catch((err) => {
       console.log('ADD FRIEND ERROR', err);
-      Alert.alert('Cannot Connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
+      Alert.alert('Sorry!  You are Offline', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
     });
   }
 

@@ -6,6 +6,8 @@ import {
   TextInput,
   Keyboard,
   AsyncStorage,
+  NetInfo,
+
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
@@ -16,7 +18,11 @@ import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
+import { bindActionsCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getNetworkStatus, changeNetworkStatus } from '../../actions/networkStatus';
 
+// Initial State of Change Name
 export default class NameEdit extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +41,7 @@ export default class NameEdit extends Component {
     };
   }
 
+// Add action of Toast 
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -46,8 +53,22 @@ export default class NameEdit extends Component {
     }
   }
 
-  // Mount Component with Value in auth.profile
+// Mount Component with Value in auth.profile
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    // NetInfo.isConnected.addEventListener(
+    //     'change',
+    //     this._handleConnectivityChange
+    // );
+    // NetInfo.isConnected.fetch().done(
+    //     (isConnected) => {
+    //         console.log('CONNECTION', isConnected),
+    //         this.setState({isConnected});
+    //        }
+    // );
+    // const {dispatch, networkState } = this.props
+    // dispatch(getNetworkStatus)
+    console.log("===============", this.props.network);
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
     .catch(() => {
@@ -56,12 +77,24 @@ export default class NameEdit extends Component {
       AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
     });
   }
+  componentWillUnmount() {
+  //   NetInfo.isConnected.removeEventListener(
+  //       'change',
+  //       this._handleConnectivityChange
+  //   );
+  // }
+  // _handleConnectivityChange = (isConnected) => {
+  //   this.setState({
+  //     isConnected,
+  //   });
+  };
 
   componentWillReceiveProps(NextProps) {
     console.log('NOW IS ONLINE = ', NextProps.network);
     this.setState({ netstate: NextProps.network });
   }
 
+// Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -77,7 +110,7 @@ export default class NameEdit extends Component {
   }
 
   render() {
-        // regex name validation
+  // regex name validation
     const value = /^[a-zA-Z ]+$/;
     const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);
@@ -93,25 +126,29 @@ export default class NameEdit extends Component {
     const birthday = this.state.profile.birthday;
     // Validate Name Input
     const validateName = () => {
-      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
-        if (firstNameInput === currentFirstName) {
-          if (lastNameInput === currentLastName) {
-          } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
+      if (this.state.isConnected === true) {
+        if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
+          if (firstNameInput === currentFirstName) {
+            if (lastNameInput === currentLastName) {
+            } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
+            }
+          } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
+          } else {
+            saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
+            Keyboard.dismiss();
+            auth.profile()
+              .then(response => this.setState({ profile: response.data, loading: false }, () => {
+                this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
+              }))
+          .catch();
+            Keyboard.dismiss();
+            Actions.refresh();
           }
-        } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
         } else {
-          saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
-          Keyboard.dismiss();
-          auth.profile()
-            .then(response => this.setState({ profile: response.data, loading: false }, () => {
-              this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
-            }))
-        .catch();
-          Keyboard.dismiss();
-          Actions.refresh();
+          this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
         }
       } else {
-        this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
+        return;
       }
     };
 
@@ -124,6 +161,10 @@ export default class NameEdit extends Component {
       handler: handlerState,
       disabled: this.state.netstate ? 'false' : 'true',
     };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
+    };
 
     // title of screen
     const titleConfig = {
@@ -132,6 +173,7 @@ export default class NameEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+       {/* --- Declaration Navigation Bar ---- */}
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
@@ -144,7 +186,8 @@ export default class NameEdit extends Component {
         </View>
         <ScrollView>
           <View style={styles.View1}>
-            {/* Chance name Screen */}
+
+            {/* -----Chance name Screen------ */}
             <Text style={styles.Text2}>
               {strings.ChangeName.first_name}
             </Text>
@@ -207,6 +250,7 @@ export default class NameEdit extends Component {
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
+        {/* ------- component's render method, use Toast, MUST add in Bottom of the root View --------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}

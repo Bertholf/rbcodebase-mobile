@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Dimensions,
   AsyncStorage,
+  NetInfo,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -17,6 +18,7 @@ import auth from './../../services/auth';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
 import IconClose from './../../layouts/IconClose';
+import styles from '../../style/StyleGlobal';
 
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
@@ -33,10 +35,22 @@ export default class Gender extends Component {
       profile: {},
       position: 'bottom',
       gender: '',
+      isConnected: null,
 
     };
   }
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     auth.profile()
     .then(response =>
       this.setState({
@@ -49,6 +63,17 @@ export default class Gender extends Component {
       .catch();
     });
   }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -78,25 +103,34 @@ export default class Gender extends Component {
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const gender = this.state.gender;
+
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => updategender(),
+    };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
     };
 
     const titleConfig = {
       title: strings.settings.changegender,
     };
     const updategender = () => {
-      saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
-      //  Toast.show(strings.mobilephone.phoneChanged);
-      auth.profile()
-      .then((response) => {
-        this.setState({ profile: response.data, loading: false }, () => {
-          this.onClick(strings.settings.successGender, 'bottom', DURATION.LENGTH_LONG);
-        });
-      })
-      .catch(Err => Err);
-      this.props.reRender();
+      if (this.state.isConnected === true) {
+        saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
+        //  Toast.show(strings.mobilephone.phoneChanged);
+        auth.profile()
+        .then((response) => {
+          this.setState({ profile: response.data, loading: false }, () => {
+            this.onClick(strings.settings.successGender, 'bottom', DURATION.LENGTH_LONG);
+          });
+        })
+        .catch(Err => Err);
+        this.props.reRender();
+      } else {
+        return;
+      }
     };
     return (
       <View style={styles.OuterView}>
@@ -108,12 +142,21 @@ export default class Gender extends Component {
           * --------------------------------------------------------- */}
 
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({type: 'refresh'}))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          />
+        }
         </View>
 
         {/* ---------------------------------------------------------
@@ -161,44 +204,3 @@ export default class Gender extends Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  genderRow: {
-    paddingTop: 50,
-    paddingBottom: 90,
-    width: width * 0.91,
-    height: 65,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 7,
-    marginLeft: 13,
-    marginRight: 13,
-  },
-  btnGender: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    borderRadius: 2,
-    height: 80,
-    width: (width * 0.85) / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-  },
-  OuterView: {
-    flexDirection: 'column',
-    flex: 1,
-  },
-  imgGender: {
-    height: 80,
-    width: 80,
-    marginRight: 10,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
-  },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
-  },
-});

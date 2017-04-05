@@ -12,6 +12,7 @@ import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
 import FollowingScheduler from '../../services/createFollowingListScheduler';
+import FollowerScheduler from '../../services/FollowerListScheduler';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -31,6 +32,8 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
+    FollowerScheduler();
+    this.getTime();
     // Run FollowingScheduler
     FollowingScheduler();
     this.getTime();
