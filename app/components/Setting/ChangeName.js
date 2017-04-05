@@ -22,6 +22,7 @@ import { bindActionsCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getNetworkStatus, changeNetworkStatus } from '../../actions/networkStatus';
 
+// Initial State of Change Name
 export default class NameEdit extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +41,7 @@ export default class NameEdit extends Component {
     };
   }
 
+// Add action of Toast 
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -51,7 +53,7 @@ export default class NameEdit extends Component {
     }
   }
 
-  // Mount Component with Value in auth.profile
+// Mount Component with Value in auth.profile
   componentDidMount() {
     // check condiotion if CONNECTION or no CONNECTION
     // NetInfo.isConnected.addEventListener(
@@ -87,6 +89,7 @@ export default class NameEdit extends Component {
   //   });
   };
 
+// Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -102,7 +105,7 @@ export default class NameEdit extends Component {
   }
 
   render() {
-        // regex name validation
+  // regex name validation
     const value = /^[a-zA-Z ]+$/;
     const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);
@@ -162,6 +165,7 @@ export default class NameEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+       {/* --- Declaration Navigation Bar ---- */}
         {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
@@ -183,7 +187,8 @@ export default class NameEdit extends Component {
         </View>
         <ScrollView>
           <View style={styles.View1}>
-            {/* Chance name Screen */}
+
+            {/* -----Chance name Screen------ */}
             <Text style={styles.Text2}>
               {strings.ChangeName.first_name}
             </Text>
@@ -246,6 +251,7 @@ export default class NameEdit extends Component {
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
+        {/* ------- component's render method, use Toast, MUST add in Bottom of the root View --------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}

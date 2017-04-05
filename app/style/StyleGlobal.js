@@ -44,6 +44,137 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
     marginBottom: 30,
   },
+  // ================== //
+  // Style Adpreference //
+  // ================== //
+  styleView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 3,
+    height: 40,
+    alignItems: 'center',
+    marginBottom: 6,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+
+  textPreference: {
+    color: '#000000',
+    fontSize: 14,
+    marginLeft: 10,
+  },
+ //-------end style ---------
+   
+  // ------ Styles Edit Birthday ------------ //
+  styleViewEditBirthday: {
+    marginTop: 10,
+    flexDirection: 'row',
+    paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    height: 50,
+  },
+  textEditBirthday: {
+    color: '#000000',
+    fontSize: 13,
+  },    
+  // ---------end----------//
+
+  // ---------Styles Gender Edit-------------
+  genderRow: {
+    paddingTop: 50,
+    paddingBottom: 90,
+    width: width * 0.91,
+    height: 65,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 7,
+    marginLeft: 13,
+    marginRight: 13,
+  },
+  btnGender: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    borderRadius: 2,
+    height: 80,
+    width: (width * 0.85) / 2,
+    borderWidth: 1,
+    borderColor: 'silver',
+  },
+  OuterView: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  imgGender: {
+    height: 80,
+    width: 80,
+    marginRight: 10,
+  },
+  active: {
+    borderWidth: 2,
+    borderColor: '#2196F3',
+  },
+  active2: {
+    borderWidth: 2,
+    borderColor: '#f2003d',
+  },
+  // --------end-------------
+
+  // -------styles Mobile Phone ------------
+  container: {
+    padding: 16,
+    flex: 1,
+    marginTop: 5,
+  },
+  textinputWrapperStyle: {
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    flexDirection: 'column',
+    paddingLeft: 4,
+    paddingRight: 4,
+    marginBottom: 10,
+    height: 55,
+  },
+  textinputStyle: {
+    height: 55,
+  },
+  loginInput: {
+    height: 50,
+    marginTop: 10,
+    padding: 4,
+    fontSize: 18,
+    borderWidth: 1,
+    borderColor: '#48BBEC',
+    borderRadius: 0,
+    color: '#48BBEC',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    borderRadius: 2,
+    elevation: 2,
+    paddingTop: 5,
+    paddingBottom: 5,
+    marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 24,
+  },
+  
+// --------------------end---------------
+
   logoGoogle: {
     height: 23,
     width: 35,

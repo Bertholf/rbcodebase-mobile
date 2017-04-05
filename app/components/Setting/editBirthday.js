@@ -14,6 +14,7 @@ import strings from '../../localizations';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import IconClose from './../../layouts/IconClose';
+import styles from '../../style/StyleGlobal';
 
 const moment = require('moment');
 
@@ -161,9 +162,9 @@ export default class editBirthday extends Component {
         }
         </View>
         <View style={{ padding: 16 }}>
-          <View style={styles.styleView}>
+          <View style={styles.styleViewEditBirthday}>
             <View style={{ alignSelf: 'center' }}>
-              <Text style={styles.text}>{strings.editBirthday.birthday}</Text>
+              <Text style={styles.textEditBirthday}>{strings.editBirthday.birthday}</Text>
             </View>
             <View style={{ alignSelf: 'center' }}>
               <DatePicker
@@ -200,34 +201,3 @@ export default class editBirthday extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 2,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    marginTop: 10,
-    flexDirection: 'row',
-    paddingLeft: 15,
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    justifyContent: 'space-between',
-    marginBottom: 8,
-    height: 50,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 13,
-  },
-});

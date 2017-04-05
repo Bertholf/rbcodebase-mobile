@@ -18,6 +18,7 @@ import auth from './../../services/auth';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
 import IconClose from './../../layouts/IconClose';
+import styles from '../../style/StyleGlobal';
 
 const imgmale = require('./../../images/male.png');
 const imgfemale = require('./../../images/female.png');
@@ -203,44 +204,3 @@ export default class Gender extends Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  genderRow: {
-    paddingTop: 50,
-    paddingBottom: 90,
-    width: width * 0.91,
-    height: 65,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 7,
-    marginLeft: 13,
-    marginRight: 13,
-  },
-  btnGender: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    borderRadius: 2,
-    height: 80,
-    width: (width * 0.85) / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-  },
-  OuterView: {
-    flexDirection: 'column',
-    flex: 1,
-  },
-  imgGender: {
-    height: 80,
-    width: 80,
-    marginRight: 10,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
-  },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
-  },
-});

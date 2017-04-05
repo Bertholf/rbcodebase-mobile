@@ -15,43 +15,6 @@ import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
-
-const stylesAdpref = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 5,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 3,
-    height: 40,
-    alignItems: 'center',
-    marginBottom: 6,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 14,
-    marginLeft: 10,
-  },
-});
-
 // Initial State of Setitng
 export default class AdPreference extends Component {
   constructor(props) {
@@ -181,9 +144,9 @@ export default class AdPreference extends Component {
         </View>
         <ScrollView>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollow}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacyfollow}</Text>
               </View>
 
               <View style={styles.pickerstyle}>
@@ -227,9 +190,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacyfollowconfirm}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacyfollowconfirm}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 {this.state.privacy_follow_confirm === 'only friend' ?
@@ -276,9 +239,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacycomment}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacycomment}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 {this.state.privacy_comment == 'only friend' ?
@@ -325,9 +288,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacypost}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacypost}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 { this.state.privacy_post === 'only friend' ?
@@ -374,9 +337,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacytimelinepost}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacytimelinepost}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 { this.state.privacy_timeline_post === 'only friend' ?
@@ -423,9 +386,9 @@ export default class AdPreference extends Component {
             </View>
           </View>
           <View>
-            <View style={stylesAdpref.styleView}>
+            <View style={styles.styleView}>
               <View>
-                <Text style={stylesAdpref.text}>{strings.adpreference.privacymessage}</Text>
+                <Text style={styles.textPreference}>{strings.adpreference.privacymessage}</Text>
               </View>
               <View style={styles.pickerstyle}>
                 { this.state.privacy_message === 'only friend' ?
