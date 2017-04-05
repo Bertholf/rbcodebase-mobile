@@ -71,6 +71,26 @@ const styles = StyleSheet.create({
 
   // End Style Adpreference //
   // ====================== //
+  styleViewEditBirthday: {
+    marginTop: 10,
+    flexDirection: 'row',
+    paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    height: 50,
+  },
+  textEditBirthday: {
+    color: '#000000',
+    fontSize: 13,
+  },    
+
+  // ------ Styles Edit Birthday ------------ //
+
+  // ---------end----------//
   logoGoogle: {
     height: 23,
     width: 35,

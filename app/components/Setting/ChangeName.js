@@ -204,7 +204,7 @@ export default class NameEdit extends Component {
             <Text style={styles.TextInput3}>{strings.ChangeName.text2}</Text>
           </View>
         </ScrollView>
-        {/* ------- component's render method, use Toast --------- */}
+        {/* ------- component's render method, use Toast, MUST add in Bottom of the root View --------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}
