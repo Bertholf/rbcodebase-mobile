@@ -126,7 +126,6 @@ export default class NameEdit extends Component {
     const birthday = this.state.profile.birthday;
     // Validate Name Input
     const validateName = () => {
-      if (this.state.isConnected === true) {
         if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
           if (firstNameInput === currentFirstName) {
             if (lastNameInput === currentLastName) {
@@ -147,9 +146,6 @@ export default class NameEdit extends Component {
         } else {
           this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
         }
-      } else {
-        return;
-      }
     };
 
     const color = this.state.netstate ? 'blue' : '#c0c0c0';

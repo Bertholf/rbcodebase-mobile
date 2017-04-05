@@ -5,7 +5,6 @@ import {
   TextInput,
   ScrollView,
   AsyncStorage,
-  NetInfo,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -23,22 +22,11 @@ export default class EmailEdit extends Component {
       profile: {},
       email: '',
       submit: false,
-      isConnected: null,
+      netstate: this.props.network,
     };
   }
 
   componentDidMount() {
-    // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
     // respon data profile
     auth.profile()
     .then(response => this.setState({ profile: response.data, email: response.data.email }))
@@ -46,17 +34,10 @@ export default class EmailEdit extends Component {
       AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); }).catch(res => console.log('error ambil email-----'));
     });
   }
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
+  componentWillReceiveProps(NextProps) {
+    console.log('NETWORK STATE EMAIL');
+    this.setState({ netstate: NextProps.network });
   }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
-  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -92,17 +73,12 @@ export default class EmailEdit extends Component {
   }
 
   render() {
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => validEmail() : () => console.log('Disable');
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => validEmail(),
-    };
-    const rightButtonConfig2 = {
-      title: strings.settings.save,
-      tintColor: 'grey',
-    };
-    const leftButtonConfig = {
-      title: 'Cancel',
-      handler: () => Actions.pop(),
+      tintColor: color,
+      handler: handlerState,
     };
 
     const titleConfig = {
@@ -127,20 +103,12 @@ export default class EmailEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          /> :
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            leftButton={<IconClose onPress={Actions.pop} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
-        }
         </View>
         <ScrollView>
 

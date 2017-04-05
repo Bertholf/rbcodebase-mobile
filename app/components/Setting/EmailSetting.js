@@ -37,23 +37,12 @@ export default class AdPreference extends Component {
       pickpostlike: '',
       pickcommentreplay: '',
       position: 'bottom',
-      isConnected: null,
+      netstate: this.props.network,
     };
   }
 
   // Get Settings Current User
   componentDidMount() {
-    // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
     auth.adprefe()
     .then(response => this.setState({
       privacy_follow: response.data[0].privacy_follow,
@@ -72,17 +61,10 @@ export default class AdPreference extends Component {
     .catch();
   }
 
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
+  componentWillReceiveProps(NextProps) {
+    console.log('NETWORK STATE =', NextProps.network);
+    this.setState({ netstate: NextProps.network });
   }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
-  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -112,7 +94,7 @@ export default class AdPreference extends Component {
           this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
         .catch(err => err);
       } else {
-        return;
+        
       }
     };
     // const noconection = () => {
@@ -123,13 +105,13 @@ export default class AdPreference extends Component {
     //   }
     // };
     // Save Button on NavigationBar
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => saveUpdate() : () => console.log('Disable');
+
     const rightButtonConfig = {
-        title: strings.settings.save,
-        handler: () => saveUpdate(),
-    };
-    const rightButtonConfig2 = {
-        title: strings.settings.save,
-        tintColor: 'grey',
+      title: strings.settings.save,
+      tintColor: color,
+      handler: handlerState,
     };
 
     const titleConfig = {
@@ -141,21 +123,12 @@ export default class AdPreference extends Component {
         <View
           style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         >
-        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          /> :
-
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            leftButton={<IconClose onPress={Actions.pop} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
-          }
         </View>
         <ScrollView>
           <View>
@@ -163,8 +136,8 @@ export default class AdPreference extends Component {
               <View>
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailfollow}</Text>
               </View>
-                <View style={styles.pickerstyle}>
-                  { this.state.email_follow == "0" ?
+              <View style={styles.pickerstyle}>
+                  { this.state.email_follow == '0' ?
                     <Picker
                       selectedValue={this.state.email_follow}
                       onValueChange={value => this.setState({ email_follow: value })}
@@ -173,9 +146,9 @@ export default class AdPreference extends Component {
                       <Picker.Item label={strings.adpreference.yes} value="1" />
                     </Picker> :
 
-               this.state.email_follow == "1" ?
+               this.state.email_follow == '1' ?
 
-               <Picker
+                 <Picker
                  selectedValue={this.state.email_follow}
                  onValueChange={value => this.setState({ email_follow: value })}
                >
@@ -190,7 +163,7 @@ export default class AdPreference extends Component {
                  <Picker.Item label={strings.adpreference.no} value="0" />
                </Picker>
           }
-              </View>
+                </View>
             </View>
           </View>
           <View>
@@ -199,7 +172,7 @@ export default class AdPreference extends Component {
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailpostlike}</Text>
               </View>
               <View style={styles.pickerstyle}>
-                {this.state.email_post_like == "0" ?
+                {this.state.email_post_like == '0' ?
                   <Picker
                     selectedValue={this.state.email_post_like}
                     onValueChange={value => this.setState({ email_post_like: value })}
@@ -208,7 +181,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-                 this.state.email_post_like == "1" ?
+                 this.state.email_post_like == '1' ?
 
                    <Picker
                      selectedValue={this.state.email_post_like}
@@ -235,7 +208,7 @@ export default class AdPreference extends Component {
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailpostshare}</Text>
               </View>
               <View style={styles.pickerstyle}>
-                { this.state.email_post_share == "0" ?
+                { this.state.email_post_share == '0' ?
                   <Picker
                     selectedValue={this.state.email_post_share}
                     onValueChange={value => this.setState({ email_post_share: value })}
@@ -244,7 +217,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_post_share == "1" ?
+             this.state.email_post_share == '1' ?
 
                <Picker
                  selectedValue={this.state.email_post_share}
@@ -271,7 +244,7 @@ export default class AdPreference extends Component {
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentpost}</Text>
               </View>
               <View style={styles.pickerstyle}>
-                { this.state.email_comment_post == "0" ?
+                { this.state.email_comment_post == '0' ?
                   <Picker
                     selectedValue={this.state.email_comment_post}
                     onValueChange={value => this.setState({ email_comment_post: value })}
@@ -280,7 +253,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_comment_post == "1" ?
+             this.state.email_comment_post == '1' ?
 
                <Picker
                  selectedValue={this.state.email_comment_post}
@@ -307,7 +280,7 @@ export default class AdPreference extends Component {
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentlike}</Text>
               </View>
               <View style={styles.pickerstyle}>
-                {this.state.email_comment_like === "0" ?
+                {this.state.email_comment_like === '0' ?
                   <Picker
                     selectedValue={this.state.email_comment_like}
                     onValueChange={value => this.setState({ email_comment_like: value })}
@@ -316,7 +289,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_comment_like === "1" ?
+             this.state.email_comment_like === '1' ?
 
                <Picker
                  selectedValue={this.state.email_comment_like}
@@ -343,7 +316,7 @@ export default class AdPreference extends Component {
                 <Text style={stylesAdpref.text}>{strings.adpreference.emailcommentreplay}</Text>
               </View>
               <View style={styles.pickerstyle}>
-                { this.state.email_comment_reply === "0" ?
+                { this.state.email_comment_reply === '0' ?
                   <Picker
                     selectedValue={this.state.email_comment_reply}
                     onValueChange={value => this.setState({ email_comment_reply: value })}
@@ -352,7 +325,7 @@ export default class AdPreference extends Component {
                     <Picker.Item label={strings.adpreference.yes} value="1" />
                   </Picker> :
 
-             this.state.email_comment_reply == "1" ?
+             this.state.email_comment_reply == '1' ?
 
                <Picker
                  selectedValue={this.state.email_comment_reply}
