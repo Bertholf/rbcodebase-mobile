@@ -22,10 +22,11 @@ export default class PushController extends Component {
      */
     AsyncStorage.getItem('FcmToken')
     .then((res) => {
+      const stringNull = 'null'
       if (res === null || typeof res === 'undefined') {
         FCM.getFCMToken()
         .then((token) => {
-          AsyncStorage.setItem('FcmToken');
+          {token === null ? AsyncStorage.setItem('FcmToken', stringNull) : AsyncStorage.setItem('FcmToken', token); }
           notif.sendToken(token)
           .then(response => console.log('RESPONSE FCM SEND NOTIF', response))
           .catch();
@@ -37,12 +38,12 @@ export default class PushController extends Component {
       }
     });
 
-    FCM.getInitialNotification().then((notif) => {
-      console.log('INITIAL NOTIFICATION', notif);
+    FCM.getInitialNotification().then((notification) => {
+      console.log('INITIAL NOTIFICATION', notification);
     }).catch();
 
-    this.notificationListner = FCM.on(FCMEvent.Notification, (notif) => {
-      console.log('Notification', notif);
+    this.notificationListner = FCM.on(FCMEvent.Notification, (notify) => {
+      console.log('Notification', notify);
       if (notif.local_notification) {
         return;
       }
