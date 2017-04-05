@@ -121,7 +121,6 @@ export default class NameEdit extends Component {
     const birthday = this.state.profile.birthday;
     // Validate Name Input
     const validateName = () => {
-      if (this.state.isConnected === true) {
         if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
           if (firstNameInput === currentFirstName) {
             if (lastNameInput === currentLastName) {
@@ -142,9 +141,6 @@ export default class NameEdit extends Component {
         } else {
           this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
         }
-      } else {
-        return;
-      }
     };
 
     // Create Save Button on Navigation
@@ -166,21 +162,12 @@ export default class NameEdit extends Component {
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
        {/* --- Declaration Navigation Bar ---- */}
-        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          /> :
-
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          />
-          }
+          /> 
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>
