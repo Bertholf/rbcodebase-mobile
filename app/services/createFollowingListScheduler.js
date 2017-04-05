@@ -65,7 +65,7 @@ const saveListData = (list) => {
         name_display: nullValue(list.follower.name_display),
         name_slug: list.follower.name_slug.toString(),
         email: list.follower.email.toString(),
-        cell_number: list.follower.cell_number.toString(),
+        cell_number: nullValue(leader.cell_number),
         cell_carrier: nullValue(list.follower.cell_carrier),
         status: list.follower.status,
         confirmation_code: list.follower.confirmation_code.toString(),
@@ -164,8 +164,8 @@ const getFollowingList = () => {
 
 const FollowingScheduler = () => {
   getFollowingList();
-  const database = followingDb.objects('Following'); // Retrieve all data into database variable
-  console.log('DATABASE VIEW', database);
+  const database = followingDb.objects('Following').filtered('leader.name_first = "" OR leader.name_last = "a" OR leader.email = ""'); // Retrieve all data into database variable
+  console.log('DATABASE VIEW FOLLOWING', database);
 };
 
 module.exports = FollowingScheduler;

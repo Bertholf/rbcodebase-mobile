@@ -10,6 +10,7 @@ import {
 // import MessageBarAlert from 'react-native-message-bar';
 // import MessageBarManager from 'react-native-message-bar';
 
+const cloud = require('../images/cloud.png')
 export default class WarningDisconnect extends Component {
   constructor(props) {
     super(props);
@@ -53,17 +54,20 @@ export default class WarningDisconnect extends Component {
   render() {
     console.log('isConnected ', this.state.isConnected, 'hide ', this.state.hide);
     return (
-
           <View  style={{    flex: 1, position:'absolute'}}>
             {this.state.isConnected == false && this.state.hide == false ?
             (
-                <TouchableOpacity
-                  style={{width: 400, height: 45, backgroundColor: '#ffa722'}}
-                  onPress={()=> this.setState({ hide: true })}
-                >
-                <Text style={{color:'white', textAlign:'center', fontSize: 14}}>Network Information</Text>
-                <Text style={{color:'white', textAlign:'center'}}>Device is not connected</Text>
-                </TouchableOpacity> 
+              <TouchableOpacity 
+                style={{width: 400, height: 45, backgroundColor: '#ffa722'}}
+                onPress={()=> this.setState({ hide: true })}
+              >
+              <Image
+                  style={{width: 20, height: 20, position:'absolute', left: 30, top:10, }}
+                  source={cloud}
+                />
+              <Text style={{color:'white', textAlign:'center', fontSize: 14}}>Network Information</Text>
+              <Text style={{color:'white', textAlign:'center'}}>Device is not connected</Text>
+              </TouchableOpacity> 
             )
            : null}
           </View>
