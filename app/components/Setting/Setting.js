@@ -31,7 +31,7 @@ export default class Setting extends Component {
       gender: '',
       gendersncy: '',
       isConnected: true,
-      handler: this.props.network,
+      netstate: this.props.network,
     };
   }
 
@@ -73,6 +73,11 @@ export default class Setting extends Component {
       AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('PHONE KAMUUUUU=====', this.state.phone); }).catch(res => console.log('error ambil tanggal lahir--- --'));
       AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch(res => console.log('error ambil tanggal lahir--- --'));
     });
+  }
+
+  componentWillReceiveProps(NextProps) {
+    console.log('NETWORK STATE =', NextProps.network);
+    this.setState({ netstate: NextProps.network });
   }
 
   reRender() {
@@ -186,7 +191,7 @@ export default class Setting extends Component {
               </View>
             </TouchableOpacity>
             <Text style={styles.titleText}>{strings.settings.more_info}</Text>
-            <TouchableOpacity onPress={Actions.support} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.support : () => console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.support}</Text>
@@ -196,7 +201,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.pp} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.pp : () => console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.Privacy_policy}</Text>
@@ -206,7 +211,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.tos} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.tos : console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.tos}</Text>
@@ -216,7 +221,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.license} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.license : () => console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.licence}</Text>

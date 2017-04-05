@@ -6,7 +6,6 @@ import {
   ScrollView,
   Keyboard,
   AsyncStorage,
-  NetInfo,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
