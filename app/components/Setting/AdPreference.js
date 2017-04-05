@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  NetInfo,
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -34,11 +35,23 @@ export default class AdPreference extends Component {
       picktimpost: '',
       pickmessage: '',
       position: 'bottom',
+      isConnected: null,
     };
   }
 
   // Get Settings Current User
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     auth.adprefe()
     .then(response => this.setState({
       privacy_follow: response.data[0].privacy_follow,
@@ -56,6 +69,17 @@ export default class AdPreference extends Component {
     }))
     .catch();
   }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -88,6 +112,10 @@ export default class AdPreference extends Component {
       title: strings.settings.save,
       handler: () => saveUpdate(),
     };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
+    };
 
     const titleConfig = {
       title: strings.settings.privacysetting,
@@ -98,12 +126,21 @@ export default class AdPreference extends Component {
         <View
           style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         >
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          }
         </View>
         <ScrollView>
           <View>

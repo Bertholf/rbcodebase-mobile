@@ -6,6 +6,8 @@ import {
   TextInput,
   Keyboard,
   AsyncStorage,
+  NetInfo,
+
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
@@ -16,6 +18,9 @@ import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
 
+import { bindActionsCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getNetworkStatus, changeNetworkStatus } from '../../actions/networkStatus';
 
 // Initial State of Change Name
 export default class NameEdit extends Component {
@@ -32,6 +37,7 @@ export default class NameEdit extends Component {
       named: '',
       style: {},
       position: 'bottom',
+      isConnected: null,
     };
   }
 
@@ -49,6 +55,20 @@ export default class NameEdit extends Component {
 
 // Mount Component with Value in auth.profile
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    // NetInfo.isConnected.addEventListener(
+    //     'change',
+    //     this._handleConnectivityChange
+    // );
+    // NetInfo.isConnected.fetch().done(
+    //     (isConnected) => {
+    //         console.log('CONNECTION', isConnected),
+    //         this.setState({isConnected});
+    //        }
+    // );
+    // const {dispatch, networkState } = this.props
+    // dispatch(getNetworkStatus)
+    console.log("===============", this.props.network);
     auth.profile()
     .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
     .catch(() => {
@@ -57,6 +77,17 @@ export default class NameEdit extends Component {
       AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
     });
   }
+  componentWillUnmount() {
+  //   NetInfo.isConnected.removeEventListener(
+  //       'change',
+  //       this._handleConnectivityChange
+  //   );
+  // }
+  // _handleConnectivityChange = (isConnected) => {
+  //   this.setState({
+  //     isConnected,
+  //   });
+  };
 
 // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
@@ -90,25 +121,29 @@ export default class NameEdit extends Component {
     const birthday = this.state.profile.birthday;
     // Validate Name Input
     const validateName = () => {
-      if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
-        if (firstNameInput === currentFirstName) {
-          if (lastNameInput === currentLastName) {
-          } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
+      if (this.state.isConnected === true) {
+        if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
+          if (firstNameInput === currentFirstName) {
+            if (lastNameInput === currentLastName) {
+            } else if (lastNameInput !== currentLastName && firstNameInput === currentFirstName) {
+            }
+          } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
+          } else {
+            saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
+            Keyboard.dismiss();
+            auth.profile()
+              .then(response => this.setState({ profile: response.data, loading: false }, () => {
+                this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
+              }))
+          .catch();
+            Keyboard.dismiss();
+            Actions.refresh();
           }
-        } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
         } else {
-          saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
-          Keyboard.dismiss();
-          auth.profile()
-            .then(response => this.setState({ profile: response.data, loading: false }, () => {
-              this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
-            }))
-        .catch();
-          Keyboard.dismiss();
-          Actions.refresh();
+          this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
         }
       } else {
-        this.onClick(strings.ChangeName.error, 'bottom', DURATION.LENGTH_LONG);
+        return;
       }
     };
 
@@ -116,6 +151,10 @@ export default class NameEdit extends Component {
     const rightButtonConfig = {
       title: strings.settings.save,
       handler: () => validateName(),
+    };
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
     };
 
     // title of screen
@@ -126,14 +165,22 @@ export default class NameEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-
        {/* --- Declaration Navigation Bar ---- */}
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          }
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Keyboard,
   AsyncStorage,
+  NetInfo,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import PhoneInput from 'react-native-phone-input';
@@ -27,11 +28,23 @@ export default class MobilePhone extends Component {
       phone: '',
       pickerData: '',
       style: {},
+      isConnected: null,
       position: 'bottom',
     };
   }
 
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     /**
      *
      * Immediately mount auth.profile to Component render
@@ -52,6 +65,17 @@ export default class MobilePhone extends Component {
       })
       .catch(Err => Err);
   }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -108,7 +132,10 @@ export default class MobilePhone extends Component {
       title: strings.mobilephone.titleSave,
       handler: () => savePhone(),
     };
-
+    const rightButtonConfig2 = {
+      title: strings.mobilephone.titleSave,
+      tintColor: 'grey',
+    };
     const titleConfig = {
       title: strings.mobilephone.titleEditPhone,
     };
@@ -147,12 +174,21 @@ export default class MobilePhone extends Component {
     return (
       <View>
         <View style={{ backgroundColor: 'red', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          />
+        }
         </View>
         <View style={styles.container}>
           <Text style={styles.heading} />
