@@ -69,7 +69,6 @@
 		9CFDD52E1E4AEFE10082B51C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFDD52D1E4AEFE10082B51C /* GoogleService-Info.plist */; };
 		A4C3BA8415AA41C2A7FDA7E3 /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CD5231E8B1F4C26AA16B51D /* SF-UI-Text-Regular.otf */; };
 		A50235B625214DE8A590E351 /* Courier New.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3883BB79E66F4BFAB4D7E845 /* Courier New.ttf */; };
-		AC46E23EF2794B6CA90B3A07 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6217FA602DE64A61B55531D7 /* libc++.tbd */; };
 		AE6010C0E2D34270B45FC48C /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB91502BBF943A3B4B90694 /* Zocial.ttf */; };
 		BE25E31A7EAF405C96539A65 /* SanFranciscoThin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57205D58FAB84783A7974804 /* SanFranciscoThin.ttf */; };
 		C16145A234E34F65BBC2CECD /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 026FC87BB8894E10AE8DD7BB /* SimpleLineIcons.ttf */; };
@@ -302,13 +301,6 @@
 			remoteGlobalIDString = 7B5D9D0A1B6AD0EA00CF3A83;
 			remoteInfo = ReactNativeLocalization;
 		};
-		9C1686CB1E35F7D4002D8E35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CCEF18F22F9D407AAE9313CB /* RealmReact.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F60690131CA2766F0003FB26;
-			remoteInfo = RealmReact;
-		};
 		9C4BB4B21E49D1600025D3D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A065F7BAC4F2468BB723C844 /* RNGoogleSignin.xcodeproj */;
@@ -432,7 +424,6 @@
 		5E586AEBDD184EC8B6328235 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60DC62C1838DB897A1630672 /* Pods_hikerapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hikerapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6217FA602DE64A61B55531D7 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		65C8D2EBD82F4500AC45D367 /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
 		6629B4193A924B9D8BCA3573 /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
 		677750EAF3FF40CFB25618A0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -478,7 +469,6 @@
 		BDF48834E2A44D3781BC9DAA /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		BFC9DB97BB33462D8180015C /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		C5FB2CA1ABAE40E0B7BF49FF /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
-		CCEF18F22F9D407AAE9313CB /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		D2BC2847094140E9A1B99395 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		D4DF846D0865411A86EC837F /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 		DDC14CA8C0D74D6FAEE4A6C9 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
@@ -524,7 +514,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				E5C674DDF34123125A20AE4A /* Pods_hikerapp.framework in Frameworks */,
-				AC46E23EF2794B6CA90B3A07 /* libc++.tbd in Frameworks */,
 				36F746B44DD546ABA573EB82 /* libz.tbd in Frameworks */,
 				5F20F08E15064C9EB33AD7DA /* SafariServices.framework in Frameworks */,
 				5412419AC88F4EF8ACE27263 /* SystemConfiguration.framework in Frameworks */,
@@ -711,7 +700,6 @@
 				9CFDD4F91E4ADCE40082B51C /* FBSDKShareKit.framework */,
 				9CFDD4F61E4ADCD50082B51C /* FBSDKCoreKit.framework */,
 				9CFDD4F41E4ADCBE0082B51C /* Bolts.framework */,
-				6217FA602DE64A61B55531D7 /* libc++.tbd */,
 				5E586AEBDD184EC8B6328235 /* libz.tbd */,
 				E46248E267E24717944664D2 /* SafariServices.framework */,
 				B135926FE6B844F78E9EB10A /* SystemConfiguration.framework */,
@@ -754,7 +742,6 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				A6D0BCB65B494568AF355C1F /* ReactNativeLocalization.xcodeproj */,
 				95EDFAB9916442A8877959ED /* RCTMaterialKit.xcodeproj */,
-				CCEF18F22F9D407AAE9313CB /* RealmReact.xcodeproj */,
 				83858F01B6DE44ED8DEBE2C5 /* RCTMapboxGL.xcodeproj */,
 				4F088166BC4F42838FC0B448 /* AirMaps.xcodeproj */,
 				A065F7BAC4F2468BB723C844 /* RNGoogleSignin.xcodeproj */,
@@ -842,14 +829,6 @@
 			isa = PBXGroup;
 			children = (
 				9C1686C71E35F7D4002D8E35 /* libReactNativeLocalization.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9C1686C81E35F7D4002D8E35 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9C1686CC1E35F7D4002D8E35 /* libRealmReact.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1124,10 +1103,6 @@
 					ProjectRef = A6D0BCB65B494568AF355C1F /* ReactNativeLocalization.xcodeproj */;
 				},
 				{
-					ProductGroup = 9C1686C81E35F7D4002D8E35 /* Products */;
-					ProjectRef = CCEF18F22F9D407AAE9313CB /* RealmReact.xcodeproj */;
-				},
-				{
 					ProductGroup = 878EA3BA1E6E706D00170213 /* Products */;
 					ProjectRef = B05EF9A4A94944DD8CA8E5FE /* RNFIRMessaging.xcodeproj */;
 				},
@@ -1354,13 +1329,6 @@
 			fileType = archive.ar;
 			path = libReactNativeLocalization.a;
 			remoteRef = 9C1686C61E35F7D4002D8E35 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9C1686CC1E35F7D4002D8E35 /* libRealmReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRealmReact.a;
-			remoteRef = 9C1686CB1E35F7D4002D8E35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9C4BB4B31E49D1600025D3D8 /* libRNGoogleSignin.a */ = {
@@ -1676,17 +1644,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1705,17 +1662,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

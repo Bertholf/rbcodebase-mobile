@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { persistStore, autoRehydrate } from 'redux-persist';
-import Realm from 'realm';
+// import Realm from 'realm';
 import reducers from './reducers';
 import Routing from './containers/Router';
 import Warning from './services/WarningDisconnect';

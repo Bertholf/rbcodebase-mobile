@@ -11,8 +11,8 @@ import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
-import FollowingScheduler from '../../services/createFollowingListScheduler';
-import FollowerScheduler from '../../services/FollowerListScheduler';
+// import FollowingScheduler from '../../services/createFollowingListScheduler';
+// import FollowerScheduler from '../../services/FollowerListScheduler';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -32,11 +32,7 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    FollowerScheduler();
-    this.getTime();
-    // Run FollowingScheduler
-    FollowingScheduler();
-    this.getTime();
+   
     // Get Profile Data From server
     auth.profile()
     .then((response) => {
@@ -70,49 +66,6 @@ export default class Dashboard extends Component {
     });
   }
 
-  syncWithServer(lastSave, now) {
-    /** get Time Diff */
-    // const now = moment(new Date());
-    // const end = moment('2017-04-02');
-    // const duration = moment.duration(now.diff(end));
-    // const hours = duration.asHours();
-    // console.log('Difference Hours', hours);
-    const duration = moment.duration(moment(now).diff(lastSave));
-    const durationHours = duration.asHours();
-
-    /** Check if durationHours >= 2 */
-    if (durationHours >= 2) {
-      // Save Last Syncronize Time
-      AsyncStorage.setItem('lastSyncData', now);
-
-      // Place all save data method Here
-      /**
-       * getFollowingData();
-       * getFollowerData();
-       */
-      FollowingScheduler(); // Get and save Following data list
-
-      console.log('Data is udpated'); // Log all method has running
-    } else {
-      console.log('Data up to date'); // Log data is up to date
-    }
-  }
-
-  getTime() {
-    // Get time Difference
-    // Check in AsyncStorage if there is a last sync data time
-    const end = moment(new Date()).toISOString();
-    AsyncStorage.getItem('lastSyncData')
-    .then((res) => {
-      if (res === 'null' || typeof res === 'undefined') {
-        const now = moment(new Date());
-        AsyncStorage.setItem('lastSyncData', now.toISOString());
-        this.syncWithServer(now.toISOString(), end);
-      }
-      console.log('TIME ==========', res);
-      this.syncWithServer(res, end);
-    }).catch(err => console.log('==== ERROR TIME =====', err));
-  }
 
   reRender() {
     // This is going to re-run componentDidMount()
