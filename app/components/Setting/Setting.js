@@ -5,14 +5,20 @@ import strings from '../../localizations';
 import styles from './../../components/Setting/Style';
 import auth from './../../services/auth';
 import Logout from '../../services/logout';
+import connectionInfo from '../../services/connectionInfo';
 
 const moment = require('moment');
-
 const next = require('./../../images/ic_navigate_next_2x.png');
+
+import { connect } from 'react-redux';
+import { getNetworkStatus } from '../../actions/networkStatus';
+
+
 
 export default class Setting extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props)
     this.state = {
       profile: {},
       loading: true,
@@ -24,11 +30,15 @@ export default class Setting extends Component {
       phone: '',
       gender: '',
       gendersncy: '',
+      isConnected: true,
+      netstate: this.props.network,
     };
   }
 
   // Save dan get Item AsyncStorage from Api/me
   componentDidMount() {
+    console.log('STATE REDUX', this.state.handler);
+    // connectionInfo.checkInfo();
     auth.profile()
     .then((response) => {
       console.log('EMAIL CHANGE====', response);
@@ -63,6 +73,11 @@ export default class Setting extends Component {
       AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('PHONE KAMUUUUU=====', this.state.phone); }).catch(res => console.log('error ambil tanggal lahir--- --'));
       AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch(res => console.log('error ambil tanggal lahir--- --'));
     });
+  }
+
+  componentWillReceiveProps(NextProps) {
+    console.log('NETWORK STATE =', NextProps.network);
+    this.setState({ netstate: NextProps.network });
   }
 
   reRender() {
@@ -176,7 +191,7 @@ export default class Setting extends Component {
               </View>
             </TouchableOpacity>
             <Text style={styles.titleText}>{strings.settings.more_info}</Text>
-            <TouchableOpacity onPress={Actions.support} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.support : () => console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.support}</Text>
@@ -186,7 +201,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.pp} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.pp : () => console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.Privacy_policy}</Text>
@@ -196,7 +211,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.tos} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.tos : console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.tos}</Text>
@@ -206,7 +221,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.license} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.license : () => console.log('Disabled')} >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.licence}</Text>

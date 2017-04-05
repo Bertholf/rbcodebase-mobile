@@ -9,6 +9,7 @@ import Realm from 'realm';
 import reducers from './reducers';
 import Routing from './containers/Router';
 import Warning from './services/WarningDisconnect';
+import { getNetworkStatus } from './actions/networkStatus';
 
 const logger = createLogger();
 const store = createStore(
@@ -35,6 +36,8 @@ const store = createStore(
 
 //     return realm.objects('Dog').length;
 // }
+store.dispatch(getNetworkStatus());
+
 export default class App extends Component {
   componentDidMount() {
     // console.log('TESTING REALM', realmTest()); return sample of realm

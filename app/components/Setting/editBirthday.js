@@ -26,22 +26,11 @@ export default class editBirthday extends Component {
       profile: {},
       position: 'bottom',
       style: {},
-      isConnected: null,
+      netstate: this.props.network,
     };
   }
   // Mount Component with Value in auth.profile (birthday)
   componentDidMount() {
-    // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
     auth.profile()
      .then((response) => {
        if (response.data.date_birth === null) {
@@ -58,17 +47,13 @@ export default class editBirthday extends Component {
      })
      .catch(Err => Err);
   }
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
+
+  // Get current props state
+  componentWillReceiveProps(NextProps) {
+    console.log('NETWORK STATE BRITHDAY', NextProps.network);
+    this.setState({ netstate: NextProps.network });
   }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
-  };
+
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -98,13 +83,13 @@ export default class editBirthday extends Component {
 
   render() {
     // Create Save Button on Navigation
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => updateBirthday() : () => console.log('Disabled');
+
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => updateBirthday(),
-    };
-    const rightButtonConfig2 = {
-      title: strings.settings.save,
-      tintColor: 'grey',
+      tintColor: color,
+      handler: handlerState,
     };
       // title of screen
     const titleConfig = {
@@ -145,21 +130,12 @@ export default class editBirthday extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
-          :
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          />
-        }
         </View>
         <View style={{ padding: 16 }}>
           <View style={styles.styleViewEditBirthday}>

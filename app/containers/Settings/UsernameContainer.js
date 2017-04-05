@@ -1,24 +1,24 @@
 import { connect } from 'react-redux';
-import { getNetworkStatus, changeNetworkStatus, _handleConnectivityChange } from '../actions/networkStatus';
-import NameEdit from '../components/Setting/ChangeName';
+import ChangeUsername from '../../components/Setting/ChangeUsername';
+import { getNetworkStatus, changeNetworkStatus, getCurrentState } from '../../actions/networkStatus';
 
 const mapStateToProps = ({ app }) => ({
   network: app.networkState.network,
   change: app.networkState.network,
   handler: app.networkState.network,
+  currentState: app.networkState.currentState,
 });
 
 const mapDispatchToProps = dispatch => ({
   networkAction: () => {
-    // return true;
     dispatch(getNetworkStatus());
   },
   changeNetworkAction: () => {
     dispatch(changeNetworkStatus());
   },
-  handler: () => {
-    dispatch(_handleConnectivityChange());
+  getCurrentState: () => {
+    dispatch(getCurrentState());
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NameEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangeUsername);

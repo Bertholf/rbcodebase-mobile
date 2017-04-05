@@ -21,20 +21,16 @@ export default class WarningDisconnect extends Component {
   }
   componentDidMount() {
    // MessageBarManager.registerMessageBar(this.refs.alert);
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
+    NetInfo.isConnected.addEventListener('change',this._handleConnectivityChange);
+
     NetInfo.isConnected.fetch().done(
         (isConnected) => { 
-            console.log('CONNECTION', isConnected),
+            console.log('CONNECTION START', isConnected),
             this.setState({isConnected});
            }
     );
     // Get Profile Data From server
-  }
-
-   
+  }   
 
   componentWillUnmount() {
   //  MessageBarManager.unregisterMessageBar();
@@ -43,10 +39,13 @@ export default class WarningDisconnect extends Component {
         this._handleConnectivityChange
     );
   }
+
+
   _handleConnectivityChange = (isConnected) => {
     this.setState({
       isConnected,
     });
+    console.log('CHANGE TO=====', isConnected);
   };
 
 

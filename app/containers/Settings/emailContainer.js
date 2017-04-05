@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getNetworkStatus, changeNetworkStatus, _handleConnectivityChange } from '../actions/networkStatus';
-import NameEdit from '../components/Setting/ChangeName';
+import { getNetworkStatus, changeNetworkStatus } from '../../actions/networkStatus';
+import EmailEdit from '../../components/Setting/EmailEdit';
 
 const mapStateToProps = ({ app }) => ({
   network: app.networkState.network,
@@ -16,9 +16,6 @@ const mapDispatchToProps = dispatch => ({
   changeNetworkAction: () => {
     dispatch(changeNetworkStatus());
   },
-  handler: () => {
-    dispatch(_handleConnectivityChange());
-  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NameEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(EmailEdit);

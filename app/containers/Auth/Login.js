@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
     Actions.register();
   },
   errorLogin: () => {
-    Action.errorLogin();
+    Actions.errorLogin();
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

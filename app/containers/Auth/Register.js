@@ -4,13 +4,13 @@ import { submitRegister, submitLogin } from '../../actions/Auth';
 import AuthRegisterService from '../../services/AuthRegistration';
 
 
-const mapStateToProps = ({ app },) => ({
+const mapStateToProps = ({ app }) => ({
   name_first: app.auth.name_first,
   name_last: app.auth.name_last,
   email: app.auth.email,
-  name_slug:app.auth.name_slug,
+  name_slug: app.auth.name_slug,
   password: app.auth.password,
-  password_confirmation:app.auth.password_confirmation,
+  password_confirmation: app.auth.password_confirmation,
   message: app.auth.message,
 });
 const mapDispatchToProps = dispatch => ({

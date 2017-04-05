@@ -37,7 +37,7 @@ export default class NameEdit extends Component {
       named: '',
       style: {},
       position: 'bottom',
-      isConnected: null,
+      netstate: this.props.network,
     };
   }
 
@@ -88,6 +88,11 @@ export default class NameEdit extends Component {
   //     isConnected,
   //   });
   };
+
+  componentWillReceiveProps(NextProps) {
+    console.log('NOW IS ONLINE = ', NextProps.network);
+    this.setState({ netstate: NextProps.network });
+  }
 
 // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
@@ -143,31 +148,29 @@ export default class NameEdit extends Component {
         }
     };
 
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => validateName() : () => console.log('Disable');
     // Create Save Button on Navigation
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => validateName(),
-    };
-    const rightButtonConfig2 = {
-      title: strings.settings.save,
-      tintColor: 'grey',
+      tintColor: color,
+      handler: validateName(),
     };
 
     // title of screen
     const titleConfig = {
       title: strings.ChangeName.title,
     };
-
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-       {/* --- Declaration Navigation Bar ---- */}
+          {/* --- Declaration Navigation Bar ---- */}
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          /> 
+            style={[{ height: 55, backgroundColor: '#f0f0f0' }]}
+          />
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
           <Text style={styles.TextInput5}>{strings.ChangeName.text1}</Text>

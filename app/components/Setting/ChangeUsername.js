@@ -6,7 +6,6 @@ import {
   ScrollView,
   Keyboard,
   AsyncStorage,
-  NetInfo,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -27,23 +26,12 @@ export default class ChangeUsername extends Component {
       namaslug: '',
       position: 'bottom',
       style: {},
-      isConnected: null,
+      netstate: this.props.network,
     };
   }
 
   // Mount Component with Value in auth.profile
   componentDidMount() {
-    // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
     // @TODO When get profile request is failed
     // make it load value from AsyncStorage
     auth.profile()
@@ -52,12 +40,6 @@ export default class ChangeUsername extends Component {
         newUsername: response.data.name_slug,
         profile: response.data,
         loading: false,
-        /**
-         * newUsername  = response.name_slug
-         * profile = response.profile
-         * loading = false
-         *
-         */
       }))
     .catch(() => {
       AsyncStorage.getItem('name_slug')
@@ -65,20 +47,13 @@ export default class ChangeUsername extends Component {
       .catch();
     });
   }
-  componentWillUnmount() {
-  //  MessageBarManager.unregisterMessageBar();
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-  }
-  _handleConnectivityChange = (isConnected) => {
-    this.setState({
-      isConnected,
-    });
-  };
 
-// Add action of Toast 
+  componentWillReceiveProps(NextProps) {
+    console.log('CONNECTED IS ', NextProps.network);
+    this.setState({ netstate: NextProps.network });
+  }
+
+// Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -130,10 +105,9 @@ export default class ChangeUsername extends Component {
     const validRegex = regex.test(this.state.newUsername);
     const validUsername = this.state.profile.name_slug !== this.state.newUsername;
     const onSave = () => {
-      if (this.state.isConnected === true) {
-        if (validRegex && validUsername) {
-          saveProfile(id, name_first, name_last, displayName, newUsernames, gender, phone, birthday);
-          auth.profile()
+      if (validRegex && validUsername) {
+        saveProfile(id, name_first, name_last, displayName, newUsernames, gender, phone, birthday);
+        auth.profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
                 // --- show toast ----
@@ -141,25 +115,21 @@ export default class ChangeUsername extends Component {
             });
           })
           .catch(Err => Err);
-          Keyboard.dismiss();
-          this.props.reRender();
-        } else {
-          // ----- show toast -----
-          this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
-        }
+        Keyboard.dismiss();
+        this.props.reRender();
       } else {
-        return;
+          // ----- show toast -----
+        this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 
+    const color = this.state.netstate ? 'blue' : '#c0c0c0';
+    const handlerState = this.state.netstate ? () => onSave() : () => console.log('Disable');
+
     const rightButtonConfig = {
       title: strings.settings.save,
-      handler: () => onSave(),
-    };
-
-    const rightButtonConfig2 = {
-      title: strings.settings.save,
-      tintColor: 'grey',
+      tintColor: color,
+      handler: handlerState,
     };
 
     const titleConfig = {
@@ -173,20 +143,12 @@ export default class ChangeUsername extends Component {
             *
             * --------------------------------------------------------- */}
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-        {this.state.isConnected === true ?
-         <NavigationBar
+          <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
-          /> :
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
-        }
         </View>
 
         {/* ---- ScrollView Screen ----*/}
