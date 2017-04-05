@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.15,
     marginLeft: 16,
     flexDirection: 'row',
-    borderColor: 'white',
   },
   back: {
     width: 28,
@@ -54,10 +53,11 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: 'row',
-    color: '#00E676',
-    alignItems: 'center',
-    marginTop: 60,
-    fontSize: 15,
+    color: 'white',
+    alignSelf: 'center',
+    marginTop: 70,
+    fontSize: 20,
+    backgroundColor: '#00E676',
     borderRadius: 100,
     paddingLeft: 10,
     paddingRight: 8,
@@ -113,6 +113,10 @@ const styles = StyleSheet.create({
     marginTop: 6,
     color: 'grey',
   },
+  followerss: {
+    marginTop: 6,
+    color: 'grey',
+  },
   bio: {
     alignSelf: 'center',
     flexDirection: 'row',
@@ -135,10 +139,9 @@ const styles = StyleSheet.create({
     marginLeft: 100,
   },
   textInform: {
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: 15,
-    backgroundColor: 'rgba(0,0,0,0)',
+    justifyContent: 'space-between',
   },
   posisi: {
     flexDirection: 'row',

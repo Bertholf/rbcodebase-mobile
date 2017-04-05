@@ -16,6 +16,7 @@ import styles from './ProfileStyle';
 import follows from '../../services/follows';
 import strings from '../../localizations';
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
+const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 
 export default class Profile extends Component {
   constructor(props) {
@@ -152,7 +153,7 @@ export default class Profile extends Component {
                     <Image source={require('./../../images/back.png')} style={styles.back} />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={Actions.setting}>
-                    <Image source={settingIcon} style={styles.backsetting} />
+                    <Image source={settingIconwhite} style={styles.backsetting} />
                   </TouchableOpacity>
                 </View>
               </Image>
@@ -178,7 +179,7 @@ export default class Profile extends Component {
                   <Text style={styles.buttonEmpty} />
                 </TouchableOpacity>
                 : !this.state.me
-                    ? <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    ? <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                       <TouchableOpacity
                         disabled={this.props.status.status === 'request' && this.state.request}
                         onPress={() => this.toggleSwitchFollow()}
@@ -198,29 +199,39 @@ export default class Profile extends Component {
             </View>
             <View style={styles.biodata}>
               <Card>
-                <View style={{ paddingVertical: 10 }}>
-                  <TouchableOpacity onPress={Actions.about}>
-                    <Text style={styles.headline} colors={['black']}>
-                      {this.state.profile.name_first} {this.state.profile.name_last}
-                    </Text>
-                  </TouchableOpacity>
+                <View>
+                  <View style={{ paddingVertical: 10 }}>
+                    <TouchableOpacity onPress={Actions.about}>
+                      <Text style={styles.headline} colors={['black']}>
+                        {this.state.profile.name_first} {this.state.profile.name_last}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                   <View style={styles.textInform}>
-                    <TouchableOpacity>
-                      <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
-                      <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={Actions.friendlist}>
-                      <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
-                      <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
-                        {this.state.countFollowing}
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={Actions.friendlist}>
-                      <Text style={styles.followers}>{strings.profileLocalization.following}</Text>
-                      <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
-                        {this.state.countFollowing}
-                      </Text>
-                    </TouchableOpacity>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                      <TouchableOpacity>
+                        <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }} />
+                      </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                      <TouchableOpacity onPress={Actions.friendlist}>
+                        <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countFollowing}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                      <TouchableOpacity onPress={Actions.friendlist}>
+                        <Text style={styles.followerss}>
+                          {strings.profileLocalization.following}
+                        </Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countFollowing}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
                 </View>
               </Card>
