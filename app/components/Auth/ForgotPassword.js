@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default class ForgotPassword extends Component {
   constructor() {
     super();
@@ -77,20 +76,23 @@ export default class ForgotPassword extends Component {
   // endpoint verify email to submit forgot password
   verifyEmail() {
     this.setState({ submit: true });
-    auth.verify(this.state.email)
-    .then((res) => {
-      console.log('RESPONSE VERIFY EMAIL=====', res);
-      Actions.resetresult({ name: res.data.name_first + ' ' + res.data.name_last, email: res.data.email })
-      // loading will stop when succes submit forgot password
-      this.setState({ submit: false });
-    })
-    .catch(() => {
-      Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message);
-      // loading will stop when error email
-      this.setState({ submit: false });
-    });
+    auth
+      .verify(this.state.email)
+      .then((res) => {
+        console.log('RESPONSE VERIFY EMAIL=====', res);
+        Actions.resetresult({
+          name: `${res.data.name_first} ${res.data.name_last}`,
+          email: res.data.email,
+        });
+        // loading will stop when succes submit forgot password
+        this.setState({ submit: false });
+      })
+      .catch(() => {
+        Alert.alert(strings.ForgotPass.warning, strings.ForgotPass.message);
+        // loading will stop when error email
+        this.setState({ submit: false });
+      });
   }
-
 
   render() {
     // validation varify email if wrong email
@@ -113,8 +115,9 @@ export default class ForgotPassword extends Component {
           placeholder={'Email'}
           underlineColorAndroid={'rgba(0,0,0,0)'}
         />
-        {!emailInput || emailValidator ?
-          <View /> : <Text style={styles.invalid}>
+        {!emailInput || emailValidator
+          ? <View />
+          : <Text style={styles.invalid}>
             {strings.ForgotPass.alert_invalid_email}
           </Text>}
 
@@ -125,10 +128,11 @@ export default class ForgotPassword extends Component {
             underlayColor={'#99d9f4'}
           >
             <View>
-              {this.state.submit ? <ActivityIndicator color={'#fff'} /> :
-              <Text style={style.buttonText}>
-                {strings.ForgotPass.send}
-              </Text>}
+              {this.state.submit
+                ? <ActivityIndicator color={'#fff'} />
+                : <Text style={style.buttonText}>
+                  {strings.ForgotPass.send}
+                </Text>}
             </View>
           </TouchableHighlight>
         </View>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {
-} from 'react-native';
+import 'react-native';
 import LoginScreen from './LoginScreen';
 
 class LoginFucntion extends Component {
@@ -12,16 +11,12 @@ class LoginFucntion extends Component {
     };
   }
 
-
   updateUsername(username) {
     this.setState({ email: username });
-    console.log(this.state.email);
   }
 
   render() {
-    return (
-      <LoginScreen />
-    );
+    return <LoginScreen />;
   }
 }
 

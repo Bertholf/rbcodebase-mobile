@@ -48,7 +48,7 @@ export default class FollowingMe extends React.Component {
 
   showError(err) {
     console.log(err);
-    Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
+    Alert.alert('Sorry!  You are Offline', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
   }
 
   changeState(res) {
@@ -129,7 +129,7 @@ export default class FollowingMe extends React.Component {
             *Loading if data in requesting
           */}
 
-          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> : 
+          {this.state.wait ? <ActivityIndicator size={'large'} style={{ marginTop: 40 }} /> :
           <ListView
             dataSource={ds.cloneWithRows(this.state.follower)}
             renderRow={rowData => <ListFollow rowData={{ ...rowData, type: 'follower' }} />}

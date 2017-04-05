@@ -5,6 +5,7 @@ import {
   TextInput,
   ScrollView,
   Keyboard,
+  NetInfo,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { Actions } from 'react-native-router-flux';
@@ -23,14 +24,37 @@ export default class PassEdit extends Component {
       newPassword: '',
       confirmNewPassword: '',
       profile: {},
+      isConnected: null,
     };
   }
 
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     auth.profile()
     .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
     .catch(Err => Err);
   }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
 
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -90,7 +114,10 @@ export default class PassEdit extends Component {
       title: strings.settings.save,
       handler: () => onSave(),
     };
-
+    const rightButtonConfig2 = {
+      title: strings.settings.save,
+      tintColor: 'grey',
+    };
     const titleConfig = {
       title: strings.PassEditLoc.title,
     };
@@ -98,12 +125,21 @@ export default class PassEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
             leftButton={<IconClose onPress={Actions.pop} />}
           />
+          :
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
+            leftButton={<IconClose onPress={Actions.pop} />}
+          />
+        }
         </View>
         <ScrollView>
           <View style={styles.View1}>

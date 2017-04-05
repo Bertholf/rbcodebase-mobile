@@ -11,10 +11,12 @@ import Routing from './containers/Router';
 import Warning from './services/WarningDisconnect';
 
 const logger = createLogger();
-const store = createStore(combineReducers({ app: reducers }),
+const store = createStore(
+  combineReducers({ app: reducers }),
   applyMiddleware(logger, thunkMiddleware),
-  autoRehydrate());
-  // uncomment this when you build it
+  autoRehydrate(),
+);
+// uncomment this when you build it
 // persistStore(store, {
 //   storage: AsyncStorage,
 // });
@@ -35,19 +37,13 @@ const store = createStore(combineReducers({ app: reducers }),
 // }
 export default class App extends Component {
   componentDidMount() {
-    console.log('1234');
     // console.log('TESTING REALM', realmTest()); return sample of realm
   }
   render() {
-
     return (
-   
       <Provider store={store}>
         <Routing />
       </Provider>
-     
-  
-      
     );
   }
 }

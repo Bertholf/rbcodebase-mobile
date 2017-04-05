@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  NetInfo,
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -14,43 +15,6 @@ import auth from './../../services/auth';
 import IconClose from './../../layouts/IconClose';
 import strings from '../../localizations';
 
-
-const stylesAdpref = StyleSheet.create({
-  titleButton: {
-    fontSize: 15,
-    color: '#ffffff',
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#2196F3',
-    borderRadius: 5,
-    elevation: 2,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'center',
-  },
-  styleView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    // paddingLeft: 15,
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 3,
-    height: 40,
-    alignItems: 'center',
-    marginBottom: 6,
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-  },
-  text: {
-    color: '#000000',
-    fontSize: 14,
-    marginLeft: 10,
-  },
-});
 
 // Initial State of Setitng
 export default class AdPreference extends Component {
@@ -73,11 +37,23 @@ export default class AdPreference extends Component {
       pickpostlike: '',
       pickcommentreplay: '',
       position: 'bottom',
+      isConnected: null,
     };
   }
 
   // Get Settings Current User
   componentDidMount() {
+    // check condiotion if CONNECTION or no CONNECTION
+    NetInfo.isConnected.addEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+    NetInfo.isConnected.fetch().done(
+        (isConnected) => {
+            console.log('CONNECTION', isConnected),
+            this.setState({isConnected});
+           }
+    );
     auth.adprefe()
     .then(response => this.setState({
       privacy_follow: response.data[0].privacy_follow,
@@ -95,6 +71,19 @@ export default class AdPreference extends Component {
     }))
     .catch();
   }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener(
+        'change',
+        this._handleConnectivityChange
+    );
+  }
+  _handleConnectivityChange = (isConnected) => {
+    this.setState({
+      isConnected,
+    });
+  };
+
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -105,6 +94,7 @@ export default class AdPreference extends Component {
       this.refs.toast.show(text, duration);
     }
   }
+
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -116,17 +106,30 @@ export default class AdPreference extends Component {
   }
   render() {
     const saveUpdate = () => {
-      auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
-      .then(response =>
-        this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
-      .catch(err => err);
+      if (this.state.isConnected === true) {
+        auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
+        .then(response =>
+          this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
+        .catch(err => err);
+      } else {
+        return;
+      }
     };
-
+    // const noconection = () => {
+    //   if (this.state.connectionInfo === null) {
+    //     this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
+    //   } else {
+    //
+    //   }
+    // };
     // Save Button on NavigationBar
     const rightButtonConfig = {
-      title: strings.settings.save,
-      handler: () => saveUpdate(),
-      // handler: () => Actions.pop(),
+        title: strings.settings.save,
+        handler: () => saveUpdate(),
+    };
+    const rightButtonConfig2 = {
+        title: strings.settings.save,
+        tintColor: 'grey',
     };
 
     const titleConfig = {
@@ -138,12 +141,21 @@ export default class AdPreference extends Component {
         <View
           style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}
         >
+        {this.state.isConnected === true ?
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
             leftButton={<IconClose onPress={Actions.pop} />}
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
+          /> :
+
+          <NavigationBar
+            title={titleConfig}
+            rightButton={rightButtonConfig2}
+            leftButton={<IconClose onPress={Actions.pop} />}
+            style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
+          }
         </View>
         <ScrollView>
           <View>
@@ -372,3 +384,40 @@ export default class AdPreference extends Component {
     );
   }
 }
+
+const stylesAdpref = StyleSheet.create({
+  titleButton: {
+    fontSize: 15,
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    borderRadius: 5,
+    elevation: 2,
+    paddingTop: 14,
+    paddingBottom: 14,
+    alignItems: 'center',
+  },
+  styleView: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // paddingLeft: 15,
+    backgroundColor: '#ffffff',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 3,
+    height: 40,
+    alignItems: 'center',
+    marginBottom: 6,
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  text: {
+    color: '#000000',
+    fontSize: 14,
+    marginLeft: 10,
+  },
+});

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import {
-     View,
-     Text,
-     Dimensions,
-     TouchableOpacity,
-     Image,
-     TextInput,
-     ScrollView,
-     StyleSheet,
-     ActivityIndicator,
-     AsyncStorage,
-     ListView,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+  AsyncStorage,
+  ListView,
 } from 'react-native';
 import { Picker } from 'native-base';
 import { Actions } from 'react-native-router-flux';
@@ -50,9 +50,10 @@ export default class RegistrationForm extends Component {
   }
 
   componentDidMount() {
-    auth.costumField()
-    .then(response => this.setState({ customfield: [response], loading: false }))
-    .catch(Err => console.log('err', Err));
+    auth
+      .costumField()
+      .then(response => this.setState({ customfield: [response], loading: false }))
+      .catch(Err => console.log('err', Err));
   }
 
   onClick(text, position, duration, withStyle) {
@@ -72,14 +73,29 @@ export default class RegistrationForm extends Component {
     const uname = username.toLowerCase();
     if (provider !== 'null' && accessToken !== 'null') {
       this.setState({ submitting: true });
-      auth.registerSSO(firstname, lastname, uname, gender, email, password, confirmPassword, provider, accessToken, oauthProviderId)
-      .then(res => this.setState({ submitting: false }, () =>
-      this.loginAfterRegister(uname, password),
-    ))
-    .catch((err) => {
-      this.setState({ failregister: true, failMsg: err.response.data.message, submitting: false });
-      console.log('error register', err);
-    });
+      auth
+        .registerSSO(
+          firstname,
+          lastname,
+          uname,
+          gender,
+          email,
+          password,
+          confirmPassword,
+          provider,
+          accessToken,
+          oauthProviderId,
+        )
+        .then(res =>
+          this.setState({ submitting: false }, () => this.loginAfterRegister(uname, password)))
+        .catch((err) => {
+          this.setState({
+            failregister: true,
+            failMsg: err.response.data.message,
+            submitting: false,
+          });
+          console.log('error register', err);
+        });
     } else {
       submitRegister(firstname, lastname, uname, gender, email, password, confirmPassword, (msg) => {
         this.setState({ failregister: true, failMsg: msg, submitting: false });
@@ -90,9 +106,7 @@ export default class RegistrationForm extends Component {
 
   getButton(text, position, duration, withStyle) {
     return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
+      <Text onPress={() => this.onClick(text, position, duration, withStyle)}>
         <Text>{text}</Text>
       </Text>
     );
@@ -117,20 +131,25 @@ export default class RegistrationForm extends Component {
   }
 
   loginAfterRegister(username, password) {
-    auth.login(username, password)
-    .then((loginRes) => {
-      AsyncStorage.setItem('accessToken', loginRes.access_token)
-      .then(() => Actions.actionswiper())
-      .catch((err) => {
-        console.log('FAIL LOGIN AFTER REGISTER');
+    auth
+      .login(username, password)
+      .then((loginRes) => {
+        AsyncStorage.setItem('accessToken', loginRes.access_token)
+          .then(() => Actions.actionswiper())
+          .catch((err) => {
+            this.setState({
+              failregister: true,
+              failMsg: err.response.data.message,
+              submitting: false,
+            });
+          });
+      })
+      .catch(err =>
         this.setState({
-          failregister: true, failMsg: err.response.data.message, submitting: false,
-        });
-      });
-    })
-    .catch(err => this.setState({
-      failregister: true, failMsg: err.response.data.message, submitting: false,
-    }));
+          failregister: true,
+          failMsg: err.response.data.message,
+          submitting: false,
+        }));
   }
   render() {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -146,10 +165,16 @@ export default class RegistrationForm extends Component {
     const emptyUName = this.state.username === '';
     const emptyEmail = this.state.email === '' || !this.state.email;
     const validEmail = emailRegex.test(this.state.email);
-    const validPass = (this.state.password === this.state.confirmPassword);
+    const validPass = this.state.password === this.state.confirmPassword;
     const validLPass = this.state.password.length >= 6;
     const emptyPass = this.state.password === '';
-    const available = validFName && validLName && validUsername && validEmail && validPass && validLPass && validGender;
+    const available = validFName &&
+      validLName &&
+      validUsername &&
+      validEmail &&
+      validPass &&
+      validLPass &&
+      validGender;
     const notEmpty = !emptyFName && !emptyLName && !emptyUName && !emptyEmail && !emptyPass;
     const validate = () => {
       if (available && notEmpty) {
@@ -174,24 +199,27 @@ export default class RegistrationForm extends Component {
       return (
         <View style={{ flex: 1 }}>
           <KeyboardAwareView animated>
-            <View style={styles.container} >
+            <View style={styles.container}>
               <ScrollView
-                ref={(view) => { this.scrollView = view; }}
+                ref={(view) => {
+                  this.scrollView = view;
+                }}
                 style={[{ flex: 1, alignSelf: 'stretch' }]}
                 keyboardShouldPersistTaps="always"
                 automaticallyAdjustContentInsets={false}
                 onScroll={this.onScroll}
                 scrollEventThrottle={200}
-                onLayout={(e) => { const { x, y, width, height } = e.nativeEvent.layout; console.log(height); }}
+                onLayout={(e) => {
+                  const { x, y, width, height } = e.nativeEvent.layout;
+                  console.log(height);
+                }}
               >
-                <View style={styles.scrollContent} >
-                  {this.state.failregister ? (
-                    <View style={styles.errBox}>
+                <View style={styles.scrollContent}>
+                  {this.state.failregister
+                    ? <View style={styles.errBox}>
                       <Text style={{ color: '#fff' }}>{this.state.failMsg}</Text>
                     </View>
-                  ) : (
-                    <Text />
-                  )}
+                    : <Text />}
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.first_name}
@@ -202,7 +230,9 @@ export default class RegistrationForm extends Component {
                       value={this.state.firstname}
                     />
                   </View>
-                  {validFName || emptyFName ? <View /> : <Text style={styles.fail}>{strings.register.alert_first_name}</Text>}
+                  {validFName || emptyFName
+                    ? <View />
+                    : <Text style={styles.fail}>{strings.register.alert_first_name}</Text>}
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.last_name}
@@ -214,11 +244,17 @@ export default class RegistrationForm extends Component {
                       value={this.state.lastname}
                     />
                   </View>
-                  {validLName || emptyLName ? <View /> :
-                  <Text style={styles.fail}>{strings.register.alert_last_name}</Text>}
+                  {validLName || emptyLName
+                    ? <View />
+                    : <Text style={styles.fail}>{strings.register.alert_last_name}</Text>}
 
                   <View style={styles.line} />
-                  <View style={[styles.textinputWrapperStyle, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+                  <View
+                    style={[
+                      styles.textinputWrapperStyle,
+                      { flexDirection: 'row', justifyContent: 'space-between' },
+                    ]}
+                  >
                     <TextInput
                       ref="usernameInput"
                       placeholder={strings.register.user_name}
@@ -230,14 +266,22 @@ export default class RegistrationForm extends Component {
                       value={this.state.username}
                       editable
                     />
-                    {usernameLength && validUsername ? (<Image source={require('../../images/accept.png')} style={styles.acceptImg} />)
-                    : (<Image source={require('../../images/wrong.png')} style={styles.acceptImg} />)
-                  }
+                    {usernameLength && validUsername
+                      ? <Image
+                        source={require('../../images/accept.png')}
+                        style={styles.acceptImg}
+                      />
+                      : <Image
+                        source={require('../../images/wrong.png')}
+                        style={styles.acceptImg}
+                      />}
 
                   </View>
-                  {usernameLength || emptyUName ? (<View />) : (<Text style={styles.fail}>
-                    { strings.register.alert_username_length}</Text>)
-                  }
+                  {usernameLength || emptyUName
+                    ? <View />
+                    : <Text style={styles.fail}>
+                      {strings.register.alert_username_length}
+                    </Text>}
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.email}
@@ -249,15 +293,13 @@ export default class RegistrationForm extends Component {
                       value={this.state.email}
                     />
                   </View>
-                  {validEmail || emptyEmail ? (<View />)
-                    : (<Text style={styles.fail}>{strings.register.alert_invalid_email}</Text>)
-                  }
+                  {validEmail || emptyEmail
+                    ? <View />
+                    : <Text style={styles.fail}>{strings.register.alert_invalid_email}</Text>}
 
-                  {
-                    /*
+                  {/*
                       Show picker gender
-                  */
-                }
+                  */}
                   <View style={styles.genderStyle}>
                     <View>
                       <Text style={{ color: '#000', fontSize: 16 }}>{strings.register.gender}</Text>
@@ -286,25 +328,30 @@ export default class RegistrationForm extends Component {
                       secureTextEntry
                     />
                   </View>
-                  { validLPass || emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
+                  {validLPass || emptyPass
+                    ? <View />
+                    : <Text style={styles.fail}>{strings.register.alert_min_password}</Text>}
                   <View style={styles.textinputWrapperStyle}>
                     <TextInput
                       placeholder={strings.register.confirm_password}
                       placeholderTextColor="black"
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
-                      onChangeText={confirmPassword => this.setState({ confirmPassword, failregister: false })}
+                      onChangeText={confirmPassword =>
+                        this.setState({ confirmPassword, failregister: false })}
                       secureTextEntry
                     />
                   </View>
-                  { validPass || emptyPass ? <View /> : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
+                  {validPass || emptyPass
+                    ? <View />
+                    : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
                   <View style={styles.line} />
                   <View style={styles.textWrapperStyle} />
                   {
                     <ListView
                       enableEmptySections
                       dataSource={ds.cloneWithRows(this.state.customfield)}
-                      renderRow={rowData =>
+                      renderRow={rowData => (
                         <View>
                           <View style={styles.textWrapperStyle}>
                             <Text style={styles.textcustomfield}>{rowData.title}</Text>
@@ -320,42 +367,50 @@ export default class RegistrationForm extends Component {
                               style={styles.textinputStyle}
                             />
                           </View>
-                        </View>}
+                        </View>
+                      )}
                     />
-                 }
+                  }
 
                 </View>
                 <View style={styles.line} />
-                <TouchableOpacity
-                  onPress={validate}
-                >
-                  <View style={styles.btnReg} >
-                    {this.state.submitting ? <ActivityIndicator size={'large'} color={'#fff'} /> : <Text style={styles.textReg} >
-                      {strings.register.Register}
-                    </Text>}
+                <TouchableOpacity onPress={validate}>
+                  <View style={styles.btnReg}>
+                    {this.state.submitting
+                      ? <ActivityIndicator size={'large'} color={'#fff'} />
+                      : <Text style={styles.textReg}>
+                        {strings.register.Register}
+                      </Text>}
                   </View>
                 </TouchableOpacity>
-                {
-                  /*
+                {/*
                     LICENSE AND POLICY PRIVACY TEXT VIEW
-                */
-              }
+                */}
                 <View style={{ alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-                  <View style={styles.policyStyle} >
+                  <View style={styles.policyStyle}>
                     <Text>
                       {strings.register.register_agreement}
                     </Text>
                   </View>
-                  <View style={[styles.policyStyle, { justifyContent: 'space-between', flex: 1, marginBottom: 10 }]}>
+                  <View
+                    style={[
+                      styles.policyStyle,
+                      { justifyContent: 'space-between', flex: 1, marginBottom: 10 },
+                    ]}
+                  >
                     <TouchableOpacity onPress={Actions.tos}>
-                      <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
+                      <Text
+                        style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}
+                      >
                         {strings.register.tou}
                       </Text>
                     </TouchableOpacity>
                     <Text />
                     <Text> {strings.register.and} </Text>
                     <TouchableOpacity onPress={Actions.pp}>
-                      <Text style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}>
+                      <Text
+                        style={{ color: '#01579B', borderBottomWidth: 0.5, borderColor: '#01579B' }}
+                      >
                         {strings.register.Privacy_policy}
                       </Text>
                     </TouchableOpacity>
@@ -376,10 +431,9 @@ export default class RegistrationForm extends Component {
       );
     }
     console.log('true');
-    return (<ActivityIndicator />);
+    return <ActivityIndicator />;
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -467,7 +521,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 2,
     height: 65,
-    width: (width * 0.85) / 2,
+    width: width * 0.85 / 2,
     borderWidth: 1,
     borderColor: 'silver',
     paddingTop: 5,
