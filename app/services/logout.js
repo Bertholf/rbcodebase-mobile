@@ -1,20 +1,9 @@
 import { AsyncStorage, NativeModules } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { LoginManager } from 'react-native-fbsdk';
-// // import Realm from 'realm';
-// import FollowingSchema from './../db/following/followingSchema';
-// import FollowerSchema from './../db/following/followerSchema';
-// import SettingSchema from './../db/following/settingSchema';
-// import LeaderSchema from './../db/following/leaderSchema';
 
 // Load native google SSO native module
 const google = NativeModules.GoogleSignInModule;
-
-// // initiate Realm database objects
-// const followingDb = new Realm({
-//   schema: [FollowingSchema, FollowerSchema, SettingSchema, LeaderSchema]
-// });
-// const database = followingDb.objects('Following');
 
 const Logout = () => {
   /**
@@ -36,7 +25,6 @@ const Logout = () => {
         /**
          * Logout Method for Facebook Provider
          */
-        //  Clear Realm database
 
         // Clear AsyncStorage
         AsyncStorage.multiRemove(['accessToken', 'FcmToken', 'userId', 'name_first', 'name_last', 'name_slug', 'email',
@@ -48,11 +36,6 @@ const Logout = () => {
         /**
          * Logout Method for Google Provider
          */
-        // //  Clear Realm database
-        // followingDb.write(() => {
-        //   followingDb.delete(database);
-        // });
-        // console.log('DATABASE VIEW=====', database);
 
         // Clear AsyncStorage
         AsyncStorage.multiRemove(['accessToken', 'userId', 'FcmToken', 'name_first', 'name_last', 'name_slug', 'email',
@@ -65,7 +48,6 @@ const Logout = () => {
         /**
          * Logout Method for Twitter Provider
          */
-        //  Clear Realm database
 
         AsyncStorage.multiRemove(['accessToken', 'userId', 'FcmToken', 'name_first', 'name_last', 'name_slug', 'email',
           'status', 'confirmed', 'verified', 'language', 'timezone', 'timeline_id', 'img_avatar', 'img_background',
@@ -76,9 +58,6 @@ const Logout = () => {
         /**
          * Logout Method for login by Email
          */
-
-        //  Clear Realm database
-
         // Clear AsyncStorage
         AsyncStorage.removeItem('accessToken').then((response) => { console.log('HELLO RESPON', response); }, (error) => { console.log(error); });
         Actions.login({ type: 'reset' });
