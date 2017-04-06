@@ -6,13 +6,10 @@ import {
    TouchableOpacity,
    AsyncStorage,
 } from 'react-native';
-import moment from 'moment';
 import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
-// import FollowingScheduler from '../../services/createFollowingListScheduler';
-// import FollowerScheduler from '../../services/FollowerListScheduler';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');

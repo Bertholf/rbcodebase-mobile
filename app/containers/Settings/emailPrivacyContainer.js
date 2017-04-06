@@ -4,8 +4,6 @@ import AdPreference from '../../components/Setting/EmailSetting';
 
 const mapStateToProps = ({ app }) => ({
   network: app.networkState.network,
-  change: app.networkState.network,
-  handler: app.networkState.network,
 });
 
 const mapDispatchToProps = dispatch => ({
