@@ -88,14 +88,10 @@ export default class AdPreference extends Component {
   }
   render() {
     const saveUpdate = () => {
-      if (this.state.isConnected === true) {
         auth.updateSetting(this.state.privacy_follow, this.state.privacy_follow_confirm, this.state.privacy_comment, this.state.privacy_post, this.state.privacy_timeline_post, this.state.privacy_message, this.state.email_follow, this.state.email_post_like, this.state.email_post_share, this.state.email_comment_post, this.state.email_comment_like, this.state.email_comment_reply)
         .then(response =>
           this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
         .catch(err => err);
-      } else {
-        
-      }
     };
     // const noconection = () => {
     //   if (this.state.connectionInfo === null) {
