@@ -29,6 +29,7 @@ import com.rbcodebase.app.modules.google.GoogleSignInPackage;
 import com.rbcodebase.app.modules.twitter.TwitterAuthPackage;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import org.pgsqlite.SQLitePluginPackage;
 
 public class MainApplication extends Application implements ReactApplication {
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
@@ -51,6 +52,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+              new SQLitePluginPackage(),
               new MainReactPackage(),
               new FIRMessagingPackage(),
               new ReactNativeLocalizationPackage(),

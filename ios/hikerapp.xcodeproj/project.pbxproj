@@ -88,6 +88,8 @@
 		F7A16585C89F483EBCB1F5AF /* libLRDRCTSimpleToast.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB94FBC08074064A85E02E3 /* libLRDRCTSimpleToast.a */; };
 		FA63392BC3004B1687ADDE99 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B484EA379C5246CF8A18C12E /* MaterialIcons.ttf */; };
 		FF95616694674740BDB04C2F /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E7308C80AAD4876AAFC9787 /* Ionicons.ttf */; };
+		892EC0CF783B47DBBFDA6F25 /* libSQLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E78B0895AB4D16BFCEEC85 /* libSQLite.a */; };
+		0CA0A134374440DBAA81F11B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3938048769224FD0A954B700 /* libsqlite3.0.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -480,6 +482,9 @@
 		F9438616CD214609A8E3AA10 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		FBC043051E754C89B857C816 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BoldItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
 		FE86053E2C3843B5BA235FB4 /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		B7346A453BEB4E2CACD85C70 /* SQLite.xcodeproj */ = {isa = PBXFileReference; name = "SQLite.xcodeproj"; path = "../node_modules/react-native-sqlite-storage/src/ios/SQLite.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		95E78B0895AB4D16BFCEEC85 /* libSQLite.a */ = {isa = PBXFileReference; name = "libSQLite.a"; path = "libSQLite.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3938048769224FD0A954B700 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; name = "libsqlite3.0.tbd"; path = "usr/lib/libsqlite3.0.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +529,8 @@
 				9954633F463B47BFA05E1C2F /* libRCTSplashScreen.a in Frameworks */,
 				C8B01CD5C07C4C8D89466F39 /* libRNFIRMessaging.a in Frameworks */,
 				F7A16585C89F483EBCB1F5AF /* libLRDRCTSimpleToast.a in Frameworks */,
+				892EC0CF783B47DBBFDA6F25 /* libSQLite.a in Frameworks */,
+				0CA0A134374440DBAA81F11B /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +711,7 @@
 				E46248E267E24717944664D2 /* SafariServices.framework */,
 				B135926FE6B844F78E9EB10A /* SystemConfiguration.framework */,
 				FE86053E2C3843B5BA235FB4 /* AddressBook.framework */,
+				3938048769224FD0A954B700 /* libsqlite3.0.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -753,6 +761,7 @@
 				AA17F4D1749E4715951E4FD9 /* RCTSplashScreen.xcodeproj */,
 				B05EF9A4A94944DD8CA8E5FE /* RNFIRMessaging.xcodeproj */,
 				30ACDC8ADC734424B2FC4AF2 /* LRDRCTSimpleToast.xcodeproj */,
+				B7346A453BEB4E2CACD85C70 /* SQLite.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1644,6 +1653,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1662,6 +1672,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
