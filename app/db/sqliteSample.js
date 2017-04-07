@@ -140,6 +140,7 @@ const SQLiteDemo = React.createClass({
       that.state.progress.push('Query completed');
       that.setState(that.state);
       const len = results.rows.length;
+      console.log('THIS IS RESULT DATABASE', results.rows.item);
       for (let i = 0; i < len; i++) {
         const row = results.rows.item(i);
         that.state.progress.push(`Empl Name: ${row.name}, Dept Name: ${row.deptName}`);
