@@ -10,6 +10,7 @@ import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
+import runDb from '../../db/FollowingSchema';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -29,8 +30,8 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
-   
     // Get Profile Data From server
+    runDb();
     auth.profile()
     .then((response) => {
       // All response Should Saved into AsyncStorage

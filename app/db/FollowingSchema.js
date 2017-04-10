@@ -1,4 +1,5 @@
 import SQLite from 'react-native-sqlite-storage';
+
 SQLite.DEBUG(true);
 SQLite.enablePromise(true);
 
@@ -82,6 +83,15 @@ const saveRelation = (tx, values) => {
       + `"${data.created_at}", `
       + `"${data.updated_at}", `
       + `"${data.deleted_at}" );`);
+};
+
+const closedatabase = () => {
+  if (db) {
+    console.log('Close database');
+    db.close().then(() => console.log('database closed'));
+  } else {
+    console.log('database is not opened');
+  }
 };
 
 const mapFollowerToDatabase = (tx, res) => {
@@ -197,6 +207,37 @@ const createSchemaDb = (tx, res) => {
   mapFollowerToDatabase(tx, res);
 };
 
-const populateDatabase = () => {
-
+const queryfollowing = (tx) => {
+  tx.executeSql('SELECT * FROM Following').then(([tx, result]) => {
+    const len = result.rows.length;
+    for (let i = 0; i < len; i++) {
+      const row = result.rows.item(i);
+      console.log(`Number ${i} is row ${row.leader_id}`);
+    }
+  }).catch(err => console.log(err));
 };
+
+const populateDatabase = () => {
+  db.executeSql('SELECT 1 FROM Version LIMIT 1').then(() => {
+    db.transaction(queryfollowing).then(() => {});
+  }).catch((error) => {
+    console.log(error);
+    db.transaction(createSchemaDb).then(() => {
+      closedatabase();
+    });
+  });
+};
+
+const loadAndQuery = () => {
+  SQLite.echoTest().then(() => {
+    SQLite.openDatabase(dbName, dbVersion, dbDisplayName, -1).then((DB) => {
+      db = DB;
+      populateDatabase(DB);
+    }).catch(error => console.log('ERror', error));
+  }).catch(err => console.log('plugin Error', err));
+};
+
+export default function runDb() {
+  console.log('Load Database');
+  loadAndQuery();
+}
