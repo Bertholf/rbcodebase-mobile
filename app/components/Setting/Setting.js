@@ -13,12 +13,10 @@ const next = require('./../../images/ic_navigate_next_2x.png');
 import { connect } from 'react-redux';
 import { getNetworkStatus } from '../../actions/networkStatus';
 
-
-
 export default class Setting extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
+    console.log(this.props);
     this.state = {
       profile: {},
       loading: true,
@@ -39,44 +37,78 @@ export default class Setting extends Component {
   componentDidMount() {
     console.log('STATE REDUX', this.state.handler);
     // connectionInfo.checkInfo();
-    auth.profile()
-    .then((response) => {
-      console.log('EMAIL CHANGE====', response);
-      if (response.data.date_birth === null) {
-        this.setState({
-          namef: response.data.name_first,
-          namel: response.data.name_last,
-          nameslug: response.data.name_slug,
-          email: response.data.email,
-          gender: response.data.gender,
-          phone: response.data.cell_number,
-          birthday: 'Jan 1st 1992',
-        });
-      } else {
-        this.setState({
-          namef: response.data.name_first,
-          namel: response.data.name_last,
-          nameslug: response.data.name_slug,
-          email: response.data.email,
-          gender: response.data.gender,
-          phone: response.data.cell_number,
-          birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
-        });
-      }
-    })
-    .catch(() => {
-      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.email); }).catch(res => console.log('error ambil email-----'));
-      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); console.log('USERNAME KAMUUUUU=====', this.state.namaslug); }).catch(res => console.log('error ambil nama username-----'));
-      AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namef); }).catch(res => console.log('error ambil namalengkap-----'));
-      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); console.log('NAMAAAA KAMUUUUU=====', this.state.namel); }).catch(res => console.log('error ambil namalengkap--- --'));
-      AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res }); console.log('BIRTHDAY KAMUUUUU=====', this.state.birthday); }).catch(res => console.log('error ambil tanggal lahir--- --'));
-      AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); console.log('PHONE KAMUUUUU=====', this.state.phone); }).catch(res => console.log('error ambil tanggal lahir--- --'));
-      AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); console.log('PHONE KAMUUUUU=====', this.state.gendersncy); }).catch(res => console.log('error ambil tanggal lahir--- --'));
-    });
+    auth
+      .profile()
+      .then((response) => {
+        console.log('EMAIL CHANGE====', response);
+        if (response.data.date_birth === null) {
+          this.setState({
+            namef: response.data.name_first,
+            namel: response.data.name_last,
+            nameslug: response.data.name_slug,
+            email: response.data.email,
+            gender: response.data.gender,
+            phone: response.data.cell_number,
+            birthday: 'Jan 1st 1992',
+          });
+        } else {
+          this.setState({
+            namef: response.data.name_first,
+            namel: response.data.name_last,
+            nameslug: response.data.name_slug,
+            email: response.data.email,
+            gender: response.data.gender,
+            phone: response.data.cell_number,
+            birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
+          });
+        }
+      })
+      .catch(() => {
+        AsyncStorage.getItem('email')
+          .then((res) => {
+            this.setState({ email: res });
+            console.log('NAMAAAA KAMUUUUU=====', this.state.email);
+          })
+          .catch(res => console.log('error ambil email-----'));
+        AsyncStorage.getItem('name_slug')
+          .then((res) => {
+            this.setState({ nameslug: res });
+            console.log('USERNAME KAMUUUUU=====', this.state.namaslug);
+          })
+          .catch(res => console.log('error ambil nama username-----'));
+        AsyncStorage.getItem('name_first')
+          .then((res) => {
+            this.setState({ namef: res });
+            console.log('NAMAAAA KAMUUUUU=====', this.state.namef);
+          })
+          .catch(res => console.log('error ambil namalengkap-----'));
+        AsyncStorage.getItem('name_last')
+          .then((res) => {
+            this.setState({ namel: res });
+            console.log('NAMAAAA KAMUUUUU=====', this.state.namel);
+          })
+          .catch(res => console.log('error ambil namalengkap--- --'));
+        AsyncStorage.getItem('date_birth')
+          .then((res) => {
+            this.setState({ birthday: res });
+            console.log('BIRTHDAY KAMUUUUU=====', this.state.birthday);
+          })
+          .catch(res => console.log('error ambil tanggal lahir--- --'));
+        AsyncStorage.getItem('cell_number')
+          .then((res) => {
+            this.setState({ phone: res });
+            console.log('PHONE KAMUUUUU=====', this.state.phone);
+          })
+          .catch(res => console.log('error ambil tanggal lahir--- --'));
+        AsyncStorage.getItem('gender')
+          .then((res) => {
+            this.setState({ gender: res });
+            console.log('PHONE KAMUUUUU=====', this.state.gendersncy);
+          })
+          .catch(res => console.log('error ambil tanggal lahir--- --'));
+      });
   }
-  componentWillMount() {
-    return;
-  }
+  componentWillMount() {}
 
   componentWillReceiveProps(NextProps) {
     console.log('NETWORK STATE =', NextProps.network);
@@ -93,7 +125,7 @@ export default class Setting extends Component {
         <ScrollView>
           <View style={styles.container}>
             <Text style={styles.titleText}>{strings.settings.account}</Text>
-            <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })} >
+            <TouchableOpacity onPress={() => Actions.nameEdit({ reRender: () => this.reRender() })}>
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.name}</Text>
@@ -117,7 +149,9 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.genderEdit({ reRender: () => this.reRender() })}>
+            <TouchableOpacity
+              onPress={() => Actions.genderEdit({ reRender: () => this.reRender() })}
+            >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.gender}</Text>
@@ -128,7 +162,9 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.editbirthday({ reRender: () => this.reRender() })}>
+            <TouchableOpacity
+              onPress={() => Actions.editbirthday({ reRender: () => this.reRender() })}
+            >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.birthday}</Text>
@@ -139,7 +175,9 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => Actions.mobilephone({ reRender: () => this.reRender() })}>
+            <TouchableOpacity
+              onPress={() => Actions.mobilephone({ reRender: () => this.reRender() })}
+            >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.mobile}</Text>
@@ -150,7 +188,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.emailEdit} >
+            <TouchableOpacity onPress={Actions.emailEdit}>
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.email}</Text>
@@ -173,7 +211,7 @@ export default class Setting extends Component {
               </View>
             </TouchableOpacity>
             <Text style={styles.titleText}>{strings.settings.preference}</Text>
-            <TouchableOpacity onPress={Actions.adpref} >
+            <TouchableOpacity onPress={Actions.adpref}>
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.privacysetting}</Text>
@@ -183,7 +221,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={Actions.EmailSetting} >
+            <TouchableOpacity onPress={Actions.EmailSetting}>
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.emailsetting}</Text>
@@ -194,7 +232,9 @@ export default class Setting extends Component {
               </View>
             </TouchableOpacity>
             <Text style={styles.titleText}>{strings.settings.more_info}</Text>
-            <TouchableOpacity onPress={this.state.netstate ? Actions.support : () => console.log('Disabled')} >
+            <TouchableOpacity
+              onPress={this.state.netstate ? Actions.support : () => console.log('Disabled')}
+            >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.support}</Text>
@@ -204,7 +244,9 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.state.netstate ? Actions.pp : () => console.log('Disabled')} >
+            <TouchableOpacity
+              onPress={this.state.netstate ? Actions.pp : () => console.log('Disabled')}
+            >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.Privacy_policy}</Text>
@@ -214,7 +256,7 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.state.netstate ? Actions.tos : console.log('Disabled')} >
+            <TouchableOpacity onPress={this.state.netstate ? Actions.tos : console.log('Disabled')}>
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.tos}</Text>
@@ -224,7 +266,9 @@ export default class Setting extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.state.netstate ? Actions.license : () => console.log('Disabled')} >
+            <TouchableOpacity
+              onPress={this.state.netstate ? Actions.license : () => console.log('Disabled')}
+            >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.licence}</Text>
@@ -235,7 +279,7 @@ export default class Setting extends Component {
               </View>
             </TouchableOpacity>
             <Text style={styles.titleText}>{strings.settings.account_action}</Text>
-            <TouchableOpacity onPress={Actions.account} >
+            <TouchableOpacity onPress={Actions.account}>
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
                   <Text style={styles.text}>{strings.settings.clear_cache}</Text>
@@ -246,17 +290,19 @@ export default class Setting extends Component {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => Alert.alert(
-            '',
-            strings.logoutLocalization.AreYouSure,
-                [
-                 { text: strings.logoutLocalization.cancel, onPress: () => console.log('cancelled Pressed') },
-                  { text: 'OK',
+              onPress={() =>
+                Alert.alert('', strings.logoutLocalization.AreYouSure, [
+                  {
+                    text: strings.logoutLocalization.cancel,
+                    onPress: () => console.log('cancelled Pressed'),
+                  },
+                  {
+                    text: 'OK',
                     onPress: () => {
                       Logout();
-                    } },
-                ],
-          )}
+                    },
+                  },
+                ])}
             >
               <View style={styles.list}>
                 <View style={{ alignSelf: 'center' }}>
