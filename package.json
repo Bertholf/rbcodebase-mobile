@@ -59,6 +59,7 @@
     "react-native-sliding-up-panel": "^1.1.11",
     "react-native-smart-splash-screen": "^2.3.3",
     "react-native-smart-toast": "^1.1.1",
+    "react-native-sqlite-storage": "^3.2.2",
     "react-native-stateless-form": "^0.2.2",
     "react-native-swipe-gestures": "^1.0.2",
     "react-native-swipe-list-view": "^0.3.3",
