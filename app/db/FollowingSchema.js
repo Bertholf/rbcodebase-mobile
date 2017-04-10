@@ -10,9 +10,10 @@ const dbVersion = '1.0';
 const dbDisplayName = 'SQLite Test Database';
 const dbSize = 200000;
 let db;
+let array = [];
 
 const saveLeader = (tx, values) => {
-  console.log('GO TO saveleader');
+  console.log('GO TO saveleader', values);
   const leader = values.leader;
   tx.executeSql('INSERT INTO Leader '
       + 'VALUES ('
@@ -78,9 +79,9 @@ const saveFollower = (tx, values) => {
 };
 
 const saveRelation = (tx, values) => {
-  console.log('GO TO SAVE RELATION');
+  console.log('GO TO SAVE RELATION', values);
   const data = values;
-  tx.executeSql('INSERT INTO Following (id, leader_id, follower_id, status, created_at, updated_at, deleted_at) '
+  tx.executeSql('INSERT INTO Following '
       + 'VALUES ('
       + `"${data.id}", `
       + `"${data.leader_id}", `
@@ -90,7 +91,7 @@ const saveRelation = (tx, values) => {
       + `"${data.deleted_at}" );`);
 };
 
-const closedatabase = () => {
+export function closedatabase() {
   console.log('GO to CLOSE DB');
   if (db) {
     console.log('Close database');
@@ -98,28 +99,28 @@ const closedatabase = () => {
   } else {
     console.log('database is not opened');
   }
+}
+
+async function getData() {
+  const id = await AsyncStorage.getItem('userId');
+  const follow = await follows.searchFollowing('', id);
+  return follow;
+}
+
+const mapFollowerToDatabase = async (tx) => {
+  // const test = apa => apa;
+  const what = await getData().then(resp => resp);
+  array = what.data;
+  console.log('MAP VALUE', array);
+  saveRelation(tx, array[0]);
+  // array.map(i => saveRelation(tx, i));
+  // array.map(i => saveFollower(tx, i));
+  // array.map(i => saveLeader(tx, i));
+  // array.map(i => saveSetting(tx, i));
 };
 
-const mapFollowerToDatabase = (tx) => {
-  let data = null;
-  console.log('MAP VALUE');
-  AsyncStorage.getItem('userId')
-    .then((myId) => {
-      follows.searchFollowing(this.state.name, myId)
-      .then((res) => {
-        data = res;
-        data.map(value => saveFollower(tx, value));
-        data.map(value => saveLeader(tx, value));
-        data.map(value => saveRelation(tx, value));
-      })
-      .catch(err => this.showError(err));
-    })
-    .catch();
-};
-
-const createSchemaDb = (tx, res) => {
+const createSchemaDb = async (tx) => {
   console.log('CREATE SCHEMA');
-  tx.executeSql('DROP TABLE IF EXISTS Version;');
   tx.executeSql('DROP TABLE IF EXISTS Relation;');
   tx.executeSql('DROP TABLE IF EXISTS Follower;');
   tx.executeSql('DROP TABLE IF EXISTS Leader;');
@@ -210,12 +211,11 @@ const createSchemaDb = (tx, res) => {
     + '); ').catch(error => console.log('ERROR CREATE DB', error));
 
   // Setting table schema
-  tx.executeSql('CREATE TABLE IF NOT EXISTS Follower( '
+  tx.executeSql('CREATE TABLE IF NOT EXISTS Setting( '
     + 'id INTEGER PRIMARY KEY NOT NULL, '
     + 'user_id INTEGER, '
     + 'privacy_follow VARCHAR(20), '
     + 'privacy_follow_confirm VARCHAR(20), '
-    + 'privacy_follow VARCHAR(20), '
     + 'privacy_comment VARCHAR(20), '
     + 'privacy_post VARCHAR(20), '
     + 'privacy_timeline_post VARCHAR(20), '
@@ -231,28 +231,29 @@ const createSchemaDb = (tx, res) => {
     + 'deleted_at DATE '
     + '); ').catch(error => console.log('ERROR CREATE DB', error));
 
-  mapFollowerToDatabase(tx, res);
+  await mapFollowerToDatabase(tx);
 };
 
 const queryfollowing = (tx) => {
   console.log('QUEWRY FOLLOWING');
-  tx.executeSql('SELECT * FROM Following').then(([tx, result]) => {
+  tx.executeSql('SELECT * FROM Following ORDER BY id').then(([tx, result]) => {
     const len = result.rows.length;
     for (let i = 0; i < len; i++) {
       const row = result.rows.item(i);
       console.log(`Number ${i} is row ${row.leader_id}`);
     }
-  }).catch(err => console.log(err));
+  }).catch(() => closedatabase());
 };
 
-const populateDatabase = () => {
+const populateDatabase = (db) => {
   console.log('POPULATE DATABASE');
-  db.executeSql('SELECT 1 FROM Version LIMIT 1').then(() => {
-    db.transaction(queryfollowing).then(() => {});
+  db.executeSql('SELECT * FROM Version LIMIT 1').then(() => {
+    db.transaction(queryfollowing).then(() => {
+    });
   }).catch((error) => {
     console.log(error);
-    db.transaction(createSchemaDb).then(() => {
-      closedatabase();
+    db.transaction(createSchemaDb).then((res) => {
+      console.log(res);
     });
   });
 };
@@ -264,10 +265,21 @@ const loadAndQuery = () => {
       db = DB;
       populateDatabase(DB);
     }).catch(error => console.log('ERror to load query', error));
-  }).catch(err => console.log('plugin Error', err));
+  }).catch();
+};
+
+const deleteDatabase = () => {
+  SQLite.deleteDatabase(dbName).then(() => {
+    console.log('Database DELETED');
+  }).catch((error) => {
+    console.log(error);
+  });
 };
 
 export default function runDb() {
-  console.log('Load Database');
+  console.log('======Delete database');
+  deleteDatabase();
+  console.log('======Load Database');
   loadAndQuery();
 }
+

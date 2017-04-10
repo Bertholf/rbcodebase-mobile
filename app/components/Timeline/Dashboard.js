@@ -31,7 +31,7 @@ export default class Dashboard extends Component {
   }
   componentDidMount() {
     // Get Profile Data From server
-    runDb();
+    // runDb();
     auth.profile()
     .then((response) => {
       // All response Should Saved into AsyncStorage
@@ -49,7 +49,7 @@ export default class Dashboard extends Component {
              'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
-        .then(res => console.log('==RESPONSE STORAGE==', res))
+        .then()
           .catch(err => console.log('ERROR SAVE 1', err));
          });
       });
