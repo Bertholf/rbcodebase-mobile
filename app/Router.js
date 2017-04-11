@@ -89,7 +89,7 @@ const Routing = props => (
         <Scene key={'navbar'} component={NavBar}>
           <Scene key={'root'}>
             <Scene key="setting" component={Setting} title={strings.settings.title} />
-            <Scene key="demo" initial component={SqliteDemo} hideNavBar title={'THIS IS DEMO'} />
+            <Scene key="demo" component={SqliteDemo} hideNavBar title={'THIS IS DEMO'} />
             <Scene
               key="emailVarification"
               hideNavBar
@@ -123,7 +123,7 @@ const Routing = props => (
               title={strings.editBirthday.title}
             />
             <Scene key="inbox" component={Inbox} title={'Inbox'} />
-            <Scene key={'launch'} component={SplashScreen} hideNavBar title={'Launch'} />
+            <Scene key={'launch'} initial component={SplashScreen} hideNavBar title={'Launch'} />
             <Scene
               key={'notifications'}
               component={Notifications}
