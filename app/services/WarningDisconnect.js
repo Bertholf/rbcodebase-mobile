@@ -41,7 +41,7 @@ export default class WarningDisconnect extends Component {
       this.componentDidMount();
     });
   }
-  cancelRequest() {
+  hidepopup() {
     clearTimeout(this.timer);
     this.setState({ hide: true });
     this.timer = setTimeout(() => this.reRender(), 9200);
@@ -69,7 +69,7 @@ export default class WarningDisconnect extends Component {
               // onPress={() => {
               //   this.setState({ hide: true });
               // }}
-              onPress={() => this.cancelRequest()}
+              onPress={() => this.hidepopup()}
             >
               <Image
                 style={{ width: 20, height: 20, position: 'absolute', left: 30, top: 10 }}
