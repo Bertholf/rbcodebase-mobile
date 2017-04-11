@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity, AsyncStorage, NetInfo } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  AsyncStorage,
+  NetInfo,
+  Dimensions,
+} from 'react-native';
 // import MessageBarAlert from 'react-native-message-bar';
 // import MessageBarManager from 'react-native-message-bar';
 import { Right, Left, Bottom, Top } from 'native-base';
+const { width, height } = Dimensions.get('window');
 
 const cloud = require('../images/cloud.png');
 export default class WarningDisconnect extends Component {
@@ -65,7 +74,7 @@ export default class WarningDisconnect extends Component {
       >
         {this.state.isConnected == false && this.state.hide == false
           ? <TouchableOpacity
-              style={{ width: 400, height: 45, backgroundColor: '#ffa722' }}
+              style={{ width: width * 1, height: 45, backgroundColor: '#ffa722' }}
               // onPress={() => {
               //   this.setState({ hide: true });
               // }}
