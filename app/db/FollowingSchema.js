@@ -83,8 +83,8 @@ const saveRelation = (tx, values) => {
   const data = values;
   tx.executeSql('INSERT INTO Following '
       + 'VALUES ('
-      + `"${data.id}", `
-      + `"${data.leader_id}", `
+      + `${data.id}, `
+      + `${data.leader_id}, `
       + `"${data.status}", `
       + `"${data.created_at}", `
       + `"${data.updated_at}", `
@@ -107,16 +107,12 @@ async function getData() {
   return follow;
 }
 
-const mapFollowerToDatabase = async (tx) => {
+const mapFollowerToDatabase = (tx, res) => {
   // const test = apa => apa;
-  const what = await getData().then(resp => resp);
+  const what = getData().then(resp => resp);
   array = what.data;
-  console.log('MAP VALUE', array);
-  saveRelation(tx, array[0]);
-  // array.map(i => saveRelation(tx, i));
-  // array.map(i => saveFollower(tx, i));
-  // array.map(i => saveLeader(tx, i));
-  // array.map(i => saveSetting(tx, i));
+
+  tx.executeSql(`INSERT INTO Following Values ${res};`);
 };
 
 const createSchemaDb = async (tx) => {
@@ -231,7 +227,20 @@ const createSchemaDb = async (tx) => {
     + 'deleted_at DATE '
     + '); ').catch(error => console.log('ERROR CREATE DB', error));
 
-  await mapFollowerToDatabase(tx);
+  // const what = await getData().then(resp => resp);
+  // array = what.data;
+  const arrayC = [
+    { id: 1, fol: 231, lead: 523 }, { id: 2, fol: 231, lead: 523 }, { id: 3, fol: 231, lead: 523 }
+  ];
+  let structure = '';
+  await arrayC.map(i => structure += `(${i.id}, 231, 323, "a", "2017-03-03", "2017-03-03", "2017-03-03"), `);
+  // console.log('HAS A DATAAAAAAAAAAAAAAAA=====', array);
+
+  const struct = structure.substring(0, structure.length - 2);
+  console.log('structure nyaaaa====', struct);
+
+  // closedatabase();
+  mapFollowerToDatabase(tx, struct);
 };
 
 const queryfollowing = (tx) => {

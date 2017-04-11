@@ -31,7 +31,7 @@ export default class Dashboard extends Component {
   }
   componentDidMount() {
     // Get Profile Data From server
-    // runDb();
+    runDb();
     auth.profile()
     .then((response) => {
       // All response Should Saved into AsyncStorage
@@ -42,7 +42,7 @@ export default class Dashboard extends Component {
          ['verified', response.data.verified.toString()],
          ['gender', response.data.gender.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
-        ['picture', response.data.picture.toString()],
+         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
