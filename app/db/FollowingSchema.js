@@ -10,7 +10,7 @@ const dbVersion = '1.0';
 const dbDisplayName = 'SQLite Test Database';
 const dbSize = 200000;
 let db;
-let array = [];
+const array = [];
 
 const saveLeader = (tx, values) => {
   console.log('GO TO saveleader', values);
@@ -51,7 +51,7 @@ const saveFollower = (tx, values) => {
   tx.executeSql('INSERT INTO Follower '
       + 'VALUES ('
       + `"${follower.name_first}", `
-      + `"${follower.name_last}", `
+      + `"${follower.name_lsaveFollowerast}", `
       + `"${follower.name}", `
       + `"${follower.name_slug}"`
       + `"${follower.email}", `
@@ -107,12 +107,60 @@ async function getData() {
   return follow;
 }
 
-const mapFollowerToDatabase = (tx, res) => {
-  // const test = apa => apa;
-  const what = getData().then(resp => resp);
-  array = what.data;
+const mapFollowerToDatabase = (tx) => {
+  // get Data Following
+  getData().then(async (resp) => {
+    console.log(resp);
+    const arraysFollwoing = await resp.data;
+    const arraysLeader = await resp.data.leader;
+    const arraysFollower = await resp.data.follower;
 
-  tx.executeSql(`INSERT INTO Following Values ${res};`);
+    let structureFollowing = '';
+    let structureLeader = '';
+    let structureFollower = '';
+
+    // Maping Data into String Value
+    arraysFollwoing.map(i => structureFollowing += `(${i.id}, ${i.leader_id}, ${i.follower_id}, "${i.status}", "${i.created_at}", "${i.updated_at}", "${i.deleted_at}"), `);
+    // arraysLeader.map(i => structureLeader += `("${i.name_first}", `
+    //   + `"${i.name_last}", `
+    //   + `"${i.name}", `
+    //   + `"${i.name_slug}"`
+    //   + `"${i.email}", `
+    //   + `"${i.cell_number}", `
+    //   + `"${i.cell_carrier}", `
+    //   + `"${i.status}", `
+    //   + `"${i.confirmation_code}", `
+    //   + `"${i.confirmed}", `
+    //   + `"${i.verified}", `
+    //   + `"${i.language}", `
+    //   + `"${i.date_birth}", `
+    //   + `"${i.timeline_id}", `
+    //   + `"${i.img_avatar}", `
+    //   + `"${i.img_background}", `
+    //   + `"${i.referring_user_id}", `
+    //   + `"${i.created_at}", `
+    //   + `"${i.updated_at}", `
+    //   + `"${i.deleted_at}", `
+    //   + `"${i.current_team_id}", `
+    //   + `"${i.gender}", `
+    //   + `"${i.picture}", `
+    //   + `"${i.access_token}", `
+    //   + `"${i.registered}"`
+    //   + `"${i.setting.id}"`
+    //   + '), ',
+    // );
+    const structFollowing = structureFollowing.substring(0, structureFollowing.length - 2);
+    // const structLeader = structureFollower.substring(0, structureLeader.length - 2);
+    console.log('structure nyaaaa====', structFollowing);
+
+
+    // Send Data
+    SQLite.openDatabase(dbName, dbVersion, dbDisplayName, -1).then((ds) => {
+      ds.executeSql(`INSERT INTO Following Values ${structFollowing};`);
+      // ds.executeSql(`INSERT INTO Following Values ${structLeader};`);
+    }).catch(err => console.log(err));
+    // mapFollowerToDatabase(tx, struct);
+  });
 };
 
 const createSchemaDb = async (tx) => {
@@ -227,20 +275,7 @@ const createSchemaDb = async (tx) => {
     + 'deleted_at DATE '
     + '); ').catch(error => console.log('ERROR CREATE DB', error));
 
-  // const what = await getData().then(resp => resp);
-  // array = what.data;
-  const arrayC = [
-    { id: 1, fol: 231, lead: 523 }, { id: 2, fol: 231, lead: 523 }, { id: 3, fol: 231, lead: 523 }
-  ];
-  let structure = '';
-  await arrayC.map(i => structure += `(${i.id}, 231, 323, "a", "2017-03-03", "2017-03-03", "2017-03-03"), `);
-  // console.log('HAS A DATAAAAAAAAAAAAAAAA=====', array);
-
-  const struct = structure.substring(0, structure.length - 2);
-  console.log('structure nyaaaa====', struct);
-
-  // closedatabase();
-  mapFollowerToDatabase(tx, struct);
+    mapFollowerToDatabase();
 };
 
 const queryfollowing = (tx) => {
