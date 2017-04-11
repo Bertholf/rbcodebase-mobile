@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TouchableOpacity, AsyncStorage, NetInfo } from 'react-native';
 // import MessageBarAlert from 'react-native-message-bar';
 // import MessageBarManager from 'react-native-message-bar';
+import { Right, Left, Bottom, Top } from 'native-base';
 
 const cloud = require('../images/cloud.png');
 export default class WarningDisconnect extends Component {
@@ -11,13 +12,14 @@ export default class WarningDisconnect extends Component {
       isConnected: null,
       hide: false,
     };
+    this.timer = null;
   }
   componentDidMount() {
     // MessageBarManager.registerMessageBar(this.refs.alert);
     NetInfo.isConnected.addEventListener('change', this._handleConnectivityChange);
 
     NetInfo.isConnected.fetch().done(isConnected => {
-      console.log('CONNECTION START', isConnected), this.setState({ isConnected, hide: false });
+      console.log('CONNECTION START', isConnected), this.setState({ isConnected });
     });
     // Get Profile Data From server
   }
@@ -33,21 +35,41 @@ export default class WarningDisconnect extends Component {
     });
     console.log('CHANGE TO=====', isConnected);
   };
+
   reRender() {
-    this.componentDidMount();
+    this.setState({ hide: false }, () => {
+      this.componentDidMount();
+    });
+  }
+  cancelRequest() {
+    clearTimeout(this.timer);
+    this.setState({ hide: true });
+    this.timer = setTimeout(() => this.reRender(), 9200);
+    // if (this.state.requesting) {
+    //   follows.cancelCaller().cancel('Cancel this operation');
+    //   this.searchUpdate(value);
+    // }
+    // this.searchUpdate(value);
   }
 
   render() {
     console.log('isConnected ', this.state.isConnected, 'hide ', this.state.hide);
     return (
-      <View style={{ flex: 1, position: 'absolute' }}>
+      <View
+        style={{
+          flex: 1,
+          position: 'absolute',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+        }}
+      >
         {this.state.isConnected == false && this.state.hide == false
           ? <TouchableOpacity
               style={{ width: 400, height: 45, backgroundColor: '#ffa722' }}
-              onPress={() => {
-                this.setState({ hide: true });
-                this.reRender();
-              }}
+              // onPress={() => {
+              //   this.setState({ hide: true });
+              // }}
+              onPress={() => this.cancelRequest()}
             >
               <Image
                 style={{ width: 20, height: 20, position: 'absolute', left: 30, top: 10 }}
