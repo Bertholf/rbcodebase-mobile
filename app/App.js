@@ -17,31 +17,10 @@ const store = createStore(
   applyMiddleware(logger, thunkMiddleware),
   autoRehydrate(),
 );
-// uncomment this when you build it
-// persistStore(store, {
-//   storage: AsyncStorage,
-// });
 
-/**
- * Sample from documentation
- */
-// const realmTest = () => {
-//   let realm = new Realm({
-//       schema: [{ name: 'Dog', properties: { name: 'string' } }],
-//     });
-
-//     realm.write(() => {
-//       realm.create('Dog', { name: 'Rex' });
-//     });
-
-//     return realm.objects('Dog').length;
-// }
 store.dispatch(getNetworkStatus());
 
 export default class App extends Component {
-  componentDidMount() {
-    // console.log('TESTING REALM', realmTest()); return sample of realm
-  }
   render() {
     return (
       <Provider store={store}>
