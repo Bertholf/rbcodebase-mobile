@@ -513,5 +513,40 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  searchRow: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  searchText: {
+    flex: 7,
+  },
+  searchBtn: {
+    flex: 3,
+    backgroundColor: '#2196F3',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    padding: 5,
+    margin: 5,
+  },
+  listView: {
+    flex: 9,
+  },
+  Indicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewWait: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  textWait: {
+    color: '#000',
+    fontSize: 15,
+    alignItems: 'center',
+  },
 });
 export default styles;
