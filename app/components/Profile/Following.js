@@ -80,10 +80,10 @@ export default class Friendlist extends React.Component {
     AsyncStorage.getItem('userId')
       .then((myId) => {
         if (val !== '') {
-          console.log('TRUE================================');
+          console.log('TRUE');
           this.setState({ name: val, wait: true, someone: `${strings.listfollow.named} "${val}"`, search: 1 });
         } else {
-          console.log('FALSE=================================');
+          console.log('FALSE');
           this.setState({ name: val, wait: true, someone: '', search: 0 });
         }
         follows.searchFollowing(this.state.name, myId)

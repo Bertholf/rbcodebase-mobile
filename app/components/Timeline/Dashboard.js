@@ -10,6 +10,7 @@ import auth from './../../services/auth';
 import styles from './DashboardStyle';
 import PushController from '../Notification/PushController';
 import Logout from '../../services/logout';
+import runDb from '../../db/FollowingSchema';
 
 const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
@@ -29,8 +30,8 @@ export default class Dashboard extends Component {
     };
   }
   componentDidMount() {
-   
     // Get Profile Data From server
+    runDb();
     auth.profile()
     .then((response) => {
       // All response Should Saved into AsyncStorage
@@ -41,14 +42,14 @@ export default class Dashboard extends Component {
          ['verified', response.data.verified.toString()],
          ['gender', response.data.gender.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
-        ['picture', response.data.picture.toString()],
+         ['picture', response.data.picture.toString()],
         ])
          .then(() => {
            AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
              'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
              'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
            ])
-        .then(res => console.log('==RESPONSE STORAGE==', res))
+        .then()
           .catch(err => console.log('ERROR SAVE 1', err));
          });
       });
