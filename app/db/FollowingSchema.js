@@ -10,50 +10,78 @@ const dbVersion = '1.0';
 const dbDisplayName = 'SQLite Test Database';
 const dbSize = 200000;
 let db;
-const array = [];
 
-const saveLeader = (tx, values) => {
-  console.log('GO TO saveleader', values);
-  const leader = values.leader;
-  tx.executeSql('INSERT INTO Leader '
-      + 'VALUES ('
-      + `"${leader.name_first}", `
-      + `"${leader.name_last}", `
-      + `"${leader.name}", `
-      + `"${leader.name_slug}"`
-      + `"${leader.email}", `
-      + `"${leader.cell_number}", `
-      + `"${leader.cell_carrier}", `
-      + `"${leader.status}", `
-      + `"${leader.confirmation_code}", `
-      + `"${leader.confirmed}", `
-      + `"${leader.verified}", `
-      + `"${leader.language}", `
-      + `"${leader.date_birth}", `
-      + `"${leader.timeline_id}", `
-      + `"${leader.img_avatar}", `
-      + `"${leader.img_background}", `
-      + `"${leader.referring_user_id}", `
-      + `"${leader.created_at}", `
-      + `"${leader.updated_at}", `
-      + `"${leader.deleted_at}", `
-      + `"${leader.current_team_id}", `
-      + `"${leader.gender}", `
-      + `"${leader.picture}", `
-      + `"${leader.access_token}", `
-      + `"${leader.registered}"`
-      + `"${leader.setting.id}" );`);
-};
+export function closedatabase() {
+  console.log('GO to CLOSE DB');
+  if (db) {
+    console.log('Close database');
+    db.close().then(() => console.log('database closed'));
+  } else {
+    console.log('database is not opened');
+  }
+}
 
-const saveFollower = (tx, values) => {
-  console.log('GO TO savefollower');
-  const follower = values.follower;
-  tx.executeSql('INSERT INTO Follower '
-      + 'VALUES ('
-      + `"${follower.name_first}", `
-      + `"${follower.name_lsaveFollowerast}", `
-      + `"${follower.name}", `
-      + `"${follower.name_slug}"`
+// Return async data or promise to be inserted to the database
+async function getData() {
+  const id = await AsyncStorage.getItem('userId');
+  const follow = await follows.searchFollowing('', id);
+  return follow;
+}
+
+const mapFollowerToDatabase = (tx) => {
+  // get Data Following
+  getData().then(async (resp) => {
+    console.log(resp);
+    const arraysFollowing = await resp.data;
+    // const arraysLeader = resp.data.leader;
+    const follower = arraysFollowing[0].follower;
+
+    // console.log('follower', follower);
+
+    console.log('LEADER');
+    let structureFollowing = '';
+    let structureLeader = '';
+    let structureFollower = '';
+    let structureSettingLeader = '';
+    let structureSettingFollower = '';
+
+    // Maping Data into String Value
+    await arraysFollowing.map(i => structureFollowing += `(${i.id}, ${i.leader_id}, ${i.follower_id}, "${i.status}", "${i.created_at}", "${i.updated_at}", "${i.deleted_at}"), `);
+
+    await arraysFollowing.map(i => structureLeader += `(${i.leader.id}, "${i.leader.name_first}", `
+      + `"${i.leader.name_last}", `
+      + `"${i.leader.name}", `
+      + `"${i.leader.name_slug}", `
+      + `"${i.leader.email}", `
+      + `"${i.leader.cell_number}", `
+      + `"${i.leader.cell_carrier}", `
+      + `"${i.leader.status}", `
+      + `"${i.leader.confirmation_code}", `
+      + `"${i.leader.confirmed}", `
+      + `"${i.leader.verified}", `
+      + `"${i.leader.language}", `
+      + `"${i.leader.timezone}", `
+      + `"${i.leader.date_birth}", `
+      + `"${i.leader.timeline_id}", `
+      + `"${i.leader.img_avatar}", `
+      + `"${i.leader.img_background}", `
+      + `"${i.leader.referring_user_id}", `
+      + `"${i.leader.created_at}", `
+      + `"${i.leader.updated_at}", `
+      + `"${i.leader.deleted_at}", `
+      + `"${i.leader.current_team_id}", `
+      + `"${i.leader.gender}", `
+      + `"${i.leader.picture}", `
+      + `"${i.leader.access_token}", `
+      + `"${i.leader.registered}",`
+      + `"${i.leader.setting.id}"`
+      + '), ');
+
+
+    structureFollower = `(${follower.id}, "${follower.name_first}", `
+      + `"${follower.name_last}", `
+      + `"${follower.name_display}", `
+      + `"${follower.name_slug}", `
       + `"${follower.email}", `
       + `"${follower.cell_number}", `
       + `"${follower.cell_carrier}", `
@@ -62,6 +90,7 @@ const saveFollower = (tx, values) => {
       + `"${follower.confirmed}", `
       + `"${follower.verified}", `
       + `"${follower.language}", `
+      + `"${follower.timezone}", `
       + `"${follower.date_birth}", `
       + `"${follower.timeline_id}", `
       + `"${follower.img_avatar}", `
@@ -74,90 +103,65 @@ const saveFollower = (tx, values) => {
       + `"${follower.gender}", `
       + `"${follower.picture}", `
       + `"${follower.access_token}", `
-      + `"${follower.registered}"`
-      + `"${follower.setting.id}" );`);
-};
+      + `"${follower.registered}", `
+      + `"${follower.setting.id}"`
+      + '), ';
 
-const saveRelation = (tx, values) => {
-  console.log('GO TO SAVE RELATION', values);
-  const data = values;
-  tx.executeSql('INSERT INTO Following '
-      + 'VALUES ('
-      + `${data.id}, `
-      + `${data.leader_id}, `
-      + `"${data.status}", `
-      + `"${data.created_at}", `
-      + `"${data.updated_at}", `
-      + `"${data.deleted_at}" );`);
-};
+    arraysFollowing.map(i =>
+      structureSettingLeader += '('
+      + `"${i.leader.setting.id}", `
+      + `"${i.leader.setting.user_id}", `
+      + `"${i.leader.setting.privacy_follow}", `
+      + `"${i.leader.setting.privacy_follow_confirm}", `
+      + `"${i.leader.setting.privacy_comment}", `
+      + `"${i.leader.setting.privacy_post}", `
+      + `"${i.leader.setting.privacy_timeline_post}", `
+      + `"${i.leader.setting.privacy_message}", `
+      + `"${i.leader.setting.email_follow}", `
+      + `"${i.leader.setting.email_post_like}", `
+      + `"${i.leader.setting.email_post_share}", `
+      + `"${i.leader.setting.email_comment_post}", `
+      + `"${i.leader.setting.email_comment_like}", `
+      + `"${i.leader.setting.email_comment_reply}", `
+      + `"${i.leader.setting.created_at}", `
+      + `"${i.leader.setting.updated_at}", `
+      + `"${i.leader.setting.deleted_at}"), `,
+    );
 
-export function closedatabase() {
-  console.log('GO to CLOSE DB');
-  if (db) {
-    console.log('Close database');
-    db.close().then(() => console.log('database closed'));
-  } else {
-    console.log('database is not opened');
-  }
-}
+    structureSettingFollower = '('
+      + `"${follower.setting.id}", `
+      + `"${follower.setting.user_id}", `
+      + `"${follower.setting.privacy_follow}", `
+      + `"${follower.setting.privacy_follow_confirm}", `
+      + `"${follower.setting.privacy_comment}", `
+      + `"${follower.setting.privacy_post}", `
+      + `"${follower.setting.privacy_timeline_post}", `
+      + `"${follower.setting.privacy_message}", `
+      + `"${follower.setting.email_follow}", `
+      + `"${follower.setting.email_post_like}", `
+      + `"${follower.setting.email_post_share}", `
+      + `"${follower.setting.email_comment_post}", `
+      + `"${follower.setting.email_comment_like}", `
+      + `"${follower.setting.email_comment_reply}", `
+      + `"${follower.setting.created_at}", `
+      + `"${follower.setting.updated_at}", `
+      + `"${follower.setting.deleted_at}"), `;
 
-async function getData() {
-  const id = await AsyncStorage.getItem('userId');
-  const follow = await follows.searchFollowing('', id);
-  return follow;
-}
-
-const mapFollowerToDatabase = (tx) => {
-  // get Data Following
-  getData().then(async (resp) => {
-    console.log(resp);
-    const arraysFollwoing = await resp.data;
-    const arraysLeader = await resp.data.leader;
-    const arraysFollower = await resp.data.follower;
-
-    let structureFollowing = '';
-    let structureLeader = '';
-    let structureFollower = '';
-
-    // Maping Data into String Value
-    arraysFollwoing.map(i => structureFollowing += `(${i.id}, ${i.leader_id}, ${i.follower_id}, "${i.status}", "${i.created_at}", "${i.updated_at}", "${i.deleted_at}"), `);
-    // arraysLeader.map(i => structureLeader += `("${i.name_first}", `
-    //   + `"${i.name_last}", `
-    //   + `"${i.name}", `
-    //   + `"${i.name_slug}"`
-    //   + `"${i.email}", `
-    //   + `"${i.cell_number}", `
-    //   + `"${i.cell_carrier}", `
-    //   + `"${i.status}", `
-    //   + `"${i.confirmation_code}", `
-    //   + `"${i.confirmed}", `
-    //   + `"${i.verified}", `
-    //   + `"${i.language}", `
-    //   + `"${i.date_birth}", `
-    //   + `"${i.timeline_id}", `
-    //   + `"${i.img_avatar}", `
-    //   + `"${i.img_background}", `
-    //   + `"${i.referring_user_id}", `
-    //   + `"${i.created_at}", `
-    //   + `"${i.updated_at}", `
-    //   + `"${i.deleted_at}", `
-    //   + `"${i.current_team_id}", `
-    //   + `"${i.gender}", `
-    //   + `"${i.picture}", `
-    //   + `"${i.access_token}", `
-    //   + `"${i.registered}"`
-    //   + `"${i.setting.id}"`
-    //   + '), ',
-    // );
+    // Finalize string construction with deleted last comma
     const structFollowing = structureFollowing.substring(0, structureFollowing.length - 2);
-    // const structLeader = structureFollower.substring(0, structureLeader.length - 2);
-    console.log('structure nyaaaa====', structFollowing);
+    const structFollower = structureFollower.substring(0, structureFollower.length - 2);
+    const structLeader = structureLeader.substring(0, structureLeader.length - 2);
+    const structSettingLeader = structureSettingLeader.substring(0, structureSettingLeader.length - 2);
+    const structSettingFollower = structureSettingFollower.substring(0, structureSettingFollower.length - 2);
+    console.log('structure LEADER nyaaaa====', structLeader);
 
 
     // Send Data
     SQLite.openDatabase(dbName, dbVersion, dbDisplayName, -1).then((ds) => {
       ds.executeSql(`INSERT INTO Following Values ${structFollowing};`);
-      // ds.executeSql(`INSERT INTO Following Values ${structLeader};`);
+      ds.executeSql(`INSERT INTO Leader Values ${structLeader};`);
+      ds.executeSql(`INSERT INTO Follower Values ${structFollower};`);
+      ds.executeSql(`INSERT INTO Setting Values ${structSettingLeader}, ${structSettingFollower};`);
     }).catch(err => console.log(err));
     // mapFollowerToDatabase(tx, struct);
   });
@@ -275,7 +279,7 @@ const createSchemaDb = async (tx) => {
     + 'deleted_at DATE '
     + '); ').catch(error => console.log('ERROR CREATE DB', error));
 
-    mapFollowerToDatabase();
+  mapFollowerToDatabase();
 };
 
 const queryfollowing = (tx) => {
@@ -284,7 +288,7 @@ const queryfollowing = (tx) => {
     const len = result.rows.length;
     for (let i = 0; i < len; i++) {
       const row = result.rows.item(i);
-      console.log(`Number ${i} is row ${row.leader_id}`);
+      console.log(`Number ${i} is row ${row.id}`);
     }
   }).catch(() => closedatabase());
 };
@@ -293,6 +297,7 @@ const populateDatabase = (db) => {
   console.log('POPULATE DATABASE');
   db.executeSql('SELECT * FROM Version LIMIT 1').then(() => {
     db.transaction(queryfollowing).then(() => {
+      closedatabase();
     });
   }).catch((error) => {
     console.log(error);
@@ -322,7 +327,7 @@ const deleteDatabase = () => {
 
 export default function runDb() {
   console.log('======Delete database');
-  deleteDatabase();
+  // deleteDatabase();
   console.log('======Load Database');
   loadAndQuery();
 }
