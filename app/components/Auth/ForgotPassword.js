@@ -11,7 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import auth from '../../services/auth';
 import strings from '../../localizations';
-import styles from './styleAuth';
+import styles from './../../style/StyleGlobal';
 
 export default class ForgotPassword extends Component {
   constructor() {

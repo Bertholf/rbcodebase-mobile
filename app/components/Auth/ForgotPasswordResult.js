@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   View,
-  StyleSheet,
   Image,
   TouchableOpacity,
   Text,
@@ -12,7 +11,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import auth from '../../services/auth';
 import strings from '../../localizations';
-import styles from './styleAuth';
+import styles from './../../style/StyleGlobal';
 
 const width = Dimensions.get('window').width;
 const image = require('../../../app/images/user.png');

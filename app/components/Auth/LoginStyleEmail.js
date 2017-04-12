@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   container: {
     height,
     flex: 1,
-    padding: 20,
+    padding: 16,
     backgroundColor: '#fff',
   },
   contentLoginEmail: {

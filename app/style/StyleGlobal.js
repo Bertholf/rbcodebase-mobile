@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginLeft: 10,
   },
- //-------end style ---------
-   
+  // -------end style ---------
+
   // ------ Styles Edit Birthday ------------ //
   styleViewEditBirthday: {
     marginTop: 10,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   textEditBirthday: {
     color: '#000000',
     fontSize: 13,
-  },    
+  },
   // ---------end----------//
 
   // ---------Styles Gender Edit-------------
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderRadius: 2,
     height: 80,
-    width: (width * 0.85) / 2,
+    width: width * 0.85 / 2,
     borderWidth: 1,
     borderColor: 'silver',
   },
@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 24,
   },
-  
-// --------------------end---------------
+
+  // --------------------end---------------
 
   logoGoogle: {
     height: 23,
@@ -306,6 +306,140 @@ const styles = StyleSheet.create({
     color: 'red',
     fontSize: 15,
     alignSelf: 'center',
+  },
+  topContent: {
+    flex: 12,
+    width,
+    padding: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileImage: {
+    borderRadius: 50,
+  },
+  imageresult: {
+    height: 200,
+    width: 200,
+  },
+  name: {
+    fontSize: 25,
+    marginTop: 40,
+  },
+  email: {
+    fontSize: 15,
+  },
+  layoutborder: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  borderright: {
+    borderWidth: 0.5,
+    borderColor: 'rgba(0,0,0,0.5)',
+    width: 145,
+    height: 1,
+    marginLeft: 5,
+  },
+  scrollContent: {
+    flex: 3,
+    marginLeft: 16,
+    marginRight: 16,
+    paddingTop: 10,
+    paddingLeft: 14,
+    paddingRight: 14,
+  },
+  textinputStyle: {
+    fontSize: 16,
+    color: 'black',
+    width: 0.75 * width,
+    height: 40,
+  },
+  textcustomfield: {
+    fontSize: 28,
+    color: 'black',
+    width: 0.75 * width,
+    height: 40,
+  },
+  textinputWrapperStyle: {
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    flexDirection: 'column',
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+  },
+  textWrapperStyle: {
+    borderColor: '#2196F3',
+    flexDirection: 'column',
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+  },
+  btnReg: {
+    backgroundColor: '#2196F3',
+    borderRadius: 2,
+    elevation: 2,
+    paddingTop: 10,
+    paddingBottom: 10,
+    height: 50,
+    marginBottom: 40,
+    marginRight: 16,
+    marginLeft: 16,
+  },
+  textReg: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  line: {
+    borderBottomWidth: 0.8,
+    borderColor: 'black',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  fail: {
+    color: '#ff0000',
+    alignSelf: 'flex-start',
+  },
+  acceptImg: {
+    height: 20,
+    width: 20,
+    marginTop: 10,
+    marginLeft: -40,
+  },
+  policyStyle: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  errBox: {
+    margin: 10,
+    borderRadius: 6,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,0,0,0.7)',
+    width: 0.75 * width,
+    height: 60,
+    padding: 10,
+  },
+  genderStyle: {
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    borderColor: '#2196F3',
+    borderWidth: 0.8,
+    borderRadius: 2,
+    paddingLeft: 16,
+    paddingRight: 8,
+    marginBottom: 6,
+    marginTop: 6,
+    height: 40,
   },
 });
 export default styles;
