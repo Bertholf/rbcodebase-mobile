@@ -490,5 +490,28 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  titleAccount: {
+    fontSize: 13,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  content: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderBottomWidth: 0.5,
+    borderColor: '#2196f3',
+    paddingBottom: 10,
+  },
+  nameAccount: {
+    fontSize: 22,
+    marginBottom: 3,
+    color: '#2196f3',
+  },
+  iconAccount: {
+    width: 25,
+    height: 25,
+  },
 });
 export default styles;
