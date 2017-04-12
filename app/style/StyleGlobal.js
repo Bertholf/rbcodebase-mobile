@@ -475,5 +475,20 @@ const styles = StyleSheet.create({
     width: width * 0.2,
     height: 0.5,
   },
+  viewPolicy: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    padding: 10,
+  },
+  onpressPolicy: {
+    marginRight: 10,
+    width: 30,
+    height: 30,
+  },
+  imagePolicy: {
+    resizeMode: 'cover',
+    width: 30,
+    height: 30,
+  },
 });
 export default styles;
