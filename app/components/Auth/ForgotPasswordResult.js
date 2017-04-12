@@ -10,9 +10,9 @@ import {
   Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import styles from '../../style/StyleGlobal';
 import auth from '../../services/auth';
 import strings from '../../localizations';
+import styles from './styleAuth';
 
 const width = Dimensions.get('window').width;
 const image = require('../../../app/images/user.png');
@@ -45,13 +45,13 @@ export default class ResultForgot extends Component {
 
   render() {
     return (
-      <View style={stylescomp.container}>
-        <View style={stylescomp.topContent}>
-          <Image style={stylescomp.image} source={image} />
-          <Text style={stylescomp.name}>
+      <View style={{ flex: 1 }}>
+        <View style={styles.topContent}>
+          <Image style={styles.imageresult} source={image} />
+          <Text style={styles.name}>
             {this.state.name}
           </Text>
-          <Text style={stylescomp.email}>
+          <Text style={styles.email}>
             {this.state.email}
           </Text>
         </View>
@@ -73,30 +73,3 @@ export default class ResultForgot extends Component {
     );
   }
 }
-
-const stylescomp = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  topContent: {
-    flex: 12,
-    width,
-    padding: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profileImage: {
-    borderRadius: 50,
-  },
-  image: {
-    height: 200,
-    width: 200,
-  },
-  name: {
-    fontSize: 25,
-    marginTop: 40,
-  },
-  email: {
-    fontSize: 15,
-  },
-});
