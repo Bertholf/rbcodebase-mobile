@@ -74,10 +74,8 @@ export default class FollowingMe extends React.Component {
     AsyncStorage.getItem('userId')
       .then((myId) => {
         if (val !== '') {
-          console.log('MASUK TRUEEEE');
           this.setState({ name: val, wait: true, someone: `${strings.listfollow.named} "${val}"`, search: 1 });
         } else {
-          console.log('MASK FALSEEE');
           this.setState({ name: val, wait: true, someone: '', search: 0 });
         }
         follows.searchFollower(this.state.name, myId)
@@ -96,16 +94,10 @@ export default class FollowingMe extends React.Component {
       .catch(err => console.log(err));
   }
 
-
   cancelRequest(value) {
     clearTimeout(this.timer);
     this.setState({ wait: true });
     this.timer = setTimeout(() => this.searchUpdate(value), 1250);
-        // if (this.state.requesting) {
-        //   follows.cancelCaller().cancel('Cancel this operation');
-        //   this.searchUpdate(value);
-        // }
-        // this.searchUpdate(value);
   }
 
 

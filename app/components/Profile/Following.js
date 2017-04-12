@@ -80,10 +80,13 @@ export default class Friendlist extends React.Component {
     AsyncStorage.getItem('userId')
       .then((myId) => {
         if (val !== '') {
-          console.log('TRUE');
-          this.setState({ name: val, wait: true, someone: `${strings.listfollow.named} "${val}"`, search: 1 });
+          this.setState({
+            name: val,
+            wait: true,
+            someone: `${strings.listfollow.named} "${val}"`,
+            search: 1,
+          });
         } else {
-          console.log('FALSE');
           this.setState({ name: val, wait: true, someone: '', search: 0 });
         }
         follows.searchFollowing(this.state.name, myId)
@@ -106,11 +109,6 @@ export default class Friendlist extends React.Component {
     this.setState({ wait: true })
     clearTimeout(this.timer);
     this.timer = setTimeout(() => this.searchUpdate(value), 1250);
-    // if (this.state.requesting) {
-    //   follows.cancelCaller().cancel('Cancel this operation');
-    //   this.searchUpdate(value);
-    // }
-    // this.searchUpdate(value);
   }
 
   render() {
