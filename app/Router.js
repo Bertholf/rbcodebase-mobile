@@ -60,6 +60,7 @@ import Notification from './components/Notification/App';
 import SearchPage from './components/Profile/search';
 import emailVarification from './components/Setting/emailVarification';
 import WarningDisconnect from './services/WarningDisconnect';
+import SqliteDemo from './db/sqliteSample';
 
 const lang = strings.getInterfaceLanguage();
 let setlang;
@@ -88,6 +89,7 @@ const Routing = props => (
         <Scene key={'navbar'} component={NavBar}>
           <Scene key={'root'}>
             <Scene key="setting" component={Setting} title={strings.settings.title} />
+            <Scene key="demo" component={SqliteDemo} hideNavBar title={'THIS IS DEMO'} />
             <Scene
               key="emailVarification"
               hideNavBar

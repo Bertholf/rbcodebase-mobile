@@ -92,8 +92,8 @@ android {
         applicationId "com.rbcodebase.app"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 25
-        versionName "0.0.25"
+        versionCode 26
+        versionName "0.0.26"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -142,6 +142,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-sqlite-storage')
     compile project(':react-native-fcm')
     compile 'com.google.firebase:firebase-core:10.2.0'
     compile project(':react-native-smart-splash-screen')
