@@ -36,22 +36,19 @@ export default class Dashboard extends Component {
     .then((response) => {
       // All response Should Saved into AsyncStorage
       this.setState({ profile: response.data, namefirst: response.data.name_first, namelast: response.data.name_last }, () => {
-        AsyncStorage.multiSet([['userId', response.data.id.toString()], ['name_first', response.data.name_first.toString()],
-         ['name_last', response.data.name_last.toString()], ['name_slug', response.data.name_slug.toString()], ['email', (response.data.email)],
-         ['status', response.data.status.toString()], ['confirmed', response.data.confirmed.toString()],
+        AsyncStorage.multiSet([
+         ['userId', response.data.id.toString()],
+         ['name_first', response.data.name_first.toString()],
+         ['name_last', response.data.name_last.toString()],
+         ['name_slug', response.data.name_slug.toString()],
+         ['email', (response.data.email)],
+         ['status', response.data.status.toString()],
+         ['confirmed', response.data.confirmed.toString()],
          ['verified', response.data.verified.toString()],
          ['gender', response.data.gender.toString()],
          ['timeline_id', response.data.timeline_id.toString()],
          ['picture', response.data.picture.toString()],
-        ])
-         .then(() => {
-           AsyncStorage.multiGet(['userId', 'name_first', 'name_last', 'name_slug', 'email',
-             'status', 'confirmed', 'gender', 'verified', 'language', 'timeline_id', 'img_avatar', 'img_background',
-             'referring_user_id', 'current_team_id', 'picture', 'registered', 'message',
-           ])
-        .then()
-          .catch(err => console.log('ERROR SAVE 1', err));
-         });
+        ]);
       });
     })
     .catch((err) => {

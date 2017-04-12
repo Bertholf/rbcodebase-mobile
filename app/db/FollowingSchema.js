@@ -8,7 +8,6 @@ SQLite.enablePromise(true);
 const dbName = 'FollowingDb';
 const dbVersion = '1.0';
 const dbDisplayName = 'SQLite Test Database';
-const dbSize = 200000;
 let db;
 
 export function closedatabase() {
