@@ -325,7 +325,7 @@ const deleteDatabase = () => {
   });
 };
 
-export default function runDb() {
+export default function runDbFollower() {
   console.log('======Delete database');
   // deleteDatabase();
   console.log('======Load Database');
