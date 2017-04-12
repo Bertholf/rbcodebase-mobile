@@ -12,7 +12,7 @@ import App from './app/App';
 
 const codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
 
-// App can wrapped only by Codepush using class structure
+// App can wrapped only by Codepush using class structure!!
 export default class HikerApp extends Component {
   render() {
     return (
