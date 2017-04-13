@@ -53,9 +53,6 @@ export default class Notification extends React.Component {
     };
   }
 
-  componentDidMount() {
-  }
-
   render() {
     if (this.state.loading === false) {
       return (
