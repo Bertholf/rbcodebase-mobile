@@ -125,7 +125,6 @@ export function doneLogin(response = {}) {
       auth
         .checkgoogle('google', response.user.email)
         .then((res) => {
-          console.log('response google after oauth', res);
           if (res.data === null) {
             if (response.user.displayName === undefined) {
               Actions.registrationform({
@@ -197,7 +196,6 @@ export function loginWithGoogle() {
     return google
       .signIn()
       .then((user) => {
-        console.log('googel res', user);
         Actions.pop();
         dispatch(doneLogin({ ...user, provider: 'google' }));
       })
@@ -235,7 +233,6 @@ export function loginWithTwitter() {
       .then((response) => {
         const secretCode = response.secret;
         if (secretCode === undefined) {
-          console.log('THIS IS TWTITTER======', response);
           Actions.pop();
           dispatch(
             doneLogin({
@@ -246,7 +243,6 @@ export function loginWithTwitter() {
             }),
           );
         } else {
-          console.log('THIS IS TWTITTER======', response);
           dispatch(
             doneLogin({
               accessToken: response.token,
