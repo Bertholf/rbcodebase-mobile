@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ActivityIndicator,
-  TouchableHighlight,
-  TextInput,
-  Alert,
-} from 'react-native';
+import { Text, View, ActivityIndicator, TouchableHighlight, TextInput, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import auth from '../../services/auth';
 import strings from '../../localizations';
