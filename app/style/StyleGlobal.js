@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -623,6 +623,24 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#f5f5f5',
     fontWeight: 'bold',
+  },
+  card: {
+    height: 35,
+    width: 35,
+    borderRadius: 50,
+    marginTop: 25,
+  },
+  nama1: {
+    color: 'black',
+    margin: 5,
+    fontWeight: 'bold',
+    fontSize: 10,
+  },
+  list: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    margin: 20,
   },
 });
 export default styles;

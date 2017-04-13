@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Alert, Text, TouchableOpacity, Image } from 'react-native';
 import strings from '../../localizations';
 import styles from './../../style/StyleGlobal';
 

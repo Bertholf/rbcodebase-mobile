@@ -9,13 +9,13 @@ import {
   Alert,
   AsyncStorage,
 } from 'react-native';
-import { Card, CardItem, Container, Right, Left, Button } from 'native-base';
+import { Card } from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
-import styles from './ProfileStyle';
 import follows from '../../services/follows';
 import strings from '../../localizations';
-const settingIcon = require('./../../images/ic_settings_black_24dp.png');
+import styles from './../../style/profileStyle';
+
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 
 export default class Profile extends Component {
@@ -304,7 +304,7 @@ export default class Profile extends Component {
       );
     }
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.Indicator}>
         <ActivityIndicator size={'large'} />
       </View>
     );

@@ -3,14 +3,13 @@ import { Actions } from 'react-native-router-flux';
 import {
   View,
   Alert,
-  StyleSheet,
   Text,
   TouchableOpacity,
   Image,
   AsyncStorage,
   ActivityIndicator,
 } from 'react-native';
-import { Container, Content, ListItem, Body, Right } from 'native-base';
+import { Content, ListItem, Body, Right } from 'native-base';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 import styles from './../../style/StyleGlobal';

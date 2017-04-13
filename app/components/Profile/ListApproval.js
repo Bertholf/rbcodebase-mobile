@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import {
-  View,
-  Alert,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Image,
-  AsyncStorage,
-  ActivityIndicator,
-} from 'react-native';
-import { Content, ListItem, Body, Right, Container } from 'native-base';
+import { View, Alert, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { ListItem, Body, Right, Container } from 'native-base';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 import styles from './../../style/StyleGlobal';
@@ -28,7 +19,6 @@ export default class ListFollow extends Component {
   componentDidMount() {
     AsyncStorage.getItem('userId')
       .then((myId) => {
-        console.log('This is My ID=================', myId);
         follows
           .showApproval(myId)
           .then((res) => {
@@ -41,7 +31,6 @@ export default class ListFollow extends Component {
 
   showError(err) {
     Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
-    console.log('fail to get approval', err);
   }
   approve() {
     if (this.props.rowData.type === 'follower') {
@@ -51,11 +40,9 @@ export default class ListFollow extends Component {
       follows
         .showFollowing2(idFol, idLed)
         .then((resp) => {
-          console.log('DAPETIN NO ID', resp.data.id);
           follows
             .reqApproval(idFol, idLed, status, resp.data.id)
             .then((resp) => {
-              console.log('RESPON AFTER APPROVE', resp);
               this.props.rowData.rerender();
             })
             .catch((err) => {
@@ -70,7 +57,6 @@ export default class ListFollow extends Component {
 
   rerender() {
     this.componentDidMount();
-    console.log('RE RENDER TRIGGERD');
   }
 
   render() {
