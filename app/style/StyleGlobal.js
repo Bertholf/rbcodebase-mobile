@@ -475,6 +475,10 @@ const styles = StyleSheet.create({
     width: width * 0.2,
     height: 0.5,
   },
+  containerpolicy: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   viewPolicy: {
     flexDirection: 'row',
     marginBottom: 10,

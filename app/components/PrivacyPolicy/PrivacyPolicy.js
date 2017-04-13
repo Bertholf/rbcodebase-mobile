@@ -6,7 +6,7 @@ import styles from './../../style/StyleGlobal';
 const icClose = require('./../../images/ic_close.png');
 
 const PPComponent = ({ tosUrl, onClose }) => (
-  <View style={{ flex: 1, backgroundColor: '#fff' }}>
+  <View style={styles.containerpolicy}>
     <View style={styles.viewPolicy}>
       <TouchableOpacity onPress={onClose} style={styles.onpressPolicy}>
         <Image source={icClose} style={styles.imagePolicy} />
