@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  AsyncStorage,
-} from 'react-native';
+import { Text, View, TextInput, ScrollView, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import styles from './ChangeSetting/ChangeStyles';
+import styles from './../../style/SettingStyle';
 import auth from './../../services/auth';
 import strings from '../../localizations';
 import IconClose from './../../layouts/IconClose';
@@ -28,10 +22,12 @@ export default class emailVarification extends Component {
   }
   componentDidMount() {
     // Save dan get Item AsyncStorage from Api/change-email
-    AsyncStorage.getItem('email').then((res) => { this.setState({ emailnew: res }); }).catch(res => console.log('error take new email-----'));
-    auth.profile()
-    .then(response => this.setState({ profile: response.data }))
-    .catch(Err => Err);
+    AsyncStorage.getItem('email')
+      .then((res) => {
+        this.setState({ emailnew: res });
+      })
+      .catch(res => console.log('error take new email-----'));
+    auth.profile().then(response => this.setState({ profile: response.data })).catch(Err => Err);
   }
   onClick(text, position, duration, withStyle) {
     this.setState({
@@ -48,13 +44,15 @@ export default class emailVarification extends Component {
   // method validation email with  /api/change-email-validation
 
   validationEmail() {
-    auth.emailValidation(this.state.newEmail, this.state.token)
-    .then((res) => {
-      console.log('RESPONSE CHANGE EMAIL=====', res);
-      Actions.setting();
-      this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);  
-      // loading will stop when succes submit forgot password
-    }).catch(() => this.onClick(strings.EditEmail.error, DURATION.LENGTH_LONG));
+    auth
+      .emailValidation(this.state.newEmail, this.state.token)
+      .then((res) => {
+        console.log('RESPONSE CHANGE EMAIL=====', res);
+        Actions.setting();
+        this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);
+        // loading will stop when succes submit forgot password
+      })
+      .catch(() => this.onClick(strings.EditEmail.error, DURATION.LENGTH_LONG));
   }
   render() {
     const rightButtonConfig = {
@@ -94,21 +92,26 @@ export default class emailVarification extends Component {
           <View style={styles.View1}>
             <Text style={styles.Text2} />
             <TextInput
-              style={styles.TextInput1} placeholder={strings.EditEmail.enter_new_email} underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1}
+              placeholder={strings.EditEmail.enter_new_email}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               onChangeText={newEmail => this.setState({ newEmail })}
               multiline
-              numberOfLines={4} editable
+              numberOfLines={4}
+              editable
             />
-            {emailValidator || emailValidatornull ?
-              <Text /> : <Text style={styles.invalid}>
+            {emailValidator || emailValidatornull
+              ? <Text />
+              : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}
             <Text style={styles.Text2}>
               {strings.EditEmail.confirm_change}
             </Text>
             <TextInput
-              style={styles.TextInput1} underlineColorAndroid={'rgba(0,0,0,0)'}
+              style={styles.TextInput1}
+              underlineColorAndroid={'rgba(0,0,0,0)'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.EditEmail.confirm_code}
               onChangeText={token => this.setState({ token })}
