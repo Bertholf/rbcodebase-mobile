@@ -9,6 +9,7 @@ import {
   Alert,
   AsyncStorage,
 } from 'react-native';
+import ProfilePost from './ProfilePost'
 import { Card, CardItem, Container, Right, Left, Button } from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
@@ -17,7 +18,7 @@ import follows from '../../services/follows';
 import strings from '../../localizations';
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
-
+const dataDummy = [{image:require('./../../images/gunung.jpg'), text:' we are the champion my friendd '}]
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +30,6 @@ export default class Profile extends Component {
       profile: this.props.profile,
       leaderId: this.props.profile.id,
       followed: true,
-      countFollowing: 0,
       countFollowing: 0,
       id: '',
       friend: false,
@@ -292,6 +292,7 @@ export default class Profile extends Component {
                   </View>
                 </View>
               </Card>
+            
             </View>
             {/*
               This is will be used later
@@ -300,6 +301,7 @@ export default class Profile extends Component {
               <MapMain />
             </View> */}
           </View>
+         <ProfilePost data= {dataDummy} />
         </ScrollView>
       );
     }
