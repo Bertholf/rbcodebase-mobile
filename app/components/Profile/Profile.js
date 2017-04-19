@@ -197,6 +197,7 @@ export default class Profile extends Component {
                     </View>
                     : <Text />}
             </View>
+             
             <View style={styles.biodata}>
               <Card>
                 <View>
@@ -292,7 +293,6 @@ export default class Profile extends Component {
                   </View>
                 </View>
               </Card>
-            
             </View>
             {/*
               This is will be used later
@@ -301,7 +301,11 @@ export default class Profile extends Component {
               <MapMain />
             </View> */}
           </View>
-         <ProfilePost data= {dataDummy} />
+          <ProfilePost 
+                data= {dataDummy} 
+                styles = {styles.isi} 
+                // styleImage = {} 
+          /> 
         </ScrollView>
       );
     }

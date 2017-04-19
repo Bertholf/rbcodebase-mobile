@@ -8,27 +8,29 @@ import {
    Text
 } from 'react-native';
 
-const link = require('./../../images/gunung.jpg')
 const ProfilePost = (props) => {
-    {console.log(props)}
-    let testing = props.data[0]
-    let images = props.data[0].image
     let data = props.data;
-    const list = data.map((item) => {
-                    return (
-                        <View>
-                            <Text>{item.text}</Text>
-                            <Image 
-                            source={item.image}/>
-                        </View>    
-                    )
-                    
-                })
+    // let styles = props.styles;
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const dataSource = ds.cloneWithRows(data)
+    {console.log(data)}
     return (
-        <View>
-            {list}
-        </View>
-    )
+        <ListView
+          dataSource={dataSource}
+          renderRow={(rowData) => 
+                        <View>
+                            <Text 
+                                style = {props.styles}
+
+                            >{rowData.text}</Text>
+                            <Image 
+                            style = {props.styleImage}
+                            source={rowData.image}/>
+                        </View>    
+              
+            }  
+        />
+    );
 }
 
 module.exports = ProfilePost;
