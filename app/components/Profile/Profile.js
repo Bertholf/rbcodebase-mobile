@@ -145,6 +145,11 @@ export default class Profile extends Component {
   }
 
   render() {
+
+    {
+      
+      for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
+    }
     if (this.state.loading === false) {
       return (
         <ScrollView
@@ -314,8 +319,8 @@ export default class Profile extends Component {
           </View>
           <View >
           <ProfilePost 
-                  name= {this.state.name}
-                  profileImage = {this.state.profileImage}
+                  name= {this.state.profile.name_first +" " +this.state.profile.name_last}
+                  profileImage = {this.state.profile.picture}
                   data=  {dataDummy}
                   styles = {styles.isi} 
                   styleImage = {styles.image} 

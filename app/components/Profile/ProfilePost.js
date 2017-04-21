@@ -39,22 +39,29 @@ export default class ProfilePost extends Component{
             <View style={styles.about}>
               <TouchableOpacity onPress={Actions.profile}activeOpacity={0.7}>
                 <Image
-                  source={this.props.profileImage}
+                  source={{uri:this.props.profileImage}}
                   style={styles.avatarImg}
                 />
               </TouchableOpacity>
               <View style={styles.textAboutContainer}>
                 <View style = {{flexDirection: 'row'}}>
                   <Text>
-                    <Text style={styles.textNameProfile}>{this.props.name}</Text>
+                    <Text style={styles.textNameProfile}>{this.props.name}  </Text>
+                    <Image
+                      source={require('./../../images/ic_watch_later_black_18dp.png')}
+                      style={{ marginLeft: 10 ,marginRight: 5, height: 20, width: 10 }}
+                    />
                     <Text style={styles.textDay}> {rowData.days} Ago</Text>
                   </Text>
                 </View>
                 
               
-                <View style={{ flexDirection: 'row', alignItems: 'center', padding:10 }}>
-                  
-                  <Text style={styles.textDay}>Mount {rowData.mountain}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', padding:10, marhinTop:100 }}>
+                  <Image
+                    source={require('./../../images/ic_landscape_black_18dp.png')}
+                    style={{ marginRight: 3, height: 13, width: 13 }}
+                  />
+                  <Text style={styles.textDay}> {rowData.mountain}</Text>
                 </View>
               </View>
             </View>
@@ -89,6 +96,10 @@ export default class ProfilePost extends Component{
                       style={{ flexDirection: 'row', alignItems: 'center' }}
                       activeOpacity={0.7}
                   >
+                      <Image
+                        source={require('./../../images/insert_comment_black.png')}
+                        style={{ marginRight: 5, height: 14, width: 14 }}
+                      />
                       <Text>{rowData.comment} Comment</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
