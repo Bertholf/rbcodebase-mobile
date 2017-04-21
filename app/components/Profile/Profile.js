@@ -18,7 +18,15 @@ import follows from '../../services/follows';
 import strings from '../../localizations';
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
-const dataDummy = [{image:require('./../../images/gunung.jpg'), text:' we are the champion my friendd '}]
+const dataDummy = [  
+ {
+    comment:3 , 
+    mountain:"gunung agung" ,
+    postStatus:"Arsenal",
+    imagePost:require('./../../images/gunung.jpg')
+
+ }
+]
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +34,8 @@ export default class Profile extends Component {
       avatarSource: null,
     };
     this.state = {
+      name          : "Aji lantang mardika",
+      profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.profile.id,
@@ -301,11 +311,16 @@ export default class Profile extends Component {
               <MapMain />
             </View> */}
           </View>
-          <ProfilePost 
-                data= {dataDummy} 
-                styles = {styles.isi} 
-                // styleImage = {} 
-          /> 
+          <View >
+           <ProfilePost 
+                  name= {this.state.name}
+                  profileImage = {this.state.profileImage}
+                  data=  {dataDummy}
+                  styles = {styles.isi} 
+                  styleImage = {styles.image} 
+            /> 
+          </View>
+          
         </ScrollView>
       );
     }
