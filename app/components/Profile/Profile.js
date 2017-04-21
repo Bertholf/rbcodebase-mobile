@@ -20,10 +20,11 @@ const settingIcon = require('./../../images/ic_settings_black_24dp.png');
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 const dataDummy = [  
  {
-    comment:3 , 
-    mountain:"gunung agung" ,
-    postStatus:"Arsenal",
-    imagePost:require('./../../images/gunung.jpg')
+    comment   : 3 , 
+    mountain  : "gunung agung" ,
+    postStatus: "Arsenal",
+    imagePost : require('./../../images/gunung.jpg'),
+    days      : "2 days",
 
  }
 ]
@@ -312,7 +313,7 @@ export default class Profile extends Component {
             </View> */}
           </View>
           <View >
-           <ProfilePost 
+          <ProfilePost 
                   name= {this.state.name}
                   profileImage = {this.state.profileImage}
                   data=  {dataDummy}

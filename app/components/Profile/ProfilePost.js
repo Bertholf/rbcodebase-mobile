@@ -44,7 +44,14 @@ export default class ProfilePost extends Component{
                 />
               </TouchableOpacity>
               <View style={styles.textAboutContainer}>
-                <Text style={styles.textNameProfile}>{this.props.name}</Text>
+                <View style = {{flexDirection: 'row'}}>
+                  <Text>
+                    <Text style={styles.textNameProfile}>{this.props.name}</Text>
+                    <Text style={styles.textDay}> {rowData.days} Ago</Text>
+                  </Text>
+                </View>
+                
+              
                 <View style={{ flexDirection: 'row', alignItems: 'center', padding:10 }}>
                   
                   <Text style={styles.textDay}>Mount {rowData.mountain}</Text>
@@ -82,7 +89,7 @@ export default class ProfilePost extends Component{
                       style={{ flexDirection: 'row', alignItems: 'center' }}
                       activeOpacity={0.7}
                   >
-                      <Text>{rowData.comment}Comment</Text>
+                      <Text>{rowData.comment} Comment</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                       onPress={Actions.timelineshare}
