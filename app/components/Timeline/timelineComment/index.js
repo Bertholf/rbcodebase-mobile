@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, Navigator,StyleSheet, BackAndroid, TextInput, Button } from 'react-native';
-
+import styles from './style';
 export default class TimelineComment extends Component {
   state: {
     text: ''
@@ -24,16 +24,3 @@ export default class TimelineComment extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    borderRadius: 2,
-    paddingTop: 16,
-    paddingBottom: 16
-  },
-  comment: {
-    paddingTop: 16,
-    borderWidth: 1,
-    paddingBottom: 16,
-  },
-})

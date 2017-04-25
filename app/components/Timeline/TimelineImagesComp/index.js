@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import styles from './TimelineImageCompStyles';
+//import styles from './TimelineImageCompStyles';
 
 const width = Dimensions.get('window').width
 
@@ -17,7 +17,7 @@ const TimelineImageComp = (props) => {
       <View style={styles.OuterView}>
         <View style={styles.OuterLayer1}>
           <View>
-            <Image source={require('./imagepp.jpg')} style={{width:85,height:85, borderRadius:50,}}/>
+            <Image source={require('./../imagepp.jpg')} style={{width:85,height:85, borderRadius:50,}}/>
           </View>
           <View style={{paddingBottom:6,}}>
             <TouchableOpacity onPress={() => console.log('dummy')}>
@@ -32,25 +32,25 @@ const TimelineImageComp = (props) => {
           </View>
         </View>
         <View style={styles.OuterLayer3}>
-          <Image source={require('./image1.jpg')} style={{height: 200, width: width,}}/>
+          <Image source={require('./../image1.jpg')} style={{height: 200, width: width,}}/>
 
         </View>
         <View style={styles.OuterLayer4}>
           <TouchableOpacity onPress={() => console.log('dummy')}>
             <View style={{flexDirection:'row'}}>
-              <Image source={require('./like.png')} style={styles.ImageLike}/>
+              <Image source={require('./../like.png')} style={styles.ImageLike}/>
               <Text style={styles.LikeText}>99,999 Likes</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => console.log('dummy')}>
             <View style={{flexDirection:'row'}}>
-              <Image source={require('./comment.png')} style={styles.ImageComment}/>
+              <Image source={require('./../comment.png')} style={styles.ImageComment}/>
               <Text style={styles.CommentText}>Comment</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.OuterLayer5}>
-          <Image source={require('./imagepp.jpg')} style={styles.SmallImage}/>
+          <Image source={require('./../imagepp.jpg')} style={styles.SmallImage}/>
           <TextInput style={styles.TextInput1} placeholder="
             Enter to send" onChangeText={() => console.log('dummy')} multiline = {true}
             numberOfLines = {4} editable={true}
@@ -60,7 +60,7 @@ const TimelineImageComp = (props) => {
           Comment
         </Text>
         <View style={styles.Card}>
-          <Image source={require('./imagepp.jpg')} style={styles.SmallImage}/>
+          <Image source={require('./../imagepp.jpg')} style={styles.SmallImage}/>
           <View>
             <TouchableOpacity onPress={() => console.log('dummy')}>
               <Text style={styles.Comment2}>

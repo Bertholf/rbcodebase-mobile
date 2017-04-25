@@ -9,19 +9,8 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
-import friend from '../../services/friend';
-
-const styles = StyleSheet.create({
-  photo: {
-    width: 40,
-    height: 40,
-    marginLeft: 2,
-    marginTop: 6,
-    marginBottom: 6,
-    borderRadius: 50,
-  },
-});
-
+import friend from '../../../services/friend';
+import styles from './style';
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 export default class TimelineShare extends Component {

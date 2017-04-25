@@ -1,48 +1,9 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, ListView, StyleSheet, Text, TouchableOpacity, TextInput, Image, ScrollView, ActivityIndicator } from 'react-native';
-import notifService from '../../services/notif';
+import notifService from '../../../services/notif';
 import Swiper from 'react-native-swiper';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#ffffff',
-    borderColor: '#2196F3',
-    borderBottomWidth: 0.5,
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginTop: 8,
-    paddingBottom: 16,
-  },
-  user: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#00008b',
-  },
-  photo: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-  },
-  detail: {
-    fontSize: 14,
-    color: '#2196F3',
-    flexWrap: 'wrap',
-  },
-  time: {
-    fontSize: 12,
-    color: '#9091AC',
-    fontWeight: 'bold',
-  },
-  slide1: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB',
-  },
-});
+import styles from './style'
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Notification extends React.Component {
   constructor(props) {

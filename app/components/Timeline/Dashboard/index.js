@@ -6,16 +6,16 @@ import {
    TouchableOpacity,
    AsyncStorage,
 } from 'react-native';
-import auth from './../../services/auth';
-import styles from './DashboardStyle';
-import PushController from '../Notification/PushController';
-import Logout from '../../services/logout';
-import runDb from '../../db/FollowingSchema';
-import runDbFollower from '../../db/FollowerSchema';
+import auth from '../../../services/auth';
+import styles from './style';
+import PushController from '../../Notification/PushController';
+import Logout from '../../../services/logout';
+import runDb from '../../../db/FollowingSchema';
+import runDbFollower from '../../../db/FollowerSchema';
 
-const chat = require('../../images/dashboard/chat.png');
-const home = require('../../images/dashboard/home.png');
-const modul = require('../../images/dashboard/panel.png');
+const chat = require('../../../images/dashboard/chat.png');
+const home = require('../../../images/dashboard/home.png');
+const modul = require('../../../images/dashboard/panel.png');
 
 
 export default class Dashboard extends Component {
@@ -75,7 +75,7 @@ export default class Dashboard extends Component {
         <TouchableOpacity onPress={() => this.props.goUp()}>
           <View style={{ justifyContent: 'flex-end' }}>
             {this.state.profile.picture == null ?
-              <Image style={styles.account} source={require('../../images/user.png')} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.account} />
+              <Image style={styles.account} source={require('../../../images/user.png')} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.account} />
           }
           </View>
         </TouchableOpacity>

@@ -17,88 +17,14 @@ import {
 //   MenuTrigger,
 // } from 'react-native-menu';
 import { Actions } from 'react-native-router-flux';
-import timelineList from '../../services/timelineList';
-import TimelineComment from './timelineComment';
+import timelineList from '../../../services/timelineList';
+import TimelineComment from './../timelineComment';
 import Accordion from 'react-native-accordion';
+import styles from './style'
 
-const imgLike = require('./../../images/ic_thumb_up_black_18dp.png');
-const imgUnLike = require('./../../images/ic_thumb_down_black_18dp.png');
+const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
+const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  timelineContainer: {
-    justifyContent: 'flex-start',
-    paddingTop: 8,
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
-  about: {
-    flexDirection: 'row',
-  },
-  avatarImg: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    marginRight: 12,
-  },
-  textAboutContainer: {
-    flex: 9,
-  },
-  textNameProfile: {
-    color: 'rgba(0,0,0,0.7)',
-    fontSize: 16,
-  },
-  textDay: {
-    color: '#aaa',
-    fontSize: 12,
-    lineHeight: 15,
-  },
-  divider: {
-    marginVertical: 5,
-    marginHorizontal: 2,
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
-  },
-  iconRightContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  iconRightMenu: {
-    width: 25,
-    height: 25,
-    top: 0,
-    left: 0,
-  },
-  statusContainer: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  textStatus: {
-    color: 'rgba(0,0,0,0.9)',
-  },
-  commentsCountContainer: {
-    flexDirection: 'row',
-    paddingTop: 0,
-    paddingBottom: 0,
-    borderBottomWidth: 1,
-    borderColor: 'grey',
-  },
-  textLike: {
-    marginRight: 15,
-  },
-  commentContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 7,
-    paddingBottom: 7,
-  },
-  textComment: {
-    marginRight: 20,
-    marginLeft: 20,
-  },
-});
 
 export default class TimelineList extends Component {
   constructor(props) {
@@ -132,14 +58,14 @@ export default class TimelineList extends Component {
               <Text style={styles.textNameProfile}>aristyo</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-                  source={require('./../../images/ic_watch_later_black_18dp.png')}
+                  source={require('./../../../images/ic_watch_later_black_18dp.png')}
                   style={{ marginRight: 5, height: 10, width: 10 }}
                 />
                 <Text style={styles.textDay}>10 days ago</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-                  source={require('./../../images/ic_landscape_black_18dp.png')}
+                  source={require('./../../../images/ic_landscape_black_18dp.png')}
                   style={{ marginRight: 3, height: 13, width: 13 }}
                 />
                 <Text style={styles.textDay}>Mount salak</Text>
@@ -178,7 +104,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/insert_comment_black.png')}
+                  source={require('./../../../images/insert_comment_black.png')}
                   style={{ marginRight: 10, height: 15, width: 15 }}
                 />
                 <Text>Comment</Text>
@@ -189,7 +115,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/share_black.png')}
+                  source={require('./../../../images/share_black.png')}
                   style={{ marginRight: 10, height: 15, width: 15 }}
                 />
                 <Text>Share</Text>
@@ -209,14 +135,14 @@ export default class TimelineList extends Component {
               <Text style={styles.textNameProfile}>aristyo</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-                  source={require('./../../images/ic_watch_later_black_18dp.png')}
+                  source={require('./../../../images/ic_watch_later_black_18dp.png')}
                   style={{ marginRight: 5, height: 10, width: 10 }}
                 />
                 <Text style={styles.textDay}>10 days ago</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-                  source={require('./../../images/ic_landscape_black_18dp.png')}
+                  source={require('./../../../images/ic_landscape_black_18dp.png')}
                   style={{ marginRight: 3, height: 13, width: 13 }}
                 />
                 <Text style={styles.textDay}>Mount salak</Text>
@@ -241,7 +167,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/ic_thumb_up_black_18dp.png')}
+                  source={require('./../../../images/ic_thumb_up_black_18dp.png')}
                   style={{ marginRight: 5, height: 14, width: 14 }}
                 />
                 <Text style={styles.textLike}> Likes</Text>
@@ -252,7 +178,7 @@ export default class TimelineList extends Component {
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center' }} >
                   <Image
-                    source={require('./../../images/insert_comment_black.png')}
+                    source={require('./../../../images/insert_comment_black.png')}
                     style={{ marginRight: 5, height: 14, width: 14 }}
                   />
                   <Text> Comments</Text>
@@ -277,7 +203,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/insert_comment_black.png')}
+                  source={require('./../../../images/insert_comment_black.png')}
                   style={{ marginRight: 10, height: 15, width: 15 }}
                 />
                 <Text>Comment</Text>
@@ -288,7 +214,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/share_black.png')}
+                  source={require('./../../../images/share_black.png')}
                   style={{ marginRight: 10, height: 15, width: 15 }}
                 />
                 <Text>Share</Text>
@@ -308,14 +234,14 @@ export default class TimelineList extends Component {
               <Text style={styles.textNameProfile}>aristyo</Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-                  source={require('./../../images/ic_watch_later_black_18dp.png')}
+                  source={require('./../../../images/ic_watch_later_black_18dp.png')}
                   style={{ marginRight: 5, height: 10, width: 10 }}
                 />
                 <Text style={styles.textDay}>10 days ago</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
-                  source={require('./../../images/ic_landscape_black_18dp.png')}
+                  source={require('./../../../images/ic_landscape_black_18dp.png')}
                   style={{ marginRight: 3, height: 13, width: 13 }}
                 />
                 <Text style={styles.textDay}>Mount salak</Text>
@@ -339,7 +265,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/ic_thumb_up_black_18dp.png')}
+                  source={require('./../../../images/ic_thumb_up_black_18dp.png')}
                   style={{ marginRight: 5, height: 14, width: 14 }}
                 />
                 <Text style={styles.textLike}> Likes</Text>
@@ -350,7 +276,7 @@ export default class TimelineList extends Component {
               >
               <View style={{ flexDirection: 'row', alignItems: 'center' }} >
                 <Image
-                  source={require('./../../images/insert_comment_black.png')}
+                  source={require('./../../../images/insert_comment_black.png')}
                   style={{ marginRight: 5, height: 14, width: 14 }}
                 />
               <Text> Comments</Text>
@@ -375,7 +301,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/insert_comment_black.png')}
+                  source={require('./../../../images/insert_comment_black.png')}
                   style={{ marginRight: 10, height: 15, width: 15 }}
                 />
                 <Text>Comment</Text>
@@ -386,7 +312,7 @@ export default class TimelineList extends Component {
                 activeOpacity={0.7}
               >
                 <Image
-                  source={require('./../../images/share_black.png')}
+                  source={require('./../../../images/share_black.png')}
                   style={{ marginRight: 10, height: 15, width: 15 }}
                 />
                 <Text>Share</Text>

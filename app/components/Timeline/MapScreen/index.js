@@ -1,42 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  marker: {
-    backgroundColor: '#550bbc',
-    padding: 5,
-    borderRadius: 5,
-  },
-  text: {
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginVertical: 20,
-    backgroundColor: 'transparent',
-  },
-  square: {
-    backgroundColor: 'rgba(255,255,255,0.7)',
-    paddingHorizontal: 13,
-    paddingVertical: 12,
-  },
-});
-
+import styles from './style';
 
 export default class Maps extends Component {
   constructor(props) {
@@ -78,7 +43,7 @@ export default class Maps extends Component {
         <Text style={{ fontSize: 18, fontWeight: 'bold' }} >--Indicator of zoom scale(10:10)--</Text>
         <View style={{ flex: 1, flexDirection: 'column', marginTop: 330, marginLeft: 250 }}>
           <TouchableOpacity style={styles.square}>
-            <Image style={{ borderRadius: 50, width: 20, height: 20 }} source={require('./../../images/reset.png')} />
+            <Image style={{ borderRadius: 50, width: 20, height: 20 }} source={require('../../../images/reset.png')} />
           </TouchableOpacity>
           <Text>{'\n'}</Text>
           <TouchableOpacity style={styles.square}>

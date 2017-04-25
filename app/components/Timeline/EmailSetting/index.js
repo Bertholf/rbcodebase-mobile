@@ -9,7 +9,7 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import styles from './EmailSettingStyle';
+import styles from './style';
 
 const onButtonPress = () => {
   Alert.alert('Your change is save');
@@ -45,7 +45,7 @@ const EmailSetting = (props) => {
         <View style={styles.View2}>
             <Text style={styles.Button}>
               SAVE
-            </Text>          
+            </Text>
         </View>
         </TouchableOpacity>
       </View>
