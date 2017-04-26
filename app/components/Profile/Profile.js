@@ -9,7 +9,9 @@ import {
   Alert,
   AsyncStorage,
 } from 'react-native';
-import { Card } from 'native-base';
+
+import ProfilePost from './ProfilePost'
+import { Card, CardItem, Container, Right, Left, Button } from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
@@ -17,7 +19,16 @@ import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
+const dataDummy = [  
+ {
+    comment   : 3 , 
+    mountain  : "gunung agung" ,
+    postStatus: "Arsenal",
+    imagePost : require('./../../images/gunung.jpg'),
+    days      : "2 days",
 
+ }
+]
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -25,11 +36,12 @@ export default class Profile extends Component {
       avatarSource: null,
     };
     this.state = {
+      name          : "Aji lantang mardika",
+      profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.profile.id,
       followed: true,
-      countFollowing: 0,
       countFollowing: 0,
       id: '',
       friend: false,
@@ -134,6 +146,11 @@ export default class Profile extends Component {
   }
 
   render() {
+
+    {
+      
+      for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
+    }
     if (this.state.loading === false) {
       return (
         <ScrollView
@@ -197,6 +214,7 @@ export default class Profile extends Component {
                     </View>
                     : <Text />}
             </View>
+             
             <View style={styles.biodata}>
               <Card>
                 <View>
@@ -300,6 +318,16 @@ export default class Profile extends Component {
               <MapMain />
             </View> */}
           </View>
+          <View >
+          <ProfilePost 
+                  name= {this.state.profile.name_first +" " +this.state.profile.name_last}
+                  profileImage = {this.state.profile.picture}
+                  data=  {dataDummy}
+                  styles = {styles.isi} 
+                  styleImage = {styles.image} 
+            /> 
+          </View>
+          
         </ScrollView>
       );
     }
