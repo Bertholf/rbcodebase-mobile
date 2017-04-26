@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import {
-   View,
-   Text,
-   TextInput,
-   TouchableOpacity,
-   Alert,
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 
-const styles = require('./styles');
+import styles from './../../style/StyleGlobal';
 
 export default class ChangePassword extends Component {
   constructor(props) {
@@ -26,11 +20,16 @@ export default class ChangePassword extends Component {
       }
     };
     return (
-      <View style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+        }}
+      >
         <View style={styles.box}>
           <View style={styles.title}>
             <View style={[styles.middle_line, { marginLeft: 5 }]} />
-            <Text style={styles.text}>New Password</Text>
+            <Text style={styles.textchangPass}>New Password</Text>
             <View style={[styles.middle_line, { marginRight: 5 }]} />
           </View>
           <TextInput
@@ -47,8 +46,7 @@ export default class ChangePassword extends Component {
             onChangeText={confirmPassword => this.setState({ confirmPassword })}
             secureTextEntry
           />
-          {validPassword ?
-            <Text /> : <Text style={styles.invalid}>Invalid password</Text>}
+          {validPassword ? <Text /> : <Text style={styles.invalid}>Invalid password</Text>}
           <View style={{ alignItems: 'center' }}>
             <TouchableOpacity onPress={onSave} style={styles.button_save}>
               <Text style={{ color: 'white' }}>Save Changes</Text>

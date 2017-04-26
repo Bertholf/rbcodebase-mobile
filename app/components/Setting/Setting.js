@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Alert, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../localizations';
-import styles from './../../components/Setting/Style';
+import styles from './../../style/SettingStyle';
 import auth from './../../services/auth';
 import Logout from '../../services/logout';
-import connectionInfo from '../../services/connectionInfo';
 
 const moment = require('moment');
 const next = require('./../../images/ic_navigate_next_2x.png');
@@ -36,40 +35,69 @@ export default class Setting extends Component {
   componentDidMount() {
     console.log('STATE REDUX', this.state.handler);
     // connectionInfo.checkInfo();
-    auth.profile()
-    .then((response) => {
-      console.log('EMAIL CHANGE====', response);
-      if (response.data.date_birth === null) {
-        this.setState({
-          namef: response.data.name_first,
-          namel: response.data.name_last,
-          nameslug: response.data.name_slug,
-          email: response.data.email,
-          gender: response.data.gender,
-          phone: response.data.cell_number,
-          birthday: 'Jan 1st 1992',
-        });
-      } else {
-        this.setState({
-          namef: response.data.name_first,
-          namel: response.data.name_last,
-          nameslug: response.data.name_slug,
-          email: response.data.email,
-          gender: response.data.gender,
-          phone: response.data.cell_number,
-          birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
-        });
-      }
-    })
-    .catch(() => {
-      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); }).catch(err => console.log('error ambil email-----', err));
-      AsyncStorage.getItem('name_slug').then((res) => { this.setState({ nameslug: res }); }).catch(err => console.log('error ambil nama username-----', err));
-      AsyncStorage.getItem('name_first').then((res) => { this.setState({ namef: res }); }).catch(err => console.log('error ambil namalengkap-----', err));
-      AsyncStorage.getItem('name_last').then((res) => { this.setState({ namel: res }); }).catch(err => console.log('error ambil namalengkap--- --', err));
-      AsyncStorage.getItem('date_birth').then((res) => { this.setState({ birthday: res }); }).catch(err => console.log('error ambil tanggal lahir--- --', err));
-      AsyncStorage.getItem('cell_number').then((res) => { this.setState({ phone: res }); }).catch(err => console.log('error ambil tanggal lahir--- --', err));
-      AsyncStorage.getItem('gender').then((res) => { this.setState({ gender: res }); }).catch(err => console.log('error ambil tanggal lahir--- --', err));
-    });
+    auth
+      .profile()
+      .then((response) => {
+        console.log('EMAIL CHANGE====', response);
+        if (response.data.date_birth === null) {
+          this.setState({
+            namef: response.data.name_first,
+            namel: response.data.name_last,
+            nameslug: response.data.name_slug,
+            email: response.data.email,
+            gender: response.data.gender,
+            phone: response.data.cell_number,
+            birthday: 'Jan 1st 1992',
+          });
+        } else {
+          this.setState({
+            namef: response.data.name_first,
+            namel: response.data.name_last,
+            nameslug: response.data.name_slug,
+            email: response.data.email,
+            gender: response.data.gender,
+            phone: response.data.cell_number,
+            birthday: moment(response.data.date_birth, 'YYYY-MM-DD').format('MMM Do YYYY'),
+          });
+        }
+      })
+      .catch(() => {
+        AsyncStorage.getItem('email')
+          .then((res) => {
+            this.setState({ email: res });
+          })
+          .catch(err => console.log('error ambil email-----', err));
+        AsyncStorage.getItem('name_slug')
+          .then((res) => {
+            this.setState({ nameslug: res });
+          })
+          .catch(err => console.log('error ambil nama username-----', err));
+        AsyncStorage.getItem('name_first')
+          .then((res) => {
+            this.setState({ namef: res });
+          })
+          .catch(err => console.log('error ambil namalengkap-----', err));
+        AsyncStorage.getItem('name_last')
+          .then((res) => {
+            this.setState({ namel: res });
+          })
+          .catch(err => console.log('error ambil namalengkap--- --', err));
+        AsyncStorage.getItem('date_birth')
+          .then((res) => {
+            this.setState({ birthday: res });
+          })
+          .catch(err => console.log('error ambil tanggal lahir--- --', err));
+        AsyncStorage.getItem('cell_number')
+          .then((res) => {
+            this.setState({ phone: res });
+          })
+          .catch(err => console.log('error ambil tanggal lahir--- --', err));
+        AsyncStorage.getItem('gender')
+          .then((res) => {
+            this.setState({ gender: res });
+          })
+          .catch(err => console.log('error ambil tanggal lahir--- --', err));
+      });
   }
 
   componentWillReceiveProps(NextProps) {

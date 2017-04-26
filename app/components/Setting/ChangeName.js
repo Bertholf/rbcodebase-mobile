@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  ScrollView,
-  TextInput,
-  Keyboard,
-  AsyncStorage,
-  NetInfo,
-
-} from 'react-native';
+import { Text, View, ScrollView, TextInput, Keyboard, AsyncStorage } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
 import { Actions } from 'react-native-router-flux';
-import styles from './ChangeSetting/ChangeStyles';
 import IconClose from './../../layouts/IconClose';
 import auth from './../../services/auth';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations';
+import styles from './../../style/SettingStyle';
 
 import { bindActionsCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -41,7 +32,7 @@ export default class NameEdit extends Component {
     };
   }
 
-// Add action of Toast
+  // Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -53,17 +44,62 @@ export default class NameEdit extends Component {
     }
   }
 
-// Mount Component with Value in auth.profile
+  // Mount Component with Value in auth.profile
   componentDidMount() {
-    auth.profile()
-    .then(res => this.setState({ profile: res.data, firstName: res.data.name_first, lastName: res.data.name_last, namedisplay: res.data.name_display }, () => console.log(this.state)))
-    .catch(() => {
-      AsyncStorage.getItem('name_first').then((resp) => { this.setState({ namef: resp }); }).catch(resp => console.log('error ambil namalengkap-----'));
-      AsyncStorage.getItem('name_last').then((resp) => { this.setState({ namel: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
-      AsyncStorage.getItem('name_display').then((resp) => { this.setState({ named: resp }); }).catch(resp => console.log('error ambil namalengkap--- --'));
-    });
+    // check condiotion if CONNECTION or no CONNECTION
+    // NetInfo.isConnected.addEventListener(
+    //     'change',
+    //     this._handleConnectivityChange
+    // );
+    // NetInfo.isConnected.fetch().done(
+    //     (isConnected) => {
+    //         console.log('CONNECTION', isConnected),
+    //         this.setState({isConnected});
+    //        }
+    // );
+    // const {dispatch, networkState } = this.props
+    // dispatch(getNetworkStatus)
+    console.log('===============', this.props.network);
+    auth
+      .profile()
+      .then(res =>
+        this.setState(
+          {
+            profile: res.data,
+            firstName: res.data.name_first,
+            lastName: res.data.name_last,
+            namedisplay: res.data.name_display,
+          },
+          () => console.log(this.state),
+        ))
+      .catch(() => {
+        AsyncStorage.getItem('name_first')
+          .then((resp) => {
+            this.setState({ namef: resp });
+          })
+          .catch(resp => console.log('error ambil namalengkap-----'));
+        AsyncStorage.getItem('name_last')
+          .then((resp) => {
+            this.setState({ namel: resp });
+          })
+          .catch(resp => console.log('error ambil namalengkap--- --'));
+        AsyncStorage.getItem('name_display')
+          .then((resp) => {
+            this.setState({ named: resp });
+          })
+          .catch(resp => console.log('error ambil namalengkap--- --'));
+      });
   }
   componentWillUnmount() {
+    //   NetInfo.isConnected.removeEventListener(
+    //       'change',
+    //       this._handleConnectivityChange
+    //   );
+    // }
+    // _handleConnectivityChange = (isConnected) => {
+    //   this.setState({
+    //     isConnected,
+    //   });
   }
 
   componentWillReceiveProps(NextProps) {
@@ -71,12 +107,10 @@ export default class NameEdit extends Component {
     this.setState({ netstate: NextProps.network });
   }
 
-// Initial onPress for show Toast
+  // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
+      <Text onPress={() => this.onClick(text, position, duration, withStyle)}>
         <Text>{text}</Text>
       </Text>
     );
@@ -87,7 +121,7 @@ export default class NameEdit extends Component {
   }
 
   render() {
-  // regex name validation
+    // regex name validation
     const value = /^[a-zA-Z ]+$/;
     const id = this.state.profile.id;
     const firstNameValidator = value.test(this.state.firstName);
@@ -110,13 +144,24 @@ export default class NameEdit extends Component {
           }
         } else if (firstNameInput !== currentFirstName && lastNameInput === currentLastName) {
         } else {
-          saveProfile(id, firstNameInput, lastNameInput, namedisplayInput, slug, gender, phone, birthday);
+          saveProfile(
+            id,
+            firstNameInput,
+            lastNameInput,
+            namedisplayInput,
+            slug,
+            gender,
+            phone,
+            birthday,
+          );
           Keyboard.dismiss();
-          auth.profile()
-              .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          auth
+            .profile()
+            .then(response =>
+              this.setState({ profile: response.data, loading: false }, () => {
                 this.onClick(strings.ChangeName.saved, 'bottom', DURATION.LENGTH_LONG);
               }))
-          .catch();
+            .catch();
           Keyboard.dismiss();
           Actions.refresh();
         }
@@ -145,7 +190,9 @@ export default class NameEdit extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            leftButton={
+              <IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />
+            }
             style={[{ height: 55, backgroundColor: '#f0f0f0' }]}
           />
         </View>
@@ -168,11 +215,13 @@ export default class NameEdit extends Component {
               maxLength={25}
               onChangeText={firstName => this.setState({ firstName })}
               multiline={false}
-              numberOfLines={1} editable
+              numberOfLines={1}
+              editable
               value={this.state.firstName}
             />
-            {firstNameValidator || !firstNameInput ?
-              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
+            {firstNameValidator || !firstNameInput
+              ? <Text />
+              : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
 
             <Text style={styles.Text2}>
               {strings.ChangeName.last_name}
@@ -180,7 +229,8 @@ export default class NameEdit extends Component {
             {/* ---- Text Input for Last Name ----*/}
             <TextInput
               ref={'textInput2'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
+              style={styles.TextInput1}
+              underlineColorAndroid={'transparent'}
               placeholderTextColor={'#2196f3'}
               placeholder={strings.ChangeName.last_name}
               maxLength={25}
@@ -190,11 +240,25 @@ export default class NameEdit extends Component {
               editable
               value={this.state.lastName}
             />
-            {lastNameValidator || !lastNameInput ?
-              <Text /> : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
-            <View style={{ flex: 1, alignItems: 'flex-start', flexDirection: 'row', marginTop: 30, marginBottom: 10, justifyContent: 'space-between' }}>
-              <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
-              <View style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }} />
+            {lastNameValidator || !lastNameInput
+              ? <Text />
+              : <Text style={styles.invalid}>{strings.ChangeName.alert_name}</Text>}
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'flex-start',
+                flexDirection: 'row',
+                marginTop: 30,
+                marginBottom: 10,
+                justifyContent: 'space-between',
+              }}
+            >
+              <View
+                style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }}
+              />
+              <View
+                style={{ borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.5)', width: 165, height: 1 }}
+              />
             </View>
 
             <Text style={styles.Text2}>

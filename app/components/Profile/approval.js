@@ -1,10 +1,18 @@
 import React from 'react';
-import { View, Alert, ListView, ActivityIndicator, AsyncStorage, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Alert,
+  ListView,
+  ActivityIndicator,
+  AsyncStorage,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Content, ListItem, Body, Right } from 'native-base';
 import follows from '../../services/follows';
 import ListApproval from './ListApproval';
 import strings from '../../localizations';
+import styles from './../../style/StyleGlobal';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Approval extends React.Component {
@@ -22,15 +30,16 @@ export default class Approval extends React.Component {
      *  if called called by user panel, it will use user id from asyncStorege
     */
     AsyncStorage.getItem('userId')
-    .then((myId) => {
-      follows.showApproval(myId)
-      .then((res) => {
-        console.log('proses hhhhhh');
-        this.changeState(res);
+      .then((myId) => {
+        follows
+          .showApproval(myId)
+          .then((res) => {
+            console.log('proses hhhhhh');
+            this.changeState(res);
+          })
+          .catch(err => this.showError(err));
       })
-      .catch(err => this.showError(err));
-    })
-    .catch(err => console.log('fail to get user id from asyncStorege', err));
+      .catch(err => console.log('fail to get user id from asyncStorege', err));
   }
 
   showError(err) {
@@ -63,11 +72,15 @@ export default class Approval extends React.Component {
       return (
         <ListView
           dataSource={ds.cloneWithRows(this.state.follower)}
-          renderRow={rowData => <ListApproval
-            rowData={{ ...rowData,
-              type: 'follower',
-              rerender: () => this.rerender() }}
-          />}
+          renderRow={rowData => (
+            <ListApproval
+              rowData={{
+                ...rowData,
+                type: 'follower',
+                rerender: () => this.rerender(),
+              }}
+            />
+          )}
         />
       );
     } else if (nodata === true) {
@@ -76,26 +89,29 @@ export default class Approval extends React.Component {
        * show empty message
        */
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 }}>
-          <Text style={{ color: '#000', fontSize: 15, alignItems: 'center' }}>{strings.listfollow.nofollower}</Text>
+        <View style={styles.containerApproval}>
+          <Text style={styles.textWait}>
+            {strings.listfollow.nofollower}
+          </Text>
           <TouchableOpacity
             onPress={() => Actions.addfriendscreen()}
-            style={{ borderRadius: 6, alignItems: 'center', justifyContent: 'center', backgroundColor: '#313bf9', margin: 10, padding: 10, height: 50, width: 120 }}
+            style={styles.onButtonSearchFriend}
           >
-            <Text style={{ color: '#fff', textAlign: 'center' }}>{strings.listfollow.findfriend}</Text>
+            <Text style={styles.textWait}>
+              {strings.listfollow.findfriend}
+            </Text>
           </TouchableOpacity>
         </View>
       );
-    } else {
-      /**
+    }
+    /**
        * Show ActivityIndicator
        * if (nodata === true && loading === true)
        */
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size={'large'} />
-        </View>
-      );
-    }
+    return (
+      <View style={styles.Indicator}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
   }
 }

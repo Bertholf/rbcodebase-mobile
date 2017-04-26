@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  Keyboard,
-  NetInfo,
-} from 'react-native';
+import { Text, View, TextInput, ScrollView, Keyboard, NetInfo } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { Actions } from 'react-native-router-flux';
 import NavigationBar from 'react-native-navbar';
-import styles from './ChangeSetting/ChangeStyles';
+import styles from './../../style/SettingStyle';
 import saveProfile from '../../services/updateProfile';
 import strings from '../../localizations/';
 import auth from './../../services/auth';
@@ -30,27 +23,19 @@ export default class PassEdit extends Component {
 
   componentDidMount() {
     // check condiotion if CONNECTION or no CONNECTION
-    NetInfo.isConnected.addEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done(
-        (isConnected) => {
-            console.log('CONNECTION', isConnected),
-            this.setState({isConnected});
-           }
-    );
-    auth.profile()
-    .then(response => this.setState({ profile: response.data}, () => console.log(this.state)))
-    .catch(Err => Err);
+    NetInfo.isConnected.addEventListener('change', this._handleConnectivityChange);
+    NetInfo.isConnected.fetch().done(isConnected => {
+      console.log('CONNECTION', isConnected), this.setState({ isConnected });
+    });
+    auth
+      .profile()
+      .then(response => this.setState({ profile: response.data }, () => console.log(this.state)))
+      .catch(Err => Err);
   }
   componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener(
-        'change',
-        this._handleConnectivityChange
-    );
+    NetInfo.isConnected.removeEventListener('change', this._handleConnectivityChange);
   }
-  _handleConnectivityChange = (isConnected) => {
+  _handleConnectivityChange = isConnected => {
     this.setState({
       isConnected,
     });
@@ -60,9 +45,9 @@ export default class PassEdit extends Component {
   // Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
-     position: position,
+      position: position,
     });
-    if (withStyle){
+    if (withStyle) {
       this.refs.toastWithStyle.show(text, duration);
     } else {
       this.refs.toast.show(text, duration);
@@ -71,12 +56,10 @@ export default class PassEdit extends Component {
   // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
+      <Text onPress={() => this.onClick(text, position, duration, withStyle)}>
         <Text>{text}</Text>
       </Text>
-    )
+    );
   }
 
   clearText(fieldName) {
@@ -107,6 +90,7 @@ export default class PassEdit extends Component {
           this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => Err);
+
         this.props.reRender();
         Keyboard.dismiss();
       } else {
@@ -132,21 +116,19 @@ export default class PassEdit extends Component {
     return (
       <View style={styles.OuterView}>
         <View style={{ backgroundColor: '#f0f0f0', borderColor: '#c0c0c0', borderBottomWidth: 2 }}>
-        {this.state.isConnected === true ?
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
-            leftButton={<IconClose onPress={Actions.pop} />}
-          />
-          :
-          <NavigationBar
-            title={titleConfig}
-            rightButton={rightButtonConfig2}
-            style={{ height: 55, backgroundColor: '#f0f0f0' }}
-            leftButton={<IconClose onPress={Actions.pop} />}
-          />
-        }
+          {this.state.isConnected === true
+            ? <NavigationBar
+                title={titleConfig}
+                rightButton={rightButtonConfig}
+                style={{ height: 55, backgroundColor: '#f0f0f0' }}
+                leftButton={<IconClose onPress={Actions.pop} />}
+              />
+            : <NavigationBar
+                title={titleConfig}
+                rightButton={rightButtonConfig2}
+                style={{ height: 55, backgroundColor: '#f0f0f0' }}
+                leftButton={<IconClose onPress={Actions.pop} />}
+              />}
         </View>
         <ScrollView>
           <View style={styles.View1}>
@@ -154,35 +136,52 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.enter_old_password}
             </Text>
             <TextInput
-              style={styles.TextInput1} placeholder={strings.PassEditLoc.input_old_password} underlineColorAndroid={'transparent'}
-              placeholderTextColor={'#2196f3'} onChangeText={password => this.setState({ password })}
+              style={styles.TextInput1}
+              placeholder={strings.PassEditLoc.input_old_password}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={'#2196f3'}
+              onChangeText={password => this.setState({ password })}
               numberOfLines={4}
             />
-            {validPassword || !this.state.password ?
-              <Text /> : <Text style={styles.invalid}>
-                {strings.PassEditLoc.error_wrong_password}</Text>}
+            {validPassword || !this.state.password
+              ? <Text />
+              : <Text style={styles.invalid}>
+                  {strings.PassEditLoc.error_wrong_password}
+                </Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.enter_new_password}
             </Text>
             <TextInput
               ref={'textInput1'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.input_new_password} onChangeText={newPassword => this.setState({ newPassword })} multiline
+              style={styles.TextInput1}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={'#2196f3'}
+              placeholder={strings.PassEditLoc.input_new_password}
+              onChangeText={newPassword => this.setState({ newPassword })}
+              multiline
               numberOfLines={4}
             />
-            {passwordLength || !passwordInput ? <Text /> :
-            <Text style={styles.invalid}>{strings.PassEditLoc.alert_password_length}</Text>}
+            {passwordLength || !passwordInput
+              ? <Text />
+              : <Text style={styles.invalid}>{strings.PassEditLoc.alert_password_length}</Text>}
             <Text style={styles.Text2}>
               {strings.PassEditLoc.confirm_new_password}
             </Text>
             <TextInput
               ref={'textInput2'}
-              style={styles.TextInput1} underlineColorAndroid={'transparent'}
-              placeholderTextColor={'#2196f3'} placeholder={strings.PassEditLoc.input_confirm_password} onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })} multiline
+              style={styles.TextInput1}
+              underlineColorAndroid={'transparent'}
+              placeholderTextColor={'#2196f3'}
+              placeholder={strings.PassEditLoc.input_confirm_password}
+              onChangeText={confirmNewPassword => this.setState({ confirmNewPassword })}
+              multiline
               numberOfLines={4}
             />
-            {combinePassword ? <Text /> : <Text style={styles.invalid}>
-              {strings.PassEditLoc.error_password_combination}</Text>}
+            {combinePassword
+              ? <Text />
+              : <Text style={styles.invalid}>
+                  {strings.PassEditLoc.error_password_combination}
+                </Text>}
           </View>
         </ScrollView>
     {/* ------- component's render method, use Toast, MUST add in Bottom of the root View --------- */}

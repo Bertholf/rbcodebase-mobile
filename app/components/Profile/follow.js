@@ -1,69 +1,8 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Alert, ListView, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Alert, ListView, Text, TouchableOpacity, Image } from 'react-native';
+import styles from './../../style/StyleGlobal';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    paddingTop: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: '#ffffff',
-    borderColor: '#9E9E9E',
-    borderWidth: 0.3,
-  },
-  account: {
-    paddingLeft: 10,
-  },
-  user: {
-    marginLeft: 3,
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: 'black',
-    marginTop: 10,
-  },
-  photo: {
-    width: 40,
-    height: 40,
-    marginLeft: 2,
-    marginTop: 6,
-    marginBottom: 6,
-    borderRadius: 50,
-  },
-  detail: {
-    fontSize: 11,
-    color: 'grey',
-    marginRight: 5,
-    marginLeft: 3,
-  },
-  buttonFollow: {
-    flexDirection: 'row',
-    padding: 6,
-    backgroundColor: '#2196F3',
-    justifyContent: 'space-between',
-    color: 'white',
-    alignItems: 'center',
-    marginTop: 7,
-    borderRadius: 2,
-  },
-  buttonUnfollow: {
-    flexDirection: 'row',
-    padding: 6,
-    backgroundColor: '#ddd',
-    justifyContent: 'space-between',
-    color: '#333',
-    alignItems: 'center',
-    marginTop: 7,
-    borderRadius: 2,
-  },
-  time: {
-    fontSize: 12,
-    color: '#f5f5f5',
-    fontWeight: 'bold',
-  },
-});
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Follow extends Component {
   constructor(props) {
@@ -90,7 +29,8 @@ export default class Follow extends Component {
           </View>
           <TouchableOpacity onPress={() => this.toggleSwitch()}>
             <Text style={this.state.clicked ? styles.buttonFollow : styles.buttonUnfollow}>
-              {this.state.clicked ? 'Follow' : 'Unfollow' }</Text>
+              {this.state.clicked ? 'Follow' : 'Unfollow'}
+            </Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -98,11 +38,10 @@ export default class Follow extends Component {
   }
   toggleSwitch() {
     if (!this.state.clicked) {
-      Alert.alert('Confirmation',
-               'Are you sure to unfollow this user?', [
-                { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-                { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
-               ]);
+      Alert.alert('Confirmation', 'Are you sure to unfollow this user?', [
+        { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
+        { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
+      ]);
     } else {
       this.setState({ clicked: !this.state.clicked });
     }

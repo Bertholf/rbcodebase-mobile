@@ -54,35 +54,12 @@ export default class LoginScreen extends Component {
                 </View>
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  borderWidth: 0.5,
-                  borderColor: 'rgba(0,0,0,0.5)',
-                  width: 145,
-                  height: 1,
-                  marginLeft: 5,
-                }}
-              />
+            <View style={styles.layoutborder}>
+              <View style={styles.borderright} />
               <Text style={{ paddingLeft: 3, paddingRight: 3, color: 'rgba(0,0,0,0.8)' }}>
                 {strings.LoginScreen.or}
               </Text>
-              <View
-                style={{
-                  borderWidth: 0.5,
-                  borderColor: 'rgba(0,0,0,0.5)',
-                  width: 145,
-                  height: 1,
-                  marginRight: 5,
-                }}
-              />
+              <View style={styles.borderright} />
             </View>
             <View style={styles.otherlog}>
               <TouchableOpacity
