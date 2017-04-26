@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-//import styles from './TimelineImageCompStyles';
+import styles from './style';
 
 const width = Dimensions.get('window').width
 

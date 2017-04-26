@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import styles from './styles';
+import styles from './style';
 
 const Deactivate = () => (
   <View style={styles.container}>
