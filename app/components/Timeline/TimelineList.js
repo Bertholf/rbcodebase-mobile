@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
   },
   commentsCountContainer: {
     flexDirection: 'row',
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingTop: 0,
+    paddingBottom: 0,
     borderBottomWidth: 1,
     borderColor: 'grey',
   },
@@ -153,30 +153,7 @@ export default class TimelineList extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.mapContainer}>
-            <View style={styles.commentsCountContainer}>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../images/ic_thumb_up_black_18dp.png')}
-                  style={{ marginRight: 5, height: 14, width: 14 }}
-                />
-                <Text style={styles.textLike}> Likes</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }} >
-                  <Image
-                    source={require('./../../images/insert_comment_black.png')}
-                    style={{ marginRight: 5, height: 14, width: 14 }}
-                  />
-                  <Text> Comments</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+            <View style={styles.commentsCountContainer}></View>
             <View style={styles.commentContainer}>
               <TouchableOpacity
                 onPress={() => this.onChangeImg()}
