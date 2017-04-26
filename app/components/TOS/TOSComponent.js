@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, WebView, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
-const ic_close = require('./../../images/ic_close.png');
 import strings from '../../localizations';
+import styles from './../../style/StyleGlobal';
+
+const icClose = require('./../../images/ic_close.png');
 
 const TOSComponent = ({ tosUrl, onClose }) => (
-  <View style={{ flex: 1, backgroundColor: '#fff' }}>
-    <View style={{ flexDirection: 'row', marginBottom: 10, padding: 10, }}>
-      <TouchableOpacity onPress={onClose} style={{ marginRight: 10, width: 30, height: 30 }}>
-        <Image source={ic_close} style={{ resizeMode: 'cover', width: 30, height: 30 }} />
+  <View style={styles.containerpolicy}>
+    <View style={styles.viewPolicy}>
+      <TouchableOpacity onPress={onClose} style={styles.onpressPolicy}>
+        <Image source={icClose} style={styles.imagePolicy} />
       </TouchableOpacity>
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 20 }}>{strings.settings.tos}</Text>
@@ -15,7 +17,7 @@ const TOSComponent = ({ tosUrl, onClose }) => (
     </View>
     <WebView
       startInLoadingState
-      renderLoading={() => <View style={{ flex: 1 }}><ActivityIndicator /></View> }
+      renderLoading={() => <View style={{ flex: 1 }}><ActivityIndicator /></View>}
       source={{ uri: tosUrl }}
       style={{ flex: 1 }}
       scalesPageToFit

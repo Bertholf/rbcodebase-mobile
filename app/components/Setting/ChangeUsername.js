@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import {
-  View,
-  TextInput,
-  Text,
-  ScrollView,
-  Keyboard,
-  AsyncStorage,
-} from 'react-native';
+import { View, TextInput, Text, ScrollView, Keyboard, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
-import styles from './ChangeSetting/ChangeStyles';
+import styles from './../../style/SettingStyle';
 import auth from './../../services/auth';
 import strings from '../../localizations';
 import saveProfile from '../../services/updateProfile';
@@ -34,18 +27,17 @@ export default class ChangeUsername extends Component {
   componentDidMount() {
     // @TODO When get profile request is failed
     // make it load value from AsyncStorage
-    auth.profile()
-    .then(response =>
-      this.setState({
-        newUsername: response.data.name_slug,
-        profile: response.data,
-        loading: false,
-      }))
-    .catch(() => {
-      AsyncStorage.getItem('name_slug')
-      .then(res => this.setState({ namaslug: res }))
-      .catch();
-    });
+    auth
+      .profile()
+      .then(response =>
+        this.setState({
+          newUsername: response.data.name_slug,
+          profile: response.data,
+          loading: false,
+        }))
+      .catch(() => {
+        AsyncStorage.getItem('name_slug').then(res => this.setState({ namaslug: res })).catch();
+      });
   }
 
   componentWillReceiveProps(NextProps) {
@@ -53,7 +45,7 @@ export default class ChangeUsername extends Component {
     this.setState({ netstate: NextProps.network });
   }
 
-// Add action of Toast
+  // Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -68,9 +60,7 @@ export default class ChangeUsername extends Component {
   // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
+      <Text onPress={() => this.onClick(text, position, duration, withStyle)}>
         <Text>{text}</Text>
       </Text>
     );
@@ -107,10 +97,11 @@ export default class ChangeUsername extends Component {
     const onSave = () => {
       if (validRegex && validUsername) {
         saveProfile(id, name_first, name_last, displayName, newUsernames, gender, phone, birthday);
-        auth.profile()
+        auth
+          .profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
-                // --- show toast ----
+              // --- show toast ----
               this.onClick(strings.changeUname.saved, 'bottom', DURATION.LENGTH_LONG);
             });
           })
@@ -118,7 +109,7 @@ export default class ChangeUsername extends Component {
         Keyboard.dismiss();
         this.props.reRender();
       } else {
-          // ----- show toast -----
+        // ----- show toast -----
         this.onClick(strings.changeUname.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
@@ -146,7 +137,9 @@ export default class ChangeUsername extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            leftButton={
+              <IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />
+            }
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
@@ -175,7 +168,8 @@ export default class ChangeUsername extends Component {
               onChangeText={newUsername => this.setState({ newUsername })}
               onBlur={() => this.forceToLower()}
               multiline={false}
-              numberOfLines={4} editable
+              numberOfLines={4}
+              editable
               value={this.state.newUsername}
             />
             {/* ---------------------------------------------------------
@@ -183,8 +177,9 @@ export default class ChangeUsername extends Component {
               * Give Validation if Regex is valid or username is not empty or not
               *
               * --------------------------------------------------------- */}
-            {validRegex || !emptyUsername ? <Text /> :
-            <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
+            {validRegex || !emptyUsername
+              ? <Text />
+              : <Text style={styles.invalid}>{strings.changeUname.error_length}</Text>}
 
           </View>
 

@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Keyboard,
-  AsyncStorage,
-} from 'react-native';
+import { Text, View, Keyboard, AsyncStorage } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import PhoneInput from 'react-native-phone-input';
 import { Actions } from 'react-native-router-flux';
@@ -41,11 +36,14 @@ export default class MobilePhone extends Component {
     this.setState({
       pickerData: this.refs.phone.getPickerData(),
     });
-    AsyncStorage.getItem('cell_number').then((res) => {
-      this.setState({ phone: res });
-      this.refs.phone.onChangePhoneNumber(res);
-    }).catch(() => console.log('error ambil nama username-----'));
-    auth.profile()
+    AsyncStorage.getItem('cell_number')
+      .then((res) => {
+        this.setState({ phone: res });
+        this.refs.phone.onChangePhoneNumber(res);
+      })
+      .catch(() => console.log('error ambil nama username-----'));
+    auth
+      .profile()
       .then((response) => {
         this.setState({ profile: response.data, phone: response.data.cell_number });
         this.refs.phone.onChangePhoneNumber(response.data.cell_number);
@@ -57,6 +55,7 @@ export default class MobilePhone extends Component {
     this.setState({ netstate: NexProps.network });
   }
 
+  // Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -86,16 +85,16 @@ export default class MobilePhone extends Component {
     }
   }
 
+  // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
+      <Text onPress={() => this.onClick(text, position, duration, withStyle)}>
         <Text>{text}</Text>
       </Text>
     );
   }
 
+  //Identify when select code phone
   selectCountry(country) {
     this.refs.phone.selectCountry(country.iso2);
     if (typeof country.dialCode !== 'undefined') {
@@ -137,7 +136,8 @@ export default class MobilePhone extends Component {
          * Give the action if mobilephone number pass the validation
          */
         saveProfile(id, name_first, name_last, display_name, name_slug, gender, number, birthday);
-        auth.profile()
+        auth
+          .profile()
           .then((response) => {
             this.setState({ profile: response.data, loading: false }, () => {
               this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG);
@@ -157,21 +157,38 @@ export default class MobilePhone extends Component {
           <NavigationBar
             title={titleConfig}
             rightButton={rightButtonConfig}
-            leftButton={<IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />}
+            leftButton={
+              <IconClose onPress={() => Actions.pop(this.props.reRender({ type: 'refresh' }))} />
+            }
             style={{ height: 55, backgroundColor: '#f0f0f0' }}
           />
         </View>
         <View style={styles.container}>
           <Text style={styles.heading} />
-          <View style={styles.textinputWrapperStyle}>
+          <View
+            style={{
+              borderColor: '#2196F3',
+              borderWidth: 0.8,
+              borderRadius: 2,
+              flexDirection: 'column',
+              paddingLeft: 4,
+              paddingRight: 4,
+              marginBottom: 10,
+              height: 55,
+            }}
+          >
             <PhoneInput
               ref="phone"
               style={{ padding: 10, marginTop: 7 }}
               onPressFlag={this.onPressFlag}
               offset={10}
               textProps={{ value: this.state.phone }}
-              onChangePhoneNumber={(phone) => { this.setState({ phone }); }}
-              onSelectCountry={(country) => { this.selectCountry(country); }}
+              onChangePhoneNumber={(phone) => {
+                this.setState({ phone });
+              }}
+              onSelectCountry={(country) => {
+                this.selectCountry(country);
+              }}
             />
             {/**
              *  Show modal FlagPicker Component
@@ -179,7 +196,9 @@ export default class MobilePhone extends Component {
             <ModalPickerImage
               ref="myCountryPicker"
               data={this.state.pickerData}
-              onChange={(country) => { this.selectCountry(country); }}
+              onChange={(country) => {
+                this.selectCountry(country);
+              }}
               cancelText="Cancel"
             />
           </View>
@@ -192,7 +211,6 @@ export default class MobilePhone extends Component {
           fadeOutDuration={1000}
         />
       </View>
-
     );
   }
 }

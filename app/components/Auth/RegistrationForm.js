@@ -19,6 +19,7 @@ import { KeyboardAwareView } from 'react-native-keyboard-aware-view';
 import auth from '../../services/auth';
 import strings from './../../localizations/';
 import submitRegister from '../../services/AuthRegistration';
+import styles from './../../style/StyleGlobal';
 
 const { width } = Dimensions.get('window');
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -152,6 +153,7 @@ export default class RegistrationForm extends Component {
         }));
   }
   render() {
+    // validation for register 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const usernameRegex = /^[a-zA-Z0-9_-]/;
     const nameRegex = /^[a-zA-Z]+$/;
@@ -199,7 +201,7 @@ export default class RegistrationForm extends Component {
       return (
         <View style={{ flex: 1 }}>
           <KeyboardAwareView animated>
-            <View style={styles.container}>
+            <View style={{ flex: 1 }}>
               <ScrollView
                 ref={(view) => {
                   this.scrollView = view;
@@ -434,128 +436,3 @@ export default class RegistrationForm extends Component {
     return <ActivityIndicator />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContent: {
-    flex: 3,
-    marginLeft: 16,
-    marginRight: 16,
-    paddingTop: 10,
-    paddingLeft: 14,
-    paddingRight: 14,
-  },
-  textinputStyle: {
-    fontSize: 16,
-    color: 'black',
-    width: 0.75 * width,
-    height: 40,
-  },
-  textcustomfield: {
-    fontSize: 28,
-    color: 'black',
-    width: 0.75 * width,
-    height: 40,
-  },
-  textinputWrapperStyle: {
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    flexDirection: 'column',
-    paddingLeft: 16,
-    paddingRight: 8,
-    marginBottom: 6,
-    marginTop: 6,
-  },
-  textWrapperStyle: {
-    borderColor: '#2196F3',
-    flexDirection: 'column',
-    paddingLeft: 16,
-    paddingRight: 8,
-    marginBottom: 6,
-    marginTop: 6,
-  },
-  btnReg: {
-    backgroundColor: '#2196F3',
-    borderRadius: 2,
-    elevation: 2,
-    paddingTop: 10,
-    paddingBottom: 10,
-    height: 50,
-    marginBottom: 40,
-    marginRight: 16,
-    marginLeft: 16,
-  },
-  textReg: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
-  line: {
-    borderBottomWidth: 0.8,
-    borderColor: 'black',
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  fail: {
-    color: '#ff0000',
-    alignSelf: 'flex-start',
-  },
-  acceptImg: {
-    height: 20,
-    width: 20,
-    marginTop: 10,
-    marginLeft: -40,
-  },
-  policyStyle: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-  },
-  btnGender: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 2,
-    height: 65,
-    width: width * 0.85 / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-    paddingTop: 5,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
-  },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
-  },
-  errBox: {
-    margin: 10,
-    borderRadius: 6,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255,0,0,0.7)',
-    width: 0.75 * width,
-    height: 60,
-    padding: 10,
-  },
-  genderStyle: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    borderColor: '#2196F3',
-    borderWidth: 0.8,
-    borderRadius: 2,
-    paddingLeft: 16,
-    paddingRight: 8,
-    marginBottom: 6,
-    marginTop: 6,
-    height: 40,
-  },
-});

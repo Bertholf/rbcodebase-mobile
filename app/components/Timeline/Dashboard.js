@@ -17,7 +17,6 @@ const chat = require('../../images/dashboard/chat.png');
 const home = require('../../images/dashboard/home.png');
 const modul = require('../../images/dashboard/panel.png');
 
-
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);

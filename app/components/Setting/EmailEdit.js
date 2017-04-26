@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  TextInput,
-  ScrollView,
-  AsyncStorage,
-} from 'react-native';
+import { Text, View, TextInput, ScrollView, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import NavigationBar from 'react-native-navbar';
-import styles from './ChangeSetting/ChangeStyles';
+import styles from './../../style/SettingStyle';
 import auth from './../../services/auth';
 import strings from '../../localizations';
 import IconClose from './../../layouts/IconClose';
@@ -28,11 +22,16 @@ export default class EmailEdit extends Component {
 
   componentDidMount() {
     // respon data profile
-    auth.profile()
-    .then(response => this.setState({ profile: response.data, email: response.data.email }))
-    .catch(() => {
-      AsyncStorage.getItem('email').then((res) => { this.setState({ email: res }); }).catch(res => console.log('error ambil email-----'));
-    });
+    auth
+      .profile()
+      .then(response => this.setState({ profile: response.data, email: response.data.email }))
+      .catch(() => {
+        AsyncStorage.getItem('email')
+          .then((res) => {
+            this.setState({ email: res });
+          })
+          .catch(res => console.log('error ambil email-----'));
+      });
   }
   componentWillReceiveProps(NextProps) {
     console.log('NETWORK STATE EMAIL');
@@ -52,24 +51,24 @@ export default class EmailEdit extends Component {
 
   getButton(text, position, duration, withStyle) {
     return (
-      <Text
-        onPress={() => this.onClick(text, position, duration, withStyle)}
-      >
+      <Text onPress={() => this.onClick(text, position, duration, withStyle)}>
         <Text>{text}</Text>
       </Text>
     );
   }
   validation() {
-    auth.changeemail(this.state.email)
-    .then((res) => {
-      console.log('EMAIL REQUEST=====', res);
-      Actions.emailVarification();
-      // after get res (response) from auth.changeemail()
-      // user  will direct to Actions.emailVarification()
-      // loading will stop when succes submit forgot password
-      this.setState({ submit: false });
-      this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG);
-    }).catch(() => this.onClick('Woops Error!! Please Try Again', 'bottom', DURATION.LENGTH_LONG));
+    auth
+      .changeemail(this.state.email)
+      .then((res) => {
+        console.log('EMAIL REQUEST=====', res);
+        Actions.emailVarification();
+        // after get res (response) from auth.changeemail()
+        // user  will direct to Actions.emailVarification()
+        // loading will stop when succes submit forgot password
+        this.setState({ submit: false });
+        this.onClick(strings.EditEmail.saved, 'bottom', DURATION.LENGTH_LONG);
+      })
+      .catch(() => this.onClick('Woops Error!! Please Try Again', 'bottom', DURATION.LENGTH_LONG));
   }
 
   render() {
@@ -127,8 +126,9 @@ export default class EmailEdit extends Component {
               // value={this.state.email}
             />
 
-            {emailValidator || !emailInput ?
-              <Text /> : <Text style={styles.invalid}>
+            {emailValidator || !emailInput
+              ? <Text />
+              : <Text style={styles.invalid}>
                 {strings.EditEmail.error_invalid_email}
               </Text>}
             {/* {sameEmail ?
