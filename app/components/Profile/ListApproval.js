@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Alert, Text, TouchableOpacity, Image, AsyncStorage } from 'react-native';
-import { ListItem, Body, Right, Container } from 'native-base';
+import { ListItem, Body, Right, Content } from 'native-base';
 import strings from '../../localizations';
 import follows from '../../services/follows';
 import styles from './../../style/StyleGlobal';
@@ -32,6 +32,7 @@ export default class ListFollow extends Component {
   showError(err) {
     Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
   }
+
   approve() {
     if (this.props.rowData.type === 'follower') {
       const idFol = this.props.rowData.follower_id;
@@ -68,7 +69,7 @@ export default class ListFollow extends Component {
       rowData = this.props.rowData;
     }
     return (
-      <Container>
+      <Content>
         <ListItem>
           <TouchableOpacity
             onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
@@ -98,7 +99,7 @@ export default class ListFollow extends Component {
             </TouchableOpacity>
           </Right>
         </ListItem>
-      </Container>
+      </Content>
     );
   }
 }

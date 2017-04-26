@@ -34,7 +34,6 @@ export default class Approval extends React.Component {
         follows
           .showApproval(myId)
           .then((res) => {
-            console.log('proses hhhhhh');
             this.changeState(res);
           })
           .catch(err => this.showError(err));
