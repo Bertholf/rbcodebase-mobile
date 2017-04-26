@@ -48,10 +48,8 @@ export default class Register extends Component {
   registerWithGoogle() {
     google.signIn()
      .then((res) => {
-       console.log('RESPONSE GOOGLE', res);
        auth.checkgoogle('google', res.user.email)
        .then((resp) => {
-         console.log('GOOGLE AFTER OAUTH', resp);
          if (resp.data === null) {
            if (res.user.displayName === undefined) {
              Actions.registrationform({

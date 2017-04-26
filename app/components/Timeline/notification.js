@@ -53,14 +53,6 @@ export default class Notification extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // notifService.getNotifications()
-    // .then((data) => {
-    //   this.setState({ notif: data, loading: false });
-    //   console.log('hello message', this.state.notif);
-    // }).catch(err => console.log(err));
-  }
-
   render() {
     if (this.state.loading === false) {
       return (

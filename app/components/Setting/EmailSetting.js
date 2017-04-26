@@ -93,13 +93,7 @@ export default class AdPreference extends Component {
           this.setState({ updateSetting: response.data, loading: false }, () => this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)))
         .catch(err => err);
     };
-    // const noconection = () => {
-    //   if (this.state.connectionInfo === null) {
-    //     this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
-    //   } else {
-    //
-    //   }
-    // };
+
     // Save Button on NavigationBar
     const color = this.state.netstate ? 'blue' : '#c0c0c0';
     const handlerState = this.state.netstate ? () => saveUpdate() : () => console.log('Disable');

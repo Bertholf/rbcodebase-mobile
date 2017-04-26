@@ -10,12 +10,6 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-// import Menu, {
-//   MenuContext,
-//   MenuOptions,
-//   MenuOption,
-//   MenuTrigger,
-// } from 'react-native-menu';
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../services/timelineList';
 import TimelineComment from './timelineComment';

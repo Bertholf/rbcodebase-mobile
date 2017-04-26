@@ -57,6 +57,7 @@ export default class MobilePhone extends Component {
     this.setState({ netstate: NexProps.network });
   }
 
+  // Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
       position,
@@ -86,6 +87,7 @@ export default class MobilePhone extends Component {
     }
   }
 
+  // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -96,6 +98,7 @@ export default class MobilePhone extends Component {
     );
   }
 
+  //Identify when select code phone
   selectCountry(country) {
     this.refs.phone.selectCountry(country.iso2);
     if (typeof country.dialCode !== 'undefined') {

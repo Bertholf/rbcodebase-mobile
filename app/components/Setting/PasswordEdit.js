@@ -56,6 +56,8 @@ export default class PassEdit extends Component {
     });
   };
 
+
+  // Add action of Toast
   onClick(text, position, duration, withStyle) {
     this.setState({
      position: position,
@@ -66,7 +68,7 @@ export default class PassEdit extends Component {
       this.refs.toast.show(text, duration);
     }
   }
-
+  // Initial onPress for show Toast
   getButton(text, position, duration, withStyle) {
     return (
       <Text
@@ -82,6 +84,7 @@ export default class PassEdit extends Component {
   }
 
   render() {
+    //validation for change password
     const validPassword = this.state.password === this.state.profile.password;
     const passwordInput = this.state.newPassword;
     const passwordConfirmation = this.state.confirmNewPassword;
@@ -100,18 +103,22 @@ export default class PassEdit extends Component {
         this.clearText('textInput2')
         auth.profile()
         .then(response => this.setState({ profile: response.data, loading: false }, () => {
+          //show toast when condition true
           this.onClick(strings.settings.saved, 'bottom', DURATION.LENGTH_LONG)
         }))
         .catch(Err => Err);
         this.props.reRender();
         Keyboard.dismiss();
       } else {
+         //show toast when condition false
         this.onClick(strings.settings.error, 'bottom', DURATION.LENGTH_LONG);
       }
     };
 
+    //initialization for navigation bar
     const rightButtonConfig = {
       title: strings.settings.save,
+      //proses for save in navigation bar
       handler: () => onSave(),
     };
     const rightButtonConfig2 = {
@@ -178,6 +185,7 @@ export default class PassEdit extends Component {
               {strings.PassEditLoc.error_password_combination}</Text>}
           </View>
         </ScrollView>
+    {/* ------- component's render method, use Toast, MUST add in Bottom of the root View --------- */}
         <Toast
           ref="toast"
           style={{ backgroundColor: 'grey' }}
