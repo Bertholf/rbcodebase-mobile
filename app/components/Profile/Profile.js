@@ -19,9 +19,9 @@ import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
-const dataDummy = [  
+const dataDummy = [
  {
-    comment   : 3 , 
+    comment   : 3 ,
     mountain  : "gunung agung" ,
     postStatus: "Arsenal",
     imagePost : require('./../../images/gunung.jpg'),
@@ -148,7 +148,7 @@ export default class Profile extends Component {
   render() {
 
     {
-      
+
       for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
     }
     if (this.state.loading === false) {
@@ -166,7 +166,7 @@ export default class Profile extends Component {
                 style={styles.backdrop}
               >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <TouchableOpacity onPress={Actions.userpanel}>
+                  <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={Actions.setting}>
@@ -214,7 +214,7 @@ export default class Profile extends Component {
                     </View>
                     : <Text />}
             </View>
-             
+
             <View style={styles.biodata}>
               <Card>
                 <View>
@@ -319,15 +319,15 @@ export default class Profile extends Component {
             </View> */}
           </View>
           <View >
-          <ProfilePost 
+          <ProfilePost
                   name= {this.state.profile.name_first +" " +this.state.profile.name_last}
                   profileImage = {this.state.profile.picture}
                   data=  {dataDummy}
-                  styles = {styles.isi} 
-                  styleImage = {styles.image} 
-            /> 
+                  styles = {styles.isi}
+                  styleImage = {styles.image}
+            />
           </View>
-          
+
         </ScrollView>
       );
     }
