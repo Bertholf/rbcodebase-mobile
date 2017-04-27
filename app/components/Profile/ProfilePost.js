@@ -54,9 +54,9 @@ export default class ProfilePost extends Component{
                     <Text style={styles.textDay}> {rowData.days} Ago</Text>
                   </Text>
                 </View>
-                
-              
-                <View style={{ flexDirection: 'row', alignItems: 'center', padding:10, marhinTop:100 }}>
+
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                   <Image
                     source={require('./../../images/ic_landscape_black_18dp.png')}
                     style={{ marginRight: 3, height: 13, width: 13 }}
@@ -107,18 +107,18 @@ export default class ProfilePost extends Component{
                       style={{ flexDirection: 'row', alignItems: 'center' }}
                       activeOpacity={0.7}
                   >
-                      
+
                       <Text>Share</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
           </View>
-      )     
+      )
   }
 
   render() {
-  
+
         return (
           <View>
             <ListView
@@ -127,8 +127,8 @@ export default class ProfilePost extends Component{
             />
           </View>
         )
-         
-      
+
+
   }
 
 }

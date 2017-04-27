@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, TouchableOpacity, Alert, AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import strings from '../../../localizations';
-import styles from './../../../components/Setting/Style';
+import styles from './../../../style/SettingStyle';
 import auth from './../../../services/auth';
 import Logout from '../../../services/logout';
 import connectionInfo from '../../../services/connectionInfo';

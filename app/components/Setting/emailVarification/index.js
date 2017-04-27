@@ -44,17 +44,6 @@ export default class emailVarification extends Component {
   // method validation email with  /api/change-email-validation
 
   validationEmail() {
-<<<<<<< HEAD:app/components/Setting/emailVarification.js
-    auth
-      .emailValidation(this.state.newEmail, this.state.token)
-      .then((res) => {
-        console.log('RESPONSE CHANGE EMAIL=====', res);
-        Actions.setting();
-        this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);
-        // loading will stop when succes submit forgot password
-      })
-      .catch(() => this.onClick(strings.EditEmail.error, DURATION.LENGTH_LONG));
-=======
     auth.emailValidation(this.state.newEmail, this.state.token)
     .then((res) => {
       console.log('RESPONSE CHANGE EMAIL=====', res);
@@ -62,7 +51,6 @@ export default class emailVarification extends Component {
       this.onClick(strings.EditEmail.savedvalidation, 'bottom', DURATION.LENGTH_LONG);
       // loading will stop when succes submit forgot password
     }).catch(() => this.onClick(strings.EditEmail.error, DURATION.LENGTH_LONG));
->>>>>>> clean-code:app/components/Setting/emailVarification/index.js
   }
   render() {
     const rightButtonConfig = {

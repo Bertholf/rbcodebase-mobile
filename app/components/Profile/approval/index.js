@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import styles from './../../style/StyleGlobal';
+import styles from './../../../style/StyleGlobal';
 import { Content, ListItem, Body, Right } from 'native-base';
 import follows from '../../../services/follows';
 import ListApproval from './../ListApproval';
