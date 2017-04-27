@@ -166,7 +166,7 @@ export default class Profile extends Component {
                 style={styles.backdrop}
               >
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <TouchableOpacity onPress={Actions.userpanel}>
+                  <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
                   </TouchableOpacity>
                   <TouchableOpacity onPress={Actions.setting}>
