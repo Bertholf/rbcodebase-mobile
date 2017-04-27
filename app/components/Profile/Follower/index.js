@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Item, Icon, Input } from 'native-base';
-import styles from './../../style/StyleGlobal';
+import styles from './../../../style/StyleGlobal';
 import follows from '../../../services/follows';
 import ListFollow from './../ListFollow';
 import strings from '../../../localizations';
