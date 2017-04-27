@@ -170,7 +170,7 @@ export default class Profile extends Component {
             </View>
             {/* <View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
             <View
-              style={{ alignItems: 'center', position: 'absolute', top: 125, Left: 50, right: 120 }}
+              style={{ alignItems: 'center', position: 'absolute', top: 125, left: 50, right: 120 }}
             >
               <View style={styles.viewImgpp}>
                 <TouchableOpacity

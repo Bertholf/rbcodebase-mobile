@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     paddingTop: height * 0.15,
-    marginLeft: 16,
     flexDirection: 'row',
   },
   back: {
