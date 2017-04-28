@@ -13,7 +13,7 @@ export default {
   request: 'Request',
   search: 'Search',
   searchResult: 'Search Result',
-  searchFollower: 'Search Your Follower',
-  searchPeople: 'Search People',
-  searchFollowing: 'Search Your Following',
+  searchFollower: 'Search your follower',
+  searchPeople: 'Search people',
+  searchFollowing: 'Search your following',
 };
