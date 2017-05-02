@@ -14,6 +14,14 @@ import styles from './../../../style/StyleGlobal';
 import follows from '../../../services/follows';
 import ListFollow from './../ListFollow';
 import strings from '../../../localizations';
+import SQLite from 'react-native-sqlite-storage';
+import Following from './../../../db/FollowerSchema'
+SQLite.DEBUG(true);
+SQLite.enablePromise(true);
+
+const dbName = 'testing.db';
+const dbVersion = '1.0';
+const dbDisplayName = 'SQLite Test Database';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Friendlist extends React.Component {
@@ -33,6 +41,36 @@ export default class Friendlist extends React.Component {
   }
 
   componentDidMount() {
+     
+     function failedRoll(error)
+          {
+              alert('Oops.  Error was '+error.message+' (Code '+error.code+')');
+          }
+          
+      function successRoll(result)
+          {
+             const len = result.rows.length;
+            for (let i = 0; i < len; i++) {
+              const row = result.rows.item(i);
+              console.log(`Number ${i} is row ${row.y}`);
+            };
+          }
+    SQLite.openDatabase(dbName, dbVersion, dbDisplayName, 200000).then((tx) => {
+     tx.executeSql(`SELECT * FROM b ;`
+     ,[],successRoll,failedRoll)
+        .then(([tx,resullt]) => {
+          console.log("this is a result from open db" ,tx)  
+          tx.executeSql(`INSERT INTO b Values (22,7788,007,"testing");`,[],successRoll,failedRoll)
+         })
+         .catch((err) => console.log("error can't query"))
+        // .then(([tx,resullt]) => {
+        //   tx.executeSql(`INSERT INTO Following Values (22,7788,007,"testing");`)
+        //  })
+    //     .catch(error => console.log('ERROR CREATE DB', error)) 
+    
+
+  })
+    .catch(error => console.log('ERror to load query', error));
     /*
      * if this screen called by profile, it must be receive props user id
      *  if called called by user panel, it will use user id from asyncStorege
