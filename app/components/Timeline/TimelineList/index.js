@@ -14,8 +14,8 @@ import { Actions } from 'react-native-router-flux';
 import timelineList from '../../../services/timelineList';
 import TimelineComment from './../timelineComment';
 import Accordion from 'react-native-accordion';
-import styles from './style'
-
+import styles from './style';
+import post from './../../../services/post';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 
