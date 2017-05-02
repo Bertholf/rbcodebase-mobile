@@ -7,6 +7,7 @@ SQLite.enablePromise(true);
      * create schema db is schema to fill 
 */
 
+
  export default async function createSchemaDb(transaction){
     const tx = await transaction
 
@@ -15,7 +16,9 @@ SQLite.enablePromise(true);
     tx.executeSql('DROP TABLE IF EXISTS Follower;');
     tx.executeSql('DROP TABLE IF EXISTS Leader;');
     tx.executeSql('DROP TABLE IF EXISTS Setting;');
+    tx.executeSql('DROP TABLE IF EXISTS Version;');    
     // Following Table
+    tx.executeSql(`CREATE TABLE IF NOT EXISTS Version( id INTEGER );`)
     tx.executeSql('CREATE TABLE IF NOT EXISTS Following( '
       + 'id INTEGER PRIMARY KEY NOT NULL, '
       + 'leader_id INTEGER, '
