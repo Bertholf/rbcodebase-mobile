@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
   },
   textStatus: {
     color: 'rgba(0,0,0,0.9)',
+    paddingBottom: 12,
+    paddingTop: 12,
+    paddingLeft: 15,
   },
   commentsCountContainer: {
     flexDirection: 'row',
