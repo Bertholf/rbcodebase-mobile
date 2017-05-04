@@ -35,10 +35,12 @@ export default class PostCard extends Component {
     const type = 'form-url-encoded';
     post
       .newPost(text, type)
-      .then((data) => {
-         console.log(text)
-       })
-      .catch(err => console.log('file is being uploaded!!', err))
+      .then(() => {
+        console.log('succes');
+      })
+      .catch((err) => {
+        console.log('file is being uploaded!!', err);
+      })
   }
 
 
@@ -54,6 +56,8 @@ export default class PostCard extends Component {
                 blurOnSubmit={true}
                 placeholder="Your Status"
                 placeholderTextColor="#BDBDBD"
+                onChangeText={(postTimeline) => this.setState({postTimeline})}
+                value={this.state.postTimeline}
               />
             </View>
             <View style={{flex: 1,justifyContent: 'flex-start', alignItems: 'flex-start'}}>

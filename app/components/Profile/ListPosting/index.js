@@ -25,8 +25,6 @@ export default class ListPosting extends Component {
       </View>
     );
   }
-<<<<<<< HEAD:app/components/Profile/ListPosting.js
-=======
    componentWillMount() {
 
    }
@@ -44,5 +42,4 @@ export default class ListPosting extends Component {
          </View>
       );
    }
->>>>>>> clean-code:app/components/Profile/ListPosting/index.js
 }
