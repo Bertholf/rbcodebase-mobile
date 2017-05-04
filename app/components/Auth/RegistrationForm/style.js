@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     width: 0.75 * width,
     height: 40,
   },
-
   textinputGenderStyle: {
     alignItems: 'center',
     justifyContent: 'space-between',
