@@ -4,8 +4,7 @@ import {
   Text,
   TextInput,
   Button,
-  Image,
-  AsyncStorage
+  Image
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
@@ -18,8 +17,7 @@ export default class PostCard extends Component {
     this.state = {
       filename: 'no file',
       text:'',
-      picture: null,
-      data1:''
+      picture: null
     }
   }
 
@@ -79,4 +77,4 @@ export default class PostCard extends Component {
         </View>
       );
     }
-};
+  };
