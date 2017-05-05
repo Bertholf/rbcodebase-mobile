@@ -19,7 +19,8 @@ export default class PostCard extends Component {
       filename: 'no file',
       text:'',
       picture: null,
-      data1:''
+      data1:'',
+      
     }
   }
 
