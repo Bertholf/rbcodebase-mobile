@@ -40,7 +40,7 @@ export default class Profile extends Component {
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       profile: this.props.profile,
-      leaderId: this.props.profile.id,
+      leaderId: this.props.id,
       followed: true,
       countFollowing: 0,
       id: '',

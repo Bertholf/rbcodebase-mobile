@@ -10,12 +10,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-// import Menu, {
-//   MenuContext,
-//   MenuOptions,
-//   MenuOption,
-//   MenuTrigger,
-// } from 'react-native-menu';
+
 import timelineList from '../../../services/timelineList';
 import PostCard from './../../Timeline/StatusPostCard/StatusCard';
 import TimelineList from './../TimelineList';
@@ -39,7 +34,7 @@ export default class MapMain extends Component {
       enable: true,
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     timelineList.getTimeline()
     .then((res) => {
       this.setState({ list: res.data[0].posts});
@@ -53,24 +48,22 @@ export default class MapMain extends Component {
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
   }
+
+  reRender() {
+    this.componentDidMount();
+  }
   render() {
-    if (this.state.loading === true) {
       return (
         <ScrollView>
           <View>
-            <PostCard />
+            <PostCard rendering={this.reRender()} />
             <ListView
               enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}
-              renderRow={dataPost => <TimelineList dataPost={dataPost}/>}
+              renderRow={dataPost => <TimelineList dataPost={dataPost} />}
             />
           </View>
         </ScrollView>
       );
-    } else {
-      return (
-        <Text>No Content Display</Text>
-      );
     }
-  }
 }

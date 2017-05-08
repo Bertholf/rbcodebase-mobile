@@ -29,12 +29,11 @@ export default class PostCard extends Component {
   }
 
   uploadFile() {
-    const text = this.state.postTimeline;
     const type = 'form-url-encoded';
     post
       .newPost(text, type)
       .then(() => {
-        console.log('succes');
+        this.props.rendering()
       })
       .catch((err) => {
         console.log('file is being uploaded!!', err);

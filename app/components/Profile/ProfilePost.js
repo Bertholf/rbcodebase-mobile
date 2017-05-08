@@ -107,7 +107,6 @@ export default class ProfilePost extends Component{
                       style={{ flexDirection: 'row', alignItems: 'center' }}
                       activeOpacity={0.7}
                   >
-
                       <Text>Share</Text>
                   </TouchableOpacity>
                 </View>

@@ -7,8 +7,9 @@ const styles = StyleSheet.create({
   timelineContainer: {
     justifyContent: 'flex-start',
     paddingTop: 20,
-    paddingLeft: 0,
+    paddingLeft: 10,
     paddingRight: 0,
+
   },
   about: {
     flexDirection: 'row',
