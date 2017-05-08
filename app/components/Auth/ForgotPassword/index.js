@@ -50,7 +50,7 @@ export default class ForgotPassword extends Component {
     return (
       <View style={style.container}>
         <TextInput
-          style={styles.textInput}
+          style={style.textInput}
           placeholderTextColor={'silver'}
           onChangeText={email => this.setState({ email })}
           placeholder={'Email'}
@@ -70,7 +70,7 @@ export default class ForgotPassword extends Component {
             <View>
               {this.state.submit
                 ? <ActivityIndicator color={'#fff'} />
-                : <Text style={styles.buttonText}>
+                : <Text style={style.buttonText}>
                   {strings.ForgotPass.send}
                 </Text>}
             </View>

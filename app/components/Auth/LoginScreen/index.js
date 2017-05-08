@@ -17,7 +17,7 @@ export default class LoginScreen extends Component {
         <ScrollView>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image style={styles.logo} source={logo} />
-            //login With Facebook
+
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonFacebook}
@@ -30,7 +30,6 @@ export default class LoginScreen extends Component {
                 </View>
               </TouchableOpacity>
             </View>
-            //login With Google
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonGoogle}
@@ -43,7 +42,6 @@ export default class LoginScreen extends Component {
                 </View>
               </TouchableOpacity>
             </View>
-            //login With Twitter
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonTwitter}
@@ -56,7 +54,6 @@ export default class LoginScreen extends Component {
                 </View>
               </TouchableOpacity>
             </View>
-            //Login by Email
             <View style={styles.layoutborder}>
               <View style={styles.borderright} />
               <Text style={{ paddingLeft: 3, paddingRight: 3, color: 'rgba(0,0,0,0.8)' }}>
@@ -76,7 +73,6 @@ export default class LoginScreen extends Component {
                 </View>
               </TouchableOpacity>
             </View>
-            //register
             <View style={{ paddingTop: 20, paddingBottom: 20 }}>
               <TouchableOpacity onPress={() => Actions.register()}>
                 <Text style={{ color: 'black', textAlign: 'center' }}>
