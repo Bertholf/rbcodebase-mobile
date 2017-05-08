@@ -19,7 +19,7 @@ export default class PostCard extends Component {
       filename: 'no file',
       text:'',
       picture: null,
-      data1:''
+      postTimeline:'',
     }
   }
 
@@ -41,6 +41,9 @@ export default class PostCard extends Component {
       .catch(err => console.log('file is being uploaded!!', err))
   }
 
+  rerender(){
+    this.PostCard();
+  }
 
   render() {
       return (
@@ -54,6 +57,8 @@ export default class PostCard extends Component {
                 blurOnSubmit={true}
                 placeholder="Your Status"
                 placeholderTextColor="#BDBDBD"
+                onChangeText={(text) => this.setState({postTimeline: text})}
+                value={this.state.postTimeline}
               />
             </View>
             <View style={{flex: 1,justifyContent: 'flex-start', alignItems: 'flex-start'}}>
