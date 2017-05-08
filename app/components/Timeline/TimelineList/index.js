@@ -18,6 +18,7 @@ import styles from './style';
 import post from './../../../services/post';
 import PostCard from './../StatusPostCard/StatusCard';
 import Moment from 'moment'
+
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 
