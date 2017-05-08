@@ -4,8 +4,7 @@ import {
   Text,
   TextInput,
   Button,
-  Image,
-  AsyncStorage
+  Image
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
@@ -18,8 +17,7 @@ export default class PostCard extends Component {
     this.state = {
       filename: 'no file',
       text:'',
-      picture: null,
-      postTimeline:'',
+      picture: null
     }
   }
 
@@ -35,15 +33,14 @@ export default class PostCard extends Component {
     const type = 'form-url-encoded';
     post
       .newPost(text, type)
-      .then((data) => {
-         console.log(text)
-       })
-      .catch(err => console.log('file is being uploaded!!', err))
+      .then(() => {
+        console.log('succes');
+      })
+      .catch((err) => {
+        console.log('file is being uploaded!!', err);
+      })
   }
 
-  rerender(){
-    this.PostCard();
-  }
 
   render() {
       return (
@@ -57,7 +54,7 @@ export default class PostCard extends Component {
                 blurOnSubmit={true}
                 placeholder="Your Status"
                 placeholderTextColor="#BDBDBD"
-                onChangeText={(text) => this.setState({postTimeline: text})}
+                onChangeText={(postTimeline) => this.setState({postTimeline})}
                 value={this.state.postTimeline}
               />
             </View>
@@ -80,4 +77,4 @@ export default class PostCard extends Component {
         </View>
       );
     }
-};
+  };

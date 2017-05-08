@@ -14,6 +14,10 @@ import styles from './../../../style/StyleGlobal';
 import follows from '../../../services/follows';
 import ListFollow from './../ListFollow';
 import strings from '../../../localizations';
+import SQLite from 'react-native-sqlite-storage';
+import Schema from './../../../db/CheckingVersion'
+SQLite.DEBUG(true);
+SQLite.enablePromise(true);
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Friendlist extends React.Component {
@@ -33,6 +37,8 @@ export default class Friendlist extends React.Component {
   }
 
   componentDidMount() {
+     
+    Schema()
     /*
      * if this screen called by profile, it must be receive props user id
      *  if called called by user panel, it will use user id from asyncStorege
