@@ -151,6 +151,10 @@ export default class RegistrationForm extends Component {
           submitting: false,
         }));
   }
+
+  isRegister(lastname){
+    this.setState({ lastname, failregister: false })
+  }
   render() {
     // validation for register
     const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -241,7 +245,7 @@ export default class RegistrationForm extends Component {
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       editable
-                      onChangeText={lastname => this.setState({ lastname, failregister: false })}
+                      onChangeText={(lastname) => this.isRegister(lastname)}
                       value={this.state.lastname}
                     />
                   </View>
@@ -249,7 +253,7 @@ export default class RegistrationForm extends Component {
                     ? <View />
                     : <Text style={styles.fail}>{strings.register.alert_last_name}</Text>}
 
-                  <View style={styles.line} />
+                  <View  />
                   <View
                     style={[
                       styles.textinputWrapperStyle,
@@ -301,9 +305,9 @@ export default class RegistrationForm extends Component {
                   {/*
                       Show picker gender
                   */}
-                  <View style={styles.genderStyle}>
-                    <View>
-                      <Text style={{ color: '#000', fontSize: 16 }}>{strings.register.gender}</Text>
+                  <View style={styles.textinputGenderStyle}>
+                    <View >
+                      <Text style={{ color: '#000', borderColor: '#2196F3',fontSize: 16 }}>{strings.register.gender}</Text>
                     </View>
                     <View>
                       <Picker
@@ -346,7 +350,7 @@ export default class RegistrationForm extends Component {
                   {validPass || emptyPass
                     ? <View />
                     : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
-                  <View style={styles.line} />
+                  <View  />
                   <View style={styles.textWrapperStyle} />
                   {
                     <ListView
@@ -374,7 +378,7 @@ export default class RegistrationForm extends Component {
                   }
 
                 </View>
-                <View style={styles.line} />
+                <View />
                 <TouchableOpacity onPress={validate}>
                   <View style={styles.btnReg}>
                     {this.state.submitting
@@ -431,7 +435,7 @@ export default class RegistrationForm extends Component {
         </View>
       );
     }
-    console.log('true');
+
     return <ActivityIndicator />;
   }
 }
