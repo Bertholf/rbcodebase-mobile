@@ -7,8 +7,8 @@ import {
   Image,
   Navigator,
   ListView,
-  ScrollView,
   ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../../services/timelineList';
@@ -27,8 +27,13 @@ export default class TimelineList extends Component {
       loading: true,
       list: {},
       onPress: true,
-    };
+
+      data:this.props.dataPost,
+
+    }
   }
+
+// change image like and Unlike
   onChangeImg() {
     this.setState({
       onPress: !this.state.onPress,
@@ -37,27 +42,37 @@ export default class TimelineList extends Component {
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
   }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.timelineContainer}>
           <View style={styles.about}>
+          {/*show image profile*/}
             <TouchableOpacity onPress={Actions.profile}activeOpacity={0.7}>
               <Image
-                source={{ uri: 'http://www.gravatar.com/avatar/f02aa05bc88b0bf074f79f19a52c8fd1.jpg?s=80&d=mm&r=g' }}
+                source={{ uri: this.state.data.poster.picture }}
                 style={styles.avatarImg}
               />
             </TouchableOpacity>
             <View style={styles.textAboutContainer}>
-              <Text style={styles.textNameProfile}>aristyo</Text>
+            {/* show first name and last name in timeline*/}
+              <Text style={styles.textNameProfile}>
+              {this.state.data.poster.name_first} {this.state.data.poster.name_last}
+              </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
                   source={require('./../../../images/ic_watch_later_black_18dp.png')}
                   style={{ marginRight: 5, height: 10, width: 10 }}
                 />
-                <Text style={styles.textDay}>10 days ago</Text>
+                {/* show data time when is post update*/}
+                <Text style={styles.textDay}>
+                  {this.state.data.updated_at}
+                </Text>
               </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              {/*
+                in this show post location in timeline
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
                   source={require('./../../../images/ic_landscape_black_18dp.png')}
                   style={{ marginRight: 3, height: 13, width: 13 }}
@@ -72,15 +87,18 @@ export default class TimelineList extends Component {
               onPress={() => this.gotoDetail()}
               activeOpacity={0.7}
             >
+            {/*show your post*/}
               <Text style={styles.textStatus}>
-                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
+                {this.state.data.text}
               </Text>
-              <Image source={{ uri: 'https://www.nasionalisme.co/wp-content/uploads/2016/05/gunung-semeru.jpg' }} style={{ height: 183, justifyContent: 'center' }} />
+              {/*show you image post*/}
+              {/*  <Image source={{ uri: 'https://www.nasionalisme.co/wp-content/uploads/2016/05/gunung-semeru.jpg' }} style={{ height: 183,borderRadius: 3, justifyContent: 'center' }} /> */}
             </TouchableOpacity>
           </View>
           <View style={styles.mapContainer}>
             <View style={styles.commentsCountContainer}></View>
             <View style={styles.commentContainer}>
+              {/*button like and unlike*/}
               <TouchableOpacity
                 onPress={() => this.onChangeImg()}
                 style={{ flexDirection: 'row', alignItems: 'center' }}
@@ -92,6 +110,7 @@ export default class TimelineList extends Component {
                 />
                 <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
               </TouchableOpacity>
+              {/*button Comment*/}
               <TouchableOpacity
                 onPress={Actions.timelineDetail}
                 style={{ flexDirection: 'row', alignItems: 'center' }}
@@ -103,6 +122,7 @@ export default class TimelineList extends Component {
                 />
                 <Text>Comment</Text>
               </TouchableOpacity>
+              {/*button share*/}
               <TouchableOpacity
                 onPress={Actions.timelineshare}
                 style={{ flexDirection: 'row', alignItems: 'center' }}

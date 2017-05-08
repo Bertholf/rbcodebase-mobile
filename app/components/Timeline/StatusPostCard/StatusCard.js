@@ -17,7 +17,7 @@ export default class PostCard extends Component {
     this.state = {
       filename: 'no file',
       text:'',
-      picture: '',
+      picture: null
     }
   }
 
