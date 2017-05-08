@@ -12,7 +12,6 @@ class LoginFucntion extends Component {
   }
 
   updateUsername(username) {
-    //change or update to username from mail
     this.setState({ email: username });
   }
 

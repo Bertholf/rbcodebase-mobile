@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
   },
   timelineContainer: {
     justifyContent: 'flex-start',
-    paddingTop: 8,
-    paddingLeft: 16,
-    paddingRight: 16,
+    paddingTop: 20,
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   about: {
     flexDirection: 'row',
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     flex: 9,
   },
   textNameProfile: {
-    color: 'rgba(0,0,0,0.7)',
-    fontSize: 16,
+    color: 'black',
+    fontSize: 18,
   },
   textDay: {
     color: '#aaa',
@@ -53,14 +53,10 @@ const styles = StyleSheet.create({
   },
   textStatus: {
     color: 'rgba(0,0,0,0.9)',
-    paddingBottom: 12,
-    paddingTop: 12,
-    paddingLeft: 15,
   },
   commentsCountContainer: {
     flexDirection: 'row',
-    paddingTop: 0,
-    paddingBottom: 0,
+    padding: 0,
     borderBottomWidth: 1,
     borderColor: 'grey',
   },
@@ -74,8 +70,8 @@ const styles = StyleSheet.create({
     paddingBottom: 7,
   },
   textComment: {
-    marginRight: 20,
-    marginLeft: 20,
+    marginRight: 10,
+    marginLeft: 10,
   },
 });
 

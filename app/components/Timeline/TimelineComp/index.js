@@ -20,11 +20,15 @@ import timelineList from '../../../services/timelineList';
 import PostCard from './../../Timeline/StatusPostCard/StatusCard';
 import TimelineList from './../TimelineList';
 import TimelineComment from './../timelineComment';
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
-const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 import { Actions } from 'react-native-router-flux';
 import styles from './style';
+import Moment from 'moment';
+
+const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
+const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
@@ -35,11 +39,11 @@ export default class MapMain extends Component {
       enable: true,
     };
   }
-  componentDidMount() {
-    // timelineList.getTimeline()
-    // .then((data) => {
-    //   this.setState({ list: data, loading: false });
-    // }).catch(err => console.log(err));
+  componentWillMount() {
+    timelineList.getTimeline()
+    .then((res) => {
+      this.setState({ list: res.data[0].posts});
+    }).catch(err => console.log(err));
   }
   onChangeImg() {
     this.setState({
@@ -48,11 +52,6 @@ export default class MapMain extends Component {
   }
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
-  }
-  renderRow(dataPost) {
-    return (
-      <TimelineList dataPost={dataPost} />
-    );
   }
   render() {
     if (this.state.loading === true) {
@@ -63,9 +62,8 @@ export default class MapMain extends Component {
             <ListView
               enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}
-              renderRow={dataPost => this.renderRow(dataPost)}
+              renderRow={dataPost => <TimelineList dataPost={dataPost}/>}
             />
-            <TimelineList />
           </View>
         </ScrollView>
       );
