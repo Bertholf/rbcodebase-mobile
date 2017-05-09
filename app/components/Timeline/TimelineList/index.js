@@ -30,13 +30,8 @@ export default class TimelineList extends Component {
       loading: true,
       list: {},
       onPress: true,
-<<<<<<< 6673e6ae346d8ce90d37d91c7c0368a09697d1d8
       data: this.props.dataPost,
-=======
-
-      data:this.props.dataPost,
       post_id: '',
->>>>>>> craete promise
 
     }
   }
