@@ -17,7 +17,7 @@ import Accordion from 'react-native-accordion';
 import styles from './style';
 import post from './../../../services/post';
 import TimelineComments from '../timelineComment';
-import CommentView from '../timelineComment/CommentView';
+import CommentView from '../timelineComment/commentList';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 
@@ -29,17 +29,10 @@ export default class TimelineList extends Component {
       loading: true,
       list: {},
       onPress: true,
-      data: null,
+      data: this.props.dataPost,
 
     }
   }
-
-  componentDidMount() {
-    this.setState({
-      data: this.props.dataPost,
-    });
-  }
-
 // change image like and Unlike
   onChangeImg() {
     this.setState({
@@ -122,8 +115,8 @@ export default class TimelineList extends Component {
                 </TouchableOpacity> 
               </View>
               <View>
-                {/*<CommentView data = {this.state.comments} />*/}
-                <TimelineComment id = {this.state.id} />
+                <CommentView data = {this.state.data.comments} />
+                <TimelineComment id = {this.state.data.id} />
               </View>
             </View>
           </View>
