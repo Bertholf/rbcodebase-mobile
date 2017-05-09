@@ -30,12 +30,26 @@ export default class TimelineList extends Component {
       loading: true,
       list: {},
       onPress: true,
+<<<<<<< 6673e6ae346d8ce90d37d91c7c0368a09697d1d8
       data: this.props.dataPost,
+=======
+
+      data:this.props.dataPost,
+      post_id: '',
+>>>>>>> craete promise
 
     }
   }
 // change image like and Unlike
   onChangeImg() {
+    const type = 'form-url-encoded';
+    const id = this.state.post_id;
+    post
+        .likePost(type, id)
+        .then(response => {
+          console.log('ini adalah sebuah respon', response)
+        })
+        .catch(err => console.log('error message yang salah', err))
     this.setState({
       onPress: !this.state.onPress,
     });
