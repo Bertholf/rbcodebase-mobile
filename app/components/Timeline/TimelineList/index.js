@@ -16,9 +16,11 @@ import TimelineComment from './../timelineComment';
 import Accordion from 'react-native-accordion';
 import styles from './style';
 import post from './../../../services/post';
+import PostCard from './../StatusPostCard/StatusCard';
+import Moment from 'moment'
+
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
-
 
 export default class TimelineList extends Component {
   constructor(props) {
@@ -27,27 +29,39 @@ export default class TimelineList extends Component {
       loading: true,
       list: {},
       onPress: true,
-
       data:this.props.dataPost,
-      post_id: '',
+      id_post: '',
+      user_id: '',
 
     }
   }
 
 // change image like and Unlike
   onChangeImg() {
-    const type = 'form-url-encoded';
-    const id = this.state.post_id;
     post
-        .likePost(type, id)
+        .getPost()
         .then(response => {
-          console.log('ini adalah sebuah respon', response)
+          this.setState({
+            user_id: response.data[0].posts[0].user_id,
+            id_post: response.data[0].posts[0].id
+          })
+          // console.log("User id is : ", this.state.user_id);
+          // console.log("Post id is : ", this.state.id_post);
         })
-        .catch(err => console.log('error message yang salah', err))
-    this.setState({
+        .catch(err =>{console.log('error from get user id or id post', err)})
+        const type = 'form-url-encoded';
+        const post_id = this.state.id_post;
+    post
+        .likePost(type, post_id)
+        .then((response) => {
+          console.log('ini adalah sebuah respon: ', response)
+        })
+        .catch(err => {console.log('error message yang salah')})
+        this.setState({
       onPress: !this.state.onPress,
     });
   }
+
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
   }
@@ -65,30 +79,30 @@ export default class TimelineList extends Component {
               />
             </TouchableOpacity>
             <View style={styles.textAboutContainer}>
-            {/* show first name and last name in timeline*/}
+              {/* show first name and last name in timeline*/}
               <Text style={styles.textNameProfile}>
-              {this.state.data.poster.name_first} {this.state.data.poster.name_last}
+                {this.state.data.poster.name_first} {this.state.data.poster.name_last}
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image
                   source={require('./../../../images/ic_watch_later_black_18dp.png')}
                   style={{ marginRight: 5, height: 10, width: 10 }}
                 />
-                {/* show data time when is post update*/}
+                  {/* show data time when is post update*/}
                 <Text style={styles.textDay}>
                   {this.state.data.updated_at}
                 </Text>
               </View>
-              {/*
-                in this show post location in timeline
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../../images/ic_landscape_black_18dp.png')}
-                  style={{ marginRight: 3, height: 13, width: 13 }}
-                />
-                <Text style={styles.textDay}>Mount salak</Text>
-              </View>
-              <ScrollView></ScrollView>
+                {/*
+                  in this show post location in timeline
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Image
+                    source={require('./../../../images/ic_landscape_black_18dp.png')}
+                    style={{ marginRight: 3, height: 13, width: 13 }}
+                  />
+                  <Text style={styles.textDay}>Mount salak</Text>
+                  </View> */}
+                <ScrollView></ScrollView>
             </View>
           </View>
           <View style={styles.statusContainer}>
@@ -119,7 +133,7 @@ export default class TimelineList extends Component {
                 />
                 <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
               </TouchableOpacity>
-              {/*button Comment*/}
+                {/*button Comment*/}
               <TouchableOpacity
                 onPress={Actions.timelineDetail}
                 style={{ flexDirection: 'row', alignItems: 'center' }}
@@ -146,204 +160,7 @@ export default class TimelineList extends Component {
             </View>
           </View>
         </View>
-        <View style={styles.timelineContainer}>
-          <View style={styles.about}>
-            <TouchableOpacity onPress={Actions.profile}activeOpacity={0.7}>
-              <Image
-                source={{ uri: 'http://www.gravatar.com/avatar/f02aa05bc88b0bf074f79f19a52c8fd1.jpg?s=80&d=mm&r=g' }}
-                style={styles.avatarImg}
-              />
-            </TouchableOpacity>
-            <View style={styles.textAboutContainer}>
-              <Text style={styles.textNameProfile}>aristyo</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../../images/ic_watch_later_black_18dp.png')}
-                  style={{ marginRight: 5, height: 10, width: 10 }}
-                />
-                <Text style={styles.textDay}>10 days ago</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../../images/ic_landscape_black_18dp.png')}
-                  style={{ marginRight: 3, height: 13, width: 13 }}
-                />
-                <Text style={styles.textDay}>Mount salak</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.statusContainer}>
-            <TouchableOpacity
-              onPress={() => this.gotoDetail()}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.textStatus}>
-                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
-              </Text>
-              <Image source={{ uri: 'http://www.amadinetravel.com/img_tour/27bromo.jpg' }} style={{ height: 183, justifyContent: 'center' }} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.mapContainer}>
-            <View style={styles.commentsCountContainer}>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../../images/ic_thumb_up_black_18dp.png')}
-                  style={{ marginRight: 5, height: 14, width: 14 }}
-                />
-                <Text style={styles.textLike}> Likes</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }} >
-                  <Image
-                    source={require('./../../../images/insert_comment_black.png')}
-                    style={{ marginRight: 5, height: 14, width: 14 }}
-                  />
-                  <Text> Comments</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.commentContainer}>
-              <TouchableOpacity
-                onPress={() => this.onChangeImg()}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={this.state.onPress ? imgLike : imgUnLike}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={Actions.timelineDetail}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../../images/insert_comment_black.png')}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>Comment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress= {Actions.timelineshare}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../../images/share_black.png')}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>Share</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={styles.timelineContainer}>
-          <View style={styles.about}>
-            <TouchableOpacity onPress= { Actions.profile }  activeOpacity={0.7}>
-              <Image
-                source={{ uri: "http://www.gravatar.com/avatar/f02aa05bc88b0bf074f79f19a52c8fd1.jpg?s=80&d=mm&r=" }}
-                style={styles.avatarImg}
-              />
-            </TouchableOpacity>
-            <View style={styles.textAboutContainer}>
-              <Text style={styles.textNameProfile}>aristyo</Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../../images/ic_watch_later_black_18dp.png')}
-                  style={{ marginRight: 5, height: 10, width: 10 }}
-                />
-                <Text style={styles.textDay}>10 days ago</Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image
-                  source={require('./../../../images/ic_landscape_black_18dp.png')}
-                  style={{ marginRight: 3, height: 13, width: 13 }}
-                />
-                <Text style={styles.textDay}>Mount salak</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.statusContainer}>
-            <TouchableOpacity
-              onPress={() => this.gotoDetail()}
-              activeOpacity={0.7}
-            >
-              <Text style={styles.textStatus}>
-                Akhirnya sampai juga, Waktunya berlari meraih dann mimpi . . .
-              </Text>
-              <Image source={{ uri: 'http://www.eliasaikaly.com/category/wp-content/uploads/2013/05/IMG_7106.jpg' }} style={{ height: 183, justifyContent: 'center'}} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.mapContainer}>
-            <View style={styles.commentsCountContainer}>
-              <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../../images/ic_thumb_up_black_18dp.png')}
-                  style={{ marginRight: 5, height: 14, width: 14 }}
-                />
-                <Text style={styles.textLike}> Likes</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-              <View style={{ flexDirection: 'row', alignItems: 'center' }} >
-                <Image
-                  source={require('./../../../images/insert_comment_black.png')}
-                  style={{ marginRight: 5, height: 14, width: 14 }}
-                />
-              <Text> Comments</Text>
-              </View>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.commentContainer}>
-              <TouchableOpacity
-                onPress={() => this.onChangeImg()}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={this.state.onPress ? imgLike : imgUnLike}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={Actions.timelineDetail}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../../images/insert_comment_black.png')}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>Comment</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress= {Actions.timelineshare}
-                style={{ flexDirection: 'row', alignItems: 'center' }}
-                activeOpacity={0.7}
-              >
-                <Image
-                  source={require('./../../../images/share_black.png')}
-                  style={{ marginRight: 10, height: 15, width: 15 }}
-                />
-                <Text>Share</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={{ height: 10, backgroundColor: '#aaa' }} />
+        <View style={{ height: 1, backgroundColor: '#aaa' }} />
       </View>
     );
   }
