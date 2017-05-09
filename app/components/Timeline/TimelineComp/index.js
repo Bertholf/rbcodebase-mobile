@@ -56,7 +56,7 @@ export default class MapMain extends Component {
       return (
         <ScrollView>
           <View>
-            <PostCard rendering={this.reRender()} />
+            <PostCard onPress={() => this.reRender()} />
             <ListView
               enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}

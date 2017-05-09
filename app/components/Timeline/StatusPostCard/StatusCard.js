@@ -29,6 +29,7 @@ export default class PostCard extends Component {
   }
 
   uploadFile() {
+    const text = this.state.text;
     const type = 'form-url-encoded';
     post
       .newPost(text, type)
@@ -68,7 +69,11 @@ export default class PostCard extends Component {
               <PostMenu getName={(name, pict) => this.setFileName(name, pict)} />
               <View style={{ flex: 1, paddingTop: 12 }}>
                 <Button title={'Post'}
-                  onPress={() => this.uploadFile()}
+                  onPress={() => {
+                    this.uploadFile();
+                    this.props.onPress();
+                  }
+                  }
                 />
               </View>
             </View>
