@@ -5,7 +5,7 @@ const post = {
   updatePost: (id, data) => api.put(),
   deletePost: (id) => api.delete(),
   newPost: (text, type) => api.post('api/timeline/post', {text, type}),
-  likePost: (id) => api.put(),
+  likePost: (type ,id) => api.post('api/timeline/like', {type, id}),
   unlikePost: (id) => api.put()
 }
 

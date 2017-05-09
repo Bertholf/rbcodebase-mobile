@@ -29,12 +29,21 @@ export default class TimelineList extends Component {
       onPress: true,
 
       data:this.props.dataPost,
+      post_id: '',
 
     }
   }
 
 // change image like and Unlike
   onChangeImg() {
+    const type = 'form-url-encoded';
+    const id = this.state.post_id;
+    post
+        .likePost(type, id)
+        .then(response => {
+          console.log('ini adalah sebuah respon', response)
+        })
+        .catch(err => console.log('error message yang salah', err))
     this.setState({
       onPress: !this.state.onPress,
     });
