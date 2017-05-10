@@ -11,8 +11,6 @@ import styles from './style';
 const { width, height } = Dimensions.get('window');
 const screenWidth = width * 3;
 const screenHeight = height * 3;
-const arrowRight = require('../../images/arrowRight.png');
-const arrowLeft = require('../../images/arrowLeft.png');
 
 class ActionSwiper extends Component {
   constructor(props) {
@@ -234,24 +232,12 @@ class ActionSwiper extends Component {
           </View>
           <View style={{ flexDirection: 'row' }}>
             <View style={styles.card}>
-              <TouchableOpacity
-                onPress={() => this.gotoCenter()}
-                style={styles.arrowRight}
-              >
-                <Image source={arrowRight} />
-              </TouchableOpacity>
               <Listing />
             </View>
             <View style={styles.card}>
               <Dashboard {...props} />
             </View>
             <View style={styles.card}>
-              <TouchableOpacity
-                onPress={() => this.gotoCenter()}
-                style={styles.arrowLeft}
-              >
-                <Image source={arrowLeft} />
-              </TouchableOpacity>
               <Timeline />
             </View>
           </View>
