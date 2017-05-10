@@ -44,6 +44,9 @@ export default class TimelineList extends Component {
   }
 
   render() {
+    const commentCount = this.state.data.comments.length;
+    const likeCount = this.state.data.likes.length;
+    const noLikes = this.state.data.likes.length === 0;
     return (
     <ScrollView>
       <View style={styles.container}>
@@ -87,7 +90,10 @@ export default class TimelineList extends Component {
                       source={this.state.onPress ? imgLike : imgUnLike}
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3'}}
                     />
-                    <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
+                    {this.state.onPress ? likeCount > 1 ?
+                      <Text>{this.state.data.likes.length} Likes</Text> : noLikes ?
+                      <Text>Like</Text> : <Text>{this.state.data.likes.length} Like</Text> :
+                      <Text>Unlike</Text>}
                   </TouchableOpacity>
                   {/*button Comment*/}
                   <TouchableOpacity
@@ -99,8 +105,9 @@ export default class TimelineList extends Component {
                       source={require('./../../../images/insert_comment_black.png')}
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
                     />
-                    <Text>{this.state.data.comments.length} Comment</Text>
-
+                    {commentCount > 1 ?
+                      <Text>{this.state.data.comments.length} Comments</Text> :
+                      <Text>{this.state.data.comments.length} Comment</Text>}
                   </TouchableOpacity>
                   {/*button share*/}
                   <TouchableOpacity
