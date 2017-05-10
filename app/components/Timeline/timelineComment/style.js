@@ -11,23 +11,27 @@ const styles = StyleSheet.create({
   comment: {
     flex:2,
     paddingTop: 0,
-    borderWidth: 1,
     fontFamily:'sans-serif-medium',
     paddingBottom: 0,
     marginRight:5,
     height: 30,
   },
-  Button:{
-    flex:1,
-    padding: 5,
+  icon: {
+    width: 20,
+    height: 20,
+    alignSelf :'center',
+    borderWidth: 3,
+    borderRadius: 10,
+    marginRight: 5,
+    backgroundColor: 'rgba(0,0,0,0)',
+    tintColor: '#2196F3',
+  },
+  box: {
+    flex: 1,
+    flexDirection:'row',
+    alignItems: 'center',
+    borderColor: '#2196F3',
     borderWidth: 1,
-    borderColor: '#fff',
-    color:'#fff',
-    textAlign :'center',
-    backgroundColor: '#2196F3',
-    fontFamily:'sans-serif-medium',
-    fontSize: 15,
-    fontWeight: 'bold',
   }
 })
 

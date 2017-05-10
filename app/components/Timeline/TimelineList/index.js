@@ -99,7 +99,7 @@ export default class TimelineList extends Component {
                     style={{ marginRight: 10, height: 15, width: 15 }}
                   />
                   <Text>{this.state.data.comments.length} Comment</Text>
-                
+
                 </TouchableOpacity>
                 {/*button share*/}
                 <TouchableOpacity
@@ -112,7 +112,7 @@ export default class TimelineList extends Component {
                     style={{ marginRight: 10, height: 15, width: 15 }}
                   />
                   <Text>Share</Text>
-                </TouchableOpacity> 
+                </TouchableOpacity>
               </View>
               <View>
                 <CommentView data = {this.state.data.comments} />
