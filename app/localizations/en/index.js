@@ -18,6 +18,7 @@ import logoutLocalization from './logout';
 import mobilephone from './MobilePhone';
 import loader from './loader';
 import adpreference from './adpreference';
+import timeline from './timeline';
 
 const en = {
   loader,
@@ -39,6 +40,7 @@ const en = {
   logoutLocalization,
   mobilephone,
   adpreference,
+  timeline,
 };
 
 export default en;

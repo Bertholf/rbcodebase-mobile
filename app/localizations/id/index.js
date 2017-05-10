@@ -18,6 +18,7 @@ import logoutLocalization from './logout';
 import loader from './loader';
 import mobilephone from './MobilePhone';
 import adpreference from './adpreference';
+import timeline from './timeline';
 
 const id = {
   loader,
@@ -39,6 +40,7 @@ const id = {
   logoutLocalization,
   mobilephone,
   adpreference,
+  timeline,
 };
 
 export default id;

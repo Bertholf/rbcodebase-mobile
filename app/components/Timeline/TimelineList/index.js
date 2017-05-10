@@ -18,6 +18,7 @@ import styles from './style';
 import post from './../../../services/post';
 import TimelineComments from '../timelineComment';
 import CommentView from '../timelineComment/commentList';
+import strings from '../../../localizations';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 
@@ -92,9 +93,9 @@ export default class TimelineList extends Component {
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3'}}
                     />
                     {this.state.onPress ? likeCount > 1 ?
-                      <Text>{this.state.data.likes.length} Likes</Text> : noLikes ?
-                      <Text>Like</Text> : <Text>{this.state.data.likes.length} Like</Text> :
-                      <Text>Unlike</Text>}
+                      <Text>{this.state.data.likes.length} {strings.timeline.likes}</Text> : noLikes ?
+                      <Text>{strings.timeline.like}</Text> : <Text>{this.state.data.likes.length} {strings.timeline.like}</Text> :
+                      <Text>{this.state.data.likes.length} {strings.timeline.unlike}</Text>}
                   </TouchableOpacity>
                   {/*button Comment*/}
                   <TouchableOpacity
@@ -107,9 +108,9 @@ export default class TimelineList extends Component {
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
                     />
                     {commentCount > 1 ?
-                      <Text>{this.state.data.comments.length} Comments</Text> : noComments ?
-                      <Text>Comment</Text> :
-                      <Text>{this.state.data.comments.length} Comment</Text>}
+                      <Text>{this.state.data.comments.length} {strings.timeline.comments}</Text> : noComments ?
+                      <Text>{strings.timeline.comment}</Text> :
+                      <Text>{this.state.data.comments.length} {strings.timeline.comment}</Text>}
                   </TouchableOpacity>
                   {/*button share*/}
                   <TouchableOpacity
@@ -121,7 +122,7 @@ export default class TimelineList extends Component {
                       source={require('./../../../images/share_black.png')}
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
                     />
-                    <Text>Share</Text>
+                    <Text>{strings.timeline.share}</Text>
                   </TouchableOpacity>
                 </View>
                 <View>
