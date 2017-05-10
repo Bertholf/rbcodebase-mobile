@@ -4,7 +4,7 @@ import styles from './style';
 import {
    View,
    Text,
-   TouchableHighlight,
+   TouchableOpacity,
    TextInput,
    StyleSheet,
    Button,
@@ -19,13 +19,11 @@ export default CommentPost = (props:Object) => (
             autoCapitalize = 'none'
             onChangeText = {props.updateText}
             multiline = {true}
-           
+            underlineColorAndroid = "rgba(0,0,0,0)" 
          /> 
-         <Button
-            style = {styles.Button}
-            onPress = { () => props.postComment(props.updateText)}
-            title="Submit Comment"
-            />
+         <TouchableOpacity onPress = { () => props.postComment(props.updateText)}>
+            <Text style={styles.Button}>Send</Text>
+         </TouchableOpacity>
 
       </View>
 );

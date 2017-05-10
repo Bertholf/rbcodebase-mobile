@@ -10,12 +10,10 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-// import Menu, {
-//   MenuContext,
-//   MenuOptions,
-//   MenuOption,
-//   MenuTrigger,
-// } from 'react-native-menu';
+
+
+
+import getFlat from './flattering'
 import timelineList from '../../../services/timelineList';
 import PostCard from './../../Timeline/StatusPostCard/StatusCard';
 import TimelineList from './../TimelineList';
@@ -27,8 +25,23 @@ import Moment from 'moment';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+// function getData (data){
+//     if(Array.isArray(data)){
+//         return data.posts.reduce((acc,curr) => {
+//             acc.concat(getData(curr))
+//         },[])
+//     }else{
+//         return data
+//     }
+// }
 
-
+// function getFlat(Json){
+//     const tempFlat = Json.data.map(getData);
+//     return tempFlat.reduce((acc,curr) => {
+//         return acc.concat(curr.posts)
+//     },[])
+    
+// }
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
@@ -39,11 +52,11 @@ export default class MapMain extends Component {
       enable: true,
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     timelineList.getTimeline()
     .then((res) => {
-      this.setState({ list: res.data[0].posts});
-    }).catch(err => console.log(err));
+      this.setState({ list: getFlat(res)});
+    },(data) => {console.log("this is sparta" , data)}).catch(err => console.log(err));
   }
   onChangeImg() {
     this.setState({
@@ -53,24 +66,22 @@ export default class MapMain extends Component {
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
   }
+
+  reRender() {
+    this.componentDidMount();
+  }
   render() {
-    if (this.state.loading === true) {
       return (
         <ScrollView>
           <View>
-            <PostCard />
+            <PostCard onPress={() => this.reRender()} />
             <ListView
               enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}
-              renderRow={dataPost => <TimelineList dataPost={dataPost}/>}
+              renderRow={dataPost => <TimelineList dataPost={dataPost} />}
             />
           </View>
         </ScrollView>
       );
-    } else {
-      return (
-        <Text>No Content Display</Text>
-      );
     }
-  }
 }

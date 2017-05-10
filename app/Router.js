@@ -41,7 +41,7 @@ import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
 import Dashboard from './components/Timeline/Dashboard';
 import LoginScreen from './components/Auth/LoginScreen';
-import LeftDashboard from './components/Timeline/LeftDashboard';
+// import LeftDashboard from './components/Timeline/LeftDashboard';
 import ActionSwiper from './components/ActionSwipe';
 import UserPanel from './components/UserPanel/UserPanel';
 import strings from './localizations';
@@ -130,12 +130,12 @@ const Routing = props => (
               title={strings.settings.notification}
             />
             <Scene key={'dashboard'} component={Dashboard} title={'Dashboard'} />
-            <Scene
+            {/*<Scene
               key={'leftdashboard'}
               component={LeftDashboard}
               title={'LeftDashboard'}
               direction={'leftToRight'}
-            />
+            />*/}
             <Scene key={'chat'} component={Chat} title={'Chat'} />
             <Scene
               key={'chatlist'}

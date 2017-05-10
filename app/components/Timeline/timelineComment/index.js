@@ -35,7 +35,6 @@ export default class TimelineComment extends Component {
 
   render() {
     return (
-        
             <CommentPost
                updateText = {this.updateText.bind(this)}
                postComment = {this.postComment.bind(this)}

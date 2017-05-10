@@ -61,8 +61,6 @@ export default class CardDetail extends Component {
             <Text>{'\n'}</Text>
           </View>
           <View>
-            <Comment id='106'/>
-
             <View
               style={{
               flexDirection: 'row',
