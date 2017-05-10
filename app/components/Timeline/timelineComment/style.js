@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     flex:1,
     paddingRight:20,
-    marginTop :5,
   },
   comment: {
     flex:2,
@@ -31,7 +30,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     borderColor: '#2196F3',
-    borderWidth: 1,
+    borderWidth: 2,
+    marginBottom: 20,
   }
 })
 

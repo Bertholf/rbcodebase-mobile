@@ -47,76 +47,78 @@ export default class TimelineList extends Component {
     return (
     <ScrollView>
       <View style={styles.container}>
-        <View style={styles.timelineContainer}>
-          <View style={styles.about}>
-          {/*show image profile*/}
-            <TouchableOpacity onPress={Actions.profile} activeOpacity={0.7}>
-              <Image
-                source={{ uri: this.state.data.poster.picture }}
-                style={styles.avatarImg}
-              />
-            </TouchableOpacity>
-            <View style={styles.textAboutContainer}>
-            {/* show first name and last name in timeline*/}
-              <Text style={styles.textNameProfile}>
-              {this.state.data.poster.name_first} {this.state.data.poster.name_last}
-              </Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10}}>
+          <View style={styles.timelineContainer}>
+            <View style={{ borderBottomWidth: 0.5, paddingBottom: 5, paddingTop: 5}}>
+            <View style={styles.about}>
+            {/*show image profile*/}
+              <TouchableOpacity onPress={Actions.profile} activeOpacity={0.7}>
                 <Image
-                  source={require('./../../../images/ic_watch_later_black_18dp.png')}
-                  style={{ marginRight: 5, height: 10, width: 10 }}
+                  source={{ uri: this.state.data.poster.picture }}
+                  style={styles.avatarImg}
                 />
-                {/* show data time when is post update*/}
-                <Text style={styles.textDay}>
-                  {this.state.data.updated_at}
-                </Text>
-              </View>
-               <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10 }}>
+              </TouchableOpacity>
+              <View style={styles.textAboutContainer}>
+              {/* show first name and last name in timeline*/}
                 <Text style={styles.textNameProfile}>
-                  {this.state.data.text}
+                {this.state.data.poster.name_first} {this.state.data.poster.name_last}
                 </Text>
-              </View>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <TouchableOpacity
-                  onPress={() => this.onChangeImg()}
-                  style={{ flexDirection: 'row', alignItems: 'center' , marginRight: 10}}
-                  activeOpacity={0.7}
-                >
+                <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10}}>
                   <Image
-                    source={this.state.onPress ? imgLike : imgUnLike}
-                    style={{ marginRight: 10, height: 15, width: 15 }}
+                    source={require('./../../../images/ic_watch_later_black_18dp.png')}
+                    style={{ marginRight: 5, height: 10, width: 10 }}
                   />
-                  <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
-                </TouchableOpacity>
-                {/*button Comment*/}
-                <TouchableOpacity
-                  onPress={Actions.timelineDetail}
-                  style={{ flexDirection: 'row', alignItems: 'center' , marginRight: 10}}
-                  activeOpacity={0.7}
-                >
-                  <Image
-                    source={require('./../../../images/insert_comment_black.png')}
-                    style={{ marginRight: 10, height: 15, width: 15 }}
-                  />
-                  <Text>{this.state.data.comments.length} Comment</Text>
+                  {/* show data time when is post update*/}
+                  <Text style={styles.textDay}>
+                    {this.state.data.updated_at}
+                  </Text>
+                </View>
+                 <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10 }}>
+                  <Text style={styles.textNameProfile}>
+                    {this.state.data.text}
+                  </Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 30, marginBottom: 10 }}>
+                  <TouchableOpacity
+                    onPress={() => this.onChangeImg()}
+                    style={{ flexDirection: 'row', alignItems: 'center' }}
+                    activeOpacity={0.7}
+                  >
+                    <Image
+                      source={this.state.onPress ? imgLike : imgUnLike}
+                      style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3'}}
+                    />
+                    <Text>{this.state.onPress ? 'Like' : 'Unlike'}</Text>
+                  </TouchableOpacity>
+                  {/*button Comment*/}
+                  <TouchableOpacity
+                    onPress={Actions.timelineDetail}
+                    style={{ flexDirection: 'row', alignItems: 'center' }}
+                    activeOpacity={0.7}
+                  >
+                    <Image
+                      source={require('./../../../images/insert_comment_black.png')}
+                      style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
+                    />
+                    <Text>{this.state.data.comments.length} Comment</Text>
 
-                </TouchableOpacity>
-                {/*button share*/}
-                <TouchableOpacity
-                  onPress={Actions.timelineshare}
-                  style={{ flexDirection: 'row', alignItems: 'center' ,  marginRight: 10}}
-                  activeOpacity={0.7}
-                >
-                  <Image
-                    source={require('./../../../images/share_black.png')}
-                    style={{ marginRight: 10, height: 15, width: 15 }}
-                  />
-                  <Text>Share</Text>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <CommentView data = {this.state.data.comments} />
-                <TimelineComment id = {this.state.data.id} />
+                  </TouchableOpacity>
+                  {/*button share*/}
+                  <TouchableOpacity
+                    onPress={Actions.timelineshare}
+                    style={{ flexDirection: 'row', alignItems: 'center' }}
+                    activeOpacity={0.7}
+                  >
+                    <Image
+                      source={require('./../../../images/share_black.png')}
+                      style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
+                    />
+                    <Text>Share</Text>
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <CommentView data = {this.state.data.comments} />
+                  <TimelineComment id = {this.state.data.id} />
+                </View>
               </View>
             </View>
           </View>
