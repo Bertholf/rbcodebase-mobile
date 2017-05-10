@@ -46,6 +46,7 @@ export default class TimelineList extends Component {
   render() {
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.data.likes.length;
+    const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.data.likes.length === 0;
     return (
     <ScrollView>
@@ -106,7 +107,8 @@ export default class TimelineList extends Component {
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
                     />
                     {commentCount > 1 ?
-                      <Text>{this.state.data.comments.length} Comments</Text> :
+                      <Text>{this.state.data.comments.length} Comments</Text> : noComments ?
+                      <Text>Comment</Text> :
                       <Text>{this.state.data.comments.length} Comment</Text>}
                   </TouchableOpacity>
                   {/*button share*/}
