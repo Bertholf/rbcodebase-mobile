@@ -116,14 +116,6 @@ class userPanel extends React.Component {
             </View>
           </View>
         </ScrollView>
-        <View style={styles.swapContainer}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => this.props.goCenter()}
-          >
-            <Image source={bottomArrowIcon} style={styles.swapImage} />
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }

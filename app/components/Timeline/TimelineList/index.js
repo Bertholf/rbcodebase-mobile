@@ -21,7 +21,7 @@ import CommentView from '../timelineComment/commentList';
 import strings from '../../../localizations';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
-
+const moment = require('moment');
 
 export default class TimelineList extends Component {
   constructor(props) {
@@ -49,6 +49,7 @@ export default class TimelineList extends Component {
     const likeCount = this.state.data.likes.length;
     const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.data.likes.length === 0;
+    const date = moment(this.state.data.updated_at, 'YYYY-MM-DD').format('D MMM');
     return (
     <ScrollView>
       <View style={styles.container}>
@@ -74,7 +75,7 @@ export default class TimelineList extends Component {
                   />
                   {/* show data time when is post update*/}
                   <Text style={styles.textDay}>
-                    {this.state.data.updated_at}
+                    {date}
                   </Text>
                 </View>
                  <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10 }}>
