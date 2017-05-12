@@ -17,7 +17,6 @@ export default class TimelineComment extends Component {
       text: '',
       postId: this.props.id
     };
-    console.log("this is id", this.props.id)
   }
   updateText = (text) => {
       this.setState({text:text})
