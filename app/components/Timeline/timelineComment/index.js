@@ -39,7 +39,7 @@ export default class TimelineComment extends Component {
                updateText = {this.updateText.bind(this)}
                postComment = {this.postComment.bind(this)}
             />
-        
+
     )
   }
 }
