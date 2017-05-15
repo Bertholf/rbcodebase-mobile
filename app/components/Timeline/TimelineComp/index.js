@@ -40,7 +40,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 //     return tempFlat.reduce((acc,curr) => {
 //         return acc.concat(curr.posts)
 //     },[])
-    
+
 // }
 export default class MapMain extends Component {
   constructor(props) {

@@ -28,13 +28,19 @@ export default class PostCard extends Component {
     })
   }
 
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   uploadFile() {
-    const text = this.state.text;
+    const status = this.state.text;
     const type = 'form-url-encoded';
     post
-      .newPost(text, type)
+      .newPost(status, type)
       .then(() => {
-        this.props.rendering()
+        console.log('success!!');
+        this.clearText('textinput')
+        // this.props.rendering()
       })
       .catch((err) => {
         console.log('file is being uploaded!!', err);
@@ -49,12 +55,13 @@ export default class PostCard extends Component {
             <Text style={styles.titleText}>Your Stories?</Text>
             <View>
               <TextInput
+                ref={'textinput'}
                 style={{ height: 70 }}
                 multiline={true}
                 blurOnSubmit={true}
                 placeholder="Your Status"
                 placeholderTextColor="#BDBDBD"
-                onChangeText={(postTimeline) => this.setState({postTimeline})}
+                onChangeText={(text) => this.setState({text})}
                 value={this.state.postTimeline}
               />
             </View>
