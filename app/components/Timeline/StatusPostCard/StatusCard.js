@@ -40,10 +40,7 @@ export default class PostCard extends Component {
     post
       .newPost(text, type)
       .then((res) => {
-        // const newData = [res.data].concat(this.state.data);
         this.setState((prevState) => {
-          // this.renderRow(this.state.data)
-          this.updateText(text)
           console.log('prevState', prevState.data);
           return {
             text: '',

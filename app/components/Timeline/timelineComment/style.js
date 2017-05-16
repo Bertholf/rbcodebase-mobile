@@ -41,7 +41,23 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingTop: 5,
     marginRight: 20
-  }
+  },
+  user: {
+    paddingTop: 0,
+    fontFamily: 'sans-serif-medium',
+    paddingBottom: 0,
+    marginRight: 10,
+    height: 30,
+    color:'black'
+  },
+  text: {
+      paddingTop: 0,
+      fontFamily: 'sans-serif-medium',
+      paddingBottom: 0,
+      marginRight: 5,
+      height: 30,
+      opacity:0.5
+    },
 })
 
 export default styles;

@@ -10,8 +10,17 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-import ProfilePost from './ProfilePost'
-import { Card, CardItem, Container, Right, Left, Button ,Fab ,Icon, } from 'native-base';
+import ProfilePost from './ProfilePost';
+import { 
+  Card, 
+  CardItem, 
+  Container, 
+  Right, 
+  Left, 
+  Button ,
+  Fab ,
+  Icon, 
+} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
