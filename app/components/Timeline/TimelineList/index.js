@@ -26,13 +26,27 @@ const moment = require('moment');
 export default class TimelineList extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       loading: true,
       list: {},
       onPress: true,
-      data: this.props.dataPost,
-
+      data: null,
     }
+  }
+  componentWillMount() {
+    console.log('receiving props', this.props.dataPost);
+    this.setState((prevState) => {
+      return { data: this.props.dataPost }
+    });
+    // this.setState({data: this.props.dataPost});
+  }
+  componentWillReceiveProps(){
+    console.log('receiving props from will receive props', this.props.dataPost);
+    this.setState((prevState) => {
+      return { data: this.props.dataPost }
+    });
+    // this.setState({data: this.props.dataPost});
   }
 // change image like and Unlike
   onChangeImg() {
@@ -45,6 +59,9 @@ export default class TimelineList extends Component {
   }
 
   render() {
+    if (!this.state.data) {
+      return (<View/>);
+    }
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.data.likes.length;
     const noComments = this.state.data.comments.length === 0;

@@ -3,7 +3,8 @@ import {
   Navigator,
   BackAndroid,
   Button,
-  View
+  View,
+  Text
 } from 'react-native';
 import styles from './style';
 import Comment from '../../../services/comment.js'
@@ -29,16 +30,22 @@ export default class TimelineComment extends Component {
     const text = this.state.text;
     Comment
       .postComment(text : String, post_id : Number)
-      .then((res) => console.log("this is post comment res", res))
+      .then((res) => {
+        let result = res.data;
+        let newtext = {"text":text};
+        var obj = Object.assign({}, result, newtext);
+        console.log("this is post comment res", res.data.text)})
       .catch((err) => console.log("error post", err))
   }
 
   render() {
     return (
+        <View>
             <CommentPost
                updateText = {this.updateText.bind(this)}
                postComment = {this.postComment.bind(this)}
             />
+          </View>
 
     )
   }
