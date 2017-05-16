@@ -12,7 +12,10 @@ const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default CommentList = (props:Object) => {
     const dataSource = ds.cloneWithRows(props.data)
-    return (
+    console.log(props.data[0])
+    if(props.data[0]){
+         return (
+        
         <ListView
             enableEmptySections
             dataSource={dataSource}
@@ -25,4 +28,8 @@ export default CommentList = (props:Object) => {
             }
         />
     )
+    }else{
+        return(<View></View>)
+    }
+    
 }

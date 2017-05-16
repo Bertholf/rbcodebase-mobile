@@ -22,6 +22,7 @@ export default CommentPost = (props:Object) => (
             autoCapitalize = 'none'
             onChangeText = {props.updateText}
             multiline = {true}
+            value={props.text}
             underlineColorAndroid = "rgba(0,0,0,0)" />
             <TouchableOpacity onPress = { () => {
               props.postComment(props.updateText)
