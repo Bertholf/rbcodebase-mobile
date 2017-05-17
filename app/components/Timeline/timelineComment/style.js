@@ -31,7 +31,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#2196F3',
     borderWidth: 2,
-    marginBottom: 20
+    marginBottom: 20,
+  },
+  icons: {
+    width: 15,
+    height: 15,
+    tintColor: '#757575',
+    opacity: 1,
+    alignSelf: 'center',
+    marginLeft: 10,
   },
   listcomment: {
     flex: 1,
