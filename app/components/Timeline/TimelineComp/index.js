@@ -25,23 +25,7 @@ import Moment from 'moment';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-// function getData (data){
-//     if(Array.isArray(data)){
-//         return data.posts.reduce((acc,curr) => {
-//             acc.concat(getData(curr))
-//         },[])
-//     }else{
-//         return data
-//     }
-// }
 
-// function getFlat(Json){
-//     const tempFlat = Json.data.map(getData);
-//     return tempFlat.reduce((acc,curr) => {
-//         return acc.concat(curr.posts)
-//     },[])
-    
-// }
 export default class MapMain extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +39,7 @@ export default class MapMain extends Component {
   componentDidMount() {
     timelineList.getTimeline()
     .then((res) => {
-      this.setState({ list: getFlat(res)});
+      this.setState({ list: res.data});
     },(data) => {console.log("this is sparta" , data)}).catch(err => console.log(err));
   }
   onChangeImg() {
@@ -74,7 +58,7 @@ export default class MapMain extends Component {
       return (
         <ScrollView>
           <View>
-            <PostCard onPress={() => this.reRender()} />
+            <PostCard reRender={()=>this.componentDidMount.bind(this)} />
             <ListView
               enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}

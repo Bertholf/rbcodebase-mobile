@@ -73,7 +73,7 @@ class userPanel extends React.Component {
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.userButton}
-              onPress={() => Actions.profile({ profile: this.state.profile })}
+              onPress={() => Actions.profile({ profile: this.state.profile , user_id:this.state.profile.id})}
             >
               {this.state.profile.picture == null ?
                 <Image style={styles.userImage} source={require('../../images/user.png')} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.userImage} />

@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Alert,
   AsyncStorage,
+  ListView,
 } from 'react-native';
 
 import ProfilePost from './ProfilePost'
@@ -17,18 +18,11 @@ import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
 import strings from '../../localizations';
 import styles from './../../style/profileStyle';
-
+import timelineList from '../../services/timelineList';
+import TimelineList from '../Timeline/TimelineList'
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
-const dataDummy = [
- {
-    comment   : 3 ,
-    mountain  : "gunung agung" ,
-    postStatus: "Arsenal",
-    imagePost : require('./../../images/gunung.jpg'),
-    days      : "2 days",
 
- }
-]
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -43,19 +37,20 @@ export default class Profile extends Component {
       leaderId: this.props.id,
       followed: true,
       countFollowing: 0,
-      id: '',
+      id: this.props.user_id,
       friend: false,
       edit: false,
       button: false,
       me: false,
       request: false,
+      list:[]
     };
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('userId')
-      .then((id) => {
-        if (id === this.state.profile.id.toString()) {
+    console.log("this is iddd  " , this.state.id)
+        const id = this.state.id
+        if (id === this.state.profile.id) {
           this.setState({ me: true });
         }
         this.followHasSomeone(id, this.state.profile.id);
@@ -70,8 +65,20 @@ export default class Profile extends Component {
               { text: 'OK', onPress: () => Actions.pop() },
             ]);
           });
+
+
+  }
+
+  componentWillMount(){
+console.log("will mount")
+    const id = this.state.id
+    timelineList
+    .getTimelineId(id)
+    .then((res) => {
+      this.setState({
+        list:res.data[0].posts
       })
-      .catch();
+    })
   }
 
   unfollowUser() {
@@ -146,7 +153,7 @@ export default class Profile extends Component {
   }
 
   render() {
-
+{console.log("this is list", this.state.list)}
     {
 
       for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
@@ -319,13 +326,11 @@ export default class Profile extends Component {
             </View> */}
           </View>
           <View >
-          <ProfilePost
-                  name= {this.state.profile.name_first +" " +this.state.profile.name_last}
-                  profileImage = {this.state.profile.picture}
-                  data=  {dataDummy}
-                  styles = {styles.isi}
-                  styleImage = {styles.image}
-            />
+          <ListView
+            enableEmptySections
+            dataSource={ds.cloneWithRows(this.state.list)}
+            renderRow={dataPost => <TimelineList dataPost={dataPost} />}
+          />
           </View>
 
         </ScrollView>
