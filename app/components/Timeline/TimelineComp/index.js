@@ -25,7 +25,6 @@ import Moment from 'moment';
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
 export default class MapMain extends Component {
   constructor(props) {
     super(props);

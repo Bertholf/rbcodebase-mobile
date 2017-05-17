@@ -33,6 +33,10 @@ export default class PostCard extends Component {
     this.setState({ filename, picture: pict });
   }
 
+  clearText(fieldName) {
+    this.refs[fieldName].setNativeProps({ text: '' });
+  }
+
   uploadFile() {
     const text = this.state.text;
     const type = 'application/x-www-form-urlencoded';
@@ -47,6 +51,7 @@ export default class PostCard extends Component {
             data: prevState.data.concat(res.data),
           };
         });
+
       })
       .catch((err) => {
         Alert.alert(err.message);
@@ -68,6 +73,7 @@ export default class PostCard extends Component {
   }
 
   render() {
+
     return (
       <View>
         <View style={styles.containerCard}>
