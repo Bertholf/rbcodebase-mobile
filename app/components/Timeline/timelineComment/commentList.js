@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import comment from '../../../services/comment.js'
 // @flow
-
+ const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+ 
 export default class CommentList extends Component {
   constructor(props:Object) {
     super(props);

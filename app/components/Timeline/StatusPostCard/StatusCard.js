@@ -56,7 +56,7 @@ export default class PostCard extends Component {
       .catch((err) => {
         Alert.alert(err.message);
       });
-              
+
   }
 
   updateText = (text) => {
