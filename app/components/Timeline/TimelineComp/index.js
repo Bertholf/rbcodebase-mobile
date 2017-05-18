@@ -39,8 +39,9 @@ export default class MapMain extends Component {
   componentDidMount() {
     timelineList.getTimeline()
     .then((res) => {
+      console.log("comppent timeline comp ", res.data)
       this.setState({ list: res.data});
-    },(data) => {console.log("this is sparta" , data)}).catch(err => console.log(err));
+    },(data) => {console.log("this is timelelineList" , data)}).catch(err => console.log(err));
   }
   onChangeImg() {
     this.setState({
@@ -55,6 +56,7 @@ export default class MapMain extends Component {
     this.componentDidMount();
   }
   render() {
+    console.log('ini adalah list: ', this.state.list);
       return (
         <ScrollView>
           <View>
