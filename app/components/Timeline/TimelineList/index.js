@@ -19,6 +19,7 @@ import post from './../../../services/post';
 import TimelineComments from '../timelineComment';
 import CommentView from '../timelineComment/commentList';
 import strings from '../../../localizations';
+
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
 const moment = require('moment');
@@ -26,47 +27,50 @@ const moment = require('moment');
 export default class TimelineList extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       loading: true,
       list: {},
       onPress: true,
-      data: null,
+      data: this.props.dataPost,
+      post_id: this.props.dataPost.id,
+      countLike: this.props.dataPost.likes.length,
+      like_id: this.props.dataPost.likes.id
     }
   }
-  componentWillMount() {
-    console.log('receiving props', this.props.dataPost);
-    this.setState((prevState) => {
-      return { data: this.props.dataPost }
-    });
-    // this.setState({data: this.props.dataPost});
-  }
-  componentWillReceiveProps(){
-    console.log('receiving props from will receive props', this.props.dataPost);
-    this.setState((prevState) => {
-      return { data: this.props.dataPost }
-    });
-    // this.setState({data: this.props.dataPost});
-  }
-// change image like and Unlike
-  onChangeImg() {
-    this.setState({
-      onPress: !this.state.onPress,
-    });
-  }
+
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
   }
 
   render() {
-    if (!this.state.data) {
-      return (<View/>);
-    }
+    
     const commentCount = this.state.data.comments.length;
-    const likeCount = this.state.data.likes.length;
+    const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
-    const noLikes = this.state.data.likes.length === 0;
+    const noLikes = this.state.countLike === 0;
     const date = moment(this.state.data.updated_at, 'YYYY-MM-DD').format('D MMM');
+    const id = this.state.post_id;
+    const onChangeImg = () => {
+      if(this.state.onPress) {
+      post
+          .likePost(id)
+          .then(response => {
+            this.setState({
+              onPress: !this.state.onPress,
+              countLike: this.state.countLike + 1,
+            })
+          })
+          .catch(err => console.log('error message yang salah', err))
+      }
+      else {
+        post
+        this.setState({
+          onPress: !this.state.onPress,
+          countLike: this.state.countLike - 1,
+        })
+      }
+    }
     return (
     <ScrollView>
       <View style={styles.container}>
@@ -102,7 +106,7 @@ export default class TimelineList extends Component {
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 30, marginBottom: 10 }}>
                   <TouchableOpacity
-                    onPress={() => this.onChangeImg()}
+                    onPress={() => onChangeImg()}
                     style={{ flexDirection: 'row', alignItems: 'center' }}
                     activeOpacity={0.7}
                   >
@@ -111,9 +115,9 @@ export default class TimelineList extends Component {
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3'}}
                     />
                     {this.state.onPress ? likeCount > 1 ?
-                      <Text>{this.state.data.likes.length} {strings.timeline.likes}</Text> : noLikes ?
-                      <Text>{strings.timeline.like}</Text> : <Text>{this.state.data.likes.length} {strings.timeline.like}</Text> :
-                      <Text>{this.state.data.likes.length} {strings.timeline.unlike}</Text>}
+                      <Text>{this.state.countLike} {strings.timeline.likes}</Text> : noLikes ?
+                      <Text>{strings.timeline.like}</Text> : <Text>{this.state.countLike} {strings.timeline.like}</Text> :
+                      <Text>{this.state.countLike} {strings.timeline.unlike}</Text>}
                   </TouchableOpacity>
                   {/*button Comment*/}
                   <TouchableOpacity

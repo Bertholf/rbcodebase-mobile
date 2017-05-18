@@ -62,17 +62,21 @@ export default class ListFollow extends Component {
 
   render() {
     let rowData = this.props.rowData;
+    let type_id;
     if (this.props.rowData.type === 'follower') {
       rowData = this.props.rowData.follower;
+      type_id = this.props.rowData.follower_id;
+
     } else {
       // this section will call when add friend call use this this component
       rowData = this.props.rowData;
+        type_id = this.props.rowData.leader_id;
     }
     return (
       <Content>
         <ListItem>
           <TouchableOpacity
-            onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id })}
+            onPress={() => Actions.profile({ profile: rowData, idFollow: this.props.rowData.id ,user_id:type_id})}
             activeOpacity={0.7}
           >
             <Body>
