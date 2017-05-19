@@ -165,12 +165,17 @@ export default class ListFollow extends Component {
     // this state for disable button follow if privacy_follow = 'none'
     const data = this.props.rowData;
     let setting;
+    let type_id;
     if (this.props.rowData.type === 'follower') {
       setting = data.follower.setting;
+      type_id= this.props.rowData.follower_id;
+
     } else if (this.props.rowData.type === 'following') {
       setting = data.leader.setting;
+      type_id= this.props.rowData.leader_id;
     } else {
       setting = data.setting;
+      type_id= this.props.rowData.id;
     }
 
     if (setting === null) {
@@ -186,6 +191,7 @@ export default class ListFollow extends Component {
               Actions.profile({
                 profile: rowData,
                 idFollow: this.props.rowData.id,
+                user_id:type_id,
                 status: this.props.rowData,
                 request: this.props.rowData.status,
               })}

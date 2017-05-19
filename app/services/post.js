@@ -1,12 +1,12 @@
 import api from './api';
 
 const post = {
-  getPost: (text, type) => api.get('/api/timeline/feed', { text, type }),
+  getPost: () => api.get('/api/me/feed'),
   updatePost: (id, data) => api.put(),
-  deletePost: id => api.delete(),
-  newPost: (text, type) => api.post('api/timeline/post', { text, type }),
-  likePost: id => api.put(),
-  unlikePost: id => api.put(),
-};
+  deletePost: (id) => api.delete(),
+  newPost: (text, type) => api.post('api/timeline/post', {text, type}),
+  likePost: (post_id) => api.post('api/timeline/like', {post_id}),
+  unlikePost: (id) => api.put()
+}
 
 export default post;
