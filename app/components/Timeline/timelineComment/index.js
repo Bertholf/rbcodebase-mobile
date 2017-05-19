@@ -26,7 +26,7 @@ export default class TimelineComment extends Component {
       data:[],
     };
   }
-  
+
    updateText = (text) => {
     this.setState(prevState => ({
       text: text
@@ -35,25 +35,20 @@ export default class TimelineComment extends Component {
 
 
   postComment() {
-    // console.log("++++++++++++++++++++++++++++")
-    // console.log("ini data id" ,this.props.id)
     console.log("ini text", this.state.text)
-    // // console.log("ini data" , this.state.data)
-    console.log("=============================")
     const post_id = Number(this.props.id);
     const text = this.state.text;
     const result = this.state.data;
-    console.log("--------Array ", Array.isArray(this.state.data))
     Comment
       .postComment(text : String, post_id : Number)
       .then((res) => {
        console.log("reqqq")
         this.setState({
             text: '',
-            data: result.concat(res.data),  
+            data: result.concat(res.data),
         });
       })
-      .catch((err) => console.log("error post =================>", err))
+      .catch((err) => console.log("error post", err))
   }
 
   render() {

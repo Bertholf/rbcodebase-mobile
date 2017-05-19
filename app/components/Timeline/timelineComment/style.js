@@ -2,18 +2,16 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   inputContainer: {
-    marginTop: 0,
     flexDirection: 'row',
     flex: 1,
-    paddingRight: 20
+    paddingRight: 20,
   },
   comment: {
     flex: 2,
-    paddingTop: 0,
+    padding: 0,
     fontFamily: 'sans-serif-medium',
-    paddingBottom: 0,
-    marginRight: 5,
-    height: 30
+    marginLeft: 5,
+    height: 30,
   },
   icon: {
     width: 20,
@@ -23,7 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 5,
     backgroundColor: 'rgba(0,0,0,0)',
-    tintColor: '#2196F3'
+    tintColor: '#2196F3',
   },
   box: {
     flex: 1,
@@ -37,34 +35,24 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
     tintColor: '#757575',
-    opacity: 1,
+    opacity: 0.2,
     alignSelf: 'center',
     marginLeft: 10,
   },
   listcomment: {
-    flex: 1,
-    flexDirection: 'row',
-    borderColor: '#B3E5FC',
-    borderBottomWidth: 0.5,
-    paddingBottom: 5,
-    paddingTop: 5,
-    marginRight: 20
+  borderColor: '#B3E5FC',
+  borderBottomWidth: 0.5,
+  paddingBottom: 5,
+  paddingTop: 5,
+  marginRight: 20,
   },
   user: {
-    paddingTop: 0,
     fontFamily: 'sans-serif-medium',
-    paddingBottom: 0,
-    marginRight: 10,
-    height: 30,
-    color:'black'
+    color: '#000',
   },
   text: {
-      paddingTop: 0,
       fontFamily: 'sans-serif-medium',
-      paddingBottom: 0,
-      marginRight: 5,
-      height: 30,
-      opacity:0.5
+      opacity:0.5,
     },
 })
 
