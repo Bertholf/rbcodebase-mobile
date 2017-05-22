@@ -70,7 +70,6 @@ export default class Profile extends Component {
   }
 
   componentWillMount(){
-console.log("will mount")
     const id = this.state.id
     timelineList
     .getTimelineId(id)
@@ -153,11 +152,7 @@ console.log("will mount")
   }
 
   render() {
-{console.log("this is list", this.state.list)}
-    {
 
-      for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
-    }
     if (this.state.loading === false) {
       return (
         <ScrollView
