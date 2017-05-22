@@ -11,8 +11,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-
-
 import getFlat from './flattering'
 import timelineList from '../../../services/timelineList';
 import PostCard from './../../Timeline/StatusPostCard/StatusCard';

@@ -74,6 +74,14 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginLeft: 10,
   },
+  icons: {
+    width: 20,
+    height: 20,
+    tintColor: '#757575',
+    opacity: 0.2,
+    alignSelf: 'center',
+    marginRight: 20,
+  },
 });
 
 export default styles;

@@ -9,6 +9,7 @@ import {
   ListView,
   ActivityIndicator,
   ScrollView,
+  Alert,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../../services/timelineList';
@@ -16,6 +17,7 @@ import TimelineComment from './../timelineComment';
 import Accordion from 'react-native-accordion';
 import styles from './style';
 import post from './../../../services/post';
+import auth from './../../../services/auth';
 import TimelineComments from '../timelineComment';
 import CommentView from '../timelineComment/commentList';
 import strings from '../../../localizations';
@@ -31,12 +33,26 @@ export default class TimelineList extends Component {
     this.state = {
       loading: true,
       list: {},
+      id: null,
       onPress: true,
       data: this.props.dataPost,
       post_id: this.props.dataPost.id,
+      user_id: this.props.dataPost.user_id,
       countLike: this.props.dataPost.likes.length,
       like_id: this.props.dataPost.likes.id
     }
+  }
+
+  componentDidMount() {
+    auth.profile()
+      .then(response => {
+        this.setState({
+          id: response.data.id
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   gotoDetail(dataPost) {
@@ -44,13 +60,13 @@ export default class TimelineList extends Component {
   }
 
   render() {
-    
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.countLike === 0;
     const date = moment(this.state.data.updated_at, 'YYYY-MM-DD').format('D MMM');
-    const id = this.state.post_id;
+    const poster_id = this.state.user_id;
+    const owner = poster_id === this.state.id;
     const onChangeImg = () => {
       if(this.state.onPress) {
       post
@@ -86,9 +102,30 @@ export default class TimelineList extends Component {
               </TouchableOpacity>
               <View style={styles.textAboutContainer}>
               {/* show first name and last name in timeline*/}
-                <Text style={styles.textNameProfile}>
-                {this.state.data.poster.name_first} {this.state.data.poster.name_last}
-                </Text>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <Text style={styles.textNameProfile}>
+                    {this.state.data.poster.name_first} {this.state.data.poster.name_last}
+                  </Text>
+                  {owner ?
+                    <TouchableOpacity
+                      onPress={() => Alert.alert('Cofirmation',
+                      'Delete post?', [
+                        { text: 'No', onPress: () => console.log('Cancel Pressed')},
+                        { text: 'Yes', onPress:
+                        () => post.deletePost(id)
+                        .then(response => {
+                          console.log("Deleted");
+                        })
+                        .catch(err => {
+                          console.log("Error on delete");
+                        })},
+                      ])}>
+                      <Image
+                        style={styles.icons}
+                        source={require('./../../../images/ic_delete_white_24dp.png')}
+                      />
+                    </TouchableOpacity> : <View />}
+                </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10}}>
                   <Image
                     source={require('./../../../images/ic_watch_later_black_18dp.png')}
