@@ -21,6 +21,7 @@ import auth from './../../../services/auth';
 import TimelineComments from '../timelineComment';
 import CommentView from '../timelineComment/commentList';
 import strings from '../../../localizations';
+import viewComment from '../timelineComment/viewComment'
 
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
@@ -29,7 +30,6 @@ const moment = require('moment');
 export default class TimelineList extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loading: true,
       list: {},
