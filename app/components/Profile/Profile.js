@@ -11,8 +11,17 @@ import {
   ListView,
 } from 'react-native';
 
-import ProfilePost from './ProfilePost'
-import { Card, CardItem, Container, Right, Left, Button } from 'native-base';
+import ProfilePost from './ProfilePost';
+import {
+  Card,
+  CardItem,
+  Container,
+  Right,
+  Left,
+  Button ,
+  Fab ,
+  Icon,
+} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
@@ -155,11 +164,16 @@ export default class Profile extends Component {
 
     if (this.state.loading === false) {
       return (
+      <View>
+
+
         <ScrollView
           ref={(scroll) => {
             this.scrollView = scroll;
           }}
         >
+
+
           <View style={styles.container}>
             <View style={styles.backgroundContainer}>
               <Image
@@ -167,6 +181,7 @@ export default class Profile extends Component {
                 resizeMode={'cover'}
                 style={styles.backdrop}
               >
+
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
@@ -220,13 +235,19 @@ export default class Profile extends Component {
             <View style={styles.biodata}>
               <Card>
                 <View>
-                  <View style={{ paddingVertical: 10 }}>
+                  <View style={styles.profile}>
                     <TouchableOpacity onPress={Actions.about}>
                       <Text style={styles.headline} colors={['black']}>
                         {this.state.profile.name_first} {this.state.profile.name_last}
                       </Text>
                     </TouchableOpacity>
+
+                    <Button transparent onPress={Actions.chatfriend} style={styles.chatImg} >
+                      <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
+                    </Button>
+
                   </View>
+
                   <View style={styles.textInform}>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                       <TouchableOpacity>
@@ -327,8 +348,8 @@ export default class Profile extends Component {
             renderRow={dataPost => <TimelineList dataPost={dataPost} />}
           />
           </View>
-
         </ScrollView>
+      </View>
       );
     }
     return (
