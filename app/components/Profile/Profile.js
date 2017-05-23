@@ -273,7 +273,7 @@ export default class Profile extends Component {
                       </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                      <TouchableOpacity onPress={Actions.friendlist}>
+                      <TouchableOpacity onPress={Actions.follower}>
                         <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                         <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
                           {this.state.countFollower}
@@ -281,7 +281,7 @@ export default class Profile extends Component {
                       </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                      <TouchableOpacity onPress={Actions.friendlist}>
+                      <TouchableOpacity onPress={Actions.following}>
                         <Text style={styles.followerss}>
                           {strings.profileLocalization.following}
                         </Text>
