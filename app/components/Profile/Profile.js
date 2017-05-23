@@ -28,7 +28,7 @@ import post from '../../services/post';
 import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
-import TimelineList from '../Timeline/TimelineList'
+import TimelineList from '../Timeline/TimelineList';
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -39,7 +39,6 @@ export default class Profile extends Component {
       avatarSource: null,
     };
     this.state = {
-      name          : "Aji lantang mardika",
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       profile: this.props.profile,
@@ -59,16 +58,15 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log("this is iddd  " , this.state.id)
         const id = this.state.id
         if (id === this.state.profile.id) {
           this.setState({ me: true });
         }
         this.followHasSomeone(id, this.state.profile.id);
 
+        // Get all post
         post.getPost()
           .then((res) => {
-            console.log("LANDING HEREEEEEEEE POST");
             const countPosts = res.data.length;
             this.setState({ countPost: countPosts, loading: false })
           })
@@ -78,10 +76,10 @@ export default class Profile extends Component {
             ]);
           });
 
+        // Get all follower
         follows
           .showFollower(this.state.profile.id)
           .then((res) => {
-            console.log("LANDING HEREEEEEEEEE FOLLOWER", res.data.length);
             const countFollowers = res.data.length;
             this.setState({ countFollower: countFollowers, loading: false });
           })
@@ -91,9 +89,9 @@ export default class Profile extends Component {
             ]);
           });
 
+          // Get all following
           follows.showFollowing(this.state.profile.id)
             .then((res) => {
-            console.log("LANDING HEREEEEEEEEE FOLLOWING", res.data.length);
             const countFollowings = res.data.length;
             this.setState({ countFollowing: countFollowings, loading: false });
             })
@@ -105,7 +103,6 @@ export default class Profile extends Component {
   }
 
   componentWillMount(){
-console.log("will mount")
     const id = this.state.id
     timelineList
     .getTimelineId(id)
@@ -188,23 +185,17 @@ console.log("will mount")
   }
 
   render() {
-{console.log("this is list", this.state.list)}
     {
-
       for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
     }
     if (this.state.loading === false) {
       return (
       <View>
-
-
         <ScrollView
           ref={(scroll) => {
             this.scrollView = scroll;
           }}
         >
-
-
           <View style={styles.container}>
             <View style={styles.backgroundContainer}>
               <Image
@@ -212,7 +203,6 @@ console.log("will mount")
                 resizeMode={'cover'}
                 style={styles.backdrop}
               >
-
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
@@ -249,7 +239,6 @@ console.log("will mount")
                         disabled={this.props.status.status === 'request' && this.state.request}
                         onPress={() => this.toggleSwitchFollow()}
                       >
-
                         <Text style={this.state.followed ? styles.button : styles.button}>
                           {this.state.followed
                               ? this.props.status.status === 'request'
@@ -257,12 +246,10 @@ console.log("will mount")
                                   : strings.profileLocalization.unfollow
                               : strings.profileLocalization.follow}
                         </Text>
-
                       </TouchableOpacity>
                     </View>
                     : <Text />}
             </View>
-
             <View style={styles.biodata}>
               <Card>
                 <View>
@@ -272,13 +259,10 @@ console.log("will mount")
                         {this.state.profile.name_first} {this.state.profile.name_last}
                       </Text>
                     </TouchableOpacity>
-
                     <Button transparent onPress={Actions.chatfriend} style={styles.chatImg} >
                       <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
                     </Button>
-
                   </View>
-
                   <View style={styles.textInform}>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                       <TouchableOpacity>
