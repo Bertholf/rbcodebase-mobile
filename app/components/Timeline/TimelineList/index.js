@@ -21,6 +21,7 @@ import auth from './../../../services/auth';
 import TimelineComments from '../timelineComment';
 import CommentView from '../timelineComment/commentList';
 import strings from '../../../localizations';
+import viewComment from '../timelineComment/viewComment'
 
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
@@ -29,7 +30,6 @@ const moment = require('moment');
 export default class TimelineList extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       loading: true,
       list: {},
@@ -39,7 +39,9 @@ export default class TimelineList extends Component {
       post_id: this.props.dataPost.id,
       user_id: this.props.dataPost.user_id,
       countLike: this.props.dataPost.likes.length,
-      like_id: this.props.dataPost.likes.id
+      like_id: this.props.dataPost.likes.id,
+      id_like: '',
+      liked: this.props.dataPost.liked
     }
   }
 
@@ -60,6 +62,7 @@ export default class TimelineList extends Component {
   }
 
   render() {
+
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
@@ -75,16 +78,21 @@ export default class TimelineList extends Component {
             this.setState({
               onPress: !this.state.onPress,
               countLike: this.state.countLike + 1,
+              id_like: response.data.id
             })
           })
           .catch(err => console.log('error message yang salah', err))
       }
       else {
+        const idlike = this.state.id_like
         post
-        this.setState({
-          onPress: !this.state.onPress,
-          countLike: this.state.countLike - 1,
-        })
+            .unlikePost(idlike)
+            .then(response => {
+              this.setState({
+                onPress: !this.state.onPress,
+                countLike: this.state.countLike - 1,
+              })
+            })
       }
     }
     return (
