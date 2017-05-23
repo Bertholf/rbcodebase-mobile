@@ -10,7 +10,6 @@ import {
   AsyncStorage,
   ListView,
 } from 'react-native';
-
 import ProfilePost from './ProfilePost';
 import {
   Card,
@@ -25,10 +24,11 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
+import post from '../../services/post';
 import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
-import TimelineList from '../Timeline/TimelineList'
+import TimelineList from '../Timeline/TimelineList';
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -39,13 +39,14 @@ export default class Profile extends Component {
       avatarSource: null,
     };
     this.state = {
-      name          : "Aji lantang mardika",
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       profile: this.props.profile,
       leaderId: this.props.id,
       followed: true,
-      countFollowing: 0,
+      countPost: null,
+      countFollowing: null,
+      countFollower: null,
       id: this.props.user_id,
       friend: false,
       edit: false,
@@ -57,17 +58,17 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log("this is iddd  " , this.state.id)
         const id = this.state.id
         if (id === this.state.profile.id) {
           this.setState({ me: true });
         }
         this.followHasSomeone(id, this.state.profile.id);
-        follows
-          .showFollower(this.state.profile.id)
+
+        // Get all post
+        post.getPost()
           .then((res) => {
-            const count = res.data.length;
-            this.setState({ countFollowing: count, loading: false });
+            const countPosts = res.data.length;
+            this.setState({ countPost: countPosts, loading: false })
           })
           .catch(() => {
             Alert.alert('Fail to connect to server', '', [
@@ -75,7 +76,30 @@ export default class Profile extends Component {
             ]);
           });
 
+        // Get all follower
+        follows
+          .showFollower(this.state.profile.id)
+          .then((res) => {
+            const countFollowers = res.data.length;
+            this.setState({ countFollower: countFollowers, loading: false });
+          })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
 
+          // Get all following
+          follows.showFollowing(this.state.profile.id)
+            .then((res) => {
+            const countFollowings = res.data.length;
+            this.setState({ countFollowing: countFollowings, loading: false });
+            })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
   }
 
   componentWillMount(){
@@ -161,19 +185,17 @@ export default class Profile extends Component {
   }
 
   render() {
-
+    {
+      for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
+    }
     if (this.state.loading === false) {
       return (
       <View>
-
-
         <ScrollView
           ref={(scroll) => {
             this.scrollView = scroll;
           }}
         >
-
-
           <View style={styles.container}>
             <View style={styles.backgroundContainer}>
               <Image
@@ -181,7 +203,6 @@ export default class Profile extends Component {
                 resizeMode={'cover'}
                 style={styles.backdrop}
               >
-
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
@@ -218,7 +239,6 @@ export default class Profile extends Component {
                         disabled={this.props.status.status === 'request' && this.state.request}
                         onPress={() => this.toggleSwitchFollow()}
                       >
-
                         <Text style={this.state.followed ? styles.button : styles.button}>
                           {this.state.followed
                               ? this.props.status.status === 'request'
@@ -226,12 +246,10 @@ export default class Profile extends Component {
                                   : strings.profileLocalization.unfollow
                               : strings.profileLocalization.follow}
                         </Text>
-
                       </TouchableOpacity>
                     </View>
                     : <Text />}
             </View>
-
             <View style={styles.biodata}>
               <Card>
                 <View>
@@ -241,25 +259,24 @@ export default class Profile extends Component {
                         {this.state.profile.name_first} {this.state.profile.name_last}
                       </Text>
                     </TouchableOpacity>
-
                     <Button transparent onPress={Actions.chatfriend} style={styles.chatImg} >
                       <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
                     </Button>
-
                   </View>
-
                   <View style={styles.textInform}>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                       <TouchableOpacity>
                         <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
-                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }} />
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countPost}
+                        </Text>
                       </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                       <TouchableOpacity onPress={Actions.friendlist}>
                         <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                         <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
-                          {this.state.countFollowing}
+                          {this.state.countFollower}
                         </Text>
                       </TouchableOpacity>
                     </View>
