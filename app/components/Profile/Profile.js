@@ -10,7 +10,6 @@ import {
   AsyncStorage,
   ListView,
 } from 'react-native';
-
 import ProfilePost from './ProfilePost';
 import {
   Card,
@@ -25,6 +24,7 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
+import post from '../../services/post';
 import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
@@ -45,7 +45,9 @@ export default class Profile extends Component {
       profile: this.props.profile,
       leaderId: this.props.id,
       followed: true,
-      countFollowing: 0,
+      countPost: null,
+      countFollowing: null,
+      countFollower: null,
       id: this.props.user_id,
       friend: false,
       edit: false,
@@ -63,11 +65,12 @@ export default class Profile extends Component {
           this.setState({ me: true });
         }
         this.followHasSomeone(id, this.state.profile.id);
-        follows
-          .showFollower(this.state.profile.id)
+
+        post.getPost()
           .then((res) => {
-            const count = res.data.length;
-            this.setState({ countFollowing: count, loading: false });
+            console.log("LANDING HEREEEEEEEE POST");
+            const countPosts = res.data.length;
+            this.setState({ countPost: countPosts, loading: false })
           })
           .catch(() => {
             Alert.alert('Fail to connect to server', '', [
@@ -75,7 +78,30 @@ export default class Profile extends Component {
             ]);
           });
 
+        follows
+          .showFollower(this.state.profile.id)
+          .then((res) => {
+            console.log("LANDING HEREEEEEEEEE FOLLOWER", res.data.length);
+            const countFollowers = res.data.length;
+            this.setState({ countFollower: countFollowers, loading: false });
+          })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
 
+          follows.showFollowing(this.state.profile.id)
+            .then((res) => {
+            console.log("LANDING HEREEEEEEEEE FOLLOWING", res.data.length);
+            const countFollowings = res.data.length;
+            this.setState({ countFollowing: countFollowings, loading: false });
+            })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
   }
 
   componentWillMount(){
@@ -257,14 +283,16 @@ console.log("will mount")
                     <View style={{ flex: 1, alignItems: 'center' }}>
                       <TouchableOpacity>
                         <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
-                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }} />
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countPost}
+                        </Text>
                       </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                       <TouchableOpacity onPress={Actions.friendlist}>
                         <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                         <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
-                          {this.state.countFollowing}
+                          {this.state.countFollower}
                         </Text>
                       </TouchableOpacity>
                     </View>
