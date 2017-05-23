@@ -39,9 +39,8 @@ export default class TimelineList extends Component {
       post_id: this.props.dataPost.id,
       user_id: this.props.dataPost.user_id,
       countLike: this.props.dataPost.likes.length,
-      like_id: this.props.dataPost.likes.id,
-      id_like: '',
-      liked: this.props.dataPost.liked
+      liked: this.props.dataPost.liked,
+      likes: this.props.dataPost.likes,
     }
   }
 
@@ -62,7 +61,9 @@ export default class TimelineList extends Component {
   }
 
   render() {
+    console.log('ini adalah id', this.state.id);
 
+    const likes = this.state.data.likes
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
@@ -70,29 +71,35 @@ export default class TimelineList extends Component {
     const date = moment(this.state.data.updated_at, 'YYYY-MM-DD').format('D MMM');
     const poster_id = this.state.user_id;
     const owner = poster_id === this.state.id;
+    const veryfied = this.state.liked === false;
+    const getIdDelete = this.state.post_id;
     const onChangeImg = () => {
-      if(this.state.onPress) {
+      if( this.state.liked === false) {
+      const id = this.state.data.id
       post
           .likePost(id)
           .then(response => {
             this.setState({
-              onPress: !this.state.onPress,
-              countLike: this.state.countLike + 1,
-              id_like: response.data.id
+              countLike: this.state.likes.length + 1,
+              liked: !this.state.liked,
+              likes:this.state.likes.concat(response.data)
             })
           })
           .catch(err => console.log('error message yang salah', err))
       }
-      else {
-        const idlike = this.state.id_like
+      else if(this.state.liked) {
+        const idLike = getId(this.state.user_id)(this.state.likes)[0].id
         post
-            .unlikePost(idlike)
+            .unlikePost(idLike)
             .then(response => {
               this.setState({
-                onPress: !this.state.onPress,
-                countLike: this.state.countLike - 1,
+                countLike: this.state.likes.length - 1,
+                liked: !this.state.liked,
+                likes: getRemove(this.state.user_id)(this.state.likes),
               })
+              console.log('ini adalah likeske 2: ', this.state.likes)
             })
+            .catch(err => console.log('gagal unlike: ', err))
       }
     }
     return (
@@ -120,7 +127,7 @@ export default class TimelineList extends Component {
                       'Delete post?', [
                         { text: 'No', onPress: () => console.log('Cancel Pressed')},
                         { text: 'Yes', onPress:
-                        () => post.deletePost(id)
+                        () => post.deletePost(getIdDelete)
                         .then(response => {
                           console.log("Deleted");
                         })
@@ -156,10 +163,10 @@ export default class TimelineList extends Component {
                     activeOpacity={0.7}
                   >
                     <Image
-                      source={this.state.onPress ? imgLike : imgUnLike}
+                      source={veryfied ? imgLike : imgUnLike}
                       style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3'}}
                     />
-                    {this.state.onPress ? likeCount > 1 ?
+                    {veryfied ? likeCount > 1 ?
                       <Text>{this.state.countLike} {strings.timeline.likes}</Text> : noLikes ?
                       <Text>{strings.timeline.like}</Text> : <Text>{this.state.countLike} {strings.timeline.like}</Text> :
                       <Text>{this.state.countLike} {strings.timeline.unlike}</Text>}
@@ -203,5 +210,17 @@ export default class TimelineList extends Component {
       </View>
     </ScrollView>
     );
+  }
+}
+
+function getId(id){
+  return (json) => {
+    return json.filter((data) => {return data.user_id === id})
+  }
+}
+
+function getRemove(id){
+  return (json) => {
+    return json.filter((data) => {return data.user_id !== id})
   }
 }

@@ -6,7 +6,7 @@ const post = {
   deletePost: (id) => api.post(`/api/timeline/post/${id}/delete`),
   newPost: (text, type) => api.post('api/timeline/post', {text, type}),
   likePost: (post_id) => api.post('api/timeline/like', {post_id}),
-  unlikePost: (id) => api.post(`api/timeline/like/${id}/unlike`, {id})
+  unlikePost: (id) => api.post(`api/timeline/like/${id}/unlike`),
 }
 
 export default post;
