@@ -108,6 +108,18 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginRight: 20,
   },
+  liked: {
+    marginRight: 5,
+    height: 15,
+    width: 15,
+    tintColor: '#2196F3'
+  },
+  unlike: {
+    marginRight: 5,
+    height: 15,
+    width: 15,
+    opacity: 0.5,
+  },
 });
 
 export default styles;

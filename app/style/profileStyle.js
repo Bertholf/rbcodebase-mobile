@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   pos: {
     marginTop: 6,
+    textAlign: 'center',
     color: 'grey',
   },
   followers: {
