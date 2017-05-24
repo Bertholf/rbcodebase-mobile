@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   comment: {
     flex: 2,
     padding: 0,
-    fontFamily: 'sans-serif-medium',
     marginLeft: 5,
     height: 30,
   },
@@ -47,11 +46,9 @@ const styles = StyleSheet.create({
   marginRight: 20,
   },
   user: {
-    fontFamily: 'sans-serif-medium',
     color: '#000',
   },
   text: {
-      fontFamily: 'sans-serif-medium',
       opacity:0.5,
     },
 })
