@@ -6,6 +6,7 @@ import {
   Button,
   Image,
   Alert,
+  TouchableOpacity,
   ListView,
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
@@ -138,10 +139,11 @@ export default class PostCard extends Component {
                 paddingTop: 12,
               }}
             >
-              <Button
-                title={'Post'}
-                onPress={() => this.uploadFile()}
-              />
+              <TouchableOpacity onPress={() => this.uploadFile()}>
+                <Text style={styles.post}>
+                Post
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

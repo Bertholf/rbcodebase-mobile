@@ -260,9 +260,11 @@ export default class Profile extends Component {
                         {this.state.profile.name_first} {this.state.profile.name_last}
                       </Text>
                     </TouchableOpacity>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
                     <Button transparent onPress={Actions.chatfriend} style={styles.chatImg} >
                       <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
                     </Button>
+                    </View>
                   </View>
                   <View style={styles.textInform}>
                     <View style={{ flex: 1, alignItems: 'center' }}>

@@ -114,9 +114,8 @@ export default class TimelineList extends Component {
           .catch(err => console.log('error message yang salah', err))
       }
       else if(this.state.liked) {
-        const idLike = getId(this.state.user_id)(this.state.likes)[0].id
-        post
-            .unlikePost(idLike)
+        const idLike = getId(this.state.user_id)(this.state.likes)[0].id;
+          post.unlikePost(idLike)
             .then(response => {
               this.setState({
                 countLike: this.state.likes.length - 1,
