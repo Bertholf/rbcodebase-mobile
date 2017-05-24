@@ -67,13 +67,21 @@ const styles = StyleSheet.create({
       ios: {
         flexDirection: 'row',
         borderTopWidth: 0.2,
-        borderColor: '#9E9E9E',
+        borderColor: '#fff',
       },
       android: {
         flexDirection: 'row',
       },
     }),
   },
+  post: {
+    color: '#fff',
+    backgroundColor: '#2196F3',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  }
 });
 
 module.exports = styles;

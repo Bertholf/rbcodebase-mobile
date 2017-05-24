@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,10 +15,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   avatarImg: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    marginRight: 12,
+    ...Platform.select({
+      ios: {
+        width: 50,
+        height: 50,
+        marginRight: 12,
+        borderRadius: 50/2,
+      },
+      android: {
+        width: 50,
+        height: 50,
+        borderRadius: 50,
+        marginRight: 12,
+      }
+    }),
   },
   textAboutContainer: {
     flex: 9,
@@ -81,6 +91,42 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     alignSelf: 'center',
     marginRight: 20,
+  },
+  input: {
+    flex: 2,
+    padding: 0,
+    marginLeft: 5,
+    height: 30,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+    marginRight: 5,
+    backgroundColor: 'rgba(0,0,0,0)',
+    tintColor: '#2196F3',
+  },
+
+  box: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: '#2196F3',
+    borderBottomWidth: 1,
+    marginBottom: 8,
+    marginRight: 20,
+  },
+  liked: {
+    marginRight: 5,
+    height: 15,
+    width: 15,
+    tintColor: '#2196F3',
+  },
+  unlike: {
+    marginRight: 5,
+    height: 15,
+    width: 15,
+    opacity: 0.5,
   },
 });
 

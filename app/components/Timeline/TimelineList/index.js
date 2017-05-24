@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
   Alert,
+  TextInput,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../../services/timelineList';
@@ -24,7 +25,9 @@ import strings from '../../../localizations';
 import viewComment from '../timelineComment/viewComment'
 
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
-const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
+const icon = require('./../../../images/ic_check_circle_black_24dp.png');
+const edit = require('./../../../images/ic_mode_edit_black_24dp.png');
+const close = require('./../../../images/ic_close.png');
 const moment = require('moment');
 
 export default class TimelineList extends Component {
@@ -35,7 +38,9 @@ export default class TimelineList extends Component {
       list: {},
       id: null,
       onPress: true,
+      onEdit: false,
       data: this.props.dataPost,
+      text: this.props.dataPost.text,
       post_id: this.props.dataPost.id,
       user_id: this.props.dataPost.user_id,
       countLike: this.props.dataPost.likes.length,
@@ -44,6 +49,7 @@ export default class TimelineList extends Component {
     }
   }
 
+  // Get user id
   componentDidMount() {
     auth.profile()
       .then(response => {
@@ -60,9 +66,24 @@ export default class TimelineList extends Component {
     Actions.timelineDetail(dataPost);
   }
 
+  // User update post
+  updatePost() {
+    const id = this.state.post_id;
+    const text = this.state.text;
+    post.updatePost(id, text)
+      .then(res => {
+        this.setState({
+            onEdit: !this.state.onEdit,
+        });
+      })
+      .catch(err => {
+        console.log("ERROR HEREEEEEEE");
+      })
+  }
+
   render() {
     const timePost = moment.parseZone(this.state.data.updated_at, 'YYYY-MM-DD hh:mm:ss').utc();
-    const likes = this.state.data.likes
+    const likes = this.state.data.likes;
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
@@ -76,6 +97,8 @@ export default class TimelineList extends Component {
     const owner = poster_id === this.state.id;
     const veryfied = this.state.liked === false;
     const getIdDelete = this.state.post_id;
+
+    // User like post
     const onChangeImg = () => {
       if( this.state.liked === false) {
       const id = this.state.data.id
@@ -91,9 +114,8 @@ export default class TimelineList extends Component {
           .catch(err => console.log('error message yang salah', err))
       }
       else if(this.state.liked) {
-        const idLike = getId(this.state.user_id)(this.state.likes)[0].id
-        post
-            .unlikePost(idLike)
+        const idLike = getId(this.state.user_id)(this.state.likes)[0].id;
+          post.unlikePost(idLike)
             .then(response => {
               this.setState({
                 countLike: this.state.likes.length - 1,
@@ -125,6 +147,22 @@ export default class TimelineList extends Component {
                     {this.state.data.poster.name_first} {this.state.data.poster.name_last}
                   </Text>
                   {owner ?
+                    <View style={{flexDirection: 'row'}}>
+                      <TouchableOpacity
+                      onPress={() => this.setState({
+                        onEdit: !this.state.onEdit
+                      })}>
+                        {!this.state.onEdit ?
+                          <Image
+                            style={styles.icons}
+                            source={edit}
+                          /> :
+                          <Image
+                            style={styles.icons}
+                            source={close}
+                          />
+                        }
+                    </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => Alert.alert('Cofirmation',
                       'Delete post?', [
@@ -142,7 +180,8 @@ export default class TimelineList extends Component {
                         style={styles.icons}
                         source={require('./../../../images/ic_delete_white_24dp.png')}
                       />
-                    </TouchableOpacity> : <View />}
+                    </TouchableOpacity>
+                  </View> : <View />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10}}>
                   <Image
@@ -155,9 +194,27 @@ export default class TimelineList extends Component {
                   </Text>
                 </View>
                  <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10 }}>
-                  <Text style={styles.textNameProfile}>
-                    {this.state.data.text}
-                  </Text>
+                   {!this.state.onEdit ?
+                    <Text style={styles.textNameProfile}>
+                      {this.state.text}
+                    </Text> :
+                    <View style={styles.box}>
+                      <TextInput
+                        ref={'update'}
+                        style={styles.input}
+                        placeholder = 'Edit your caption'
+                        autoCapitalize = 'none'
+                        onChangeText = {(text) => this.setState({text: text})}
+                        multiline = {true}
+                        underlineColorAndroid = "rgba(0,0,0,0)" />
+                        <TouchableOpacity onPress={() => this.updatePost()}>
+                        <Image
+                          style={styles.icon}
+                          source={icon}
+                        />
+                        </TouchableOpacity>
+                </View>
+                }
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 30, marginBottom: 10 }}>
                   <TouchableOpacity
@@ -166,8 +223,8 @@ export default class TimelineList extends Component {
                     activeOpacity={0.7}
                   >
                     <Image
-                      source={veryfied ? imgLike : imgUnLike}
-                      style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3'}}
+                      source={imgLike}
+                      style={!veryfied ? styles.liked : styles.unlike}
                     />
                     {veryfied ? likeCount > 1 ?
                       <Text>{this.state.countLike} {strings.timeline.likes}</Text> : noLikes ?
@@ -182,7 +239,7 @@ export default class TimelineList extends Component {
                   >
                     <Image
                       source={require('./../../../images/insert_comment_black.png')}
-                      style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
+                      style={styles.unlike}
                     />
                     {commentCount > 1 ?
                       <Text>{this.state.data.comments.length} {strings.timeline.comments}</Text> : noComments ?
@@ -197,7 +254,7 @@ export default class TimelineList extends Component {
                   >
                     <Image
                       source={require('./../../../images/share_black.png')}
-                      style={{ marginRight: 5, height: 15, width: 15, tintColor: '#2196F3' }}
+                      style={styles.unlike}
                     />
                     <Text>{strings.timeline.share}</Text>
                   </TouchableOpacity>
