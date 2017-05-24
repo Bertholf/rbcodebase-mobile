@@ -82,6 +82,32 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginRight: 20,
   },
+  input: {
+    flex: 2,
+    padding: 0,
+    fontFamily: 'sans-serif-medium',
+    marginLeft: 5,
+    height: 30,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+    borderWidth: 3,
+    borderRadius: 10,
+    marginRight: 5,
+    backgroundColor: 'rgba(0,0,0,0)',
+    tintColor: '#2196F3',
+  },
+  box: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomColor: '#2196F3',
+    borderBottomWidth: 1,
+    marginBottom: 8,
+    marginRight: 20,
+  },
 });
 
 export default styles;

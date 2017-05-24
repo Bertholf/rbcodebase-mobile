@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
   Alert,
+  TextInput,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../../services/timelineList';
@@ -25,6 +26,7 @@ import viewComment from '../timelineComment/viewComment'
 
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
+const icon = require('./../../../images/ic_check_circle_black_24dp.png')
 const moment = require('moment');
 
 export default class TimelineList extends Component {
@@ -35,7 +37,9 @@ export default class TimelineList extends Component {
       list: {},
       id: null,
       onPress: true,
+      onEdit: false,
       data: this.props.dataPost,
+      text: this.props.dataPost.text,
       post_id: this.props.dataPost.id,
       user_id: this.props.dataPost.user_id,
       countLike: this.props.dataPost.likes.length,
@@ -58,6 +62,20 @@ export default class TimelineList extends Component {
 
   gotoDetail(dataPost) {
     Actions.timelineDetail(dataPost);
+  }
+
+  updatePost() {
+    const id = this.state.post_id;
+    const text = this.state.text;
+    post.updatePost(id, text)
+      .then(res => {
+        this.setState({
+            onEdit: !this.state.onEdit,
+        });
+      })
+      .catch(err => {
+        console.log("ERROR HEREEEEEEE");
+      })
   }
 
   render() {
@@ -125,6 +143,16 @@ export default class TimelineList extends Component {
                     {this.state.data.poster.name_first} {this.state.data.poster.name_last}
                   </Text>
                   {owner ?
+                    <View style={{flexDirection: 'row'}}>
+                      <TouchableOpacity
+                      onPress={() => this.setState({
+                        onEdit: !this.state.onEdit
+                      })}>
+                      <Image
+                        style={styles.icons}
+                        source={require('./../../../images/ic_delete_white_24dp.png')}
+                      />
+                    </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => Alert.alert('Cofirmation',
                       'Delete post?', [
@@ -142,7 +170,8 @@ export default class TimelineList extends Component {
                         style={styles.icons}
                         source={require('./../../../images/ic_delete_white_24dp.png')}
                       />
-                    </TouchableOpacity> : <View />}
+                    </TouchableOpacity>
+                  </View> : <View />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10}}>
                   <Image
@@ -155,9 +184,28 @@ export default class TimelineList extends Component {
                   </Text>
                 </View>
                  <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10 }}>
-                  <Text style={styles.textNameProfile}>
-                    {this.state.data.text}
-                  </Text>
+                   {!this.state.onEdit ?
+                    <Text style={styles.textNameProfile}>
+                      {this.state.text}
+                    </Text> :
+                    <View style={styles.box}>
+                      <TextInput
+                        ref={'update'}
+                        style={styles.input}
+                        placeholder = 'Edit your caption'
+                        autoCapitalize = 'none'
+                        onChangeText = {(text) => this.setState({text: text})}
+                        multiline = {true}
+                        underlineColorAndroid = "rgba(0,0,0,0)" />
+                        <TouchableOpacity onPress={() => this.updatePost()}
+                        >
+                            <Image
+                              style={styles.icon}
+                              source={icon}
+                            />
+                        </TouchableOpacity>
+                </View>
+                }
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 30, marginBottom: 10 }}>
                   <TouchableOpacity
