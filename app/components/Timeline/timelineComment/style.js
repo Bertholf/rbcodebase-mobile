@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   comment: {
     flex: 2,
     padding: 0,
-    fontFamily: 'sans-serif-medium',
     marginLeft: 5,
     height: 30,
   },
@@ -17,8 +16,6 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     alignSelf: 'center',
-    borderWidth: 3,
-    borderRadius: 10,
     marginRight: 5,
     backgroundColor: 'rgba(0,0,0,0)',
     tintColor: '#2196F3',
@@ -40,20 +37,18 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   listcomment: {
-  borderColor: '#B3E5FC',
-  borderBottomWidth: 0.5,
-  paddingBottom: 5,
-  paddingTop: 5,
-  marginRight: 20,
+    borderColor: '#B3E5FC',
+    borderBottomWidth: 0.5,
+    paddingBottom: 5,
+    paddingTop: 5,
+    marginRight: 20,
   },
   user: {
-    fontFamily: 'sans-serif-medium',
     color: '#000',
   },
   text: {
-      fontFamily: 'sans-serif-medium',
-      opacity:0.5,
-    },
+    opacity:0.5,
+  },
 })
 
 export default styles;

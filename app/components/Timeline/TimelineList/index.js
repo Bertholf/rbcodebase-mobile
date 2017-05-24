@@ -83,7 +83,7 @@ export default class TimelineList extends Component {
 
   render() {
     const timePost = moment.parseZone(this.state.data.updated_at, 'YYYY-MM-DD hh:mm:ss').utc();
-    const likes = this.state.data.likes
+    const likes = this.state.data.likes;
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
@@ -208,12 +208,11 @@ export default class TimelineList extends Component {
                         onChangeText = {(text) => this.setState({text: text})}
                         multiline = {true}
                         underlineColorAndroid = "rgba(0,0,0,0)" />
-                        <TouchableOpacity onPress={() => this.updatePost()}
-                        >
-                            <Image
-                              style={styles.icon}
-                              source={icon}
-                            />
+                        <TouchableOpacity onPress={() => this.updatePost()}>
+                        <Image
+                          style={styles.icon}
+                          source={icon}
+                        />
                         </TouchableOpacity>
                 </View>
                 }
