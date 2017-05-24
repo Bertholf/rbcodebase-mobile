@@ -61,14 +61,17 @@ export default class TimelineList extends Component {
   }
 
   render() {
-    console.log('ini adalah id', this.state.id);
-
+    const timePost = moment.parseZone(this.state.data.updated_at, 'YYYY-MM-DD hh:mm:ss').utc();
     const likes = this.state.data.likes
     const commentCount = this.state.data.comments.length;
     const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.countLike === 0;
-    const date = moment(this.state.data.updated_at, 'YYYY-MM-DD').format('D MMM');
+    const date = moment().diff(timePost, 'days') < 5
+      ? timePost.fromNow()
+      : moment().diff(timePost, 'years') >= 1
+      ? timePost.format('D MMM YY')
+      : timePost.format('D MMM');
     const poster_id = this.state.user_id;
     const owner = poster_id === this.state.id;
     const veryfied = this.state.liked === false;

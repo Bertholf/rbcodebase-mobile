@@ -67,7 +67,7 @@ export default class Profile extends Component {
         // Get all post
         post.getPost()
           .then((res) => {
-            const countPosts = res.data.length;
+            const countPosts = res.data[0].posts.length;
             this.setState({ countPost: countPosts, loading: false })
           })
           .catch(() => {
@@ -185,6 +185,7 @@ export default class Profile extends Component {
   }
 
   render() {
+
     {
       for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
     }
@@ -273,7 +274,7 @@ export default class Profile extends Component {
                       </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                      <TouchableOpacity onPress={Actions.friendlist}>
+                      <TouchableOpacity onPress={Actions.follower}>
                         <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
                         <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
                           {this.state.countFollower}
@@ -281,7 +282,7 @@ export default class Profile extends Component {
                       </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                      <TouchableOpacity onPress={Actions.friendlist}>
+                      <TouchableOpacity onPress={Actions.following}>
                         <Text style={styles.followerss}>
                           {strings.profileLocalization.following}
                         </Text>
@@ -329,63 +330,63 @@ export default class Profile extends Component {
                       </View>
                     </View>
                     <View style={{ flexDirection: 'column' }}>
-                      <View style={styles.posisi}>
-                        <Image style={styles.icon} source={require('./../../images/live.png')} />
-                      </View>
-                      <View style={{ flexDirection: 'row' }}>
-                        <Text style={styles.isi}>{strings.profileLocalization.live} :</Text>
-                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
-                          N/A
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                  <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                    {/*
-                  This is will be used later
-                  ===============================
-                  <TouchableOpacity>
-                  <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
-                </TouchableOpacity> */}
-                  </View>
-                </View>
-              </Card>
-            </View>
-            {/*
-              This is will be used later
-              ===============================
-              <View style={styles.mapmain}>
-              <MapMain />
-            </View> */}
-          </View>
-          <View >
-          <ListView
-            enableEmptySections
-            dataSource={ds.cloneWithRows(this.state.list)}
-            renderRow={dataPost => <TimelineList dataPost={dataPost} />}
-          />
-          </View>
-        </ScrollView>
-      </View>
-      );
-    }
-    return (
-      <View style={styles.Indicator}>
-        <ActivityIndicator size={'large'} />
-      </View>
-    );
-  }
-  toggleSwitchFollow() {
-    if (this.state.followed === true) {
-      Alert.alert('Confirmation', strings.profileLocalization.areYouFollow, [
-        {
-          text: strings.logoutLocalization.cancel,
-          onPress: () => this.setState({ clicked: this.state.followed }),
-        },
-        { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
-      ]);
-    } else {
-      this.follow();
-    }
-  }
-}
+                    <View style={styles.posisi}>
+                      <Image style={styles.icon} source={require('./../../images/live.png')} />
+                                            </View>
+                                            <View style={{ flexDirection: 'row' }}>
+                                              <Text style={styles.isi}>{strings.profileLocalization.live} :</Text>
+                                              <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                                                N/A
+                                              </Text>
+                                            </View>
+                                          </View>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                          {/*
+                                        This is will be used later
+                                        ===============================
+                                        <TouchableOpacity>
+                                        <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
+                                      </TouchableOpacity> */}
+                                        </View>
+                                      </View>
+                                    </Card>
+                                  </View>
+                                  {/*
+                                    This is will be used later
+                                    ===============================
+                                    <View style={styles.mapmain}>
+                                    <MapMain />
+                                  </View> */}
+                                </View>
+                                <View >
+                                <ListView
+                                  enableEmptySections
+                                  dataSource={ds.cloneWithRows(this.state.list)}
+                                  renderRow={dataPost => <TimelineList dataPost={dataPost} />}
+                                />
+                                </View>
+                              </ScrollView>
+                            </View>
+                            );
+                          }
+                          return (
+                            <View style={styles.Indicator}>
+                              <ActivityIndicator size={'large'} />
+                            </View>
+                          );
+                        }
+                        toggleSwitchFollow() {
+                          if (this.state.followed === true) {
+                            Alert.alert('Confirmation', strings.profileLocalization.areYouFollow, [
+                              {
+                                text: strings.logoutLocalization.cancel,
+                                onPress: () => this.setState({ clicked: this.state.followed }),
+                              },
+                              { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
+                            ]);
+                          } else {
+                            this.follow();
+                          }
+                        }
+                      }
