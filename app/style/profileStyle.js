@@ -25,6 +25,32 @@ const styles = StyleSheet.create({
     width: width * 0.35,
     position: 'relative',
   },
+  username: {
+    fontSize: 16,
+    alignSelf: 'center',
+    opacity: 0.5,
+  },
+  icons: {
+    width: 16,
+    height: 16,
+    tintColor: '#757575',
+    opacity: 0.2,
+    alignSelf: 'center',
+    marginLeft: 8,
+  },
+  box: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    textAlign: 'center',
+    fontSize: 25,
+    flex: 2,
+    padding: 0,
+    height: 30,
+  },
   logo: {
     backgroundColor: 'rgba(0,0,0,0)',
     width: 100,

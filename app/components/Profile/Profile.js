@@ -9,6 +9,7 @@ import {
   Alert,
   AsyncStorage,
   ListView,
+  TextInput,
 } from 'react-native';
 import ProfilePost from './ProfilePost';
 import {
@@ -25,6 +26,7 @@ import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
 import post from '../../services/post';
+import auth from '../../services/auth';
 import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
@@ -42,6 +44,7 @@ export default class Profile extends Component {
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       profile: this.props.profile,
+      displayName: this.props.profile.name_display,
       leaderId: this.props.id,
       followed: true,
       countPost: null,
@@ -49,7 +52,7 @@ export default class Profile extends Component {
       countFollower: null,
       id: this.props.user_id,
       friend: false,
-      edit: false,
+      onEdit: false,
       button: false,
       me: false,
       request: false,
@@ -63,6 +66,15 @@ export default class Profile extends Component {
           this.setState({ me: true });
         }
         this.followHasSomeone(id, this.state.profile.id);
+
+        // Get user profile
+        auth.profile()
+          .then(res => {
+            this.setState({ profile: res.data });
+          })
+          .catch(err => {
+            console.log("Error");
+          });
 
         // Get all post
         post.getPost()
@@ -185,6 +197,19 @@ export default class Profile extends Component {
   }
 
   render() {
+    const hasDisplayName = this.state.profile.name_display !== null;
+    const editDisplayName = () => {
+      this.setState({ onEdit: !this.state.onEdit });
+    }
+    const changeDisplayName = () => {
+      auth.updateProfile()
+        .then(res => {
+          this.setState({ displayName: res.data.name_display})
+        })
+        .catch(err => {
+          console.log("Error", err.message);
+        });
+    }
 
     {
       for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
@@ -255,11 +280,29 @@ export default class Profile extends Component {
               <Card>
                 <View>
                   <View style={styles.profile}>
-                    <TouchableOpacity onPress={Actions.about}>
-                      <Text style={styles.headline} colors={['black']}>
-                        {this.state.profile.name_first} {this.state.profile.name_last}
+                      <Text style={styles.username}>
+                       {this.state.profile.name_slug}
                       </Text>
-                    </TouchableOpacity>
+                      {hasDisplayName ?
+                        this.state.onEdit ?
+                          <View style={styles.box}>
+                            <TextInput
+                              style={styles.input}
+                              value={this.state.displayName}
+                              onChangeText={(text) => this.setState({ displayName: text})}
+                            />
+                          </View> :
+                          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => editDisplayName()}>
+                              <Text style={styles.headline}>
+                                {this.state.profile.name_display}
+                              </Text>
+                            </TouchableOpacity>
+                          </View> :
+                        <Text style={styles.headline}>
+                          {this.state.profile.name_first} {this.state.profile.name_last}
+                        </Text>
+                      }
                     <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
                     <Button transparent onPress={Actions.chatfriend} style={styles.chatImg} >
                       <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
