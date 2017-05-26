@@ -37,7 +37,7 @@ export default class TimelineList extends Component {
       loading: true,
       list: {},
       id: null,
-      onPress: true,
+      onPress: false,
       onEdit: false,
       data: this.props.dataPost,
       text: this.props.dataPost.text,
@@ -45,12 +45,15 @@ export default class TimelineList extends Component {
       user_id: this.props.dataPost.user_id,
       countLike: this.props.dataPost.likes.length,
       liked: this.props.dataPost.liked,
-      likes: this.props.dataPost.likes,
     }
   }
 
   // Get user id
   componentDidMount() {
+    if (this.state.liked !== false) {
+      this.setState({ onPress: !this.state.onPress})
+    }
+    
     auth.profile()
       .then(response => {
         this.setState({
@@ -83,11 +86,10 @@ export default class TimelineList extends Component {
 
   render() {
     const timePost = moment.parseZone(this.state.data.updated_at, 'YYYY-MM-DD hh:mm:ss').utc();
-    const likes = this.state.data.likes;
     const commentCount = this.state.data.comments.length;
-    const likeCount = this.state.countLike;
     const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.countLike === 0;
+    const countLike = this.state.countLike;
     const date = moment().diff(timePost, 'days') < 5
       ? timePost.fromNow()
       : moment().diff(timePost, 'years') >= 1
@@ -95,34 +97,41 @@ export default class TimelineList extends Component {
       : timePost.format('D MMM');
     const poster_id = this.state.user_id;
     const owner = poster_id === this.state.id;
-    const veryfied = this.state.liked === false;
+    const unliked = this.state.liked === false;
     const getIdDelete = this.state.post_id;
 
     // User like post
     const onChangeImg = () => {
-      if( this.state.liked === false) {
+      // if (this.state.liked !== false) {
+      //   this.setState({ onPress: !this.state.onPress})
+      // } else {
+      //   this.setState({ onPress: this.state.onPress})
+      // }
+
+      if(this.state.onPress === false) {
       const id = this.state.data.id
       post
           .likePost(id)
           .then(response => {
             this.setState({
-              countLike: this.state.likes.length + 1,
-              liked: !this.state.liked,
-              likes:this.state.likes.concat(response.data)
-            })
+              onPress: !this.state.onPress,
+              countLike: this.state.countLike + 1,
+              liked: response.data.id,
+            });
+            console.log("Like success");
           })
           .catch(err => console.log('error message yang salah', err))
       }
-      else if(this.state.liked) {
-        const idLike = getId(this.state.user_id)(this.state.likes)[0].id;
-          post.unlikePost(idLike)
+      else {
+        const like_id = this.state.liked;
+          post.unlikePost(like_id)
             .then(response => {
               this.setState({
-                countLike: this.state.likes.length - 1,
-                liked: !this.state.liked,
-                likes: getRemove(this.state.user_id)(this.state.likes),
-              })
-              console.log('ini adalah likeske 2: ', this.state.likes)
+                onPress: !this.state.onPress,
+                countLike: this.state.countLike - 1,
+                liked: this.props.dataPost.liked,
+              });
+              console.log("Unlike success");
             })
             .catch(err => console.log('gagal unlike: ', err))
       }
@@ -224,9 +233,9 @@ export default class TimelineList extends Component {
                   >
                     <Image
                       source={imgLike}
-                      style={!veryfied ? styles.liked : styles.unlike}
+                      style={this.state.onPress ? styles.liked : styles.unlike}
                     />
-                    {veryfied ? likeCount > 1 ?
+                    {!this.state.onPress ? countLike > 1 ?
                       <Text>{this.state.countLike} {strings.timeline.likes}</Text> : noLikes ?
                       <Text>{strings.timeline.like}</Text> : <Text>{this.state.countLike} {strings.timeline.like}</Text> :
                       <Text>{this.state.countLike} {strings.timeline.unlike}</Text>}
