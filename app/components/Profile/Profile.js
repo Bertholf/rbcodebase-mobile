@@ -25,6 +25,7 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
+import saveProfile from '../../services/updateProfile';
 import post from '../../services/post';
 import auth from '../../services/auth';
 import strings from '../../localizations';
@@ -32,6 +33,8 @@ import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
 import TimelineList from '../Timeline/TimelineList';
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
+const saveIcon = require('./../../images/accept.png');
+
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Profile extends Component {
@@ -198,17 +201,34 @@ export default class Profile extends Component {
 
   render() {
     const hasDisplayName = this.state.profile.name_display !== null;
+    const id = this.props.profile.id;
+    const name_first = this.props.profile.name_first;
+    const name_last = this.props.profile.name_last;
+    const gender = this.props.profile.gender;
+    const name_slug = this.props.profile.name_slug;
+    const phone = this.props.profile.phone;
+    const birthday = this.props.profile.birthday;
+    const displayName = this.state.displayName;
+
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
     }
+
+    // Save new display name
     const changeDisplayName = () => {
-      auth.updateProfile()
-        .then(res => {
-          this.setState({ displayName: res.data.name_display})
-        })
-        .catch(err => {
-          console.log("Error", err.message);
-        });
+      this.setState({
+        onEdit: !this.state.onEdit
+      })
+      saveProfile(
+        id,
+        name_first,
+        name_last,
+        displayName,
+        name_slug,
+        gender,
+        phone,
+        birthday,
+      );
     }
 
     {
@@ -289,13 +309,19 @@ export default class Profile extends Component {
                             <TextInput
                               style={styles.input}
                               value={this.state.displayName}
-                              onChangeText={(text) => this.setState({ displayName: text})}
+                              onChangeText={displayName => this.setState({ displayName })}
                             />
+                            <TouchableOpacity onPress={() => changeDisplayName()}>
+                              <Image
+                                source={saveIcon}
+                                style={styles.saveIcon}
+                              />
+                            </TouchableOpacity>
                           </View> :
                           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                             <TouchableOpacity onPress={() => editDisplayName()}>
                               <Text style={styles.headline}>
-                                {this.state.profile.name_display}
+                                {this.state.displayName}
                               </Text>
                             </TouchableOpacity>
                           </View> :

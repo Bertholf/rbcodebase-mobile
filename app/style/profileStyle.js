@@ -185,6 +185,14 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginBottom: 20,
   },
+  saveIcon: {
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+    marginRight: 12,
+    backgroundColor: 'rgba(0,0,0,0)',
+    tintColor: '#2196F3',
+  },
 });
 
 module.exports = styles;
