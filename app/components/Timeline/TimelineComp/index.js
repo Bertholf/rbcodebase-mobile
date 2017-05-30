@@ -9,6 +9,7 @@ import {
   ListView,
   ScrollView,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import getFlat from './flattering'
@@ -29,6 +30,7 @@ export default class MapMain extends Component {
     super(props);
     this.state = {
       loading: true,
+      behavior: 'padding',
       list: {},
       onPress: true,
       enable: true,
@@ -54,6 +56,7 @@ export default class MapMain extends Component {
   }
   render() {
       return (
+        <KeyboardAvoidingView behavior={this.state.behavior} keyboardVerticalOffset={20}>
         <ScrollView>
           <View>
             <PostCard reRender={()=>this.componentDidMount.bind(this)} />
@@ -64,6 +67,7 @@ export default class MapMain extends Component {
             />
           </View>
         </ScrollView>
+      </KeyboardAvoidingView>
       );
     }
 }
