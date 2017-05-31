@@ -59,11 +59,12 @@ export default class Profile extends Component {
       button: false,
       me: false,
       request: false,
-      list:[]
+      list:[],
     };
   }
 
   componentDidMount() {
+    console.log("CDM is TRIGGERED============================");
         const id = this.state.id
         if (id === this.state.profile.id) {
           this.setState({ me: true });
@@ -73,7 +74,10 @@ export default class Profile extends Component {
         // Get user profile
         auth.profile()
           .then(res => {
-            this.setState({ profile: res.data });
+            this.setState({
+              profile: res.data,
+              displayName: res.data.name_display
+            });
           })
           .catch(err => {
             console.log("Error");
@@ -200,7 +204,9 @@ export default class Profile extends Component {
   }
 
   render() {
-    const hasDisplayName = this.state.profile.name_display !== null;
+    console.log("RENDER BROOOOOOOOOOOOOOOOOOO", this.state.displayName);
+    const hasDisplayName = this.state.displayName !== null;
+    const displayName = this.state.displayName;
     const id = this.props.profile.id;
     const name_first = this.props.profile.name_first;
     const name_last = this.props.profile.name_last;
@@ -208,7 +214,6 @@ export default class Profile extends Component {
     const name_slug = this.props.profile.name_slug;
     const phone = this.props.profile.phone;
     const birthday = this.props.profile.birthday;
-    const displayName = this.state.displayName;
 
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
