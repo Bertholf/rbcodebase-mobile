@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getFlat from './flattering'
 import timelineList from '../../../services/timelineList';
 import PostCard from './../../Timeline/StatusPostCard/StatusCard';
@@ -20,6 +21,7 @@ import TimelineComment from './../timelineComment';
 import { Actions } from 'react-native-router-flux';
 import styles from './style';
 import Moment from 'moment';
+
 
 const imgLike = require('./../../../images/ic_thumb_up_black_18dp.png');
 const imgUnLike = require('./../../../images/ic_thumb_down_black_18dp.png');
@@ -30,7 +32,6 @@ export default class MapMain extends Component {
     super(props);
     this.state = {
       loading: true,
-      behavior: 'padding',
       list: {},
       onPress: true,
       enable: true,
@@ -55,8 +56,8 @@ export default class MapMain extends Component {
     this.componentDidMount();
   }
   render() {
-      return (
-        <KeyboardAvoidingView behavior={this.state.behavior} keyboardVerticalOffset={20}>
+    return (
+      <KeyboardAwareScrollView>
         <ScrollView>
           <View>
             <PostCard reRender={()=>this.componentDidMount.bind(this)} />
@@ -67,7 +68,7 @@ export default class MapMain extends Component {
             />
           </View>
         </ScrollView>
-      </KeyboardAvoidingView>
-      );
-    }
+      </KeyboardAwareScrollView>
+    );
+  }
 }
