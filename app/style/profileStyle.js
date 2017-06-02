@@ -22,8 +22,10 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.47,
   },
   viewImgpp: {
-    width: width * 0.35,
-    position: 'relative',
+    flex: 1,
+    alignSelf: 'stretch',
+    width: undefined,
+    height: undefined
   },
   username: {
     fontSize: 16,
@@ -52,13 +54,14 @@ const styles = StyleSheet.create({
     height: 30,
   },
   logo: {
+    flex: 1,
     backgroundColor: 'rgba(0,0,0,0)',
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: undefined,
+    height: undefined,
+    borderRadius: 100,
     paddingTop: height * 0.15,
-    marginLeft: 16,
     flexDirection: 'row',
+    marginBottom: 5,
   },
   back: {
     width: 28,
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: 'white',
     alignSelf: 'center',
-    marginTop: 70,
+    marginBottom: 5,
     fontSize: 20,
     backgroundColor: '#00E676',
     borderRadius: 100,

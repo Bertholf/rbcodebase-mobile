@@ -46,6 +46,7 @@ export default class Profile extends Component {
     this.state = {
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
+      id: this.props.user_id,
       profile: this.props.profile,
       displayName: this.props.profile.name_display,
       leaderId: this.props.id,
@@ -53,7 +54,6 @@ export default class Profile extends Component {
       countPost: null,
       countFollowing: null,
       countFollower: null,
-      id: this.props.user_id,
       friend: false,
       onEdit: false,
       button: false,
@@ -64,65 +64,65 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log("CDM is TRIGGERED============================");
-        const id = this.state.id
-        if (id === this.state.profile.id) {
-          this.setState({ me: true });
-        }
-        this.followHasSomeone(id, this.state.profile.id);
+    AsyncStorage.getItem('userId')
+    .then((id) => {
+      if (id === this.state.profile.id.toString()) {
+        this.setState({ me: true });
+      }
+      this.followHasSomeone(id, this.state.profile.id);
+      follows.showFollower(this.state.profile.id)
+      .then((res) => {
+        const count = res.data.length;
+        this.setState({ countFollow: count, loading: false });
+      })
+      .catch(() => {
+        Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
+      });
+    })
+    .catch(err => {
+      console.log("Error", err.message);
+    });
 
-        // Get user profile
-        auth.profile()
-          .then(res => {
-            this.setState({
-              profile: res.data,
-              displayName: res.data.name_display
-            });
-          })
-          .catch(err => {
-            console.log("Error");
-          });
+    // Get all post
+    post.getPost()
+      .then((res) => {
+        const countPosts = res.data[0].posts.length;
+        this.setState({ countPost: countPosts, loading: false })
+      })
+      .catch(() => {
+        Alert.alert('Fail to connect to server', '', [
+          { text: 'OK', onPress: () => Actions.pop() },
+        ]);
+      });
 
-        // Get all post
-        post.getPost()
-          .then((res) => {
-            const countPosts = res.data[0].posts.length;
-            this.setState({ countPost: countPosts, loading: false })
-          })
-          .catch(() => {
-            Alert.alert('Fail to connect to server', '', [
-              { text: 'OK', onPress: () => Actions.pop() },
-            ]);
-          });
+    // Get all follower
+    follows
+      .showFollower(this.state.profile.id)
+      .then((res) => {
+        const countFollowers = res.data.length;
+        this.setState({ countFollower: countFollowers, loading: false });
+      })
+      .catch(() => {
+        Alert.alert('Fail to connect to server', '', [
+          { text: 'OK', onPress: () => Actions.pop() },
+        ]);
+      });
 
-        // Get all follower
-        follows
-          .showFollower(this.state.profile.id)
-          .then((res) => {
-            const countFollowers = res.data.length;
-            this.setState({ countFollower: countFollowers, loading: false });
-          })
-          .catch(() => {
-            Alert.alert('Fail to connect to server', '', [
-              { text: 'OK', onPress: () => Actions.pop() },
-            ]);
-          });
-
-          // Get all following
-          follows.showFollowing(this.state.profile.id)
-            .then((res) => {
-            const countFollowings = res.data.length;
-            this.setState({ countFollowing: countFollowings, loading: false });
-            })
-          .catch(() => {
-            Alert.alert('Fail to connect to server', '', [
-              { text: 'OK', onPress: () => Actions.pop() },
-            ]);
-          });
+    // Get all following
+    follows.showFollowing(this.state.profile.id)
+      .then((res) => {
+      const countFollowings = res.data.length;
+      this.setState({ countFollowing: countFollowings, loading: false });
+      })
+    .catch(() => {
+      Alert.alert('Fail to connect to server', '', [
+        { text: 'OK', onPress: () => Actions.pop() },
+      ]);
+    });
   }
 
   componentWillMount(){
-    const id = this.state.id
+    const id = this.state.id;
     timelineList
     .getTimelineId(id)
     .then((res) => {
@@ -204,16 +204,16 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log("RENDER BROOOOOOOOOOOOOOOOOOO", this.state.displayName);
+    console.log("LANDING HERE BROOOOOOOOOOOOOOOOOO", this.state.me);
     const hasDisplayName = this.state.displayName !== null;
     const displayName = this.state.displayName;
-    const id = this.props.profile.id;
-    const name_first = this.props.profile.name_first;
-    const name_last = this.props.profile.name_last;
-    const gender = this.props.profile.gender;
-    const name_slug = this.props.profile.name_slug;
-    const phone = this.props.profile.phone;
-    const birthday = this.props.profile.birthday;
+    const id = this.state.profile.id;
+    const name_first = this.state.profile.name_first;
+    const name_last = this.state.profile.name_last;
+    const gender = this.state.profile.gender;
+    const name_slug = this.state.profile.name_slug;
+    const phone = this.state.profile.phone;
+    const birthday = this.state.profile.birthday;
 
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
@@ -252,8 +252,7 @@ export default class Profile extends Component {
               <Image
                 source={require('./../../images/gunung.jpg')}
                 resizeMode={'cover'}
-                style={styles.backdrop}
-              >
+                style={styles.backdrop}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
@@ -262,45 +261,38 @@ export default class Profile extends Component {
                     <Image source={settingIconwhite} style={styles.backsetting} />
                   </TouchableOpacity>
                 </View>
+                <View style={styles.viewImgpp}>
+                  <TouchableOpacity
+                    disabled={this.state.request}
+                    onPress={this.selectPhotoTapped.bind(this)}
+                  >
+                    {this.state.avatarSource === null
+                      ? <Text>change Photo</Text>
+                      : <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />}
+                  </TouchableOpacity>
+                </View>
+                <View style={{ alignItems: 'center' }}>
+                  {this.state.me
+                    ? <View />
+                    : <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                          <TouchableOpacity
+                            disabled={this.props.status.status === 'request' && this.state.request}
+                            onPress={() => this.toggleSwitchFollow()}
+                          >
+                            <Text style={this.state.followed ? styles.button : styles.button}>
+                              {this.state.followed
+                                  ? this.props.status.status === 'request'
+                                      ? 'Requested'
+                                      : strings.profileLocalization.unfollow
+                                  : strings.profileLocalization.follow}
+                            </Text>
+                          </TouchableOpacity>
+                        </View>}
+                </View>
               </Image>
             </View>
             {/* <View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
-            <View
-              style={{ alignItems: 'center', position: 'absolute', top: 125, left: 125, right: 120 }}
-            >
-              <View style={styles.viewImgpp}>
-                <TouchableOpacity
-                  disabled={this.state.request}
-                  onPress={this.selectPhotoTapped.bind(this)}
-                >
-                  {this.state.avatarSource === null
-                    ? <Text>change Photo</Text>
-                    : <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />}
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{ alignItems: 'center' }}>
-              {this.state.me
-                ? <TouchableOpacity onPress={Actions.setting}>
-                  <Text style={styles.buttonEmpty} />
-                </TouchableOpacity>
-                : !this.state.me
-                    ? <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                      <TouchableOpacity
-                        disabled={this.props.status.status === 'request' && this.state.request}
-                        onPress={() => this.toggleSwitchFollow()}
-                      >
-                        <Text style={this.state.followed ? styles.button : styles.button}>
-                          {this.state.followed
-                              ? this.props.status.status === 'request'
-                                  ? 'Requested'
-                                  : strings.profileLocalization.unfollow
-                              : strings.profileLocalization.follow}
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    : <Text />}
-            </View>
+
             <View style={styles.biodata}>
               <Card>
                 <View>
