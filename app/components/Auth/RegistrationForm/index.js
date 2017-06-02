@@ -311,7 +311,7 @@ export default class RegistrationForm extends Component {
                     </View>
                     <View>
                       <Picker
-                        style={{ width: 120, height: 30 }}
+                        style={{ width: 100, height: 30 }}
                         iosHeader="Pick Your Gender"
                         mode="dropdown"
                         selectedValue={this.state.gender}
