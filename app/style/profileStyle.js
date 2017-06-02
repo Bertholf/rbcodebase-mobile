@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     resizeMode: 'cover',
-    height: height * 0.28,
+    height: height * 0.30,
     width: width * 1,
   },
   mapmain: {
@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
     width: undefined,
     height: undefined,
     borderRadius: 100,
-    paddingTop: height * 0.15,
+    paddingTop: height * 0.18,
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: 2,
   },
   back: {
     width: 28,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     color: 'white',
     alignSelf: 'center',
-    marginBottom: 5,
+    marginBottom: 1,
     fontSize: 20,
     backgroundColor: '#00E676',
     borderRadius: 100,

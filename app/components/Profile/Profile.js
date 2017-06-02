@@ -70,14 +70,19 @@ export default class Profile extends Component {
         this.setState({ me: true });
       }
       this.followHasSomeone(id, this.state.profile.id);
-      follows.showFollower(this.state.profile.id)
-      .then((res) => {
-        const count = res.data.length;
-        this.setState({ countFollow: count, loading: false });
-      })
-      .catch(() => {
-        Alert.alert('Fail to connect to server', '', [{ text: 'OK', onPress: () => Actions.pop() }]);
-      });
+
+      // Get all follower
+      follows
+        .showFollower(this.state.profile.id)
+        .then((res) => {
+          const countFollowers = res.data.length;
+          this.setState({ countFollower: countFollowers, loading: false });
+        })
+        .catch(() => {
+          Alert.alert('Fail to connect to server', '', [
+            { text: 'OK', onPress: () => Actions.pop() },
+          ]);
+        });
     })
     .catch(err => {
       console.log("Error", err.message);
