@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         tintColor: '#fff',
         alignSelf: 'stretch',
         justifyContent: 'center',
-        marginRight: -6,
+        marginRight: -5,
         marginLeft: 12,
       },
       android: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent: 'center',
         borderRadius: 48,
-        marginRight: -6,
+        marginRight: -5,
         marginLeft: 12,
       },
     }),
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     tintColor: '#fff',
     height: 24,
     width: 24,
-    marginLeft: 13,
+    marginLeft: 15,
   },
   otherlog: {
     flexDirection: 'row',
@@ -260,7 +260,6 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     marginLeft: 12,
-    marginRight: -2,
   },
   text: {
     fontSize: 18,
@@ -341,6 +340,7 @@ const styles = StyleSheet.create({
     width: 145,
     height: 1,
     marginLeft: 5,
+    marginRight: 5,
   },
   scrollContent: {
     flex: 3,
