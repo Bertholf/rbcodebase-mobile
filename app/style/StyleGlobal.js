@@ -176,23 +176,23 @@ const styles = StyleSheet.create({
   // --------------------end---------------
 
   logoGoogle: {
-    height: 23,
-    width: 35,
+    height: 24,
+    width: 32,
     ...Platform.select({
       ios: {
         tintColor: '#fff',
         alignSelf: 'stretch',
         justifyContent: 'center',
-        marginRight: -5,
-        marginLeft: 10,
+        marginRight: -6,
+        marginLeft: 12,
       },
       android: {
         tintColor: '#fff',
         alignSelf: 'stretch',
         justifyContent: 'center',
         borderRadius: 48,
-        marginRight: -5,
-        marginLeft: 10,
+        marginRight: -6,
+        marginLeft: 12,
       },
     }),
   },
@@ -259,7 +259,8 @@ const styles = StyleSheet.create({
   icon: {
     height: 30,
     width: 30,
-    marginLeft: 7,
+    marginLeft: 12,
+    marginRight: -2,
   },
   text: {
     fontSize: 18,
