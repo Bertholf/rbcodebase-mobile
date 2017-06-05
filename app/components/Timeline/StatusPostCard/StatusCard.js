@@ -83,6 +83,7 @@ export default class PostCard extends Component {
             <TextInput
               style={{
                 height: 70,
+                paddingHorizontal: 12,
               }}
               multiline
               blurOnSubmit
@@ -136,7 +137,7 @@ export default class PostCard extends Component {
             <View
               style={{
                 flex: 1,
-                paddingTop: 12,
+                paddingTop: 8,
               }}
             >
               <TouchableOpacity onPress={() => this.uploadFile()}>

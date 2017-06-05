@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   page2: {
-    flex: 4,
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 20,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    padding: 8,
   },
   btnContent: {
     backgroundColor: '#2196F3',

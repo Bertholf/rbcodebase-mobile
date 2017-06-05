@@ -307,11 +307,11 @@ export default class RegistrationForm extends Component {
                   */}
                   <View style={styles.textinputGenderStyle}>
                     <View >
-                      <Text style={{ color: '#000', borderColor: '#2196F3',fontSize: 16 }}>{strings.register.gender}</Text>
+                      <Text style={{ color: '#000', borderColor: '#2196F3',fontSize: 16, paddingLeft: 3 }}>{strings.register.gender}</Text>
                     </View>
                     <View>
                       <Picker
-                        style={{ width: 120, height: 30 }}
+                        style={{ width: 100, height: 30 }}
                         iosHeader="Pick Your Gender"
                         mode="dropdown"
                         selectedValue={this.state.gender}

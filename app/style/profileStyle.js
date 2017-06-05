@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,15 +15,25 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     resizeMode: 'cover',
-    height: height * 0.28,
+    height: height * 0.30,
     width: width * 1,
   },
   mapmain: {
     paddingTop: height * 0.47,
   },
   viewImgpp: {
-    width: width * 0.35,
-    position: 'relative',
+    ...Platform.select({
+      ios: {
+        flex: 1,
+        alignSelf: 'center',
+      },
+      android: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: undefined,
+        height: undefined,
+      },
+    }),
   },
   username: {
     fontSize: 16,
@@ -52,13 +62,26 @@ const styles = StyleSheet.create({
     height: 30,
   },
   logo: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    paddingTop: height * 0.15,
-    marginLeft: 16,
-    flexDirection: 'row',
+    ...Platform.select({
+      ios: {
+        width: 80,
+        height: 80,
+        borderRadius: 80 / 2,
+        paddingTop: height * 0.10,
+        flexDirection: 'row',
+        marginBottom: 2,
+      },
+      android: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0)',
+        width: undefined,
+        height: undefined,
+        borderRadius: 100,
+        paddingTop: height * 0.15,
+        flexDirection: 'row',
+        marginBottom: 2,
+      },
+    }),
   },
   back: {
     width: 28,
@@ -78,17 +101,34 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   button: {
-    flexDirection: 'row',
-    color: 'white',
-    alignSelf: 'center',
-    marginTop: 70,
-    fontSize: 20,
-    backgroundColor: '#00E676',
-    borderRadius: 100,
-    paddingLeft: 10,
-    paddingRight: 8,
-    borderColor: '#00E676',
-    borderWidth: 1,
+    ...Platform.select({
+      ios: {
+        flexDirection: 'row',
+        color: '#00E676',
+        alignSelf: 'center',
+        marginBottom: 12,
+        fontSize: 16,
+        borderRadius: 30 / 2,
+        paddingLeft: 12,
+        paddingRight: 8,
+        paddingTop: 4,
+        paddingBottom: 2,
+        borderColor: '#00E676',
+        borderWidth: 2,
+      },
+      android: {
+        flexDirection: 'row',
+        color: '#00E676',
+        alignSelf: 'center',
+        marginBottom: 12,
+        fontSize: 16,
+        borderRadius: 100,
+        paddingLeft: 10,
+        paddingRight: 8,
+        borderColor: '#00E676',
+        borderWidth: 2,
+      }
+    })
   },
   buttonEmpty: {
     flexDirection: 'row',
@@ -132,16 +172,16 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   pos: {
-    marginTop: 6,
+    marginTop: 8,
     textAlign: 'center',
     color: 'grey',
   },
   followers: {
-    marginTop: 6,
+    marginTop: 8,
     color: 'grey',
   },
   followerss: {
-    marginTop: 6,
+    marginTop: 8,
     color: 'grey',
   },
   bio: {
@@ -169,6 +209,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 8,
   },
   posisi: {
     flexDirection: 'row',

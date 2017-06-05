@@ -19,7 +19,7 @@ import styles from './style';
 
 let setlang = '';
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export default class walkthrough extends Component {
   constructor(props) {
@@ -63,17 +63,18 @@ export default class walkthrough extends Component {
  // loader data json to walktrough screen
   renderItem(screen) {
     return (
-      <View key={screen.bg} style={[styles.page, { backgroundColor: screen.bg }]}>
-        <View style={{ flex: 5 }}>
-          <Image
-            style={{ height: 270, width: width * 1 }} source={{ uri: screen.Image }}
-          />
+        <View key={screen.bg} style={[styles.page, { backgroundColor: screen.bg }]}>
+          <View style={{ flex: 2 }}>
+            <Image
+              style={{ height: height/2, width: width * 1 }} source={{ uri: screen.Image }}
+            />
+          </View>
+          <View style={styles.page2}>
+            <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{screen.title}</Text>
+            <Text>{screen.description}</Text>
+          </View>
         </View>
-        <View style={styles.page2}>
-          <Text style={{ fontWeight: 'bold', fontSize: 20, marginBottom: 10 }}>{screen.title}</Text>
-          <Text>{screen.description}</Text>
-        </View>
-      </View>);
+    );
   }
 
   render() {

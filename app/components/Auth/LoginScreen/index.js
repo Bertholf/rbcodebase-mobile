@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ScrollView, TouchableOpacity, Image, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import styles from './../../../style/StyleGlobal';
+import styles from '../../../style/StyleGlobal';
 import strings from '../../../localizations';
 
 const facebookLogo = require('../../../images/facebook-square.png');
@@ -13,8 +13,8 @@ const mail = require('./../../../images/ic_mail_outline_white_24dp_1x.png');
 export default class LoginScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView>
+      <ScrollView>
+        <View style={styles.containers}>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image style={styles.logo} source={logo} />
 
@@ -95,8 +95,8 @@ export default class LoginScreen extends Component {
               </View>
             </View>
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
 }

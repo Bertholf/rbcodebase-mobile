@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, Platform } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {
+  containers: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#fff',
@@ -176,15 +176,15 @@ const styles = StyleSheet.create({
   // --------------------end---------------
 
   logoGoogle: {
-    height: 23,
-    width: 35,
+    height: 24,
+    width: 32,
     ...Platform.select({
       ios: {
         tintColor: '#fff',
         alignSelf: 'stretch',
         justifyContent: 'center',
         marginRight: -5,
-        marginLeft: 10,
+        marginLeft: 12,
       },
       android: {
         tintColor: '#fff',
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 48,
         marginRight: -5,
-        marginLeft: 10,
+        marginLeft: 12,
       },
     }),
   },
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     tintColor: '#fff',
     height: 24,
     width: 24,
-    marginLeft: 13,
+    marginLeft: 15,
   },
   otherlog: {
     flexDirection: 'row',
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
   icon: {
     height: 30,
     width: 30,
-    marginLeft: 7,
+    marginLeft: 12,
   },
   text: {
     fontSize: 18,
@@ -340,6 +340,7 @@ const styles = StyleSheet.create({
     width: 145,
     height: 1,
     marginLeft: 5,
+    marginRight: 5,
   },
   scrollContent: {
     flex: 3,

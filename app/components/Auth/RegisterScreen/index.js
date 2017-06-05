@@ -131,7 +131,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.containers}>
         <ScrollView>
           <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
             <Image style={styles.logo} source={logo} />
