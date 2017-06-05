@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,10 +22,18 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.47,
   },
   viewImgpp: {
-    flex: 1,
-    alignSelf: 'stretch',
-    width: undefined,
-    height: undefined
+    ...Platform.select({
+      ios: {
+        flex: 1,
+        alignSelf: 'center',
+      },
+      android: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: undefined,
+        height: undefined,
+      },
+    }),
   },
   username: {
     fontSize: 16,
@@ -54,14 +62,25 @@ const styles = StyleSheet.create({
     height: 30,
   },
   logo: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0)',
-    width: undefined,
-    height: undefined,
-    borderRadius: 100,
-    paddingTop: height * 0.18,
-    flexDirection: 'row',
-    marginBottom: 2,
+    ...Platform.select({
+      ios: {
+        width: 100,
+        height: 100,
+        borderRadius: 100 / 2,
+        paddingTop: height * 0.10,
+        flexDirection: 'row',
+        marginBottom: 2,
+      },
+      android: {
+        flex: 1,
+        width: undefined,
+        height: undefined,
+        borderRadius: 100,
+        paddingTop: height * 0.10,
+        flexDirection: 'row',
+        marginBottom: 2,
+      },
+    }),
   },
   back: {
     width: 28,
