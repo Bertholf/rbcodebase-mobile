@@ -172,16 +172,16 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   pos: {
-    marginTop: 6,
+    marginTop: 8,
     textAlign: 'center',
     color: 'grey',
   },
   followers: {
-    marginTop: 6,
+    marginTop: 8,
     color: 'grey',
   },
   followerss: {
-    marginTop: 6,
+    marginTop: 8,
     color: 'grey',
   },
   bio: {
@@ -209,6 +209,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 8,
   },
   posisi: {
     flexDirection: 'row',

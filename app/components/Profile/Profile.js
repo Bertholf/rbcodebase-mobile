@@ -209,7 +209,6 @@ export default class Profile extends Component {
   }
 
   render() {
-    console.log("LANDING HERE BROOOOOOOOOOOOOOOOOO", this.state.me);
     const hasDisplayName = this.state.displayName !== null;
     const displayName = this.state.displayName;
     const id = this.state.profile.id;
@@ -383,7 +382,7 @@ export default class Profile extends Component {
                       </View>
                       <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
-                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16, marginBottom: 8 }}>
                           N/A
                         </Text>
                       </View>
@@ -397,7 +396,7 @@ export default class Profile extends Component {
                       </View>
                       <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
-                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16, marginBottom: 8 }}>
                           N/A
                         </Text>
                       </View>
@@ -408,7 +407,7 @@ export default class Profile extends Component {
                                             </View>
                                             <View style={{ flexDirection: 'row' }}>
                                               <Text style={styles.isi}>{strings.profileLocalization.live} :</Text>
-                                              <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                                              <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16, marginBottom: 8 }}>
                                                 N/A
                                               </Text>
                                             </View>
