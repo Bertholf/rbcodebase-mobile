@@ -83,6 +83,7 @@ export default class PostCard extends Component {
             <TextInput
               style={{
                 height: 70,
+                paddingHorizontal: 12,
               }}
               multiline
               blurOnSubmit
