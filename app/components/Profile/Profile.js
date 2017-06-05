@@ -432,7 +432,7 @@ export default class Profile extends Component {
                                     <MapMain />
                                   </View> */}
                                 </View>
-                                <View >
+                                <View style={{ margin: 12 }}>
                                 <ListView
                                   enableEmptySections
                                   dataSource={ds.cloneWithRows(this.state.list)}

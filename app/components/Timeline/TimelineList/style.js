@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 2,
+    height: 25,
   },
   icon: {
     width: 20,
