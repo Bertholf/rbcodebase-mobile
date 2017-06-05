@@ -53,7 +53,7 @@ export default class TimelineList extends Component {
     if (this.state.liked !== false) {
       this.setState({ onPress: !this.state.onPress})
     }
-    
+
     auth.profile()
       .then(response => {
         this.setState({
@@ -225,7 +225,7 @@ export default class TimelineList extends Component {
                 </View>
                 }
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 30, marginBottom: 10 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 12, marginBottom: 8 }}>
                   <TouchableOpacity
                     onPress={() => onChangeImg()}
                     style={{ flexDirection: 'row', alignItems: 'center' }}

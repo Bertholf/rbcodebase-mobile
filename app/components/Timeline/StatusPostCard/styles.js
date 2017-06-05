@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
   containerCard: {
     ...Platform.select({
       ios: {
-        margin: 20,
-        padding: 14,
+        margin: 4,
+        padding: 8,
         backgroundColor: '#ffffff',
         borderRadius: 2,
         shadowOffset: {
@@ -16,16 +16,14 @@ const styles = StyleSheet.create({
         shadowColor: '#212121',
         shadowOpacity: 75,
         shadowRadius: 2,
-        paddingBottom: 23,
+        paddingBottom: 20,
       },
       android: {
-        margin: 20,
-        padding: 14,
+        margin: 4,
+        padding: 8,
         backgroundColor: '#ffffff',
         borderRadius: 2,
         elevation: 2,
-        marginBottom: 25,
-        paddingBottom: 23,
       },
     }),
   },
@@ -50,7 +48,8 @@ const styles = StyleSheet.create({
     }),
   },
   containerBottom: {
-    paddingTop: 10,
+    paddingTop: 8,
+    paddingLeft: 12,
     flexDirection: 'row',
     flex: 3,
   },

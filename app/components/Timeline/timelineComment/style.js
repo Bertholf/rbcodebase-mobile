@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     flex: 1,
-    paddingRight: 20,
+    paddingRight: 8,
   },
   comment: {
     flex: 2,

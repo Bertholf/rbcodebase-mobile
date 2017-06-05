@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   timelineContainer: {
     justifyContent: 'flex-start',
     paddingTop: 20,
-    paddingLeft: 10,
+    paddingLeft: 4,
     paddingRight: 0,
 
   },
@@ -114,15 +114,15 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   liked: {
-    marginRight: 5,
-    height: 15,
-    width: 15,
+    marginRight: 4,
+    height: 16,
+    width: 16,
     tintColor: '#2196F3',
   },
   unlike: {
-    marginRight: 5,
-    height: 15,
-    width: 15,
+    marginRight: 4,
+    height: 16,
+    width: 16,
     opacity: 0.5,
   },
 });
