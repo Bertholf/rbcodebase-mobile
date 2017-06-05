@@ -1,5 +1,6 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
 
+const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   containerCard: {
     ...Platform.select({
@@ -54,13 +55,13 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   image: {
-    marginTop: 5,
-    paddingTop: 14,
-    paddingBottom: 14,
-    height: 24,
-    width: 24,
+    marginTop: 4,
+    paddingTop: 8,
+    paddingBottom: 8,
+    height: height * 0.001,
+    width: width * 0.05,
     flexDirection: 'row',
-    marginRight: 17,
+    marginRight: 16,
   },
   border: {
     ...Platform.select({
@@ -79,6 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     paddingHorizontal: 16,
     paddingVertical: 8,
+    fontSize: width * 0.03,
     alignSelf: 'center',
     fontWeight: 'bold',
   }

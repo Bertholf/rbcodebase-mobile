@@ -136,7 +136,7 @@ export default class PostCard extends Component {
             <View
               style={{
                 flex: 1,
-                paddingTop: 12,
+                paddingTop: 8,
               }}
             >
               <TouchableOpacity onPress={() => this.uploadFile()}>
