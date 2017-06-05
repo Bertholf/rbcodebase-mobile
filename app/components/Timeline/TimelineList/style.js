@@ -93,8 +93,15 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   input: {
-    flex: 2,
-    height: 25,
+    ...Platform.select({
+      ios: {
+        flex: 2,
+        height: 25,
+      },
+      android: {
+        flex: 2,
+      },
+    }),
   },
   icon: {
     width: 20,
