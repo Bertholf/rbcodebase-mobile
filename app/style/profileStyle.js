@@ -82,16 +82,15 @@ const styles = StyleSheet.create({
   },
   button: {
     flexDirection: 'row',
-    color: 'white',
+    color: '#00E676',
     alignSelf: 'center',
     marginBottom: 1,
     fontSize: 20,
-    backgroundColor: '#00E676',
     borderRadius: 100,
     paddingLeft: 10,
     paddingRight: 8,
     borderColor: '#00E676',
-    borderWidth: 1,
+    borderWidth: 2,
   },
   buttonEmpty: {
     flexDirection: 'row',
