@@ -49,7 +49,8 @@ export default class Profile extends Component {
       id: this.props.user_id,
       profile: this.props.profile,
       displayName: this.props.profile.name_display,
-      leaderId: this.props.id,
+      leaderId: this.props.profile.id,
+      tableId: '',
       followed: true,
       countPost: null,
       countFollowing: null,
@@ -83,29 +84,13 @@ export default class Profile extends Component {
             { text: 'OK', onPress: () => Actions.pop() },
           ]);
         });
-    })
-    .catch(err => {
-      console.log("Error", err.message);
-    });
+      });
 
     // Get all post
     post.getPost()
       .then((res) => {
         const countPosts = res.data[0].posts.length;
         this.setState({ countPost: countPosts, loading: false })
-      })
-      .catch(() => {
-        Alert.alert('Fail to connect to server', '', [
-          { text: 'OK', onPress: () => Actions.pop() },
-        ]);
-      });
-
-    // Get all follower
-    follows
-      .showFollower(this.state.profile.id)
-      .then((res) => {
-        const countFollowers = res.data.length;
-        this.setState({ countFollower: countFollowers, loading: false });
       })
       .catch(() => {
         Alert.alert('Fail to connect to server', '', [
@@ -138,12 +123,15 @@ export default class Profile extends Component {
   }
 
   unfollowUser() {
+    const id = this.state.tableId;
     follows
-      .unfollow(this.state.id)
+      .unfollow(id)
       .then(() => {
         this.setState({ followed: false });
       })
-      .catch();
+      .catch(err => {
+        console.log("Error unfollow", err.message);
+      });
   }
   pressScroll() {
     this.scrollView.scrollTo({ x: 0, y: 400, animated: true });
@@ -159,13 +147,13 @@ export default class Profile extends Component {
             this.setState({
               followed: true,
               request: true,
-              id: res.data.id,
+              tableId: res.data.id,
               followId: res.data.leader_id,
             });
           })
-          .catch();
+          .catch(err => { console.log("Error", err.message) });
       })
-      .catch();
+      .catch(err => { console.log("Error", err.message) });
   }
 
   selectPhotoTapped() {
@@ -203,9 +191,12 @@ export default class Profile extends Component {
     follows
       .checkFollowing(followerId, leaderId)
       .then((res) => {
-        this.setState({ followed: typeof res.data.id !== 'undefined' });
+        this.setState({
+          followed: typeof res.data.id !== 'undefined',
+          tableId: res.data.id
+        });
       })
-      .catch();
+      .catch(err => { console.log("Error", err.message) });
   }
 
   render() {
