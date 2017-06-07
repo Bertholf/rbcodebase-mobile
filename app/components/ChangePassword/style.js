@@ -18,11 +18,6 @@ module.exports = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#2196F3',
-  },
   new_password: {
     marginTop: 20,
     color: '#2196f3',
