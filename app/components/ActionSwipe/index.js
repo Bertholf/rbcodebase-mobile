@@ -58,15 +58,12 @@ class ActionSwiper extends Component {
 
   onHorizontalSwipe(dx) {
     // Condition on HorizontalSwipe
-    console.log('dx dan currentY :', dx , ' == ', this.currentY);
     if (dx > 0 && this.currentY === 0) {
       if (this.currentX >= width) {
         Animated.spring(this.pan, {
           toValue: { x: this.currentX, y: 0 },
           friction: 6,
-        }).start(() => {
-          console.log(' out of reach LEFT currentX: ', this.currentX, 'dan', dx);
-        });
+        }).start();
         return;
       }
 
@@ -75,16 +72,13 @@ class ActionSwiper extends Component {
         friction: 6,
       }).start(() => {
         this.currentX = this.currentX + width;
-        console.log('if currentX: ', this.currentX);
       });
     } else if (dx < 0 && this.currentY === 0) {
       if (this.currentX <= -width) {
         Animated.spring(this.pan, {
           toValue: { x: this.currentX, y: 0 },
           friction: 6,
-        }).start(() => {
-          console.log(' out of reach RIGHT currentX: ', this.currentX);
-        });
+        }).start();
         return;
       }
       Animated.spring(this.pan, {
@@ -92,7 +86,6 @@ class ActionSwiper extends Component {
         friction: 6,
       }).start(() => {
         this.currentX = this.currentX - width;
-        console.log(' else currentX: ', this.currentX);
       });
     } else {
       Animated.spring(this.pan, {
@@ -111,7 +104,6 @@ class ActionSwiper extends Component {
           friction: 8,
         }).start(() => {
           this.currentX = Math.floor(this.pan.x._value);
-          console.log(' out of reach TOP currentY: ', this.currentY);
         });
         return;
       }
@@ -121,17 +113,13 @@ class ActionSwiper extends Component {
         friction: 8,
       }).start(() => {
         this.currentY = this.currentY + height;
-        console.log('if currentY: ', this.currentY);
       });
     } else if (dy < 0 && this.currentX === 0) {
       if (this.currentY <= -width) {
         Animated.spring(this.pan, {
           toValue: { y: this.currentY, x: 0 },
           friction: 8,
-        }).start(() => {
-          // this.currentX = Math.floor(this.pan.x._value);
-          console.log(' out of reach BOTTOM currentY: ', this.currentY);
-        });
+        }).start();
         return;
       }
       Animated.spring(this.pan, {
@@ -139,7 +127,6 @@ class ActionSwiper extends Component {
         friction: 10,
       }).start(() => {
         this.currentY = this.currentY - height;
-        console.log(' else currentY: ', this.currentY);
       });
     } else {
       Animated.spring(this.pan, {
@@ -212,7 +199,6 @@ class ActionSwiper extends Component {
       goCenter: () => this.gotoCenter(),
     };
 
-    console.log('render', height, '  ', width);
     const { pan } = this;
     const [translateX, translateY] = [pan.x, pan.y];
 
