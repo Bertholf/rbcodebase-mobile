@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-
-const styles = require('./style');
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import styles from './style';
 
 export default class ChangePassword extends Component {
   constructor(props) {
@@ -20,12 +25,7 @@ export default class ChangePassword extends Component {
       }
     };
     return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-        }}
-      >
+      <View style={styles.container}>
         <View style={styles.box}>
           <View style={styles.title}>
             <View style={[styles.middle_line, { marginLeft: 5 }]} />
