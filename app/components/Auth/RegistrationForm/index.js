@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   TouchableOpacity,
   Image,
   TextInput,
   ScrollView,
-  StyleSheet,
   ActivityIndicator,
   AsyncStorage,
   ListView,
@@ -26,7 +24,6 @@ export default class RegistrationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      availableUser: false,
       app: 'RBCodeBase',
       firstname: this.props.firstName || '',
       lastname: this.props.lastName || '',
@@ -53,7 +50,7 @@ export default class RegistrationForm extends Component {
     auth
       .costumField()
       .then(response => this.setState({ customfield: [response], loading: false }))
-      .catch(Err => console.log('err', Err));
+      .catch(err => err.message);
   }
 
   onClick(text, position, duration, withStyle) {
@@ -86,7 +83,7 @@ export default class RegistrationForm extends Component {
           accessToken,
           oauthProviderId,
         )
-        .then(res =>
+        .then(() =>
           this.setState({ submitting: false }, () => this.loginAfterRegister(uname, password)))
         .catch((err) => {
           this.setState({
@@ -94,13 +91,21 @@ export default class RegistrationForm extends Component {
             failMsg: err.response.data.message,
             submitting: false,
           });
-          console.log('error register', err);
+          err.message;
         });
     } else {
-      submitRegister(firstname, lastname, uname, gender, email, password, confirmPassword, (msg) => {
-        this.setState({ failregister: true, failMsg: msg, submitting: false });
-        this.onClick();
-      });
+      submitRegister(
+        firstname,
+        lastname,
+        uname,
+        gender,
+        email,
+        password,
+        confirmPassword,
+        (msg) => {
+          this.setState({ failregister: true, failMsg: msg, submitting: false });
+          this.onClick();
+        });
     }
   }
 
@@ -152,8 +157,8 @@ export default class RegistrationForm extends Component {
         }));
   }
 
-  isRegister(lastname){
-    this.setState({ lastname, failregister: false })
+  isRegister(lastname) {
+    this.setState({ lastname, failregister: false });
   }
   render() {
     // validation for register
@@ -200,9 +205,8 @@ export default class RegistrationForm extends Component {
     };
     // strings.setLanguage('en');
     if (this.state.submitting === false) {
-      console.log('false');
       return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
           <KeyboardAwareView animated>
             <View style={{ flex: 1 }}>
               <ScrollView
@@ -216,7 +220,6 @@ export default class RegistrationForm extends Component {
                 scrollEventThrottle={200}
                 onLayout={(e) => {
                   const { x, y, width, height } = e.nativeEvent.layout;
-                  console.log(height);
                 }}
               >
                 <View style={styles.scrollContent}>
@@ -245,7 +248,7 @@ export default class RegistrationForm extends Component {
                       underlineColorAndroid="rgba(0,0,0,0)"
                       style={styles.textinputStyle}
                       editable
-                      onChangeText={(lastname) => this.isRegister(lastname)}
+                      onChangeText={lastname => this.isRegister(lastname)}
                       value={this.state.lastname}
                     />
                   </View>
@@ -253,7 +256,7 @@ export default class RegistrationForm extends Component {
                     ? <View />
                     : <Text style={styles.fail}>{strings.register.alert_last_name}</Text>}
 
-                  <View  />
+                  <View />
                   <View
                     style={[
                       styles.textinputWrapperStyle,
@@ -307,7 +310,9 @@ export default class RegistrationForm extends Component {
                   */}
                   <View style={styles.textinputGenderStyle}>
                     <View >
-                      <Text style={{ color: '#000', borderColor: '#2196F3',fontSize: 16, paddingLeft: 3 }}>{strings.register.gender}</Text>
+                      <Text style={{ color: '#000', borderColor: '#2196F3', fontSize: 16, paddingLeft: 3 }}>
+                        {strings.register.gender}
+                      </Text>
                     </View>
                     <View>
                       <Picker
@@ -350,7 +355,7 @@ export default class RegistrationForm extends Component {
                   {validPass || emptyPass
                     ? <View />
                     : <Text style={styles.fail}>{strings.register.alert_password}</Text>}
-                  <View  />
+                  <View />
                   <View style={styles.textWrapperStyle} />
                   {
                     <ListView
