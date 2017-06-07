@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import styles from '../../../style/StyleGlobal';
-import stylescomp from './style';
 import auth from '../../../services/auth';
 import strings from '../../../localizations';
 const { width } = Dimensions.get('window');
@@ -23,7 +22,6 @@ export default class ResultForgot extends Component {
       name: this.props.name,
       email: this.props.email,
       loading: false,
-      submit: false,
     };
   }
   sendLink() {
