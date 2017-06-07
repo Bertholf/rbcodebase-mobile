@@ -2,12 +2,6 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {
-    height,
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
-  },
   contentLoginEmail: {
     marginTop: 20,
   },
