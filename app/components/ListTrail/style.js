@@ -48,11 +48,6 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
-  list: {
-    backgroundColor: '#00BFA5',
-    flexDirection: 'row',
-    height: 50,
-  },
   title: {
     color: '#FFFFFF',
     fontSize: 18,
@@ -71,10 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#00BFA5',
     paddingLeft: 3,
     paddingRight: 3,
-  },
-  chart: {
-    width: 200,
-    height: 200,
   },
   border: {
     flexDirection: 'row',
