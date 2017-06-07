@@ -35,7 +35,7 @@ import Gender from './containers/Settings/genderContainer';
 import About from './components/Setting/About';
 import UsernameEdit from './containers/Settings/UsernameContainer';
 import Following from './components/Profile/Following';
-import Deactivate from './components/Deactivate/Deactivate';
+import Deactivate from './components/Deactivate';
 import Location from './components/Timeline/StatusPostCard/createLocation';
 import TimelineShare from './components/Timeline/TimelineShare';
 import RegistrationForm from './components/Auth/RegistrationForm';
