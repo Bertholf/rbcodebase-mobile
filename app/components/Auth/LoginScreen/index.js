@@ -17,7 +17,6 @@ export default class LoginScreen extends Component {
         <View style={styles.containers}>
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image style={styles.logo} source={logo} />
-
             <View style={styles.otherlog}>
               <TouchableOpacity
                 style={styles.buttonFacebook}
