@@ -30,8 +30,8 @@ export default class PostCard extends Component {
       data: [],
     };
   }
-  setFileName(filename, pict) {
-    this.setState({ filename, picture: pict });
+  setFileName(name, pict) {
+    this.setState({ filename: name, picture: pict });
   }
 
   clearText(fieldName) {
@@ -40,7 +40,8 @@ export default class PostCard extends Component {
 
   uploadFile() {
     const text = this.state.text;
-    const type = 'application/x-www-form-urlencoded';
+    const media = this.state.picture;
+    const type = 'multipart/form-data';
     const dummy = this.state.data;
     post
       .newPost(text, type)
@@ -74,7 +75,6 @@ export default class PostCard extends Component {
   }
 
   render() {
-
     return (
       <View>
         <View style={styles.containerCard}>
@@ -116,11 +116,10 @@ export default class PostCard extends Component {
                   .map(img => <Image
                     key={img}
                     source={{
-                      uri: `${'data:image/jpg;base64' +
-                        ','}${img}`,
+                      uri: `${'data:image/jpg;base64' + ','}${img}`,
                       scale: 3,
-                      width: 40,
-                      height: 40,
+                      width: 100,
+                      height: 100,
                     }}
                     style={{
                       flex: 1,

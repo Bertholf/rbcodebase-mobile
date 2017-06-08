@@ -6,17 +6,18 @@ import {
   Image,
   Text,
 } from 'react-native';
-import styles from './../../../components/Timeline/StatusPostCard/styles';
 import ImagePicker from 'react-native-image-picker';
+import styles from './../../../components/Timeline/StatusPostCard/styles';
 
 const imgName = []
-const listBase64 = []
+const imgData = []
 
 export default class PostMenu extends Component {
   constructor(props){
     super(props);
-    state = {
-      avatarSource: null
+    this.state = {
+      avatarSource: null,
+      name: '',
     };
   }
 
@@ -32,10 +33,9 @@ export default class PostMenu extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-      console.log('Aris adalah: ', response.data);
       imgName.push(response.fileName)
-      listBase64.push(response.data)
-      this.props.getName(imgName, listBase64)
+      imgData.push(response.data)
+      this.props.getName(imgName, imgData)
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -51,19 +51,13 @@ export default class PostMenu extends Component {
 
       // You can also display the image using data:
       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.setState({
           avatarSource: source,
-          name: response.fileName
+          name: response.fileName,
         });
       }
-
     });
-
   }
-
-
-
   render() {
     return (
       <View style={styles.containerBottom}>
