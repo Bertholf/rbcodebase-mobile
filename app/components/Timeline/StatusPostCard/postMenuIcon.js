@@ -9,11 +9,13 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 
-const imgName = []
-const imgData = []
+const imgName = [];
+const imgData = [];
+const imgType = [];
+const imgPath = [];
 
 export default class PostMenu extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       avatarSource: null,
@@ -35,7 +37,9 @@ export default class PostMenu extends Component {
       console.log('Response = ', response);
       imgName.push(response.fileName)
       imgData.push(response.data)
-      this.props.getName(imgName, imgData)
+      imgType.push(response.type)
+      imgPath.push(response.path)
+      this.props.getData(imgName, imgData, imgType, imgPath)
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -73,13 +77,13 @@ export default class PostMenu extends Component {
             style={styles.image}
           />
         </TouchableOpacity>
-         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+         <TouchableOpacity>
           <Image
             source={require('./../../../images/ic_videocam_black_24dp.png')}
             style={styles.image}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
           <Image
             source={require('./../../../images/camera.png')}
             style={styles.image}
