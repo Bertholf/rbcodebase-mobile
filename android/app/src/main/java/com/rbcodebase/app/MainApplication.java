@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
@@ -54,6 +56,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
               new SQLitePluginPackage(),
               new MainReactPackage(),
+            new ReactNativeLocalizationPackage(),
+            new RNFetchBlobPackage(),
               new FIRMessagingPackage(),
               new ReactNativeLocalizationPackage(),
               new RCTSplashScreenPackage(),
