@@ -9,17 +9,15 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 
-const imgName = [];
-const imgData = [];
-const imgType = [];
-const imgPath = [];
-
 export default class PostMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       avatarSource: null,
       name: '',
+      type: '',
+      data: '',
+      path: '',
     };
   }
 
@@ -35,10 +33,10 @@ export default class PostMenu extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-      imgName.push(response.fileName)
-      imgData.push(response.data)
-      imgType.push(response.type)
-      imgPath.push(response.path)
+      const imgName = response.fileName;
+      const imgData = response.data;
+      const imgType = response.type;
+      const imgPath = response.path;
       this.props.getData(imgName, imgData, imgType, imgPath)
 
       if (response.didCancel) {
@@ -58,6 +56,9 @@ export default class PostMenu extends Component {
         this.setState({
           avatarSource: source,
           name: response.fileName,
+          data: response.data,
+          type: response.type,
+          path: response.path,
         });
       }
     });

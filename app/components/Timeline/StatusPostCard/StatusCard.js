@@ -33,8 +33,8 @@ export default class PostCard extends Component {
       type: '',
     };
   }
-  setFileName(name, pict, type, path) {
-    this.setState({ filename: name, picture: pict, type: type, path: path });
+  setFileName(name, data, type, path) {
+    this.setState({ filename: name, picture: data, type: type, path: path });
   }
 
   clearText(fieldName) {
@@ -49,22 +49,32 @@ export default class PostCard extends Component {
     const mediaType = this.state.type;
     const type = 'multipart/form-data';
     if (mediaFile !== null) {
+      console.log("LANDING HERE BRO=======>", mediaName);
+      console.log("LANDING HERE BRO=======>", mediaType);
+      console.log("LANDING HERE BRO=======>", mediaFile);
+      console.log("LANDING HERE BRO=======>", mediaPath);
+      console.log("LANDING HERE===========>", text);
       RNFetchBlob.fetch('POST', 'http://rbcodebase.com/api/timeline/post', {
         Authorization : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjFmZmI4MmE1MDY0NDJhZDg3N2UzZjBmMzJiZjg4OGJjZDg2ZDM0MTYxNTMzY2ZjNDlhMDY0OWE3YWI0YTgzMTNhNmNlYzdmMDhiZTdiMGExIn0.eyJhdWQiOiIyIiwianRpIjoiMWZmYjgyYTUwNjQ0MmFkODc3ZTNmMGYzMmJmODg4YmNkODZkMzQxNjE1MzNjZmM0OWEwNjQ5YTdhYjRhODMxM2E2Y2VjN2YwOGJlN2IwYTEiLCJpYXQiOjE0OTY3MzgyMDksIm5iZiI6MTQ5NjczODIwOSwiZXhwIjoxNTI4Mjc0MjA5LCJzdWIiOiI0OCIsInNjb3BlcyI6W119.NCF0cYLdE3OOE0guufFXSfMjA2NNqJtUkiBaynb7Ds5jPP7Xja7xojkMCWWvt_3bHDfXnf1jXcToQk3sY2E962Hst1ZHD0Biolgi-kIUHYqt4_cF9dpo3DI_ywaB_3MeLQ_bHGvaHs5XF8j8VMPCmytd_RcsU8B-OEvowzVPGuEkxKyQT8UtwWTfPMXIfxn5eCxvJspLRQ02fcfu3zhhtRmGgfqCmmooaABaPjS_sBcQVoDHlADQ71v62RDJxqCMXQKKatWV98DBuhG7gFT8nF9mNCgHFxnYaOb5RkRx8KX1QBxGPdtBRliaPmur90hCq5BMxhrm9Yr6c9z8hVTVx_pxwRRyuVNezE-Cf0z2F0pwPn0zFePRmLgEOIGIOGDu_XEBt2t3ex198JKPmHKzOnIADhClFT5k_KLXSiUb2BHKQtX8blkhqpZNmE6vVuPSHK6MrYlNPOq0CulT54hNalS7kO7qQHzn2n0gX6Zph1lHi0DbgYnfcAUqo7pF_0Y6UzRaz-uNBHeZCUfT-1isc7pdDxnPp4h2PyjaKiHQVL-mlJ5lCtHrZNyPEzUbmJbwA50W8ym0KKcA-R20lqxKH46la3G4HebE93d55zaVqOe509kSY5s_qCmEVkm7DVAcnS49qFrextPyf3OLZjqv1r0T_xaYNcKETbxIqIwm3P0",
-        'Content-Type' : type,
+        // 'Content-Type' : type,
       }, [
-        {
-          name : {mediaName},
-          filename : {mediaName},
-          text : {text},
-          // Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
-          // Or simply wrap the file path with RNFetchBlob.wrap().
-          data: RNFetchBlob.wrap(mediaPath)
-        },
+        { name : 'file', filename : mediaName, data: mediaFile },
+        { name: 'text', data: text }
       ]).then((resp) => {
-        console.log("SUCCESS", resp);
+        console.log('SUCCESSSSSSS=>>>>>>', resp);
+        this.setState(() => {
+          // console.log('prevState', prevState.data);
+          return {
+            text: '',
+            picture: '',
+            filename: '',
+            type: '',
+            path: '',
+            // data: prevState.data.concat(resp.data),
+          };
+        });
       }).catch((err) => {
-        console.log("ERROR", err.message);
+        Alert.alert(err.message);
       })
     } else {
       post
@@ -134,13 +144,9 @@ export default class PostCard extends Component {
               }}
             >
               {this.state.picture
-                ? this
-                  .state
-                  .picture
-                  .map(img => <Image
-                    key={img}
+                ? <Image
                     source={{
-                      uri: `${'data:image/jpg;base64' + ','}${img}`,
+                      uri: `${'data:image/jpg;base64'}`,
                       scale: 3,
                       width: 100,
                       height: 100,
@@ -151,12 +157,12 @@ export default class PostCard extends Component {
                       margin: 3,
                       padding: 3,
                     }}
-                  />)
-                : <Text />}
+                  />
+                : <View />}
             </View>
           </View>
           <View style={styles.border}>
-            <PostMenu getData={(name, pict, type, path) => this.setFileName(name, pict, type, path)} />
+            <PostMenu getData={(name, data, type, path) => this.setFileName(name, data, type, path)} />
             <View
               style={{
                 flex: 1,
