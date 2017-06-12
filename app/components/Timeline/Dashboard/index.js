@@ -53,7 +53,7 @@ export default class Dashboard extends Component {
       });
     })
     .catch((err) => {
-      if (err.response.data.error === 'Unauthenticated') {
+      if (err.message === 'Unauthenticated') {
         Logout();
       } else {
         AsyncStorage.getItem('name_first').then((res) => { this.setState({ namafirst: res }); });
