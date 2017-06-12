@@ -33,11 +33,6 @@ export default class PostMenu extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-      const imgName = response.fileName;
-      const imgData = response.data;
-      const imgType = response.type;
-      const imgPath = response.path;
-      this.props.getData(imgName, imgData, imgType, imgPath)
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -49,7 +44,7 @@ export default class PostMenu extends Component {
         console.log('User tapped custom button: ', response.customButton);
       }
       else {
-        let source = { uri: response.uri };
+        const source = { uri: `data:image/jpeg;base64,${response.data}` };
 
       // You can also display the image using data:
       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
@@ -61,6 +56,11 @@ export default class PostMenu extends Component {
           path: response.path,
         });
       }
+      const imgName = this.state.name;
+      const imgData = this.state.data;
+      const imgType = this.state.type;
+      const imgPath = this.state.path;
+      this.props.getData(imgName, imgData, imgType, imgPath)
     });
   }
   render() {
