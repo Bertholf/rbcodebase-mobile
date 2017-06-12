@@ -75,12 +75,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
   },
-  line: {
-    borderBottomWidth: 0.8,
-    borderColor: 'white',
-    marginTop: 20,
-    marginBottom: 20,
-  },
   fail: {
     color: '#ff0000',
     alignSelf: 'flex-start',
@@ -94,25 +88,6 @@ const styles = StyleSheet.create({
   policyStyle: {
     flexDirection: 'row',
     alignSelf: 'center',
-  },
-  btnGender: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 2,
-    height: 65,
-    width: width * 0.85 / 2,
-    borderWidth: 1,
-    borderColor: 'silver',
-    paddingTop: 5,
-  },
-  active: {
-    borderWidth: 2,
-    borderColor: '#2196F3',
-  },
-  active2: {
-    borderWidth: 2,
-    borderColor: '#f2003d',
   },
   errBox: {
     margin: 10,

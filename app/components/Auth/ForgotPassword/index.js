@@ -10,9 +10,6 @@ export default class ForgotPassword extends Component {
     super();
     this.state = {
       email: '',
-      profile: {},
-      alertS: '',
-      alertF: '',
       submit: false,
     };
   }
@@ -43,7 +40,6 @@ export default class ForgotPassword extends Component {
     const emailInput = this.state.email;
     const validateEmail = () => {
       if (emailValidator && emailInput) {
-        // Need action here, please fix it later, thanks!!!
         this.verifyEmail();
       }
     };

@@ -6,17 +6,18 @@ import {
   Image,
   Text,
 } from 'react-native';
-import styles from './../../../components/Timeline/StatusPostCard/styles';
 import ImagePicker from 'react-native-image-picker';
-
-const imgName = []
-const listBase64 = []
+import styles from './../../../components/Timeline/StatusPostCard/styles';
 
 export default class PostMenu extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    state = {
-      avatarSource: null
+    this.state = {
+      avatarSource: null,
+      name: '',
+      type: '',
+      data: '',
+      path: '',
     };
   }
 
@@ -32,10 +33,6 @@ export default class PostMenu extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-      console.log('Aris adalah: ', response.data);
-      imgName.push(response.fileName)
-      listBase64.push(response.data)
-      this.props.getName(imgName, listBase64)
 
       if (response.didCancel) {
         console.log('User cancelled photo picker');
@@ -47,23 +44,25 @@ export default class PostMenu extends Component {
         console.log('User tapped custom button: ', response.customButton);
       }
       else {
-        let source = { uri: response.uri };
+        const source = { uri: `data:image/jpeg;base64,${response.data}` };
 
       // You can also display the image using data:
       // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.setState({
           avatarSource: source,
-          name: response.fileName
+          name: response.fileName,
+          data: response.data,
+          type: response.type,
+          path: response.path,
         });
       }
-
+      const imgName = this.state.name;
+      const imgData = this.state.data;
+      const imgType = this.state.type;
+      const imgPath = this.state.path;
+      this.props.getData(imgName, imgData, imgType, imgPath)
     });
-
   }
-
-
-
   render() {
     return (
       <View style={styles.containerBottom}>
@@ -79,13 +78,13 @@ export default class PostMenu extends Component {
             style={styles.image}
           />
         </TouchableOpacity>
-         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+         <TouchableOpacity>
           <Image
             source={require('./../../../images/ic_videocam_black_24dp.png')}
             style={styles.image}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
           <Image
             source={require('./../../../images/camera.png')}
             style={styles.image}

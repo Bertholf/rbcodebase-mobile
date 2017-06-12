@@ -8,8 +8,11 @@ import {
   Alert,
   TouchableOpacity,
   ListView,
+  AsyncStorage,
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
+import FormData from 'FormData';
+import RNFetchBlob from 'react-native-fetch-blob';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
 import post from './../../../services/post';
 import TimelineList from '../TimelineList';
@@ -24,14 +27,19 @@ export default class PostCard extends Component {
   constructor() {
     super();
     this.state = {
-      filename: 'no file',
+      filename: null,
+      token: null,
       text: '',
       picture: null,
       data: [],
+      path: null,
+      type: null,
     };
   }
-  setFileName(filename, pict) {
-    this.setState({ filename, picture: pict });
+
+  // Setting data from image picker
+  setFileName(name, data, type, path) {
+    this.setState({ filename: name, picture: data, type: type, path: path });
   }
 
   clearText(fieldName) {
@@ -40,24 +48,53 @@ export default class PostCard extends Component {
 
   uploadFile() {
     const text = this.state.text;
-    const type = 'application/x-www-form-urlencoded';
-    const dummy = this.state.data;
-    post
-      .newPost(text, type)
-      .then((res) => {
-        this.setState((prevState) => {
-          console.log('prevState', prevState.data);
-          return {
-            text: '',
-            data: prevState.data.concat(res.data),
-          };
-        });
+    const media = this.state.picture;
+    const mediaPath = this.state.path;
+    const mediaName = this.state.filename;
+    const mediaType = this.state.type;
+    const type = 'multipart/form-data';
 
+    // Getting access token to post
+    AsyncStorage.getItem('accessToken')
+    .then(token => {
+      const url = 'http://rbcodebase.com/api/timeline/post';
+      const form = new FormData();
+
+      // If user posting image
+      if (media !== null) {
+        form.append('media', {
+          uri: "file://" + mediaPath,
+          type: mediaType,
+          name: mediaName,
+        });
+      }
+
+      form.append("text", text);
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          Authorization : `Bearer ${token}`,
+          "Content-Type" : type
+        },
+        body: form
+      })
+      .then(() => {
+        this.setState(() => {
+            return {
+              text: null,
+              picture: null,
+              filename: null,
+              type: null,
+              path: null,
+            };
+          });
       })
       .catch((err) => {
         Alert.alert(err.message);
-      });
-
+      })
+    })
+    .catch(err => console.log("User unauthorized"));
   }
 
   updateText = (text) => {
@@ -74,7 +111,7 @@ export default class PostCard extends Component {
   }
 
   render() {
-
+    const image = this.state.picture;
     return (
       <View>
         <View style={styles.containerCard}>
@@ -103,37 +140,28 @@ export default class PostCard extends Component {
             {/* <Text>{this.state.filename}</Text> */}
             <View
               style={{
-                flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'flex-start',
-                alignItems: 'flex-start',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
-              {this.state.picture
-                ? this
-                  .state
-                  .picture
-                  .map(img => <Image
-                    key={img}
-                    source={{
-                      uri: `${'data:image/jpg;base64' +
-                        ','}${img}`,
-                      scale: 3,
-                      width: 40,
-                      height: 40,
-                    }}
-                    style={{
-                      flex: 1,
-                      resizeMode: 'contain',
-                      margin: 3,
-                      padding: 3,
-                    }}
-                  />)
-                : <Text />}
+              {this.state.picture ?
+                <Image
+                  source={{
+                    uri: `data:image/jpeg;base64,${image}`,
+                    width: 100, height: 100
+                  }}
+                  style={{
+                    flex: 1,
+                    resizeMode: 'contain',
+                   }}
+                />
+                : <View />
+              }
             </View>
           </View>
           <View style={styles.border}>
-            <PostMenu getName={(name, pict) => this.setFileName(name, pict)} />
+            <PostMenu getData={(name, data, type, path) => this.setFileName(name, data, type, path)} />
             <View
               style={{
                 flex: 1,

@@ -25,14 +25,11 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      male: true,
-      female: false,
       firstName: '',
       lastName: '',
       email: '',
       username: '',
       password: '',
-      gender: 'male',
       validFName: true,
       validLName: true,
       validEmail: true,
@@ -72,7 +69,7 @@ export default class Register extends Component {
          }
        });
      })
-      .catch(err => console.log('error google done login', err));
+      .catch(err => err.message);
   }
   // Register with twitter
   registerWithTwitter() {
@@ -96,7 +93,7 @@ export default class Register extends Component {
         } else {
           this.registered(resL.data.access_token, 'twitter');
         }
-      }).catch(err => console.log(err));
+      }).catch(err => err.message);
       } else {
         auth.checktwitter(res.token, 'twitter', res.secret, res.userId)
         .then((resL) => {
@@ -114,10 +111,10 @@ export default class Register extends Component {
           } else {
             this.registered(resL.data.access_token, 'twitter');
           }
-        }).catch(err => console.log(err));
+        }).catch(err => err.message);
       }
     })
-    .catch(err => console.log('ERROR TWITTER', err));
+    .catch(err => err.message);
   }
 
   registered(token, provider) {
