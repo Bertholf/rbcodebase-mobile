@@ -38,7 +38,7 @@ export default {
   costumField: () => api.get('api/user-fields?type=user',
   ),
   updateProfile: (id, name_first, name_last, name_display, name_slug, gender, img_avatar, cell_number, date_birth, password, password_confirmation) =>
-  api.put(`/api/users/${id}`, {
+  api.post(`/api/users/${id}`, {
     name_first,
     name_last,
     name_display,

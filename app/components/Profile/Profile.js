@@ -156,38 +156,6 @@ export default class Profile extends Component {
       .catch(err => { console.log("Error", err.message) });
   }
 
-  selectPhotoTapped() {
-    const options = {
-      quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
-
-    ImagePicker.showImagePicker(options, (response) => {
-      console.log("RESPONSE BRO==============>>>>>>>>.", response);
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        const url = 'http://rbcodebase.com/uploads/';
-        let source = response.fileName;
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          image: url + source,
-        });
-      }
-    });
-  }
-
   followHasSomeone(followerId, leaderId) {
     follows
       .checkFollowing(followerId, leaderId)
@@ -205,9 +173,45 @@ export default class Profile extends Component {
     const displayName = this.state.displayName;
     const id = this.state.profile.id;
     const name_first = this.state.profile.name_first;
+    const name_slug = this.state.name_slug;
     const name_last = this.state.profile.name_last;
     const gender = this.state.profile.gender;
     const avatar = this.state.image;
+
+    selectPhotoTapped = () => {
+      const options = {
+        quality: 1.0,
+        maxWidth: 500,
+        maxHeight: 500,
+        storageOptions: {
+          skipBackup: true,
+        },
+      };
+
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log("RESPONSE BRO==============>>>>>>>>.", response);
+        if (response.didCancel) {
+          console.log('User cancelled photo picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          const userId = this.state.id;
+          const url = `http://localhost:8000/api/users/${userId}`;
+          let source = response.fileName;
+
+          // You can also display the image using data:
+          // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+          this.setState({
+            image: url + source,
+          });
+
+          saveProfile(id, name_first, name_last, displayName, name_slug, gender, this.state.image);
+        }
+      });
+    }
 
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
@@ -218,15 +222,9 @@ export default class Profile extends Component {
       this.setState({
         onEdit: !this.state.onEdit
       })
-      saveProfile(
-        id,
-        name_first,
-        name_last,
-        displayName,
-        name_slug,
-        gender,
-        avatar,
-      );
+
+      // Save display name
+      saveProfile(id, name_first, name_last, displayName, name_slug, gender, avatar);
     }
 
     {
@@ -257,7 +255,7 @@ export default class Profile extends Component {
                 <View style={styles.viewImgpp}>
                   <TouchableOpacity
                     disabled={this.state.request}
-                    onPress={this.selectPhotoTapped.bind(this)}
+                    onPress={selectPhotoTapped.bind(this)}
                   >
                     {this.state.avatarSource === null
                       ? <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />
