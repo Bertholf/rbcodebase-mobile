@@ -151,6 +151,7 @@ export default class NameEdit extends Component {
             slug,
             gender,
             phone,
+            img_avatar,
             birthday,
           );
           Keyboard.dismiss();

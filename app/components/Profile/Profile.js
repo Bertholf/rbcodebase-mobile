@@ -32,6 +32,7 @@ import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
 import TimelineList from '../Timeline/TimelineList';
+
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 const saveIcon = require('./../../images/accept.png');
 
@@ -40,10 +41,8 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    state = {
-      avatarSource: null,
-    };
     this.state = {
+      avatarSource: null,
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       id: this.props.user_id,
@@ -60,7 +59,8 @@ export default class Profile extends Component {
       button: false,
       me: false,
       request: false,
-      list:[],
+      list: [],
+      image: null,
     };
   }
 
@@ -84,7 +84,7 @@ export default class Profile extends Component {
             { text: 'OK', onPress: () => Actions.pop() },
           ]);
         });
-      });
+    });
 
     // Get all post
     post.getPost()
@@ -161,13 +161,13 @@ export default class Profile extends Component {
       quality: 1.0,
       maxWidth: 500,
       maxHeight: 500,
-      multiple: true,
       storageOptions: {
         skipBackup: true,
       },
     };
 
     ImagePicker.showImagePicker(options, (response) => {
+      console.log("RESPONSE BRO==============>>>>>>>>.", response);
       if (response.didCancel) {
         console.log('User cancelled photo picker');
       } else if (response.error) {
@@ -175,13 +175,14 @@ export default class Profile extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        let source = { uri: response.uri };
+        const url = 'http://rbcodebase.com/uploads/';
+        let source = response.fileName;
 
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source,
+          image: url + source,
         });
       }
     });
@@ -206,9 +207,7 @@ export default class Profile extends Component {
     const name_first = this.state.profile.name_first;
     const name_last = this.state.profile.name_last;
     const gender = this.state.profile.gender;
-    const name_slug = this.state.profile.name_slug;
-    const phone = this.state.profile.phone;
-    const birthday = this.state.profile.birthday;
+    const avatar = this.state.image;
 
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
@@ -226,8 +225,7 @@ export default class Profile extends Component {
         displayName,
         name_slug,
         gender,
-        phone,
-        birthday,
+        avatar,
       );
     }
 
@@ -262,7 +260,7 @@ export default class Profile extends Component {
                     onPress={this.selectPhotoTapped.bind(this)}
                   >
                     {this.state.avatarSource === null
-                      ? <Text>change Photo</Text>
+                      ? <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />
                       : <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />}
                   </TouchableOpacity>
                 </View>
