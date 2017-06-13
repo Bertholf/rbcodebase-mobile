@@ -22,6 +22,7 @@ import {
   Fab ,
   Icon,
 } from 'native-base';
+import FormData from 'FormData';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
@@ -71,6 +72,17 @@ export default class Profile extends Component {
         this.setState({ me: true });
       }
       this.followHasSomeone(id, this.state.profile.id);
+
+      // Get user profile
+      auth.profile()
+        .then((res) => {
+          this.setState({
+            profile: res.data,
+          })
+        })
+        .catch(() => {
+          Alert.alert("Failed to get profile data");
+        })
 
       // Get all follower
       follows
@@ -171,7 +183,7 @@ export default class Profile extends Component {
   render() {
     const hasDisplayName = this.state.displayName !== null;
     const displayName = this.state.displayName;
-    const id = this.state.profile.id;
+    const userId = this.state.profile.id;
     const name_first = this.state.profile.name_first;
     const name_slug = this.state.name_slug;
     const name_last = this.state.profile.name_last;
@@ -197,9 +209,11 @@ export default class Profile extends Component {
         } else if (response.customButton) {
           console.log('User tapped custom button: ', response.customButton);
         } else {
-          const userId = this.state.id;
-          const url = `http://localhost:8000/api/users/${userId}`;
           let source = response.fileName;
+          const url = 'http://rbcodebase.com/uploads/';
+          const picturePath = response.path;
+          const pictureType = response.type;
+          const pictureName = response.fileName;
 
           // You can also display the image using data:
           // let source = { uri: 'data:image/jpeg;base64,' + response.data };
@@ -208,14 +222,43 @@ export default class Profile extends Component {
             image: url + source,
           });
 
-          saveProfile(id, name_first, name_last, displayName, name_slug, gender, this.state.image);
+          AsyncStorage.getItem('accessToken')
+          .then((token) => {
+            const url = `http://rbcodebase.com/api/users/${userId}`;
+            const form = new FormData();
+
+            // User upload profile picture
+            form.append('img_avatar', {
+              uri: 'file://' + picturePath,
+              type: pictureType,
+              name: pictureName,
+            });
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                // "Content-Type" : type
+              },
+              body: form,
+            })
+            .then((resp) => {
+              this.setState({
+                image: resp._bodyInit.img_avatar,
+              });
+            })
+            .catch((err) => {
+              Alert.alert(err.message);
+            });
+          })
+          .catch(() => console.log("User unauthorized"));
         }
       });
-    }
+    };
 
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
-    }
+    };
 
     // Save new display name
     const changeDisplayName = () => {
@@ -224,7 +267,7 @@ export default class Profile extends Component {
       })
 
       // Save display name
-      saveProfile(id, name_first, name_last, displayName, name_slug, gender, avatar);
+      saveProfile(userId, name_first, name_last, displayName, name_slug, gender, avatar);
     }
 
     {
@@ -258,8 +301,8 @@ export default class Profile extends Component {
                     onPress={selectPhotoTapped.bind(this)}
                   >
                     {this.state.avatarSource === null
-                      ? <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />
-                      : <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />}
+                      ? <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.img_avatar }} />
+                      : <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.img_avatar }} />}
                   </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center' }}>
