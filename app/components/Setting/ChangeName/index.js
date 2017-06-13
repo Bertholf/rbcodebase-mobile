@@ -134,6 +134,7 @@ export default class NameEdit extends Component {
     const slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
+    const img_avatar = this.state.profile.img_avatar;
     // Validate Name Input
     const validateName = () => {
       if (firstNameInput && firstNameValidator && lastNameInput && lastNameValidator) {
