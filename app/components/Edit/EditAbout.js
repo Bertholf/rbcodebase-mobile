@@ -10,17 +10,14 @@ import styles from './styles';
 
 const alertMessage = 'Saved';
 
-class UselessTextInput extends Component {
-  render() {
-    return (
-      <TextInput
-        {...this.props}
-        editable={true}
-        maxLength={40}
-      />
-    );
-  }
-}
+const UselessTextInput = () => {
+  return (
+    <TextInput
+      {...this.props}
+      maxLength={40}
+    />
+  );
+};
 
 class EditAbout extends Component {
   constructor(props) {
@@ -34,7 +31,6 @@ class EditAbout extends Component {
       <View style={styles.container}>
         <View style={styles.txtInput}>
           <UselessTextInput
-            multiline={true}
             numberOfLines={7}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}

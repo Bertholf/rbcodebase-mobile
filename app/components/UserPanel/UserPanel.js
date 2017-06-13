@@ -5,21 +5,20 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
-import styles from './../../components/UserPanel/style';
-import Swiper from 'react-native-swiper';
+import { Actions } from 'react-native-router-flux';
+import styles from './style';
+import auth from './../../services/auth';
+import strings from '../../localizations';
 
 
 const settingIcon = require('./../../images/ic_settings_black_24dp.png');
-const userImage = require('./../../images/profile-pic.jpg');
-const verifyImage = require('./../../images/ic_check_circle_black_24dp.png');
 const followIcon = require('./../../images/people.png');
 const contactIcon = require('./../../images/ic_contacts_black_24dp.png');
 const addFriendIcon = require('./../../images/ic_person_add_black_24dp.png');
 const bottomArrowIcon = require('./../../images/ic_expand_more_black_24dp.png');
+const searchFriend = require('./../../images/search.png');
 
-const alertMessage = 'Press OK';
 
 class TitleText extends React.Component {
   render() {
@@ -27,11 +26,28 @@ class TitleText extends React.Component {
       <Text style={{ fontSize: 48, color: 'white' }}>
         {this.props.label}
       </Text>
-    )
+    );
   }
 }
 
 class userPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: {},
+      loading: true,
+      my: true,
+    };
+  }
+
+
+  componentDidMount() {
+    // Get Profile Data From server
+    auth.profile()
+    .then(response => this.setState({ profile: response.data, loading: false }, () => console.log(this.state)))
+    .catch(Err => console.log('err', Err));
+  }
+
   viewStyle() {
     return {
       flex: 1,
@@ -41,98 +57,66 @@ class userPanel extends React.Component {
     };
   }
 
-
   render() {
     return (
-      <Swiper
-        horizontal={false}
-        loop={false}
-        showsPagination={false}
-        index={0}
-      >
-        <View style={styles.container}>
-          <ScrollView>
-            <View style={styles.btnSettingContainer}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => Alert.alert(
-                  'Alert Title',
-                  alertMessage,
-                  [
-                    { text: 'Cancel' },
-                    { text: 'OK' },
-                  ],
-                )}
-              >
-                <Image source={settingIcon} style={styles.iconImage} />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.userContainer} >
-              <TouchableOpacity activeOpacity={0.7} style={styles.userButton}>
-                <Image source={userImage} style={styles.userImage} />
-              </TouchableOpacity>
-              <Image source={verifyImage} tintColor={'#0f0'} style={{ position: 'absolute', right: 115, width: 30, height: 30 }} />
-
-              <View style={styles.linksContainer}>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
-                >
-                  <Image source={followIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>Following Me </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
-                >
-                  <Image source={contactIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>My Friends </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={styles.imgLinksContainer}
-                  onPress={() => Alert.alert(
-                    'Alert Title',
-                    alertMessage,
-                    [
-                      { text: 'Cancel' },
-                      { text: 'OK' },
-                    ],
-                  )}
-                >
-                  <Image source={addFriendIcon} style={styles.imgLinks} />
-                  <Text style={styles.textLinks}>Add Friends </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </ScrollView>
-          <View style={styles.swapContainer}>
-            <TouchableOpacity activeOpacity={0.7}>
-              <Image source={bottomArrowIcon} style={styles.swapImage} />
+      <View style={styles.container}>
+        <ScrollView>
+          <View style={styles.btnSettingContainer}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={Actions.setting}
+            >
+              <Image source={settingIcon} style={styles.iconImage} />
             </TouchableOpacity>
           </View>
-        </View>
+          <View style={styles.userContainer} >
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.userButton}
+              onPress={() => Actions.profile({ profile: this.state.profile , user_id:this.state.profile.id})}
+            >
+              {this.state.profile.picture == null ?
+                <Image style={styles.userImage} source={require('../../images/user.png')} /> : <Image source={{ uri: this.state.profile.picture }} style={styles.userImage} />
+            }
+            </TouchableOpacity>
 
-        <View style={this.viewStyle()}>
-          <TitleText label="Dashboard" />
-        </View>
-      </Swiper>
+            <View style={styles.linksContainer}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.imgLinksContainer}
+                onPress={Actions.follower}
+              >
+                <Image source={followIcon} style={styles.imgLinks} />
+                <Text style={styles.textLinks}>{strings.userpanel.followers} </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.imgLinksContainer}
+                onPress={Actions.following}
+              >
+                <Image source={contactIcon} style={styles.imgLinks} />
+                <Text style={styles.textLinks}>{strings.userpanel.following}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.imgLinksContainer}
+                onPress={Actions.addfriendscreen}
+              >
+                <Image source={searchFriend} style={[styles.imgLinks, { tintColor: '#000' }]} />
+                <Text style={styles.textLinks}>{strings.userpanel.search_friend} </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.imgLinksContainer}
+                onPress={Actions.approval}
+              >
+                <Image source={addFriendIcon} style={styles.imgLinks} />
+                <Text style={styles.textLinks}>{strings.userpanel.request}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }

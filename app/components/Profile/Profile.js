@@ -1,51 +1,166 @@
 import React, { Component } from 'react';
 import {
-     View,
-     TouchableOpacity,
-     Text,
-     Image,
-     ScrollView,
-     ActivityIndicator,
-     Alert,
-     PixelRatio,
-     Dimensions,
+  View,
+  TouchableOpacity,
+  Text,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+  Alert,
+  AsyncStorage,
+  ListView,
+  TextInput,
 } from 'react-native';
+import ProfilePost from './ProfilePost';
+import {
+  Card,
+  CardItem,
+  Container,
+  Right,
+  Left,
+  Button ,
+  Fab ,
+  Icon,
+} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
-import me from '../../services/me';
-import styles from './ProfileStyle';
-import MapMain from '../Timeline/TimelineComp';
+import follows from '../../services/follows';
+import saveProfile from '../../services/updateProfile';
+import post from '../../services/post';
+import auth from '../../services/auth';
+import strings from '../../localizations';
+import styles from './../../style/profileStyle';
+import timelineList from '../../services/timelineList';
+import TimelineList from '../Timeline/TimelineList';
+const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
+const saveIcon = require('./../../images/accept.png');
 
+
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    state ={
+    state = {
       avatarSource: null,
     };
     this.state = {
-      clicked: false,
+      profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
-      profile: {},
+      profile: this.props.profile,
+      displayName: this.props.profile.name_display,
+      leaderId: this.props.id,
+      followed: true,
+      countPost: null,
+      countFollowing: null,
+      countFollower: null,
+      id: this.props.user_id,
+      friend: false,
+      onEdit: false,
+      button: false,
+      me: false,
+      request: false,
+      list:[],
     };
   }
 
   componentDidMount() {
-    me.getMe()
-    .then(data => this.setState({ profile: data, loading: false }));
+    console.log("CDM is TRIGGERED============================");
+        const id = this.state.id
+        if (id === this.state.profile.id) {
+          this.setState({ me: true });
+        }
+        this.followHasSomeone(id, this.state.profile.id);
+
+        // Get user profile
+        auth.profile()
+          .then(res => {
+            this.setState({
+              profile: res.data,
+              displayName: res.data.name_display
+            });
+          })
+          .catch(err => {
+            console.log("Error");
+          });
+
+        // Get all post
+        post.getPost()
+          .then((res) => {
+            const countPosts = res.data[0].posts.length;
+            this.setState({ countPost: countPosts, loading: false })
+          })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
+
+        // Get all follower
+        follows
+          .showFollower(this.state.profile.id)
+          .then((res) => {
+            const countFollowers = res.data.length;
+            this.setState({ countFollower: countFollowers, loading: false });
+          })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
+
+          // Get all following
+          follows.showFollowing(this.state.profile.id)
+            .then((res) => {
+            const countFollowings = res.data.length;
+            this.setState({ countFollowing: countFollowings, loading: false });
+            })
+          .catch(() => {
+            Alert.alert('Fail to connect to server', '', [
+              { text: 'OK', onPress: () => Actions.pop() },
+            ]);
+          });
   }
-  // toggleSwitch() {
-  //   if (!this.state.clicked) {
-  //     Alert.alert('Confirmation',
-  //              'Are you sure to unfollow this user?', [
-  //             { text: 'Cancel', onPress: () => this.setState({ clicked: this.state.clicked }) },
-  //               { text: 'Yes', onPress: () => this.setState({ clicked: !this.state.clicked }) },
-  //              ]);
-  //   } else {
-  //     this.setState({ clicked: !this.state.clicked });
-  //   }
-  // }
+
+  componentWillMount(){
+    const id = this.state.id
+    timelineList
+    .getTimelineId(id)
+    .then((res) => {
+      this.setState({
+        list:res.data[0].posts
+      })
+    })
+  }
+
+  unfollowUser() {
+    follows
+      .unfollow(this.state.id)
+      .then(() => {
+        this.setState({ followed: false });
+      })
+      .catch();
+  }
   pressScroll() {
-    this.scrollView.scrollTo({x:0, y: 400, animated: true});
+    this.scrollView.scrollTo({ x: 0, y: 400, animated: true });
+  }
+
+  follow() {
+    AsyncStorage.getItem('userId')
+      .then((followerId) => {
+        const idFollower = followerId;
+        follows
+          .followsomeone(idFollower, this.state.leaderId)
+          .then((res) => {
+            this.setState({
+              followed: true,
+              request: true,
+              id: res.data.id,
+              followId: res.data.leader_id,
+            });
+          })
+          .catch();
+      })
+      .catch();
   }
 
   selectPhotoTapped() {
@@ -53,113 +168,301 @@ export default class Profile extends Component {
       quality: 1.0,
       maxWidth: 500,
       maxHeight: 500,
+      multiple: true,
       storageOptions: {
-        skipBackup: true
-      }
+        skipBackup: true,
+      },
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled photo picker');
-      }
-      else if (response.error) {
+      } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
+      } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
+      } else {
         let source = { uri: response.uri };
 
-      // You can also display the image using data:
-      // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source
+          avatarSource: source,
         });
       }
     });
   }
 
+  followHasSomeone(followerId, leaderId) {
+    follows
+      .checkFollowing(followerId, leaderId)
+      .then((res) => {
+        this.setState({ followed: typeof res.data.id !== 'undefined' });
+      })
+      .catch();
+  }
+
   render() {
-    if (this.state.loading === false) {
-      return (
-        <ScrollView ref={(scroll) => { this.scrollView = scroll }}>
-          <View style={styles.container} >
-            <View style={styles.backgroundContainer}>
-              <Image
-                source={{ uri: this.state.profile.imgBackground }}
-                resizeMode={'cover'}
-                style={styles.backdrop}
-              />
-              <View style={styles.backgroundname} >
-                <Text style={styles.headline} colors={['#F00', 'transparent']} >
-                  {this.state.profile.first_name} {this.state.profile.last_name}
-                </Text>
-              </View>
-              <View style={styles.textInform} >
-                <TouchableOpacity onPress={() => this.pressScroll()}>
-                  <Text style={styles.pos}>{this.state.profile.postTotal} Post</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={Actions.friendlist}>
-                  <Text style={styles.followers}>{this.state.profile.follower} Followers</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={Actions.setting} >
-                  <Text style={styles.button}>
-                    Edit
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-            <View style={{ position: 'absolute' }}>
-              <View style={styles.viewImgpp}>
-                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                  { this.state.avatarSource === null ? <Text>change Photo</Text> :
-                  <Image style={styles.logo} source={{ uri: this.state.profile.imgProfile }} />
-                  }
-                </TouchableOpacity>
-              </View>
-              <View style={styles.biodata}>
-                <Text style={styles.bio}>Bio</Text>
-                <Text style={styles.isi}>{this.state.profile.about}</Text>
-                <Text style={styles.bio}>Last Hiking</Text>
-                <View style={styles.posisi}>
-                  <Image
-                    style={styles.icon} source={require('./../../images/jarak.png')}
-                  />
-                  <Text style={styles.isi}>{this.state.profile.distance} Km</Text>
-                </View>
-                <View style={styles.posisi}>
-                  <Image
-                    style={styles.icon} source={require('./../../images/mountain.png')}
-                  />
-                  <Text style={styles.isi}>from: {this.state.profile.from}</Text>
-                </View>
-                <View style={styles.posisi}>
-                  <Image
-                    style={styles.location} source={require('./../../images/live.png')}
-                  />
-                  <Text style={styles.isi}>live : {this.state.profile.live}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                  <TouchableOpacity>
-                    <Text style={styles.isi2}>View More</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-            <View style={styles.mapmain}>
-              <MapMain />
-            </View>
-          </View>
-        </ScrollView>
-      );
-    } else {
-      return (
-        <ActivityIndicator />
+    console.log("RENDER BROOOOOOOOOOOOOOOOOOO", this.state.displayName);
+    const hasDisplayName = this.state.displayName !== null;
+    const displayName = this.state.displayName;
+    const id = this.props.profile.id;
+    const name_first = this.props.profile.name_first;
+    const name_last = this.props.profile.name_last;
+    const gender = this.props.profile.gender;
+    const name_slug = this.props.profile.name_slug;
+    const phone = this.props.profile.phone;
+    const birthday = this.props.profile.birthday;
+
+    const editDisplayName = () => {
+      this.setState({ onEdit: !this.state.onEdit });
+    }
+
+    // Save new display name
+    const changeDisplayName = () => {
+      this.setState({
+        onEdit: !this.state.onEdit
+      })
+      saveProfile(
+        id,
+        name_first,
+        name_last,
+        displayName,
+        name_slug,
+        gender,
+        phone,
+        birthday,
       );
     }
-  }
-}
+
+    {
+      for(var x in this.props.status) console.log(this.props.status[x] + x + "ini")
+    }
+    if (this.state.loading === false) {
+      return (
+      <View>
+        <ScrollView
+          ref={(scroll) => {
+            this.scrollView = scroll;
+          }}
+        >
+          <View style={styles.container}>
+            <View style={styles.backgroundContainer}>
+              <Image
+                source={require('./../../images/gunung.jpg')}
+                resizeMode={'cover'}
+                style={styles.backdrop}
+              >
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <TouchableOpacity onPress={() => Actions.pop()}>
+                    <Image source={require('./../../images/back.png')} style={styles.back} />
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={Actions.setting}>
+                    <Image source={settingIconwhite} style={styles.backsetting} />
+                  </TouchableOpacity>
+                </View>
+              </Image>
+            </View>
+            {/* <View style={{ borderWidth : 0.5 , borderColor: '#E0E0E0', marginTop: 10 }} />  */}
+            <View
+              style={{ alignItems: 'center', position: 'absolute', top: 125, left: 125, right: 120 }}
+            >
+              <View style={styles.viewImgpp}>
+                <TouchableOpacity
+                  disabled={this.state.request}
+                  onPress={this.selectPhotoTapped.bind(this)}
+                >
+                  {this.state.avatarSource === null
+                    ? <Text>change Photo</Text>
+                    : <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />}
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ alignItems: 'center' }}>
+              {this.state.me
+                ? <TouchableOpacity onPress={Actions.setting}>
+                  <Text style={styles.buttonEmpty} />
+                </TouchableOpacity>
+                : !this.state.me
+                    ? <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <TouchableOpacity
+                        disabled={this.props.status.status === 'request' && this.state.request}
+                        onPress={() => this.toggleSwitchFollow()}
+                      >
+                        <Text style={this.state.followed ? styles.button : styles.button}>
+                          {this.state.followed
+                              ? this.props.status.status === 'request'
+                                  ? 'Requested'
+                                  : strings.profileLocalization.unfollow
+                              : strings.profileLocalization.follow}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    : <Text />}
+            </View>
+            <View style={styles.biodata}>
+              <Card>
+                <View>
+                  <View style={styles.profile}>
+                      <Text style={styles.username}>
+                       {this.state.profile.name_slug}
+                      </Text>
+                      {hasDisplayName ?
+                        this.state.onEdit ?
+                          <View style={styles.box}>
+                            <TextInput
+                              style={styles.input}
+                              value={this.state.displayName}
+                              onChangeText={displayName => this.setState({ displayName })}
+                            />
+                            <TouchableOpacity onPress={() => changeDisplayName()}>
+                              <Image
+                                source={saveIcon}
+                                style={styles.saveIcon}
+                              />
+                            </TouchableOpacity>
+                          </View> :
+                          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <TouchableOpacity onPress={() => editDisplayName()}>
+                              <Text style={styles.headline}>
+                                {this.state.displayName}
+                              </Text>
+                            </TouchableOpacity>
+                          </View> :
+                        <Text style={styles.headline}>
+                          {this.state.profile.name_first} {this.state.profile.name_last}
+                        </Text>
+                      }
+                    <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
+                    <Button transparent onPress={Actions.chatfriend} style={styles.chatImg} >
+                      <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
+                    </Button>
+                    </View>
+                  </View>
+                  <View style={styles.textInform}>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                      <TouchableOpacity>
+                        <Text style={styles.pos}>{strings.profileLocalization.post}</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countPost}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                      <TouchableOpacity onPress={Actions.follower}>
+                        <Text style={styles.followers}>{strings.profileLocalization.follower}</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countFollower}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                      <TouchableOpacity onPress={Actions.following}>
+                        <Text style={styles.followerss}>
+                          {strings.profileLocalization.following}
+                        </Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 25 }}>
+                          {this.state.countFollowing}
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </View>
+              </Card>
+              <Card>
+                <View style={{ paddingVertical: 10 }}>
+                  <Text style={styles.bio}>{strings.profileLocalization.lastHiking}</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-around',
+                      paddingHorizontal: 15,
+                    }}
+                  >
+                    <View style={{ flexDirection: 'column' }}>
+                      <View style={styles.posisi}>
+                        <Image style={styles.icon} source={require('./../../images/jarak.png')} />
+                      </View>
+                      <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                          N/A
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={{ flexDirection: 'column' }}>
+                      <View style={styles.posisi}>
+                        <Image
+                          style={styles.icon}
+                          source={require('./../../images/mountain.png')}
+                        />
+                      </View>
+                      <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.isi}>{strings.profileLocalization.from} :</Text>
+                        <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                          N/A
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={{ flexDirection: 'column' }}>
+                    <View style={styles.posisi}>
+                      <Image style={styles.icon} source={require('./../../images/live.png')} />
+                                            </View>
+                                            <View style={{ flexDirection: 'row' }}>
+                                              <Text style={styles.isi}>{strings.profileLocalization.live} :</Text>
+                                              <Text style={{ marginLeft: 8, textAlign: 'center', fontSize: 16 }}>
+                                                N/A
+                                              </Text>
+                                            </View>
+                                          </View>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                                          {/*
+                                        This is will be used later
+                                        ===============================
+                                        <TouchableOpacity>
+                                        <Text style={styles.isi2}>{strings.profileLocalization.viewMore}</Text>
+                                      </TouchableOpacity> */}
+                                        </View>
+                                      </View>
+                                    </Card>
+                                  </View>
+                                  {/*
+                                    This is will be used later
+                                    ===============================
+                                    <View style={styles.mapmain}>
+                                    <MapMain />
+                                  </View> */}
+                                </View>
+                                <View >
+                                <ListView
+                                  enableEmptySections
+                                  dataSource={ds.cloneWithRows(this.state.list)}
+                                  renderRow={dataPost => <TimelineList dataPost={dataPost} />}
+                                />
+                                </View>
+                              </ScrollView>
+                            </View>
+                            );
+                          }
+                          return (
+                            <View style={styles.Indicator}>
+                              <ActivityIndicator size={'large'} />
+                            </View>
+                          );
+                        }
+                        toggleSwitchFollow() {
+                          if (this.state.followed === true) {
+                            Alert.alert('Confirmation', strings.profileLocalization.areYouFollow, [
+                              {
+                                text: strings.logoutLocalization.cancel,
+                                onPress: () => this.setState({ clicked: this.state.followed }),
+                              },
+                              { text: strings.profileLocalization.yes, onPress: () => this.unfollowUser() },
+                            ]);
+                          } else {
+                            this.follow();
+                          }
+                        }
+                      }

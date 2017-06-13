@@ -11,46 +11,42 @@ export default class Login extends Component {
     this.state = {
       display_name: '',
       phone: '',
-      loading: false
+      loading: false,
     };
   }
 
   static get defaultProps() {
     return {
-      title: strings.signup
+      title: strings.signup,
     };
   }
 
   componentWillMount() {
-    this.setState({loading: false})
+    this.setState({ loading: false });
   }
 
   componentWillUnmount() {
-    this.setState({loading: false})
+    this.setState({ loading: false });
   }
 
   render() {
     return (
-      <View style={ styles.login_wrap }>
-        <View style={ styles.form }>
+      <View style={styles.login_wrap}>
+        <View style={styles.form}>
           <TextInput
-              placeholder={strings.phone}
-              onChangeText={ (text) => this.setState({ phone: text })}
-            />
+            placeholder={strings.phone}
+            onChangeText={text => this.setState({ phone: text })}
+          />
           <TextInput
-              placeholder={strings.fullname}
-              onChangeText={ (text) => this.setState({ display_name: text })}
-            />
+            placeholder={strings.fullname}
+            onChangeText={text => this.setState({ display_name: text })}
+          />
 
         </View>
         <View>
-          <Button
-            onPress={this.onRegister.bind(this)}
-            title={strings.signup}
-            color='green'
-          />
+          <Button onPress={this.onRegister.bind(this)} title={strings.signup} color="green" />
         </View>
-        { this.state.loading && <Loader /> }
+        {this.state.loading && <Loader />}
       </View>
     );
   }
@@ -60,15 +56,14 @@ export default class Login extends Component {
     var display_name = this.state.display_name;
     var nav = this.props.navigator;
     var that = this;
-    this.setState( { loading: true } )
+    this.setState({ loading: true });
     RestAndroid.register(this.state.phone, country_code, country, timezone, locale)
-    .then(
-      async function(resp) {
+      .then(async (resp) => {
         nav.push({
-          name: 'pin'
+          name: 'pin',
         });
 
-        that.setState({loading:false})
+        that.setState({ loading: false });
 
         try {
           await AsyncStorage.multiSet([
@@ -79,16 +74,14 @@ export default class Login extends Component {
             ['timezone', timezone],
             ['locale', locale],
           ]);
-        } catch(e) {
+        } catch (e) {
           console.log(e);
         }
-      }
-    ).catch(
-      function(error) {
-        console.log("landing here 2");
+      })
+      .catch((error) => {
+        console.log('landing here 2');
         ToastAndroid.show(strings.failed, ToastAndroid.SHORT);
-      }
-    );
+      });
   }
 }
 
@@ -99,6 +92,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   form: {
-    padding: 50
+    padding: 50,
   },
 });

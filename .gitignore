@@ -41,6 +41,10 @@ buck-out/
 \.buckd/
 android/app/libs
 
+# vscode
+.vscode/*
+/jsconfig.json
+
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
@@ -56,3 +60,5 @@ crashlytics-build.properties
 com_crashlytics_export_strings.xml
 ios/Pods/
 report.xml
+
+ios/hikerapp.xcodeproj/project.pbxproj

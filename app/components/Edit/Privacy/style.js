@@ -58,4 +58,5 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
 module.exports = styles;

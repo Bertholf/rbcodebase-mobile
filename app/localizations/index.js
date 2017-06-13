@@ -6,4 +6,5 @@ const strings = new LocalizedStrings({
   en,
   id,
 });
+
 export default strings;

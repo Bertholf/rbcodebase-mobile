@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,9 +23,18 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   userImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 120,
+    ...Platform.select({
+      ios: {
+        width: 120,
+        height: 120,
+        borderRadius: 120/2,
+      },
+      android: {
+        width: 120,
+        height: 120,
+        borderRadius: 120,
+      }
+    }),
   },
   linksContainer: {
     flexDirection: 'column',
@@ -48,12 +57,12 @@ const styles = StyleSheet.create({
   },
   swapContainer: {
     flex: 1,
-    marginTop: 90,
+    marginTop: 60,
     alignItems: 'center',
   },
   swapImage: {
-    width: 70,
-    height: 50,
+    width: 40,
+    height: 35,
   },
 });
 

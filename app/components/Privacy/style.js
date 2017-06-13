@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 const styles = StyleSheet.create({
   borderTextT: {
     marginTop: 25,
@@ -57,3 +58,5 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+module.exports = styles;

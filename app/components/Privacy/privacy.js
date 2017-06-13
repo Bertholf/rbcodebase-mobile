@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  StyleSheet,
   Text,
   View,
-  Button,
-  Alert,
-  Image,
-  Picker,
   Switch,
   TouchableOpacity,
 } from 'react-native';
-import styles from './../../components/Edit/Privacy/style';
+import styles from './style';
 import settingService from '../../services/setting';
 
 
@@ -27,29 +22,23 @@ export default class privacy extends Component {
   }
 
   saveButton(json) {
-    settingService.updateSetting({ privacy: json })
-    .then(Alert.alert('Saved'))
-    .catch(err => console.log(err));
-  }
-
-  render() {
-    return (
+    settingService.updateSetting(
       <View style={styles.styleBackground}>
         <View style={{ height: 50, backgroundColor: '#2196F3', borderBottomWidth: 1, borderColor: 'white', justifyContent: 'center' }}>
           <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Privacy</Text>
         </View>
         <ScrollView>
-        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
-          <Text style={styles.styleText}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
+            <Text style={styles.styleText}>
             Comfirm request when someone follow
-          </Text>
-          <Switch
-            onValueChange={() => this.setState({ confirmFollow: !this.state.confirmFollow })}
-            style={{ margin: 8 }}
-            onTintColor={'#1C64C8'}
-            value={this.state.confirmFollow}
-          />
-        </View>
+            </Text>
+            <Switch
+              onValueChange={() => this.setState({ confirmFollow: !this.state.confirmFollow })}
+              style={{ margin: 8 }}
+              onTintColor={'#1C64C8'}
+              value={this.state.confirmFollow}
+            />
+          </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
             <Text style={styles.styleText}>
             Who can follow you

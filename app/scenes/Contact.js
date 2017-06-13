@@ -80,7 +80,7 @@ export default class Contact extends Component {
       that.setState({
         dataSource: that.state.ds.cloneWithRows(result)
       });
-    });
+    })
   }
 
   _onPressItem(id) {

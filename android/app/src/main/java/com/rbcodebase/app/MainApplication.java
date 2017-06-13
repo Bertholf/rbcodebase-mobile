@@ -4,8 +4,9 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
-import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
+import com.evollu.react.fcm.FIRMessagingPackage;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
+import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;
 import io.fullstack.oauth.OAuthManagerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -28,6 +29,7 @@ import com.rbcodebase.app.modules.google.GoogleSignInPackage;
 import com.rbcodebase.app.modules.twitter.TwitterAuthPackage;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import org.pgsqlite.SQLitePluginPackage;
 
 public class MainApplication extends Application implements ReactApplication {
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
@@ -50,10 +52,12 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+              new SQLitePluginPackage(),
               new MainReactPackage(),
-            new RCTSplashScreenPackage(),
-            new ReactNativeLocalizationPackage(),
-            new OAuthManagerPackage(),
+              new FIRMessagingPackage(),
+              new ReactNativeLocalizationPackage(),
+              new RCTSplashScreenPackage(),
+              new OAuthManagerPackage(),
               new ImagePickerPackage(),
               new VectorIconsPackage(),
               new GoogleSignInPackage(),
@@ -61,7 +65,7 @@ public class MainApplication extends Application implements ReactApplication {
               new ReactNativeMapboxGLPackage(),
               new TwitterAuthPackage(),
               new FBSDKPackage(mCallbackManager),
-              new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
+              new CodePush("4h-aS_f7gtPEyNlpBeeL9LqAaRkVNkidNuy8f", MainApplication.this, BuildConfig.DEBUG)
       );
     }
   };

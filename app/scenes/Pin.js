@@ -6,31 +6,27 @@ export default class Pin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pin: ''
+      pin: '',
     };
   }
 
   static get defaultProps() {
     return {
-      title: strings.enter_pin
+      title: strings.enter_pin,
     };
   }
 
   render() {
     return (
-      <View style={ styles.login_wrap }>
-        <View style={ styles.form }>
+      <View style={styles.login_wrap}>
+        <View style={styles.form}>
           <TextInput
-              placeholder={strings.pin}
-              onChangeText={ (text) => this.setState({ pin: text })}
-            />
+            placeholder={strings.pin}
+            onChangeText={text => this.setState({ pin: text })}
+          />
         </View>
         <View>
-          <Button
-            onPress={this.onLogin.bind(this)}
-            title={strings.login}
-            color='green'
-          />
+          <Button onPress={this.onLogin.bind(this)} title={strings.login} color="green" />
         </View>
       </View>
     );
@@ -38,7 +34,7 @@ export default class Pin extends Component {
 
   onLogin() {
     this.props.navigator.push({
-      name: 'bridge'
+      name: 'bridge',
     });
   }
 }
@@ -50,6 +46,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   form: {
-    padding: 50
-  }
+    padding: 50,
+  },
 });

@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import {
   ScrollView,
-  StyleSheet,
   Text,
   View,
-  Button,
   Alert,
-  Image,
-  Picker,
   Switch,
   TouchableOpacity,
 } from 'react-native';
@@ -39,17 +35,17 @@ export default class privacy extends Component {
           <Text style={{ fontSize: 20, color: 'white', marginLeft: 15 }}>Privacy</Text>
         </View>
         <ScrollView>
-        <View style={{flexDirection: 'row',justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
-          <Text style={styles.styleText}>
-            Comfirm request when someone follow
-          </Text>
-          <Switch
-            onValueChange={() => this.setState({ confirmFollow: !this.state.confirmFollow })}
-            style={{ margin: 8 }}
-            onTintColor={'#1C64C8'}
-            value={this.state.confirmFollow}
-          />
-        </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
+            <Text style={styles.styleText}>
+              Comfirm request when someone follow
+            </Text>
+            <Switch
+              onValueChange={() => this.setState({ confirmFollow: !this.state.confirmFollow })}
+              style={{ margin: 8 }}
+              onTintColor={'#1C64C8'}
+              value={this.state.confirmFollow}
+            />
+          </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#aaa', height: 50 }}>
             <Text style={styles.styleText}>
             Who can follow you
