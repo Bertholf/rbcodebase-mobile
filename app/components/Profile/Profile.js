@@ -210,7 +210,8 @@ export default class Profile extends Component {
         } else if (response.customButton) {
           console.log('User tapped custom button: ', response.customButton);
         } else {
-          let source = response.fileName;
+          let source = response.data;
+          const uri = response.uri;
           const url = 'http://rbcodebase.com/uploads/';
           const picturePath = response.path;
           const pictureType = response.type;
@@ -220,7 +221,7 @@ export default class Profile extends Component {
           // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
           this.setState({
-            image: url + source,
+            image: url + pictureName,
           });
 
           AsyncStorage.getItem('accessToken')
@@ -230,9 +231,10 @@ export default class Profile extends Component {
 
             // User upload profile picture
             form.append('img_avatar', {
-              uri: 'file://' + picturePath,
-              type: pictureType,
+              uri,
+              // type: pictureType,
               name: pictureName,
+              data: source,
             });
 
             fetch(url, {
@@ -244,6 +246,7 @@ export default class Profile extends Component {
               body: form,
             })
             .then((resp) => {
+              console.log("Landing here broooooooooooooo==========>", resp);
               this.setState({
                 image: resp._bodyInit.img_avatar,
               });

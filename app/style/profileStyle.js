@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 80 / 2,
-        marginTop: 20,
+        marginTop: 12,
       },
       android: {
         width: 80,
