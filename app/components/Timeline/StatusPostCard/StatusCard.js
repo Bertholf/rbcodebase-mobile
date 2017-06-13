@@ -63,7 +63,7 @@ export default class PostCard extends Component {
       // If user posting image
       if (media !== null) {
         form.append('media', {
-          uri: "file://" + mediaPath,
+          uri: mediaPath,
           type: mediaType,
           name: mediaName,
         });
@@ -79,7 +79,8 @@ export default class PostCard extends Component {
         },
         body: form
       })
-      .then(() => {
+      .then((res) => {
+        console.log("SUCCESS", res);
         this.setState(() => {
             return {
               text: null,

@@ -22,6 +22,7 @@ import {
   Fab ,
   Icon,
 } from 'native-base';
+import FormData from 'FormData';
 import ImagePicker from 'react-native-image-picker';
 import { Actions } from 'react-native-router-flux';
 import follows from '../../services/follows';
@@ -32,6 +33,7 @@ import strings from '../../localizations';
 import styles from './../../style/profileStyle';
 import timelineList from '../../services/timelineList';
 import TimelineList from '../Timeline/TimelineList';
+
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 const saveIcon = require('./../../images/accept.png');
 
@@ -40,14 +42,13 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    state = {
-      avatarSource: null,
-    };
     this.state = {
+      avatarSource: null,
       profileImage  : require('./../../images/gunung.jpg'),
       loading: true,
       id: this.props.user_id,
       profile: this.props.profile,
+      ownerProfile: this.props.profile,
       displayName: this.props.profile.name_display,
       leaderId: this.props.profile.id,
       tableId: '',
@@ -60,7 +61,8 @@ export default class Profile extends Component {
       button: false,
       me: false,
       request: false,
-      list:[],
+      list: [],
+      image: null,
     };
   }
 
@@ -71,6 +73,17 @@ export default class Profile extends Component {
         this.setState({ me: true });
       }
       this.followHasSomeone(id, this.state.profile.id);
+
+      // Get user profile
+      auth.profile()
+        .then((res) => {
+          this.setState({
+            ownerProfile: res.data,
+          })
+        })
+        .catch(() => {
+          Alert.alert("Failed to get profile data");
+        })
 
       // Get all follower
       follows
@@ -84,7 +97,7 @@ export default class Profile extends Component {
             { text: 'OK', onPress: () => Actions.pop() },
           ]);
         });
-      });
+    });
 
     // Get all post
     post.getPost()
@@ -156,37 +169,6 @@ export default class Profile extends Component {
       .catch(err => { console.log("Error", err.message) });
   }
 
-  selectPhotoTapped() {
-    const options = {
-      quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
-      multiple: true,
-      storageOptions: {
-        skipBackup: true,
-      },
-    };
-
-    ImagePicker.showImagePicker(options, (response) => {
-      if (response.didCancel) {
-        console.log('User cancelled photo picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        let source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        this.setState({
-          avatarSource: source,
-        });
-      }
-    });
-  }
-
   followHasSomeone(followerId, leaderId) {
     follows
       .checkFollowing(followerId, leaderId)
@@ -202,33 +184,94 @@ export default class Profile extends Component {
   render() {
     const hasDisplayName = this.state.displayName !== null;
     const displayName = this.state.displayName;
-    const id = this.state.profile.id;
+    const userId = this.state.profile.id;
     const name_first = this.state.profile.name_first;
+    const name_slug = this.state.name_slug;
     const name_last = this.state.profile.name_last;
     const gender = this.state.profile.gender;
-    const name_slug = this.state.profile.name_slug;
-    const phone = this.state.profile.phone;
-    const birthday = this.state.profile.birthday;
+    const avatar = this.state.image;
+
+    selectPhotoTapped = () => {
+      const options = {
+        quality: 1.0,
+        maxWidth: 500,
+        maxHeight: 500,
+        storageOptions: {
+          skipBackup: true,
+        },
+      };
+
+      ImagePicker.showImagePicker(options, (response) => {
+        console.log("RESPONSE BRO==============>>>>>>>>.", response);
+        if (response.didCancel) {
+          console.log('User cancelled photo picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          let source = response.data;
+          const uri = response.uri;
+          const url = 'http://rbcodebase.com/uploads/';
+          const picturePath = response.path;
+          const pictureType = response.type;
+          const pictureName = response.fileName;
+
+          // You can also display the image using data:
+          // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+          this.setState({
+            image: url + pictureName,
+          });
+
+          AsyncStorage.getItem('accessToken')
+          .then((token) => {
+            const url = `http://rbcodebase.com/api/users/${userId}`;
+            const form = new FormData();
+
+            // User upload profile picture
+            form.append('img_avatar', {
+              uri,
+              // type: pictureType,
+              name: pictureName,
+              data: source,
+            });
+
+            fetch(url, {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                // "Content-Type" : type
+              },
+              body: form,
+            })
+            .then((resp) => {
+              console.log("Landing here broooooooooooooo==========>", resp);
+              this.setState({
+                image: resp._bodyInit.img_avatar,
+              });
+            })
+            .catch((err) => {
+              Alert.alert(err.message);
+            });
+          })
+          .catch(() => console.log("User unauthorized"));
+        }
+      });
+    };
 
     const editDisplayName = () => {
       this.setState({ onEdit: !this.state.onEdit });
-    }
+    };
 
     // Save new display name
     const changeDisplayName = () => {
       this.setState({
         onEdit: !this.state.onEdit
       })
-      saveProfile(
-        id,
-        name_first,
-        name_last,
-        displayName,
-        name_slug,
-        gender,
-        phone,
-        birthday,
-      );
+
+      // Save display name
+      saveProfile(userId, name_first, name_last, displayName, name_slug, gender, avatar);
     }
 
     {
@@ -259,11 +302,16 @@ export default class Profile extends Component {
                 <View style={styles.viewImgpp}>
                   <TouchableOpacity
                     disabled={this.state.request}
-                    onPress={this.selectPhotoTapped.bind(this)}
+                    onPress={selectPhotoTapped.bind(this)}
                   >
-                    {this.state.avatarSource === null
-                      ? <Text>change Photo</Text>
-                      : <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.picture }} />}
+                    {this.state.me ?
+                      this.state.ownerProfile.img_avatar === null ?
+                        <Image style={styles.logo} source={{ uri: this.state.ownerProfile.picture }} />
+                        : <Image style={styles.logo} source={{ uri: this.state.ownerProfile.img_avatar }} />
+                        : this.state.profile.img_avatar === null ?
+                        <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
+                        : <Image style={styles.logo} source={{ uri: this.state.profile.img_avatar }} />
+                    }
                   </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center' }}>
