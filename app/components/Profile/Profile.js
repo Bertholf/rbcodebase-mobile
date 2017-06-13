@@ -48,6 +48,7 @@ export default class Profile extends Component {
       loading: true,
       id: this.props.user_id,
       profile: this.props.profile,
+      ownerProfile: this.props.profile,
       displayName: this.props.profile.name_display,
       leaderId: this.props.profile.id,
       tableId: '',
@@ -77,7 +78,7 @@ export default class Profile extends Component {
       auth.profile()
         .then((res) => {
           this.setState({
-            profile: res.data,
+            ownerProfile: res.data,
           })
         })
         .catch(() => {
@@ -300,9 +301,14 @@ export default class Profile extends Component {
                     disabled={this.state.request}
                     onPress={selectPhotoTapped.bind(this)}
                   >
-                    {this.state.avatarSource === null
-                      ? <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.img_avatar }} />
-                      : <Image style={styles.logo} resizeMode="contain" source={{ uri: this.state.profile.img_avatar }} />}
+                    {this.state.me ?
+                      this.state.ownerProfile.img_avatar === null ?
+                        <Image style={styles.logo} source={{ uri: this.state.ownerProfile.picture }} />
+                        : <Image style={styles.logo} source={{ uri: this.state.ownerProfile.img_avatar }} />
+                        : this.state.profile.img_avatar === null ?
+                        <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
+                        : <Image style={styles.logo} source={{ uri: this.state.profile.img_avatar }} />
+                    }
                   </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center' }}>
