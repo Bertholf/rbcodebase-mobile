@@ -53,7 +53,7 @@ export default class PostMenu extends Component {
           name: response.fileName,
           data: response.data,
           type: response.type,
-          path: response.path,
+          path: response.uri,
         });
       }
       const imgName = this.state.name;
