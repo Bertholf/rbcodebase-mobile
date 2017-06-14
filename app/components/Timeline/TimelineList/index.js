@@ -39,12 +39,13 @@ export default class TimelineList extends Component {
       id: null,
       onPress: false,
       onEdit: false,
-      data: this.props.dataPost,
-      text: this.props.dataPost.text,
-      post_id: this.props.dataPost.id,
-      user_id: this.props.dataPost.user_id,
-      countLike: this.props.dataPost.likes.length,
-      liked: this.props.dataPost.liked,
+      data: this.props.data,
+      text: this.props.data.text,
+      post_id: this.props.data.id,
+      user_id: this.props.data.user_id,
+      countLike: this.props.data.likes,
+      countComment: this.props.data.comments,
+      liked: this.props.data.liked,
     }
   }
 
@@ -65,8 +66,8 @@ export default class TimelineList extends Component {
       })
   }
 
-  gotoDetail(dataPost) {
-    Actions.timelineDetail(dataPost);
+  gotoDetail(data) {
+    Actions.timelineDetail(data);
   }
 
   // User update post
@@ -86,10 +87,10 @@ export default class TimelineList extends Component {
 
   render() {
     const timePost = moment.parseZone(this.state.data.updated_at, 'YYYY-MM-DD hh:mm:ss').utc();
-    const commentCount = this.state.data.comments.length;
+    const commentCount = this.state.countComment.length;
     const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.countLike === 0;
-    const countLike = this.state.countLike;
+    const countLike = this.state.countLike.length;
     const date = moment().diff(timePost, 'days') < 5
       ? timePost.fromNow()
       : moment().diff(timePost, 'years') >= 1
@@ -129,7 +130,7 @@ export default class TimelineList extends Component {
               this.setState({
                 onPress: !this.state.onPress,
                 countLike: this.state.countLike - 1,
-                liked: this.props.dataPost.liked,
+                liked: this.props.data.liked,
               });
               console.log("Unlike success");
             })
