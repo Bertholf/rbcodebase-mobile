@@ -79,10 +79,9 @@ export default class PassEdit extends Component {
     const name_slug = this.state.profile.name_slug;
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.date;
-    const img_avatar = this.state.profile.img_avatar;
     const onSave = () => {
       if (validPassword && passwordLength && combinePassword) {
-        saveProfile(id, name_first, name_last, name_slug, phone, birthday, img_avatar, passwordInput, passwordConfirmation);
+        saveProfile(id, name_first, name_last, name_slug, phone, birthday, passwordInput, passwordConfirmation);
         this.clearText('textInput1')
         this.clearText('textInput2')
         auth.profile()

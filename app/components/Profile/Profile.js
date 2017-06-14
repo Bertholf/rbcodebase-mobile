@@ -271,7 +271,7 @@ export default class Profile extends Component {
       })
 
       // Save display name
-      saveProfile(userId, name_first, name_last, displayName, name_slug, gender, avatar);
+      saveProfile(userId, name_first, name_last, displayName, name_slug, gender);
     }
 
     {

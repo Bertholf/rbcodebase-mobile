@@ -85,7 +85,6 @@ export default class Gender extends Component {
     const phone = this.state.profile.phone;
     const birthday = this.state.profile.birthday;
     const gender = this.state.gender;
-    const img_avatar = this.state.img_avatar;
 
     const color = this.state.netstate ? 'blue' : '#c0c0c0';
     const handlerState = this.state.netstate ? () => updategender() : () => console.log('Disabled');
@@ -100,7 +99,7 @@ export default class Gender extends Component {
       title: strings.settings.changegender,
     };
     const updategender = () => {
-      saveProfile(id, name_first, name_last, displayName, name_slug, img_avatar, gender, phone, birthday);
+      saveProfile(id, name_first, name_last, displayName, name_slug, gender, phone, birthday);
         //  Toast.show(strings.mobilephone.phoneChanged);
       auth.profile()
         .then((response) => {

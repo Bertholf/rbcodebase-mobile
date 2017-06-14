@@ -127,7 +127,6 @@ export default class MobilePhone extends Component {
     const display_name = this.state.profile.name_display;
     const gender = this.state.profile.gender;
     const birthday = this.state.profile.birthday;
-    const img_avatar = this.state.profile.img_avatar;
     const numberphone = this.state.profile.cell_number;
     const number = this.state.phone;
     const validPhone = regex.test(this.state.phone);
@@ -136,10 +135,11 @@ export default class MobilePhone extends Component {
         /**
          * Give the action if mobilephone number pass the validation
          */
-        saveProfile(id, name_first, name_last, display_name, name_slug, img_avatar, gender, number, birthday);
+        saveProfile(id, name_first, name_last, display_name, name_slug, gender, number, birthday);
         auth
           .profile()
           .then((response) => {
+            console.log("TODOOOOOOOOOOOOOKE", response);
             this.setState({ profile: response.data, loading: false }, () => {
               this.onClick(strings.mobilephone.saved, 'bottom', DURATION.LENGTH_LONG);
             });
