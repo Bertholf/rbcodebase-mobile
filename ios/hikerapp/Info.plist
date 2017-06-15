@@ -16,6 +16,10 @@
     <string>$(PRODUCT_NAME)</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
+    <!-- <key>Privacy - Camera Usage Description</key>
+    <string> $(PRODUCT_NAME) camera use</string>
+    <key>Privacy - Photo Library Usage Description </key>
+    <string> $(PRODUCT_NAME) photo use</string> -->
     <key>CFBundleShortVersionString</key>
     <string>0.0.29</string>
     <key>CFBundleSignature</key>
@@ -106,6 +110,10 @@
     </dict>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string/>
+    <key>NSCameraUsageDescription</key>
+    <string> $(PRODUCT_NAME) camera use</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string> $(PRODUCT_NAME) photo use</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>We need to access your photo library to help you out picking the best photo to share on your timeline</string>
     <key>UIAppFonts</key>

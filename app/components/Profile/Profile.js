@@ -133,9 +133,9 @@ export default class Profile extends Component {
     .getTimelineId(id)
     .then((res) => {
       this.setState({
-        list:res.data[0].posts
-      })
-    })
+        list: res.data[0].posts,
+      });
+    });
   }
 
   unfollowUser() {
@@ -182,6 +182,10 @@ export default class Profile extends Component {
         });
       })
       .catch(err => { console.log("Error", err.message) });
+  }
+
+  reRender() {
+    this.componentDidMount();
   }
 
   render() {
@@ -263,11 +267,11 @@ export default class Profile extends Component {
             })
             .then(resp => resp.json())
             .then((resp) => {
-              console.log("MANDEK KENE COOOOOOK====>>>", resp);
               this.setState({
                 image: resp.data.img_avatar,
                 background: resp.data.img_background,
               });
+              this.reRender();
             })
             .catch((err) => {
               Alert.alert(err.message);
