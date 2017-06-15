@@ -36,6 +36,7 @@ import TimelineList from '../Timeline/TimelineList';
 
 const settingIconwhite = require('./../../images/ic_settings_white_24dp.png');
 const saveIcon = require('./../../images/accept.png');
+const camera = require('./../../images/camera.png');
 
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -63,6 +64,8 @@ export default class Profile extends Component {
       request: false,
       list: [],
       image: null,
+      background: null,
+      isProfile: false,
     };
   }
 
@@ -190,8 +193,9 @@ export default class Profile extends Component {
     const name_last = this.state.profile.name_last;
     const gender = this.state.profile.gender;
     const avatar = this.state.image;
+    const background = this.state.background;
 
-    selectPhotoTapped = () => {
+    const uploadPicture = () => {
       const options = {
         quality: 1.0,
         maxWidth: 500,
@@ -218,23 +222,36 @@ export default class Profile extends Component {
 
           // You can also display the image using data:
           // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-          this.setState({
-            image: url + pictureName,
-          });
+          if (this.state.isProfile) {
+            this.setState({
+              background: url + pictureName,
+            });
+          } else {
+            this.setState({
+              image: url + pictureName,
+            });
+          }
 
           AsyncStorage.getItem('accessToken')
           .then((token) => {
             const url = `http://rbcodebase.com/api/users/${userId}`;
             const form = new FormData();
 
-            // User upload profile picture
-            form.append('img_avatar', {
-              uri,
-              // type: pictureType,
-              name: pictureName,
-              data: source,
-            });
+            if (this.state.isProfile) {
+              // User upload profile picture
+              form.append('img_avatar', {
+                uri,
+                name: pictureName,
+                data: source,
+              });
+            } else {
+              // User upload background picture
+              form.append('img_background', {
+                uri,
+                name: pictureName,
+                data: source,
+              });
+            }
 
             fetch(url, {
               method: 'POST',
@@ -244,9 +261,12 @@ export default class Profile extends Component {
               },
               body: form,
             })
+            .then(resp => resp.json())
             .then((resp) => {
+              console.log("MANDEK KENE COOOOOOK====>>>", resp);
               this.setState({
-                image: resp._bodyInit.img_avatar,
+                image: resp.data.img_avatar,
+                background: resp.data.img_background,
               });
             })
             .catch((err) => {
@@ -289,7 +309,7 @@ export default class Profile extends Component {
                 source={require('./../../images/gunung.jpg')}
                 resizeMode={'cover'}
                 style={styles.backdrop}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8 }}>
                   <TouchableOpacity onPress={() => Actions.pop()}>
                     <Image source={require('./../../images/back.png')} style={styles.back} />
                   </TouchableOpacity>
@@ -300,7 +320,10 @@ export default class Profile extends Component {
                 <View style={styles.viewImgpp}>
                   <TouchableOpacity
                     disabled={this.state.request}
-                    onPress={selectPhotoTapped.bind(this)}
+                    onPress={() => {
+                      uploadPicture();
+                      this.setState({ isProfile: !this.state.isProfile })
+                    }}
                   >
                     {this.state.me ?
                       this.state.ownerProfile.img_avatar === null ?
@@ -310,6 +333,16 @@ export default class Profile extends Component {
                         <Image style={styles.logo} source={{ uri: this.state.profile.picture }} />
                         : <Image style={styles.logo} source={{ uri: this.state.profile.img_avatar }} />
                     }
+                  </TouchableOpacity>
+                </View>
+                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                  <TouchableOpacity
+                    onPress={uploadPicture.bind(this)}
+                  >
+                    <Image
+                      source={camera}
+                      style={styles.camera}
+                    />
                   </TouchableOpacity>
                 </View>
                 <View style={{ alignItems: 'center' }}>

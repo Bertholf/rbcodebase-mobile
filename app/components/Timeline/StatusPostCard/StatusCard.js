@@ -74,7 +74,7 @@ export default class PostCard extends Component {
         method: 'POST',
         headers: {
           Authorization : `Bearer ${token}`,
-          "Content-Type" : type
+          // "Content-Type" : type
         },
         body: form
       })

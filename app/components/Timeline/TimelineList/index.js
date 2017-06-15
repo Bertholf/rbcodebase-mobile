@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
   TouchableOpacity,
-  StyleSheet,
   Text,
   View,
   Image,
-  Navigator,
-  ListView,
   ActivityIndicator,
   ScrollView,
   Alert,
@@ -15,7 +12,6 @@ import {
 import { Actions } from 'react-native-router-flux';
 import timelineList from '../../../services/timelineList';
 import TimelineComment from './../timelineComment';
-import Accordion from 'react-native-accordion';
 import styles from './style';
 import post from './../../../services/post';
 import auth from './../../../services/auth';
@@ -41,6 +37,8 @@ export default class TimelineList extends Component {
       onEdit: false,
       data: this.props.data,
       text: this.props.data.text,
+      image: this.props.data.media_title,
+      url: 'http://rbcodebase.com/uploads/',
       post_id: this.props.data.id,
       user_id: this.props.data.user_id,
       countLike: this.props.data.likes,
@@ -52,7 +50,7 @@ export default class TimelineList extends Component {
   // Get user id
   componentDidMount() {
     if (this.state.liked !== false) {
-      this.setState({ onPress: !this.state.onPress})
+      this.setState({ onPress: !this.state.onPress })
     }
 
     auth.profile()
@@ -91,6 +89,7 @@ export default class TimelineList extends Component {
     const noComments = this.state.data.comments.length === 0;
     const noLikes = this.state.countLike === 0;
     const countLike = this.state.countLike.length;
+    const imageUpload = this.state.url + this.state.image;
     const date = moment().diff(timePost, 'days') < 5
       ? timePost.fromNow()
       : moment().diff(timePost, 'years') >= 1
@@ -201,28 +200,37 @@ export default class TimelineList extends Component {
                     {date}
                   </Text>
                 </View>
-                 <View style={{ flexDirection: 'row', alignItems: 'center' ,marginBottom: 10 }}>
+                <View style={{ marginBottom: 10 }}>
                    {!this.state.onEdit ?
-                    <Text style={styles.textNameProfile}>
-                      {this.state.text}
-                    </Text> :
-                    <View style={styles.box}>
-                      <TextInput
-                        ref={'update'}
-                        style={styles.input}
-                        placeholder = 'Edit your caption'
-                        autoCapitalize = 'none'
-                        onChangeText = {(text) => this.setState({text: text})}
-                        multiline = {true}
-                        underlineColorAndroid = "rgba(0,0,0,0)" />
-                        <TouchableOpacity onPress={() => this.updatePost()}>
-                        <Image
-                          style={styles.icon}
-                          source={icon}
-                        />
-                        </TouchableOpacity>
-                </View>
-                }
+                      <Text style={styles.textNameProfile}>
+                        {this.state.text}
+                      </Text> :
+                      <View style={styles.box}>
+                        <TextInput
+                          ref={'update'}
+                          style={styles.input}
+                          placeholder = 'Edit your caption'
+                          autoCapitalize = 'none'
+                          onChangeText = {(text) => this.setState({text: text})}
+                          multiline = {true}
+                          underlineColorAndroid = "rgba(0,0,0,0)" />
+                          <TouchableOpacity onPress={() => this.updatePost()}>
+                          <Image
+                            style={styles.icon}
+                            source={icon}
+                          />
+                          </TouchableOpacity>
+                      </View>
+                  }
+                  {this.state.image !== null ?
+                    <View style={{ width: undefined, height: undefined, marginTop: 10, alignItems: 'center' }}>
+                      <Image
+                        source={{ uri: this.state.url + this.state.image }}
+                        style={{ width: 200, height: 150 }}
+                      />
+                    </View> :
+                    <View />
+                  }
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 12, marginBottom: 8 }}>
                   <TouchableOpacity
