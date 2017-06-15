@@ -202,7 +202,6 @@ export default class Profile extends Component {
       };
 
       ImagePicker.showImagePicker(options, (response) => {
-        console.log("RESPONSE BRO==============>>>>>>>>.", response);
         if (response.didCancel) {
           console.log('User cancelled photo picker');
         } else if (response.error) {
@@ -246,7 +245,6 @@ export default class Profile extends Component {
               body: form,
             })
             .then((resp) => {
-              console.log("Landing here broooooooooooooo==========>", resp);
               this.setState({
                 image: resp._bodyInit.img_avatar,
               });
@@ -474,7 +472,7 @@ export default class Profile extends Component {
                                 <ListView
                                   enableEmptySections
                                   dataSource={ds.cloneWithRows(this.state.list)}
-                                  renderRow={dataPost => <TimelineList dataPost={dataPost} />}
+                                  renderRow={data => <TimelineList data={data} />}
                                 />
                                 </View>
                               </ScrollView>

@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import FormData from 'FormData';
-import RNFetchBlob from 'react-native-fetch-blob';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
 import post from './../../../services/post';
 import TimelineList from '../TimelineList';

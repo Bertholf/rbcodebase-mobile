@@ -119,7 +119,6 @@ export default class TimelineList extends Component {
               countLike: this.state.countLike + 1,
               liked: response.data.id,
             });
-            console.log("Like success");
           })
           .catch(err => console.log('error message yang salah', err))
       }
@@ -132,7 +131,6 @@ export default class TimelineList extends Component {
                 countLike: this.state.countLike - 1,
                 liked: this.props.data.liked,
               });
-              console.log("Unlike success");
             })
             .catch(err => console.log('gagal unlike: ', err))
       }
