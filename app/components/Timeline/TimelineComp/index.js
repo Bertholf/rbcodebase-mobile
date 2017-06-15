@@ -48,8 +48,8 @@ export default class MapMain extends Component {
       onPress: !this.state.onPress,
     });
   }
-  gotoDetail(dataPost) {
-    Actions.timelineDetail(dataPost);
+  gotoDetail(data) {
+    Actions.timelineDetail(data);
   }
 
   reRender() {
@@ -64,7 +64,7 @@ export default class MapMain extends Component {
             <ListView
               enableEmptySections
               dataSource={ds.cloneWithRows(this.state.list)}
-              renderRow={dataPost => <TimelineList dataPost={dataPost} />}
+              renderRow={dataPost => <TimelineList data={data} />}
             />
           </View>
         </ScrollView>

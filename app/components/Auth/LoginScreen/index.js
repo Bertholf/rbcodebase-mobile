@@ -13,9 +13,9 @@ const mail = require('./../../../images/ic_mail_outline_white_24dp_1x.png');
 export default class LoginScreen extends Component {
   render() {
     return (
-      <ScrollView>
-        <View style={styles.containers}>
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.containers}>
+        <ScrollView>
+          <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
             <Image style={styles.logo} source={logo} />
             <View style={styles.otherlog}>
               <TouchableOpacity
@@ -94,8 +94,8 @@ export default class LoginScreen extends Component {
               </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }

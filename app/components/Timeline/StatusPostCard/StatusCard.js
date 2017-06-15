@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import styles from './../../../components/Timeline/StatusPostCard/styles';
 import FormData from 'FormData';
-import RNFetchBlob from 'react-native-fetch-blob';
 import PostMenu from './../../../components/Timeline/StatusPostCard/postMenuIcon';
 import post from './../../../services/post';
 import TimelineList from '../TimelineList';
@@ -79,19 +78,23 @@ export default class PostCard extends Component {
         },
         body: form
       })
-      .then((res) => {
-        console.log("SUCCESS", res);
-        this.setState(() => {
-            return {
-              text: null,
-              picture: null,
-              filename: null,
-              type: null,
-              path: null,
-            };
-          });
-      })
-      .catch((err) => {
+      .then(res => res.json())
+        .then((res) => {
+          this.setState((prevState) => {
+              return {
+                text: null,
+                picture: null,
+                filename: null,
+                type: null,
+                path: null,
+                data: prevState.data.concat(res.data),
+              };
+            });
+        })
+        .catch((err) => {
+          Alert.alert(err.message);
+        })
+      .catch(err => {
         Alert.alert(err.message);
       })
     })
@@ -107,7 +110,7 @@ export default class PostCard extends Component {
 
   renderRow = (data) => {
     return (
-      <View><TimelineList dataPost={data} /></View>
+      <View><TimelineList data={data} /></View>
     );
   }
 
