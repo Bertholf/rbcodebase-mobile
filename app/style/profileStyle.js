@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 80 / 2,
-        marginTop: 12,
+        marginTop: 16,
       },
       android: {
         width: 80,
@@ -227,6 +227,14 @@ const styles = StyleSheet.create({
     marginRight: 12,
     backgroundColor: 'rgba(0,0,0,0)',
     tintColor: '#2196F3',
+  },
+  camera: {
+    width: 25,
+    height: 18,
+    marginLeft: 12,
+    marginBottom: 12,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    tintColor: '#fff',
   },
 });
 
