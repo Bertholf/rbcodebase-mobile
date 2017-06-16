@@ -209,7 +209,7 @@ export default class Profile extends Component {
         },
       };
 
-      ImagePicker.showImagePicker(options, (response) => {
+      ImagePicker.launchImageLibrary(options, (response) => {
         if (response.didCancel) {
           console.log('User cancelled photo picker');
         } else if (response.error) {

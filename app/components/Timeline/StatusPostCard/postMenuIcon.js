@@ -31,7 +31,7 @@ export default class PostMenu extends Component {
       }
     };
 
-    ImagePicker.showImagePicker(options, (response) => {
+    ImagePicker.launchImageLibrary(options, (response) => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
