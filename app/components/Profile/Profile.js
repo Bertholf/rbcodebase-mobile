@@ -63,8 +63,8 @@ export default class Profile extends Component {
       me: false,
       request: false,
       list: [],
-      image: null,
-      background: null,
+      image: this.props.profile.img_avatar,
+      background: this.props.profile.img_background,
       isProfile: false,
     };
   }
@@ -72,7 +72,7 @@ export default class Profile extends Component {
   componentDidMount() {
     AsyncStorage.getItem('userId')
     .then((id) => {
-      if (id === this.state.profile.id.toString()) {
+      if (id === this.state.ownerProfile.id.toString()) {
         this.setState({ me: true });
       }
       this.followHasSomeone(id, this.state.profile.id);
@@ -80,6 +80,7 @@ export default class Profile extends Component {
       // Get user profile
       auth.profile()
         .then((res) => {
+          console.log("This is data======>>>", res.data);
           this.setState({
             ownerProfile: res.data,
           })
@@ -189,6 +190,7 @@ export default class Profile extends Component {
   }
 
   render() {
+    console.log("Landing here bro================>>>", this.state.background);
     const hasDisplayName = this.state.displayName !== null;
     const displayName = this.state.displayName;
     const userId = this.state.profile.id;
@@ -310,7 +312,7 @@ export default class Profile extends Component {
           <View style={styles.container}>
             <View style={styles.backgroundContainer}>
               <Image
-                source={require('./../../images/gunung.jpg')}
+                source={background === null ? require('./../../images/back.png') : { uri: this.state.background }}
                 resizeMode={'cover'}
                 style={styles.backdrop}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 8 }}>
