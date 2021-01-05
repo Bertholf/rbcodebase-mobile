@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "axios-mock-adapter": "^1.7.1",
     "clamp": "^1.0.1",
     "emoji-mart": "^0.3.7",
