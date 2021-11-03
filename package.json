@@ -79,7 +79,7 @@
     "redux-thunk": "^2.1.0",
     "rn-viewpager": "^1.1.4",
     "tcomb-form-native": "^0.6.4",
-    "validator": "^6.2.1"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.7.1",
